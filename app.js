@@ -1,3 +1,4 @@
+const SITE_BUILD_VERSION = "v12-arcana-fix";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -116,12 +117,22 @@ const ARCANA_LIBRARY = {
   "누구보다 프로페셔널": [
     { name: "누구보다 프로페셔널", image: `${ARCANA_IMAGE_ROOT}/ARCANA_LPU_POST_SSR_01_S.webp` }
   ],
+  "서류 더미 위의 책임감": [
+    { name: "서류 더미 위의 책임감", image: `${ARCANA_IMAGE_ROOT}/ARCANA_RECON_KNUCKLE_SSR_01_S.webp` }
+  ],
   "언더커버 캅": [
     { name: "언더커버 캅", image: `${ARCANA_IMAGE_ROOT}/ARCANA_OFFICER_POLICE_SSR_01_S.webp` }
   ]
 };
 
 ARCANA_LIBRARY["웨핀델"] = ARCANA_LIBRARY["웨딩 에핀델"];
+
+// 약칭뿐 아니라 실제 카드명을 그대로 입력해도 이미지가 연결되도록 자동 별칭을 생성합니다.
+Object.values(ARCANA_LIBRARY).flat().forEach((card) => {
+  if (!ARCANA_LIBRARY[card.name]) {
+    ARCANA_LIBRARY[card.name] = [card];
+  }
+});
 
 const COMMON_ARCANA_SLOTS = [
   { name: "단점 보완 맞춤 훈련", note: "" },
@@ -774,22 +785,25 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "왈세라",
+            "name": "스트라니스의 영애",
             "note": ""
           },
           {
-            "name": "린(인내)",
+            "name": "하얀 달의 온기는 햇빛처럼",
             "note": ""
           },
           {
-            "name": "프레이 or 할리",
+            "name": "공녀, 왕좌에 오르다",
             "note": ""
           },
           {
-            "name": "바니걸 클레어",
+            "name": "완벽한 바니걸",
             "note": ""
           },
-          null
+          {
+            "name": "본 투 비 와일드 or 하늘의 시련 or 금단의 기록물 Vol. 1",
+            "note": ""
+          }
         ],
         "pvp": [
           null,
@@ -1122,22 +1136,25 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "왈세라",
+            "name": "스트라니스의 영애",
             "note": ""
           },
           {
-            "name": "린(인내)",
+            "name": "하얀 달의 온기는 햇빛처럼",
             "note": ""
           },
           {
-            "name": "프레이 or 할리",
+            "name": "공녀, 왕좌에 오르다",
             "note": ""
           },
           {
-            "name": "바니걸 클레어",
+            "name": "완벽한 바니걸",
             "note": ""
           },
-          null
+          {
+            "name": "본 투 비 와일드 or 하늘의 시련 or 금단의 기록물 Vol. 1",
+            "note": ""
+          }
         ],
         "pvp": [
           null,
@@ -1341,22 +1358,25 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "왈세라",
+            "name": "스트라니스의 영애",
             "note": ""
           },
           {
-            "name": "린(인내)",
+            "name": "하얀 달의 온기는 햇빛처럼",
             "note": ""
           },
           {
-            "name": "프레이 or 할리",
+            "name": "공녀, 왕좌에 오르다",
             "note": ""
           },
           {
-            "name": "바니걸 클레어",
+            "name": "완벽한 바니걸",
             "note": ""
           },
-          null
+          {
+            "name": "본 투 비 와일드 or 하늘의 시련 or 금단의 기록물 Vol. 1",
+            "note": ""
+          }
         ],
         "pvp": [
           null,
@@ -1486,13 +1506,25 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "공용 아르카나",
+            "name": "단점 보완 맞춤 훈련",
             "note": ""
           },
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "불굴의 역작",
+            "note": ""
+          },
+          {
+            "name": "꽃들에게 죽음을",
+            "note": ""
+          },
+          {
+            "name": "서류 더미 위의 책임감",
+            "note": ""
+          },
+          {
+            "name": "하얀 달의 온기는 햇빛처럼",
+            "note": ""
+          }
         ],
         "pvp": [
           null,
@@ -1503,8 +1535,8 @@ const SAVIORS = [
         ],
         "alternatives": [
           {
-            "name": "바니걸 클레어 or 할리",
-            "note": "본인 치명타 확률을 고려해 교체"
+            "name": "완벽한 바니걸 or 본 투 비 와일드 or 음독의 각오",
+            "note": "하얀 달의 온기는 햇빛처럼 대체"
           },
           null,
           null,
@@ -3020,24 +3052,24 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
+            "name": "단점 보완 맞춤 훈련",
             "note": ""
           },
           {
-            "name": "카넬리아",
+            "name": "누각 위, 유리달 맞이",
             "note": ""
           },
           {
-            "name": "뮤리엘",
+            "name": "조용한 휴식 시간",
             "note": ""
           },
           {
-            "name": "웨핀델",
+            "name": "꽃들에게 죽음을",
             "note": ""
           },
           {
-            "name": "바니걸 프레이 or 린(인내)",
-            "note": "엑셀 선택 추천"
+            "name": "완벽한 바니걸",
+            "note": ""
           }
         ],
         "pvp": [
@@ -3172,22 +3204,25 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "왈세라",
+            "name": "스트라니스의 영애",
             "note": ""
           },
           {
-            "name": "린(인내)",
+            "name": "하얀 달의 온기는 햇빛처럼",
             "note": ""
           },
           {
-            "name": "프레이 or 할리",
+            "name": "공녀, 왕좌에 오르다",
             "note": ""
           },
           {
-            "name": "바니걸 클레어",
+            "name": "완벽한 바니걸",
             "note": ""
           },
-          null
+          {
+            "name": "본 투 비 와일드 or 하늘의 시련 or 금단의 기록물 Vol. 1",
+            "note": ""
+          }
         ],
         "pvp": [
           null,
@@ -3933,6 +3968,16 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
   });
 
   const names = new Set(getResolvedArcanaNames(pveArcana));
+
+  if (savior.id === "roberta") {
+    if (names.has("단점 보완 맞춤 훈련")) {
+      add("노 페인, 노 게인", "단점 보완 맞춤 훈련 대체");
+    }
+    if (names.has("꽃들에게 죽음을")) {
+      add("메이드 바이 페트라♡ or 별을 보며 꿈을", "꽃들에게 죽음을 대체");
+    }
+    return result;
+  }
 
   if (names.has("단점 보완 맞춤 훈련")) {
     add("노 페인, 노 게인", "단점 보완 맞춤 훈련 대체");
