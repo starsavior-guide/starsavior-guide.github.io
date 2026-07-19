@@ -3491,7 +3491,6 @@ function createSaviorCard(savior) {
       <span class="card-subtitle">${escapeHtml(savior.subtitle)}</span>
       <div class="card-tags">
         <span class="mini-tag">${escapeHtml(savior.className)}</span>
-        <span class="mini-tag">${escapeHtml(savior.role)}</span>
       </div>
     </div>
   `;
@@ -3551,6 +3550,15 @@ function createDetailMarkup(savior) {
     ? `<a class="external-guide" href="${escapeHtml(savior.guideUrl)}" target="_blank" rel="noopener noreferrer">원본 구원자 DB ↗</a>`
     : "";
 
+  const roleBadge =
+    savior.role && savior.role !== savior.className
+      ? `<span class="detail-badge">${escapeHtml(savior.role)}</span>`
+      : "";
+
+  const attackTypeBadge = savior.attackType
+    ? `<span class="detail-badge">${escapeHtml(savior.attackType)}</span>`
+    : "";
+
   return `
     <header class="detail-hero" data-element="${escapeHtml(savior.element)}">
       <div class="detail-portrait">
@@ -3561,8 +3569,8 @@ function createDetailMarkup(savior) {
           <span class="detail-badge attribute">${escapeHtml(ELEMENT_LABELS[savior.element])}</span>
           <span class="detail-badge">${escapeHtml(savior.grade)}</span>
           <span class="detail-badge">${escapeHtml(savior.className)}</span>
-          <span class="detail-badge">${escapeHtml(savior.role)}</span>
-          <span class="detail-badge">${escapeHtml(savior.attackType)}</span>
+          ${roleBadge}
+          ${attackTypeBadge}
         </div>
 
         <h1 class="detail-title">${escapeHtml(savior.name)}</h1>
@@ -3570,34 +3578,12 @@ function createDetailMarkup(savior) {
         <p class="detail-summary">${escapeHtml(savior.summary)}</p>
 
         <div class="detail-quick-links">
-          <a class="detail-anchor" href="#skills">스킬 강화</a>
           <a class="detail-anchor" href="#equipment">장비 세팅</a>
           <a class="detail-anchor" href="#arcana">아르카나 세팅</a>
-          <a class="detail-anchor" href="#stats">세팅 기준</a>
           ${guideButton}
         </div>
       </div>
     </header>
-
-    <section class="content-section" id="skills">
-      <div class="section-titlebar">
-        <div>
-          <p>SKILL ENHANCEMENT</p>
-          <h2>스킬 강화 정보</h2>
-        </div>
-        <span class="section-note">원본 시트에는 스킬 강화 정보가 없음</span>
-      </div>
-      <div class="section-body">
-        <div class="skill-grid">
-          ${build.skills.map((skill) => `
-            <div class="skill-item">
-              <span>${escapeHtml(skill.label)}</span>
-              <strong>${escapeHtml(skill.value)}</strong>
-            </div>
-          `).join("")}
-        </div>
-      </div>
-    </section>
 
     <section class="content-section" id="equipment">
       <div class="section-titlebar">
@@ -3605,12 +3591,11 @@ function createDetailMarkup(savior) {
           <p>EQUIPMENT SETTING</p>
           <h2>장비 세팅</h2>
         </div>
-        <span class="section-note">PVE는 제공된 시트 기준 · PVP는 미제공</span>
+        <span class="section-note">제공된 PVE 시트 기준</span>
       </div>
       <div class="section-body">
         <div class="build-grid">
           ${createEquipmentCard("PVE", build.equipment.pve, "pve", "작전 · 회랑 · 코스모 게이트")}
-          ${createEquipmentCard("PVP", build.equipment.pvp, "pvp", "대전 콘텐츠")}
         </div>
       </div>
     </section>
@@ -3621,51 +3606,11 @@ function createDetailMarkup(savior) {
           <p>ARCANA SETTING</p>
           <h2>아르카나 세팅</h2>
         </div>
-        <span class="section-note">PVE 조합은 제공된 시트 기준</span>
+        <span class="section-note">제공된 PVE 시트 기준</span>
       </div>
       <div class="section-body">
         ${createArcanaMode("PVE 추천 아르카나", "주요 PVE 콘텐츠", build.arcana.pve, "var(--pve)")}
-        ${createArcanaMode("PVP 추천 아르카나", "대전 콘텐츠", build.arcana.pvp, "var(--pvp)")}
         ${createArcanaMode("대체 아르카나", "보유 상황에 따라 교체", build.arcana.alternatives, "var(--accent)")}
-      </div>
-    </section>
-
-    <section class="content-section" id="stats">
-      <div class="section-titlebar">
-        <div>
-          <p>RECOMMENDED STATS</p>
-          <h2>세팅 기준</h2>
-        </div>
-        <span class="section-note">시트 공통 기준과 캐릭터별 주옵</span>
-      </div>
-      <div class="section-body">
-        <div class="stats-table-wrap">
-          <table class="stats-table">
-            <thead>
-              <tr>
-                <th>우선도</th>
-                <th>능력치</th>
-                <th>권장 수치</th>
-                <th>목적</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${build.stats.map((stat) => `
-                <tr>
-                  <td><span class="priority ${escapeHtml(stat.priority)}">${escapeHtml(stat.label)}</span></td>
-                  <td>${escapeHtml(stat.name)}</td>
-                  <td>${escapeHtml(stat.target)}</td>
-                  <td>${escapeHtml(stat.reason)}</td>
-                </tr>
-              `).join("")}
-            </tbody>
-          </table>
-        </div>
-
-        <div class="info-banner">
-          <span aria-hidden="true">i</span>
-          <p>세팅 기준은 콘텐츠, 파티 조합과 장비 보유 상황에 따라 달라질 수 있습니다.</p>
-        </div>
       </div>
     </section>
   `;
@@ -3827,7 +3772,7 @@ function syncFromHash() {
     return;
   }
 
-  if (["arcana", "equipment", "cosmo"].includes(hash)) {
+  if (["cosmo"].includes(hash)) {
     openSimple(hash, { skipHash: true, keepScroll: true });
     return;
   }
@@ -3889,6 +3834,33 @@ navItems.forEach((button) => {
   });
 });
 
+function applyRequestedLayoutFixes() {
+  document
+    .querySelectorAll('[data-section="arcana"], [data-section="equipment"]')
+    .forEach((item) => item.remove());
+
+  const style = document.createElement("style");
+  style.id = "requested-layout-fixes";
+  style.textContent = `
+    .card-image::before,
+    .card-image::after,
+    .detail-portrait::before,
+    .detail-portrait::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    .character-image {
+      z-index: 1 !important;
+    }
+
+    .build-grid {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 function readSavedTheme() {
   try {
     return localStorage.getItem("starsavior-guide-theme");
@@ -3922,6 +3894,7 @@ themeToggle.addEventListener("click", () => {
 window.addEventListener("popstate", syncFromHash);
 window.addEventListener("hashchange", syncFromHash);
 
+applyRequestedLayoutFixes();
 renderList();
 applyTheme(readSavedTheme() || "dark");
 syncFromHash();
