@@ -85,6 +85,8 @@ const ARCANA_LIBRARY = {
   ]
 };
 
+ARCANA_LIBRARY["웨핀델"] = ARCANA_LIBRARY["웨딩 에핀델"];
+
 const EMPTY_ARCANA = () => Array.from({ length: 5 }, () => null);
 
 const DEFAULT_BUILD = {
@@ -133,65 +135,40 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_VOYAGER_STRANIS.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)"
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
           ],
           "potential": "AX",
-          "note": "파티 치명타 확률 증가 30%"
+          "note": "자체 치확증 30%"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
-            "note": "시트 추천"
+            "name": "공용 아르카나",
+            "note": "엑셀 추천"
           },
-          {
-            "name": "카넬리아",
-            "note": "시트 추천"
-          },
-          {
-            "name": "뮤리엘",
-            "note": "시트 추천"
-          },
-          {
-            "name": "웨딩 에핀델",
-            "note": "시트 추천"
-          },
-          {
-            "name": "바니걸 프레이 or 린(인내)",
-            "note": "시트 추천"
-          }
+          null,
+          null,
+          null,
+          null
         ],
         "pvp": [
           null,
@@ -207,30 +184,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -244,65 +198,40 @@ const SAVIORS = [
     "role": "레인저",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_VOYAGER_SMILE.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)"
+            "통찰(4) + 적중(2)",
+            "정밀(4) + 적중(2)"
           ],
           "potential": "AX",
-          "note": "별도 비고 없음"
+          "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
-            "note": "시트 추천"
+            "name": "공용 아르카나",
+            "note": "엑셀 추천"
           },
-          {
-            "name": "카넬리아",
-            "note": "시트 추천"
-          },
-          {
-            "name": "뮤리엘",
-            "note": "시트 추천"
-          },
-          {
-            "name": "웨딩 에핀델",
-            "note": "시트 추천"
-          },
-          {
-            "name": "오메가 or 바니걸 프레이",
-            "note": "시트 추천"
-          }
+          null,
+          null,
+          null,
+          null
         ],
         "pvp": [
           null,
@@ -318,30 +247,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -355,65 +261,51 @@ const SAVIORS = [
     "role": "캐스터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_VOYAGER_ORACLE.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
-          "ring": "생명력%",
+          "ring": "공격력%",
           "sets": [
-            "생명(4) + 장벽(2)",
-            "통찰(4) + 장벽(2)"
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
           ],
-          "potential": "BX",
-          "note": "반지 주옵 생명력% / 서브 딜 운용 시. 반지 주옵 생명력% 또는 공격력%"
+          "potential": "AX",
+          "note": "자체 치확증 30%"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "왈세라",
-            "note": "시트 추천"
+            "name": "티리아",
+            "note": "엑셀 추천"
           },
           {
             "name": "카넬리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
-            "name": "린(인내)",
-            "note": "시트 추천"
+            "name": "뮤리엘",
+            "note": "엑셀 추천"
           },
           {
-            "name": "바니걸 프레이",
-            "note": "시트 추천"
+            "name": "웨핀델",
+            "note": "엑셀 추천"
           },
           {
-            "name": "티리아 or 바니걸 클레어",
-            "note": "시트 추천"
+            "name": "바니걸 프레이 or 린(인내)",
+            "note": "엑셀 선택 추천"
           }
         ],
         "pvp": [
@@ -430,30 +322,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "생명력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -467,82 +336,51 @@ const SAVIORS = [
     "role": "캐스터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_LANTERN.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
-  },
-  {
-    "id": "bell",
-    "name": "벨",
-    "subtitle": "캔들 스퀘어",
-    "affiliation": "캔들 스퀘어",
-    "grade": "SSR",
-    "element": "star",
-    "className": "레인저",
-    "role": "레인저",
-    "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_BELL.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
-  },
-  {
-    "id": "emily",
-    "name": "에밀리",
-    "subtitle": "캔들 스퀘어",
-    "affiliation": "캔들 스퀘어",
-    "grade": "SSR",
-    "element": "moon",
-    "className": "디펜더",
-    "role": "디펜더",
-    "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_TWOHANDER.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2)",
-            "정밀(4) + 적중(2)"
+            "통찰(4) + 적중(2)"
           ],
           "potential": "AX",
-          "note": "정밀(4) 사용 시 적중(2) 대신 투지(2) 사용 가능"
+          "note": "별도 비고 없음"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "공용 아르카나",
-            "note": "시트 추천"
+            "name": "티리아",
+            "note": "엑셀 추천"
           },
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "카넬리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "뮤리엘",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "웨핀델",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "바니걸 프레이 or 린(인내)",
+            "note": "엑셀 선택 추천"
+          }
         ],
         "pvp": [
           null,
@@ -558,30 +396,156 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
+      }
+    }
+  },
+  {
+    "id": "bell",
+    "name": "벨",
+    "subtitle": "캔들 스퀘어",
+    "affiliation": "캔들 스퀘어",
+    "grade": "SSR",
+    "element": "star",
+    "className": "레인저",
+    "role": "레인저",
+    "attackType": "",
+    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_BELL.webp",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 적중(2)",
+            "공격(4) + 적중(2)"
+          ],
+          "potential": "AX",
+          "note": "별도 비고 없음"
         },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
+        "pvp": {
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
+          "sets": [
+            "해당 엑셀은 PVE 세팅표입니다."
+          ],
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
-      ]
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "티리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "카넬리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "로자리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "벨리스",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "바니걸 프레이",
+            "note": "엑셀 추천"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "id": "emily",
+    "name": "에밀리",
+    "subtitle": "캔들 스퀘어",
+    "affiliation": "캔들 스퀘어",
+    "grade": "SSR",
+    "element": "moon",
+    "className": "디펜더",
+    "role": "디펜더",
+    "attackType": "",
+    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_TWOHANDER.webp",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "생명력%",
+          "sets": [
+            "생명(4) + 장벽(2)"
+          ],
+          "potential": "BX / AX",
+          "note": "반지 주옵 생퍼"
+        },
+        "pvp": {
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
+          "sets": [
+            "해당 엑셀은 PVE 세팅표입니다."
+          ],
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "티리아 or 왈세라",
+            "note": "둘 중 하나 선택"
+          },
+          {
+            "name": "에밀리",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "바니걸 프레이",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "카넬리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "바니걸 클레어",
+            "note": "엑셀 추천"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
     }
   },
   {
@@ -595,23 +559,9 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_KINGDOM_KNIGHT.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
@@ -621,40 +571,28 @@ const SAVIORS = [
             "파괴(4) + 투지(2)"
           ],
           "potential": "AX",
-          "note": "린(힘) 사용 시 린(인내)을 샤를로 변경"
+          "note": "자체 치확증 30% 적중 2셋 사용 가능"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
-            "note": "시트 추천"
+            "name": "공용 아르카나",
+            "note": "엑셀 추천"
           },
-          {
-            "name": "키라",
-            "note": "시트 추천"
-          },
-          {
-            "name": "린(인내)",
-            "note": "시트 추천"
-          },
-          {
-            "name": "카넬리아",
-            "note": "시트 추천"
-          },
-          {
-            "name": "통찰(4): 바니걸 프레이",
-            "note": "시트 추천"
-          }
+          null,
+          null,
+          null,
+          null
         ],
         "pvp": [
           null,
@@ -670,30 +608,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -707,7 +622,7 @@ const SAVIORS = [
     "role": "디펜더",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_KINGDOM_SHIELDER.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -721,7 +636,7 @@ const SAVIORS = [
     "role": "서포터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_KINGDOM_PRAY.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -735,7 +650,7 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_NIGHTMARE_REAPER.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -749,7 +664,7 @@ const SAVIORS = [
     "role": "어쌔신",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_STELLAR_THIEF.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -763,66 +678,39 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_EASTERN_SWORDMASTER.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)",
-            "파괴(4) + 투지(2)"
+            "통찰(4) + 투지(2)"
           ],
           "potential": "AX",
-          "note": "자체 치명타 확률 증가 30%"
+          "note": "별도 비고 없음"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
-            "note": "시트 추천"
+            "name": "공용 아르카나",
+            "note": "엑셀 추천"
           },
-          {
-            "name": "카넬리아",
-            "note": "시트 추천"
-          },
-          {
-            "name": "뮤리엘",
-            "note": "시트 추천"
-          },
-          {
-            "name": "웨딩 에핀델",
-            "note": "시트 추천"
-          },
-          {
-            "name": "바니걸 프레이 or 린(인내)",
-            "note": "시트 추천"
-          }
+          null,
+          null,
+          null,
+          null
         ],
         "pvp": [
           null,
@@ -838,30 +726,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -875,65 +740,50 @@ const SAVIORS = [
     "role": "디펜더",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_INCOGNITA_FLOWER.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
-          "ring": "공격력%",
+          "ring": "방어력%",
           "sets": [
-            "통찰(4) + 투지(2)",
-            "파괴(4) + 투지(2)"
+            "방어(2) x 3"
           ],
-          "potential": "AX",
-          "note": "별도 비고 없음"
+          "potential": "CX",
+          "note": "반지 주옵 방퍼 생명(4) 사용 가능"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
-            "note": "시트 추천"
+            "name": "에밀리",
+            "note": "엑셀 추천"
           },
           {
-            "name": "카넬리아",
-            "note": "시트 추천"
+            "name": "린(인내)",
+            "note": "엑셀 추천"
           },
           {
-            "name": "바니걸 프레이",
-            "note": "시트 추천"
+            "name": "왈세라",
+            "note": "엑셀 추천"
           },
           {
-            "name": "로자리아",
-            "note": "시트 추천"
+            "name": "할리 or 베스타",
+            "note": "할리 추천 또는 베스타"
           },
           {
-            "name": "벨리스 or 린(인내)",
-            "note": "시트 추천"
+            "name": "엘리사 or 힐데 or 바니걸 클레어",
+            "note": "엑셀 선택 추천"
           }
         ],
         "pvp": [
@@ -950,30 +800,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -987,7 +814,7 @@ const SAVIORS = [
     "role": "서포터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_EASTERN_OWL.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -1001,65 +828,50 @@ const SAVIORS = [
     "role": "캐스터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAGICIAN_DRUID.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2)",
-            "공격(4) + 적중(2)"
+            "통찰(4) + 적중(2)"
           ],
           "potential": "AX",
           "note": "별도 비고 없음"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
             "name": "티리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
             "name": "카넬리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
-            "name": "로자리아",
-            "note": "시트 추천"
+            "name": "뮤리엘",
+            "note": "엑셀 추천"
           },
           {
-            "name": "벨리스",
-            "note": "시트 추천"
+            "name": "웨핀델",
+            "note": "엑셀 추천"
           },
           {
-            "name": "바니걸 프레이",
-            "note": "시트 추천"
+            "name": "바니걸 프레이 or 린(인내)",
+            "note": "엑셀 선택 추천"
           }
         ],
         "pvp": [
@@ -1076,30 +888,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -1113,65 +902,50 @@ const SAVIORS = [
     "role": "캐스터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_SAINTESS_DEMON.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2)",
-            "파괴(4) + 적중(2)"
+            "통찰(4) + 투지(2)"
           ],
           "potential": "AX",
-          "note": "공명에서 치명타 확률 9%, 치명타 피해 12%"
+          "note": "자체 치피증 (15~25%) 적중(2) 사용 가능"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
             "name": "티리아",
-            "note": "시트 추천"
-          },
-          {
-            "name": "키라",
-            "note": "시트 추천"
-          },
-          {
-            "name": "린(인내)",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
             "name": "카넬리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
-            "name": "바니걸 프레이",
-            "note": "시트 추천"
+            "name": "뮤리엘",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "웨핀델",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "바니걸 프레이 or 린(인내)",
+            "note": "엑셀 선택 추천"
           }
         ],
         "pvp": [
@@ -1188,30 +962,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -1225,7 +976,7 @@ const SAVIORS = [
     "role": "서포터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_SAINTESS_ELF.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -1239,64 +990,50 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_APOSTLE_TYRIA.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2)"
+            "통찰(4) + 투지(2)"
           ],
           "potential": "AX",
-          "note": "투지(2) 사용 가능"
+          "note": "별도 비고 없음"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
-            "note": "시트 추천"
+            "name": "바니걸 클레어 or 오메가",
+            "note": "첫 슬롯 선택"
           },
           {
-            "name": "카넬리아",
-            "note": "시트 추천"
+            "name": "공용 아르카나",
+            "note": "엑셀 추천"
           },
           {
-            "name": "뮤리엘",
-            "note": "시트 추천"
+            "name": "공용 아르카나",
+            "note": "엑셀 추천"
           },
           {
-            "name": "웨딩 에핀델",
-            "note": "시트 추천"
+            "name": "공용 아르카나",
+            "note": "엑셀 추천"
           },
           {
-            "name": "바니걸 프레이 or 린(인내)",
-            "note": "시트 추천"
+            "name": "공용 아르카나",
+            "note": "엑셀 추천"
           }
         ],
         "pvp": [
@@ -1313,30 +1050,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -1350,49 +1064,34 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_RECON_KNUCKLE.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2)",
-            "정밀(4) + 적중(2)"
+            "파괴(4) + 장벽(2)"
           ],
           "potential": "AX",
-          "note": "정밀(4) 사용 시 적중(2) 대신 투지(2) 사용 가능"
+          "note": "자체 치확증 50% 투지(2) 사용 가능"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
             "name": "공용 아르카나",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           null,
           null,
@@ -1407,36 +1106,16 @@ const SAVIORS = [
           null
         ],
         "alternatives": [
-          null,
+          {
+            "name": "바니걸 클레어 or 할리",
+            "note": "본인 치명타 확률을 고려해 교체"
+          },
           null,
           null,
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -1450,49 +1129,35 @@ const SAVIORS = [
     "role": "레인저",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_RECON_AMULET.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)",
-            "파괴(4) + 투지(2)"
+            "통찰(4) + 적중(2)",
+            "정밀(4) + 적중(2)"
           ],
           "potential": "AX",
-          "note": "자체 치명타 확률 증가 30%"
+          "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
             "name": "공용 아르카나",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           null,
           null,
@@ -1513,30 +1178,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -1550,64 +1192,50 @@ const SAVIORS = [
     "role": "어쌔신",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_INDEPENDENT_VAGABOND.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
-          "ring": "생명력%",
+          "ring": "공격력%",
           "sets": [
-            "생명(4) + 장벽(2)"
+            "파괴(4) + 장벽(2)"
           ],
-          "potential": "BX",
-          "note": "반지 주옵 생명력%"
+          "potential": "AX / XX2 (피흡)",
+          "note": "*전용 알카 사용시 특수기 치확 100%"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "왈세라",
-            "note": "시트 추천"
+            "name": "티리아",
+            "note": "엑셀 추천"
           },
           {
-            "name": "웨딩 카르멘",
-            "note": "시트 추천"
+            "name": "바니걸 프레이",
+            "note": "엑셀 추천"
           },
           {
-            "name": "린(인내)",
-            "note": "시트 추천"
+            "name": "키라",
+            "note": "엑셀 추천"
           },
           {
-            "name": "바니걸 클레어",
-            "note": "시트 추천"
+            "name": "카넬리아",
+            "note": "엑셀 추천"
           },
           {
-            "name": "프레이 or 할리",
-            "note": "시트 추천"
+            "name": "페이",
+            "note": "엑셀 추천"
           }
         ],
         "pvp": [
@@ -1624,30 +1252,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "생명력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -1661,7 +1266,7 @@ const SAVIORS = [
     "role": "어쌔신",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_GRACE_DUALSWORD.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -1675,53 +1280,51 @@ const SAVIORS = [
     "role": "캐스터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_STARPIERCER_OMEGA.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "파괴(4) + 투지(2)"
+            "통찰(4) + 투지(2)"
           ],
           "potential": "AX",
-          "note": "파티 치명타 확률 증가 30%"
+          "note": "별도 비고 없음"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "공용 아르카나",
-            "note": "시트 추천"
+            "name": "티리아",
+            "note": "엑셀 추천"
           },
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "카넬리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "뮤리엘",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "웨핀델",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "오메가 or 바니걸 프레이",
+            "note": "엑셀 선택 추천"
+          }
         ],
         "pvp": [
           null,
@@ -1737,30 +1340,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -1774,64 +1354,51 @@ const SAVIORS = [
     "role": "어쌔신",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_BUNNY_KNIGHT.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)"
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
-          "note": "자체 치명타 피해 증가 15~25%. 적중(2) 사용 가능"
+          "potential": "AX / EX",
+          "note": "*린(힘) 사용시 린(인내)를 샤를로 변경"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
             "name": "티리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "키라",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "린(인내)",
+            "note": "엑셀 추천"
           },
           {
             "name": "카넬리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
-            "name": "뮤리엘",
-            "note": "시트 추천"
-          },
-          {
-            "name": "웨딩 에핀델",
-            "note": "시트 추천"
-          },
-          {
-            "name": "바니걸 프레이 or 린(인내)",
-            "note": "시트 추천"
+            "name": "바니걸 프레이",
+            "note": "통찰(4) 사용 시"
           }
         ],
         "pvp": [
@@ -1842,36 +1409,16 @@ const SAVIORS = [
           null
         ],
         "alternatives": [
-          null,
+          {
+            "name": "바니걸 클레어 or 린(힘)",
+            "note": "파괴(4) 사용 시"
+          },
           null,
           null,
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -1885,7 +1432,7 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WEST_BEAMSWORD.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -1899,64 +1446,51 @@ const SAVIORS = [
     "role": "레인저",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WEST_ROD.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2)"
+            "통찰(4) + 적중(2)",
+            "정밀(4) + 적중(2)"
           ],
           "potential": "AX",
-          "note": "투지(2) 사용 가능"
+          "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
             "name": "티리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
             "name": "카넬리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
             "name": "바니걸 프레이",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
             "name": "로자리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
             "name": "벨리스 or 린(인내)",
-            "note": "시트 추천"
+            "note": "엑셀 선택 추천"
           }
         ],
         "pvp": [
@@ -1973,30 +1507,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -2010,7 +1521,7 @@ const SAVIORS = [
     "role": "디펜더",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WILD_HOG.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -2024,53 +1535,37 @@ const SAVIORS = [
     "role": "레인저",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_CONSTRUCT_BOMB.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)"
+            "통찰(4) + 적중(2)",
+            "정밀(4) + 적중(2)"
           ],
           "potential": "AX",
-          "note": "별도 비고 없음"
+          "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "바니걸 클레어 or 오메가",
-            "note": "시트 추천"
+            "name": "공용 아르카나",
+            "note": "엑셀 추천"
           },
-          {
-            "name": "나머지 공용 아르카나",
-            "note": "시트 추천"
-          },
+          null,
           null,
           null,
           null
@@ -2089,30 +1584,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -2126,7 +1598,7 @@ const SAVIORS = [
     "role": "레인저",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_BUNNY_SCISSORS.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -2140,7 +1612,7 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_BUNNY_SPEAR.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -2154,65 +1626,51 @@ const SAVIORS = [
     "role": "레인저",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_INDEPENDENT_DRAGON.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
             "통찰(4) + 적중(2)",
-            "정밀(4) + 적중(2)"
+            "공격(4) + 적중(2)"
           ],
           "potential": "AX",
-          "note": "정밀(4) 사용 시 적중(2) 대신 투지(2) 사용 가능"
+          "note": "*웨르멘과 함께 운용시 힘(린), 잠재등을 사용하여 파티 최고 공격력 달성 필요"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
             "name": "티리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
             "name": "카넬리아",
-            "note": "시트 추천"
-          },
-          {
-            "name": "바니걸 프레이",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
             "name": "로자리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
-            "name": "벨리스 or 린(인내)",
-            "note": "시트 추천"
+            "name": "벨리스",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "바니걸 프레이",
+            "note": "통찰(4) 사용 시"
           }
         ],
         "pvp": [
@@ -2223,36 +1681,16 @@ const SAVIORS = [
           null
         ],
         "alternatives": [
-          null,
+          {
+            "name": "린(인내) or 린(힘)",
+            "note": "공격(4) 사용 시"
+          },
           null,
           null,
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -2266,65 +1704,39 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_CONSTRUCT_GADGET.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
-          "ring": "방어력%",
+          "ring": "공격력%",
           "sets": [
-            "방어(2) × 3"
+            "파괴(4) + 투지(2)"
           ],
-          "potential": "CX",
-          "note": "반지 주옵 방어력%. 생명(4) 사용 가능"
+          "potential": "AX",
+          "note": "파티 치확증 30%"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "에밀리",
-            "note": "시트 추천"
+            "name": "공용 아르카나",
+            "note": "엑셀 추천"
           },
-          {
-            "name": "린(인내)",
-            "note": "시트 추천"
-          },
-          {
-            "name": "왈세라",
-            "note": "시트 추천"
-          },
-          {
-            "name": "할리(추천) or 베스타",
-            "note": "시트 추천"
-          },
-          {
-            "name": "엘리사 or 힐데 or 바니걸 클레어",
-            "note": "시트 추천"
-          }
+          null,
+          null,
+          null,
+          null
         ],
         "pvp": [
           null,
@@ -2340,30 +1752,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "방어력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -2377,7 +1766,7 @@ const SAVIORS = [
     "role": "캐스터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_DETECTIVE_WATSON.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -2391,64 +1780,51 @@ const SAVIORS = [
     "role": "어쌔신",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MUTANT_MASK.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
-          "ring": "생명력%",
+          "ring": "공격력%",
           "sets": [
-            "생명(4) + 장벽(2)"
+            "통찰(4) + 적중(2)",
+            "파괴(4) + 적중(2)"
           ],
-          "potential": "BX",
-          "note": "반지 주옵 생명력%"
+          "potential": "AX",
+          "note": "공명에서 치확 9% 치피 12%"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "에밀리",
-            "note": "시트 추천"
+            "name": "티리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "키라",
+            "note": "엑셀 추천"
           },
           {
             "name": "린(인내)",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
-            "name": "왈세라",
-            "note": "시트 추천"
+            "name": "카넬리아",
+            "note": "엑셀 추천"
           },
           {
-            "name": "할리(추천) or 베스타",
-            "note": "시트 추천"
-          },
-          {
-            "name": "힐데 or 엘리사 or 바니걸 클레어",
-            "note": "시트 추천"
+            "name": "바니걸 프레이",
+            "note": "엑셀 추천"
           }
         ],
         "pvp": [
@@ -2465,30 +1841,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "생명력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -2502,65 +1855,51 @@ const SAVIORS = [
     "role": "서포터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_DRESS_STRANIS.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
-          "ring": "공격력%",
+          "ring": "생명력% 또는 공격력%",
           "sets": [
-            "통찰(4) + 적중(2)",
-            "공격(4) + 적중(2)"
+            "생명(4) + 장벽(2)",
+            "통찰(4) + 장벽(2) (서브 딜 운용시)"
           ],
-          "potential": "AX",
-          "note": "웨르멘과 함께 운용 시 파티 최고 공격력 달성 필요"
+          "potential": "BX / AX",
+          "note": "반지 주옵 생퍼 / 반지 주옵 생퍼 or 공퍼"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
-            "note": "시트 추천"
+            "name": "왈세라",
+            "note": "엑셀 추천"
           },
           {
             "name": "카넬리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
-            "name": "로자리아",
-            "note": "시트 추천"
+            "name": "린(인내)",
+            "note": "엑셀 추천"
           },
           {
-            "name": "벨리스",
-            "note": "시트 추천"
+            "name": "바니걸 프레이",
+            "note": "엑셀 추천"
           },
           {
-            "name": "통찰(4): 바니걸 프레이",
-            "note": "시트 추천"
+            "name": "티리아 or 바니걸 클레어",
+            "note": "엑셀 선택 추천"
           }
         ],
         "pvp": [
@@ -2571,36 +1910,16 @@ const SAVIORS = [
           null
         ],
         "alternatives": [
-          null,
+          {
+            "name": "공용 아르카나",
+            "note": "서브 딜 운용 시"
+          },
           null,
           null,
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -2614,54 +1933,51 @@ const SAVIORS = [
     "role": "서포터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WEDDING_SHIELDER.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
-          "ring": "공격력%",
+          "ring": "생명력%",
           "sets": [
-            "통찰(4) + 투지(2)",
-            "파괴(4) + 투지(2)"
+            "생명(4)+ 장벽(2)"
           ],
-          "potential": "AX",
-          "note": "자체 치명타 확률 증가 30%. 적중(2) 사용 가능"
+          "potential": "BX",
+          "note": "반지 주옵 생퍼"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "공용 아르카나",
-            "note": "시트 추천"
+            "name": "왈세라",
+            "note": "엑셀 추천"
           },
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "웨딩 카르멘",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "린(인내)",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "바니걸 클레어",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "프레이 or 할리",
+            "note": "엑셀 선택 추천"
+          }
         ],
         "pvp": [
           null,
@@ -2677,30 +1993,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -2714,23 +2007,9 @@ const SAVIORS = [
     "role": "캐스터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WEDDING_DUALSWORD.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
@@ -2739,39 +2018,39 @@ const SAVIORS = [
             "통찰(4) + 적중(2)"
           ],
           "potential": "AX",
-          "note": "별도 비고 없음"
+          "note": "투지(2) 사용 가능"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
             "name": "티리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
             "name": "카넬리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
             "name": "뮤리엘",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
-            "name": "웨딩 에핀델",
-            "note": "시트 추천"
+            "name": "웨핀델",
+            "note": "엑셀 추천"
           },
           {
             "name": "바니걸 프레이 or 린(인내)",
-            "note": "시트 추천"
+            "note": "엑셀 선택 추천"
           }
         ],
         "pvp": [
@@ -2788,30 +2067,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -2825,64 +2081,50 @@ const SAVIORS = [
     "role": "캐스터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_BUNNY_PRAY.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
-          "ring": "생명력%",
+          "ring": "공격력%",
           "sets": [
-            "파괴(4) + 장벽(2)"
+            "통찰(4) + 투지(2)"
           ],
           "potential": "AX",
-          "note": "전용 아르카나 사용 시 특수기 치명타 확률 100% / 생명력 흡수"
+          "note": "파티 치확증 30%"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
             "name": "티리아",
-            "note": "시트 추천"
-          },
-          {
-            "name": "바니걸 프레이",
-            "note": "시트 추천"
-          },
-          {
-            "name": "키라",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
             "name": "카넬리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
-            "name": "페이",
-            "note": "시트 추천"
+            "name": "뮤리엘",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "웨핀델",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "바니걸 프레이 or 린(인내)",
+            "note": "엑셀 선택 추천"
           }
         ],
         "pvp": [
@@ -2899,30 +2141,7 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "생명력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -2936,7 +2155,7 @@ const SAVIORS = [
     "role": "디펜더",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WEST_LANCER.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -2950,7 +2169,7 @@ const SAVIORS = [
     "role": "디펜더",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_OFFICER_POLICE.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -2964,7 +2183,7 @@ const SAVIORS = [
     "role": "어쌔신",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_CONSTRUCT_WRENCH.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -2978,7 +2197,7 @@ const SAVIORS = [
     "role": "서포터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_LPU_POST.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -2992,7 +2211,7 @@ const SAVIORS = [
     "role": "레인저",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_NOA_OBSERVER.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -3006,64 +2225,50 @@ const SAVIORS = [
     "role": "어쌔신",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_SPEAR.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
-          "ring": "생명력%",
+          "ring": "공격력%",
           "sets": [
-            "생명(4) + 장벽(2)"
+            "파괴(4) + 투지(2)"
           ],
-          "potential": "BX",
-          "note": "반지 주옵 생명력%"
+          "potential": "AX",
+          "note": "자체 치확증 (6~10%)x3턴 *바클 사용시 샤를을 린(인내)로 변경"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "티리아 or 왈세라 택 1",
-            "note": "시트 추천"
+            "name": "티리아",
+            "note": "엑셀 추천"
           },
           {
-            "name": "에밀리",
-            "note": "시트 추천"
-          },
-          {
-            "name": "바니걸 프레이",
-            "note": "시트 추천"
+            "name": "샤를",
+            "note": "엑셀 추천"
           },
           {
             "name": "카넬리아",
-            "note": "시트 추천"
+            "note": "엑셀 추천"
           },
           {
-            "name": "바니걸 클레어",
-            "note": "시트 추천"
+            "name": "바니걸 프레이",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "바니걸 클레어 or 린(힘)",
+            "note": "엑셀 선택 추천"
           }
         ],
         "pvp": [
@@ -3074,36 +2279,16 @@ const SAVIORS = [
           null
         ],
         "alternatives": [
-          null,
+          {
+            "name": "린(인내)",
+            "note": "바니걸 클레어 사용 시 샤를 대신 채용"
+          },
           null,
           null,
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "생명력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
+      }
     }
   },
   {
@@ -3117,7 +2302,7 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_SCISSORS.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -3131,7 +2316,7 @@ const SAVIORS = [
     "role": "레인저",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAGICIAN_SNIPER.webp",
-    "summary": "시트 미등록. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   },
   {
@@ -3145,263 +2330,50 @@ const SAVIORS = [
     "role": "디펜더",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_COUNTERSIDE_HILDE.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
       "equipment": {
         "pve": {
           "necklace": "속도",
-          "ring": "공격력%",
+          "ring": "생명력%",
           "sets": [
-            "통찰(4) + 적중(2)",
-            "정밀(4) + 적중(2)"
+            "생명(4) + 장벽(2)"
           ],
-          "potential": "AX",
-          "note": "정밀(4) 사용 시 적중(2) 대신 투지(2) 사용 가능"
+          "potential": "BX",
+          "note": "반지 주옵 생퍼"
         },
         "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
           "sets": [
-            "해당 시트는 PVE 세팅표입니다."
+            "해당 엑셀은 PVE 세팅표입니다."
           ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
       },
       "arcana": {
         "pve": [
           {
-            "name": "공용 아르카나",
-            "note": "시트 추천"
-          },
-          null,
-          null,
-          null,
-          null
-        ],
-        "pvp": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "alternatives": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
-    }
-  },
-  {
-    "id": "yoo-mina",
-    "name": "유미나",
-    "subtitle": "펜릴 소대",
-    "affiliation": "펜릴 소대",
-    "grade": "SSR",
-    "element": "star",
-    "className": "레인저",
-    "role": "레인저",
-    "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_COUNTERSIDE_MINA.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
-    "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
-      "equipment": {
-        "pve": {
-          "necklace": "속도",
-          "ring": "공격력%",
-          "sets": [
-            "통찰(4) + 투지(2)"
-          ],
-          "potential": "AX",
-          "note": "별도 비고 없음"
-        },
-        "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
-          "sets": [
-            "해당 시트는 PVE 세팅표입니다."
-          ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
-        }
-      },
-      "arcana": {
-        "pve": [
-          {
-            "name": "공용 아르카나",
-            "note": "시트 추천"
-          },
-          null,
-          null,
-          null,
-          null
-        ],
-        "pvp": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        "alternatives": [
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
-        },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
-        }
-      ]
-    }
-  },
-  {
-    "id": "rosaria",
-    "name": "로자리아",
-    "subtitle": "폴른 호크",
-    "affiliation": "폴른 호크",
-    "grade": "SSR",
-    "element": "chaos",
-    "className": "레인저",
-    "role": "레인저",
-    "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_COUNTERSIDE_ROSARIA.webp",
-    "summary": "시트 세팅 반영. 구원자 정보는 Star Savior DB 기준입니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
-    "detail": {
-      "skills": [
-        {
-          "label": "기본기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "특수기",
-          "value": "시트 미기재"
-        },
-        {
-          "label": "궁극기",
-          "value": "시트 미기재"
-        }
-      ],
-      "equipment": {
-        "pve": {
-          "necklace": "속도",
-          "ring": "공격력%",
-          "sets": [
-            "통찰(4) + 적중(2)"
-          ],
-          "potential": "AX",
-          "note": "별도 비고 없음"
-        },
-        "pvp": {
-          "necklace": "해당 시트에 없음",
-          "ring": "해당 시트에 없음",
-          "sets": [
-            "해당 시트는 PVE 세팅표입니다."
-          ],
-          "potential": "해당 시트에 없음",
-          "note": "PVP 데이터는 원본 시트에 포함되어 있지 않습니다."
-        }
-      },
-      "arcana": {
-        "pve": [
-          {
-            "name": "티리아",
-            "note": "시트 추천"
+            "name": "에밀리",
+            "note": "엑셀 추천"
           },
           {
-            "name": "카넬리아",
-            "note": "시트 추천"
+            "name": "린(인내)",
+            "note": "엑셀 추천"
           },
           {
-            "name": "뮤리엘",
-            "note": "시트 추천"
+            "name": "왈세라",
+            "note": "엑셀 추천"
           },
           {
-            "name": "웨딩 에핀델",
-            "note": "시트 추천"
+            "name": "할리 or 베스타",
+            "note": "할리 추천 또는 베스타"
           },
           {
-            "name": "바니걸 프레이 or 린(인내)",
-            "note": "시트 추천"
+            "name": "힐데 or 엘리사 or 바니걸 클레어",
+            "note": "엑셀 선택 추천"
           }
         ],
         "pvp": [
@@ -3418,30 +2390,156 @@ const SAVIORS = [
           null,
           null
         ]
-      },
-      "stats": [
-        {
-          "name": "목걸이 주옵",
-          "target": "속도",
-          "reason": "시트 공통 기준",
-          "priority": "required",
-          "label": "고정"
+      }
+    }
+  },
+  {
+    "id": "yoo-mina",
+    "name": "유미나",
+    "subtitle": "펜릴 소대",
+    "affiliation": "펜릴 소대",
+    "grade": "SSR",
+    "element": "star",
+    "className": "레인저",
+    "role": "레인저",
+    "attackType": "",
+    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_COUNTERSIDE_MINA.webp",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
+          ],
+          "potential": "AX",
+          "note": "별도 비고 없음"
         },
-        {
-          "name": "반지 주옵",
-          "target": "공격력%",
-          "reason": "캐릭터 비고 기준",
-          "priority": "recommended",
-          "label": "권장"
-        },
-        {
-          "name": "효과 적중",
-          "target": "최대 170~180 적정선",
-          "reason": "시트 공통 안내",
-          "priority": "high",
-          "label": "참고"
+        "pvp": {
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
+          "sets": [
+            "해당 엑셀은 PVE 세팅표입니다."
+          ],
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
         }
-      ]
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "티리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "카넬리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "바니걸 프레이",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "로자리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "벨리스 or 린(인내)",
+            "note": "엑셀 선택 추천"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "id": "rosaria",
+    "name": "로자리아",
+    "subtitle": "폴른 호크",
+    "affiliation": "폴른 호크",
+    "grade": "SSR",
+    "element": "chaos",
+    "className": "레인저",
+    "role": "레인저",
+    "attackType": "",
+    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_COUNTERSIDE_ROSARIA.webp",
+    "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 적중(2)"
+          ],
+          "potential": "AX",
+          "note": "투지(2) 사용 가능"
+        },
+        "pvp": {
+          "necklace": "해당 엑셀에 없음",
+          "ring": "해당 엑셀에 없음",
+          "sets": [
+            "해당 엑셀은 PVE 세팅표입니다."
+          ],
+          "potential": "해당 엑셀에 없음",
+          "note": "PVP 데이터는 표시하지 않습니다."
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "티리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "카넬리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "바니걸 프레이",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "로자리아",
+            "note": "엑셀 추천"
+          },
+          {
+            "name": "벨리스 or 린(인내)",
+            "note": "엑셀 선택 추천"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
     }
   }
 ];
@@ -3670,7 +2768,7 @@ function createDetailMarkup(savior) {
           <p>EQUIPMENT SETTING</p>
           <h2>장비 세팅</h2>
         </div>
-        <span class="section-note">제공된 PVE 시트 기준</span>
+        <span class="section-note">업로드한 엑셀 PVE 세팅표 기준</span>
       </div>
       <div class="section-body">
         <div class="build-grid">
@@ -3685,7 +2783,7 @@ function createDetailMarkup(savior) {
           <p>ARCANA SETTING</p>
           <h2>아르카나 세팅</h2>
         </div>
-        <span class="section-note">제공된 PVE 시트 기준</span>
+        <span class="section-note">업로드한 엑셀 PVE 세팅표 기준</span>
       </div>
       <div class="section-body">
         ${createArcanaMode("PVE 추천 아르카나", "주요 PVE 콘텐츠", build.arcana.pve, "var(--pve)")}
@@ -3736,9 +2834,12 @@ function createEquipmentCard(mode, data, className, subtitle) {
 
 function normalizeArcanaAlias(value) {
   return String(value || "")
+    .replace(/^\*+/, "")
     .replace(/^통찰\(4\)\s*:\s*/, "")
     .replace(/\s*택\s*1\s*/g, "")
     .replace(/\(추천\)/g, "")
+    .replace(/\s*\(\s*/g, "(")
+    .replace(/\s*\)\s*/g, ")")
     .trim();
 }
 
@@ -3814,7 +2915,7 @@ function createArcanaMode(title, description, slots, color) {
               <div class="arcana-card-copy">
                 <small>SLOT ${index + 1}${choices.length > 1 ? " · 선택" : ""}</small>
                 <strong>${escapeHtml(cardNames)}</strong>
-                <em>아르카나 DB 기준</em>
+                <em>${escapeHtml(arcana.note || "아르카나 DB 기준")}</em>
               </div>
             </a>
           `;
