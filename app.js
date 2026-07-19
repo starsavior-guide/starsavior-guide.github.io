@@ -6,6 +6,85 @@ const ELEMENT_LABELS = {
   chaos: "혼돈"
 };
 
+
+const ARCANA_SOURCE_URL = "https://star-savior-arcana-db.pages.dev/arcana";
+const ARCANA_IMAGE_ROOT = "https://starsavior-db.pages.dev/images/arcana";
+
+// 아르카나 카드명은 사용자가 지정한 Star Savior Arcana DB의 한국어 표기를 사용합니다.
+// 시트에서 사용하는 캐릭터/버전 약칭을 실제 카드명과 이미지로 연결합니다.
+const ARCANA_LIBRARY = {
+  "티리아": [
+    { name: "단점 보완 맞춤 훈련", image: `${ARCANA_IMAGE_ROOT}/ARCANA_APOSTLE_TYRIA_SSR_01_S.webp` }
+  ],
+  "카넬리아": [
+    { name: "꽃들에게 죽음을", image: `${ARCANA_IMAGE_ROOT}/ARCANA_MAID_LANTERN_SSR_01_S.webp` }
+  ],
+  "뮤리엘": [
+    { name: "하늘의 심판", image: `${ARCANA_IMAGE_ROOT}/ARCANA_SAINTESS_DEMON_SSR_01_S.webp` }
+  ],
+  "웨딩 에핀델": [
+    { name: "죽음이 둘을 갈라놓을 때까지", image: `${ARCANA_IMAGE_ROOT}/ARCANA_WEDDING_DUALSWORD_SSR_01_S.webp` }
+  ],
+  "바니걸 프레이": [
+    { name: "불굴의 역작", image: `${ARCANA_IMAGE_ROOT}/ARCANA_BUNNY_PRAY_SSR_01_S.webp` }
+  ],
+  "린(인내)": [
+    { name: "하얀 달의 온기는 햇빛처럼", image: `${ARCANA_IMAGE_ROOT}/ARCANA_EASTERN_SWORDMASTER_SSR_02_S.webp` }
+  ],
+  "린(힘)": [
+    { name: "누각 위, 유리달 맞이", image: `${ARCANA_IMAGE_ROOT}/ARCANA_EASTERN_SWORDMASTER_SSR_01_S.webp` }
+  ],
+  "에밀리": [
+    { name: "조용한 휴식 시간", image: `${ARCANA_IMAGE_ROOT}/ARCANA_MAID_TWOHANDER_SSR_01_S.webp` }
+  ],
+  "왈세라": [
+    { name: "스트라니스의 영애", image: `${ARCANA_IMAGE_ROOT}/ARCANA_DRESS_STRANIS_SSR_01_S.webp` }
+  ],
+  "바니걸 클레어": [
+    { name: "완벽한 바니걸", image: `${ARCANA_IMAGE_ROOT}/ARCANA_BUNNY_SPEAR_SSR_01_S.webp` }
+  ],
+  "키라": [
+    { name: "키라만큼 귀여워!", image: `${ARCANA_IMAGE_ROOT}/ARCANA_MUTANT_MASK_SSR_01_S.webp` }
+  ],
+  "페이": [
+    { name: "오늘의 한 걸음", image: `${ARCANA_IMAGE_ROOT}/ARCANA_INDEPENDENT_VAGABOND_SSR_01_S.webp` }
+  ],
+  "웨딩 카르멘": [
+    { name: "나른한 오후의 틈새", image: `${ARCANA_IMAGE_ROOT}/ARCANA_WEDDING_SHIELDER_SSR_01_S.webp` }
+  ],
+  "프레이": [
+    { name: "공녀, 왕좌에 오르다", image: `${ARCANA_IMAGE_ROOT}/ARCANA_KINGDOM_PRAY_SSR_01_S.webp` }
+  ],
+  "할리": [
+    { name: "본 투 비 와일드", image: `${ARCANA_IMAGE_ROOT}/ARCANA_WILD_HOG_SSR_01_S.webp` }
+  ],
+  "오메가": [
+    { name: "허수의 개척자", image: `${ARCANA_IMAGE_ROOT}/ARCANA_STARPIERCER_OMEGA_SSR_01_S.webp` }
+  ],
+  "로자리아": [
+    { name: "종말은 소녀의 얼굴을 하고 있다.", image: `${ARCANA_IMAGE_ROOT}/ARCANA_COUNTERSIDE_ROSARIA_SSR_01_S.webp` }
+  ],
+  "벨리스": [
+    { name: "깊은 애도", image: `${ARCANA_IMAGE_ROOT}/ARCANA_MAID_BELL_SSR_01_S.webp` }
+  ],
+  "힐데": [
+    { name: "노스텔지어의 역습", image: `${ARCANA_IMAGE_ROOT}/ARCANA_COUNTERSIDE_HILDE_SSR_01_S.webp` }
+  ],
+  "엘리사": [
+    { name: "하늘의 시련", image: `${ARCANA_IMAGE_ROOT}/ARCANA_SAINTESS_ELF_SSR_01_S.webp` }
+  ],
+  "베스타": [
+    { name: "금단의 기록물 Vol. 1", image: `${ARCANA_IMAGE_ROOT}/ARCANA_APRIL_FOOL_SSR_01_S.webp` },
+    { name: "만족스러운 식사", image: `${ARCANA_IMAGE_ROOT}/ARCANA_WEST_LANCER_SSR_01_S.webp` }
+  ],
+  "샤를": [
+    { name: "어느 한 기사의 맹세", image: `${ARCANA_IMAGE_ROOT}/ARCANA_KINGDOM_KNIGHT_SSR_01_S.webp` }
+  ],
+  "바니걸 샤를": [
+    { name: "서투른 욕망 해소법", image: `${ARCANA_IMAGE_ROOT}/ARCANA_BUNNY_KNIGHT_SSR_01_S.webp` }
+  ]
+};
+
 const EMPTY_ARCANA = () => Array.from({ length: 5 }, () => null);
 
 const DEFAULT_BUILD = {
@@ -3654,6 +3733,44 @@ function createEquipmentCard(mode, data, className, subtitle) {
   `;
 }
 
+
+function normalizeArcanaAlias(value) {
+  return String(value || "")
+    .replace(/^통찰\(4\)\s*:\s*/, "")
+    .replace(/\s*택\s*1\s*/g, "")
+    .replace(/\(추천\)/g, "")
+    .trim();
+}
+
+function resolveArcanaChoices(rawName) {
+  const normalized = normalizeArcanaAlias(rawName);
+
+  if (!normalized || normalized.includes("공용 아르카나")) {
+    return [];
+  }
+
+  const aliases = normalized
+    .split(/\s+or\s+/i)
+    .map((value) => normalizeArcanaAlias(value))
+    .filter(Boolean);
+
+  return aliases.flatMap((alias) => ARCANA_LIBRARY[alias] || []);
+}
+
+function createArcanaImages(choices) {
+  if (!choices.length) return "";
+
+  return `
+    <div class="arcana-card-images" style="--arcana-count:${Math.min(choices.length, 3)}">
+      ${choices.slice(0, 3).map((choice) => `
+        <img src="${escapeHtml(choice.image)}" alt="${escapeHtml(choice.name)}"
+          loading="lazy" referrerpolicy="no-referrer"
+          onerror="this.style.display='none'">
+      `).join("")}
+    </div>
+  `;
+}
+
 function createArcanaMode(title, description, slots, color) {
   const normalized = Array.from({ length: 5 }, (_, index) => slots?.[index] || null);
 
@@ -3670,17 +3787,36 @@ function createArcanaMode(title, description, slots, color) {
               <div class="arcana-slot empty" style="--slot-color:${color}">
                 <small>SLOT ${index + 1}</small>
                 <strong>미등록</strong>
-                <em>아르카나 데이터를 입력해 주세요.</em>
+                <em>대체 아르카나가 등록되지 않았습니다.</em>
               </div>
             `;
           }
 
+          const choices = resolveArcanaChoices(arcana.name);
+
+          if (!choices.length) {
+            return `
+              <div class="arcana-slot empty" style="--slot-color:${color}">
+                <small>SLOT ${index + 1}</small>
+                <strong>${escapeHtml(arcana.name)}</strong>
+                <em>${escapeHtml(arcana.note || "원본 시트 표기")}</em>
+              </div>
+            `;
+          }
+
+          const cardNames = choices.map((choice) => choice.name).join(" / ");
+
           return `
-            <div class="arcana-slot" style="--slot-color:${color}">
-              <small>SLOT ${index + 1}</small>
-              <strong>${escapeHtml(arcana.name)}</strong>
-              <em>${escapeHtml(arcana.note || "")}</em>
-            </div>
+            <a class="arcana-slot has-arcana-card" href="${ARCANA_SOURCE_URL}"
+              target="_blank" rel="noopener noreferrer" style="--slot-color:${color}"
+              aria-label="${escapeHtml(cardNames)} 아르카나 DB에서 보기">
+              ${createArcanaImages(choices)}
+              <div class="arcana-card-copy">
+                <small>SLOT ${index + 1}${choices.length > 1 ? " · 선택" : ""}</small>
+                <strong>${escapeHtml(cardNames)}</strong>
+                <em>아르카나 DB 기준</em>
+              </div>
+            </a>
           `;
         }).join("")}
       </div>
@@ -3861,6 +3997,114 @@ function applyRequestedLayoutFixes() {
   document.head.appendChild(style);
 }
 
+
+function installArcanaCardStyles() {
+  if (document.querySelector("#arcana-card-image-styles")) return;
+
+  const style = document.createElement("style");
+  style.id = "arcana-card-image-styles";
+  style.textContent = `
+    .arcana-slot.has-arcana-card {
+      display: flex;
+      min-height: 230px;
+      padding: 0;
+      justify-content: flex-end;
+      border-style: solid;
+      color: var(--text);
+      text-decoration: none;
+      background: var(--surface-2);
+    }
+
+    .arcana-slot.has-arcana-card::before {
+      display: none;
+    }
+
+    .arcana-card-images {
+      position: absolute;
+      inset: 0 0 76px;
+      display: grid;
+      grid-template-columns: repeat(var(--arcana-count), minmax(0, 1fr));
+      overflow: hidden;
+      background: var(--surface-3);
+    }
+
+    .arcana-card-images::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background: linear-gradient(to bottom, transparent 55%, rgba(9, 12, 19, 0.6));
+      pointer-events: none;
+    }
+
+    .arcana-card-images img {
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+      object-fit: cover;
+    }
+
+    .arcana-card-copy {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      min-height: 76px;
+      padding: 10px 11px 11px;
+      border-top: 1px solid color-mix(in srgb, var(--slot-color) 50%, var(--line));
+      background: color-mix(in srgb, var(--surface) 93%, transparent);
+      backdrop-filter: blur(10px);
+    }
+
+    .arcana-card-copy small,
+    .arcana-card-copy strong,
+    .arcana-card-copy em {
+      display: block;
+    }
+
+    .arcana-card-copy small {
+      color: var(--faint);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .arcana-card-copy strong {
+      margin-top: 3px;
+      font-size: 12px;
+      font-weight: 950;
+      line-height: 1.34;
+    }
+
+    .arcana-card-copy em {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 9px;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .arcana-slot.has-arcana-card:hover {
+      border-color: var(--slot-color);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 620px) {
+      .arcana-slot.has-arcana-card {
+        min-height: 210px;
+      }
+
+      .arcana-card-images {
+        bottom: 82px;
+      }
+
+      .arcana-card-copy {
+        min-height: 82px;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+}
+
 function readSavedTheme() {
   try {
     return localStorage.getItem("starsavior-guide-theme");
@@ -3895,6 +4139,7 @@ window.addEventListener("popstate", syncFromHash);
 window.addEventListener("hashchange", syncFromHash);
 
 applyRequestedLayoutFixes();
+installArcanaCardStyles();
 renderList();
 applyTheme(readSavedTheme() || "dark");
 syncFromHash();
