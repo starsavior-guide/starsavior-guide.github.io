@@ -111,7 +111,7 @@ const ARCANA_LIBRARY = {
     { name: "어느 한 기사의 맹세", image: `${ARCANA_IMAGE_ROOT}/ARCANA_KINGDOM_KNIGHT_SSR_01_S.webp` }
   ],
   "음독의 각오": [
-    { name: "음독의 각오", image: `${ARCANA_IMAGE_ROOT}/ARCANA_WEST_BEAMSWORD_SSR_01_S.webp` }
+    { name: "음독의 각오", image: `${ARCANA_IMAGE_ROOT}/ARCANA_WEST_BEAMSWORD_SSR_02_S.webp` }
   ],
   "누구보다 프로페셔널": [
     { name: "누구보다 프로페셔널", image: `${ARCANA_IMAGE_ROOT}/ARCANA_LPU_POST_SSR_01_S.webp` }
