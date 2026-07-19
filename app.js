@@ -82,10 +82,53 @@ const ARCANA_LIBRARY = {
   ],
   "바니걸 샤를": [
     { name: "서투른 욕망 해소법", image: `${ARCANA_IMAGE_ROOT}/ARCANA_BUNNY_KNIGHT_SSR_01_S.webp` }
+  ],
+  "단점 보완 맞춤 훈련": [
+    { name: "단점 보완 맞춤 훈련", image: `${ARCANA_IMAGE_ROOT}/ARCANA_APOSTLE_TYRIA_SSR_01_S.webp` }
+  ],
+  "불굴의 역작": [
+    { name: "불굴의 역작", image: `${ARCANA_IMAGE_ROOT}/ARCANA_BUNNY_PRAY_SSR_01_S.webp` }
+  ],
+  "꽃들에게 죽음을": [
+    { name: "꽃들에게 죽음을", image: `${ARCANA_IMAGE_ROOT}/ARCANA_MAID_LANTERN_SSR_01_S.webp` }
+  ],
+  "완벽한 바니걸": [
+    { name: "완벽한 바니걸", image: `${ARCANA_IMAGE_ROOT}/ARCANA_BUNNY_SPEAR_SSR_01_S.webp` }
+  ],
+  "하얀 달의 온기는 햇빛처럼": [
+    { name: "하얀 달의 온기는 햇빛처럼", image: `${ARCANA_IMAGE_ROOT}/ARCANA_EASTERN_SWORDMASTER_SSR_02_S.webp` }
+  ],
+  "노 페인, 노 게인": [
+    { name: "노 페인, 노 게인", image: `${ARCANA_IMAGE_ROOT}/ARCANA_INDEPENDENT_DRAGON_SSR_01_S.webp` }
+  ],
+  "메이드 바이 페트라♡": [
+    { name: "메이드 바이 페트라♡", image: `${ARCANA_IMAGE_ROOT}/ARCANA_CONSTRUCT_BOMB_SSR_01_S.webp` }
+  ],
+  "별을 보며 꿈을": [
+    { name: "별을 보며 꿈을", image: `${ARCANA_IMAGE_ROOT}/ARCANA_NOA_OBSERVER_SSR_01_S.webp` }
+  ],
+  "어느 한 기사의 맹세": [
+    { name: "어느 한 기사의 맹세", image: `${ARCANA_IMAGE_ROOT}/ARCANA_KINGDOM_KNIGHT_SSR_01_S.webp` }
   ]
 };
 
 ARCANA_LIBRARY["웨핀델"] = ARCANA_LIBRARY["웨딩 에핀델"];
+
+const COMMON_ARCANA_SLOTS = [
+  { name: "단점 보완 맞춤 훈련", note: "" },
+  { name: "불굴의 역작", note: "" },
+  { name: "꽃들에게 죽음을", note: "" },
+  { name: "완벽한 바니걸", note: "" },
+  { name: "하얀 달의 온기는 햇빛처럼", note: "" }
+];
+
+const COMMON_ALTERNATIVE_ARCANA_SLOTS = [
+  { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" },
+  { name: "메이드 바이 페트라♡", note: "꽃들에게 죽음을 대체" },
+  { name: "별을 보며 꿈을", note: "꽃들에게 죽음을 대체" },
+  { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼 대체" },
+  null
+];
 
 const EMPTY_ARCANA = () => Array.from({ length: 5 }, () => null);
 
@@ -163,7 +206,7 @@ const SAVIORS = [
         "pve": [
           {
             "name": "공용 아르카나",
-            "note": "엑셀 추천"
+            "note": ""
           },
           null,
           null,
@@ -226,7 +269,7 @@ const SAVIORS = [
         "pve": [
           {
             "name": "공용 아르카나",
-            "note": "엑셀 추천"
+            "note": ""
           },
           null,
           null,
@@ -289,19 +332,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "뮤리엘",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "웨핀델",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이 or 린(인내)",
@@ -363,19 +406,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "뮤리엘",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "웨핀델",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이 or 린(인내)",
@@ -438,23 +481,23 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "로자리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "벨리스",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이",
-            "note": "엑셀 추천"
+            "note": ""
           }
         ],
         "pvp": [
@@ -516,19 +559,19 @@ const SAVIORS = [
           },
           {
             "name": "에밀리",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 클레어",
-            "note": "엑셀 추천"
+            "note": ""
           }
         ],
         "pvp": [
@@ -587,7 +630,7 @@ const SAVIORS = [
         "pve": [
           {
             "name": "공용 아르카나",
-            "note": "엑셀 추천"
+            "note": ""
           },
           null,
           null,
@@ -705,7 +748,7 @@ const SAVIORS = [
         "pve": [
           {
             "name": "공용 아르카나",
-            "note": "엑셀 추천"
+            "note": ""
           },
           null,
           null,
@@ -767,15 +810,15 @@ const SAVIORS = [
         "pve": [
           {
             "name": "에밀리",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "린(인내)",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "왈세라",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "할리 or 베스타",
@@ -855,19 +898,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "뮤리엘",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "웨핀델",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이 or 린(인내)",
@@ -929,19 +972,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "뮤리엘",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "웨핀델",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이 or 린(인내)",
@@ -1021,19 +1064,19 @@ const SAVIORS = [
           },
           {
             "name": "공용 아르카나",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "공용 아르카나",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "공용 아르카나",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "공용 아르카나",
-            "note": "엑셀 추천"
+            "note": ""
           }
         ],
         "pvp": [
@@ -1091,7 +1134,7 @@ const SAVIORS = [
         "pve": [
           {
             "name": "공용 아르카나",
-            "note": "엑셀 추천"
+            "note": ""
           },
           null,
           null,
@@ -1157,7 +1200,7 @@ const SAVIORS = [
         "pve": [
           {
             "name": "공용 아르카나",
-            "note": "엑셀 추천"
+            "note": ""
           },
           null,
           null,
@@ -1219,23 +1262,23 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "키라",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "페이",
-            "note": "엑셀 추천"
+            "note": ""
           }
         ],
         "pvp": [
@@ -1307,19 +1350,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "뮤리엘",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "웨핀델",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "오메가 or 바니걸 프레이",
@@ -1382,19 +1425,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "키라",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "린(인내)",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이",
@@ -1474,19 +1517,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "로자리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "벨리스 or 린(인내)",
@@ -1563,7 +1606,7 @@ const SAVIORS = [
         "pve": [
           {
             "name": "공용 아르카나",
-            "note": "엑셀 추천"
+            "note": ""
           },
           null,
           null,
@@ -1654,19 +1697,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "로자리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "벨리스",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이",
@@ -1731,7 +1774,7 @@ const SAVIORS = [
         "pve": [
           {
             "name": "공용 아르카나",
-            "note": "엑셀 추천"
+            "note": ""
           },
           null,
           null,
@@ -1808,23 +1851,23 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "키라",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "린(인내)",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이",
-            "note": "엑셀 추천"
+            "note": ""
           }
         ],
         "pvp": [
@@ -1883,19 +1926,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "왈세라",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "린(인내)",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "티리아 or 바니걸 클레어",
@@ -1960,19 +2003,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "왈세라",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "웨딩 카르멘",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "린(인내)",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 클레어",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "프레이 or 할리",
@@ -2034,19 +2077,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "뮤리엘",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "웨핀델",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이 or 린(인내)",
@@ -2108,19 +2151,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "뮤리엘",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "웨핀델",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이 or 린(인내)",
@@ -2252,19 +2295,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "샤를",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 클레어 or 린(힘)",
@@ -2357,15 +2400,15 @@ const SAVIORS = [
         "pve": [
           {
             "name": "에밀리",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "린(인내)",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "왈세라",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "할리 or 베스타",
@@ -2432,19 +2475,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "로자리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "벨리스 or 린(인내)",
@@ -2506,19 +2549,19 @@ const SAVIORS = [
         "pve": [
           {
             "name": "티리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "카넬리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "바니걸 프레이",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "로자리아",
-            "note": "엑셀 추천"
+            "note": ""
           },
           {
             "name": "벨리스 or 린(인내)",
@@ -2723,8 +2766,16 @@ function openSavior(id, options = {}) {
 
 function createDetailMarkup(savior) {
   const build = getBuild(savior);
+  const hasCommonArcana = (build.arcana.pve || []).some((arcana) =>
+    String(arcana?.name || "").includes("공용 아르카나")
+  );
+  const pveArcana = hasCommonArcana ? COMMON_ARCANA_SLOTS : build.arcana.pve;
+  const alternativeArcana = hasCommonArcana
+    ? COMMON_ALTERNATIVE_ARCANA_SLOTS
+    : build.arcana.alternatives;
+
   const guideButton = savior.guideUrl
-    ? `<a class="external-guide" href="${escapeHtml(savior.guideUrl)}" target="_blank" rel="noopener noreferrer">원본 구원자 DB ↗</a>`
+    ? `<a class="external-guide" href="${escapeHtml(savior.guideUrl)}" target="_blank" rel="noopener noreferrer">스킬설명 및 상세정보</a>`
     : "";
 
   const roleBadge =
@@ -2752,11 +2803,9 @@ function createDetailMarkup(savior) {
 
         <h1 class="detail-title">${escapeHtml(savior.name)}</h1>
         <p class="detail-subtitle">${escapeHtml(savior.subtitle)}</p>
-        <p class="detail-summary">${escapeHtml(savior.summary)}</p>
+        <p class="detail-summary">구원자 정보는 스타세이비어 DB(<a href="https://star-savior-arcana-db.pages.dev/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">https://star-savior-arcana-db.pages.dev/</a>) 기준입니다.</p>
 
         <div class="detail-quick-links">
-          <a class="detail-anchor" href="#equipment">장비 세팅</a>
-          <a class="detail-anchor" href="#arcana">아르카나 세팅</a>
           ${guideButton}
         </div>
       </div>
@@ -2768,7 +2817,6 @@ function createDetailMarkup(savior) {
           <p>EQUIPMENT SETTING</p>
           <h2>장비 세팅</h2>
         </div>
-        <span class="section-note">업로드한 엑셀 PVE 세팅표 기준</span>
       </div>
       <div class="section-body">
         <div class="build-grid">
@@ -2783,11 +2831,10 @@ function createDetailMarkup(savior) {
           <p>ARCANA SETTING</p>
           <h2>아르카나 세팅</h2>
         </div>
-        <span class="section-note">업로드한 엑셀 PVE 세팅표 기준</span>
       </div>
       <div class="section-body">
-        ${createArcanaMode("PVE 추천 아르카나", "주요 PVE 콘텐츠", build.arcana.pve, "var(--pve)")}
-        ${createArcanaMode("대체 아르카나", "보유 상황에 따라 교체", build.arcana.alternatives, "var(--accent)")}
+        ${createArcanaMode("PVE 추천 아르카나", "주요 PVE 콘텐츠", pveArcana, "var(--pve)")}
+        ${createArcanaMode("대체 아르카나", "보유 상황에 따라 교체", alternativeArcana, "var(--accent)")}
       </div>
     </section>
   `;
@@ -2846,8 +2893,12 @@ function normalizeArcanaAlias(value) {
 function resolveArcanaChoices(rawName) {
   const normalized = normalizeArcanaAlias(rawName);
 
-  if (!normalized || normalized.includes("공용 아르카나")) {
+  if (!normalized) {
     return [];
+  }
+
+  if (normalized.includes("공용 아르카나")) {
+    return COMMON_ARCANA_SLOTS.flatMap((slot) => ARCANA_LIBRARY[slot.name] || []);
   }
 
   const aliases = normalized
@@ -2906,6 +2957,9 @@ function createArcanaMode(title, description, slots, color) {
           }
 
           const cardNames = choices.map((choice) => choice.name).join(" / ");
+          const noteText = String(arcana.note || "").trim() === "엑셀 추천"
+            ? ""
+            : String(arcana.note || "").trim();
 
           return `
             <a class="arcana-slot has-arcana-card" href="${ARCANA_SOURCE_URL}"
@@ -2915,7 +2969,7 @@ function createArcanaMode(title, description, slots, color) {
               <div class="arcana-card-copy">
                 <small>SLOT ${index + 1}${choices.length > 1 ? " · 선택" : ""}</small>
                 <strong>${escapeHtml(cardNames)}</strong>
-                <em>${escapeHtml(arcana.note || "아르카나 DB 기준")}</em>
+                ${noteText ? `<em>${escapeHtml(noteText)}</em>` : ""}
               </div>
             </a>
           `;
