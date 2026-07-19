@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="스타세이비어 구원자별 장비, 아르카나, 권장 스펙을 확인하는 비공식 가이드 데이터베이스">
+  <meta name="theme-color" content="#0d111b">
+  <title>스타세이비어 구원자 가이드 DB</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button class="brand" type="button" data-open-list aria-label="구원자 목록으로 이동">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span class="brand-copy">
+          <strong>STAR SAVIOR DB</strong>
+          <small>COMMUNITY GUIDE</small>
+        </span>
+      </button>
+
+      <nav class="main-nav" aria-label="주요 메뉴">
+        <button class="nav-item is-active" type="button" data-section="savior">구원자</button>
+        <button class="nav-item" type="button" data-section="arcana">아르카나</button>
+        <button class="nav-item" type="button" data-section="equipment">장비</button>
+        <button class="nav-item" type="button" data-section="cosmo">코스모 게이트</button>
+      </nav>
+
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="밝은 테마로 변경">
+        <span aria-hidden="true">☀</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="list-view" id="list-view" aria-labelledby="list-title">
+      <div class="page-wrap">
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">SAVIOR DATABASE</p>
+            <h1 id="list-title">구원자</h1>
+            <p class="heading-description">
+              구원자 정보는 Star Savior DB, PVE 장비·여정 아르카나는 연결된 원샷 세팅표를 기준으로 표시합니다.
+            </p>
+          </div>
+          <div class="database-summary">
+            <span>등록된 구원자</span>
+            <strong id="total-count">0</strong>
+          </div>
+        </div>
+
+        <section class="filter-panel" aria-label="구원자 검색 및 필터">
+          <label class="search-field">
+            <span class="search-symbol" aria-hidden="true">⌕</span>
+            <span class="sr-only">구원자 검색</span>
+            <input id="search-input" type="search" placeholder="이름, 소속, 역할 검색" autocomplete="off">
+          </label>
+
+          <div class="filter-row">
+            <div class="filter-label">속성</div>
+            <div class="chip-list" id="element-filters">
+              <button class="filter-chip is-active" type="button" data-element="all">전체</button>
+              <button class="filter-chip sun" type="button" data-element="sun">태양</button>
+              <button class="filter-chip moon" type="button" data-element="moon">달</button>
+              <button class="filter-chip star" type="button" data-element="star">별</button>
+              <button class="filter-chip order" type="button" data-element="order">질서</button>
+              <button class="filter-chip chaos" type="button" data-element="chaos">혼돈</button>
+            </div>
+          </div>
+
+          <div class="filter-row">
+            <div class="filter-label">클래스</div>
+            <div class="chip-list" id="class-filters">
+              <button class="filter-chip is-active" type="button" data-class="all">전체</button>
+              <button class="filter-chip" type="button" data-class="스트라이커">스트라이커</button>
+              <button class="filter-chip" type="button" data-class="어쌔신">어쌔신</button>
+              <button class="filter-chip" type="button" data-class="레인저">레인저</button>
+              <button class="filter-chip" type="button" data-class="캐스터">캐스터</button>
+              <button class="filter-chip" type="button" data-class="디펜더">디펜더</button>
+              <button class="filter-chip" type="button" data-class="서포터">서포터</button>
+            </div>
+          </div>
+        </section>
+
+        <div class="result-line">
+          <span><strong id="visible-count">0</strong>명의 구원자</span>
+          <button class="reset-button" id="reset-filter" type="button">필터 초기화</button>
+        </div>
+
+        <div class="savior-grid" id="savior-grid"></div>
+
+        <div class="empty-state" id="empty-state" hidden>
+          <span aria-hidden="true">◇</span>
+          <strong>조건에 맞는 구원자가 없습니다.</strong>
+          <p>검색어나 필터를 변경해 주세요.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-view" id="detail-view" aria-live="polite" hidden>
+      <div class="page-wrap">
+        <button class="back-button" type="button" data-open-list>
+          <span aria-hidden="true">←</span>
+          구원자 목록
+        </button>
+
+        <article id="detail-content"></article>
+      </div>
+    </section>
+
+    <section class="simple-view" id="simple-view" hidden>
+      <div class="page-wrap">
+        <button class="back-button" type="button" data-open-list>
+          <span aria-hidden="true">←</span>
+          구원자 목록
+        </button>
+        <div id="simple-content"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="page-wrap footer-inner">
+      <p>
+        비공식 커뮤니티 가이드입니다. 구원자 정보 출처: Star Savior DB · PVE 세팅 출처: 스타세이비어 원샷 PVE 세팅표.
+      </p>
+      <a href="https://arca.live/b/starsavior" target="_blank" rel="noopener noreferrer">아카라이브 채널 ↗</a>
+    </div>
+  </footer>
+
+  <noscript>
+    <div class="noscript">검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.</div>
+  </noscript>
+</body>
+</html>
