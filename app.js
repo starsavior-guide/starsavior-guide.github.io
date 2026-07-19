@@ -109,6 +109,15 @@ const ARCANA_LIBRARY = {
   ],
   "어느 한 기사의 맹세": [
     { name: "어느 한 기사의 맹세", image: `${ARCANA_IMAGE_ROOT}/ARCANA_KINGDOM_KNIGHT_SSR_01_S.webp` }
+  ],
+  "음독의 각오": [
+    { name: "음독의 각오", image: `${ARCANA_IMAGE_ROOT}/ARCANA_WEST_BEAMSWORD_SSR_01_S.webp` }
+  ],
+  "누구보다 프로페셔널": [
+    { name: "누구보다 프로페셔널", image: `${ARCANA_IMAGE_ROOT}/ARCANA_LPU_POST_SSR_01_S.webp` }
+  ],
+  "언더커버 캅": [
+    { name: "언더커버 캅", image: `${ARCANA_IMAGE_ROOT}/ARCANA_OFFICER_POLICE_SSR_01_S.webp` }
   ]
 };
 
@@ -444,7 +453,7 @@ const SAVIORS = [
   },
   {
     "id": "bell",
-    "name": "벨",
+    "name": "벨 리스",
     "subtitle": "캔들 스퀘어",
     "affiliation": "캔들 스퀘어",
     "grade": "SSR",
@@ -665,8 +674,68 @@ const SAVIORS = [
     "role": "디펜더",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_KINGDOM_SHIELDER.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "생명력%",
+          "sets": [
+            "생명(4) + 장벽(2)"
+          ],
+          "potential": "BX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "에밀리",
+            "note": ""
+          },
+          {
+            "name": "린(인내)",
+            "note": ""
+          },
+          {
+            "name": "왈세라",
+            "note": ""
+          },
+          {
+            "name": "할리 or 베스타",
+            "note": "할리 추천 또는 베스타"
+          },
+          {
+            "name": "엘리사 or 힐데 or 바니걸 클레어",
+            "note": "엑셀 선택 추천"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "frey",
@@ -679,8 +748,65 @@ const SAVIORS = [
     "role": "서포터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_KINGDOM_PRAY.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "생명력%",
+          "sets": [
+            "생명(4) + 장벽(2)"
+          ],
+          "potential": "BX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "왈세라",
+            "note": ""
+          },
+          {
+            "name": "린(인내)",
+            "note": ""
+          },
+          {
+            "name": "프레이 or 할리",
+            "note": ""
+          },
+          {
+            "name": "바니걸 클레어",
+            "note": ""
+          },
+          null
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "seira",
@@ -693,8 +819,57 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_NIGHTMARE_REAPER.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          null,
+          null,
+          null,
+          null
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "trish",
@@ -707,8 +882,72 @@ const SAVIORS = [
     "role": "어쌔신",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_STELLAR_THIEF.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "티리아",
+            "note": ""
+          },
+          {
+            "name": "키라",
+            "note": ""
+          },
+          {
+            "name": "린(인내)",
+            "note": ""
+          },
+          {
+            "name": "카넬리아",
+            "note": ""
+          },
+          {
+            "name": "바니걸 프레이",
+            "note": "통찰(4) 사용 시"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          {
+            "name": "바니걸 클레어 or 린(힘)",
+            "note": "파괴(4) 사용 시"
+          },
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "lyn",
@@ -857,8 +1096,65 @@ const SAVIORS = [
     "role": "서포터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_EASTERN_OWL.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "생명력%",
+          "sets": [
+            "생명(4) + 장벽(2)"
+          ],
+          "potential": "BX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "왈세라",
+            "note": ""
+          },
+          {
+            "name": "린(인내)",
+            "note": ""
+          },
+          {
+            "name": "프레이 or 할리",
+            "note": ""
+          },
+          {
+            "name": "바니걸 클레어",
+            "note": ""
+          },
+          null
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "dana",
@@ -1019,8 +1315,65 @@ const SAVIORS = [
     "role": "서포터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_SAINTESS_ELF.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "생명력%",
+          "sets": [
+            "생명(4) + 장벽(2)"
+          ],
+          "potential": "BX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "왈세라",
+            "note": ""
+          },
+          {
+            "name": "린(인내)",
+            "note": ""
+          },
+          {
+            "name": "프레이 or 할리",
+            "note": ""
+          },
+          {
+            "name": "바니걸 클레어",
+            "note": ""
+          },
+          null
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "tyria",
@@ -1309,8 +1662,72 @@ const SAVIORS = [
     "role": "어쌔신",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_GRACE_DUALSWORD.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "티리아",
+            "note": ""
+          },
+          {
+            "name": "키라",
+            "note": ""
+          },
+          {
+            "name": "린(인내)",
+            "note": ""
+          },
+          {
+            "name": "카넬리아",
+            "note": ""
+          },
+          {
+            "name": "바니걸 프레이",
+            "note": "통찰(4) 사용 시"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          {
+            "name": "바니걸 클레어 or 린(힘)",
+            "note": "파괴(4) 사용 시"
+          },
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "omega",
@@ -1475,8 +1892,69 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WEST_BEAMSWORD.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "바니걸 클레어 or 오메가",
+            "note": "첫 슬롯 선택"
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "lydia",
@@ -1564,8 +2042,68 @@ const SAVIORS = [
     "role": "디펜더",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WILD_HOG.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "생명력%",
+          "sets": [
+            "생명(4) + 장벽(2)"
+          ],
+          "potential": "BX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "에밀리",
+            "note": ""
+          },
+          {
+            "name": "린(인내)",
+            "note": ""
+          },
+          {
+            "name": "왈세라",
+            "note": ""
+          },
+          {
+            "name": "할리 or 베스타",
+            "note": "할리 추천 또는 베스타"
+          },
+          {
+            "name": "엘리사 or 힐데 or 바니걸 클레어",
+            "note": "엑셀 선택 추천"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "petra",
@@ -1641,8 +2179,69 @@ const SAVIORS = [
     "role": "레인저",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_BUNNY_SCISSORS.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "바니걸 클레어 or 오메가",
+            "note": "첫 슬롯 선택"
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "claire",
@@ -1655,8 +2254,69 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_BUNNY_SPEAR.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "바니걸 클레어 or 오메가",
+            "note": "첫 슬롯 선택"
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "lacy",
@@ -1809,8 +2469,69 @@ const SAVIORS = [
     "role": "캐스터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_DETECTIVE_WATSON.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "티리아",
+            "note": ""
+          },
+          {
+            "name": "카넬리아",
+            "note": ""
+          },
+          {
+            "name": "뮤리엘",
+            "note": ""
+          },
+          {
+            "name": "웨핀델",
+            "note": ""
+          },
+          {
+            "name": "바니걸 프레이 or 린(인내)",
+            "note": "엑셀 선택 추천"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "kyra",
@@ -2198,8 +2919,68 @@ const SAVIORS = [
     "role": "디펜더",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WEST_LANCER.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "생명력%",
+          "sets": [
+            "생명(4) + 장벽(2)"
+          ],
+          "potential": "BX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "에밀리",
+            "note": ""
+          },
+          {
+            "name": "린(인내)",
+            "note": ""
+          },
+          {
+            "name": "왈세라",
+            "note": ""
+          },
+          {
+            "name": "할리 or 베스타",
+            "note": "할리 추천 또는 베스타"
+          },
+          {
+            "name": "엘리사 or 힐데 or 바니걸 클레어",
+            "note": "엑셀 선택 추천"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "annah",
@@ -2212,8 +2993,69 @@ const SAVIORS = [
     "role": "디펜더",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_OFFICER_POLICE.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "공격(4) + 투지(2)",
+            "생명(4) + 장벽(2)"
+          ],
+          "potential": "AX / BX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "티리아",
+            "note": ""
+          },
+          {
+            "name": "카넬리아",
+            "note": ""
+          },
+          {
+            "name": "뮤리엘",
+            "note": ""
+          },
+          {
+            "name": "웨핀델",
+            "note": ""
+          },
+          {
+            "name": "바니걸 프레이 or 린(인내)",
+            "note": "엑셀 선택 추천"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "marcille",
@@ -2226,8 +3068,72 @@ const SAVIORS = [
     "role": "어쌔신",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_CONSTRUCT_WRENCH.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "티리아",
+            "note": ""
+          },
+          {
+            "name": "키라",
+            "note": ""
+          },
+          {
+            "name": "린(인내)",
+            "note": ""
+          },
+          {
+            "name": "카넬리아",
+            "note": ""
+          },
+          {
+            "name": "바니걸 프레이",
+            "note": "통찰(4) 사용 시"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          {
+            "name": "바니걸 클레어 or 린(힘)",
+            "note": "파괴(4) 사용 시"
+          },
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "vera",
@@ -2240,8 +3146,65 @@ const SAVIORS = [
     "role": "서포터",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_LPU_POST.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "생명력%",
+          "sets": [
+            "생명(4) + 장벽(2)"
+          ],
+          "potential": "BX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "왈세라",
+            "note": ""
+          },
+          {
+            "name": "린(인내)",
+            "note": ""
+          },
+          {
+            "name": "프레이 or 할리",
+            "note": ""
+          },
+          {
+            "name": "바니걸 클레어",
+            "note": ""
+          },
+          null
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "naru",
@@ -2254,8 +3217,69 @@ const SAVIORS = [
     "role": "레인저",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_NOA_OBSERVER.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "바니걸 클레어 or 오메가",
+            "note": "첫 슬롯 선택"
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "bunny-claire",
@@ -2345,8 +3369,69 @@ const SAVIORS = [
     "role": "스트라이커",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_SCISSORS.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "바니걸 클레어 or 오메가",
+            "note": "첫 슬롯 선택"
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "clarissa",
@@ -2359,8 +3444,69 @@ const SAVIORS = [
     "role": "레인저",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAGICIAN_SNIPER.webp",
-    "summary": "업로드한 엑셀에 해당 구원자의 PVE 세팅이 등록되어 있지 않습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "PVE 장비 및 아르카나 세팅 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "해당 자료에 없음",
+          "ring": "해당 자료에 없음",
+          "sets": [
+            "PVE 세팅표 기준"
+          ],
+          "potential": "해당 자료에 없음",
+          "note": ""
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "바니걸 클레어 or 오메가",
+            "note": "첫 슬롯 선택"
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          },
+          {
+            "name": "공용 아르카나",
+            "note": ""
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
   },
   {
     "id": "hilde",
@@ -2597,7 +3743,8 @@ const COSMO_GUIDES = [
   ["힐데", "https://arca.live/b/starsavior/171215656"],
   ["길레", "https://arca.live/b/starsavior/172436327"],
   ["티리아", "https://arca.live/b/starsavior/172534192"],
-  ["불사왕 모굴루스", "https://arca.live/b/starsavior/173207120"]
+  ["불사왕 모굴루스", "https://arca.live/b/starsavior/173207120"],
+  ["괴리의 표상", "https://arca.live/b/starsavior/175840063"]
 ];
 
 const state = {
@@ -2764,15 +3911,62 @@ function openSavior(id, options = {}) {
   }
 }
 
+function getResolvedArcanaNames(slots) {
+  return (slots || []).flatMap((slot) =>
+    slot ? resolveArcanaChoices(slot.name).map((choice) => choice.name) : []
+  );
+}
+
+function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
+  const result = [];
+  const seen = new Set();
+
+  const add = (name, note = "") => {
+    const key = `${name}::${note}`;
+    if (!name || seen.has(key)) return;
+    seen.add(key);
+    result.push({ name, note });
+  };
+
+  (existingAlternatives || []).forEach((slot) => {
+    if (slot?.name) add(slot.name, slot.note || "");
+  });
+
+  const names = new Set(getResolvedArcanaNames(pveArcana));
+
+  if (names.has("단점 보완 맞춤 훈련")) {
+    add("노 페인, 노 게인", "단점 보완 맞춤 훈련 대체");
+  }
+  if (names.has("꽃들에게 죽음을")) {
+    add("메이드 바이 페트라♡ or 별을 보며 꿈을", "꽃들에게 죽음을 대체");
+  }
+  if (names.has("하얀 달의 온기는 햇빛처럼")) {
+    add("어느 한 기사의 맹세", "하얀 달의 온기는 햇빛처럼 대체");
+  }
+  if (savior.className === "스트라이커") {
+    add("음독의 각오", "완벽한 바니걸 대체");
+  }
+  if (savior.className === "서포터") {
+    add("누구보다 프로페셔널", "공녀, 왕좌에 오르다 대체");
+  }
+  if (names.has("본 투 비 와일드")) {
+    add("언더커버 캅", "본 투 비 와일드 대체");
+  }
+
+  return result;
+}
+
 function createDetailMarkup(savior) {
   const build = getBuild(savior);
   const hasCommonArcana = (build.arcana.pve || []).some((arcana) =>
     String(arcana?.name || "").includes("공용 아르카나")
   );
   const pveArcana = hasCommonArcana ? COMMON_ARCANA_SLOTS : build.arcana.pve;
-  const alternativeArcana = hasCommonArcana
-    ? COMMON_ALTERNATIVE_ARCANA_SLOTS
-    : build.arcana.alternatives;
+  const alternativeArcana = buildAlternativeArcana(
+    savior,
+    pveArcana,
+    build.arcana.alternatives
+  );
 
   const guideButton = savior.guideUrl
     ? `<a class="external-guide" href="${escapeHtml(savior.guideUrl)}" target="_blank" rel="noopener noreferrer">스킬설명 및 상세정보</a>`
@@ -2803,7 +3997,7 @@ function createDetailMarkup(savior) {
 
         <h1 class="detail-title">${escapeHtml(savior.name)}</h1>
         <p class="detail-subtitle">${escapeHtml(savior.subtitle)}</p>
-        <p class="detail-summary">구원자 정보는 스타세이비어 DB(<a href="https://star-savior-arcana-db.pages.dev/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">https://star-savior-arcana-db.pages.dev/</a>) 기준입니다.</p>
+        <p class="detail-summary">구원자 정보는 <a href="https://star-savior-arcana-db.pages.dev/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">스타세이비어 DB</a> 기준입니다.</p>
 
         <div class="detail-quick-links">
           ${guideButton}
@@ -2869,10 +4063,6 @@ function createEquipmentCard(mode, data, className, subtitle) {
           <dt>잠재력</dt>
           <dd>${escapeHtml(data.potential)}</dd>
         </div>
-        <div class="build-row">
-          <dt>세팅 노트</dt>
-          <dd>${escapeHtml(data.note)}</dd>
-        </div>
       </dl>
     </article>
   `;
@@ -2924,7 +4114,7 @@ function createArcanaImages(choices) {
 }
 
 function createArcanaMode(title, description, slots, color) {
-  const normalized = Array.from({ length: 5 }, (_, index) => slots?.[index] || null);
+  const normalized = Array.from({ length: Math.max(5, slots?.length || 0) }, (_, index) => slots?.[index] || null);
 
   return `
     <div class="arcana-mode">
@@ -2957,9 +4147,8 @@ function createArcanaMode(title, description, slots, color) {
           }
 
           const cardNames = choices.map((choice) => choice.name).join(" / ");
-          const noteText = String(arcana.note || "").trim() === "엑셀 추천"
-            ? ""
-            : String(arcana.note || "").trim();
+          const rawNoteText = String(arcana.note || "").trim();
+          const noteText = /엑셀.*추천/.test(rawNoteText) ? "" : rawNoteText;
 
           return `
             <a class="arcana-slot has-arcana-card" href="${ARCANA_SOURCE_URL}"
