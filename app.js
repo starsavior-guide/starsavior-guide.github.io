@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v21-luna-arcana";
+const SITE_BUILD_VERSION = "v22-smile-arcana";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -125,6 +125,12 @@ const ARCANA_LIBRARY = {
   ],
   "빛을 쫓아라!": [
     { name: "빛을 쫓아라!", image: `${ARCANA_IMAGE_ROOT}/ARCANA_VOYAGER_ORACLE_SSR_01_S.webp` }
+  ],
+  "종말은 소녀의 얼굴을 하고 있다.": [
+    { name: "종말은 소녀의 얼굴을 하고 있다.", image: `${ARCANA_IMAGE_ROOT}/ARCANA_COUNTERSIDE_ROSARIA_SSR_01_S.webp` }
+  ],
+  "허수의 개척자": [
+    { name: "허수의 개척자", image: `${ARCANA_IMAGE_ROOT}/ARCANA_STARPIERCER_OMEGA_SSR_01_S.webp` }
   ]
 };
 
@@ -402,13 +408,25 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "공용 아르카나",
+            "name": "단점 보완 맞춤 훈련",
             "note": ""
           },
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "불굴의 역작",
+            "note": ""
+          },
+          {
+            "name": "꽃들에게 죽음을",
+            "note": ""
+          },
+          {
+            "name": "종말은 소녀의 얼굴을 하고 있다.",
+            "note": ""
+          },
+          {
+            "name": "하얀 달의 온기는 햇빛처럼",
+            "note": ""
+          }
         ],
         "pvp": [
           null,
@@ -421,7 +439,10 @@ const SAVIORS = [
           null,
           null,
           null,
-          null,
+          {
+            "name": "허수의 개척자 or 완벽한 바니걸",
+            "note": "종말은 소녀의 얼굴을 하고 있다. 대체"
+          },
           null
         ]
       }
@@ -4124,6 +4145,25 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
   });
 
   const names = new Set(getResolvedArcanaNames(pveArcana));
+
+  if (savior.id === "smile") {
+    return [
+      names.has("단점 보완 맞춤 훈련")
+        ? { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" }
+        : null,
+      names.has("꽃들에게 죽음을")
+        ? { name: "메이드 바이 페트라♡ or 별을 보며 꿈을", note: "꽃들에게 죽음을 대체" }
+        : null,
+      names.has("하얀 달의 온기는 햇빛처럼")
+        ? { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼 대체" }
+        : null,
+      {
+        name: "허수의 개척자 or 완벽한 바니걸",
+        note: "종말은 소녀의 얼굴을 하고 있다. 대체"
+      },
+      null
+    ];
+  }
 
   if (savior.id === "luna") {
     return [
