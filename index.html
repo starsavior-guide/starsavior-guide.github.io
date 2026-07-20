@@ -8,7 +8,7 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=16-equipment-notes"></script>
+  <script defer src="./app.js?v=17-growth-priority"></script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -220,6 +220,80 @@
       font-size: 12px;
     }
 
+    .growth-priority-card {
+      display: flex;
+      min-height: 108px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 24px;
+      border: 1px solid var(--line-strong);
+      border-radius: 13px;
+      background:
+        linear-gradient(115deg, color-mix(in srgb, var(--priority-color) 18%, transparent), transparent 60%),
+        var(--surface-2);
+      box-shadow: inset 4px 0 0 var(--priority-color);
+    }
+
+    .growth-priority-main {
+      display: grid;
+      gap: 7px;
+    }
+
+    .growth-priority-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+    }
+
+    .growth-priority-card strong {
+      color: var(--priority-color);
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 950;
+      letter-spacing: -0.045em;
+      line-height: 1;
+    }
+
+    .growth-priority-note {
+      padding: 9px 12px;
+      border: 1px solid color-mix(in srgb, var(--priority-color) 48%, var(--line));
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--priority-color) 11%, transparent);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .growth-priority-card.tier-0 {
+      --priority-color: #ff6678;
+    }
+
+    .growth-priority-card.tier-05 {
+      --priority-color: #ffad58;
+    }
+
+    .growth-priority-card.tier-1 {
+      --priority-color: #ffd76b;
+    }
+
+    .growth-priority-card.tier-2 {
+      --priority-color: #88c7ff;
+    }
+
+    .growth-priority-card.tier-3 {
+      --priority-color: #92d69a;
+    }
+
+    .growth-priority-card.tier-4 {
+      --priority-color: #9ca7b9;
+    }
+
+    .growth-priority-card.tier-unrated {
+      --priority-color: var(--muted);
+    }
+
     @media (max-width: 620px) {
       .equipment-page {
         gap: 12px;
@@ -329,6 +403,21 @@
 
       .equipment-guidance .equipment-guidance-note {
         font-size: 11px;
+      }
+
+      .growth-priority-card {
+        min-height: 94px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+        padding: 18px 17px;
+      }
+
+      .growth-priority-note {
+        max-width: 100%;
+        padding: 8px 11px;
+        font-size: 12px;
+        text-align: left;
       }
     }
 

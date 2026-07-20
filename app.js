@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v16-equipment-notes";
+const SITE_BUILD_VERSION = "v17-growth-priority";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -184,6 +184,59 @@ const DEFAULT_BUILD = {
     { name: "보조 능력치", target: "원본 자료 미등록", reason: "장비 세팅과 함께 조정", priority: "recommended", label: "권장" },
     { name: "고점 능력치", target: "원본 자료 미등록", reason: "필수 수치 달성 후 투자", priority: "high", label: "고점" }
   ]
+};
+
+
+const GROWTH_PRIORITY = {
+  "asherah-voyager": { tier: "3티어", level: "tier-3" },
+  "smile": { tier: "1티어", level: "tier-1" },
+  "luna": { tier: "1티어", level: "tier-1" },
+  "carnelia": { tier: "2티어", level: "tier-2" },
+  "bell": { tier: "3티어", level: "tier-3" },
+  "emily": { tier: "0.5티어", level: "tier-05" },
+  "charlotte": { tier: "3티어", level: "tier-3" },
+  "carmen": { tier: "4티어", level: "tier-4" },
+  "frey": { tier: "2티어", level: "tier-2" },
+  "seira": { tier: "2티어", level: "tier-2" },
+  "trish": { tier: "3티어", level: "tier-3" },
+  "lyn": { tier: "2티어", level: "tier-2" },
+  "haydee": { tier: "0.5티어", level: "tier-05", note: "1돌파 이상 필수" },
+  "serpang": { tier: "2티어", level: "tier-2" },
+  "dana": { tier: "2티어", level: "tier-2" },
+  "muriel": { tier: "2티어", level: "tier-2" },
+  "elisa": { tier: "2티어", level: "tier-2", note: "1돌파 이상 권장" },
+  "tyria": { tier: "1티어", level: "tier-1" },
+  "roberta": { tier: "1티어", level: "tier-1" },
+  "lugh": { tier: "3티어", level: "tier-3" },
+  "fei": { tier: "0.5티어", level: "tier-05" },
+  "epindel": { tier: "3티어", level: "tier-3" },
+  "omega": { tier: "2티어", level: "tier-2" },
+  "bunny-charlotte": { tier: "0.5티어", level: "tier-05" },
+  "ceres": { tier: "1티어", level: "tier-1", note: "1돌파 이상 권장" },
+  "lydia": { tier: "2티어", level: "tier-2" },
+  "harley": { tier: "1티어", level: "tier-1" },
+  "petra": { tier: "3티어", level: "tier-3" },
+  "scarlet": { tier: "3티어", level: "tier-3" },
+  "claire": { tier: "1티어", level: "tier-1" },
+  "lacy": { tier: "2티어", level: "tier-2" },
+  "tanya": { tier: "1티어", level: "tier-1" },
+  "lily": { tier: "3티어", level: "tier-3" },
+  "kyra": { tier: "1티어", level: "tier-1" },
+  "waltz-asherah": { tier: "0티어", level: "tier-0", note: "1돌파 이상 필수" },
+  "wedding-carmen": { tier: "0티어", level: "tier-0", note: "한정" },
+  "wedding-epindel": { tier: "1티어", level: "tier-1" },
+  "bunny-frey": { tier: "1티어", level: "tier-1", note: "1돌파 이상 권장" },
+  "besta": { tier: "2티어", level: "tier-2", note: "개화 필수" },
+  "annah": { tier: "1티어", level: "tier-1", note: "개화 필수" },
+  "marcille": { tier: "2티어", level: "tier-2", note: "개화 필수" },
+  "vera": { tier: "2티어", level: "tier-2" },
+  "naru": { tier: "1티어", level: "tier-1", note: "개화 필수" },
+  "bunny-claire": { tier: "2티어", level: "tier-2", note: "개화 필수" },
+  "bunny-scarlet": { tier: "3티어", level: "tier-3" },
+  "clarissa": { tier: "0.5티어", level: "tier-05", note: "개화 필수" },
+  "hilde": { tier: "3티어", level: "tier-3" },
+  "yoo-mina": { tier: "3티어", level: "tier-3" },
+  "rosaria": { tier: "1티어", level: "tier-1" }
 };
 
 const SAVIORS = [
@@ -4056,6 +4109,11 @@ function createDetailMarkup(savior) {
     ? `<a class="external-guide" href="${escapeHtml(savior.guideUrl)}" target="_blank" rel="noopener noreferrer">스킬설명 및 상세정보</a>`
     : "";
 
+  const growthPriority = GROWTH_PRIORITY[savior.id] || {
+    tier: "미등록",
+    level: "tier-unrated"
+  };
+
   const roleBadge =
     savior.role && savior.role !== savior.className
       ? `<span class="detail-badge">${escapeHtml(savior.role)}</span>`
@@ -4088,6 +4146,26 @@ function createDetailMarkup(savior) {
         </div>
       </div>
     </header>
+
+    <section class="content-section growth-priority-section" id="growth-priority">
+      <div class="section-titlebar">
+        <div>
+          <p>GROWTH PRIORITY</p>
+          <h2>육성 우선순위</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        <div class="growth-priority-card ${escapeHtml(growthPriority.level)}">
+          <div class="growth-priority-main">
+            <span class="growth-priority-label">PVE 기준</span>
+            <strong>${escapeHtml(growthPriority.tier)}</strong>
+          </div>
+          ${growthPriority.note
+            ? `<span class="growth-priority-note">${escapeHtml(growthPriority.note)}</span>`
+            : ""}
+        </div>
+      </div>
+    </section>
 
     <section class="content-section" id="equipment">
       <div class="section-titlebar">
