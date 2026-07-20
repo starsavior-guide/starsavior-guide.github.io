@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v22-smile-arcana";
+const SITE_BUILD_VERSION = "v24-equipment-sets";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -389,8 +389,8 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2)",
-            "정밀(4) + 적중(2)"
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
           ],
           "potential": "AX",
           "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
@@ -620,7 +620,7 @@ const SAVIORS = [
           "ring": "공격력%",
           "sets": [
             "통찰(4) + 적중(2)",
-            "공격(4) + 적중(2)"
+            "파괴(4) + 적중(2)"
           ],
           "potential": "AX",
           "note": "별도 비고 없음"
@@ -1120,7 +1120,8 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)"
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
           ],
           "potential": "AX",
           "note": "별도 비고 없음"
@@ -1180,7 +1181,7 @@ const SAVIORS = [
       "equipment": {
         "pve": {
           "necklace": "속도",
-          "ring": "방어력%",
+          "ring": "효과적중",
           "sets": [
             "방어(2) x 3"
           ],
@@ -1330,7 +1331,8 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2)"
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
           ],
           "potential": "AX",
           "note": "별도 비고 없음"
@@ -1404,7 +1406,8 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)"
+            "파괴(4) + 적중(2)",
+            "통찰(4) + 적중(2)"
           ],
           "potential": "AX",
           "note": "자체 치피증 (15~25%) 적중(2) 사용 가능"
@@ -1552,7 +1555,8 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)"
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
           ],
           "potential": "AX",
           "note": "별도 비고 없음"
@@ -1626,6 +1630,7 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
+            "파괴(4) + 투지(2)",
             "파괴(4) + 장벽(2)"
           ],
           "potential": "AX",
@@ -1703,8 +1708,8 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2)",
-            "정밀(4) + 적중(2)"
+            "파괴(4) + 적중(2)",
+            "통찰(4) + 적중(2)"
           ],
           "potential": "AX",
           "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
@@ -1766,7 +1771,9 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "파괴(4) + 장벽(2)"
+            "파괴(4) + 투지(2)",
+            "파괴(4) + 장벽(2)",
+            "파괴(4) + 적중(2)"
           ],
           "potential": "AX / XX2 (피흡)",
           "note": "*전용 알카 사용시 특수기 치확 100%"
@@ -1918,7 +1925,8 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)"
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
           ],
           "potential": "AX",
           "note": "별도 비고 없음"
@@ -2145,8 +2153,8 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2)",
-            "정밀(4) + 적중(2)"
+            "파괴(4) + 적중(2)",
+            "통찰(4) + 적중(2)"
           ],
           "potential": "AX",
           "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
@@ -2294,8 +2302,8 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2)",
-            "정밀(4) + 적중(2)"
+            "파괴(4) + 적중(2)",
+            "통찰(4) + 적중(2)"
           ],
           "potential": "AX",
           "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
@@ -2435,6 +2443,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
+          "setNote": "※ 파괴(4) 권장",
           "potential": "AX",
           "note": ""
         },
@@ -2585,6 +2594,7 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
+            "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
           "potential": "AX",
@@ -2949,7 +2959,8 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2)"
+            "통찰(4) + 적중(2)",
+            "파괴(4) + 적중(2)"
           ],
           "potential": "AX",
           "note": "투지(2) 사용 가능"
@@ -3023,8 +3034,10 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)"
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)"
           ],
+          "setNote": "※ 파괴(4) 권장",
           "potential": "AX",
           "note": "파티 치확증 30%"
         },
@@ -3473,6 +3486,7 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
+            "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
           "potential": "AX",
@@ -3625,9 +3639,10 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)",
-            "파괴(4) + 투지(2)"
+            "파괴(4) + 적중(2)",
+            "통찰(4) + 적중(2)"
           ],
+          "setNote": "※ 파괴(4) 권장",
           "potential": "AX",
           "note": ""
         },
@@ -3849,8 +3864,10 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
+            "파괴(4) + 적중(2)",
             "통찰(4) + 적중(2)"
           ],
+          "setNote": "※ 파괴(4) 권장",
           "potential": "AX",
           "note": "투지(2) 사용 가능"
         },
@@ -4352,7 +4369,12 @@ function createEquipmentCard(mode, data, className, subtitle) {
         </div>
         <div class="build-row">
           <dt>추천 세트</dt>
-          <dd>${sets.map((set) => `<span>${escapeHtml(set)}</span>`).join("")}</dd>
+          <dd>
+            ${sets.map((set) => `<span>${escapeHtml(set)}</span>`).join("")}
+            ${data.setNote
+              ? `<small class="build-set-note">${escapeHtml(data.setNote)}</small>`
+              : ""}
+          </dd>
         </div>
         <div class="build-row">
           <dt>잠재력</dt>
