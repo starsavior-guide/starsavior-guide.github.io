@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v12-arcana-fix";
+const SITE_BUILD_VERSION = "v14-suboptions";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -3782,6 +3782,44 @@ const COSMO_GUIDES = [
   ["괴리의 표상", "https://arca.live/b/starsavior/175840063"]
 ];
 
+
+const EQUIPMENT_SIMULATOR_URL = "https://mingijuk-lab.github.io/star-savior-sim/";
+
+const EQUIPMENT_MAIN_OPTIONS = [
+  ["무기", "공격력", "150", "375"],
+  ["장갑", "생명력", "600", "2400"],
+  ["갑옷", "방어력", "60", "210"],
+  ["목걸이 / 반지", "공격력 증가율(%)", "2.50%", "17.50%"],
+  ["목걸이 / 반지", "생명력 증가율(%)", "2.50%", "17.50%"],
+  ["목걸이 / 반지", "방어력 증가율(%)", "2.50%", "17.50%"],
+  ["신발 / 목걸이", "속도", "18", "33"],
+  ["목걸이", "치명타 확률", "3.00%", "18.00%"],
+  ["목걸이", "치명타 피해", "4.00%", "22.00%"],
+  ["반지", "효과 적중", "5.00%", "27.50%"],
+  ["반지", "효과 저항", "5.00%", "27.50%"]
+];
+
+const EQUIPMENT_SUB_OPTIONS = [
+  {
+    group: "동일",
+    rows: [
+      ["공격력", "16", "21", "26", "30", "35", "40"],
+      ["생명력", "86", "112", "138", "163", "189", "215"],
+      ["방어력", "8", "10", "13", "15", "18", "20"],
+      ["속도", "1", "-", "-", "-", "-", "2"]
+    ]
+  },
+  {
+    group: "변경",
+    rows: [
+      ["공생방%", "0.60%", "0.80%", "1.00%", "1.20%", "1.40%", "1.60%"],
+      ["치확", "1.00%", "1.20%", "1.40%", "1.60%", "1.80%", "2.00%"],
+      ["치피", "1.50%", "1.80%", "2.10%", "2.40%", "2.70%", "3.00%"],
+      ["적중&저항", "1.00%", "1.40%", "1.80%", "2.20%", "2.60%", "3.00%"]
+    ]
+  }
+];
+
 const state = {
   query: "",
   element: "all",
@@ -3794,6 +3832,7 @@ const simpleView = document.querySelector("#simple-view");
 const saviorGrid = document.querySelector("#savior-grid");
 const detailContent = document.querySelector("#detail-content");
 const simpleContent = document.querySelector("#simple-content");
+const simpleBackButton = simpleView.querySelector(".back-button");
 const searchInput = document.querySelector("#search-input");
 const visibleCount = document.querySelector("#visible-count");
 const totalCount = document.querySelector("#total-count");
@@ -4213,32 +4252,127 @@ function createArcanaMode(title, description, slots, color) {
   `;
 }
 
-function openSimple(section, options = {}) {
-  const data = getSimpleSection(section);
-  if (!data) {
-    openList(options);
-    return;
-  }
 
-  simpleContent.innerHTML = `
-    <section class="simple-panel">
-      <header class="simple-panel-header">
-        <p>${escapeHtml(data.eyebrow)}</p>
-        <h1>${escapeHtml(data.title)}</h1>
+function createEquipmentDatabaseMarkup() {
+  const mainRows = EQUIPMENT_MAIN_OPTIONS.map(([part, stat, base, enhanced]) => `
+    <tr>
+      <td>${escapeHtml(part)}</td>
+      <td>${escapeHtml(stat)}</td>
+      <td>${escapeHtml(base)}</td>
+      <td>${escapeHtml(enhanced)}</td>
+    </tr>
+  `).join("");
+
+  const subRows = EQUIPMENT_SUB_OPTIONS.map((section) =>
+    section.rows.map((row, rowIndex) => `
+      <tr>
+        ${rowIndex === 0
+          ? `<th class="equipment-group-cell" rowspan="${section.rows.length}" scope="rowgroup">${escapeHtml(section.group)}</th>`
+          : ""}
+        <th scope="row">${escapeHtml(row[0])}</th>
+        ${row.slice(1).map((value) => `<td>${escapeHtml(value)}</td>`).join("")}
+      </tr>
+    `).join("")
+  ).join("");
+
+  return `
+    <div class="equipment-page">
+      <header class="equipment-hero">
+        <p class="eyebrow">EQUIPMENT DATABASE</p>
+        <h1>장비</h1>
+        <p>구원자 장비 주옵션 및 부옵션 정보입니다.</p>
       </header>
-      <div class="simple-panel-body">
-        <div class="simple-link-grid">
-          ${data.items.map((item) => `
-            <${item.link ? "a" : "div"} class="simple-link"
-              ${item.link ? `href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer"` : ""}>
-              <small>${escapeHtml(item.label)}</small>
-              <strong>${escapeHtml(item.name)}</strong>
-            </${item.link ? "a" : "div"}>
-          `).join("")}
+
+      <section class="equipment-panel">
+        <div class="equipment-panel-inner">
+          <h2 class="equipment-section-title">장비 개요</h2>
+          <ul class="equipment-overview-list">
+            <li>딜러 서브딜러 딜탱은 공격력, 공격력% 또는 생명력, 생명력%, 치명타 확률, 치명타 피해, 속도를 유효 옵션으로 사용합니다.</li>
+            <li>일부 구원자는 효과 적중, 방어력, 방어력% 도 유효 옵션으로 활용합니다.</li>
+            <li>장비 부족 시 치명타 확률 + 추가 유효 옵션 1줄 조합도 사용할 수 있습니다.</li>
+            <li>장비 세팅이 충분히 갖춰진 이후에는 유효 옵션 3 이상 장비 사용을 권장합니다.</li>
+          </ul>
+
+          <a class="equipment-simulator" href="${EQUIPMENT_SIMULATOR_URL}"
+            target="_blank" rel="noopener noreferrer">
+            장비 시뮬레이터
+          </a>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="equipment-panel">
+        <div class="equipment-panel-inner">
+          <h2 class="equipment-section-title">주옵션 (Tier 2)</h2>
+          <div class="equipment-table-wrap">
+            <table class="equipment-table main-options">
+              <thead>
+                <tr>
+                  <th scope="col">부위</th>
+                  <th scope="col">주 능력치</th>
+                  <th scope="col">기본 주능력치 (+0)</th>
+                  <th scope="col">기본 주능력치 (+15)</th>
+                </tr>
+              </thead>
+              <tbody>${mainRows}</tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="equipment-panel">
+        <div class="equipment-panel-inner">
+          <h2 class="equipment-section-title">부옵션 (Tier 2)</h2>
+          <div class="equipment-table-wrap">
+            <table class="equipment-table sub-options">
+              <thead>
+                <tr>
+                  <th scope="col" colspan="2">옵션</th>
+                  ${Array.from({ length: 6 }, (_, index) =>
+                    `<th scope="col">${index + 1}단계</th>`
+                  ).join("")}
+                </tr>
+              </thead>
+              <tbody>${subRows}</tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
   `;
+}
+
+function openSimple(section, options = {}) {
+  if (section === "equipment") {
+    simpleContent.innerHTML = createEquipmentDatabaseMarkup();
+    simpleBackButton.hidden = true;
+  } else {
+    const data = getSimpleSection(section);
+    if (!data) {
+      openList(options);
+      return;
+    }
+
+    simpleBackButton.hidden = false;
+    simpleContent.innerHTML = `
+      <section class="simple-panel">
+        <header class="simple-panel-header">
+          <p>${escapeHtml(data.eyebrow)}</p>
+          <h1>${escapeHtml(data.title)}</h1>
+        </header>
+        <div class="simple-panel-body">
+          <div class="simple-link-grid">
+            ${data.items.map((item) => `
+              <${item.link ? "a" : "div"} class="simple-link"
+                ${item.link ? `href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer"` : ""}>
+                <small>${escapeHtml(item.label)}</small>
+                <strong>${escapeHtml(item.name)}</strong>
+              </${item.link ? "a" : "div"}>
+            `).join("")}
+          </div>
+        </div>
+      </section>
+    `;
+  }
 
   showOnly("simple");
   setActiveNav(section);
@@ -4297,7 +4431,7 @@ function syncFromHash() {
     return;
   }
 
-  if (["cosmo"].includes(hash)) {
+  if (["equipment", "cosmo"].includes(hash)) {
     openSimple(hash, { skipHash: true, keepScroll: true });
     return;
   }
@@ -4361,7 +4495,7 @@ navItems.forEach((button) => {
 
 function applyRequestedLayoutFixes() {
   document
-    .querySelectorAll('[data-section="arcana"], [data-section="equipment"]')
+    .querySelectorAll('[data-section="arcana"]')
     .forEach((item) => item.remove());
 
   const style = document.createElement("style");

@@ -8,7 +8,212 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=12-arcana-fix"></script>
+  <script defer src="./app.js?v=14-suboptions"></script>
+
+  <style id="equipment-database-styles">
+    .equipment-page {
+      display: grid;
+      gap: 16px;
+    }
+
+    .equipment-hero {
+      padding: 2px 2px 4px;
+    }
+
+    .equipment-hero .eyebrow {
+      margin-bottom: 7px;
+    }
+
+    .equipment-hero h1 {
+      margin: 0;
+      font-size: clamp(36px, 6vw, 54px);
+      font-weight: 950;
+      letter-spacing: -0.055em;
+      line-height: 1.05;
+    }
+
+    .equipment-hero p:last-child {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 650;
+    }
+
+    .equipment-panel {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .equipment-panel-inner {
+      padding: clamp(18px, 3vw, 26px);
+    }
+
+    .equipment-section-title {
+      margin: 0 0 16px;
+      font-size: clamp(21px, 3vw, 27px);
+      font-weight: 950;
+      letter-spacing: -0.035em;
+    }
+
+    .equipment-overview-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding-left: 1.3em;
+      color: var(--text);
+    }
+
+    .equipment-overview-list li {
+      padding-left: 3px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.75;
+    }
+
+    .equipment-overview-list li::marker {
+      color: var(--accent);
+    }
+
+    .equipment-simulator {
+      display: flex;
+      min-height: 58px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      padding: 13px 18px;
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      background:
+        linear-gradient(100deg, rgba(71, 126, 231, 0.08), rgba(71, 126, 231, 0.17)),
+        var(--surface-2);
+      color: var(--accent);
+      font-size: 17px;
+      font-weight: 950;
+      text-decoration: none;
+      transition: transform 160ms ease, background-color 160ms ease;
+    }
+
+    .equipment-simulator:hover {
+      transform: translateY(-2px);
+      background:
+        linear-gradient(100deg, rgba(71, 126, 231, 0.13), rgba(71, 126, 231, 0.23)),
+        var(--surface-2);
+    }
+
+    .equipment-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+
+    .equipment-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      color: var(--text);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .equipment-table.main-options {
+      min-width: 720px;
+    }
+
+    .equipment-table.sub-options {
+      min-width: 980px;
+    }
+
+    .equipment-table th,
+    .equipment-table td {
+      padding: 10px 12px;
+      border-right: 1px solid var(--line-strong);
+      border-bottom: 1px solid var(--line-strong);
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .equipment-table th:first-child,
+    .equipment-table td:first-child {
+      border-left: 1px solid var(--line-strong);
+    }
+
+    .equipment-table thead tr:first-child th {
+      border-top: 1px solid var(--line-strong);
+    }
+
+    .equipment-table thead th {
+      background:
+        linear-gradient(180deg, rgba(71, 126, 231, 0.33), rgba(71, 126, 231, 0.20)),
+        var(--surface-2);
+      color: #dce8ff;
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    html[data-theme="light"] .equipment-table thead th {
+      color: #213c70;
+    }
+
+    .equipment-table tbody th {
+      background: var(--surface-2);
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .equipment-table tbody td {
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      font-weight: 750;
+    }
+
+    .equipment-table thead th:first-child {
+      border-top-left-radius: 9px;
+    }
+
+    .equipment-table thead th:last-child {
+      border-top-right-radius: 9px;
+    }
+
+    .equipment-table tbody tr:last-child > *:first-child {
+      border-bottom-left-radius: 9px;
+    }
+
+    .equipment-table tbody tr:last-child > *:last-child {
+      border-bottom-right-radius: 9px;
+    }
+
+    .equipment-group-cell {
+      min-width: 54px;
+      color: var(--text) !important;
+      font-weight: 950 !important;
+    }
+
+    @media (max-width: 620px) {
+      .equipment-page {
+        gap: 12px;
+      }
+
+      .equipment-panel-inner {
+        padding: 16px 14px;
+      }
+
+      .equipment-overview-list li {
+        font-size: 13px;
+      }
+
+      .equipment-simulator {
+        min-height: 54px;
+        font-size: 16px;
+      }
+
+      .equipment-table th,
+      .equipment-table td {
+        padding: 9px 10px;
+      }
+    }
+  </style>
+
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -25,6 +230,7 @@
 
       <nav class="main-nav" aria-label="주요 메뉴">
         <button class="nav-item is-active" type="button" data-section="savior">구원자</button>
+        <button class="nav-item" type="button" data-section="equipment">장비</button>
         <button class="nav-item" type="button" data-section="cosmo">코스모 게이트</button>
       </nav>
 
