@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v20-charlotte-content";
+const SITE_BUILD_VERSION = "v21-luna-arcana";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -122,6 +122,9 @@ const ARCANA_LIBRARY = {
   ],
   "언더커버 캅": [
     { name: "언더커버 캅", image: `${ARCANA_IMAGE_ROOT}/ARCANA_OFFICER_POLICE_SSR_01_S.webp` }
+  ],
+  "빛을 쫓아라!": [
+    { name: "빛을 쫓아라!", image: `${ARCANA_IMAGE_ROOT}/ARCANA_VOYAGER_ORACLE_SSR_01_S.webp` }
   ]
 };
 
@@ -478,8 +481,8 @@ const SAVIORS = [
             "note": ""
           },
           {
-            "name": "바니걸 프레이 or 린(인내)",
-            "note": "엑셀 선택 추천"
+            "name": "빛을 쫓아라!",
+            "note": ""
           }
         ],
         "pvp": [
@@ -493,7 +496,10 @@ const SAVIORS = [
           null,
           null,
           null,
-          null,
+          {
+            "name": "불굴의 역작 or 하얀 달의 온기는 햇빛처럼",
+            "note": "빛을 쫓아라! 대체"
+          },
           null
         ]
       }
@@ -4118,6 +4124,23 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
   });
 
   const names = new Set(getResolvedArcanaNames(pveArcana));
+
+  if (savior.id === "luna") {
+    return [
+      names.has("단점 보완 맞춤 훈련")
+        ? { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" }
+        : null,
+      names.has("꽃들에게 죽음을")
+        ? { name: "메이드 바이 페트라♡ or 별을 보며 꿈을", note: "꽃들에게 죽음을 대체" }
+        : null,
+      null,
+      {
+        name: "불굴의 역작 or 하얀 달의 온기는 햇빛처럼",
+        note: "빛을 쫓아라! 대체"
+      },
+      null
+    ];
+  }
 
   if (savior.id === "roberta") {
     if (names.has("단점 보완 맞춤 훈련")) {
