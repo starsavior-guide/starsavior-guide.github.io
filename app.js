@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v15-mobile-tables";
+const SITE_BUILD_VERSION = "v16-equipment-notes";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -4322,6 +4322,12 @@ function createEquipmentDatabaseMarkup() {
               <tbody>${mainRows}</tbody>
             </table>
           </div>
+
+          <div class="equipment-guidance" aria-label="세트별 권장 능력치">
+            <p><strong>통찰 4세트</strong> 착용 시 권장 치확 90% 이상, 치피 90% 이상</p>
+            <p><strong>파괴 4세트</strong> 착용 시 권장 치확 80% 이상, 치피 140% 이상</p>
+            <p><strong>적중 2세트</strong> 착용 시 권장 효적 140% 이상</p>
+          </div>
         </div>
       </section>
 
@@ -4345,6 +4351,14 @@ function createEquipmentDatabaseMarkup() {
               </thead>
               <tbody>${subRows}</tbody>
             </table>
+          </div>
+
+          <div class="equipment-guidance" aria-label="장비 티어 판정 기준">
+            <p>치확 + 치피의 합이 <strong>13% 이상</strong>일 경우 0티어 장비.</p>
+            <p>치확 + 치피의 합이 <strong>10% 이상 ~ 12% 미만</strong>일 경우 1티어 장비.</p>
+            <p>치확 + 치피의 합이 <strong>7% 이상 ~ 9% 미만</strong>일 경우 2티어 장비.</p>
+            <p>치확 + 치피의 합이 <strong>4% 이상 ~ 6% 미만</strong>일 경우 3티어 장비.</p>
+            <p class="equipment-guidance-note">※ 딜러 기준으로 공격력% 수치가 높을 시 0.5티어 상승.</p>
           </div>
         </div>
       </section>
