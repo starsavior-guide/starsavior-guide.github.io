@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v14-suboptions";
+const SITE_BUILD_VERSION = "v15-mobile-tables";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -4305,6 +4305,12 @@ function createEquipmentDatabaseMarkup() {
           <h2 class="equipment-section-title">주옵션 (Tier 2)</h2>
           <div class="equipment-table-wrap">
             <table class="equipment-table main-options">
+              <colgroup>
+                <col class="main-col-part">
+                <col class="main-col-stat">
+                <col class="main-col-base">
+                <col class="main-col-enhanced">
+              </colgroup>
               <thead>
                 <tr>
                   <th scope="col">부위</th>
@@ -4324,6 +4330,11 @@ function createEquipmentDatabaseMarkup() {
           <h2 class="equipment-section-title">부옵션 (Tier 2)</h2>
           <div class="equipment-table-wrap">
             <table class="equipment-table sub-options">
+              <colgroup>
+                <col class="sub-col-group">
+                <col class="sub-col-option">
+                ${Array.from({ length: 6 }, () => '<col class="sub-col-stage">').join("")}
+              </colgroup>
               <thead>
                 <tr>
                   <th scope="col" colspan="2">옵션</th>

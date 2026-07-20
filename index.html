@@ -8,7 +8,7 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=14-suboptions"></script>
+  <script defer src="./app.js?v=15-mobile-tables"></script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -192,10 +192,18 @@
     @media (max-width: 620px) {
       .equipment-page {
         gap: 12px;
+        min-width: 0;
+      }
+
+      .equipment-panel,
+      .equipment-panel-inner,
+      .equipment-table-wrap {
+        min-width: 0;
+        max-width: 100%;
       }
 
       .equipment-panel-inner {
-        padding: 16px 14px;
+        padding: 16px 12px;
       }
 
       .equipment-overview-list li {
@@ -207,9 +215,93 @@
         font-size: 16px;
       }
 
+      /*
+       * 모바일에서는 PC용 min-width를 해제하고,
+       * 열별 비율을 고정해 화면 안에 표 전체가 들어오게 합니다.
+       */
+      .equipment-table-wrap {
+        overflow-x: visible;
+      }
+
+      .equipment-table.main-options,
+      .equipment-table.sub-options {
+        width: 100%;
+        min-width: 0;
+        table-layout: fixed;
+        white-space: normal;
+      }
+
       .equipment-table th,
       .equipment-table td {
-        padding: 9px 10px;
+        overflow-wrap: anywhere;
+        word-break: keep-all;
+        line-height: 1.25;
+      }
+
+      .equipment-table.main-options {
+        font-size: clamp(9px, 2.55vw, 12px);
+      }
+
+      .equipment-table.main-options th,
+      .equipment-table.main-options td {
+        padding: 8px 3px;
+      }
+
+      .equipment-table.main-options .main-col-part {
+        width: 24%;
+      }
+
+      .equipment-table.main-options .main-col-stat {
+        width: 30%;
+      }
+
+      .equipment-table.main-options .main-col-base,
+      .equipment-table.main-options .main-col-enhanced {
+        width: 23%;
+      }
+
+      .equipment-table.sub-options {
+        font-size: clamp(8px, 2.15vw, 10.5px);
+      }
+
+      .equipment-table.sub-options th,
+      .equipment-table.sub-options td {
+        padding: 8px 2px;
+      }
+
+      .equipment-table.sub-options .sub-col-group {
+        width: 10%;
+      }
+
+      .equipment-table.sub-options .sub-col-option {
+        width: 24%;
+      }
+
+      .equipment-table.sub-options .sub-col-stage {
+        width: 11%;
+      }
+
+      .equipment-group-cell {
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .equipment-panel-inner {
+        padding-right: 9px;
+        padding-left: 9px;
+      }
+
+      .equipment-table.main-options th,
+      .equipment-table.main-options td {
+        padding-right: 2px;
+        padding-left: 2px;
+      }
+
+      .equipment-table.sub-options th,
+      .equipment-table.sub-options td {
+        padding-right: 1px;
+        padding-left: 1px;
       }
     }
   </style>
