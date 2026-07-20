@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v17-growth-priority";
+const SITE_BUILD_VERSION = "v18-tier-fix";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -192,7 +192,7 @@ const GROWTH_PRIORITY = {
   "smile": { tier: "1티어", level: "tier-1" },
   "luna": { tier: "1티어", level: "tier-1" },
   "carnelia": { tier: "2티어", level: "tier-2" },
-  "bell": { tier: "3티어", level: "tier-3" },
+  "bell": { tier: "1티어", level: "tier-1" },
   "emily": { tier: "0.5티어", level: "tier-05" },
   "charlotte": { tier: "3티어", level: "tier-3" },
   "carmen": { tier: "4티어", level: "tier-4" },
@@ -219,7 +219,7 @@ const GROWTH_PRIORITY = {
   "scarlet": { tier: "3티어", level: "tier-3" },
   "claire": { tier: "1티어", level: "tier-1" },
   "lacy": { tier: "2티어", level: "tier-2" },
-  "tanya": { tier: "1티어", level: "tier-1" },
+  "tanya": { tier: "3티어", level: "tier-3" },
   "lily": { tier: "3티어", level: "tier-3" },
   "kyra": { tier: "1티어", level: "tier-1" },
   "waltz-asherah": { tier: "0티어", level: "tier-0", note: "1돌파 이상 필수" },
@@ -229,7 +229,7 @@ const GROWTH_PRIORITY = {
   "besta": { tier: "2티어", level: "tier-2", note: "개화 필수" },
   "annah": { tier: "1티어", level: "tier-1", note: "개화 필수" },
   "marcille": { tier: "2티어", level: "tier-2", note: "개화 필수" },
-  "vera": { tier: "2티어", level: "tier-2" },
+  "vera": { tier: "2티어", level: "tier-2", note: "개화 필수" },
   "naru": { tier: "1티어", level: "tier-1", note: "개화 필수" },
   "bunny-claire": { tier: "2티어", level: "tier-2", note: "개화 필수" },
   "bunny-scarlet": { tier: "3티어", level: "tier-3" },
