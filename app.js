@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v18-tier-fix";
+const SITE_BUILD_VERSION = "v20-charlotte-content";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -237,6 +237,64 @@ const GROWTH_PRIORITY = {
   "hilde": { tier: "3티어", level: "tier-3" },
   "yoo-mina": { tier: "3티어", level: "tier-3" },
   "rosaria": { tier: "1티어", level: "tier-1" }
+};
+
+
+const MAIN_CONTENTS = {
+  "asherah-voyager": ["인자작"],
+  "charlotte": ["PVP"],
+  "seira": ["PVP", "코스모 게이트"],
+  "lyn": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "claire": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "tyria": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "roberta": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "ceres": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "tanya": ["없음"],
+  "bunny-scarlet": ["없음"],
+
+  "trish": ["PVP"],
+  "fei": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "epindel": ["없음"],
+  "marcille": ["없음"],
+  "kyra": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "bunny-claire": ["PVP"],
+  "bunny-charlotte": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+
+  "smile": ["인자작", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "bell": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "lugh": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "petra": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "clarissa": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "naru": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "lydia": ["인자작"],
+  "scarlet": ["없음"],
+  "yoo-mina": ["없음"],
+  "lacy": ["작전", "코스모 게이트", "플래시 포인트"],
+  "rosaria": ["작전", "코스모 게이트", "플래시 포인트"],
+
+  "luna": ["PVP", "작전", "코스모 게이트", "플래시 포인트"],
+  "carnelia": ["PVP", "작전", "코스모 게이트", "플래시 포인트"],
+  "dana": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "wedding-epindel": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "muriel": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "bunny-frey": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "omega": ["코스모 게이트"],
+  "lily": ["없음"],
+
+  "emily": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "haydee": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "harley": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "hilde": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "besta": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "annah": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "carmen": ["PVP"],
+
+  "frey": ["작전", "회랑", "플래시 포인트"],
+  "serpang": ["작전", "회랑", "플래시 포인트"],
+  "vera": ["작전", "회랑", "플래시 포인트"],
+  "elisa": ["PVP"],
+  "waltz-asherah": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "wedding-carmen": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"]
 };
 
 const SAVIORS = [
@@ -4113,6 +4171,7 @@ function createDetailMarkup(savior) {
     tier: "미등록",
     level: "tier-unrated"
   };
+  const mainContents = MAIN_CONTENTS[savior.id] || ["없음"];
 
   const roleBadge =
     savior.role && savior.role !== savior.className
@@ -4163,6 +4222,17 @@ function createDetailMarkup(savior) {
           ${growthPriority.note
             ? `<span class="growth-priority-note">${escapeHtml(growthPriority.note)}</span>`
             : ""}
+        </div>
+
+        <div class="main-content-area">
+          <h3>주 사용 콘텐츠</h3>
+          <div class="main-content-chips">
+            ${mainContents.map((content) => `
+              <span class="main-content-chip ${content === "없음" ? "is-empty" : ""}">
+                ${escapeHtml(content)}
+              </span>
+            `).join("")}
+          </div>
         </div>
       </div>
     </section>
