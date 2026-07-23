@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v25-tier-fix";
+const SITE_BUILD_VERSION = "v26-defender-luna";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -245,7 +245,8 @@ const GROWTH_PRIORITY = {
   "clarissa": { tier: "0.5티어", level: "tier-05", note: "개화 필수" },
   "hilde": { tier: "3티어", level: "tier-3" },
   "yoo-mina": { tier: "3티어", level: "tier-3" },
-  "rosaria": { tier: "1티어", level: "tier-1" }
+  "rosaria": { tier: "1티어", level: "tier-1" },
+  "white-pearl-luna": { tier: "미정", level: "tier-unrated" }
 };
 
 
@@ -303,7 +304,8 @@ const MAIN_CONTENTS = {
   "vera": ["작전", "회랑", "플래시 포인트"],
   "elisa": ["PVP"],
   "waltz-asherah": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
-  "wedding-carmen": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"]
+  "wedding-carmen": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "white-pearl-luna": ["미정"]
 };
 
 const SAVIORS = [
@@ -3902,6 +3904,80 @@ const SAVIORS = [
           {
             "name": "벨리스 or 린(인내)",
             "note": "엑셀 선택 추천"
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "id": "white-pearl-luna",
+    "name": "루나",
+    "subtitle": "화이트 펄 트랩",
+    "affiliation": "화이트 펄 트랩",
+    "grade": "SSR",
+    "element": "sun",
+    "className": "디펜더",
+    "role": "디펜더",
+    "attackType": "",
+    "image": "https://www.allclash.com/wp-content/uploads/2026/07/whitepearlluna.png",
+    "summary": "신규 구원자로 세팅 정보는 아직 미정입니다.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "미정",
+          "ring": "미정",
+          "sets": [
+            "미정"
+          ],
+          "potential": "미정",
+          "note": "장비 세팅 미정"
+        },
+        "pvp": {
+          "necklace": "미정",
+          "ring": "미정",
+          "sets": [
+            "미정"
+          ],
+          "potential": "미정",
+          "note": "장비 세팅 미정"
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "미정",
+            "note": "추천 아르카나 미정"
+          },
+          {
+            "name": "미정",
+            "note": "추천 아르카나 미정"
+          },
+          {
+            "name": "미정",
+            "note": "추천 아르카나 미정"
+          },
+          {
+            "name": "미정",
+            "note": "추천 아르카나 미정"
+          },
+          {
+            "name": "미정",
+            "note": "추천 아르카나 미정"
           }
         ],
         "pvp": [
