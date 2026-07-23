@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v28-defender-luna-db-image";
+const SITE_BUILD_VERSION = "v29-defender-luna-correct-image";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -3933,7 +3933,7 @@ const SAVIORS = [
     "className": "디펜더",
     "role": "디펜더",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_VOYAGER_ORACLE.webp",
+    "image": "https://star-savior-arcana-db.pages.dev/images/icon/portrait/%EB%A3%A8%EB%82%98(%ED%99%94%EC%9D%B4%ED%8A%B8%20%ED%8E%84%20%ED%8A%B8%EB%9E%A9).webp",
     "summary": "신규 구원자로 세팅 정보는 아직 미정입니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
