@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v29-defender-luna-correct-image";
+const SITE_BUILD_VERSION = "v30-cosmo-olveros";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -4010,7 +4010,8 @@ const COSMO_GUIDES = [
   ["길레", "https://arca.live/b/starsavior/172436327"],
   ["티리아", "https://arca.live/b/starsavior/172534192"],
   ["불사왕 모굴루스", "https://arca.live/b/starsavior/173207120"],
-  ["괴리의 표상", "https://arca.live/b/starsavior/175840063"]
+  ["괴리의 표상", "https://arca.live/b/starsavior/175840063"],
+  ["올베로스", "https://arca.live/b/starsavior/177951693"]
 ];
 
 
