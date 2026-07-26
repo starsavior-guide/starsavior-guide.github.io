@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v31-white-pearl-luna-settings";
+const SITE_BUILD_VERSION = "v32-white-pearl-luna-temp-labels";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -305,7 +305,7 @@ const MAIN_CONTENTS = {
   "elisa": ["PVP"],
   "waltz-asherah": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "wedding-carmen": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
-  "white-pearl-luna": ["작전", "회랑", "PVP (임시)"]
+  "white-pearl-luna": ["작전", "회랑", "PVP"]
 };
 
 const SAVIORS = [
@@ -4406,7 +4406,7 @@ function createDetailMarkup(savior) {
         </div>
 
         <div class="main-content-area">
-          <h3>주 사용 콘텐츠</h3>
+          <h3>${isWhitePearlLuna ? "주 사용 콘텐츠(임시)" : "주 사용 콘텐츠"}</h3>
           <div class="main-content-chips">
             ${mainContents.map((content) => `
               <span class="main-content-chip ${content === "없음" ? "is-empty" : ""}">
@@ -4427,7 +4427,7 @@ function createDetailMarkup(savior) {
       </div>
       <div class="section-body">
         <div class="build-grid">
-          ${createEquipmentCard("PVE", build.equipment.pve, "pve", "작전 · 회랑 · 코스모 게이트")}
+          ${createEquipmentCard("PVE", build.equipment.pve, "pve", "작전 · 회랑 · 코스모 게이트", isWhitePearlLuna)}
         </div>
       </div>
     </section>
@@ -4447,7 +4447,7 @@ function createDetailMarkup(savior) {
   `;
 }
 
-function createEquipmentCard(mode, data, className, subtitle) {
+function createEquipmentCard(mode, data, className, subtitle, temporarySetLabel = false) {
   const sets = Array.isArray(data.sets) ? data.sets : [data.sets];
 
   return `
@@ -4469,7 +4469,7 @@ function createEquipmentCard(mode, data, className, subtitle) {
           <dd>${escapeHtml(data.ring)}</dd>
         </div>
         <div class="build-row">
-          <dt>추천 세트</dt>
+          <dt>${temporarySetLabel ? "추천 세트(임시)" : "추천 세트"}</dt>
           <dd>
             ${sets.map((set) => `<span>${escapeHtml(set)}</span>`).join("")}
             ${data.setNote
