@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v30-cosmo-olveros";
+const SITE_BUILD_VERSION = "v31-white-pearl-luna-settings";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -246,7 +246,7 @@ const GROWTH_PRIORITY = {
   "hilde": { tier: "3티어", level: "tier-3" },
   "yoo-mina": { tier: "3티어", level: "tier-3" },
   "rosaria": { tier: "1티어", level: "tier-1" },
-  "white-pearl-luna": { tier: "미정", level: "tier-unrated" }
+  "white-pearl-luna": { tier: "1.5티어 (임시)", level: "tier-unrated" }
 };
 
 
@@ -305,7 +305,7 @@ const MAIN_CONTENTS = {
   "elisa": ["PVP"],
   "waltz-asherah": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "wedding-carmen": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
-  "white-pearl-luna": ["미정"]
+  "white-pearl-luna": ["작전", "회랑", "PVP (임시)"]
 };
 
 const SAVIORS = [
@@ -3939,13 +3939,14 @@ const SAVIORS = [
     "detail": {
       "equipment": {
         "pve": {
-          "necklace": "미정",
-          "ring": "미정",
+          "necklace": "속도",
+          "ring": "공격력%",
           "sets": [
-            "미정"
+            "통찰(4) + 적중(2) (후열사용)",
+            "공격(4) + 적중(2) (후열사용)"
           ],
-          "potential": "미정",
-          "note": "장비 세팅 미정"
+          "potential": "AX",
+          "note": ""
         },
         "pvp": {
           "necklace": "미정",
@@ -3960,24 +3961,24 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "미정",
-            "note": "추천 아르카나 미정"
+            "name": "단점 보완 맞춤 훈련",
+            "note": ""
           },
           {
-            "name": "미정",
-            "note": "추천 아르카나 미정"
+            "name": "꽃들에게 죽음을",
+            "note": ""
           },
           {
-            "name": "미정",
-            "note": "추천 아르카나 미정"
+            "name": "빛을 쫓아라!",
+            "note": ""
           },
           {
-            "name": "미정",
-            "note": "추천 아르카나 미정"
+            "name": "조용한 휴식 시간",
+            "note": ""
           },
           {
-            "name": "미정",
-            "note": "추천 아르카나 미정"
+            "name": "하얀 달의 온기는 햇빛처럼",
+            "note": ""
           }
         ],
         "pvp": [
@@ -3988,9 +3989,18 @@ const SAVIORS = [
           null
         ],
         "alternatives": [
-          null,
-          null,
-          null,
+          {
+            "name": "노 페인, 노 게인",
+            "note": "단점 보완 맞춤 훈련 대체"
+          },
+          {
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
+            "note": "꽃들에게 죽음을 대체"
+          },
+          {
+            "name": "완벽한 바니걸 or 불굴의 역작",
+            "note": "조용한 휴식 시간 대체"
+          },
           null,
           null
         ]
@@ -4240,6 +4250,16 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
 
   const names = new Set(getResolvedArcanaNames(pveArcana));
 
+  if (savior.id === "white-pearl-luna") {
+    return [
+      { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" },
+      { name: "메이드 바이 페트라♡ or 별을 보며 꿈을", note: "꽃들에게 죽음을 대체" },
+      { name: "완벽한 바니걸 or 불굴의 역작", note: "조용한 휴식 시간 대체" },
+      null,
+      null
+    ];
+  }
+
   if (savior.id === "smile") {
     return [
       names.has("단점 보완 맞춤 훈련")
@@ -4339,6 +4359,10 @@ function createDetailMarkup(savior) {
     ? `<span class="detail-badge">${escapeHtml(savior.attackType)}</span>`
     : "";
 
+  const isWhitePearlLuna = savior.id === "white-pearl-luna";
+  const pveArcanaTitle = isWhitePearlLuna ? "PVE 추천 아르카나 (임시)" : "PVE 추천 아르카나";
+  const alternativeArcanaTitle = isWhitePearlLuna ? "대체 아르카나 (임시)" : "대체 아르카나";
+
   return `
     <header class="detail-hero" data-element="${escapeHtml(savior.element)}">
       <div class="detail-portrait">
@@ -4416,8 +4440,8 @@ function createDetailMarkup(savior) {
         </div>
       </div>
       <div class="section-body">
-        ${createArcanaMode("PVE 추천 아르카나", "주요 PVE 콘텐츠", pveArcana, "var(--pve)")}
-        ${createArcanaMode("대체 아르카나", "보유 상황에 따라 교체", alternativeArcana, "var(--accent)")}
+        ${createArcanaMode(pveArcanaTitle, "주요 PVE 콘텐츠", pveArcana, "var(--pve)")}
+        ${createArcanaMode(alternativeArcanaTitle, "보유 상황에 따라 교체", alternativeArcana, "var(--accent)")}
       </div>
     </section>
   `;
