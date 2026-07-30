@@ -76,7 +76,7 @@ const ARCANA_DETAIL_IDS = {
   "누각 위, 유리달 맞이": 7101601,
   "조용한 휴식 시간": 7100901,
   "스트라니스의 영애": 7105401,
-  "완벽한 바니걸": 7150901,
+  "완벽한 바니걸": 7104401,
   "키라만큼 귀여워!": 7105301,
   "오늘의 한 걸음": 7102901,
   "나른한 오후의 틈새": 7105501,
@@ -87,7 +87,8 @@ const ARCANA_DETAIL_IDS = {
   "깊은 애도": 7100801,
   "노스텔지어의 역습": 7300101,
   "하늘의 시련": 7102401,
-  "금단의 기록물 Vol. 1": 7150102,
+  "금단의 기록물 Vol. 1": 7040101,
+  "금단의 기록물": 7040101,
   "만족스러운 식사": 7150101,
   "어느 한 기사의 맹세": 7101001,
   "서투른 욕망 해소법": 7103201,
@@ -98,7 +99,8 @@ const ARCANA_DETAIL_IDS = {
   "누구보다 프로페셔널": 7150701,
   "서류 더미 위의 책임감": 7102601,
   "언더커버 캅": 7150201,
-  "빛을 쫓아라!": 7100101
+  "빛을 쫓아라!": 7100301,
+  "빛을 쫓아라": 7100301
 };
 
 
@@ -233,6 +235,10 @@ Object.values(ARCANA_LIBRARY).flat().forEach((card) => {
     ARCANA_LIBRARY[card.name] = [card];
   }
 });
+
+// 표기 차이로 카드가 누락되지 않도록 상세 페이지와 동일한 별칭을 유지합니다.
+ARCANA_LIBRARY["금단의 기록물"] = ARCANA_LIBRARY["금단의 기록물 Vol. 1"];
+ARCANA_LIBRARY["빛을 쫓아라"] = ARCANA_LIBRARY["빛을 쫓아라!"];
 
 const COMMON_ARCANA_SLOTS = [
   { name: "단점 보완 맞춤 훈련", note: "" },
@@ -610,11 +616,11 @@ const SAVIORS = [
         "alternatives": [
           null,
           null,
-          null,
           {
             "name": "불굴의 역작 or 하얀 달의 온기는 햇빛처럼",
             "note": "빛을 쫓아라! 대체"
           },
+          null,
           null
         ]
       }
@@ -4391,11 +4397,11 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
       names.has("꽃들에게 죽음을")
         ? { name: "메이드 바이 페트라♡ or 별을 보며 꿈을", note: "꽃들에게 죽음을 대체" }
         : null,
-      null,
       {
         name: "불굴의 역작 or 하얀 달의 온기는 햇빛처럼",
         note: "빛을 쫓아라! 대체"
       },
+      null,
       null
     ];
   }
