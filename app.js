@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v34-audited";
+const SITE_BUILD_VERSION = "v35-corrected-db-links";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -16,7 +16,7 @@ const SAVIOR_DETAIL_IDS = {
   "asherah-voyager": 1001,
   "smile": 1002,
   "luna": 1003,
-  "carnelia": 1004,
+  "carnelia": 1005,
   "bell": 1008,
   "emily": 1009,
   "charlotte": 1010,
@@ -51,61 +51,21 @@ const SAVIOR_DETAIL_IDS = {
   "wedding-carmen": 1055,
   "wedding-epindel": 1056,
   "bunny-frey": 1057,
-  "white-pearl-luna": 1058,
+  "white-pearl-luna": 1045,
+  "sunshine-cat-smile": 1046,
   "besta": 1501,
   "annah": 1502,
-  "marcille": 1503,
-  "naru": 1505,
-  "bunny-claire": 1506,
+  "marcille": 1506,
+  "naru": 1508,
+  "bunny-claire": 1509,
   "vera": 1507,
-  "bunny-scarlet": 1508,
-  "clarissa": 1509,
+  "bunny-scarlet": 1510,
+  "clarissa": 1511,
   "hilde": 3001,
   "yoo-mina": 3002,
   "rosaria": 3003
 };
 
-const ARCANA_DETAIL_IDS = {
-  "노 페인, 노 게인": 7104901,
-  "누각 위, 유리달 맞이": 7104902,
-  "단점 보완 맞춤 훈련": 7104903,
-  "대단하고 엄청난 바니걸": 7104904,
-  "불굴의 역작": 7104905,
-  "서투른 욕망 해소법": 7104906,
-  "음독의 각오": 7104907,
-  "종말은 소녀의 얼굴을 하고 있다.": 7104908,
-  "죽음이 둘을 갈라놓을 때까지": 7104909,
-  "친구들과의 산책": 7104910,
-  "키라만큼 귀여워!": 7104911,
-  "하늘의 심판": 7104912,
-  "허수의 개척자": 7104913,
-  "경력직 용병": 7104914,
-  "공녀, 왕좌에 오르다": 7104915,
-  "금단의 기록물 Vol. 1": 7104916,
-  "나른한 오후의 틈새": 7104917,
-  "누구보다 프로페셔널": 7104918,
-  "서류 더미 위의 책임감": 7104919,
-  "스트라니스의 영애": 7104920,
-  "어느 한 기사의 맹세": 7104921,
-  "오늘의 한 걸음": 7104922,
-  "완벽한 바니걸": 7104923,
-  "조용한 휴식 시간": 7104924,
-  "꽃들에게 죽음을": 7104925,
-  "노스텔지어의 역습": 7104926,
-  "본 투 비 와일드": 7104927,
-  "언더커버 캅": 7104928,
-  "하늘의 시련": 7104929,
-  "하얀 달의 온기는 햇빛처럼": 7104930,
-  "깊은 애도": 7104931,
-  "메이드 바이 페트라♡": 7104932,
-  "별을 보며 꿈을": 7104933,
-  "보이지 않는 곳": 7104934,
-  "진실은 언제나 하나겠지요?": 7104935,
-  "만족스러운 식사": 7104936,
-  "유리창 너머의 밤 풍경": 7104937,
-  "튀김 명인": 7104938,
-  "빛을 쫓아라!": 7104939
-};
 
 // 아르카나 카드명은 사용자가 지정한 Star Savior Arcana DB의 한국어 표기를 사용합니다.
 // 시트에서 사용하는 캐릭터/버전 약칭을 실제 카드명과 이미지로 연결합니다.
@@ -256,38 +216,39 @@ const COMMON_ALTERNATIVE_ARCANA_SLOTS = [
 ];
 
 const EMPTY_ARCANA = () => Array.from({ length: 5 }, () => null);
+const PENDING_ARCANA = () => Array.from({ length: 5 }, () => ({ name: "미정", note: "미정" }));
 
 const DEFAULT_BUILD = {
   skills: [
-    { label: "기본기", value: "원본 자료 미등록" },
-    { label: "특수기", value: "원본 자료 미등록" },
-    { label: "궁극기", value: "원본 자료 미등록" }
+    { label: "기본기", value: "미정" },
+    { label: "특수기", value: "미정" },
+    { label: "궁극기", value: "미정" }
   ],
   equipment: {
     pve: {
-      necklace: "원본 자료 미등록",
-      ring: "원본 자료 미등록",
-      sets: ["원본 자료 미등록"],
-      potential: "원본 자료 미등록",
-      note: "원본 PVE 시트에 해당 구원자 세팅이 없습니다."
+      necklace: "미정",
+      ring: "미정",
+      sets: ["미정"],
+      potential: "미정",
+      note: "미정"
     },
     pvp: {
-      necklace: "원본 자료 미등록",
-      ring: "원본 자료 미등록",
-      sets: ["원본 자료 미등록"],
-      potential: "원본 자료 미등록",
-      note: "제공된 원본은 PVE 전용 시트입니다."
+      necklace: "미정",
+      ring: "미정",
+      sets: ["미정"],
+      potential: "미정",
+      note: "미정"
     }
   },
   arcana: {
-    pve: EMPTY_ARCANA(),
-    pvp: EMPTY_ARCANA(),
-    alternatives: EMPTY_ARCANA()
+    pve: PENDING_ARCANA(),
+    pvp: PENDING_ARCANA(),
+    alternatives: PENDING_ARCANA()
   },
   stats: [
-    { name: "핵심 능력치", target: "원본 자료 미등록", reason: "구원자 역할에 맞춰 입력", priority: "required", label: "필수" },
-    { name: "보조 능력치", target: "원본 자료 미등록", reason: "장비 세팅과 함께 조정", priority: "recommended", label: "권장" },
-    { name: "고점 능력치", target: "원본 자료 미등록", reason: "필수 수치 달성 후 투자", priority: "high", label: "고점" }
+    { name: "미정", target: "미정", reason: "미정", priority: "required", label: "미정" },
+    { name: "미정", target: "미정", reason: "미정", priority: "recommended", label: "미정" },
+    { name: "미정", target: "미정", reason: "미정", priority: "high", label: "미정" }
   ]
 };
 
@@ -636,7 +597,7 @@ const SAVIORS = [
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_LANTERN.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1005",
     "detail": {
       "equipment": {
         "pve": {
@@ -3350,7 +3311,7 @@ const SAVIORS = [
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_CONSTRUCT_WRENCH.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1506",
     "detail": {
       "equipment": {
         "pve": {
@@ -3502,7 +3463,7 @@ const SAVIORS = [
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_NOA_OBSERVER.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1508",
     "detail": {
       "equipment": {
         "pve": {
@@ -3577,7 +3538,7 @@ const SAVIORS = [
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_SPEAR.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1509",
     "detail": {
       "equipment": {
         "pve": {
@@ -3655,7 +3616,7 @@ const SAVIORS = [
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_SCISSORS.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1510",
     "detail": {
       "equipment": {
         "pve": {
@@ -3730,7 +3691,7 @@ const SAVIORS = [
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAGICIAN_SNIPER.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1511",
     "detail": {
       "equipment": {
         "pve": {
@@ -4031,7 +3992,7 @@ const SAVIORS = [
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_SUMMER_ORACLE.webp",
     "summary": "원본 자료 기준 PVE 장비·아르카나 세팅을 반영했습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1045",
     "detail": {
       "equipment": {
         "pve": {
@@ -4114,8 +4075,8 @@ const SAVIORS = [
     "role": "어쌔신",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_SUMMER_SMILE.webp",
-    "summary": "원본 PVE 세팅표에 등록되지 않은 신규 구원자입니다. 장비와 아르카나는 추측하지 않았습니다.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "summary": "미정",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1046"
   }
 ];
 
@@ -4442,11 +4403,13 @@ function createDetailMarkup(savior) {
     String(arcana?.name || "").includes("공용 아르카나")
   );
   const pveArcana = hasCommonArcana ? COMMON_ARCANA_SLOTS : build.arcana.pve;
-  const alternativeArcana = buildAlternativeArcana(
-    savior,
-    pveArcana,
-    build.arcana.alternatives
-  );
+  const alternativeArcana = savior.detail
+    ? buildAlternativeArcana(
+        savior,
+        pveArcana,
+        build.arcana.alternatives
+      )
+    : build.arcana.alternatives;
 
   const saviorDetailId = SAVIOR_DETAIL_IDS[savior.id];
   const saviorDetailUrl = saviorDetailId
@@ -4458,10 +4421,10 @@ function createDetailMarkup(savior) {
     : "";
 
   const growthPriority = GROWTH_PRIORITY[savior.id] || {
-    tier: "미등록",
+    tier: "미정",
     level: "tier-unrated"
   };
-  const mainContents = MAIN_CONTENTS[savior.id] || ["없음"];
+  const mainContents = MAIN_CONTENTS[savior.id] || ["미정"];
 
   const roleBadge =
     savior.role && savior.role !== savior.className
@@ -4631,8 +4594,7 @@ function resolveArcanaChoices(rawName) {
 }
 
 function getArcanaDetailUrl(name) {
-  const detailId = ARCANA_DETAIL_IDS[name];
-  return detailId ? `${ARCANA_DETAIL_ROOT}/${detailId}` : "";
+  return name ? ARCANA_DETAIL_ROOT : "";
 }
 
 function createArcanaImages(choices) {
