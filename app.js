@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v32-white-pearl-luna-temp-labels";
+const SITE_BUILD_VERSION = "v34-audited";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -8,8 +8,104 @@ const ELEMENT_LABELS = {
 };
 
 
-const ARCANA_SOURCE_URL = "https://star-savior-arcana-db.pages.dev/arcana";
+const SAVIOR_DETAIL_ROOT = "https://star-savior-arcana-db.pages.dev/savior";
+const ARCANA_DETAIL_ROOT = "https://star-savior-arcana-db.pages.dev/arcana";
 const ARCANA_IMAGE_ROOT = "https://starsavior-db.pages.dev/images/arcana";
+
+const SAVIOR_DETAIL_IDS = {
+  "asherah-voyager": 1001,
+  "smile": 1002,
+  "luna": 1003,
+  "carnelia": 1004,
+  "bell": 1008,
+  "emily": 1009,
+  "charlotte": 1010,
+  "carmen": 1011,
+  "frey": 1013,
+  "seira": 1014,
+  "trish": 1015,
+  "lyn": 1016,
+  "haydee": 1018,
+  "serpang": 1019,
+  "dana": 1021,
+  "muriel": 1023,
+  "elisa": 1024,
+  "tyria": 1025,
+  "roberta": 1026,
+  "lugh": 1027,
+  "fei": 1029,
+  "epindel": 1030,
+  "omega": 1031,
+  "bunny-charlotte": 1032,
+  "ceres": 1033,
+  "lydia": 1034,
+  "harley": 1041,
+  "petra": 1042,
+  "scarlet": 1043,
+  "claire": 1044,
+  "lacy": 1049,
+  "tanya": 1051,
+  "lily": 1052,
+  "kyra": 1053,
+  "waltz-asherah": 1054,
+  "wedding-carmen": 1055,
+  "wedding-epindel": 1056,
+  "bunny-frey": 1057,
+  "white-pearl-luna": 1058,
+  "besta": 1501,
+  "annah": 1502,
+  "marcille": 1503,
+  "naru": 1505,
+  "bunny-claire": 1506,
+  "vera": 1507,
+  "bunny-scarlet": 1508,
+  "clarissa": 1509,
+  "hilde": 3001,
+  "yoo-mina": 3002,
+  "rosaria": 3003
+};
+
+const ARCANA_DETAIL_IDS = {
+  "노 페인, 노 게인": 7104901,
+  "누각 위, 유리달 맞이": 7104902,
+  "단점 보완 맞춤 훈련": 7104903,
+  "대단하고 엄청난 바니걸": 7104904,
+  "불굴의 역작": 7104905,
+  "서투른 욕망 해소법": 7104906,
+  "음독의 각오": 7104907,
+  "종말은 소녀의 얼굴을 하고 있다.": 7104908,
+  "죽음이 둘을 갈라놓을 때까지": 7104909,
+  "친구들과의 산책": 7104910,
+  "키라만큼 귀여워!": 7104911,
+  "하늘의 심판": 7104912,
+  "허수의 개척자": 7104913,
+  "경력직 용병": 7104914,
+  "공녀, 왕좌에 오르다": 7104915,
+  "금단의 기록물 Vol. 1": 7104916,
+  "나른한 오후의 틈새": 7104917,
+  "누구보다 프로페셔널": 7104918,
+  "서류 더미 위의 책임감": 7104919,
+  "스트라니스의 영애": 7104920,
+  "어느 한 기사의 맹세": 7104921,
+  "오늘의 한 걸음": 7104922,
+  "완벽한 바니걸": 7104923,
+  "조용한 휴식 시간": 7104924,
+  "꽃들에게 죽음을": 7104925,
+  "노스텔지어의 역습": 7104926,
+  "본 투 비 와일드": 7104927,
+  "언더커버 캅": 7104928,
+  "하늘의 시련": 7104929,
+  "하얀 달의 온기는 햇빛처럼": 7104930,
+  "깊은 애도": 7104931,
+  "메이드 바이 페트라♡": 7104932,
+  "별을 보며 꿈을": 7104933,
+  "보이지 않는 곳": 7104934,
+  "진실은 언제나 하나겠지요?": 7104935,
+  "만족스러운 식사": 7104936,
+  "유리창 너머의 밤 풍경": 7104937,
+  "튀김 명인": 7104938,
+  "빛을 쫓아라!": 7104939
+};
 
 // 아르카나 카드명은 사용자가 지정한 Star Savior Arcana DB의 한국어 표기를 사용합니다.
 // 시트에서 사용하는 캐릭터/버전 약칭을 실제 카드명과 이미지로 연결합니다.
@@ -3933,8 +4029,8 @@ const SAVIORS = [
     "className": "디펜더",
     "role": "디펜더",
     "attackType": "",
-    "image": "https://star-savior-arcana-db.pages.dev/images/icon/portrait/%EB%A3%A8%EB%82%98(%ED%99%94%EC%9D%B4%ED%8A%B8%20%ED%8E%84%20%ED%8A%B8%EB%9E%A9).webp",
-    "summary": "신규 구원자로 세팅 정보는 아직 미정입니다.",
+    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_SUMMER_ORACLE.webp",
+    "summary": "원본 자료 기준 PVE 장비·아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
       "equipment": {
@@ -4006,6 +4102,20 @@ const SAVIORS = [
         ]
       }
     }
+  },
+  {
+    "id": "sunshine-cat-smile",
+    "name": "스마일",
+    "subtitle": "선샤인 캣",
+    "affiliation": "선샤인 캣",
+    "grade": "SSR",
+    "element": "star",
+    "className": "어쌔신",
+    "role": "어쌔신",
+    "attackType": "",
+    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_SUMMER_SMILE.webp",
+    "summary": "원본 PVE 세팅표에 등록되지 않은 신규 구원자입니다. 장비와 아르카나는 추측하지 않았습니다.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   }
 ];
 
@@ -4024,8 +4134,6 @@ const COSMO_GUIDES = [
   ["올베로스", "https://arca.live/b/starsavior/177951693"]
 ];
 
-
-const EQUIPMENT_SIMULATOR_URL = "https://mingijuk-lab.github.io/star-savior-sim/";
 
 const EQUIPMENT_MAIN_OPTIONS = [
   ["무기", "공격력", "150", "375"],
@@ -4340,8 +4448,13 @@ function createDetailMarkup(savior) {
     build.arcana.alternatives
   );
 
-  const guideButton = savior.guideUrl
-    ? `<a class="external-guide" href="${escapeHtml(savior.guideUrl)}" target="_blank" rel="noopener noreferrer">스킬설명 및 상세정보</a>`
+  const saviorDetailId = SAVIOR_DETAIL_IDS[savior.id];
+  const saviorDetailUrl = saviorDetailId
+    ? `${SAVIOR_DETAIL_ROOT}/${saviorDetailId}`
+    : (savior.guideUrl || SAVIOR_DETAIL_ROOT);
+
+  const guideButton = saviorDetailUrl
+    ? `<a class="external-guide" href="${escapeHtml(saviorDetailUrl)}" target="_blank" rel="noopener noreferrer">스킬설명 및 상세정보</a>`
     : "";
 
   const growthPriority = GROWTH_PRIORITY[savior.id] || {
@@ -4517,22 +4630,62 @@ function resolveArcanaChoices(rawName) {
   return aliases.flatMap((alias) => ARCANA_LIBRARY[alias] || []);
 }
 
+function getArcanaDetailUrl(name) {
+  const detailId = ARCANA_DETAIL_IDS[name];
+  return detailId ? `${ARCANA_DETAIL_ROOT}/${detailId}` : "";
+}
+
 function createArcanaImages(choices) {
   if (!choices.length) return "";
 
   return `
     <div class="arcana-card-images" style="--arcana-count:${Math.min(choices.length, 3)}">
-      ${choices.slice(0, 3).map((choice) => `
-        <img src="${escapeHtml(choice.image)}" alt="${escapeHtml(choice.name)}"
-          loading="lazy" referrerpolicy="no-referrer"
-          onerror="this.style.display='none'">
-      `).join("")}
+      ${choices.slice(0, 3).map((choice) => {
+        const detailUrl = getArcanaDetailUrl(choice.name);
+
+        return detailUrl
+          ? `
+            <a class="arcana-card-link" href="${escapeHtml(detailUrl)}"
+              target="_blank" rel="noopener noreferrer"
+              aria-label="${escapeHtml(choice.name)} 아르카나 상세정보">
+              <img src="${escapeHtml(choice.image)}" alt="${escapeHtml(choice.name)}"
+                loading="lazy" referrerpolicy="no-referrer"
+                onerror="this.style.display='none'">
+            </a>
+          `
+          : `
+            <span class="arcana-card-link is-disabled">
+              <img src="${escapeHtml(choice.image)}" alt="${escapeHtml(choice.name)}"
+                loading="lazy" referrerpolicy="no-referrer"
+                onerror="this.style.display='none'">
+            </span>
+          `;
+      }).join("")}
     </div>
   `;
 }
 
+function createArcanaNameLinks(choices) {
+  return choices.map((choice, index) => {
+    const detailUrl = getArcanaDetailUrl(choice.name);
+    const separator = index > 0
+      ? `<span class="arcana-card-separator" aria-hidden="true">/</span>`
+      : "";
+
+    const nameMarkup = detailUrl
+      ? `<a class="arcana-card-name-link" href="${escapeHtml(detailUrl)}"
+          target="_blank" rel="noopener noreferrer">${escapeHtml(choice.name)}</a>`
+      : `<span>${escapeHtml(choice.name)}</span>`;
+
+    return `${separator}${nameMarkup}`;
+  }).join("");
+}
+
 function createArcanaMode(title, description, slots, color) {
-  const normalized = Array.from({ length: Math.max(5, slots?.length || 0) }, (_, index) => slots?.[index] || null);
+  const normalized = Array.from(
+    { length: Math.max(5, slots?.length || 0) },
+    (_, index) => slots?.[index] || null
+  );
 
   return `
     <div class="arcana-mode">
@@ -4564,28 +4717,24 @@ function createArcanaMode(title, description, slots, color) {
             `;
           }
 
-          const cardNames = choices.map((choice) => choice.name).join(" / ");
           const rawNoteText = String(arcana.note || "").trim();
           const noteText = /엑셀.*추천/.test(rawNoteText) ? "" : rawNoteText;
 
           return `
-            <a class="arcana-slot has-arcana-card" href="${ARCANA_SOURCE_URL}"
-              target="_blank" rel="noopener noreferrer" style="--slot-color:${color}"
-              aria-label="${escapeHtml(cardNames)} 아르카나 DB에서 보기">
+            <div class="arcana-slot has-arcana-card" style="--slot-color:${color}">
               ${createArcanaImages(choices)}
               <div class="arcana-card-copy">
                 <small>SLOT ${index + 1}${choices.length > 1 ? " · 선택" : ""}</small>
-                <strong>${escapeHtml(cardNames)}</strong>
+                <strong class="arcana-card-name-links">${createArcanaNameLinks(choices)}</strong>
                 ${noteText ? `<em>${escapeHtml(noteText)}</em>` : ""}
               </div>
-            </a>
+            </div>
           `;
         }).join("")}
       </div>
     </div>
   `;
 }
-
 
 function createEquipmentDatabaseMarkup() {
   const mainRows = EQUIPMENT_MAIN_OPTIONS.map(([part, stat, base, enhanced]) => `
@@ -4627,10 +4776,6 @@ function createEquipmentDatabaseMarkup() {
             <li>장비 세팅이 충분히 갖춰진 이후에는 유효 옵션 3 이상 장비 사용을 권장합니다.</li>
           </ul>
 
-          <a class="equipment-simulator" href="${EQUIPMENT_SIMULATOR_URL}"
-            target="_blank" rel="noopener noreferrer">
-            장비 시뮬레이터
-          </a>
         </div>
       </section>
 
@@ -4693,6 +4838,7 @@ function createEquipmentDatabaseMarkup() {
             <p>치확 + 치피의 합이 <strong>7% 이상 ~ 9% 미만</strong>일 경우 2티어 장비.</p>
             <p>치확 + 치피의 합이 <strong>4% 이상 ~ 6% 미만</strong>일 경우 3티어 장비.</p>
             <p class="equipment-guidance-note">※ 딜러 기준으로 공격력% 수치가 높을 시 0.5티어 상승.</p>
+            <p class="equipment-guidance-note">* 속도 수치가 높을 시 0.5티어 상승.</p>
           </div>
         </div>
       </section>

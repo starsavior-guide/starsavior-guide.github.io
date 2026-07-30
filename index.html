@@ -8,7 +8,7 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=32-white-pearl-luna-temp-labels"></script>
+  <script defer src="./app.js?v=34-audited"></script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -76,31 +76,6 @@
       color: var(--accent);
     }
 
-    .equipment-simulator {
-      display: flex;
-      min-height: 58px;
-      align-items: center;
-      justify-content: center;
-      margin-top: 20px;
-      padding: 13px 18px;
-      border: 1px solid var(--accent);
-      border-radius: 10px;
-      background:
-        linear-gradient(100deg, rgba(71, 126, 231, 0.08), rgba(71, 126, 231, 0.17)),
-        var(--surface-2);
-      color: var(--accent);
-      font-size: 17px;
-      font-weight: 950;
-      text-decoration: none;
-      transition: transform 160ms ease, background-color 160ms ease;
-    }
-
-    .equipment-simulator:hover {
-      transform: translateY(-2px);
-      background:
-        linear-gradient(100deg, rgba(71, 126, 231, 0.13), rgba(71, 126, 231, 0.23)),
-        var(--surface-2);
-    }
 
     .equipment-table-wrap {
       overflow-x: auto;
@@ -366,11 +341,6 @@
         font-size: 13px;
       }
 
-      .equipment-simulator {
-        min-height: 54px;
-        font-size: 16px;
-      }
-
       /*
        * 모바일에서는 PC용 min-width를 해제하고,
        * 열별 비율을 고정해 화면 안에 표 전체가 들어오게 합니다.
@@ -510,6 +480,56 @@
         padding-left: 1px;
       }
     }
+  
+    /* 아르카나별 숫자 상세 링크 */
+    .arcana-card-link {
+      display: block;
+      min-width: 0;
+      overflow: hidden;
+      border-radius: inherit;
+      text-decoration: none;
+    }
+
+    .arcana-card-link img {
+      display: block;
+      width: 100%;
+    }
+
+    .arcana-card-link:not(.is-disabled):hover img,
+    .arcana-card-link:not(.is-disabled):focus-visible img {
+      filter: brightness(1.08);
+    }
+
+    .arcana-card-link:focus-visible,
+    .arcana-card-name-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .arcana-card-name-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .arcana-card-name-link {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .arcana-card-name-link:hover {
+      color: var(--slot-color);
+    }
+
+    .arcana-card-separator {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
   </style>
 
 </head>
