@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v35-corrected-db-links";
+const SITE_BUILD_VERSION = "v36-arcana-detail-links";
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -64,6 +64,41 @@ const SAVIOR_DETAIL_IDS = {
   "hilde": 3001,
   "yoo-mina": 3002,
   "rosaria": 3003
+};
+
+const ARCANA_DETAIL_IDS = {
+  "단점 보완 맞춤 훈련": 7102501,
+  "꽃들에게 죽음을": 7100501,
+  "하늘의 심판": 7102301,
+  "죽음이 둘을 갈라놓을 때까지": 7105601,
+  "불굴의 역작": 7105701,
+  "하얀 달의 온기는 햇빛처럼": 7101602,
+  "누각 위, 유리달 맞이": 7101601,
+  "조용한 휴식 시간": 7100901,
+  "스트라니스의 영애": 7105401,
+  "완벽한 바니걸": 7150901,
+  "키라만큼 귀여워!": 7105301,
+  "오늘의 한 걸음": 7102901,
+  "나른한 오후의 틈새": 7105501,
+  "공녀, 왕좌에 오르다": 7101301,
+  "본 투 비 와일드": 7104101,
+  "허수의 개척자": 7103101,
+  "종말은 소녀의 얼굴을 하고 있다.": 7300301,
+  "깊은 애도": 7100801,
+  "노스텔지어의 역습": 7300101,
+  "하늘의 시련": 7102401,
+  "금단의 기록물 Vol. 1": 7150102,
+  "만족스러운 식사": 7150101,
+  "어느 한 기사의 맹세": 7101001,
+  "서투른 욕망 해소법": 7103201,
+  "노 페인, 노 게인": 7104901,
+  "메이드 바이 페트라♡": 7104201,
+  "별을 보며 꿈을": 7150801,
+  "음독의 각오": 7103302,
+  "누구보다 프로페셔널": 7150701,
+  "서류 더미 위의 책임감": 7102601,
+  "언더커버 캅": 7150201,
+  "빛을 쫓아라!": 7100101
 };
 
 
@@ -4594,7 +4629,8 @@ function resolveArcanaChoices(rawName) {
 }
 
 function getArcanaDetailUrl(name) {
-  return name ? ARCANA_DETAIL_ROOT : "";
+  const detailId = ARCANA_DETAIL_IDS[name];
+  return detailId ? `${ARCANA_DETAIL_ROOT}/${detailId}` : "";
 }
 
 function createArcanaImages(choices) {
