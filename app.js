@@ -256,6 +256,19 @@ const COMMON_ALTERNATIVE_ARCANA_SLOTS = [
   null
 ];
 
+// 로베르타를 제외하고, 승인된 스트라이커 9명에게만 아르카나 교체 규칙을 적용합니다.
+const STRIKER_ARCANA_SWAP_IDS = new Set([
+  "asherah-voyager",
+  "charlotte",
+  "seira",
+  "lyn",
+  "tyria",
+  "ceres",
+  "claire",
+  "tanya",
+  "bunny-scarlet"
+]);
+
 const EMPTY_ARCANA = () => Array.from({ length: 5 }, () => null);
 const PENDING_ARCANA = () => Array.from({ length: 5 }, () => ({ name: "미정", note: "미정" }));
 
@@ -4354,8 +4367,20 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
     result.push({ name, note });
   };
 
+  const isStrikerArcanaSwapTarget = STRIKER_ARCANA_SWAP_IDS.has(savior.id);
+
   (existingAlternatives || []).forEach((slot) => {
-    if (slot?.name) add(slot.name, slot.note || "");
+    if (!slot?.name) return;
+
+    if (isStrikerArcanaSwapTarget && String(slot.name).includes("음독의 각오")) {
+      add(
+        String(slot.name).split("음독의 각오").join("완벽한 바니걸"),
+        "음독의 각오 대체"
+      );
+      return;
+    }
+
+    add(slot.name, slot.note || "");
   });
 
   const names = new Set(getResolvedArcanaNames(pveArcana));
@@ -4425,8 +4450,8 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
   if (names.has("하얀 달의 온기는 햇빛처럼")) {
     add("어느 한 기사의 맹세", "하얀 달의 온기는 햇빛처럼 대체");
   }
-  if (savior.className === "스트라이커") {
-    add("음독의 각오", "완벽한 바니걸 대체");
+  if (isStrikerArcanaSwapTarget) {
+    add("완벽한 바니걸", "음독의 각오 대체");
   }
   if (savior.className === "서포터") {
     add("누구보다 프로페셔널", "공녀, 왕좌에 오르다 대체");
@@ -4443,7 +4468,17 @@ function createDetailMarkup(savior) {
   const hasCommonArcana = (build.arcana.pve || []).some((arcana) =>
     String(arcana?.name || "").includes("공용 아르카나")
   );
-  const pveArcana = hasCommonArcana ? COMMON_ARCANA_SLOTS : build.arcana.pve;
+  const basePveArcana = hasCommonArcana ? COMMON_ARCANA_SLOTS : build.arcana.pve;
+  const pveArcana = STRIKER_ARCANA_SWAP_IDS.has(savior.id)
+    ? (basePveArcana || []).map((slot) =>
+        slot
+          ? {
+              ...slot,
+              name: String(slot.name).split("완벽한 바니걸").join("음독의 각오")
+            }
+          : null
+      )
+    : basePveArcana;
   const alternativeArcana = savior.detail
     ? buildAlternativeArcana(
         savior,
