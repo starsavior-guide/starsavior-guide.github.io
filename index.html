@@ -8,7 +8,7 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=41-ja-equipment-official"></script>
+  <script defer src="./app.js?v=42-ja-equipment-layout-fixes"></script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -97,7 +97,30 @@
     }
 
     .equipment-table.sub-options {
-      min-width: 980px;
+      width: 100%;
+      min-width: 0;
+      table-layout: fixed;
+      white-space: normal;
+    }
+
+    .sub-options-wrap {
+      overflow-x: visible;
+    }
+
+    .equipment-table.sub-options .sub-col-option {
+      width: 28%;
+    }
+
+    .equipment-table.sub-options .sub-col-stage {
+      width: 12%;
+    }
+
+    .equipment-table.sub-options th,
+    .equipment-table.sub-options td {
+      overflow-wrap: anywhere;
+      word-break: keep-all;
+      padding-right: 6px;
+      padding-left: 6px;
     }
 
     .equipment-table th,
@@ -349,6 +372,10 @@
         overflow-x: visible;
       }
 
+      .sub-options-wrap {
+        overflow-x: visible;
+      }
+
       .equipment-table.main-options,
       .equipment-table.sub-options {
         width: 100%;
@@ -395,20 +422,12 @@
         padding: 8px 2px;
       }
 
-      .equipment-table.sub-options .sub-col-group {
-        width: 10%;
-      }
-
       .equipment-table.sub-options .sub-col-option {
-        width: 24%;
+        width: 28%;
       }
 
       .equipment-table.sub-options .sub-col-stage {
-        width: 11%;
-      }
-
-      .equipment-group-cell {
-        min-width: 0;
+        width: 12%;
       }
 
       .equipment-guidance {
