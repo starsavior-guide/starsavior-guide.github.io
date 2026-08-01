@@ -1,4 +1,204 @@
-const SITE_BUILD_VERSION = "v36-arcana-detail-links";
+const SITE_BUILD_VERSION = "v40-multilingual";
+const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
+const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
+const LANGUAGE_HTML_CODES = {
+  ko: "ko-KR",
+  en: "en",
+  ja: "ja",
+  "zh-TW": "zh-Hant",
+  "zh-CN": "zh-Hans"
+};
+const I18N_DATA = {"saviorNames":{"en":{"아세라":"Asherah","스마일":"Smile","루나":"Luna","카넬리아":"Carnelia","벨 리스":"Bell","에밀리":"Emily","샤를":"Charlotte","카르멘":"Carmen","프레이":"Frey","세이라":"Seira","트리쉬":"Trish","린":"Lyn","에데":"Haydee","세르팡":"Serpang","다나":"Dana","뮤리엘":"Muriel","엘리사":"Elisa","티리아":"Tyria","로베르타":"Roberta","루그":"Lugh","페이":"Fei","에핀델":"Epindel","오메가":"Omega","세레스":"Ceres","리디아":"Lydia","할리":"Harley","페트라":"Petra","스칼렛":"Scarlet","클레어":"Claire","레이시":"Lacy","타냐":"Tanya","릴리":"Lily","키라":"Kyra","베스타":"Besta","안나":"Annah","마르실":"Marcille","베라":"Vera","나루":"Naru","클라리사":"Clarissa","힐데":"Hilde","유미나":"Yoo Mina","로자리아":"Rosaria"},"ja":{"아세라":"アセラ","스마일":"スマイル","루나":"ルナ","카넬리아":"カーネリア","벨 리스":"ベル・リース","에밀리":"エミリー","샤를":"シャル","카르멘":"カルメン","프레이":"フレイ","세이라":"セイラ","트리쉬":"トリッシュ","린":"リン","에데":"エデ","세르팡":"セルパン","다나":"ダナ","뮤리엘":"ミュリエル","엘리사":"エリサ","티리아":"ティリア","로베르타":"ロベルタ","루그":"ルグ","페이":"フェイ","에핀델":"エピンデル","오메가":"オメガ","세레스":"セレス","리디아":"リディア","할리":"ハーレー","페트라":"ペトラ","스칼렛":"スカーレット","클레어":"クレア","레이시":"レイシー","타냐":"ターニャ","릴리":"リリー","키라":"キラ","베스타":"ベスタ","안나":"アンナ","마르실":"マルシル","베라":"ベラ","나루":"ナル","클라리사":"クラリッサ","힐데":"ヒルデ","유미나":"ユ・ミナ","로자리아":"ロザリア"},"zh-TW":{"아세라":"Asherah","스마일":"Smile","루나":"Luna","카넬리아":"Carnelia","벨 리스":"Bell","에밀리":"Emily","샤를":"Charlotte","카르멘":"Carmen","프레이":"Frey","세이라":"Seira","트리쉬":"Trish","린":"Lyn","에데":"Haydee","세르팡":"Serpang","다나":"Dana","뮤리엘":"Muriel","엘리사":"Elisa","티리아":"Tyria","로베르타":"Roberta","루그":"Lugh","페이":"Fei","에핀델":"Epindel","오메가":"Omega","세레스":"Ceres","리디아":"Lydia","할리":"Harley","페트라":"Petra","스칼렛":"Scarlet","클레어":"Claire","레이시":"Lacy","타냐":"Tanya","릴리":"Lily","키라":"Kyra","베스타":"Besta","안나":"Annah","마르실":"Marcille","베라":"Vera","나루":"Naru","클라리사":"Clarissa","힐데":"Hilde","유미나":"Yoo Mina","로자리아":"Rosaria"},"zh-CN":{"아세라":"Asherah","스마일":"Smile","루나":"Luna","카넬리아":"Carnelia","벨 리스":"Bell","에밀리":"Emily","샤를":"Charlotte","카르멘":"Carmen","프레이":"Frey","세이라":"Seira","트리쉬":"Trish","린":"Lyn","에데":"Haydee","세르팡":"Serpang","다나":"Dana","뮤리엘":"Muriel","엘리사":"Elisa","티리아":"Tyria","로베르타":"Roberta","루그":"Lugh","페이":"Fei","에핀델":"Epindel","오메가":"Omega","세레스":"Ceres","리디아":"Lydia","할리":"Harley","페트라":"Petra","스칼렛":"Scarlet","클레어":"Claire","레이시":"Lacy","타냐":"Tanya","릴리":"Lily","키라":"Kyra","베스타":"Besta","안나":"Annah","마르실":"Marcille","베라":"Vera","나루":"Naru","클라리사":"Clarissa","힐데":"Hilde","유미나":"Yoo Mina","로자리아":"Rosaria"}},"subtitles":{"en":{"보이저 구원단":"Voyager Savior Party","방랑자":"Wanderer","캔들 스퀘어":"Candle Square","모나스티르 기사단":"Monastir Knights","나이트메어":"Nightmare","아셀루스 협회":"Aselus Association","풍월문":"Wind Moon Sect","모렐 해양상단":"Morrel Ocean Traders","카노푸스 레인저":"Canopus Rangers","모노리스 교단":"Monolith Order","집행자":"Executor","궤도 수색대":"Orbital Search Team","오를랑 가문":"House Orlang","하트 오브 모나스티르":"Heart of Monastir","서부 해방군":"Western Liberators","헬 세이비어":"Hell Savior","페트라 조합":"Petra Construction","리틀 타이런트":"Little Tyrant","플로리스 블루 로즈":"Flawless Blue Rose","람파디스":"Lampadis","키라는 친구 같은 거 없어":"Kyra Doesn't Have Friends","왈츠 오브 스타라이트":"Waltz of Starlight","이터널 프로미스":"Eternal Promise","블레싱 인 블룸":"Blessing in Bloom","노블 프린세스":"Noble Princess","노아 마을 경비대":"NOA Town Guard","운송 길드":"Courier Guild","펜릴 소대":"Fenrir Squad","폴른 호크":"Fallen Hawk","화이트 펄 트랩":"White Pearl Trap","선샤인 캣":"Sunshine Cat"},"ja":{"보이저 구원단":"ボイジャー救援団","방랑자":"放浪者","캔들 스퀘어":"キャンドルスクエア","모나스티르 기사단":"モナスティール騎士団","나이트메어":"ナイトメア","아셀루스 협회":"アセルス協会","풍월문":"風月門","모렐 해양상단":"モレル海洋商団","카노푸스 레인저":"カノープス・レンジャー","모노리스 교단":"モノリス教団","집행자":"執行者","궤도 수색대":"軌道捜索隊","오를랑 가문":"オルラン家","하트 오브 모나스티르":"ハート・オブ・モナスティール","서부 해방군":"西部解放軍","헬 세이비어":"ヘル・セイバー","페트라 조합":"ペトラ組合","리틀 타이런트":"リトル・タイラント","플로리스 블루 로즈":"フローレス・ブルーローズ","람파디스":"ランパディス","키라는 친구 같은 거 없어":"キラに友達なんていない","왈츠 오브 스타라이트":"ワルツ・オブ・スターライト","이터널 프로미스":"エターナル・プロミス","블레싱 인 블룸":"ブレッシング・イン・ブルーム","노블 프린세스":"ノーブル・プリンセス","노아 마을 경비대":"NOA村警備隊","운송 길드":"運送ギルド","펜릴 소대":"フェンリル小隊","폴른 호크":"フォールン・ホーク","화이트 펄 트랩":"ホワイト・パール・トラップ","선샤인 캣":"サンシャイン・キャット"},"zh-TW":{"보이저 구원단":"旅者救援團","방랑자":"流浪者","캔들 스퀘어":"燭光廣場","모나스티르 기사단":"莫納斯提爾騎士團","나이트메어":"夢魘","아셀루스 협회":"阿塞魯斯協會","풍월문":"風月門","모렐 해양상단":"莫雷爾海洋商團","카노푸스 레인저":"卡諾普斯遊騎隊","모노리스 교단":"莫諾利斯教團","집행자":"執行者","궤도 수색대":"軌道搜索隊","오를랑 가문":"奧爾朗家族","하트 오브 모나스티르":"莫納斯提爾之心","서부 해방군":"西部解放軍","헬 세이비어":"地獄救援者","페트라 조합":"佩特拉工會","리틀 타이런트":"小小暴君","플로리스 블루 로즈":"無瑕藍玫瑰","람파디스":"蘭帕迪斯","키라는 친구 같은 거 없어":"琪拉才沒有朋友","왈츠 오브 스타라이트":"星光華爾滋","이터널 프로미스":"永恆誓約","블레싱 인 블룸":"綻放的祝福","노블 프린세스":"高貴公主","노아 마을 경비대":"NOA村警備隊","운송 길드":"運輸公會","펜릴 소대":"芬里爾小隊","폴른 호크":"墮落之鷹","화이트 펄 트랩":"白珍珠陷阱","선샤인 캣":"陽光貓"},"zh-CN":{"보이저 구원단":"旅者救援团","방랑자":"流浪者","캔들 스퀘어":"烛光广场","모나스티르 기사단":"莫納斯提尔騎士团","나이트메어":"梦魇","아셀루스 협회":"阿塞魯斯协会","풍월문":"風月门","모렐 해양상단":"莫雷尔海洋商团","카노푸스 레인저":"卡諾普斯游骑队","모노리스 교단":"莫諾利斯教团","집행자":"執行者","궤도 수색대":"轨道搜索队","오를랑 가문":"奥尔朗家族","하트 오브 모나스티르":"莫納斯提尔之心","서부 해방군":"西部解放军","헬 세이비어":"地獄救援者","페트라 조합":"佩特拉工会","리틀 타이런트":"小小暴君","플로리스 블루 로즈":"无瑕蓝玫瑰","람파디스":"蘭帕迪斯","키라는 친구 같은 거 없어":"琪拉才沒有朋友","왈츠 오브 스타라이트":"星光华尔兹","이터널 프로미스":"永恒誓约","블레싱 인 블룸":"绽放的祝福","노블 프린세스":"高貴公主","노아 마을 경비대":"NOA村警备队","운송 길드":"运输公会","펜릴 소대":"芬里尔小队","폴른 호크":"堕落之鷹","화이트 펄 트랩":"白珍珠陷阱","선샤인 캣":"阳光猫"}},"arcana":{"en":{"단점 보완 맞춤 훈련":"Customized Training to Cover Weaknesses","꽃들에게 죽음을":"Death for the Flowers","하늘의 심판":"Divine Judgement","죽음이 둘을 갈라놓을 때까지":"Till Death Do Us Part","불굴의 역작":"The Indomitable Masterpiece","하얀 달의 온기는 햇빛처럼":"A White Moon Shines With the Sun's Warmth","누각 위, 유리달 맞이":"Under the Glass Moon, Over the Pavilion","조용한 휴식 시간":"A Quiet Moment of Rest","스트라니스의 영애":"Young Lady of Stranis","완벽한 바니걸":"The Perfect Bunny Girl","키라만큼 귀여워!":"As Cute as Kyra!","오늘의 한 걸음":"Today's Step Forward","나른한 오후의 틈새":"A Drowsy Afternoon Interlude","공녀, 왕좌에 오르다":"The Princess Ascends the Throne","본 투 비 와일드":"Born to Be Wild","허수의 개척자":"The Imaginary Pioneer","종말은 소녀의 얼굴을 하고 있다.":"The End Wears the Face of a Girl","깊은 애도":"Deep Mourning","노스텔지어의 역습":"Nostalgia Strikes Back","하늘의 시련":"Divine Trial","금단의 기록물 Vol. 1":"Forbidden Archive Vol. 1","금단의 기록물":"Forbidden Archive Vol. 1","만족스러운 식사":"A Satisfying Meal","어느 한 기사의 맹세":"A Knight's Oath","서투른 욕망 해소법":"A Clumsy Way to Relieve Desire","노 페인, 노 게인":"No Pain, No Gain","메이드 바이 페트라♡":"Made by Petra♡","별을 보며 꿈을":"Dreams Under the Stars","음독의 각오":"Even If It's Poison","누구보다 프로페셔널":"More Than Professional","서류 더미 위의 책임감":"Responsibility Atop a Pile of Paperwork","언더커버 캅":"Undercover Cop","빛을 쫓아라!":"Follow the Light!","빛을 쫓아라":"Follow the Light!"},"ja":{"단점 보완 맞춤 훈련":"弱点補完カスタムトレーニング","꽃들에게 죽음을":"花々に死を","하늘의 심판":"天の審判","죽음이 둘을 갈라놓을 때까지":"死が二人を分かつまで","불굴의 역작":"不屈の傑作","하얀 달의 온기는 햇빛처럼":"白い月のぬくもりは陽光のように","누각 위, 유리달 맞이":"楼閣の上、硝子の月を迎えて","조용한 휴식 시간":"静かな休息のひととき","스트라니스의 영애":"ストラニスの令嬢","완벽한 바니걸":"完璧なバニーガール","키라만큼 귀여워!":"キラくらいかわいい！","오늘의 한 걸음":"今日の一歩","나른한 오후의 틈새":"けだるい午後のひととき","공녀, 왕좌에 오르다":"公女、王座に就く","본 투 비 와일드":"ボーン・トゥ・ビー・ワイルド","허수의 개척자":"虚数の開拓者","종말은 소녀의 얼굴을 하고 있다.":"終末は少女の顔をしている","깊은 애도":"深い哀悼","노스텔지어의 역습":"ノスタルジアの逆襲","하늘의 시련":"天の試練","금단의 기록물 Vol. 1":"禁断の記録物 Vol. 1","금단의 기록물":"禁断の記録物 Vol. 1","만족스러운 식사":"満足な食事","어느 한 기사의 맹세":"ある騎士の誓い","서투른 욕망 해소법":"不器用な欲望解消法","노 페인, 노 게인":"ノーペイン・ノーゲイン","메이드 바이 페트라♡":"メイド・バイ・ペトラ♡","별을 보며 꿈을":"星を見ながら夢を","음독의 각오":"毒でも覚悟のうえ","누구보다 프로페셔널":"誰よりもプロフェッショナル","서류 더미 위의 책임감":"書類の山の上の責任感","언더커버 캅":"アンダーカバー・コップ","빛을 쫓아라!":"光を追え！","빛을 쫓아라":"光を追え！"},"zh-TW":{"단점 보완 맞춤 훈련":"弱點補強專屬訓練","꽃들에게 죽음을":"賜予花朵死亡","하늘의 심판":"天空的審判","죽음이 둘을 갈라놓을 때까지":"直到死亡將兩人分開","불굴의 역작":"不屈的傑作","하얀 달의 온기는 햇빛처럼":"白月的溫暖如同陽光","누각 위, 유리달 맞이":"樓閣之上，迎接琉璃月","조용한 휴식 시간":"寧靜的休息時光","스트라니스의 영애":"斯特拉尼斯的千金","완벽한 바니걸":"完美兔女郎","키라만큼 귀여워!":"和琪拉一樣可愛！","오늘의 한 걸음":"今天的一步","나른한 오후의 틈새":"慵懶午後的片刻","공녀, 왕좌에 오르다":"公女登上王座","본 투 비 와일드":"生而狂野","허수의 개척자":"虛數的開拓者","종말은 소녀의 얼굴을 하고 있다.":"末日有著少女的面容","깊은 애도":"深切哀悼","노스텔지어의 역습":"鄉愁反擊","하늘의 시련":"天空的試煉","금단의 기록물 Vol. 1":"禁忌記錄物 Vol. 1","금단의 기록물":"禁忌記錄物 Vol. 1","만족스러운 식사":"令人滿足的一餐","어느 한 기사의 맹세":"某位騎士的誓言","서투른 욕망 해소법":"笨拙的欲望排解法","노 페인, 노 게인":"No Pain, No Gain","메이드 바이 페트라♡":"Made by Petra♡","별을 보며 꿈을":"望著星星做夢","음독의 각오":"即使是毒也在所不惜","누구보다 프로페셔널":"比任何人都專業","서류 더미 위의 책임감":"文件堆上的責任感","언더커버 캅":"臥底警察","빛을 쫓아라!":"追逐光芒！","빛을 쫓아라":"追逐光芒！"},"zh-CN":{"단점 보완 맞춤 훈련":"弱点補強专属训练","꽃들에게 죽음을":"赐予花朵死亡","하늘의 심판":"天空的审判","죽음이 둘을 갈라놓을 때까지":"直到死亡将兩人分開","불굴의 역작":"不屈的杰作","하얀 달의 온기는 햇빛처럼":"白月的温暖如同阳光","누각 위, 유리달 맞이":"楼阁之上，迎接琉璃月","조용한 휴식 시간":"宁静的休息时光","스트라니스의 영애":"斯特拉尼斯的千金","완벽한 바니걸":"完美兔女郎","키라만큼 귀여워!":"和琪拉一样可爱！","오늘의 한 걸음":"今天的一步","나른한 오후의 틈새":"慵懒午後的片刻","공녀, 왕좌에 오르다":"公女登上王座","본 투 비 와일드":"生而狂野","허수의 개척자":"虚数的開拓者","종말은 소녀의 얼굴을 하고 있다.":"末日有着少女的面容","깊은 애도":"深切哀悼","노스텔지어의 역습":"乡愁反擊","하늘의 시련":"天空的试炼","금단의 기록물 Vol. 1":"禁忌记录物 Vol. 1","금단의 기록물":"禁忌记录物 Vol. 1","만족스러운 식사":"令人满足的一餐","어느 한 기사의 맹세":"某位骑士的誓言","서투른 욕망 해소법":"笨拙的欲望排解法","노 페인, 노 게인":"No Pain, No Gain","메이드 바이 페트라♡":"Made by Petra♡","별을 보며 꿈을":"望着星星做夢","음독의 각오":"即使是毒也在所不惜","누구보다 프로페셔널":"比任何人都专业","서류 더미 위의 책임감":"文件堆上的责任感","언더커버 캅":"卧底警察","빛을 쫓아라!":"追逐光芒！","빛을 쫓아라":"追逐光芒！"}},"ui":{"en":{"본문으로 바로가기":"Skip to content","구원자 목록으로 이동":"Go to Savior list","주요 메뉴":"Main navigation","구원자":"Saviors","장비":"Equipment","코스모 게이트":"Cosmo Gate","밝은 테마로 변경":"Switch to light theme","어두운 테마로 변경":"Switch to dark theme","등록된 구원자":"Registered Saviors","구원자 검색 및 필터":"Savior search and filters","구원자 검색":"Search Saviors","이름, 소속, 역할 검색":"Search name, affiliation, or role","속성":"Element","전체":"All","클래스":"Class","명의 구원자":" Saviors","필터 초기화":"Reset filters","조건에 맞는 구원자가 없습니다.":"No Saviors match the current filters.","검색어나 필터를 변경해 주세요.":"Try changing the search term or filters.","구원자 목록":"Savior List","스킬설명 및 상세정보":"Skills & Details","육성 우선순위":"Growth Priority","PVE 기준":"PVE Standard","주 사용 콘텐츠":"Main Content","장비 세팅":"Equipment Setup","아르카나 세팅":"Arcana Setup","PVE 추천 아르카나":"Recommended PVE Arcana","대체 아르카나":"Alternative Arcana","주요 PVE 콘텐츠":"Main PVE Content","보유 상황에 따라 교체":"Swap based on availability","목걸이":"Necklace","반지":"Ring","추천 세트":"Recommended Sets","잠재력":"Potential","미정":"TBD","미등록":"Not Registered","대체 아르카나가 등록되지 않았습니다.":"No alternative Arcana registered.","원본 시트 표기":"Source sheet notation","선택":"Choose","주옵션 (Tier 2)":"Main Stats (Tier 2)","부옵션 (Tier 2)":"Substats (Tier 2)","장비 개요":"Equipment Overview","구원자 장비 주옵션 및 부옵션 정보입니다.":"Main-stat and substat information for Savior equipment.","부위":"Slot","주 능력치":"Main Stat","기본 주능력치 (+0)":"Base Main Stat (+0)","기본 주능력치 (+15)":"Base Main Stat (+15)","옵션":"Option","세트별 권장 능력치":"Recommended stats by set","장비 티어 판정 기준":"Equipment tier criteria","작전":"Operations","회랑":"Cloister","플래시 포인트":"Flash Point","인자작":"Trait Farming","없음":"None","기본기":"Basic Skill","특수기":"Special Skill","궁극기":"Ultimate","한정":"Limited","개화 필수":"Bloom required","1돌파 이상 필수":"Resonance 1+ required","1돌파 이상 권장":"Resonance 1+ recommended","PVE 추천 세팅":"Recommended PVE Setup","장비 가이드 바로가기":"Open Equipment Guide","필터":"Filter","구원자 정보는 ":"Savior information follows "," 기준입니다.":" as the source.","스타세이비어 DB":"Star Savior DB","아카라이브 스타세이비어 채널 원샷 세팅표":"Arca.live Star Savior one-shot setup sheet","PVE장비 및 아르카나는 ":"PVE equipment and Arcana follow ","를 기준으로 합니다.":" as the source.","작전 · 회랑 · 코스모 게이트":"Operations · Cloister · Cosmo Gate","적중(2)는 투지(2)로 대체가능.":"Accuracy(2) can be replaced with Fighting Spirit(2).","* 적중(2)는 투지(2)로 대체가능.":"* Accuracy(2) can be replaced with Fighting Spirit(2).","※ 딜러 기준으로 공격력% 수치가 높을 시 0.5티어 상승.":"※ For DPS units, high ATK% can raise the equipment rating by 0.5 tier.","* 속도 수치가 높을 시 0.5티어 상승.":"* High SPD can raise the equipment rating by 0.5 tier.","딜러 서브딜러 딜탱은 공격력, 공격력% 또는 생명력, 생명력%, 치명타 확률, 치명타 피해, 속도를 유효 옵션으로 사용합니다.":"DPS, sub-DPS, and bruisers use ATK/ATK%, HP/HP%, CRIT Rate, CRIT DMG, and SPD as useful stats.","일부 구원자는 효과 적중, 방어력, 방어력% 도 유효 옵션으로 활용합니다.":"Some Saviors also make effective use of Effect Hit, DEF, and DEF%.","장비 부족 시 치명타 확률 + 추가 유효 옵션 1줄 조합도 사용할 수 있습니다.":"When gear is limited, CRIT Rate plus one additional useful substat is acceptable.","장비 세팅이 충분히 갖춰진 이후에는 유효 옵션 3 이상 장비 사용을 권장합니다.":"Once your gear pool is established, equipment with at least three useful substats is recommended.","착용 시 권장 치확 90% 이상, 치피 90% 이상":"Recommended: CRIT Rate 90%+ and CRIT DMG 90%+.","착용 시 권장 치확 80% 이상, 치피 140% 이상":"Recommended: CRIT Rate 80%+ and CRIT DMG 140%+.","착용 시 권장 효적 140% 이상":"Recommended: Effect Hit 140%+.","치확 + 치피의 합이 ":"If CRIT Rate + CRIT DMG totals ","일 경우 0티어 장비.":", the item is Tier 0.","일 경우 1티어 장비.":", the item is Tier 1.","일 경우 2티어 장비.":", the item is Tier 2.","일 경우 3티어 장비.":", the item is Tier 3.","이 페이지는 게임 '스타 세이비어'의 비영리 팬 프로젝트입니다.":"This page is a non-profit fan project for Star Savior.","프로젝트에 사용된 모든 자산, 데이터, 이미지 및 텍스트의 소유권은 STUDIOBSIDE 에 있습니다.":"All assets, data, images, and text used in this project belong to STUDIOBSIDE.","검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.":"Please enable JavaScript to use search and detail views.","상세 세팅 보기":"View detailed setup"},"ja":{"본문으로 바로가기":"本文へスキップ","구원자 목록으로 이동":"救援者一覧へ","주요 메뉴":"メインメニュー","구원자":"救援者","장비":"装備","코스모 게이트":"コスモゲート","밝은 테마로 변경":"ライトテーマに変更","어두운 테마로 변경":"ダークテーマに変更","등록된 구원자":"登録済み救援者","구원자 검색 및 필터":"救援者の検索とフィルター","구원자 검색":"救援者を検索","이름, 소속, 역할 검색":"名前・所属・役割で検索","속성":"属性","전체":"すべて","클래스":"クラス","명의 구원자":"人の救援者","필터 초기화":"フィルターをリセット","조건에 맞는 구원자가 없습니다.":"条件に一致する救援者はいません。","검색어나 필터를 변경해 주세요.":"検索語やフィルターを変更してください。","구원자 목록":"救援者一覧","스킬설명 및 상세정보":"スキル説明・詳細情報","육성 우선순위":"育成優先度","PVE 기준":"PVE基準","주 사용 콘텐츠":"主な使用コンテンツ","장비 세팅":"装備セッティング","아르카나 세팅":"アルカナセッティング","PVE 추천 아르카나":"PVEおすすめアルカナ","대체 아르카나":"代替アルカナ","주요 PVE 콘텐츠":"主要PVEコンテンツ","보유 상황에 따라 교체":"所持状況に応じて交換","목걸이":"ネックレス","반지":"リング","추천 세트":"おすすめセット","잠재력":"潜在力","미정":"未定","미등록":"未登録","대체 아르카나가 등록되지 않았습니다.":"代替アルカナは登録されていません。","원본 시트 표기":"元シート表記","선택":"選択","주옵션 (Tier 2)":"メインオプション (Tier 2)","부옵션 (Tier 2)":"サブオプション (Tier 2)","장비 개요":"装備概要","구원자 장비 주옵션 및 부옵션 정보입니다.":"救援者装備のメイン・サブオプション情報です。","부위":"部位","주 능력치":"メイン能力値","기본 주능력치 (+0)":"基本メイン能力値 (+0)","기본 주능력치 (+15)":"基本メイン能力値 (+15)","옵션":"オプション","세트별 권장 능력치":"セット別推奨能力値","장비 티어 판정 기준":"装備Tier判定基準","작전":"作戦","회랑":"回廊","플래시 포인트":"フラッシュポイント","인자작":"因子厳選","없음":"なし","기본기":"基本技","특수기":"特殊技","궁극기":"究極技","한정":"限定","개화 필수":"開花必須","1돌파 이상 필수":"1凸以上必須","1돌파 이상 권장":"1凸以上推奨","PVE 추천 세팅":"PVEおすすめセッティング","장비 가이드 바로가기":"装備ガイドを開く","구원자 정보는 ":"救援者情報は "," 기준입니다.":" を基準としています。","스타세이비어 DB":"Star Savior DB","아카라이브 스타세이비어 채널 원샷 세팅표":"Arca.live Star Savior ワンショットセッティング表","PVE장비 및 아르카나는 ":"PVE装備・アルカナは ","를 기준으로 합니다.":" を基準としています。","작전 · 회랑 · 코스모 게이트":"作戦 · 回廊 · コスモゲート","적중(2)는 투지(2)로 대체가능.":"命中(2)は闘志(2)で代用可能です。","* 적중(2)는 투지(2)로 대체가능.":"* 命中(2)は闘志(2)で代用可能です。","※ 딜러 기준으로 공격력% 수치가 높을 시 0.5티어 상승.":"※ アタッカー基準で攻撃力%が高い場合、0.5 Tier上昇。","* 속도 수치가 높을 시 0.5티어 상승.":"* 速度が高い場合、0.5 Tier上昇。","딜러 서브딜러 딜탱은 공격력, 공격력% 또는 생명력, 생명력%, 치명타 확률, 치명타 피해, 속도를 유효 옵션으로 사용합니다.":"アタッカー、サブアタッカー、ブルーザーは攻撃力/攻撃力%、生命力/生命力%、クリ率、クリダメ、速度を有効オプションとして使用します。","일부 구원자는 효과 적중, 방어력, 방어력% 도 유효 옵션으로 활용합니다.":"一部の救援者は効果命中、防御力、防御力%も有効です。","장비 부족 시 치명타 확률 + 추가 유효 옵션 1줄 조합도 사용할 수 있습니다.":"装備が不足している場合、クリ率＋有効オプション1行の組み合わせも使用できます。","장비 세팅이 충분히 갖춰진 이후에는 유효 옵션 3 이상 장비 사용을 권장합니다.":"装備が揃った後は、有効オプション3つ以上の装備を推奨します。","이 페이지는 게임 '스타 세이비어'의 비영리 팬 프로젝트입니다.":"このページはゲーム『Star Savior』の非営利ファンプロジェクトです。","프로젝트에 사용된 모든 자산, 데이터, 이미지 및 텍스트의 소유권은 STUDIOBSIDE 에 있습니다.":"本プロジェクトで使用するすべてのアセット、データ、画像、テキストの権利はSTUDIOBSIDEに帰属します。","검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.":"検索と詳細画面を利用するにはJavaScriptを有効にしてください。","상세 세팅 보기":"詳細セッティングを見る"},"zh-TW":{"본문으로 바로가기":"跳至正文","구원자 목록으로 이동":"前往救援者列表","주요 메뉴":"主選單","구원자":"救援者","장비":"裝備","코스모 게이트":"宇宙之門","밝은 테마로 변경":"切換至淺色主題","어두운 테마로 변경":"切換至深色主題","등록된 구원자":"已登錄救援者","구원자 검색 및 필터":"救援者搜尋與篩選","구원자 검색":"搜尋救援者","이름, 소속, 역할 검색":"搜尋名稱、所屬或定位","속성":"屬性","전체":"全部","클래스":"職業","명의 구원자":" 名救援者","필터 초기화":"重設篩選","조건에 맞는 구원자가 없습니다.":"沒有符合條件的救援者。","검색어나 필터를 변경해 주세요.":"請調整搜尋詞或篩選條件。","구원자 목록":"救援者列表","스킬설명 및 상세정보":"技能說明與詳細資訊","육성 우선순위":"培養優先度","PVE 기준":"PVE基準","주 사용 콘텐츠":"主要使用內容","장비 세팅":"裝備配置","아르카나 세팅":"阿爾卡納配置","PVE 추천 아르카나":"PVE推薦阿爾卡納","대체 아르카나":"替代阿爾卡納","주요 PVE 콘텐츠":"主要PVE內容","보유 상황에 따라 교체":"依持有情況替換","목걸이":"項鍊","반지":"戒指","추천 세트":"推薦套裝","잠재력":"潛能","미정":"未定","미등록":"未登錄","대체 아르카나가 등록되지 않았습니다.":"尚未登錄替代阿爾卡納。","원본 시트 표기":"原始表格標記","선택":"選擇","주옵션 (Tier 2)":"主屬性 (Tier 2)","부옵션 (Tier 2)":"副屬性 (Tier 2)","장비 개요":"裝備概要","구원자 장비 주옵션 및 부옵션 정보입니다.":"救援者裝備的主屬性與副屬性資訊。","부위":"部位","주 능력치":"主能力值","기본 주능력치 (+0)":"基礎主能力值 (+0)","기본 주능력치 (+15)":"基礎主能力值 (+15)","옵션":"選項","세트별 권장 능력치":"各套裝推薦能力值","장비 티어 판정 기준":"裝備Tier判定基準","작전":"作戰","회랑":"迴廊","플래시 포인트":"閃點","인자작":"因子培養","없음":"無","기본기":"基本技","특수기":"特殊技","궁극기":"終極技","한정":"限定","개화 필수":"開花必須","1돌파 이상 필수":"1突破以上必須","1돌파 이상 권장":"建議1突破以上","PVE 추천 세팅":"PVE推薦配置","장비 가이드 바로가기":"前往裝備指南","구원자 정보는 ":"救援者資訊以 "," 기준입니다.":" 為基準。","스타세이비어 DB":"Star Savior DB","아카라이브 스타세이비어 채널 원샷 세팅표":"Arca.live Star Savior 一站式配置表","PVE장비 및 아르카나는 ":"PVE裝備與阿爾卡納以 ","를 기준으로 합니다.":" 為基準。","작전 · 회랑 · 코스모 게이트":"作戰 · 迴廊 · 宇宙之門","적중(2)는 투지(2)로 대체가능.":"命中(2)可由鬥志(2)替代。","* 적중(2)는 투지(2)로 대체가능.":"* 命中(2)可由鬥志(2)替代。","※ 딜러 기준으로 공격력% 수치가 높을 시 0.5티어 상승.":"※ 以輸出角色為基準，攻擊力%較高時提升0.5 Tier。","* 속도 수치가 높을 시 0.5티어 상승.":"* 速度數值較高時提升0.5 Tier。","딜러 서브딜러 딜탱은 공격력, 공격력% 또는 생명력, 생명력%, 치명타 확률, 치명타 피해, 속도를 유효 옵션으로 사용합니다.":"輸出、副輸出與半坦輸出角色可將攻擊力/攻擊力%、生命值/生命值%、暴擊率、暴擊傷害、速度視為有效屬性。","일부 구원자는 효과 적중, 방어력, 방어력% 도 유효 옵션으로 활용합니다.":"部分救援者也可有效利用效果命中、防禦力與防禦力%。","장비 부족 시 치명타 확률 + 추가 유효 옵션 1줄 조합도 사용할 수 있습니다.":"裝備不足時，也可使用暴擊率＋1條額外有效屬性的組合。","장비 세팅이 충분히 갖춰진 이후에는 유효 옵션 3 이상 장비 사용을 권장합니다.":"裝備成形後，建議使用至少3條有效屬性的裝備。","이 페이지는 게임 '스타 세이비어'의 비영리 팬 프로젝트입니다.":"本頁面是遊戲《Star Savior》的非營利粉絲專案。","프로젝트에 사용된 모든 자산, 데이터, 이미지 및 텍스트의 소유권은 STUDIOBSIDE 에 있습니다.":"本專案使用的所有資產、資料、圖片與文字之權利皆屬於STUDIOBSIDE。","검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.":"請啟用JavaScript以使用搜尋與詳細頁面。","상세 세팅 보기":"查看詳細配置"},"zh-CN":{"본문으로 바로가기":"跳至正文","구원자 목록으로 이동":"前往救援者列表","주요 메뉴":"主選單","구원자":"救援者","장비":"装备","코스모 게이트":"宇宙之门","밝은 테마로 변경":"切換至浅色主题","어두운 테마로 변경":"切換至深色主题","등록된 구원자":"已登录救援者","구원자 검색 및 필터":"救援者搜索與筛选","구원자 검색":"搜索救援者","이름, 소속, 역할 검색":"搜索名称、所属或定位","속성":"属性","전체":"全部","클래스":"职业","명의 구원자":" 名救援者","필터 초기화":"重設筛选","조건에 맞는 구원자가 없습니다.":"沒有符合条件的救援者。","검색어나 필터를 변경해 주세요.":"请调整搜索詞或筛选条件。","구원자 목록":"救援者列表","스킬설명 및 상세정보":"技能说明與详细信息","육성 우선순위":"培养優先度","PVE 기준":"PVE基準","주 사용 콘텐츠":"主要使用内容","장비 세팅":"装备配置","아르카나 세팅":"阿尔卡纳配置","PVE 추천 아르카나":"PVE推荐阿尔卡纳","대체 아르카나":"替代阿尔卡纳","주요 PVE 콘텐츠":"主要PVE内容","보유 상황에 따라 교체":"根据持有情况替换","목걸이":"项链","반지":"戒指","추천 세트":"推荐套装","잠재력":"潜能","미정":"未定","미등록":"未登录","대체 아르카나가 등록되지 않았습니다.":"尚未登录替代阿尔卡纳。","원본 시트 표기":"原始表格标记","선택":"选择","주옵션 (Tier 2)":"主属性 (Tier 2)","부옵션 (Tier 2)":"副属性 (Tier 2)","장비 개요":"装备概要","구원자 장비 주옵션 및 부옵션 정보입니다.":"救援者装备的主属性與副属性信息。","부위":"部位","주 능력치":"主能力值","기본 주능력치 (+0)":"基础主能力值 (+0)","기본 주능력치 (+15)":"基础主能力值 (+15)","옵션":"选项","세트별 권장 능력치":"各套装推荐能力值","장비 티어 판정 기준":"装备Tier判定标准","작전":"作战","회랑":"回廊","플래시 포인트":"闪点","인자작":"因子培养","없음":"无","기본기":"基本技","특수기":"特殊技","궁극기":"终极技","한정":"限定","개화 필수":"开花必须","1돌파 이상 필수":"1突破以上必须","1돌파 이상 권장":"建议1突破以上","PVE 추천 세팅":"PVE推荐配置","장비 가이드 바로가기":"前往装备指南","구원자 정보는 ":"救援者信息以 "," 기준입니다.":" 为基准。","스타세이비어 DB":"Star Savior DB","아카라이브 스타세이비어 채널 원샷 세팅표":"Arca.live Star Savior 一站式配置表","PVE장비 및 아르카나는 ":"PVE装备与阿尔卡纳以 ","를 기준으로 합니다.":" 为基准。","작전 · 회랑 · 코스모 게이트":"作战 · 回廊 · 宇宙之门","적중(2)는 투지(2)로 대체가능.":"命中(2)可由斗志(2)替代。","* 적중(2)는 투지(2)로 대체가능.":"* 命中(2)可由斗志(2)替代。","※ 딜러 기준으로 공격력% 수치가 높을 시 0.5티어 상승.":"※ 以输出角色为基准，攻击力%较高时提升0.5 Tier。","* 속도 수치가 높을 시 0.5티어 상승.":"* 速度数值较高时提升0.5 Tier。","딜러 서브딜러 딜탱은 공격력, 공격력% 또는 생명력, 생명력%, 치명타 확률, 치명타 피해, 속도를 유효 옵션으로 사용합니다.":"输出、副输出与半坦输出角色可将攻击力/攻击力%、生命值/生命值%、暴击率、暴击伤害、速度视为有效属性。","일부 구원자는 효과 적중, 방어력, 방어력% 도 유효 옵션으로 활용합니다.":"部分救援者也可有效利用效果命中、防御力与防御力%。","장비 부족 시 치명타 확률 + 추가 유효 옵션 1줄 조합도 사용할 수 있습니다.":"装备不足时，也可使用暴击率＋1条额外有效属性的组合。","장비 세팅이 충분히 갖춰진 이후에는 유효 옵션 3 이상 장비 사용을 권장합니다.":"装备成形后，建议使用至少3条有效属性的装备。","이 페이지는 게임 '스타 세이비어'의 비영리 팬 프로젝트입니다.":"本页面是游戏《Star Savior》的非营利粉丝项目。","프로젝트에 사용된 모든 자산, 데이터, 이미지 및 텍스트의 소유권은 STUDIOBSIDE 에 있습니다.":"本项目使用的所有资产、数据、图片与文字之权利均属于STUDIOBSIDE。","검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.":"请启用JavaScript以使用搜索与详细页面。","상세 세팅 보기":"查看详细配置"}},"terms":{"en":{"태양":"Sun","달":"Moon","별":"Star","질서":"Order","혼돈":"Chaos","스트라이커":"Striker","어쌔신":"Assassin","레인저":"Ranger","캐스터":"Caster","디펜더":"Defender","서포터":"Supporter","딜러":"DPS","서브딜러":"Sub-DPS","딜탱":"Bruiser","참격":"Slash","타격":"Impact","마법":"Element","정신":"Spirit","속도":"SPD","공격력%":"ATK%","공격력":"ATK","생명력%":"HP%","생명력":"HP","방어력%":"DEF%","방어력":"DEF","치명타 확률":"CRIT Rate","치명타 피해":"CRIT DMG","효과 적중":"Effect Hit","효과 저항":"Effect RES","치확":"CRIT Rate","치피":"CRIT DMG","효적":"Effect Hit","통찰(4)":"Insight(4)","파괴(4)":"Destruction(4)","적중(2)":"Accuracy(2)","투지(2)":"Fighting Spirit(2)","정밀(4)":"Precision(4)","대체":" substitute","공용 아르카나":"Universal Arcana","원본 자료 미등록":"TBD","해당 엑셀에 없음":"Not listed in source sheet","1티어":"Tier 1","2티어":"Tier 2","3티어":"Tier 3","4티어":"Tier 4","0티어":"Tier 0","0.5티어":"Tier 0.5"},"ja":{"태양":"太陽","달":"月","별":"星","질서":"秩序","혼돈":"混沌","스트라이커":"ストライカー","어쌔신":"アサシン","레인저":"レンジャー","캐스터":"キャスター","디펜더":"ディフェンダー","서포터":"サポーター","딜러":"アタッカー","서브딜러":"サブアタッカー","딜탱":"ブルーザー","참격":"斬撃","타격":"打撃","마법":"元素","정신":"精神","속도":"速度","공격력%":"攻撃力%","공격력":"攻撃力","생명력%":"生命力%","생명력":"生命力","방어력%":"防御力%","방어력":"防御力","치명타 확률":"クリティカル率","치명타 피해":"クリティカルダメージ","효과 적중":"効果命中","효과 저항":"効果抵抗","치확":"クリ率","치피":"クリダメ","효적":"効果命中","통찰(4)":"洞察(4)","파괴(4)":"破壊(4)","적중(2)":"命中(2)","투지(2)":"闘志(2)","정밀(4)":"精密(4)","대체":" の代替","공용 아르카나":"共通アルカナ","원본 자료 미등록":"未定","해당 엑셀에 없음":"元シートに記載なし","1티어":"Tier 1","2티어":"Tier 2","3티어":"Tier 3","4티어":"Tier 4","0티어":"Tier 0","0.5티어":"Tier 0.5"},"zh-TW":{"태양":"太陽","달":"月","별":"星","질서":"秩序","혼돈":"混沌","스트라이커":"強襲","어쌔신":"刺客","레인저":"遊俠","캐스터":"術士","디펜더":"防衛者","서포터":"支援者","딜러":"輸出","서브딜러":"副輸出","딜탱":"半坦輸出","참격":"斬擊","타격":"打擊","마법":"元素","정신":"精神","속도":"速度","공격력%":"攻擊力%","공격력":"攻擊力","생명력%":"生命值%","생명력":"生命值","방어력%":"防禦力%","방어력":"防禦力","치명타 확률":"暴擊率","치명타 피해":"暴擊傷害","효과 적중":"效果命中","효과 저항":"效果抵抗","치확":"暴擊率","치피":"暴傷","효적":"效果命中","통찰(4)":"洞察(4)","파괴(4)":"破壞(4)","적중(2)":"命中(2)","투지(2)":"鬥志(2)","정밀(4)":"精密(4)","대체":" 的替代","공용 아르카나":"通用阿爾卡納","원본 자료 미등록":"未定","해당 엑셀에 없음":"原始表格未收錄","1티어":"Tier 1","2티어":"Tier 2","3티어":"Tier 3","4티어":"Tier 4","0티어":"Tier 0","0.5티어":"Tier 0.5"},"zh-CN":{"태양":"太阳","달":"月","별":"星","질서":"秩序","혼돈":"混沌","스트라이커":"强袭","어쌔신":"刺客","레인저":"游侠","캐스터":"术士","디펜더":"防卫者","서포터":"支援者","딜러":"输出","서브딜러":"副输出","딜탱":"半坦输出","참격":"斩击","타격":"打击","마법":"元素","정신":"精神","속도":"速度","공격력%":"攻击力%","공격력":"攻击力","생명력%":"生命值%","생명력":"生命值","방어력%":"防御力%","방어력":"防御力","치명타 확률":"暴击率","치명타 피해":"暴击伤害","효과 적중":"效果命中","효과 저항":"效果抵抗","치확":"暴击率","치피":"暴伤","효적":"效果命中","통찰(4)":"洞察(4)","파괴(4)":"破坏(4)","적중(2)":"命中(2)","투지(2)":"斗志(2)","정밀(4)":"精密(4)","대체":" 的替代","공용 아르카나":"通用阿尔卡纳","원본 자료 미등록":"未定","해당 엑셀에 없음":"原始表格未收录","1티어":"Tier 1","2티어":"Tier 2","3티어":"Tier 3","4티어":"Tier 4","0티어":"Tier 0","0.5티어":"Tier 0.5"}}};
+const ORIGINAL_TEXT_NODES = new WeakMap();
+const ORIGINAL_ATTRIBUTES = new WeakMap();
+
+function readSavedLanguage() {
+  try {
+    const value = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    return SUPPORTED_LANGUAGES.includes(value) ? value : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveLanguage(language) {
+  try {
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+  } catch {
+    // 저장이 제한된 환경에서는 현재 세션에만 적용합니다.
+  }
+}
+
+let currentLanguage = readSavedLanguage() || "ko";
+
+function getLocalizedSaviorName(name, language = currentLanguage) {
+  if (language === "ko") return name;
+  return I18N_DATA.saviorNames[language]?.[name]
+    || I18N_DATA.saviorNames.en?.[name]
+    || name;
+}
+
+function getLocalizedSubtitle(value, language = currentLanguage) {
+  if (language === "ko") return value;
+  return I18N_DATA.subtitles[language]?.[value]
+    || I18N_DATA.subtitles.en?.[value]
+    || value;
+}
+
+function getLocalizedArcanaName(name, language = currentLanguage) {
+  if (language === "ko") return name;
+  return I18N_DATA.arcana[language]?.[name]
+    || I18N_DATA.arcana.en?.[name]
+    || name;
+}
+
+function translateString(value, language = currentLanguage) {
+  const source = String(value ?? "");
+  if (language === "ko" || !source) return source;
+
+  const leading = source.match(/^\s*/)?.[0] || "";
+  const trailing = source.match(/\s*$/)?.[0] || "";
+  const core = source.slice(leading.length, source.length - trailing.length || source.length);
+  if (!core) return source;
+
+  const uiMap = I18N_DATA.ui[language] || {};
+  if (Object.prototype.hasOwnProperty.call(uiMap, core)) {
+    return leading + uiMap[core] + trailing;
+  }
+
+  const exactSavior = I18N_DATA.saviorNames[language]?.[core];
+  if (exactSavior) return leading + exactSavior + trailing;
+
+  const exactSubtitle = I18N_DATA.subtitles[language]?.[core];
+  if (exactSubtitle) return leading + exactSubtitle + trailing;
+
+  const exactArcana = I18N_DATA.arcana[language]?.[core];
+  if (exactArcana) return leading + exactArcana + trailing;
+
+  const replaceFromMaps = [
+    I18N_DATA.arcana[language],
+    I18N_DATA.subtitles[language],
+    I18N_DATA.saviorNames[language],
+    I18N_DATA.ui[language],
+    I18N_DATA.terms[language]
+  ].filter(Boolean);
+
+  let translated = core;
+  replaceFromMaps.forEach((map) => {
+    Object.entries(map)
+      .sort((a, b) => b[0].length - a[0].length)
+      .forEach(([from, to]) => {
+        if (from && translated.includes(from)) translated = translated.split(from).join(to);
+      });
+  });
+
+  return leading + translated + trailing;
+}
+
+function translateTextNode(node) {
+  if (!ORIGINAL_TEXT_NODES.has(node)) {
+    ORIGINAL_TEXT_NODES.set(node, node.nodeValue);
+  }
+  node.nodeValue = translateString(ORIGINAL_TEXT_NODES.get(node));
+}
+
+function translateElementAttributes(element) {
+  if (element.matches?.("#language-select, #language-select option")) return;
+
+  const watched = ["aria-label", "placeholder", "title"];
+  let saved = ORIGINAL_ATTRIBUTES.get(element);
+  if (!saved) {
+    saved = {};
+    watched.forEach((name) => {
+      if (element.hasAttribute?.(name)) saved[name] = element.getAttribute(name);
+    });
+    ORIGINAL_ATTRIBUTES.set(element, saved);
+  }
+
+  Object.entries(saved).forEach(([name, original]) => {
+    element.setAttribute(name, translateString(original));
+  });
+}
+
+function applyLanguageToDOM(root = document.body) {
+  if (!root) return;
+
+  if (root.nodeType === Node.ELEMENT_NODE) translateElementAttributes(root);
+
+  const walker = document.createTreeWalker(
+    root,
+    NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT,
+    {
+      acceptNode(node) {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+          if (node.matches?.("script, style, #language-select, #language-select *")) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          return NodeFilter.FILTER_ACCEPT;
+        }
+        if (node.nodeType === Node.TEXT_NODE) {
+          const parent = node.parentElement;
+          if (!parent || parent.closest("script, style, #language-select")) return NodeFilter.FILTER_REJECT;
+          return /[가-힣]/.test(node.nodeValue || "") || ORIGINAL_TEXT_NODES.has(node)
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_SKIP;
+        }
+        return NodeFilter.FILTER_SKIP;
+      }
+    }
+  );
+
+  let node = walker.currentNode;
+  while (node) {
+    if (node.nodeType === Node.ELEMENT_NODE) translateElementAttributes(node);
+    if (node.nodeType === Node.TEXT_NODE) translateTextNode(node);
+    node = walker.nextNode();
+  }
+}
+
+function refreshLanguageChrome() {
+  document.documentElement.lang = LANGUAGE_HTML_CODES[currentLanguage] || "ko-KR";
+  const languageSelect = document.querySelector("#language-select");
+  if (languageSelect) {
+    languageSelect.value = currentLanguage;
+    languageSelect.setAttribute("aria-label", currentLanguage === "ko" ? "언어 변경" :
+      currentLanguage === "ja" ? "言語を変更" :
+      currentLanguage === "zh-TW" ? "切換語言" :
+      currentLanguage === "zh-CN" ? "切换语言" : "Change language");
+  }
+
+  const titles = {
+    ko: "스타세이비어 구원자 가이드 DB",
+    en: "Star Savior Guide DB",
+    ja: "Star Savior 救援者ガイドDB",
+    "zh-TW": "Star Savior 救援者指南 DB",
+    "zh-CN": "Star Savior 救援者指南 DB"
+  };
+  document.title = titles[currentLanguage] || titles.ko;
+
+  const descriptions = {
+    ko: "스타세이비어 구원자별 PVE 장비와 아르카나 조합을 확인하는 비공식 가이드 데이터베이스",
+    en: "Unofficial Star Savior guide database for PVE equipment and Arcana setups by Savior.",
+    ja: "Star Saviorの救援者別PVE装備・アルカナ構成を確認できる非公式ガイドDB。",
+    "zh-TW": "依救援者整理 Star Savior PVE 裝備與阿爾卡納配置的非官方指南資料庫。",
+    "zh-CN": "按救援者整理 Star Savior PVE 装备与阿尔卡纳配置的非官方指南数据库。"
+  };
+  document.querySelector('meta[name="description"]')?.setAttribute("content", descriptions[currentLanguage] || descriptions.ko);
+}
+
+function setLanguage(language, options = {}) {
+  const selected = SUPPORTED_LANGUAGES.includes(language) ? language : "ko";
+  currentLanguage = selected;
+  if (!options.skipSave) saveLanguage(selected);
+  refreshLanguageChrome();
+  renderList();
+  applyLanguageToDOM(document.body);
+  // 테마 버튼의 현재 상태에 맞는 접근성 라벨을 선택 언어로 갱신합니다.
+  if (typeof applyTheme === "function") {
+    applyTheme(document.documentElement.dataset.theme || "dark", { skipSave: true });
+  }
+}
+
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -4210,6 +4410,7 @@ const emptyState = document.querySelector("#empty-state");
 const resetFilter = document.querySelector("#reset-filter");
 const navItems = [...document.querySelectorAll("[data-section]")];
 const themeToggle = document.querySelector("#theme-toggle");
+const languageSelect = document.querySelector("#language-select");
 
 function cloneDefaultBuild() {
   return JSON.parse(JSON.stringify(DEFAULT_BUILD));
@@ -4263,13 +4464,20 @@ function renderList() {
   const filtered = SAVIORS.filter((savior) => {
     const haystack = [
       savior.name,
+      getLocalizedSaviorName(savior.name),
       savior.subtitle,
+      getLocalizedSubtitle(savior.subtitle),
       savior.affiliation,
+      getLocalizedSubtitle(savior.affiliation),
       savior.className,
+      translateString(savior.className),
       savior.role,
+      translateString(savior.role),
       savior.attackType,
-      ELEMENT_LABELS[savior.element]
-    ].join(" ").toLocaleLowerCase("ko-KR");
+      translateString(savior.attackType),
+      ELEMENT_LABELS[savior.element],
+      translateString(ELEMENT_LABELS[savior.element])
+    ].join(" ").toLocaleLowerCase(LANGUAGE_HTML_CODES[currentLanguage] || "ko-KR");
 
     const queryMatch = !q || haystack.includes(q);
     const elementMatch = state.element === "all" || savior.element === state.element;
@@ -4282,6 +4490,7 @@ function renderList() {
   visibleCount.textContent = String(filtered.length);
   totalCount.textContent = String(SAVIORS.length);
   emptyState.hidden = filtered.length > 0;
+  applyLanguageToDOM(listView);
 }
 
 function createSaviorCard(savior) {
@@ -4343,6 +4552,7 @@ function openSavior(id, options = {}) {
   }
 
   detailContent.innerHTML = createDetailMarkup(savior);
+  applyLanguageToDOM(detailView);
   showOnly("detail");
   setActiveNav("savior");
 
@@ -4922,6 +5132,7 @@ function openSimple(section, options = {}) {
     `;
   }
 
+  applyLanguageToDOM(simpleView);
   showOnly("simple");
   setActiveNav(section);
 
@@ -5192,19 +5403,25 @@ function saveTheme(theme) {
   }
 }
 
-function applyTheme(theme) {
+function applyTheme(theme, options = {}) {
   const selected = theme === "light" ? "light" : "dark";
   document.documentElement.dataset.theme = selected;
-  saveTheme(selected);
+  if (!options.skipSave) saveTheme(selected);
 
   const light = selected === "light";
   themeToggle.querySelector("span").textContent = light ? "☾" : "☀";
-  themeToggle.setAttribute("aria-label", light ? "어두운 테마로 변경" : "밝은 테마로 변경");
+  themeToggle.setAttribute("aria-label", translateString(light ? "어두운 테마로 변경" : "밝은 테마로 변경"));
 }
 
 themeToggle.addEventListener("click", () => {
   applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
 });
+
+if (languageSelect) {
+  languageSelect.addEventListener("change", (event) => {
+    setLanguage(event.currentTarget.value);
+  });
+}
 
 window.addEventListener("popstate", syncFromHash);
 window.addEventListener("hashchange", syncFromHash);
@@ -5212,5 +5429,8 @@ window.addEventListener("hashchange", syncFromHash);
 applyRequestedLayoutFixes();
 installArcanaCardStyles();
 renderList();
-applyTheme(readSavedTheme() || "dark");
+refreshLanguageChrome();
+applyTheme(readSavedTheme() || "dark", { skipSave: true });
 syncFromHash();
+applyLanguageToDOM(document.body);
+if (languageSelect) languageSelect.value = currentLanguage;
