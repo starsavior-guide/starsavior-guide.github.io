@@ -357,7 +357,7 @@ const GROWTH_PRIORITY = {
   "hilde": { tier: "3티어", level: "tier-3" },
   "yoo-mina": { tier: "3티어", level: "tier-3" },
   "rosaria": { tier: "1티어", level: "tier-1" },
-  "white-pearl-luna": { tier: "1.5티어 (임시)", level: "tier-unrated" }
+  "white-pearl-luna": { tier: "1티어", level: "tier-1" }
 };
 
 
@@ -416,7 +416,7 @@ const MAIN_CONTENTS = {
   "elisa": ["PVP"],
   "waltz-asherah": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "wedding-carmen": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
-  "white-pearl-luna": ["작전", "회랑", "PVP"]
+  "white-pearl-luna": ["작전", "코스모 게이트", "회랑", "PVP"]
 };
 
 const SAVIORS = [
@@ -4054,8 +4054,10 @@ const SAVIORS = [
           "ring": "공격력%",
           "sets": [
             "통찰(4) + 적중(2) (후열사용)",
-            "공격(4) + 적중(2) (후열사용)"
+            "공격(4) + 적중(2) (후열사용)",
+            "정밀(4) + 적중(2)"
           ],
+          "setNote": "* 적중(2)는 투지(2)로 대체가능.",
           "potential": "AX",
           "note": ""
         },
@@ -4076,19 +4078,19 @@ const SAVIORS = [
             "note": ""
           },
           {
-            "name": "꽃들에게 죽음을",
-            "note": ""
-          },
-          {
             "name": "빛을 쫓아라!",
             "note": ""
           },
           {
-            "name": "조용한 휴식 시간",
+            "name": "꽃들에게 죽음을",
             "note": ""
           },
           {
-            "name": "하얀 달의 온기는 햇빛처럼",
+            "name": "조용한 휴식 시간 or 본 투 비 와일드 or 만족스러운 식사",
+            "note": ""
+          },
+          {
+            "name": "하얀 달의 온기는 햇빛처럼 or 불굴의 역작",
             "note": ""
           }
         ],
@@ -4109,10 +4111,13 @@ const SAVIORS = [
             "note": "꽃들에게 죽음을 대체"
           },
           {
-            "name": "완벽한 바니걸 or 불굴의 역작",
-            "note": "조용한 휴식 시간 대체"
+            "name": "어느 한 기사의 맹세 or 누각 위, 유리달 맞이",
+            "note": "하얀 달의 온기는 햇빛처럼/불굴의 역작 대체"
           },
-          null,
+          {
+            "name": "언더커버 캅",
+            "note": "조용한 휴식 시간/본 투 비 와일드/만족스러운 식사 대체"
+          },
           null
         ]
       }
@@ -4389,8 +4394,8 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
     return [
       { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" },
       { name: "메이드 바이 페트라♡ or 별을 보며 꿈을", note: "꽃들에게 죽음을 대체" },
-      { name: "완벽한 바니걸 or 불굴의 역작", note: "조용한 휴식 시간 대체" },
-      null,
+      { name: "어느 한 기사의 맹세 or 누각 위, 유리달 맞이", note: "하얀 달의 온기는 햇빛처럼/불굴의 역작 대체" },
+      { name: "언더커버 캅", note: "조용한 휴식 시간/본 투 비 와일드/만족스러운 식사 대체" },
       null
     ];
   }
@@ -4511,9 +4516,8 @@ function createDetailMarkup(savior) {
     ? `<span class="detail-badge">${escapeHtml(savior.attackType)}</span>`
     : "";
 
-  const isWhitePearlLuna = savior.id === "white-pearl-luna";
-  const pveArcanaTitle = isWhitePearlLuna ? "PVE 추천 아르카나 (임시)" : "PVE 추천 아르카나";
-  const alternativeArcanaTitle = isWhitePearlLuna ? "대체 아르카나 (임시)" : "대체 아르카나";
+  const pveArcanaTitle = "PVE 추천 아르카나";
+  const alternativeArcanaTitle = "대체 아르카나";
 
   return `
     <header class="detail-hero" data-element="${escapeHtml(savior.element)}">
@@ -4558,7 +4562,7 @@ function createDetailMarkup(savior) {
         </div>
 
         <div class="main-content-area">
-          <h3>${isWhitePearlLuna ? "주 사용 콘텐츠(임시)" : "주 사용 콘텐츠"}</h3>
+          <h3>주 사용 콘텐츠</h3>
           <div class="main-content-chips">
             ${mainContents.map((content) => `
               <span class="main-content-chip ${content === "없음" ? "is-empty" : ""}">
@@ -4579,7 +4583,7 @@ function createDetailMarkup(savior) {
       </div>
       <div class="section-body">
         <div class="build-grid">
-          ${createEquipmentCard("PVE", build.equipment.pve, "pve", "작전 · 회랑 · 코스모 게이트", isWhitePearlLuna)}
+          ${createEquipmentCard("PVE", build.equipment.pve, "pve", "작전 · 회랑 · 코스모 게이트")}
         </div>
       </div>
     </section>
@@ -4599,7 +4603,7 @@ function createDetailMarkup(savior) {
   `;
 }
 
-function createEquipmentCard(mode, data, className, subtitle, temporarySetLabel = false) {
+function createEquipmentCard(mode, data, className, subtitle) {
   const sets = Array.isArray(data.sets) ? data.sets : [data.sets];
 
   return `
@@ -4621,7 +4625,7 @@ function createEquipmentCard(mode, data, className, subtitle, temporarySetLabel 
           <dd>${escapeHtml(data.ring)}</dd>
         </div>
         <div class="build-row">
-          <dt>${temporarySetLabel ? "추천 세트(임시)" : "추천 세트"}</dt>
+          <dt>추천 세트</dt>
           <dd>
             ${sets.map((set) => `<span>${escapeHtml(set)}</span>`).join("")}
             ${data.setNote
