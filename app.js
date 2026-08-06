@@ -15,6 +15,50 @@ Object.assign(I18N_DATA.ui.ja, { "아르카나 상세정보": "アルカナ詳�
 Object.assign(I18N_DATA.ui["zh-TW"], { "아르카나 상세정보": "阿爾克那詳細資訊" });
 Object.assign(I18N_DATA.ui["zh-CN"], { "아르카나 상세정보": "阿尔克那详细信息" });
 
+// 스마일(보이저 구원단) 아르카나 대체 설명 다국어 보정
+Object.assign(I18N_DATA.ui.en, {
+  "종말은 소녀의 얼굴을 하고 있다. 대체": "Alternative to The End Wears the Face of a Girl",
+  "허수의 개척자 대체": "Alternative to The Imaginary Pioneer"
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "종말은 소녀의 얼굴을 하고 있다. 대체": "『終末は少女の顔をしている』の代替",
+  "허수의 개척자 대체": "『虚数の開拓者』の代替"
+});
+Object.assign(I18N_DATA.ui["zh-TW"], {
+  "종말은 소녀의 얼굴을 하고 있다. 대체": "替代「末日有著少女的面容」",
+  "허수의 개척자 대체": "替代「虛數的開拓者」"
+});
+Object.assign(I18N_DATA.ui["zh-CN"], {
+  "종말은 소녀의 얼굴을 하고 있다. 대체": "替代「末日有着少女的面容」",
+  "허수의 개척자 대체": "替代「虚数的开拓者」"
+});
+
+// 선샤인 캣 스마일 신규 세팅 문구 다국어 보정
+Object.assign(I18N_DATA.ui.en, {
+  "* 효과적중 150% 이상 권장": "* Effect Hit 150%+ recommended.",
+  "단점 보완 맞춤 훈련 대체": "Alternative to Customized Training to Cover Weaknesses",
+  "꽃들에게 죽음을 대체": "Alternative to Death for the Flowers",
+  "허수의 개척자/불굴의 역작 대체": "Alternative to The Imaginary Pioneer / The Indomitable Masterpiece"
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "* 효과적중 150% 이상 권장": "* 効果命中150%以上推奨。",
+  "단점 보완 맞춤 훈련 대체": "『弱点補完カスタムトレーニング』の代替",
+  "꽃들에게 죽음을 대체": "『花々に死を』の代替",
+  "허수의 개척자/불굴의 역작 대체": "『虚数の開拓者／不屈の傑作』の代替"
+});
+Object.assign(I18N_DATA.ui["zh-TW"], {
+  "* 효과적중 150% 이상 권장": "* 建議效果命中150%以上。",
+  "단점 보완 맞춤 훈련 대체": "替代「補強缺點客製化訓練」",
+  "꽃들에게 죽음을 대체": "替代「賜予花朵死亡」",
+  "허수의 개척자/불굴의 역작 대체": "替代「虛數的開拓者／不屈的傑作」"
+});
+Object.assign(I18N_DATA.ui["zh-CN"], {
+  "* 효과적중 150% 이상 권장": "* 建议效果命中150%以上。",
+  "단점 보완 맞춤 훈련 대체": "替代「补强缺点客制化训练」",
+  "꽃들에게 죽음을 대체": "替代「赐予花朵死亡」",
+  "허수의 개척자/불굴의 역작 대체": "替代「虚数的开拓者／不屈的杰作」"
+});
+
 // 일본어 정식 표기 및 문장 번역 보정
 Object.assign(I18N_DATA.ui.ja, {
   "구원자 정보는": "救援者情報は",
@@ -919,7 +963,8 @@ const GROWTH_PRIORITY = {
   "hilde": { tier: "3티어", level: "tier-3" },
   "yoo-mina": { tier: "3티어", level: "tier-3" },
   "rosaria": { tier: "1티어", level: "tier-1" },
-  "white-pearl-luna": { tier: "1티어", level: "tier-1" }
+  "white-pearl-luna": { tier: "1티어", level: "tier-1" },
+  "sunshine-cat-smile": { tier: "0.5티어", level: "tier-05" }
 };
 
 
@@ -978,7 +1023,8 @@ const MAIN_CONTENTS = {
   "elisa": ["PVP"],
   "waltz-asherah": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "wedding-carmen": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
-  "white-pearl-luna": ["작전", "코스모 게이트", "회랑", "PVP"]
+  "white-pearl-luna": ["작전", "코스모 게이트", "회랑", "PVP"],
+  "sunshine-cat-smile": ["작전", "회랑", "코스모 게이트", "플래시 포인트"]
 };
 
 const SAVIORS = [
@@ -1087,7 +1133,7 @@ const SAVIORS = [
             "note": ""
           },
           {
-            "name": "불굴의 역작",
+            "name": "허수의 개척자",
             "note": ""
           },
           {
@@ -1113,10 +1159,13 @@ const SAVIORS = [
         "alternatives": [
           null,
           null,
-          null,
           {
-            "name": "허수의 개척자 or 완벽한 바니걸 or 하얀 달의 온기는 햇빛처럼",
+            "name": "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸",
             "note": "종말은 소녀의 얼굴을 하고 있다. 대체"
+          },
+          {
+            "name": "불굴의 역작",
+            "note": "허수의 개척자 대체"
           },
           null
         ]
@@ -4696,8 +4745,83 @@ const SAVIORS = [
     "role": "어쌔신",
     "attackType": "",
     "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_SUMMER_SMILE.webp",
-    "summary": "미정",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1046"
+    "summary": "PVE 장비·아르카나 세팅을 반영했습니다.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1046",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 적중(2)",
+            "정밀(4) + 적중(2)",
+            "파괴(4) + 적중(2)"
+          ],
+          "setNotes": [
+            "* 적중(2)는 투지(2)로 대체가능.",
+            "* 효과적중 150% 이상 권장"
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "미정",
+          "ring": "미정",
+          "sets": [
+            "미정"
+          ],
+          "potential": "미정",
+          "note": "미정"
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "단점 보완 맞춤 훈련",
+            "note": ""
+          },
+          {
+            "name": "휴가 준비는 쇼핑에서부터!",
+            "note": ""
+          },
+          {
+            "name": "키라만큼 귀여워!",
+            "note": ""
+          },
+          {
+            "name": "허수의 개척자 or 불굴의 역작",
+            "note": ""
+          },
+          {
+            "name": "꽃들에게 죽음을",
+            "note": ""
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          {
+            "name": "노 페인, 노 게인",
+            "note": "단점 보완 맞춤 훈련 대체"
+          },
+          null,
+          null,
+          {
+            "name": "어느 한 기사의 맹세 or 하얀 달의 온기는 햇빛처럼 or 완벽한 바니걸",
+            "note": "허수의 개척자/불굴의 역작 대체"
+          },
+          {
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
+            "note": "꽃들에게 죽음을 대체"
+          }
+        ]
+      }
+    }
   }
 ];
 
@@ -4987,12 +5111,13 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
       names.has("꽃들에게 죽음을")
         ? { name: "메이드 바이 페트라♡ or 별을 보며 꿈을", note: "꽃들에게 죽음을 대체" }
         : null,
-      names.has("하얀 달의 온기는 햇빛처럼")
-        ? { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼 대체" }
-        : null,
       {
-        name: "허수의 개척자 or 완벽한 바니걸",
+        name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸",
         note: "종말은 소녀의 얼굴을 하고 있다. 대체"
+      },
+      {
+        name: "불굴의 역작",
+        note: "허수의 개척자 대체"
       },
       null
     ];
@@ -5207,9 +5332,11 @@ function createEquipmentCard(mode, data, className, subtitle) {
           <dt>추천 세트</dt>
           <dd>
             ${sets.map((set) => `<span>${escapeHtml(set)}</span>`).join("")}
-            ${data.setNote
-              ? `<small class="build-set-note">${escapeHtml(data.setNote)}</small>`
-              : ""}
+            ${Array.isArray(data.setNotes)
+              ? data.setNotes.map((note) => `<small class="build-set-note">${escapeHtml(note)}</small>`).join("")
+              : data.setNote
+                ? `<small class="build-set-note">${escapeHtml(data.setNote)}</small>`
+                : ""}
           </dd>
         </div>
         <div class="build-row">
