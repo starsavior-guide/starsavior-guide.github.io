@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v51-cristelle";
+const SITE_BUILD_VERSION = "v52-cristelle-arcana-link";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -774,7 +774,8 @@ const ARCANA_DETAIL_IDS = {
   "언더커버 캅": 7150201,
   "빛을 쫓아라!": 7100301,
   "빛을 쫓아라": 7100301,
-  "휴가 준비는 쇼핑에서부터!": 7104601
+  "휴가 준비는 쇼핑에서부터!": 7104601,
+  "영원 속박의 굴레": 7101701
 };
 
 
