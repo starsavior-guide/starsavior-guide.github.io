@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v52-cristelle-arcana-link";
+const SITE_BUILD_VERSION = "v53-white-moon-eternal-alt";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -447,28 +447,32 @@ Object.assign(I18N_DATA.ui.en, {
   "투지(2)는 적중(2)로 대체가능.": "Valor Set (2) can be replaced with Hit Set (2).",
   "하얀 달의 온기는 햇빛처럼/완벽한 바니걸 대체": "Alternative to A White Moon Shines With the Sun's Warmth / The Perfect Bunny Girl",
   "단점 맞춤 훈련 대체": "Alternative to Customized Training to Cover Weaknesses",
-  "영원 속박의 굴레 대체": "Alternative to Bound for Eternity"
+  "영원 속박의 굴레 대체": "Alternative to Bound for Eternity",
+  "하얀 달의 온기는 햇빛처럼 대체": "Alternative to A White Moon Shines With the Sun's Warmth"
 });
 Object.assign(I18N_DATA.ui.ja, {
   "PVE 장비·아르카나 세팅을 반영했습니다.": "PVE装備・アルカナ設定を反映しました。",
   "투지(2)는 적중(2)로 대체가능.": "闘志セット(2)は的中セット(2)で代用可能です。",
   "하얀 달의 온기는 햇빛처럼/완벽한 바니걸 대체": "「白い月のぬくもりは陽光のように／完璧なバニーガール」の代替",
   "단점 맞춤 훈련 대체": "「弱点補完カスタムトレーニング」の代替",
-  "영원 속박의 굴레 대체": "「永遠なる束縛の連鎖」の代替"
+  "영원 속박의 굴레 대체": "「永遠なる束縛の連鎖」の代替",
+  "하얀 달의 온기는 햇빛처럼 대체": "「白い月のぬくもりは陽光のように」の代替"
 });
 Object.assign(I18N_DATA.ui["zh-TW"], {
   "PVE 장비·아르카나 세팅을 반영했습니다.": "已套用PVE裝備與阿爾卡納配置。",
   "투지(2)는 적중(2)로 대체가능.": "鬥志套裝(2)可由命中套裝(2)替代。",
   "하얀 달의 온기는 햇빛처럼/완벽한 바니걸 대체": "替代「白月溫煦如陽光／完美兔女郎」",
   "단점 맞춤 훈련 대체": "替代「補強缺點客製化訓練」",
-  "영원 속박의 굴레 대체": "替代「永恆束縛的枷鎖」"
+  "영원 속박의 굴레 대체": "替代「永恆束縛的枷鎖」",
+  "하얀 달의 온기는 햇빛처럼 대체": "替代「白月溫煦如陽光」"
 });
 Object.assign(I18N_DATA.ui["zh-CN"], {
   "PVE 장비·아르카나 세팅을 반영했습니다.": "已套用PVE装备与阿尔卡纳配置。",
   "투지(2)는 적중(2)로 대체가능.": "斗志套服(2)可由命中套服(2)替代。",
   "하얀 달의 온기는 햇빛처럼/완벽한 바니걸 대체": "替代「白月温煦如阳光／完美兔女郎」",
   "단점 맞춤 훈련 대체": "替代「补强缺点客制化训练」",
-  "영원 속박의 굴레 대체": "替代「永恒束缚的枷锁」"
+  "영원 속박의 굴레 대체": "替代「永恒束缚的枷锁」",
+  "하얀 달의 온기는 햇빛처럼 대체": "替代「白月温煦如阳光」"
 });
 
 const ORIGINAL_TEXT_NODES = new WeakMap();
@@ -5348,6 +5352,38 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
   return result;
 }
 
+function addEternalBondAlternativeForWhiteMoon(savior, pveArcana, alternatives) {
+  const excludedClasses = new Set(["서포터", "디펜더"]);
+  const result = [...(alternatives || [])];
+
+  if (excludedClasses.has(savior.className)) return result;
+
+  const recommendedNames = new Set(getResolvedArcanaNames(pveArcana));
+  if (!recommendedNames.has("하얀 달의 온기는 햇빛처럼")) return result;
+
+  const alternativeNames = new Set(getResolvedArcanaNames(result));
+  if (alternativeNames.has("영원 속박의 굴레")) return result;
+
+  const entry = {
+    name: "영원 속박의 굴레",
+    note: "하얀 달의 온기는 햇빛처럼 대체"
+  };
+
+  let lastFilledIndex = -1;
+  result.forEach((slot, index) => {
+    if (slot?.name) lastFilledIndex = index;
+  });
+
+  const insertIndex = lastFilledIndex + 1;
+  if (insertIndex < result.length && !result[insertIndex]) {
+    result[insertIndex] = entry;
+  } else {
+    result.push(entry);
+  }
+
+  return result;
+}
+
 function createDetailMarkup(savior) {
   const build = getBuild(savior);
   const hasCommonArcana = (build.arcana.pve || []).some((arcana) =>
@@ -5364,13 +5400,18 @@ function createDetailMarkup(savior) {
           : null
       )
     : basePveArcana;
-  const alternativeArcana = savior.detail
+  const baseAlternativeArcana = savior.detail
     ? buildAlternativeArcana(
         savior,
         pveArcana,
         build.arcana.alternatives
       )
     : build.arcana.alternatives;
+  const alternativeArcana = addEternalBondAlternativeForWhiteMoon(
+    savior,
+    pveArcana,
+    baseAlternativeArcana
+  );
 
   const saviorDetailId = SAVIOR_DETAIL_IDS[savior.id];
   const saviorDetailUrl = saviorDetailId
