@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v46-zh-complete-localization";
+const SITE_BUILD_VERSION = "v51-cristelle";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -401,6 +401,76 @@ Object.assign(I18N_DATA.ui["zh-CN"], {
   "아카라이브 스타세이비어 채널 원샷 세팅표": "Arca.live Star Savior 一站式配置表"
 });
 
+
+// v51: 크리스텔 / 영원 속박의 굴레 다국어 표시
+Object.assign(I18N_DATA.saviorNames.en, {
+  "크리스텔": "Cristelle"
+});
+Object.assign(I18N_DATA.saviorNames.ja, {
+  "크리스텔": "クリステル"
+});
+Object.assign(I18N_DATA.saviorNames["zh-TW"], {
+  "크리스텔": "克莉絲特"
+});
+Object.assign(I18N_DATA.saviorNames["zh-CN"], {
+  "크리스텔": "克莉丝特"
+});
+
+Object.assign(I18N_DATA.subtitles.en, {
+  "모렐해운상회": "Morrel Ocean Traders"
+});
+Object.assign(I18N_DATA.subtitles.ja, {
+  "모렐해운상회": "モレル海運商会"
+});
+Object.assign(I18N_DATA.subtitles["zh-TW"], {
+  "모렐해운상회": "莫雷爾海運商會"
+});
+Object.assign(I18N_DATA.subtitles["zh-CN"], {
+  "모렐해운상회": "莫雷尔海运商会"
+});
+
+Object.assign(I18N_DATA.arcana.en, {
+  "영원 속박의 굴레": "Bound for Eternity"
+});
+Object.assign(I18N_DATA.arcana.ja, {
+  "영원 속박의 굴레": "永遠なる束縛の連鎖"
+});
+Object.assign(I18N_DATA.arcana["zh-TW"], {
+  "영원 속박의 굴레": "永恆束縛的枷鎖"
+});
+Object.assign(I18N_DATA.arcana["zh-CN"], {
+  "영원 속박의 굴레": "永恒束缚的枷锁"
+});
+
+Object.assign(I18N_DATA.ui.en, {
+  "PVE 장비·아르카나 세팅을 반영했습니다.": "PVE equipment and Arcana setup has been applied.",
+  "투지(2)는 적중(2)로 대체가능.": "Valor Set (2) can be replaced with Hit Set (2).",
+  "하얀 달의 온기는 햇빛처럼/완벽한 바니걸 대체": "Alternative to A White Moon Shines With the Sun's Warmth / The Perfect Bunny Girl",
+  "단점 맞춤 훈련 대체": "Alternative to Customized Training to Cover Weaknesses",
+  "영원 속박의 굴레 대체": "Alternative to Bound for Eternity"
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "PVE 장비·아르카나 세팅을 반영했습니다.": "PVE装備・アルカナ設定を反映しました。",
+  "투지(2)는 적중(2)로 대체가능.": "闘志セット(2)は的中セット(2)で代用可能です。",
+  "하얀 달의 온기는 햇빛처럼/완벽한 바니걸 대체": "「白い月のぬくもりは陽光のように／完璧なバニーガール」の代替",
+  "단점 맞춤 훈련 대체": "「弱点補完カスタムトレーニング」の代替",
+  "영원 속박의 굴레 대체": "「永遠なる束縛の連鎖」の代替"
+});
+Object.assign(I18N_DATA.ui["zh-TW"], {
+  "PVE 장비·아르카나 세팅을 반영했습니다.": "已套用PVE裝備與阿爾卡納配置。",
+  "투지(2)는 적중(2)로 대체가능.": "鬥志套裝(2)可由命中套裝(2)替代。",
+  "하얀 달의 온기는 햇빛처럼/완벽한 바니걸 대체": "替代「白月溫煦如陽光／完美兔女郎」",
+  "단점 맞춤 훈련 대체": "替代「補強缺點客製化訓練」",
+  "영원 속박의 굴레 대체": "替代「永恆束縛的枷鎖」"
+});
+Object.assign(I18N_DATA.ui["zh-CN"], {
+  "PVE 장비·아르카나 세팅을 반영했습니다.": "已套用PVE装备与阿尔卡纳配置。",
+  "투지(2)는 적중(2)로 대체가능.": "斗志套服(2)可由命中套服(2)替代。",
+  "하얀 달의 온기는 햇빛처럼/완벽한 바니걸 대체": "替代「白月温煦如阳光／完美兔女郎」",
+  "단점 맞춤 훈련 대체": "替代「补强缺点客制化训练」",
+  "영원 속박의 굴레 대체": "替代「永恒束缚的枷锁」"
+});
+
 const ORIGINAL_TEXT_NODES = new WeakMap();
 const ORIGINAL_ATTRIBUTES = new WeakMap();
 
@@ -627,6 +697,7 @@ const SAVIOR_DETAIL_IDS = {
   "seira": 1014,
   "trish": 1015,
   "lyn": 1016,
+  "cristelle": 1017,
   "haydee": 1018,
   "serpang": 1019,
   "dana": 1021,
@@ -830,6 +901,9 @@ const ARCANA_LIBRARY = {
   ],
   "허수의 개척자": [
     { name: "허수의 개척자", image: `${ARCANA_IMAGE_ROOT}/ARCANA_STARPIERCER_OMEGA_SSR_01_S.webp` }
+  ],
+  "영원 속박의 굴레": [
+    { name: "영원 속박의 굴레", image: "https://star-savior-arcana-db.pages.dev/images/cards/%EC%98%81%EC%9B%90%EC%86%8D%EB%B0%95%EC%9D%98%EA%B5%B4%EB%A0%88.webp" }
   ]
 };
 
@@ -926,6 +1000,7 @@ const GROWTH_PRIORITY = {
   "seira": { tier: "2티어", level: "tier-2" },
   "trish": { tier: "3티어", level: "tier-3" },
   "lyn": { tier: "2티어", level: "tier-2" },
+  "cristelle": { tier: "미정", level: "tier-unrated" },
   "haydee": { tier: "0.5티어", level: "tier-05", note: "1돌파 이상 필수" },
   "serpang": { tier: "2티어", level: "tier-2" },
   "dana": { tier: "2티어", level: "tier-2" },
@@ -973,6 +1048,7 @@ const MAIN_CONTENTS = {
   "charlotte": ["PVP"],
   "seira": ["PVP", "코스모 게이트"],
   "lyn": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
+  "cristelle": ["작전", "회랑", "플래시 포인트", "코스모 게이트"],
   "claire": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "tyria": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "roberta": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
@@ -1882,6 +1958,95 @@ const SAVIORS = [
           null,
           null,
           null,
+          null,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "id": "cristelle",
+    "name": "크리스텔",
+    "subtitle": "모렐해운상회",
+    "affiliation": "모렐해운상회",
+    "grade": "SSR",
+    "element": "sun",
+    "className": "레인저",
+    "role": "레인저",
+    "attackType": "",
+    "image": "https://star-savior-arcana-db.pages.dev/images/icon/portrait/%ED%81%AC%EB%A6%AC%EC%8A%A4%ED%85%94(%EB%AA%A8%EB%A0%90%20%ED%95%B4%EC%9A%B4%EC%83%81%ED%9A%8C).webp",
+    "summary": "PVE 장비·아르카나 세팅을 반영했습니다.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1017",
+    "detail": {
+      "equipment": {
+        "pve": {
+          "necklace": "속도, 공격력%",
+          "ring": "공격력%",
+          "sets": [
+            "공격(4) + 투지(2)",
+            "통찰(4) + 투지(2)",
+            "파괴(4) + 투지(2)",
+            "정밀(4) + 투지(2)"
+          ],
+          "setNotes": [
+            "투지(2)는 적중(2)로 대체가능."
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "미정",
+          "ring": "미정",
+          "sets": [
+            "미정"
+          ],
+          "potential": "미정",
+          "note": "미정"
+        }
+      },
+      "arcana": {
+        "pve": [
+          {
+            "name": "단점 보완 맞춤 훈련",
+            "note": ""
+          },
+          {
+            "name": "불굴의 역작",
+            "note": ""
+          },
+          {
+            "name": "꽃들에게 죽음을",
+            "note": ""
+          },
+          {
+            "name": "영원 속박의 굴레",
+            "note": ""
+          },
+          {
+            "name": "하얀 달의 온기는 햇빛처럼 or 완벽한 바니걸",
+            "note": ""
+          }
+        ],
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "alternatives": [
+          {
+            "name": "어느 한 기사의 맹세",
+            "note": "하얀 달의 온기는 햇빛처럼/완벽한 바니걸 대체"
+          },
+          {
+            "name": "노 페인, 노 게인",
+            "note": "단점 맞춤 훈련 대체"
+          },
+          {
+            "name": "누각 위, 유리달 맞이",
+            "note": "영원 속박의 굴레 대체"
+          },
           null,
           null
         ]
@@ -5092,6 +5257,16 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
   });
 
   const names = new Set(getResolvedArcanaNames(pveArcana));
+
+  if (savior.id === "cristelle") {
+    return [
+      { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼/완벽한 바니걸 대체" },
+      { name: "노 페인, 노 게인", note: "단점 맞춤 훈련 대체" },
+      { name: "누각 위, 유리달 맞이", note: "영원 속박의 굴레 대체" },
+      null,
+      null
+    ];
+  }
 
   if (savior.id === "white-pearl-luna") {
     return [
