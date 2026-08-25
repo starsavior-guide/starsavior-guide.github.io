@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v53-white-moon-eternal-alt";
+const SITE_BUILD_VERSION = "v54-cristelle-equipment";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -473,6 +473,20 @@ Object.assign(I18N_DATA.ui["zh-CN"], {
   "단점 맞춤 훈련 대체": "替代「补强缺点客制化训练」",
   "영원 속박의 굴레 대체": "替代「永恒束缚的枷锁」",
   "하얀 달의 온기는 햇빛처럼 대체": "替代「白月温煦如阳光」"
+});
+
+// v54: 크리스텔 장비 세팅 안내 다국어 표시
+Object.assign(I18N_DATA.ui.en, {
+  "본인 조합과 세팅에 따라 다르나 속도 권장.": "Depends on your team composition and setup, but SPD is recommended."
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "본인 조합과 세팅에 따라 다르나 속도 권장.": "編成やセッティングによって異なりますが、速度を推奨します。"
+});
+Object.assign(I18N_DATA.ui["zh-TW"], {
+  "본인 조합과 세팅에 따라 다르나 속도 권장.": "依隊伍組合與配置而異，但建議選擇速度。"
+});
+Object.assign(I18N_DATA.ui["zh-CN"], {
+  "본인 조합과 세팅에 따라 다르나 속도 권장.": "根据队伍组合与配置有所不同，但建议选择速度。"
 });
 
 const ORIGINAL_TEXT_NODES = new WeakMap();
@@ -1005,7 +1019,7 @@ const GROWTH_PRIORITY = {
   "seira": { tier: "2티어", level: "tier-2" },
   "trish": { tier: "3티어", level: "tier-3" },
   "lyn": { tier: "2티어", level: "tier-2" },
-  "cristelle": { tier: "미정", level: "tier-unrated" },
+  "cristelle": { tier: "1티어", level: "tier-1" },
   "haydee": { tier: "0.5티어", level: "tier-05", note: "1돌파 이상 필수" },
   "serpang": { tier: "2티어", level: "tier-2" },
   "dana": { tier: "2티어", level: "tier-2" },
@@ -1986,15 +2000,16 @@ const SAVIORS = [
       "equipment": {
         "pve": {
           "necklace": "속도, 공격력%",
+          "necklaceNote": "본인 조합과 세팅에 따라 다르나 속도 권장.",
           "ring": "공격력%",
           "sets": [
-            "공격(4) + 투지(2)",
-            "통찰(4) + 투지(2)",
-            "파괴(4) + 투지(2)",
-            "정밀(4) + 투지(2)"
+            "공격(4) + 적중(2)",
+            "통찰(4) + 적중(2)",
+            "파괴(4) + 적중(2)",
+            "정밀(4) + 적중(2)"
           ],
           "setNotes": [
-            "투지(2)는 적중(2)로 대체가능."
+            "적중(2)는 투지(2)로 대체가능."
           ],
           "potential": "AX",
           "note": ""
@@ -5539,7 +5554,10 @@ function createEquipmentCard(mode, data, className, subtitle) {
       <dl class="build-rows">
         <div class="build-row">
           <dt>목걸이</dt>
-          <dd>${escapeHtml(data.necklace)}</dd>
+          <dd>
+            ${escapeHtml(data.necklace)}
+            ${data.necklaceNote ? `<small class="build-set-note">${escapeHtml(data.necklaceNote)}</small>` : ""}
+          </dd>
         </div>
         <div class="build-row">
           <dt>반지</dt>
