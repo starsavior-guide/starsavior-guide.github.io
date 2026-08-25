@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v54-cristelle-equipment";
+const SITE_BUILD_VERSION = "v55-cristelle-alt4-remove";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -5371,6 +5371,8 @@ function addEternalBondAlternativeForWhiteMoon(savior, pveArcana, alternatives) 
   const excludedClasses = new Set(["서포터", "디펜더"]);
   const result = [...(alternatives || [])];
 
+  // 크리스텔은 별도 대체 아르카나 구성을 사용하므로 공통 자동 추가 대상에서 제외합니다.
+  if (savior.id === "cristelle") return result;
   if (excludedClasses.has(savior.className)) return result;
 
   const recommendedNames = new Set(getResolvedArcanaNames(pveArcana));
