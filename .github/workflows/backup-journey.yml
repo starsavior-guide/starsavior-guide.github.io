@@ -933,6 +933,7 @@ jobs:
 
           const ROOT = process.cwd();
           const ARCANA_ROOT = 'https://star-savior-arcana-db.pages.dev/arcana';
+          const APP_PATH = path.join(ROOT, 'app.js');
           const OUT_DIR = path.join(ROOT, 'data', 'journey');
           const ASSET_DIR = path.join(ROOT, 'data', 'journey-assets');
           const META_PATH = path.join(OUT_DIR, 'backup-meta.json');
@@ -943,6 +944,31 @@ jobs:
           ];
 
           fs.mkdirSync(ASSET_DIR, { recursive: true });
+
+          // Do not scrape the /arcana index UI. The repository already keeps the
+          // canonical Arcana detail IDs in app.js, and detail URLs are /arcana/<id>.
+          if (!fs.existsSync(APP_PATH)) throw new Error('app.js was not found for Arcana detail ID discovery.');
+          const appText = fs.readFileSync(APP_PATH, 'utf8');
+          const arcanaIdBlock = appText.match(/const\s+ARCANA_DETAIL_IDS\s*=\s*\{([\s\S]*?)\n\};/);
+          if (!arcanaIdBlock) throw new Error('Could not find ARCANA_DETAIL_IDS in app.js.');
+          const parsedArcanaIds = [...arcanaIdBlock[1].matchAll(/["']([^"']+)["']\s*:\s*(\d+)/g)]
+            .map((match) => ({ name: match[1], id: Number(match[2]) }));
+          const uniqueArcanaIds = new Map();
+          for (const item of parsedArcanaIds) {
+            if (!uniqueArcanaIds.has(item.id)) uniqueArcanaIds.set(item.id, item);
+          }
+          const ARCANA_TARGETS = [...uniqueArcanaIds.values()].map((item) => ({
+            href: `${ARCANA_ROOT}/${item.id}`,
+            name: item.name,
+            savior: '',
+            grade: '',
+            mode: 'detail-id',
+            id: item.id
+          }));
+          if (ARCANA_TARGETS.length < 20) {
+            throw new Error(`ARCANA_DETAIL_IDS too small: ${ARCANA_TARGETS.length}`);
+          }
+          console.log(`Loaded ${ARCANA_TARGETS.length} unique Arcana detail IDs from app.js`);
 
           const normalize = (value) => String(value ?? '')
             .replace(/\u00a0/g, ' ')
@@ -1453,12 +1479,8 @@ jobs:
 
           const arcanaByLanguage = {};
           for (const language of LANGUAGES) {
-            await prepareArcanaIndex(language);
-            const targets = await discoverArcanaTargets();
-            if (targets.length < 20) {
-              throw new Error(`Arcana index discovery too small for ${language.key}: ${targets.length}`);
-            }
-            console.log(`${language.key}: discovered ${targets.length} Arcana cards`);
+            const targets = ARCANA_TARGETS;
+            console.log(`${language.key}: capturing ${targets.length} Arcana detail pages directly from app.js IDs`);
 
             const entries = [];
             const seen = new Set();
@@ -1496,7 +1518,7 @@ jobs:
             arcana: ARCANA_ROOT
           };
           meta.arcanaSource = ARCANA_ROOT;
-          meta.arcanaMode = 'arcana-detail-event-section';
+          meta.arcanaMode = 'arcana-detail-ids-from-app';
           meta.counts = meta.counts || {};
           for (const language of LANGUAGES) {
             meta.counts[language.key] = meta.counts[language.key] || {};
