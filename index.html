@@ -8,7 +8,7 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=57-inline-savior-details"></script>
+  <script defer src="./app.js?v=59-detail-fidelity"></script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -616,15 +616,29 @@
 
 
   <style id="savior-source-detail-styles">
+    .savior-detail-section .section-body {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
     .savior-source-detail {
       width: 100%;
     }
 
     .savior-detail-toggle {
-      display: inline-flex;
+      display: flex;
+      width: 100%;
+      min-height: 52px;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--surface) 88%, var(--accent) 12%);
+      color: var(--text);
+      font: inherit;
+      font-weight: 850;
       cursor: pointer;
     }
 
@@ -635,6 +649,7 @@
 
     .savior-detail-chevron {
       display: inline-block;
+      flex: 0 0 auto;
       font-size: 18px;
       line-height: 1;
       transition: transform .2s ease;
@@ -657,14 +672,6 @@
       display: none !important;
     }
 
-    .savior-source-frame {
-      display: block;
-      width: 100%;
-      min-height: 280px;
-      border: 0;
-      background: transparent;
-    }
-
     .savior-source-status {
       padding: 22px 18px;
       color: var(--muted);
@@ -678,16 +685,284 @@
       color: #ff9da6;
     }
 
+    .clean-savior-detail {
+      display: grid;
+      gap: 18px;
+      padding: 18px;
+    }
+
+    .clean-detail-intro,
+    .clean-detail-block {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--surface) 94%, var(--accent) 6%);
+    }
+
+    .clean-detail-intro {
+      padding: 18px;
+    }
+
+    .clean-detail-intro h3,
+    .clean-detail-heading h3 {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(17px, 2vw, 21px);
+      font-weight: 900;
+    }
+
+    .clean-detail-intro p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.75;
+    }
+
+    .clean-detail-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface-2) 90%, var(--accent) 10%);
+    }
+
+    .clean-detail-heading span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+      text-align: right;
+    }
+
+    .clean-detail-two-column {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .clean-detail-table-wrap {
+      overflow-x: auto;
+    }
+
+    .clean-detail-table,
+    .clean-skill-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .clean-detail-table th,
+    .clean-detail-table td,
+    .clean-skill-table th,
+    .clean-skill-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+
+    .clean-detail-table tbody tr:last-child > *,
+    .clean-skill-table tbody tr:last-child > * {
+      border-bottom: 0;
+    }
+
+    .clean-detail-table th,
+    .clean-skill-table th {
+      width: 34%;
+      color: var(--muted);
+      background: color-mix(in srgb, var(--surface-2) 93%, transparent);
+      font-size: 13px;
+      font-weight: 800;
+      text-align: left;
+    }
+
+    .clean-detail-table td,
+    .clean-skill-table td {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .resonance-table thead th {
+      color: var(--text);
+      font-weight: 850;
+    }
+
+    .clean-skills-block .clean-detail-heading {
+      align-items: center;
+    }
+
+    .clean-skill-list {
+      display: grid;
+      gap: 14px;
+      padding: 14px;
+    }
+
+    .clean-skill-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: var(--surface);
+    }
+
+    .clean-skill-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .clean-skill-title img {
+      width: 64px;
+      height: 64px;
+      flex: 0 0 64px;
+      border-radius: 10px;
+      object-fit: cover;
+      background: #070b18;
+    }
+
+    .clean-skill-title div {
+      display: grid;
+      gap: 5px;
+    }
+
+    .clean-skill-title strong {
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .clean-skill-title span {
+      width: max-content;
+      padding: 3px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .clean-skill-description {
+      white-space: normal;
+    }
+
+    .clean-skill-levels {
+      display: grid;
+      gap: 8px;
+    }
+
+    .clean-skill-level {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--surface-2) 92%, transparent);
+    }
+
+    .clean-skill-level b {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .clean-skill-level span {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 760px) {
+      .clean-detail-two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 640px) {
-      .savior-source-detail,
-      .savior-detail-toggle {
-        width: 100%;
+      .savior-detail-section .section-body {
+        padding: 14px;
       }
 
       .savior-source-panel {
         margin-top: 12px;
         border-radius: 12px;
       }
+
+      .clean-savior-detail {
+        gap: 12px;
+        padding: 12px;
+      }
+
+      .clean-detail-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .clean-detail-heading span {
+        text-align: left;
+      }
+
+      .clean-detail-table th,
+      .clean-skill-table th {
+        width: 31%;
+      }
+
+      .clean-detail-table th,
+      .clean-detail-table td,
+      .clean-skill-table th,
+      .clean-skill-table td {
+        padding: 10px;
+        font-size: 12px;
+      }
+
+      .clean-skill-title {
+        gap: 10px;
+      }
+
+      .clean-skill-title img {
+        width: 52px;
+        height: 52px;
+        flex-basis: 52px;
+      }
+
+      .clean-skill-title strong {
+        font-size: 14px;
+      }
+
+      .clean-skill-level {
+        grid-template-columns: 42px 1fr;
+        padding: 8px;
+      }
+    }
+
+    .clean-detail-intro h3 { margin-bottom: 10px; }
+    .clean-detail-two-column { align-items: start; }
+    .clean-skill-card { overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: rgba(5, 10, 25, .42); }
+    .clean-skill-head { display: flex; gap: 14px; align-items: center; padding: 16px; border-bottom: 1px solid var(--line); }
+    .clean-skill-main-icon { width: 64px; height: 64px; flex: 0 0 64px; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); }
+    .clean-skill-head-copy { min-width: 0; display: grid; gap: 8px; }
+    .clean-skill-head-copy > strong { font-size: clamp(18px, 2vw, 24px); line-height: 1.25; color: var(--text); }
+    .clean-skill-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+    .clean-skill-meta span { display: inline-flex; align-items: center; min-height: 28px; padding: 4px 9px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); font-size: 12px; font-weight: 800; }
+    .clean-skill-description-block { padding: 15px 16px; display: grid; gap: 9px; border-bottom: 1px solid var(--line); }
+    .clean-skill-description-block p { margin: 0; color: var(--text); font-size: 14px; font-weight: 650; line-height: 1.75; white-space: normal; }
+    .clean-skill-effects { display: grid; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+    .clean-skill-effect { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: rgba(73, 102, 255, .045); }
+    .clean-skill-effect img { width: 28px; height: 28px; flex: 0 0 28px; object-fit: contain; border-radius: 5px; }
+    .clean-skill-effect span { color: var(--text); font-size: 13px; font-weight: 650; line-height: 1.65; }
+    .clean-skill-level-table-wrap { overflow-x: auto; }
+    .clean-skill-level-table { margin: 0; border: 0; border-radius: 0; }
+    .clean-skill-level-table th:first-child { width: 72px; text-align: center; }
+    .clean-skill-level-table td { line-height: 1.65; }
+    @media (max-width: 640px) {
+      .clean-skill-head { padding: 13px; gap: 11px; }
+      .clean-skill-main-icon { width: 54px; height: 54px; flex-basis: 54px; }
+      .clean-skill-description-block, .clean-skill-effects { padding-left: 13px; padding-right: 13px; }
+      .clean-skill-level-table th:first-child { width: 54px; }
     }
   </style>
 
