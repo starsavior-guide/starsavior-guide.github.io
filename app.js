@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v67-bloom-effect-descriptions";
+const SITE_BUILD_VERSION = "v69-journey-local-archive";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -760,11 +760,34 @@ function setLanguage(language, options = {}) {
   refreshLanguageChrome();
   renderList();
   applyLanguageToDOM(document.body);
+  updateJourneyArchiveLanguage();
   // 테마 버튼의 현재 상태에 맞는 접근성 라벨을 선택 언어로 갱신합니다.
   if (typeof applyTheme === "function") {
     applyTheme(document.documentElement.dataset.theme || "dark", { skipSave: true });
   }
 }
+
+// 여정 로컬 아카이브 UI 다국어
+Object.assign(I18N_DATA.ui.en, {
+  "여정": "Journey",
+  "여정 데이터는 우리 저장소에 백업된 로컬 사본만 사용합니다.": "Journey data uses only the local archive stored in this repository.",
+  "원본 사이트에 연결하지 않습니다.": "No connection to the original site is required."
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "여정": "旅程",
+  "여정 데이터는 우리 저장소에 백업된 로컬 사본만 사용합니다.": "旅程データは、このリポジトリに保存したローカルアーカイブのみを使用します。",
+  "원본 사이트에 연결하지 않습니다.": "元サイトへの接続は不要です。"
+});
+Object.assign(I18N_DATA.ui["zh-TW"], {
+  "여정": "旅程",
+  "여정 데이터는 우리 저장소에 백업된 로컬 사본만 사용합니다.": "旅程資料僅使用儲存在本儲存庫中的本機備份。",
+  "원본 사이트에 연결하지 않습니다.": "不需要連線至原始網站。"
+});
+Object.assign(I18N_DATA.ui["zh-CN"], {
+  "여정": "旅程",
+  "여정 데이터는 우리 저장소에 백업된 로컬 사본만 사용합니다.": "旅程数据仅使用保存在本仓库中的本地备份。",
+  "원본 사이트에 연결하지 않습니다.": "不需要连接原始网站。"
+});
 
 const ELEMENT_LABELS = {
   sun: "태양",
@@ -7089,8 +7112,51 @@ function createEquipmentDatabaseMarkup() {
   `;
 }
 
+function getJourneyArchivePath(language = currentLanguage) {
+  const selected = SUPPORTED_LANGUAGES.includes(language) ? language : "ko";
+  return `./data/journey/${encodeURIComponent(selected)}/index.html?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
+}
+
+function createJourneyDatabaseMarkup() {
+  return `
+    <div class="journey-page">
+      <header class="journey-hero">
+        <p class="eyebrow">JOURNEY DATABASE</p>
+        <h1 data-i18n-source="여정">${escapeHtml(translateString("여정"))}</h1>
+        <p>
+          <span class="journey-local-badge">LOCAL ARCHIVE</span><br>
+          <span data-i18n-source="여정 데이터는 우리 저장소에 백업된 로컬 사본만 사용합니다.">${escapeHtml(translateString("여정 데이터는 우리 저장소에 백업된 로컬 사본만 사용합니다."))}</span>
+          <span data-i18n-source="원본 사이트에 연결하지 않습니다.">${escapeHtml(translateString("원본 사이트에 연결하지 않습니다."))}</span>
+        </p>
+      </header>
+      <section class="journey-archive-shell" aria-label="${escapeHtml(translateString("여정"))}">
+        <iframe
+          class="journey-archive-frame"
+          id="journey-archive-frame"
+          title="${escapeHtml(translateString("여정"))}"
+          src="${escapeHtml(getJourneyArchivePath())}"
+          loading="eager"
+          sandbox="allow-scripts allow-same-origin"
+        ></iframe>
+      </section>
+    </div>
+  `;
+}
+
+function updateJourneyArchiveLanguage() {
+  const frame = document.querySelector("#journey-archive-frame");
+  if (!frame) return;
+  const nextSrc = getJourneyArchivePath();
+  const currentSrc = frame.getAttribute("src") || "";
+  if (currentSrc !== nextSrc) frame.setAttribute("src", nextSrc);
+  frame.setAttribute("title", translateString("여정"));
+}
+
 function openSimple(section, options = {}) {
-  if (section === "equipment") {
+  if (section === "journey") {
+    simpleContent.innerHTML = createJourneyDatabaseMarkup();
+    simpleBackButton.hidden = true;
+  } else if (section === "equipment") {
     simpleContent.innerHTML = createEquipmentDatabaseMarkup();
     simpleBackButton.hidden = true;
   } else {
@@ -7123,6 +7189,7 @@ function openSimple(section, options = {}) {
   }
 
   applyLanguageToDOM(simpleView);
+  updateJourneyArchiveLanguage();
   showOnly("simple");
   setActiveNav(section);
 
@@ -7180,7 +7247,7 @@ function syncFromHash() {
     return;
   }
 
-  if (["equipment", "cosmo"].includes(hash)) {
+  if (["journey", "equipment", "cosmo"].includes(hash)) {
     openSimple(hash, { skipHash: true, keepScroll: true });
     return;
   }
