@@ -8,7 +8,7 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=60-v57-detail-rebuild"></script>
+  <script defer src="./app.js?v=61-v57-detail-fixes"></script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -777,8 +777,13 @@
     }
 
     .source-resonance-table th:first-child {
-      width: 78px;
+      width: 72px;
       white-space: nowrap;
+    }
+
+    .source-resonance-name {
+      color: var(--accent-strong, var(--accent));
+      font-weight: 900;
     }
 
     .source-skill-list {
@@ -901,16 +906,27 @@
       font-weight: 900;
     }
 
+    .source-skill-level-table .source-level-col {
+      width: 44px;
+    }
+
     .source-skill-level-table th:first-child {
-      width: 58px;
-      min-width: 58px;
-      max-width: 58px;
+      width: 44px;
+      min-width: 44px;
+      max-width: 44px;
+      padding-left: 6px;
+      padding-right: 6px;
       text-align: center;
       white-space: nowrap;
     }
 
     .source-skill-level-table td {
       width: auto;
+    }
+
+    .source-skill-level-value {
+      color: #6fb6ff;
+      font-weight: 950;
     }
 
     @media (max-width: 640px) {
@@ -932,12 +948,13 @@
       .source-skill-effects { padding: 0 12px 12px; }
       .source-nova-burst { margin: 0 12px 12px; }
       .source-skill-level-wrap { padding: 0 12px 12px; }
+      .source-skill-level-table .source-level-col { width: 40px; }
       .source-skill-level-table th:first-child {
-        width: 48px;
-        min-width: 48px;
-        max-width: 48px;
-        padding-left: 6px;
-        padding-right: 6px;
+        width: 40px;
+        min-width: 40px;
+        max-width: 40px;
+        padding-left: 4px;
+        padding-right: 4px;
       }
     }
   </style>

@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v60-v57-detail-rebuild";
+const SITE_BUILD_VERSION = "v61-v57-detail-fixes";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -60,6 +60,12 @@ Object.assign(I18N_DATA.ui["zh-CN"], {
   "기본 스테이터스":"基本属性","LV.200 기준":"Lv.200标准","여정 스테이터스":"旅程属性","공명 잠재력":"共鸣潜能",
   "레벨":"等级","스킬 정보":"技能信息","스킬 레벨 정보":"技能等级信息","스킬 레벨 설명":"技能等级说明","노바 버스트":"Nova Burst"
 });
+
+// 상세 백업 원문에서 사용하는 공격 유형 표기 보정
+Object.assign(I18N_DATA.terms.en, { "충격": "Impact", "원소": "Element" });
+Object.assign(I18N_DATA.terms.ja, { "충격": "衝撃", "원소": "元素" });
+Object.assign(I18N_DATA.terms["zh-TW"], { "충격": "衝擊", "원소": "元素" });
+Object.assign(I18N_DATA.terms["zh-CN"], { "충격": "冲击", "원소": "元素" });
 
 Object.assign(I18N_DATA.ui.ja, { "아르카나 상세정보": "アルカナ詳細情報" });
 Object.assign(I18N_DATA.ui["zh-TW"], { "아르카나 상세정보": "阿爾克那詳細資訊" });
@@ -5349,6 +5355,10 @@ const SAVIOR_SOURCE_BASE_STATS = [
   ["치명타 확률", true], ["치명타 피해", true], ["효과 적중", true], ["효과 저항", true], ["명중률", true]
 ];
 const SAVIOR_SOURCE_JOURNEY_STATS = ["힘", "체력", "인내", "집중", "보호"];
+const SAVIOR_SOURCE_GRADES = ["SSR", "SR", "R"];
+const SAVIOR_SOURCE_ELEMENTS = ["태양", "달", "별", "질서", "혼돈"];
+const SAVIOR_SOURCE_CLASSES = ["스트라이커", "어쌔신", "레인저", "캐스터", "디펜더", "서포터"];
+const SAVIOR_SOURCE_ATTACK_TYPES = ["참격", "충격", "원소", "정신", "타격", "마법"];
 
 function isSourceSkillType(text) {
   return SAVIOR_SOURCE_SKILL_TYPES.includes(normalizeSaviorSourceText(text));
@@ -5380,50 +5390,159 @@ function extractSourceStat(tokens, label, percentExpected = false) {
   return "";
 }
 
-function extractSaviorSourceDescription(tokens, baseIndex, savior) {
+function parseSaviorSourceProfile(tokens, baseIndex, savior) {
   const before = getSourceRangeTokens(tokens, 0, baseIndex > 0 ? baseIndex : tokens.length);
-  const expected = [
-    savior.name,
-    savior.grade,
-    ELEMENT_LABELS[savior.element],
-    savior.className,
-    savior.attackType
-  ].filter(Boolean);
+  const knownMeta = new Set([
+    ...SAVIOR_SOURCE_GRADES,
+    ...SAVIOR_SOURCE_ELEMENTS,
+    ...SAVIOR_SOURCE_CLASSES,
+    ...SAVIOR_SOURCE_ATTACK_TYPES
+  ]);
 
-  let cursor = 0;
-  for (const value of expected) {
-    const index = findSourceTokenIndex(before, (text) => text === value, cursor);
-    if (index >= 0) cursor = index + 1;
+  // 이름이 페이지 다른 위치에도 존재할 수 있으므로, 뒤에 등급/속성/클래스가 이어지는 이름 토큰을 우선한다.
+  let nameIndex = -1;
+  let bestScore = -1;
+  for (let i = 0; i < before.length; i++) {
+    if (before[i].text !== savior.name) continue;
+    let score = 0;
+    for (let j = i + 1; j < Math.min(before.length, i + 12); j++) {
+      const text = before[j].text;
+      if (SAVIOR_SOURCE_GRADES.includes(text)) score += 3;
+      if (SAVIOR_SOURCE_ELEMENTS.includes(text)) score += 2;
+      if (SAVIOR_SOURCE_CLASSES.includes(text)) score += 3;
+      if (SAVIOR_SOURCE_ATTACK_TYPES.includes(text)) score += 3;
+    }
+    if (score > bestScore) {
+      bestScore = score;
+      nameIndex = i;
+    }
+  }
+  if (nameIndex < 0) nameIndex = findSourceTokenIndex(before, (text) => text === savior.name);
+  if (nameIndex < 0) nameIndex = 0;
+
+  let grade = "";
+  let element = "";
+  let className = "";
+  let attackType = "";
+  let lastMetaIndex = nameIndex;
+
+  for (let i = nameIndex + 1; i < Math.min(before.length, nameIndex + 16); i++) {
+    const text = before[i].text;
+    if (!grade && SAVIOR_SOURCE_GRADES.includes(text)) {
+      grade = text;
+      lastMetaIndex = i;
+      continue;
+    }
+    if (!element && SAVIOR_SOURCE_ELEMENTS.includes(text)) {
+      element = text;
+      lastMetaIndex = i;
+      continue;
+    }
+    if (!className && SAVIOR_SOURCE_CLASSES.includes(text)) {
+      className = text;
+      lastMetaIndex = i;
+      continue;
+    }
+    if (!attackType && SAVIOR_SOURCE_ATTACK_TYPES.includes(text)) {
+      attackType = text;
+      lastMetaIndex = i;
+      continue;
+    }
+
+    // 드물게 메타 정보가 하나의 짧은 텍스트 노드로 합쳐져 저장된 경우만 보정한다.
+    // 일반 캐릭터 설명 안의 "별", "달" 같은 글자를 메타로 오인하지 않도록 길이/형태를 제한한다.
+    const looksLikeCompactMeta = text.length <= 28 && !/[.!?。！？]/.test(text) && text.split(/\s+/).length <= 4;
+    if (looksLikeCompactMeta) {
+      const prev = { grade, element, className, attackType };
+      if (!grade) grade = SAVIOR_SOURCE_GRADES.find((value) => text.includes(value)) || grade;
+      if (!element) element = SAVIOR_SOURCE_ELEMENTS.find((value) => text.includes(value)) || element;
+      if (!className) className = SAVIOR_SOURCE_CLASSES.find((value) => text.includes(value)) || className;
+      if (!attackType) attackType = SAVIOR_SOURCE_ATTACK_TYPES.find((value) => text.includes(value)) || attackType;
+      if (grade !== prev.grade || element !== prev.element || className !== prev.className || attackType !== prev.attackType) {
+        lastMetaIndex = i;
+      }
+    }
+
+    if (grade && element && className && attackType) break;
   }
 
-  const descriptionTokens = before.slice(cursor)
+  // 설명은 마지막 메타 정보 다음부터 기본 스테이터스 직전까지의 원문만 사용한다.
+  const description = normalizeSaviorSourceText(before.slice(lastMetaIndex + 1)
     .map((token) => token.text)
-    .filter((text) => text && !expected.includes(text))
-    .filter((text) => !/^(구원자|한국어|English|日本語|繁體中文|简体中文)$/.test(text));
+    .filter((text) => text && !knownMeta.has(text))
+    .filter((text) => !/^(구원자|한국어|English|日本語|繁體中文|简体中文)$/.test(text))
+    .filter((text) => !/^백업 기준\s*:/.test(text))
+    .join(" "));
 
-  // Source descriptions are the prose immediately before the Basic Stats section.
-  // Keep every remaining prose token in order instead of guessing a "longest" element.
-  return normalizeSaviorSourceText(descriptionTokens.join(" "));
+  return {
+    name: savior.name,
+    grade: grade || savior.grade || "-",
+    element: element || ELEMENT_LABELS[savior.element] || "-",
+    className: className || savior.className || "-",
+    attackType: attackType || savior.attackType || "-",
+    description
+  };
 }
 
-function extractSaviorResonanceRows(tokens, resonanceIndex, firstSkillIndex) {
+function getSourceElementStartIndex(tokens, element) {
+  if (!element) return -1;
+  for (let i = 0; i < tokens.length; i++) {
+    if (element.contains(tokens[i].parent)) return i;
+  }
+  return -1;
+}
+
+function splitSaviorResonanceText(pieces) {
+  const clean = pieces.map(normalizeSaviorSourceText).filter(Boolean);
+  if (!clean.length) return { title: "", description: "" };
+
+  let title = clean.shift();
+  let description = normalizeSaviorSourceText(clean.join(" "));
+
+  const colon = title.match(/^(.+?)\s*[:：]\s*(.+)$/);
+  if (colon) {
+    title = normalizeSaviorSourceText(colon[1]);
+    description = normalizeSaviorSourceText(`${colon[2]} ${description}`);
+  } else if (!description) {
+    const combined = title.match(/^(.+?(?:감각|솜씨))\s+(.+)$/);
+    if (combined) {
+      title = normalizeSaviorSourceText(combined[1]);
+      description = normalizeSaviorSourceText(combined[2]);
+    }
+  }
+
+  return { title, description };
+}
+
+function extractSaviorResonanceRows(tokens, resonanceIndex, skillBlockStartIndex) {
   if (resonanceIndex < 0) return [];
-  const section = getSourceRangeTokens(tokens, resonanceIndex + 1, firstSkillIndex > resonanceIndex ? firstSkillIndex : tokens.length);
+  const stopIndex = skillBlockStartIndex > resonanceIndex ? skillBlockStartIndex : tokens.length;
+  const section = getSourceRangeTokens(tokens, resonanceIndex + 1, stopIndex);
   const rows = [];
+
   for (let i = 0; i < section.length; i++) {
     const match = section[i].text.match(/^Lv\.?\s*(\d{1,2})(?:\s+(.+))?$/i);
     if (!match) continue;
+
     const level = match[1];
     const pieces = [];
     if (match[2]) pieces.push(match[2]);
+
     for (let j = i + 1; j < section.length; j++) {
-      if (/^Lv\.?\s*\d{1,2}/i.test(section[j].text)) break;
-      if (isSourceSkillType(section[j].text)) break;
-      if (!/^\d+$/.test(section[j].text)) pieces.push(section[j].text);
+      const text = section[j].text;
+      if (/^Lv\.?\s*\d{1,2}/i.test(text)) break;
+      if (isSourceSkillType(text) || /스킬\s*레벨\s*정보/.test(text)) break;
+      if (/^\d+$/.test(text)) continue;
+      pieces.push(text);
     }
-    const name = normalizeSaviorSourceText(pieces.join(" "));
-    if (name && !rows.some((row) => row.level === level)) rows.push({ level, name });
+
+    const parsed = splitSaviorResonanceText(pieces);
+    if (!parsed.title && !parsed.description) continue;
+    if (!rows.some((row) => row.level === level)) {
+      rows.push({ level, title: parsed.title, description: parsed.description });
+    }
   }
+
   return rows;
 }
 
@@ -5465,17 +5584,35 @@ function parseSkillMetaFromHeader(tokens, typeIndex) {
   const metas = [];
   let lastConsumed = typeIndex;
   let i = typeIndex + 1;
-  const max = Math.min(tokens.length, typeIndex + 10);
+  const max = Math.min(tokens.length, typeIndex + 16);
+
+  const addMeta = (value) => {
+    const clean = normalizeSaviorSourceText(value);
+    if (clean && !metas.includes(clean)) metas.push(clean);
+  };
 
   while (i < max) {
-    const text = tokens[i].text;
+    let text = tokens[i].text;
     const next = tokens[i + 1]?.text || "";
     const next2 = tokens[i + 2]?.text || "";
-
     let consumed = 0;
     let value = "";
+    let ignored = false;
 
-    if (/^\d+\s*턴$/.test(text)) {
+    // 강인도 피해는 상세 카드에서 사용하지 않는다. 단, 뒤의 노바 정보는 계속 읽는다.
+    if (/^강인도\s*피해\s*\d+$/.test(text)) {
+      consumed = 1;
+      ignored = true;
+    } else if (text === "강인도 피해" && /^\d+$/.test(next)) {
+      consumed = 2;
+      ignored = true;
+    } else if (text === "강인도" && next === "피해" && /^\d+$/.test(next2)) {
+      consumed = 3;
+      ignored = true;
+    } else if (/^강인도\s*피해\s*\d+\s+노바\s*(?:획득|소모)\s*\d+$/.test(text)) {
+      value = text.replace(/^강인도\s*피해\s*\d+\s+/, "");
+      consumed = 1;
+    } else if (/^\d+\s*턴$/.test(text)) {
       value = text.replace(/\s+/g, "");
       consumed = 1;
     } else if (/^\d+$/.test(text) && next === "턴") {
@@ -5499,7 +5636,7 @@ function parseSkillMetaFromHeader(tokens, typeIndex) {
     }
 
     if (!consumed) break;
-    if (value && !metas.includes(value)) metas.push(value);
+    if (!ignored && value) addMeta(value);
     lastConsumed = i + consumed - 1;
     i += consumed;
   }
@@ -5625,6 +5762,16 @@ function parseSaviorSkillLevels(block, blockTokens, levelIndex) {
   return levelRows.sort((a, b) => Number(a.level) - Number(b.level));
 }
 
+function cleanSaviorSkillBodyToken(text) {
+  let value = normalizeSaviorSourceText(text);
+  if (!value) return "";
+  value = value
+    .replace(/^강인도\s*피해\s*\d+\s*/g, "")
+    .replace(/^노바\s*(?:획득|소모)\s*\d+\s*/g, "")
+    .trim();
+  return value;
+}
+
 function parseSaviorSkillBlock(block, backupUrl) {
   const tokens = getSaviorSourceTokens(block);
   const typeIndex = findSourceTokenIndex(tokens, (text) => isSourceSkillType(text));
@@ -5646,8 +5793,10 @@ function parseSaviorSkillBlock(block, backupUrl) {
   const endCandidates = [coefficientIndex, firstEffectIndex, nova.index, levelIndex].filter((value) => value >= 0 && value > lastConsumed);
   const descriptionEnd = endCandidates.length ? Math.min(...endCandidates) : tokens.length;
   const description = normalizeSaviorSourceText(tokens.slice(lastConsumed + 1, descriptionEnd)
-    .map((token) => token.text)
+    .map((token) => cleanSaviorSkillBodyToken(token.text))
+    .filter(Boolean)
     .filter((text) => !/계수/.test(text))
+    .filter((text) => !/^강인도\s*피해(?:\s*\d+)?$/.test(text))
     .filter((text) => !isSourceSkillType(text))
     .filter((text) => !/스킬\s*레벨\s*정보/.test(text))
     .join(" "));
@@ -5680,13 +5829,13 @@ function parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl) {
   return blocks;
 }
 
-function renderSaviorInfoTable(savior, description) {
+function renderSaviorInfoTable(savior, profile) {
   const rows = [
-    ["이름", getLocalizedSaviorName(savior.name)],
-    ["등급", savior.grade],
-    ["속성", translateString(ELEMENT_LABELS[savior.element])],
-    ["클래스", translateString(savior.className)],
-    ["유형", translateString(savior.attackType || savior.role || "-")]
+    ["이름", getLocalizedSaviorName(profile.name || savior.name)],
+    ["등급", profile.grade || savior.grade || "-"],
+    ["속성", translateString(profile.element || ELEMENT_LABELS[savior.element] || "-")],
+    ["클래스", translateString(profile.className || savior.className || "-")],
+    ["유형", translateString(profile.attackType || "-")]
   ];
   return `
     <section class="source-detail-block source-profile-block">
@@ -5696,7 +5845,7 @@ function renderSaviorInfoTable(savior, description) {
           <tbody>${rows.map(([label, value]) => `<tr><th>${escapeHtml(translateString(label))}</th><td>${escapeHtml(value)}</td></tr>`).join("")}</tbody>
         </table>
       </div>
-      ${description ? `<div class="source-character-description"><strong>${escapeHtml(translateString("구원자 설명"))}</strong><p>${escapeHtml(description)}</p></div>` : ""}
+      ${profile.description ? `<div class="source-character-description"><strong>${escapeHtml(translateString("구원자 설명"))}</strong><p>${escapeHtml(profile.description)}</p></div>` : ""}
     </section>
   `;
 }
@@ -5727,11 +5876,24 @@ function renderSourceResonanceTable(rows) {
       <div class="source-wide-table-wrap">
         <table class="source-wide-table source-resonance-table">
           <thead><tr><th>${escapeHtml(translateString("레벨"))}</th><th>${escapeHtml(translateString("공명 잠재력"))}</th></tr></thead>
-          <tbody>${rows.map((row) => `<tr><th>Lv.${escapeHtml(row.level)}</th><td>${escapeHtml(row.name)}</td></tr>`).join("")}</tbody>
+          <tbody>${rows.map((row) => `
+            <tr>
+              <th>Lv.${escapeHtml(row.level)}</th>
+              <td>${row.title ? `<strong class="source-resonance-name">${escapeHtml(row.title)}${row.description ? " :" : ""}</strong>` : ""}${row.description ? `${row.title ? " " : ""}${escapeHtml(row.description)}` : ""}</td>
+            </tr>
+          `).join("")}</tbody>
         </table>
       </div>
     </section>
   `;
+}
+
+function renderSaviorSkillLevelDescription(skill, description) {
+  let html = escapeHtml(description);
+  if (skill.type === "패시브") {
+    html = html.replace(/([+-]?\d+(?:\.\d+)?%)/g, '<span class="source-skill-level-value">$1</span>');
+  }
+  return html;
 }
 
 function renderSourceSkillCard(skill) {
@@ -5770,7 +5932,8 @@ function renderSourceSkillCard(skill) {
           <div class="source-skill-level-title">${escapeHtml(translateString("스킬 레벨 정보"))}</div>
           <table class="source-wide-table source-skill-level-table">
             <thead><tr><th>Lv.</th><th>${escapeHtml(translateString("스킬 레벨 설명"))}</th></tr></thead>
-            <tbody>${skill.levels.map((level) => `<tr><th>${escapeHtml(level.level)}</th><td>${escapeHtml(level.description)}</td></tr>`).join("")}</tbody>
+            <colgroup><col class="source-level-col"><col></colgroup>
+            <tbody>${skill.levels.map((level) => `<tr><th>${escapeHtml(level.level)}</th><td>${renderSaviorSkillLevelDescription(skill, level.description)}</td></tr>`).join("")}</tbody>
           </table>
         </div>
       ` : ""}
@@ -5786,17 +5949,37 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior) {
   const resonanceIndex = findSourceTokenIndex(tokens, (text) => text === "공명 잠재력", Math.max(0, journeyIndex + 1));
   const firstSkillIndex = findSourceTokenIndex(tokens, (text) => isSourceSkillType(text), Math.max(0, resonanceIndex + 1));
 
+  // 공명 잠재력의 마지막 행에 첫 패시브 스킬명이 붙는 것을 방지하기 위해
+  // 첫 스킬 '타입' 토큰이 아니라 실제 스킬 카드 DOM 시작 지점을 경계로 사용한다.
+  const firstSkillTypeToken = firstSkillIndex >= 0 ? tokens[firstSkillIndex] : null;
+  const firstSkillBlock = firstSkillTypeToken ? findSaviorSkillBlock(firstSkillTypeToken, root) : null;
+  const firstSkillBlockStartIndex = firstSkillBlock ? getSourceElementStartIndex(tokens, firstSkillBlock) : firstSkillIndex;
+  let resonanceStopIndex = firstSkillBlockStartIndex;
+  if (firstSkillBlock && firstSkillIndex >= 0) {
+    const firstBlockTokens = getSaviorSourceTokens(firstSkillBlock);
+    const localTypeIndex = findSourceTokenIndex(firstBlockTokens, (text) => isSourceSkillType(text));
+    const firstSkillTitle = localTypeIndex >= 0 ? getSkillTitleFromTokens(firstBlockTokens, localTypeIndex) : "";
+    if (firstSkillTitle) {
+      for (let i = firstSkillIndex - 1; i > resonanceIndex; i--) {
+        if (tokens[i].text === firstSkillTitle && firstSkillBlock.contains(tokens[i].parent)) {
+          resonanceStopIndex = i;
+          break;
+        }
+      }
+    }
+  }
+
   const baseTokens = getSourceRangeTokens(tokens, baseIndex + 1, journeyIndex > baseIndex ? journeyIndex : resonanceIndex);
   const journeyTokens = getSourceRangeTokens(tokens, journeyIndex + 1, resonanceIndex > journeyIndex ? resonanceIndex : firstSkillIndex);
   const baseStats = SAVIOR_SOURCE_BASE_STATS.map(([label, percent]) => [label, extractSourceStat(baseTokens, label, percent)]);
   const journeyStats = SAVIOR_SOURCE_JOURNEY_STATS.map((label) => [label, extractSourceStat(journeyTokens, label, false)]);
-  const resonanceRows = extractSaviorResonanceRows(tokens, resonanceIndex, firstSkillIndex);
-  const description = extractSaviorSourceDescription(tokens, baseIndex, savior);
+  const profile = parseSaviorSourceProfile(tokens, baseIndex, savior);
+  const resonanceRows = extractSaviorResonanceRows(tokens, resonanceIndex, resonanceStopIndex);
   const skills = parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl);
 
   return `
     <div class="parsed-savior-source">
-      ${renderSaviorInfoTable(savior, description)}
+      ${renderSaviorInfoTable(savior, profile)}
       ${renderSourceStatTable("기본 스테이터스", "LV.200 기준", baseStats)}
       ${renderSourceStatTable("여정 스테이터스", "", journeyStats)}
       ${renderSourceResonanceTable(resonanceRows)}
