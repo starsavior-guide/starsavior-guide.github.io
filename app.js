@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v66-korean-asset-filenames";
+const SITE_BUILD_VERSION = "v67-bloom-effect-descriptions";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -6075,9 +6075,21 @@ async function loadSaviorSourcePanel(button, panel) {
 
 const ALL_SAVIOR_EFFECT_IMAGE_DONORS = [...new Set(Object.values(SAVIOR_DETAIL_IDS))];
 const STATIC_SAVIOR_EFFECT_IMAGES = {
-  // 마르실 개화 전용 효과 이미지는 사이트 로컬 자산을 직접 사용합니다.
+  // 사이트 로컬 자산을 직접 사용하는 개화 전용/보정 효과 이미지입니다.
   "헥사 너트": "./data/savior-detail-assets/헥사 너트.webp",
-  "부서진 너트": "./data/savior-detail-assets/부서진 너트.webp"
+  "부서진 너트": "./data/savior-detail-assets/부서진 너트.webp",
+  "강화 반격": "./data/savior-detail-assets/강화반격.webp"
+};
+
+const SHARED_SAVIOR_EFFECT_DESCRIPTIONS = {
+  "공격력 증가": "공격력이 30% 증가합니다.",
+  "은신": "다른 아군이 있을 경우 공격 대상으로 선택될 수 없습니다. 타격 시 적의 선제 방어 발생을 무시합니다.",
+  "효과저항 감소": "효과 저항이 30% 감소합니다.",
+  "보호막": "피해를 받을 때 생명력을 대신해 정해진 수치만큼 피해를 흡수합니다.",
+  "공격력 감소": "공격력이 30% 감소합니다.",
+  "헥사 너트": "치명타 피해가 30% 증가하고 강인도가 격파된 상태의 적에게 주는 피해가 15% 증가합니다. 타격 후 해제됩니다.",
+  "부서진 너트": "마르실이 부서진 너트를 줍습니다. 최대 3회 중첩됩니다.",
+  "강화 반격": "반격 확률이 100% 증가합니다."
 };
 
 const SHARED_SAVIOR_EFFECT_IMAGE_DONORS = {
@@ -6093,7 +6105,8 @@ const SHARED_SAVIOR_EFFECT_IMAGE_DONORS = {
   "보호막": [1009, 1042, 1501, 1502],
   "공격력 감소": [1008, 1023, 1024, 1501, 1502],
   "헥사 너트": [],
-  "부서진 너트": []
+  "부서진 너트": [],
+  "강화 반격": []
 };
 const SHARED_SAVIOR_EFFECT_ALIASES = {
   "효과저항 감소": ["효과저항 감소", "효과 저항 감소"]
@@ -6161,6 +6174,19 @@ async function getSharedSaviorEffectImage(effectName) {
   return resolved;
 }
 
+function ensureBloomEffectRowDescription(row, effectName) {
+  if (!row || !effectName) return;
+  const description = SHARED_SAVIOR_EFFECT_DESCRIPTIONS[effectName] || "";
+  if (!description) return;
+  const paragraph = row.querySelector("p");
+  if (!paragraph) return;
+  const currentText = normalizeSaviorSourceText(paragraph.textContent || "");
+  if (currentText.includes(":")) return;
+  if (currentText === effectName || getSharedSaviorEffectAliases(effectName).includes(currentText)) {
+    paragraph.textContent = `${effectName} : ${description}`;
+  }
+}
+
 async function setBloomEffectRowImage(row, effectName, { force = false } = {}) {
   if (!row || !effectName) return;
   const currentImage = row.querySelector("img");
@@ -6224,7 +6250,8 @@ function ensureBloomEffectRow(card, effectName) {
   const row = document.createElement("div");
   row.className = "source-skill-effect-row";
   const paragraph = document.createElement("p");
-  paragraph.textContent = effectName;
+  const description = SHARED_SAVIOR_EFFECT_DESCRIPTIONS[effectName] || "";
+  paragraph.textContent = description ? `${effectName} : ${description}` : effectName;
   row.appendChild(paragraph);
   effects.appendChild(row);
   return [row];
@@ -6260,6 +6287,7 @@ async function applyBloomEffectVisualCorrections(bloomList, savior) {
       "패시브": ["효과저항 감소"]
     },
     "annah": {
+      "패시브": ["강화 반격"],
       "특수기": ["보호막"]
     },
     "besta": {
@@ -6283,6 +6311,8 @@ async function applyBloomEffectVisualCorrections(bloomList, savior) {
       for (const effectName of effectNames) {
         const rows = ensureBloomEffectRow(card, effectName);
         for (const row of rows) {
+          // 효과 행이 새로 생성된 경우에도 "효과명 : 설명" 형식을 유지합니다.
+          ensureBloomEffectRowDescription(row, effectName);
           // 지정된 개화 효과는 기존에 잘못 복제된 이미지가 있어도 올바른 효과 이미지로 교체합니다.
           await setBloomEffectRowImage(row, effectName, { force: true });
         }
