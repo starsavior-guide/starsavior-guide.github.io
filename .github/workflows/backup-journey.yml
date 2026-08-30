@@ -1,19 +1,19 @@
-name: Backup Journey database
+name: Backup Arcana events (Journey frozen)
 
 on:
+  workflow_dispatch:
   push:
     paths:
-      - '.github/workflows/backup-journey.yml'
-  workflow_dispatch:
+      - ".github/workflows/backup-journey.yml"
+      - "scripts/backup-arcana-events.mjs"
 
 permissions:
   contents: write
 
 jobs:
-  backup-journey:
+  backup-arcana-events:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
@@ -21,45 +21,29 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: '22'
+          node-version: "22"
 
-      - name: Install browser
+      - name: Validate backup script
+        run: node --check scripts/backup-arcana-events.mjs
+
+      - name: Refresh Arcana events from the source DB
+        run: node scripts/backup-arcana-events.mjs
+
+      - name: Validate generated changes
+        run: git diff --check
+
+      - name: Commit Arcana-only refresh
         shell: bash
         run: |
-          npm install --no-save playwright@1.55.0
-          npx playwright install --with-deps chromium
-
-      - name: Capture structured Journey database
-        shell: bash
-        run: |
-          cat > .journey-capture.mjs <<'NODE'
-          import fs from 'node:fs';
-          import path from 'node:path';
-          import crypto from 'node:crypto';
-          import { chromium } from 'playwright';
-          
-          const ROOT = process.cwd();
-          const SOURCE_URL = 'https://star-savior-arcana-db.pages.dev/journey';
-          const OUT_DIR = path.join(ROOT, 'data', 'journey');
-          const ASSET_DIR = path.join(ROOT, 'data', 'journey-assets');
-          const META_PATH = path.join(OUT_DIR, 'backup-meta.json');
-          
-          const LANGUAGES = [
-            { key: 'ko', label: '한국어' },
-            { key: 'en', label: 'English' },
-            { key: 'ja', label: '日本語' }
-          ];
-          
-          const TAB_PATTERNS = {
-            arcana: [/^아르카나$/i, /^arcana$/i, /^アルカナ$/i, /^阿爾克那$/i, /^阿尔克那$/i, /아르카나/i, /arcana/i, /アルカナ/i, /阿爾克那/i, /阿尔克那/i],
-            events: [/여정\s*이벤트/i, /journey\s*events?/i, /旅程\s*イベント/i, /旅程\s*事件/i, /event/i]
-          };
-
-          // The source Journey page uses two independent checkboxes, not tabs.
-          // Capture each content type by explicitly setting these checkbox states.
-          const TYPE_ALIASES = {
-            arcana: ['아르카나','Arcana','Arcana Event','Arcana Events','Show Arcana Event','Show Arcana Events','アルカナ','阿爾克那','阿尔克那'],
-            events: ['여정 이벤트','Journey Event','Journey Events','Show Journey Event','Show Journey Events','旅程イベント','旅程事件']
+          git add data/journey data/journey-assets
+          if git diff --cached --quiet; then
+            echo "No Arcana changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh Arcana events from source DB"
+          git push
           };
           
           const CATEGORY_ALIASES = {
