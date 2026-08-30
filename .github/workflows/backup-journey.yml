@@ -1,5 +1,5 @@
 name: Backup Journey database
-# v72: strip tracking badges and token-localize all archived images
+# v75: archive only Journey cards; local search/category/difficulty filters use captured source membership
 
 on:
   push:
@@ -502,6 +502,7 @@ jobs:
             for (const image of snapshot.images) {
               const remote = image.currentSrc || image.src;
               if (!remote || !/^https?:\/\//i.test(remote)) continue;
+              if (image.token && !snapshot.html.includes(image.token)) continue;
               const local = await downloadAsset(remote, image.alt || image.nearby || 'journey-image');
               // Every cloned <img> gets a stable token before serialization, so encoded query strings
               // cannot leave a remote URL behind in the static archive.
@@ -511,43 +512,158 @@ jobs:
             }
             for (const background of snapshot.backgrounds || []) {
               if (!background.url || !/^https?:\/\//i.test(background.url)) continue;
+              const escapedBackground = background.url.replaceAll('&', '&amp;');
+              if (!snapshot.html.includes(background.url) && !snapshot.html.includes(escapedBackground)) continue;
               const local = await downloadAsset(background.url, background.nearby || 'journey-background');
               snapshot.html = replaceSerializedUrl(snapshot.html, background.url, local);
             }
             return snapshot;
           }
 
-          async function captureCurrentMain() {
+          const SOURCE_FILTER_ALIASES = {
+            category: {
+              reset: ['리세트','Reset','リセット','重置'],
+              raid: ['토벌','Raid','討伐'],
+              aganon: ['아가논','Aganon','アガノン','阿加農','阿加农'],
+              flora: ['플로라','Flora','フローラ','芙蘿拉','芙萝拉'],
+              kalaid: ['칼라이드','Kalaid','カライド','卡萊德','卡莱德'],
+              weather: ['날씨','Weather','天気','天氣','天气']
+            },
+            difficulty: {
+              easy: ['이지','Easy','イージー','簡單','简单'],
+              normal: ['노말','Normal','ノーマル','普通'],
+              hard: ['하드','Hard','ハード','困難','困难']
+            },
+            difficultyTrigger: ['난이도','Difficulty','難易度','難度','难度']
+          };
+
+          async function clickVisibleExact(labels) {
+            const result = await page.evaluate((labels) => {
+              const norm = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim().toLocaleLowerCase();
+              const wanted = new Set(labels.map(norm));
+              const candidates = [];
+              const selector = 'button,[role="button"],[role="option"],summary,label,a,div,span';
+              for (const element of document.querySelectorAll(selector)) {
+                if (!(element instanceof HTMLElement)) continue;
+                const text = norm(element.innerText || element.textContent);
+                if (!wanted.has(text)) continue;
+                const clickable = element.closest('button,[role="button"],[role="option"],summary,label,a') || element;
+                if (!(clickable instanceof HTMLElement)) continue;
+                const rect = clickable.getBoundingClientRect();
+                const style = getComputedStyle(clickable);
+                if (!(rect.width > 0 && rect.height > 0) || style.display === 'none' || style.visibility === 'hidden') continue;
+                let score = 0;
+                if (clickable.tagName === 'BUTTON') score += 80;
+                if (clickable.getAttribute('role') === 'option') score += 70;
+                if (clickable.getAttribute('role') === 'button') score += 60;
+                if (clickable.tagName === 'SUMMARY') score += 50;
+                score -= Math.min((clickable.innerText || '').length, 100);
+                candidates.push({ element: clickable, score, text });
+              }
+              candidates.sort((a,b) => b.score - a.score);
+              const hit = candidates[0];
+              if (!hit) return { clicked:false, labels };
+              hit.element.scrollIntoView({ block:'center', inline:'nearest' });
+              hit.element.click();
+              return { clicked:true, text:hit.text, count:candidates.length };
+            }, labels);
+            if (result.clicked) {
+              await page.waitForTimeout(500);
+              try { await page.waitForLoadState('networkidle', { timeout: 5000 }); } catch (_) {}
+              await deepScroll();
+            }
+            return result;
+          }
+
+          async function setSourceCategory(key) {
+            const aliases = SOURCE_FILTER_ALIASES.category[key] || [];
+            if (!aliases.length) return false;
+            const result = await clickVisibleExact(aliases);
+            if (!result.clicked) console.warn(`Could not click source category ${key}: ${JSON.stringify(result)}`);
+            return result.clicked;
+          }
+
+          async function setSourceDifficulty(key) {
+            const aliases = SOURCE_FILTER_ALIASES.difficulty[key] || [];
+            if (!aliases.length) return false;
+
+            // Native select first.
+            const selectResult = await page.evaluate(({ aliases, triggerAliases }) => {
+              const norm = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim().toLocaleLowerCase();
+              const wanted = new Set(aliases.map(norm));
+              const triggerWanted = new Set(triggerAliases.map(norm));
+              for (const select of document.querySelectorAll('select')) {
+                const options = [...select.options];
+                const hit = options.find((option) => wanted.has(norm(option.textContent)));
+                if (!hit) continue;
+                const near = norm(select.getAttribute('aria-label')) + ' ' + norm(select.closest('label,div')?.innerText);
+                if (triggerWanted.size && ![...triggerWanted].some((token) => near.includes(token)) && options.length > 8) continue;
+                select.value = hit.value;
+                select.dispatchEvent(new Event('input', { bubbles:true }));
+                select.dispatchEvent(new Event('change', { bubbles:true }));
+                return { changed:true, value:hit.value };
+              }
+              return { changed:false };
+            }, { aliases, triggerAliases: SOURCE_FILTER_ALIASES.difficultyTrigger });
+            if (selectResult.changed) {
+              await page.waitForTimeout(650);
+              await deepScroll();
+              return true;
+            }
+
+            // Custom popover/menu: open difficulty trigger, then select exact option.
+            await clickVisibleExact(SOURCE_FILTER_ALIASES.difficultyTrigger);
+            await page.waitForTimeout(150);
+            const option = await clickVisibleExact(aliases);
+            if (!option.clicked) console.warn(`Could not click source difficulty ${key}: ${JSON.stringify(option)}`);
+            return option.clicked;
+          }
+
+          async function captureCurrentMain({ localize = true } = {}) {
             const snapshot = await page.evaluate(() => {
               const root = document.querySelector('main') || document.querySelector('[role="main"]') || document.body;
               const clone = root.cloneNode(true);
               const sourceElements = [root, ...root.querySelectorAll('*')];
               const cloneElements = [clone, ...clone.querySelectorAll('*')];
 
-              // Copy a small set of computed layout properties so the archive remains readable without the source CSS.
+              const normText = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+              const hashText = (value) => {
+                const text = normText(value);
+                let h = 2166136261;
+                for (let i = 0; i < text.length; i++) {
+                  h ^= text.charCodeAt(i);
+                  h = Math.imul(h, 16777619);
+                }
+                return `j${(h >>> 0).toString(36)}`;
+              };
+
+              // Preserve visual information needed by individual cards, but do not carry desktop page geometry into mobile.
               for (let i = 0; i < Math.min(sourceElements.length, cloneElements.length); i++) {
                 const source = sourceElements[i];
                 const target = cloneElements[i];
                 if (!(source instanceof Element) || !(target instanceof Element)) continue;
                 const style = getComputedStyle(source);
+                const rect = source.getBoundingClientRect();
+                const compact = rect.width > 0 && rect.height > 0 && rect.width <= 180 && rect.height <= 180;
                 const keep = [
-                  'display','flex-direction','flex-wrap','align-items','justify-content','gap',
+                  'display','visibility','opacity','flex-direction','flex-wrap','align-items','justify-content','gap','grid-template-columns','grid-auto-flow',
                   'margin-top','margin-right','margin-bottom','margin-left','padding-top','padding-right','padding-bottom','padding-left',
                   'border-top-width','border-right-width','border-bottom-width','border-left-width','border-style','border-color','border-radius',
-                  'background-color','background-image','background-size','background-position','background-repeat','color','font-size','font-weight','line-height','letter-spacing','text-align','white-space','overflow-wrap','word-break'
+                  'background-color','background-image','background-size','background-position','background-repeat',
+                  'color','font-size','font-weight','line-height','letter-spacing','text-align','white-space','overflow-wrap','word-break','object-fit'
                 ];
+                if (compact) keep.push('position','width','height','max-width','max-height','overflow','inset','z-index','aspect-ratio');
                 const pieces = [];
                 for (const prop of keep) {
                   const value = style.getPropertyValue(prop);
-                  if (value && value !== 'normal' && value !== 'auto' && value !== 'none' && value !== '0px') pieces.push(`${prop}:${value}`);
+                  if (value && value !== 'normal' && value !== 'auto' && (prop === 'display' || value !== 'none') && value !== '0px') pieces.push(`${prop}:${value}`);
                 }
                 if (pieces.length) target.setAttribute('style', pieces.join(';'));
               }
 
               clone.querySelectorAll('script,noscript,iframe,source').forEach((el) => el.remove());
 
-              // Resolve images against the live page, but serialize the clone with localizable tokens.
-              // Analytics / hit-counter badges are not Journey data and must never be archived.
+              // Resolve images against the live page and remember the source-rendered size.
               const trackerHosts = new Set(['myhits.vercel.app', 'hits.seeyoufarm.com']);
               const images = [];
               const sourceImages = [...root.querySelectorAll('img')];
@@ -569,10 +685,16 @@ jobs:
                 }
                 const nearby = sourceImg.closest('article,section,li,div')?.innerText || '';
                 const token = `__JOURNEY_LOCAL_IMAGE_${i}__`;
+                const rect = sourceImg.getBoundingClientRect();
+                const renderedWidth = Math.max(18, Math.min(96, Math.round(rect.width || 48)));
                 cloneImg.setAttribute('src', token);
                 cloneImg.removeAttribute('srcset');
                 cloneImg.removeAttribute('sizes');
                 cloneImg.removeAttribute('loading');
+                cloneImg.setAttribute('data-journey-image', '1');
+                cloneImg.style.setProperty('--journey-img-width', `${renderedWidth}px`);
+                cloneImg.style.maxWidth = '96px';
+                cloneImg.style.height = 'auto';
                 images.push({
                   token,
                   src,
@@ -582,8 +704,6 @@ jobs:
                 });
               }
 
-              // Strip the source site's chrome and filter controls. Only Journey content is archived.
-              const normText = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
               const sourceMenuTokens = [
                 '가챠 시뮬레이터','여정 아이템','몬스터 정보','잠재력','월페이퍼','구원자 시뮬레이터',
                 'Gacha Simulator','Journey Items','Monster Info','Potential','Wallpaper','Savior Simulator',
@@ -596,62 +716,123 @@ jobs:
                 'Difficulty','Arcana','Journey Events','All','Reset','Raid','Aganon','Flora','Kalaid','Weather','Success Reward','Failure Reward'
               ];
 
+              function tokenHits(text, tokens) {
+                return tokens.reduce((count, token) => count + (text.includes(token) ? 1 : 0), 0);
+              }
+
               function removeCompactCluster(tokens, minHits, maxTextLength) {
                 const candidates = [...clone.querySelectorAll('header,nav,aside,section,div,form')]
                   .map((el) => {
                     const text = normText(el.innerText || el.textContent);
-                    const hits = tokens.reduce((count, token) => count + (text.includes(token) ? 1 : 0), 0);
-                    return { el, text, hits };
+                    return { el, text, hits: tokenHits(text, tokens) };
                   })
                   .filter((item) => item.hits >= minHits && item.text.length <= maxTextLength)
                   .sort((a, b) => a.text.length - b.text.length);
-                for (const item of candidates) {
-                  if (item.el.isConnected) item.el.remove();
-                }
+                for (const item of candidates) if (item.el.isConnected) item.el.remove();
               }
 
-              // Remove explicit navigation containers first, then the smallest matching menu/filter clusters.
               clone.querySelectorAll('header,nav,aside,[role="navigation"],[role="menu"],[role="menubar"]').forEach((el) => {
                 const text = normText(el.innerText || el.textContent);
-                const menuHits = sourceMenuTokens.reduce((count, token) => count + (text.includes(token) ? 1 : 0), 0);
-                if (menuHits >= 1 || /Change Theme|메뉴|Menu|メニュー/.test(text)) el.remove();
+                if (tokenHits(text, sourceMenuTokens) >= 1 || /Change Theme|메뉴|Menu|メニュー/.test(text)) el.remove();
               });
               removeCompactCluster(sourceMenuTokens, 2, 1800);
-              removeCompactCluster(sourceFilterTokens, 5, 2200);
 
-              // Source desktop pixel widths/positions are intentionally discarded so the archive is responsive.
+              // A search input uniquely identifies the source filter block. Remove its largest compact ancestor.
+              for (const control of [...clone.querySelectorAll('input,select,textarea')]) {
+                let node = control;
+                let best = null;
+                for (let depth = 0; depth < 8 && node && node !== clone; depth++, node = node.parentElement) {
+                  const text = normText(node.innerText || node.textContent);
+                  const hits = tokenHits(text, sourceFilterTokens);
+                  if (hits >= 3 && text.length <= 1400) best = node;
+                  if (text.length > 1800) break;
+                }
+                if (best?.isConnected) best.remove();
+              }
+              removeCompactCluster(sourceFilterTokens, 4, 1600);
+
+              // Remove source page interaction from the card clone without deleting choice text blocks.
+              clone.querySelectorAll('a[href]').forEach((a) => { a.removeAttribute('href'); a.removeAttribute('target'); });
+              clone.querySelectorAll('*').forEach((el) => {
+                for (const attr of [...el.attributes]) if (/^on/i.test(attr.name)) el.removeAttribute(attr.name);
+              });
+
+              // Keep small absolute-position icon composites intact; normalize only page-sized positioning.
               clone.querySelectorAll('*').forEach((el) => {
                 const style = el.style;
                 if (!style) return;
-                if (style.position === 'fixed' || style.position === 'sticky') style.position = 'static';
-                style.maxWidth = '100%';
+                const width = parseFloat(style.width || '0');
+                const height = parseFloat(style.height || '0');
+                const compact = width > 0 && height > 0 && width <= 180 && height <= 180;
+                if (style.position === 'fixed' || style.position === 'sticky' || (style.position === 'absolute' && !compact)) {
+                  style.position = 'static';
+                  style.inset = '';
+                  style.left = '';
+                  style.right = '';
+                  style.top = '';
+                  style.bottom = '';
+                  style.transform = '';
+                }
                 style.boxSizing = 'border-box';
-                if (style.width && /px$/.test(style.width) && parseFloat(style.width) > innerWidth) style.width = '100%';
-                if (style.minWidth && /px$/.test(style.minWidth)) style.minWidth = '0';
-                style.left = '';
-                style.right = '';
-                style.top = '';
-                style.bottom = '';
-                style.transform = '';
+                if (!compact) {
+                  style.maxWidth = '100%';
+                  if (style.width && /px$/.test(style.width) && parseFloat(style.width) > 900) style.width = '100%';
+                  if (style.minWidth && /px$/.test(style.minWidth)) style.minWidth = '0';
+                }
               });
 
-              clone.querySelectorAll('a[href]').forEach((a) => {
-                a.removeAttribute('href');
-                a.removeAttribute('target');
-              });
-              clone.querySelectorAll('button').forEach((button) => {
-                button.disabled = true;
-                button.removeAttribute('onclick');
-              });
-              clone.querySelectorAll('input,textarea,select').forEach((el) => {
-                el.disabled = true;
-                el.removeAttribute('name');
-              });
-              clone.querySelectorAll('details').forEach((el) => el.setAttribute('open', ''));
-              clone.querySelectorAll('*').forEach((el) => {
-                for (const attr of [...el.attributes]) {
-                  if (/^on/i.test(attr.name)) el.removeAttribute(attr.name);
+              function entrySignature(node) {
+                const classes = [...node.classList].filter(Boolean).slice(0, 4).sort().join('.');
+                return `${node.tagName}|${classes}`;
+              }
+
+              function discoverEntries(container) {
+                let best = null;
+                const parents = [container, ...container.querySelectorAll('main,section,div,ul,ol')];
+                for (const parent of parents) {
+                  const direct = [...parent.children].filter((child) => {
+                    const text = normText(child.innerText || child.textContent);
+                    if (text.length < 45) return false;
+                    const style = child.style;
+                    return !child.hidden && style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
+                  });
+                  if (direct.length < 2) continue;
+                  const groups = new Map();
+                  for (const child of direct) {
+                    const sig = entrySignature(child);
+                    if (!groups.has(sig)) groups.set(sig, []);
+                    groups.get(sig).push(child);
+                  }
+                  for (const group of groups.values()) {
+                    if (group.length < 2) continue;
+                    const lengths = group.map((child) => normText(child.innerText || child.textContent).length);
+                    const avg = lengths.reduce((a,b) => a+b, 0) / lengths.length;
+                    if (avg < 55) continue;
+                    const score = group.length * 10000 + Math.min(avg, 1200) * 20 - Math.max(0, direct.length - group.length) * 80;
+                    if (!best || score > best.score) best = { parent, entries: group, score };
+                  }
                 }
+                if (best) return best;
+
+                const articles = [...container.querySelectorAll('article')].filter((node) => normText(node.innerText || node.textContent).length >= 45);
+                if (articles.length) return { parent: container, entries: articles, score: 1 };
+                const children = [...container.children].filter((node) => normText(node.innerText || node.textContent).length >= 45);
+                return { parent: container, entries: children, score: 0 };
+              }
+
+              const detected = discoverEntries(clone);
+              const clean = document.createElement('div');
+              clean.className = 'journey-captured-list';
+              const entryKeys = [];
+              detected.entries.forEach((entry, index) => {
+                const copy = entry.cloneNode(true);
+                const text = normText(copy.innerText || copy.textContent);
+                const key = hashText(text + '|' + [...copy.querySelectorAll('img')].map((img) => img.getAttribute('alt') || '').join('|'));
+                copy.setAttribute('data-journey-entry', '1');
+                copy.setAttribute('data-journey-index', String(index));
+                copy.setAttribute('data-journey-key', key);
+                entryKeys.push(key);
+                clean.appendChild(copy);
               });
 
               const backgrounds = [];
@@ -669,17 +850,64 @@ jobs:
               }
 
               return {
-                html: clone.outerHTML,
+                html: clean.outerHTML,
                 text: (root.innerText || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim(),
                 images,
-                backgrounds
+                backgrounds,
+                entryKeys,
+                entryCount: entryKeys.length
               };
             });
 
+            if (!localize) return snapshot;
             return localizeImagesInFragment(snapshot);
           }
 
-          function archivePage(language, arcanaSnapshot, eventSnapshot, capturedAt) {
+          function indicesForKeys(defaultKeys, filteredKeys) {
+            const set = new Set(filteredKeys || []);
+            const indices = [];
+            defaultKeys.forEach((key, index) => { if (set.has(key)) indices.push(index); });
+            return indices;
+          }
+
+          async function captureKoreanFilterMembership(defaultArcana, defaultEvents) {
+            const membership = {
+              category: {},
+              difficulty: { arcana: {}, events: {} }
+            };
+
+            for (const key of Object.keys(SOURCE_FILTER_ALIASES.category)) {
+              await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
+              await waitForJourneyReady();
+              await clickJourneyTab('events');
+              if (!await setSourceCategory(key)) throw new Error(`Could not classify Journey category ${key} from source.`);
+              const filtered = await captureCurrentMain({ localize:false });
+              const indices = indicesForKeys(defaultEvents.entryKeys, filtered.entryKeys);
+              if (!indices.length || indices.length >= defaultEvents.entryKeys.length) {
+                throw new Error(`Journey category ${key} classification was invalid (${indices.length}/${defaultEvents.entryKeys.length}).`);
+              }
+              membership.category[key] = indices;
+              console.log(`Journey category ${key}: ${indices.length} entries`);
+            }
+
+            for (const key of Object.keys(SOURCE_FILTER_ALIASES.difficulty)) {
+              for (const kind of ['arcana','events']) {
+                await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
+                await waitForJourneyReady();
+                await clickJourneyTab(kind);
+                if (!await setSourceDifficulty(key)) throw new Error(`Could not classify Journey ${kind} difficulty ${key} from source.`);
+                const filtered = await captureCurrentMain({ localize:false });
+                const defaults = kind === 'arcana' ? defaultArcana : defaultEvents;
+                const indices = indicesForKeys(defaults.entryKeys, filtered.entryKeys);
+                if (!indices.length) throw new Error(`Journey ${kind} difficulty ${key} classification returned no entries.`);
+                membership.difficulty[kind][key] = indices;
+                console.log(`Journey ${kind} difficulty ${key}: ${indices.length} entries`);
+              }
+            }
+            return membership;
+          }
+
+          function archivePage(language, arcanaSnapshot, eventSnapshot, capturedAt, filterMembership) {
             const labels = {
               ko: {
                 title:'여정', arcana:'아르카나', events:'여정 이벤트', difficulty:'난이도', all:'전체', easy:'이지', normal:'노말', hard:'하드',
@@ -692,8 +920,8 @@ jobs:
                 success:'Success Reward', failure:'Failure Reward', empty:'No matching results.'
               },
               ja: {
-                title:'旅程', arcana:'アルカナ', events:'旅程イベント', difficulty:'難易度', all:'全体', easy:'イージー', normal:'ノーマル', hard:'ハード',
-                search:'カード名、イベント名、報酬など...', reset:'リセット', raid:'討伐', aganon:'アガノン', flora:'フローラ', kalaid:'カライド', weather:'天気',
+                title:'旅程', arcana:'アルカナ', events:'旅程イベント', difficulty:'難易度', all:'すべて', easy:'イージー', normal:'ノーマル', hard:'ハード',
+                search:'カード名・イベント名・報酬など...', reset:'リセット', raid:'討伐', aganon:'アガノン', flora:'フローラ', kalaid:'カライド', weather:'天気',
                 success:'成功報酬', failure:'失敗報酬', empty:'検索結果がありません。'
               },
               'zh-TW': {
@@ -708,10 +936,12 @@ jobs:
               }
             }[language.key];
 
-            const categoryButtons = [
+            const categories = [
               ['all', labels.all], ['reset', labels.reset], ['raid', labels.raid], ['aganon', labels.aganon],
               ['flora', labels.flora], ['kalaid', labels.kalaid], ['weather', labels.weather]
-            ].map(([value, text], index) => `<button class="journey-chip${index === 0 ? ' is-active' : ''}" type="button" data-category="${value}">${text}</button>`).join('');
+            ];
+            const categoryButtons = categories.map(([key, label], index) => `<button class="journey-chip${index === 0 ? ' is-active' : ''}" type="button" data-category="${key}">${label}</button>`).join('');
+            const membershipJson = JSON.stringify(filterMembership || {}).replace(/</g, '\\u003c');
 
             return `<!doctype html>
           <html lang="${language.htmlLang}">
@@ -734,181 +964,104 @@ jobs:
               .difficulty-option{display:block;width:100%;border:0;border-radius:9px;background:transparent;color:var(--text);padding:10px 13px;text-align:left;font:inherit;font-weight:800;cursor:pointer}
               .difficulty-option.is-active{background:rgba(74,130,255,.18);color:#8fb2ff}
               .journey-search{width:100%;height:54px;border:1px solid #334159;border-radius:28px;background:#101a2d;color:var(--text);padding:0 20px;font:inherit;font-size:16px;font-weight:700;outline:none}
-              .journey-search::placeholder{color:#9ea8ba}
-              .journey-search:focus{border-color:#527fff;box-shadow:0 0 0 2px rgba(82,127,255,.12)}
+              .journey-search::placeholder{color:#9ea8ba}.journey-search:focus{border-color:#527fff;box-shadow:0 0 0 2px rgba(82,127,255,.12)}
               .journey-type-row{display:flex;justify-content:center;gap:20px;align-items:center;margin-top:10px;flex-wrap:wrap}
-              .journey-check{display:inline-flex;align-items:center;gap:7px;color:#c6cedd;font-size:16px;font-weight:750;cursor:pointer}
-              .journey-check input{width:22px;height:22px;margin:0;accent-color:#6a89ff}
+              .journey-check{display:inline-flex;align-items:center;gap:7px;color:#c6cedd;font-size:16px;font-weight:750;cursor:pointer}.journey-check input{width:22px;height:22px;margin:0;accent-color:#6a89ff}
               .journey-category-row{display:flex;justify-content:center;gap:7px;margin-top:10px;flex-wrap:wrap}
               .journey-chip{min-height:40px;padding:0 14px;border:1px solid #3a4251;border-radius:10px;background:#313744;color:#f0f2f7;font:inherit;font-size:14px;font-weight:900;cursor:pointer}
               .journey-chip.is-active{border-color:#367ad5;background:#145fae;color:#fff}
               .journey-legend{display:flex;justify-content:center;gap:4px;width:max-content;max-width:100%;margin:12px auto 0;padding:5px;border:1px solid #68707e;border-radius:9px;background:#03070f}
-              .legend-item{display:inline-flex;align-items:center;gap:8px;padding:3px 8px;color:#e6e9ef;font-size:13px;font-weight:800}
-              .legend-swatch{width:26px;height:25px;border-radius:5px;background:var(--green)}
-              .legend-item.failure .legend-swatch{background:var(--red)}
-              .archive-pane{max-width:1180px;margin:0 auto 14px;min-width:0}
-              .archive-pane[hidden]{display:none!important}
-              .snapshot-root{min-width:0;width:100%;max-width:100%!important;overflow:visible!important}
-              .snapshot-root>*{width:100%!important;max-width:100%!important;margin-left:0!important;margin-right:0!important;transform:none!important}
-              .snapshot-root *{max-width:100%!important;min-width:0!important;box-sizing:border-box!important}
-              .snapshot-root img{height:auto!important;object-fit:contain;vertical-align:middle}
-              .snapshot-root a{color:inherit;text-decoration:none}
-              .snapshot-root table{width:100%!important;max-width:100%!important;overflow-wrap:anywhere}
-              .snapshot-root [style*="position: fixed"],.snapshot-root [style*="position:fixed"],.snapshot-root [style*="position: sticky"],.snapshot-root [style*="position:sticky"]{position:static!important;inset:auto!important;transform:none!important}
-              .archive-dim{display:none;padding:34px 18px;text-align:center;color:var(--muted);font-weight:800}
-              .archive-pane.is-no-match .archive-dim{display:block}
-              .archive-pane.is-no-match .snapshot-root{display:none}
-              @media(max-width:700px){
-                body{padding:0 8px 24px}
-                .journey-top-row{grid-template-columns:132px minmax(0,1fr);gap:8px}
-                .difficulty-wrap summary,.journey-search{height:52px;min-height:52px}
-                .journey-search{padding:0 15px;font-size:14px}
-                .journey-type-row{gap:16px;margin-top:9px}.journey-check{font-size:14px}.journey-check input{width:21px;height:21px}
-                .journey-category-row{gap:6px;margin-top:9px}.journey-chip{min-height:38px;padding:0 11px;font-size:13px}
-                .journey-legend{margin-top:10px}.legend-item{font-size:12px}.legend-swatch{width:24px;height:23px}
-                .snapshot-root{font-size:14px!important}.archive-pane{margin-bottom:10px}
-              }
-              @media(max-width:390px){
-                body{padding-left:5px;padding-right:5px}.journey-top-row{grid-template-columns:112px minmax(0,1fr)}
-                .difficulty-wrap summary{padding:0 10px}.journey-search{font-size:13px}.journey-chip{padding:0 9px;font-size:12px}
-              }
+              .legend-item{display:inline-flex;align-items:center;gap:8px;padding:3px 8px;color:#e6e9ef;font-size:13px;font-weight:800}.legend-swatch{width:26px;height:25px;border-radius:5px;background:var(--green)}.legend-item.failure .legend-swatch{background:var(--red)}
+              .archive-pane{max-width:1180px;margin:0 auto 14px;min-width:0}.archive-pane[hidden]{display:none!important}
+              .journey-captured-list{display:grid!important;gap:12px!important;width:100%!important;max-width:100%!important;margin:0!important;padding:0!important}
+              [data-journey-entry="1"]{width:100%!important;max-width:100%!important;min-width:0!important;margin-left:0!important;margin-right:0!important;box-sizing:border-box!important;transform:none!important}
+              [data-journey-entry="1"] *{max-width:100%;box-sizing:border-box}
+              [data-journey-entry="1"] img[data-journey-image="1"]{display:inline-block!important;width:min(var(--journey-img-width,48px),96px)!important;max-width:96px!important;height:auto!important;object-fit:contain!important;vertical-align:middle!important;flex:0 0 auto!important}
+              [data-journey-entry="1"] a{color:inherit;text-decoration:none}
+              [data-journey-entry="1"] table{width:100%!important;max-width:100%!important;overflow-wrap:anywhere}
+              .archive-dim{display:none;padding:34px 18px;text-align:center;color:var(--muted);font-weight:800}.archive-pane.is-no-match .archive-dim{display:block}.archive-pane.is-no-match .journey-captured-list{display:none!important}
+              @media(max-width:700px){body{padding:0 8px 24px}.journey-top-row{grid-template-columns:132px minmax(0,1fr);gap:8px}.difficulty-wrap summary,.journey-search{height:52px;min-height:52px}.journey-search{padding:0 15px;font-size:14px}.journey-type-row{gap:16px;margin-top:9px}.journey-check{font-size:14px}.journey-check input{width:21px;height:21px}.journey-category-row{gap:6px;margin-top:9px}.journey-chip{min-height:38px;padding:0 11px;font-size:13px}.journey-legend{margin-top:10px}.legend-item{font-size:12px}.legend-swatch{width:24px;height:23px}.archive-pane{margin-bottom:10px}}
+              @media(max-width:390px){body{padding-left:5px;padding-right:5px}.journey-top-row{grid-template-columns:112px minmax(0,1fr)}.difficulty-wrap summary{padding:0 10px}.journey-search{font-size:13px}.journey-chip{padding:0 9px;font-size:12px}}
             </style>
           </head>
           <body>
             <section class="journey-controls" aria-label="${labels.title}">
               <div class="journey-top-row">
-                <details class="difficulty-wrap" id="difficulty-wrap">
-                  <summary>${labels.difficulty}</summary>
-                  <div class="difficulty-menu">
-                    <button class="difficulty-option is-active" type="button" data-difficulty="all">${labels.all}</button>
-                    <button class="difficulty-option" type="button" data-difficulty="easy">${labels.easy}</button>
-                    <button class="difficulty-option" type="button" data-difficulty="normal">${labels.normal}</button>
-                    <button class="difficulty-option" type="button" data-difficulty="hard">${labels.hard}</button>
-                  </div>
-                </details>
+                <details class="difficulty-wrap" id="difficulty-wrap"><summary>${labels.difficulty}</summary><div class="difficulty-menu">
+                  <button class="difficulty-option is-active" type="button" data-difficulty="all">${labels.all}</button><button class="difficulty-option" type="button" data-difficulty="easy">${labels.easy}</button><button class="difficulty-option" type="button" data-difficulty="normal">${labels.normal}</button><button class="difficulty-option" type="button" data-difficulty="hard">${labels.hard}</button>
+                </div></details>
                 <input class="journey-search" id="journey-search" type="search" placeholder="${labels.search}" autocomplete="off">
               </div>
-              <div class="journey-type-row">
-                <label class="journey-check"><input id="toggle-arcana" type="checkbox" checked> ${labels.arcana}</label>
-                <label class="journey-check"><input id="toggle-events" type="checkbox" checked> ${labels.events}</label>
-              </div>
+              <div class="journey-type-row"><label class="journey-check"><input id="toggle-arcana" type="checkbox" checked> ${labels.arcana}</label><label class="journey-check"><input id="toggle-events" type="checkbox" checked> ${labels.events}</label></div>
               <div class="journey-category-row">${categoryButtons}</div>
-              <div class="journey-legend" aria-label="reward legend">
-                <span class="legend-item"><span class="legend-swatch"></span>${labels.success}</span>
-                <span class="legend-item failure"><span class="legend-swatch"></span>${labels.failure}</span>
-              </div>
+              <div class="journey-legend" aria-label="reward legend"><span class="legend-item"><span class="legend-swatch"></span>${labels.success}</span><span class="legend-item failure"><span class="legend-swatch"></span>${labels.failure}</span></div>
             </section>
-
-            <section class="archive-pane" id="pane-arcana">
-              <div class="snapshot-root">${arcanaSnapshot.html}</div>
-              <div class="archive-dim">${labels.empty}</div>
-            </section>
-            <section class="archive-pane" id="pane-events">
-              <div class="snapshot-root">${eventSnapshot.html}</div>
-              <div class="archive-dim">${labels.empty}</div>
-            </section>
-
+            <section class="archive-pane" id="pane-arcana"><div class="snapshot-root">${arcanaSnapshot.html}</div><div class="archive-dim">${labels.empty}</div></section>
+            <section class="archive-pane" id="pane-events"><div class="snapshot-root">${eventSnapshot.html}</div><div class="archive-dim">${labels.empty}</div></section>
             <script>
               (() => {
+                const membership = ${membershipJson};
                 const input = document.querySelector('#journey-search');
                 const difficultyWrap = document.querySelector('#difficulty-wrap');
                 const difficultyButtons = [...document.querySelectorAll('.difficulty-option')];
                 const categoryButtons = [...document.querySelectorAll('.journey-chip')];
                 const toggleArcana = document.querySelector('#toggle-arcana');
                 const toggleEvents = document.querySelector('#toggle-events');
-                const panes = { arcana: document.querySelector('#pane-arcana'), events: document.querySelector('#pane-events') };
+                const panes = { arcana:document.querySelector('#pane-arcana'), events:document.querySelector('#pane-events') };
+                const entries = {
+                  arcana:[...panes.arcana.querySelectorAll('[data-journey-entry="1"]')],
+                  events:[...panes.events.querySelectorAll('[data-journey-entry="1"]')]
+                };
                 let category = 'all';
                 let difficulty = 'all';
 
-                const tokenSets = {
-                  category: {
-                    reset:['리세트','reset','リセット','重置'], raid:['토벌','raid','討伐'], aganon:['아가논','aganon','アガノン','阿加農','阿加农'],
-                    flora:['플로라','flora','フローラ','芙蘿拉','芙萝拉'], kalaid:['칼라이드','kalaid','カライド','卡萊德','卡莱德'], weather:['날씨','weather','天気','天氣','天气']
-                  },
-                  difficulty: {
-                    easy:['이지','easy','イージー','簡單','简单'], normal:['노말','normal','ノーマル','普通'], hard:['하드','hard','ハード','困難','困难']
-                  }
-                };
-
-                function chooseEntries(root) {
-                  const selectors = ['article','li','section','div'];
-                  const scored = [];
-                  for (const selector of selectors) {
-                    for (const node of root.querySelectorAll(selector)) {
-                      const children = [...node.children].filter((child) => (child.innerText || '').trim().length > 12);
-                      if (children.length < 3) continue;
-                      const total = children.reduce((sum, child) => sum + (child.innerText || '').trim().length, 0);
-                      const score = children.length * 100 + Math.min(total, 5000) - (node.innerText || '').length * .02;
-                      scored.push({ node, children, score });
-                    }
-                  }
-                  scored.sort((a,b) => b.score - a.score);
-                  return scored[0]?.children || [...root.children];
+                function searchable(node) {
+                  const alt = [...node.querySelectorAll('img')].map((img) => img.getAttribute('alt') || '').join(' ');
+                  return ((node.innerText || '') + ' ' + alt + ' ' + (node.getAttribute('data-journey-key') || '')).replace(/\s+/g,' ').trim().toLocaleLowerCase();
                 }
-
-                const entries = {
-                  arcana: chooseEntries(panes.arcana.querySelector('.snapshot-root')),
-                  events: chooseEntries(panes.events.querySelector('.snapshot-root'))
-                };
-
-                function haystack(node) {
-                  return ((node.innerText || '') + ' ' + (node.outerHTML || '')).toLocaleLowerCase();
+                function inMembership(kind, group, key, index) {
+                  if (key === 'all') return true;
+                  const list = group === 'category' ? membership?.category?.[key] : membership?.difficulty?.[kind]?.[key];
+                  if (!Array.isArray(list)) return true;
+                  return list.includes(index);
                 }
-
-                function markerAvailability(list, tokens) {
-                  return list.some((node) => tokens.some((token) => haystack(node).includes(token.toLocaleLowerCase())));
-                }
-
                 function applyPane(kind) {
                   const pane = panes[kind];
-                  const list = entries[kind];
-                  const query = (input.value || '').trim().toLocaleLowerCase();
-                  const categoryTokens = category === 'all' ? [] : (tokenSets.category[category] || []);
-                  const difficultyTokens = difficulty === 'all' ? [] : (tokenSets.difficulty[difficulty] || []);
-                  const hasCategoryMarkers = categoryTokens.length && markerAvailability(list, categoryTokens);
-                  const hasDifficultyMarkers = difficultyTokens.length && markerAvailability(list, difficultyTokens);
+                  const query = (input.value || '').replace(/\s+/g,' ').trim().toLocaleLowerCase();
                   let visible = 0;
-
-                  for (const node of list) {
-                    const text = haystack(node);
-                    const searchMatch = !query || text.includes(query);
-                    const categoryMatch = kind !== 'events' || !hasCategoryMarkers || categoryTokens.some((token) => text.includes(token.toLocaleLowerCase()));
-                    const difficultyMatch = !hasDifficultyMarkers || difficultyTokens.some((token) => text.includes(token.toLocaleLowerCase()));
+                  entries[kind].forEach((node, index) => {
+                    const searchMatch = !query || searchable(node).includes(query);
+                    const categoryMatch = kind === 'arcana' || inMembership(kind, 'category', category, index);
+                    const difficultyMatch = inMembership(kind, 'difficulty', difficulty, index);
                     const show = searchMatch && categoryMatch && difficultyMatch;
+                    node.hidden = !show;
                     node.style.display = show ? '' : 'none';
                     if (show) visible += 1;
-                  }
-                  pane.classList.toggle('is-no-match', list.length > 0 && visible === 0);
+                  });
+                  pane.classList.toggle('is-no-match', entries[kind].length > 0 && visible === 0);
                 }
-
                 function applyAll() {
                   panes.arcana.hidden = !toggleArcana.checked;
                   panes.events.hidden = !toggleEvents.checked;
                   if (toggleArcana.checked) applyPane('arcana');
                   if (toggleEvents.checked) applyPane('events');
                 }
-
                 input.addEventListener('input', applyAll);
+                input.addEventListener('search', applyAll);
                 toggleArcana.addEventListener('change', applyAll);
                 toggleEvents.addEventListener('change', applyAll);
-
                 categoryButtons.forEach((button) => button.addEventListener('click', () => {
                   category = button.dataset.category || 'all';
                   categoryButtons.forEach((item) => item.classList.toggle('is-active', item === button));
                   applyAll();
                 }));
-
                 difficultyButtons.forEach((button) => button.addEventListener('click', () => {
                   difficulty = button.dataset.difficulty || 'all';
                   difficultyButtons.forEach((item) => item.classList.toggle('is-active', item === button));
                   difficultyWrap.open = false;
                   applyAll();
                 }));
-
-                document.addEventListener('click', (event) => {
-                  if (difficultyWrap.open && !difficultyWrap.contains(event.target)) difficultyWrap.open = false;
-                });
-
+                document.addEventListener('click', (event) => { if (difficultyWrap.open && !difficultyWrap.contains(event.target)) difficultyWrap.open = false; });
                 applyAll();
               })();
             </script>
@@ -919,62 +1072,53 @@ jobs:
           await page.goto(SOURCE_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
           await waitForJourneyReady();
           const snapshots = {};
+          let filterMembership = null;
 
           for (const language of LANGUAGES) {
             console.log(`\n=== Capture ${language.key} ===`);
             await page.goto(SOURCE_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
             await waitForJourneyReady();
             const changed = await selectLanguage(language.label);
-            if (!changed && language.key !== 'ko') {
-              console.warn(`Language selector did not expose ${language.label}; capturing the currently rendered locale instead.`);
-            }
+            if (!changed && language.key !== 'ko') console.warn(`Language selector did not expose ${language.label}; capturing the currently rendered locale instead.`);
             await waitForJourneyReady();
 
-            // Arcana tab snapshot.
             await clickJourneyTab('arcana');
             const arcana = await captureCurrentMain();
-            console.log(`${language.key} arcana text=${arcana.text.length}, images=${arcana.images.length}`);
+            console.log(`${language.key} arcana text=${arcana.text.length}, entries=${arcana.entryCount}, images=${arcana.images.length}`);
 
-            // Journey-event tab snapshot. Default filters are kept at "All" so every difficulty/category is included.
             await clickJourneyTab('events');
             const events = await captureCurrentMain();
-            console.log(`${language.key} events text=${events.text.length}, images=${events.images.length}`);
+            console.log(`${language.key} events text=${events.text.length}, entries=${events.entryCount}, images=${events.images.length}`);
 
             if (language.key === 'ko') {
               const mustInclude = ['훈련의 방향성', '리세트의 일과', '오늘의 날씨', '의뢰 실패', '두통이 생기다'];
               const missing = mustInclude.filter((token) => !events.text.includes(token));
-              if (events.text.length < 12000 || missing.length) {
-                throw new Error(`Korean Journey-event snapshot looks incomplete. text=${events.text.length}, missing=${missing.join(', ')}`);
-              }
-              if (arcana.text.length < 2500) {
-                throw new Error(`Korean Arcana Journey snapshot looks incomplete. text=${arcana.text.length}`);
-              }
+              if (events.text.length < 12000 || missing.length) throw new Error(`Korean Journey-event snapshot looks incomplete. text=${events.text.length}, missing=${missing.join(', ')}`);
+              if (arcana.text.length < 2500) throw new Error(`Korean Arcana Journey snapshot looks incomplete. text=${arcana.text.length}`);
+              if (arcana.entryCount < 2 || events.entryCount < 4) throw new Error(`Journey card extraction looks incomplete: arcana=${arcana.entryCount}, events=${events.entryCount}`);
+              filterMembership = await captureKoreanFilterMembership(arcana, events);
             }
 
-            const capturedAt = new Date().toISOString();
+            if (!filterMembership) throw new Error('Journey filter membership was not captured from the Korean source pass.');
 
-            // Data snapshots must be self-contained. Tracker hosts are stripped instead of archived.
+            const capturedAt = new Date().toISOString();
             const forbiddenRuntimeHosts = ['myhits.vercel.app', 'hits.seeyoufarm.com', 'star-savior-arcana-db.pages.dev'];
             for (const [kind, snapshot] of [['arcana', arcana], ['events', events]]) {
               const leftovers = forbiddenRuntimeHosts.filter((host) => snapshot.html.includes(host));
-              if (leftovers.length) {
-                throw new Error(`${language.key} ${kind} snapshot still contains forbidden runtime hosts: ${leftovers.join(', ')}`);
-              }
+              if (leftovers.length) throw new Error(`${language.key} ${kind} snapshot still contains forbidden runtime hosts: ${leftovers.join(', ')}`);
             }
 
             const langDir = path.join(OUT_DIR, language.key);
-            fs.mkdirSync(langDir, { recursive: true });
-            // Keep both the ready-to-display page and raw local snapshots so the source site is never needed for future redesigns/parsing.
-            fs.writeFileSync(path.join(langDir, 'index.html'), archivePage(language, arcana, events, capturedAt), 'utf8');
+            fs.mkdirSync(langDir, { recursive:true });
+            fs.writeFileSync(path.join(langDir, 'index.html'), archivePage(language, arcana, events, capturedAt, filterMembership), 'utf8');
             fs.writeFileSync(path.join(langDir, 'arcana.html'), arcana.html, 'utf8');
             fs.writeFileSync(path.join(langDir, 'events.html'), events.html, 'utf8');
             fs.writeFileSync(path.join(langDir, 'arcana.txt'), arcana.text, 'utf8');
             fs.writeFileSync(path.join(langDir, 'events.txt'), events.text, 'utf8');
             snapshots[language.key] = {
-              arcanaTextLength: arcana.text.length,
-              eventTextLength: events.text.length,
-              arcanaImages: arcana.images.length,
-              eventImages: events.images.length
+              arcanaTextLength:arcana.text.length, eventTextLength:events.text.length,
+              arcanaEntries:arcana.entryCount, eventEntries:events.entryCount,
+              arcanaImages:arcana.images.length, eventImages:events.images.length
             };
           }
 
@@ -1028,6 +1172,34 @@ jobs:
           if (!text.includes('훈련의 방향성') || !text.includes('두통이 생기다')) {
             throw new Error('Local Journey events were not available during offline verification.');
           }
+
+
+          const duplicatedControls = await page.locator('.snapshot-root input,.snapshot-root select,.snapshot-root textarea').count();
+          if (duplicatedControls) throw new Error(`Source filter controls leaked into local snapshots (${duplicatedControls}).`);
+
+          const arcanaEntries = page.locator('#pane-arcana [data-journey-entry="1"]');
+          const eventEntries = page.locator('#pane-events [data-journey-entry="1"]');
+          const allArcanaCount = await arcanaEntries.count();
+          const allEventCount = await eventEntries.count();
+          if (allArcanaCount < 2 || allEventCount < 4) throw new Error(`Local Journey entry extraction was too small: arcana=${allArcanaCount}, events=${allEventCount}`);
+
+          const searchInput = page.locator('#journey-search');
+          await searchInput.fill('린');
+          await page.waitForTimeout(100);
+          const visibleArcanaAfterSearch = await arcanaEntries.evaluateAll((nodes) => nodes.filter((node) => !node.hidden && getComputedStyle(node).display !== 'none').length);
+          if (!visibleArcanaAfterSearch) throw new Error('Local Journey search did not find Arcana entries for 린.');
+          await searchInput.fill('');
+          await page.waitForTimeout(100);
+
+          const resetButton = page.locator('.journey-chip[data-category="reset"]');
+          await resetButton.click();
+          await page.waitForTimeout(100);
+          const resetVisible = await eventEntries.evaluateAll((nodes) => nodes.filter((node) => !node.hidden && getComputedStyle(node).display !== 'none').length);
+          if (!resetVisible || resetVisible >= allEventCount) throw new Error(`Reset category filter did not narrow Journey events (${resetVisible}/${allEventCount}).`);
+          await page.locator('.journey-chip[data-category="all"]').click();
+
+          const imageWidths = await page.locator('[data-journey-entry="1"] img[data-journey-image="1"]').evaluateAll((nodes) => nodes.map((node) => node.getBoundingClientRect().width));
+          if (imageWidths.some((width) => width > 100.5)) throw new Error(`Journey image exceeded local size cap: ${Math.max(...imageWidths)}`);
 
           const arcanaText = (await page.locator('#pane-arcana').innerText()).trim();
           if (arcanaText.length < 2000) throw new Error(`Local Journey Arcana archive was too small (${arcanaText.length}).`);
