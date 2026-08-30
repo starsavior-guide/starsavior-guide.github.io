@@ -1,5 +1,4 @@
 name: Backup Journey database
-# v75: archive only Journey cards; local search/category/difficulty filters use captured source membership
 
 on:
   push:
@@ -30,39 +29,59 @@ jobs:
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Capture Journey database locally
+      - name: Capture structured Journey database
         shell: bash
         run: |
-          node --input-type=module <<'NODE'
+          cat > /tmp/capture-journey.mjs <<'NODE'
           import fs from 'node:fs';
           import path from 'node:path';
           import crypto from 'node:crypto';
           import { chromium } from 'playwright';
-
+          
           const ROOT = process.cwd();
           const SOURCE_URL = 'https://star-savior-arcana-db.pages.dev/journey';
           const OUT_DIR = path.join(ROOT, 'data', 'journey');
           const ASSET_DIR = path.join(ROOT, 'data', 'journey-assets');
           const META_PATH = path.join(OUT_DIR, 'backup-meta.json');
-
+          
           const LANGUAGES = [
-            { key: 'ko', label: '한국어', htmlLang: 'ko-KR', arcana: '아르카나', events: '여정 이벤트', search: '이름, 이벤트, 보상 검색' },
-            { key: 'en', label: 'English', htmlLang: 'en', arcana: 'Arcana', events: 'Journey Events', search: 'Search names, events, rewards' },
-            { key: 'ja', label: '日本語', htmlLang: 'ja', arcana: 'アルカナ', events: '旅程イベント', search: '名前・イベント・報酬を検索' },
-            { key: 'zh-TW', label: '繁體中文', htmlLang: 'zh-Hant', arcana: '阿爾克那', events: '旅程事件', search: '搜尋名稱、事件、獎勵' },
-            { key: 'zh-CN', label: '简体中文', htmlLang: 'zh-Hans', arcana: '阿尔克那', events: '旅程事件', search: '搜索名称、事件、奖励' }
+            { key: 'ko', label: '한국어' },
+            { key: 'en', label: 'English' },
+            { key: 'ja', label: '日本語' },
+            { key: 'zh-TW', label: '繁體中文' },
+            { key: 'zh-CN', label: '简体中文' }
           ];
-
+          
+          const TAB_PATTERNS = {
+            arcana: [/^아르카나$/i, /^arcana$/i, /^アルカナ$/i, /^阿爾克那$/i, /^阿尔克那$/i, /아르카나/i, /arcana/i, /アルカナ/i, /阿爾克那/i, /阿尔克那/i],
+            events: [/여정\s*이벤트/i, /journey\s*events?/i, /旅程\s*イベント/i, /旅程\s*事件/i, /event/i]
+          };
+          
+          const CATEGORY_ALIASES = {
+            reset: ['리세트','Reset','リセット','重置'],
+            raid: ['토벌','Raid','討伐','讨伐'],
+            aganon: ['아가논','Aganon','アガノン','阿加農','阿加农'],
+            flora: ['플로라','Flora','フローラ','芙蘿拉','芙萝拉'],
+            kalaid: ['칼라이드','Kalaid','カライド','卡萊德','卡莱德'],
+            weather: ['날씨','Weather','天気','天氣','天气']
+          };
+          
+          const DIFFICULTY_TEXT = {
+            easy: ['이지','Easy','イージー','簡單','简单'],
+            normal: ['노말','Normal','ノーマル','普通'],
+            hard: ['하드','Hard','ハード','困難','困难']
+          };
+          
           fs.rmSync(OUT_DIR, { recursive: true, force: true });
           fs.rmSync(ASSET_DIR, { recursive: true, force: true });
           fs.mkdirSync(OUT_DIR, { recursive: true });
           fs.mkdirSync(ASSET_DIR, { recursive: true });
-
+          
           function normalize(value) {
             return String(value ?? '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
           }
-
-          function safeFilename(value, fallback = 'asset') {
+          
+          function safeFilename(value, fallback = 'journey-asset') {
             const cleaned = normalize(value)
               .replace(/^Image\s*/i, '')
               .replace(/[\\/:*?"<>|]/g, ' ')
@@ -72,7 +91,7 @@ jobs:
               .trim();
             return cleaned || fallback;
           }
-
+          
           function extensionFrom(url, contentType = '') {
             try {
               const ext = path.extname(new URL(url).pathname).toLowerCase();
@@ -84,29 +103,25 @@ jobs:
             if (/gif/i.test(contentType)) return '.gif';
             if (/svg/i.test(contentType)) return '.svg';
             if (/avif/i.test(contentType)) return '.avif';
-            if (/woff2/i.test(contentType)) return '.woff2';
-            if (/woff/i.test(contentType)) return '.woff';
-            if (/ttf/i.test(contentType)) return '.ttf';
             return '.bin';
           }
-
+          
+          function hash(value) {
+            return crypto.createHash('sha1').update(String(value)).digest('hex').slice(0, 12);
+          }
+          
           const browser = await chromium.launch({ headless: true });
-          const context = await browser.newContext({
-            locale: 'ko-KR',
-            viewport: { width: 1440, height: 1800 },
-            deviceScaleFactor: 1
-          });
+          const context = await browser.newContext({ locale: 'ko-KR', viewport: { width: 1180, height: 1800 }, deviceScaleFactor: 1 });
           const page = await context.newPage();
           page.setDefaultTimeout(45000);
-
+          
           const assetMap = new Map();
           const usedNames = new Map();
-          const captureLog = [];
-
+          const savedTabPaths = { arcana: null, events: null };
+          
           async function downloadAsset(url, preferredName = '') {
-            if (!url || !/^https?:\/\//i.test(url)) return url;
+            if (!url || !/^https?:\/\//i.test(url)) return null;
             if (assetMap.has(url)) return assetMap.get(url);
-
             let response;
             try {
               response = await context.request.get(url, { timeout: 45000 });
@@ -114,347 +129,136 @@ jobs:
             } catch (error) {
               throw new Error(`Journey asset download failed: ${url} (${error.message})`);
             }
-
             const body = await response.body();
             if (body.length < 20) throw new Error(`Journey asset was too small: ${url}`);
             const contentType = response.headers()['content-type'] || '';
             const ext = extensionFrom(url, contentType);
-            const hash = crypto.createHash('sha256').update(body).digest('hex').slice(0, 10);
-            let base = safeFilename(preferredName || path.basename(new URL(url).pathname, path.extname(new URL(url).pathname)), hash);
+            const bodyHash = crypto.createHash('sha256').update(body).digest('hex').slice(0, 10);
+            let base = safeFilename(preferredName || path.basename(new URL(url).pathname, path.extname(new URL(url).pathname)), bodyHash);
             let filename = `${base}${ext}`;
-
-            const previous = usedNames.get(filename);
-            if (previous && previous !== hash) filename = `${base}-${hash}${ext}`;
-            usedNames.set(filename, hash);
-
-            const dest = path.join(ASSET_DIR, filename);
-            if (!fs.existsSync(dest)) fs.writeFileSync(dest, body);
-            const local = `../../journey-assets/${encodeURIComponent(filename).replaceAll('%2F', '/')}`;
-            assetMap.set(url, local);
-            return local;
+            if (usedNames.has(filename) && usedNames.get(filename) !== bodyHash) filename = `${base}-${bodyHash}${ext}`;
+            usedNames.set(filename, bodyHash);
+            const target = path.join(ASSET_DIR, filename);
+            if (!fs.existsSync(target)) fs.writeFileSync(target, body);
+            assetMap.set(url, filename);
+            return filename;
           }
-
-          async function waitForJourneyReady() {
+          
+          async function waitReady() {
             await page.waitForFunction(() => (document.body?.innerText || '').trim().length > 1500, null, { timeout: 45000 });
-            try { await page.waitForLoadState('networkidle', { timeout: 15000 }); } catch (_) {}
-            await page.waitForTimeout(1000);
+            try { await page.waitForLoadState('networkidle', { timeout: 12000 }); } catch (_) {}
+            await page.waitForTimeout(700);
           }
-
+          
           async function deepScroll() {
             let stable = 0;
-            let lastHeight = 0;
-            for (let i = 0; i < 90; i++) {
-              const info = await page.evaluate(() => {
+            let previous = 0;
+            for (let i = 0; i < 80; i++) {
+              const height = await page.evaluate(() => {
                 window.scrollTo(0, document.documentElement.scrollHeight);
-                return { height: document.documentElement.scrollHeight, y: window.scrollY };
+                return document.documentElement.scrollHeight;
               });
-              await page.waitForTimeout(180);
-              if (info.height === lastHeight) stable += 1;
-              else stable = 0;
-              lastHeight = info.height;
-              if (stable >= 5) break;
+              await page.waitForTimeout(120);
+              stable = height === previous ? stable + 1 : 0;
+              previous = height;
+              if (stable >= 4) break;
             }
             await page.evaluate(() => window.scrollTo(0, 0));
-            await page.waitForTimeout(250);
+            await page.waitForTimeout(180);
           }
-
-          async function expandMoreButtons() {
-            const morePattern = /^(더\s*보기|더보기|Show more|Load more|もっと見る|顯示更多|显示更多)/i;
-            for (let round = 0; round < 40; round++) {
-              const buttons = page.locator('button');
+          
+          async function expandAll() {
+            const skip = new Set(['전체','이지','노말','하드','아르카나','여정 이벤트','리세트','토벌','아가논','플로라','칼라이드','날씨','한국어','English','日本語','繁體中文','简体中文']);
+            for (let round = 0; round < 6; round++) {
+              const buttons = page.locator('button[aria-expanded="false"]');
               const count = await buttons.count();
-              let clicked = 0;
+              let clicks = 0;
               for (let i = 0; i < count; i++) {
                 const button = buttons.nth(i);
                 let text = '';
                 try { text = normalize(await button.innerText()); } catch (_) { continue; }
-                if (!morePattern.test(text)) continue;
+                if (skip.has(text) || text.length > 100) continue;
                 try {
                   if (await button.isVisible()) {
-                    await button.click({ timeout: 2500 });
-                    clicked += 1;
-                    await page.waitForTimeout(180);
+                    await button.click({ timeout: 1800 });
+                    clicks++;
+                    await page.waitForTimeout(60);
                   }
                 } catch (_) {}
               }
-              if (!clicked) break;
-              await deepScroll();
+              if (!clicks) break;
             }
+            await deepScroll();
           }
-
-          async function expandContentAccordions() {
-            const skip = new Set([
-              '전체','이지','노말','하드','아르카나','여정 이벤트','리세트','토벌','아가논','플로라','칼라이드','날씨',
-              '한국어','English','日本語','繁體中文','简体中文',
-              'All','Easy','Normal','Hard','Arcana','Journey Events'
-            ]);
-            for (let round = 0; round < 8; round++) {
-              const collapsed = page.locator('button[aria-expanded="false"]');
-              const count = await collapsed.count();
-              let clicked = 0;
-              for (let i = 0; i < count; i++) {
-                const button = collapsed.nth(i);
-                let text = '';
-                try { text = normalize(await button.innerText()); } catch (_) { continue; }
-                if (skip.has(text) || text.length > 120) continue;
-                try {
-                  if (await button.isVisible()) {
-                    await button.click({ timeout: 2000 });
-                    clicked += 1;
-                    await page.waitForTimeout(80);
-                  }
-                } catch (_) {}
-              }
-              if (!clicked) break;
-            }
-          }
-
-          // The source site changes tab labels between locales.  Record the actual
-          // clickable DOM path from the first (Korean) capture and reuse that same
-          // structural position for every other language.  Text matching remains a
-          // fallback for future source-layout changes.
-          const journeyTabFallbackPaths = { arcana: null, events: null };
-
-          const JOURNEY_TAB_PATTERNS = {
-            arcana: [
-              /^아르카나(?:\s|$)/i,
-              /^arcana(?:\s|$)/i,
-              /^アルカナ(?:\s|$)/i,
-              /^阿爾克那(?:\s|$)/i,
-              /^阿尔克那(?:\s|$)/i,
-              /아르카나/i,
-              /arcana/i,
-              /アルカナ/i,
-              /阿爾克那/i,
-              /阿尔克那/i
-            ],
-            events: [
-              /여정\s*이벤트/i,
-              /journey\s*events?/i,
-              /旅程\s*イベント/i,
-              /旅程\s*事件/i,
-              /여정.*이벤트/i,
-              /event/i
-            ]
-          };
-
-          async function journeyControlDiagnostics() {
-            return await page.evaluate(() => {
-              const norm = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
-              const selector = [
-                '[role="tab"]',
-                'button',
-                'a',
-                '[role="button"]',
-                'label',
-                '[aria-selected]',
-                '[aria-controls]',
-                '[data-state]',
-                '[data-value]',
-                'div',
-                'span'
-              ].join(',');
-              const seen = new Set();
-              const items = [];
-              for (const element of document.querySelectorAll(selector)) {
-                if (!(element instanceof HTMLElement)) continue;
-                const rect = element.getBoundingClientRect();
-                const style = getComputedStyle(element);
-                const visible = rect.width > 0 && rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none';
-                if (!visible) continue;
-                const text = norm(element.innerText || element.textContent);
-                const aria = norm(element.getAttribute('aria-label'));
-                const title = norm(element.getAttribute('title'));
-                const value = norm(element.getAttribute('data-value'));
-                const key = [element.tagName, element.getAttribute('role') || '', text, aria, title, value].join('|');
-                if (seen.has(key)) continue;
-                seen.add(key);
-                items.push({
-                  tag: element.tagName.toLowerCase(),
-                  role: element.getAttribute('role') || '',
-                  text: text.slice(0, 120),
-                  aria: aria.slice(0, 120),
-                  title: title.slice(0, 120),
-                  value: value.slice(0, 120),
-                  selected: element.getAttribute('aria-selected'),
-                  state: element.getAttribute('data-state')
-                });
-              }
-              return items.slice(0, 120);
-            });
-          }
-
+          
           async function clickJourneyTab(kind) {
-            const patterns = JOURNEY_TAB_PATTERNS[kind];
-            if (!patterns) throw new Error(`Unknown Journey tab kind: ${kind}`);
-
-            async function settleAfterTabClick() {
-              await page.waitForTimeout(750);
-              try { await page.waitForLoadState('networkidle', { timeout: 6000 }); } catch (_) {}
-              await expandMoreButtons();
-              await expandContentAccordions();
-              await deepScroll();
-            }
-
-            // After the Korean pass we know the exact clickable node for each tab.
-            // Reusing its child-index path is locale independent, unlike translated text.
-            const fallbackPath = journeyTabFallbackPaths[kind];
-            if (Array.isArray(fallbackPath) && fallbackPath.length) {
-              const fallback = await page.evaluate((domPath) => {
-                const norm = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
-                let element = document.body;
-                for (const childIndex of domPath) {
-                  if (!element || !element.children || !element.children[childIndex]) {
-                    return { clicked: false, reason: 'path-missing' };
-                  }
-                  element = element.children[childIndex];
+            const patterns = TAB_PATTERNS[kind].map((re) => ({ source: re.source, flags: re.flags }));
+            const savedPath = savedTabPaths[kind];
+            const result = await page.evaluate(({ patterns, savedPath }) => {
+              const norm = (v) => String(v || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+              const visible = (el) => {
+                if (!(el instanceof HTMLElement)) return false;
+                const r = el.getBoundingClientRect();
+                const s = getComputedStyle(el);
+                return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+              };
+              const resolvePath = (path) => {
+                let node = document.body;
+                for (const index of path || []) {
+                  node = node?.children?.[index];
+                  if (!node) return null;
                 }
-                if (!(element instanceof HTMLElement)) return { clicked: false, reason: 'not-html-element' };
-                const clickable = element.closest('button,a,[role="tab"],[role="button"],label') || element;
-                const rect = clickable.getBoundingClientRect();
-                const style = getComputedStyle(clickable);
-                if (!(rect.width > 0 && rect.height > 0) || style.visibility === 'hidden' || style.display === 'none') {
-                  return { clicked: false, reason: 'not-visible' };
-                }
-                clickable.scrollIntoView({ block: 'center', inline: 'nearest' });
-                clickable.click();
-                return {
-                  clicked: true,
-                  tag: clickable.tagName.toLowerCase(),
-                  role: clickable.getAttribute('role') || '',
-                  text: norm(clickable.innerText || clickable.textContent).slice(0, 120),
-                  aria: norm(clickable.getAttribute('aria-label')).slice(0, 120),
-                  selected: clickable.getAttribute('aria-selected'),
-                  state: clickable.getAttribute('data-state')
-                };
-              }, fallbackPath);
-
-              if (fallback.clicked) {
-                console.log(`Journey ${kind} tab via saved DOM path: ${JSON.stringify(fallback)}`);
-                await settleAfterTabClick();
-                return;
-              }
-              console.warn(`Saved Journey ${kind} tab path failed (${fallback.reason}); falling back to label/structure detection.`);
-            }
-
-            const patternSources = patterns.map((pattern) => ({ source: pattern.source, flags: pattern.flags }));
-            const result = await page.evaluate(({ kind, patternSources }) => {
-              const norm = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
-              const patterns = patternSources.map((item) => new RegExp(item.source, item.flags));
-              const selector = [
-                '[role="tab"]',
-                'button',
-                'a',
-                '[role="button"]',
-                'label',
-                '[aria-selected]',
-                '[aria-controls]',
-                '[data-state]',
-                '[data-value]',
-                'div',
-                'span'
-              ].join(',');
-
-              function domPathFromBody(element) {
-                const parts = [];
-                let node = element;
+                return node;
+              };
+              const makePath = (el) => {
+                const path = [];
+                let node = el;
                 while (node && node !== document.body) {
                   const parent = node.parentElement;
                   if (!parent) return null;
-                  const index = Array.prototype.indexOf.call(parent.children, node);
-                  if (index < 0) return null;
-                  parts.unshift(index);
+                  path.unshift([...parent.children].indexOf(node));
                   node = parent;
                 }
-                return node === document.body ? parts : null;
-              }
-
-              const byClickable = new Map();
-              for (const element of document.querySelectorAll(selector)) {
-                if (!(element instanceof HTMLElement)) continue;
-                const clickable = element.closest('button,a,[role="tab"],[role="button"],label') || element;
-                if (!(clickable instanceof HTMLElement)) continue;
-                const rect = clickable.getBoundingClientRect();
-                const style = getComputedStyle(clickable);
-                if (!(rect.width > 0 && rect.height > 0) || style.visibility === 'hidden' || style.display === 'none') continue;
-
-                const ownText = norm(element.innerText || element.textContent);
-                const ownAria = norm(element.getAttribute('aria-label'));
-                const ownTitle = norm(element.getAttribute('title'));
-                const ownValue = norm(element.getAttribute('data-value'));
-                const clickText = norm(clickable.innerText || clickable.textContent);
-                const clickAria = norm(clickable.getAttribute('aria-label'));
-                const clickTitle = norm(clickable.getAttribute('title'));
-                const clickValue = norm(clickable.getAttribute('data-value'));
-                const combined = [ownText, ownAria, ownTitle, ownValue, clickText, clickAria, clickTitle, clickValue]
-                  .filter(Boolean).join(' | ');
-                if (!combined || !patterns.some((pattern) => pattern.test(combined))) continue;
-
-                let score = 0;
-                const role = clickable.getAttribute('role') || '';
-                if (role === 'tab') score += 120;
-                if (clickable.tagName === 'BUTTON') score += 80;
-                if (clickable.hasAttribute('aria-selected')) score += 55;
-                if (clickable.hasAttribute('aria-controls')) score += 35;
-                if (clickable.closest('[role="tablist"]')) score += 100;
-                if (clickable.closest('nav')) score += 20;
-                if (combined.length <= 60) score += 20;
-
-                const label = clickText || clickAria || clickValue || ownText || ownAria || ownValue;
-                const exactish = kind === 'arcana'
-                  ? /^(아르카나|arcana|アルカナ|阿爾克那|阿尔克那)$/i.test(label)
-                  : /^(여정\s*이벤트|journey\s*events?|旅程\s*イベント|旅程\s*事件)$/i.test(label);
-                if (exactish) score += 250;
-
-                const previous = byClickable.get(clickable);
-                if (!previous || score > previous.score) {
-                  byClickable.set(clickable, {
-                    element: clickable, score, text: clickText || ownText, aria: clickAria || ownAria,
-                    title: clickTitle || ownTitle, value: clickValue || ownValue, role,
-                    tag: clickable.tagName.toLowerCase(), domPath: domPathFromBody(clickable)
-                  });
+                return node === document.body ? path : null;
+              };
+              if (Array.isArray(savedPath)) {
+                const saved = resolvePath(savedPath);
+                if (saved && visible(saved)) {
+                  saved.click();
+                  return { clicked: true, path: savedPath, via: 'saved' };
                 }
               }
-
-              const candidates = [...byClickable.values()];
-              candidates.sort((a, b) => b.score - a.score || (a.text.length - b.text.length));
+              const regexes = patterns.map((p) => new RegExp(p.source, p.flags));
+              const selector = 'button,[role="tab"],[role="button"],label,a,div,span';
+              const candidates = [];
+              for (const el of document.querySelectorAll(selector)) {
+                if (!visible(el)) continue;
+                const text = norm(el.innerText || el.textContent);
+                if (!text || !regexes.some((re) => re.test(text))) continue;
+                const clickable = el.closest('button,[role="tab"],[role="button"],label,a') || el;
+                if (!visible(clickable)) continue;
+                let score = 0;
+                if (clickable.matches('[role="tab"]')) score += 120;
+                if (clickable.tagName === 'BUTTON') score += 100;
+                if (text.length < 30) score += 40;
+                score -= text.length;
+                candidates.push({ clickable, score, text });
+              }
+              candidates.sort((a,b) => b.score - a.score);
               const hit = candidates[0];
-              if (!hit) return { clicked: false, kind, candidates: [] };
-
-              hit.element.scrollIntoView({ block: 'center', inline: 'nearest' });
-              hit.element.click();
-              return {
-                clicked: true,
-                kind,
-                score: hit.score,
-                text: hit.text,
-                aria: hit.aria,
-                title: hit.title,
-                value: hit.value,
-                role: hit.role,
-                tag: hit.tag,
-                domPath: hit.domPath,
-                candidateCount: candidates.length
-              };
-            }, { kind, patternSources });
-
-            if (!result.clicked) {
-              const diagnostics = await journeyControlDiagnostics();
-              throw new Error(`Could not identify Journey ${kind} tab. Visible controls: ${JSON.stringify(diagnostics)}`);
-            }
-
-            if (!journeyTabFallbackPaths[kind] && Array.isArray(result.domPath) && result.domPath.length) {
-              journeyTabFallbackPaths[kind] = result.domPath;
-              console.log(`Saved Journey ${kind} tab DOM path for locale-independent reuse: ${JSON.stringify(result.domPath)}`);
-            }
-
-            console.log(`Journey ${kind} tab: ${JSON.stringify(result)}`);
-            await settleAfterTabClick();
+              if (!hit) return { clicked: false };
+              hit.clickable.scrollIntoView({ block: 'center' });
+              hit.clickable.click();
+              return { clicked: true, path: makePath(hit.clickable), text: hit.text, via: 'search' };
+            }, { patterns, savedPath });
+            if (!result.clicked) throw new Error(`Could not find Journey ${kind} tab.`);
+            if (!savedTabPaths[kind] && Array.isArray(result.path)) savedTabPaths[kind] = result.path;
+            await page.waitForTimeout(550);
+            await deepScroll();
           }
-
+          
           async function selectLanguage(label) {
-            if (label === '한국어') return true;
-
+            if (label === '한국어') return;
             const selects = page.locator('select');
             for (let i = 0; i < await selects.count(); i++) {
               const select = selects.nth(i);
@@ -462,768 +266,484 @@ jobs:
               const option = options.find((item) => item.text === label);
               if (!option) continue;
               await select.selectOption(option.value);
-              await page.waitForTimeout(800);
-              return true;
+              await page.waitForTimeout(650);
+              return;
             }
-
-            // Custom language menu fallback.
-            const triggerCandidates = page.getByText(/한국어|English|日本語|繁體中文|简体中文/, { exact: true });
-            const triggerCount = await triggerCandidates.count();
-            for (let i = 0; i < triggerCount; i++) {
+            const triggers = page.getByText(/한국어|English|日本語|繁體中文|简体中文/, { exact: true });
+            for (let i = 0; i < await triggers.count(); i++) {
+              const trigger = triggers.nth(i);
               try {
-                const el = triggerCandidates.nth(i);
-                if (!await el.isVisible()) continue;
-                await el.click();
-                await page.waitForTimeout(250);
-                const target = page.getByText(label, { exact: true });
-                const targetCount = await target.count();
-                for (let j = 0; j < targetCount; j++) {
-                  if (await target.nth(j).isVisible()) {
-                    await target.nth(j).click();
-                    await page.waitForTimeout(800);
-                    return true;
+                if (!await trigger.isVisible()) continue;
+                await trigger.click();
+                await page.waitForTimeout(180);
+                const targets = page.getByText(label, { exact: true });
+                for (let j = 0; j < await targets.count(); j++) {
+                  if (await targets.nth(j).isVisible()) {
+                    await targets.nth(j).click();
+                    await page.waitForTimeout(650);
+                    return;
                   }
                 }
               } catch (_) {}
             }
-            return false;
+            throw new Error(`Could not switch Journey language to ${label}.`);
           }
-
-          function replaceSerializedUrl(html, remoteUrl, localUrl) {
-            if (!remoteUrl) return html;
-            let next = html.split(remoteUrl).join(localUrl);
-            // outerHTML serializes query-string ampersands as &amp;. Replace that form too.
-            const escaped = remoteUrl.replaceAll('&', '&amp;');
-            if (escaped !== remoteUrl) next = next.split(escaped).join(localUrl);
-            return next;
-          }
-
-          async function localizeImagesInFragment(snapshot) {
-            for (const image of snapshot.images) {
-              const remote = image.currentSrc || image.src;
-              if (!remote || !/^https?:\/\//i.test(remote)) continue;
-              if (image.token && !snapshot.html.includes(image.token)) continue;
-              const local = await downloadAsset(remote, image.alt || image.nearby || 'journey-image');
-              // Every cloned <img> gets a stable token before serialization, so encoded query strings
-              // cannot leave a remote URL behind in the static archive.
-              if (image.token) snapshot.html = snapshot.html.split(image.token).join(local);
-              snapshot.html = replaceSerializedUrl(snapshot.html, image.src, local);
-              snapshot.html = replaceSerializedUrl(snapshot.html, image.currentSrc, local);
-            }
-            for (const background of snapshot.backgrounds || []) {
-              if (!background.url || !/^https?:\/\//i.test(background.url)) continue;
-              const escapedBackground = background.url.replaceAll('&', '&amp;');
-              if (!snapshot.html.includes(background.url) && !snapshot.html.includes(escapedBackground)) continue;
-              const local = await downloadAsset(background.url, background.nearby || 'journey-background');
-              snapshot.html = replaceSerializedUrl(snapshot.html, background.url, local);
-            }
-            return snapshot;
-          }
-
-          const SOURCE_FILTER_ALIASES = {
-            category: {
-              reset: ['리세트','Reset','リセット','重置'],
-              raid: ['토벌','Raid','討伐'],
-              aganon: ['아가논','Aganon','アガノン','阿加農','阿加农'],
-              flora: ['플로라','Flora','フローラ','芙蘿拉','芙萝拉'],
-              kalaid: ['칼라이드','Kalaid','カライド','卡萊德','卡莱德'],
-              weather: ['날씨','Weather','天気','天氣','天气']
-            },
-            difficulty: {
-              easy: ['이지','Easy','イージー','簡單','简单'],
-              normal: ['노말','Normal','ノーマル','普通'],
-              hard: ['하드','Hard','ハード','困難','困难']
-            },
-            difficultyTrigger: ['난이도','Difficulty','難易度','難度','难度']
-          };
-
+          
           async function clickVisibleExact(labels) {
             const result = await page.evaluate((labels) => {
-              const norm = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim().toLocaleLowerCase();
+              const norm = (v) => String(v || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim().toLocaleLowerCase();
               const wanted = new Set(labels.map(norm));
+              const visible = (el) => {
+                if (!(el instanceof HTMLElement)) return false;
+                const r = el.getBoundingClientRect();
+                const s = getComputedStyle(el);
+                return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+              };
               const candidates = [];
-              const selector = 'button,[role="button"],[role="option"],summary,label,a,div,span';
-              for (const element of document.querySelectorAll(selector)) {
-                if (!(element instanceof HTMLElement)) continue;
-                const text = norm(element.innerText || element.textContent);
+              for (const el of document.querySelectorAll('button,[role="button"],[role="option"],summary,label,a,div,span')) {
+                if (!visible(el)) continue;
+                const text = norm(el.innerText || el.textContent);
                 if (!wanted.has(text)) continue;
-                const clickable = element.closest('button,[role="button"],[role="option"],summary,label,a') || element;
-                if (!(clickable instanceof HTMLElement)) continue;
-                const rect = clickable.getBoundingClientRect();
-                const style = getComputedStyle(clickable);
-                if (!(rect.width > 0 && rect.height > 0) || style.display === 'none' || style.visibility === 'hidden') continue;
+                const clickable = el.closest('button,[role="button"],[role="option"],summary,label,a') || el;
+                if (!visible(clickable)) continue;
                 let score = 0;
-                if (clickable.tagName === 'BUTTON') score += 80;
-                if (clickable.getAttribute('role') === 'option') score += 70;
-                if (clickable.getAttribute('role') === 'button') score += 60;
-                if (clickable.tagName === 'SUMMARY') score += 50;
-                score -= Math.min((clickable.innerText || '').length, 100);
-                candidates.push({ element: clickable, score, text });
+                if (clickable.tagName === 'BUTTON') score += 100;
+                if (clickable.getAttribute('role') === 'option') score += 80;
+                if (clickable.getAttribute('role') === 'button') score += 70;
+                score -= normalize(clickable.innerText).length;
+                candidates.push({ clickable, score, text });
               }
               candidates.sort((a,b) => b.score - a.score);
               const hit = candidates[0];
-              if (!hit) return { clicked:false, labels };
-              hit.element.scrollIntoView({ block:'center', inline:'nearest' });
-              hit.element.click();
-              return { clicked:true, text:hit.text, count:candidates.length };
+              if (!hit) return { clicked: false };
+              hit.clickable.scrollIntoView({ block: 'center' });
+              hit.clickable.click();
+              return { clicked: true, text: hit.text };
             }, labels);
             if (result.clicked) {
               await page.waitForTimeout(500);
-              try { await page.waitForLoadState('networkidle', { timeout: 5000 }); } catch (_) {}
               await deepScroll();
             }
-            return result;
-          }
-
-          async function setSourceCategory(key) {
-            const aliases = SOURCE_FILTER_ALIASES.category[key] || [];
-            if (!aliases.length) return false;
-            const result = await clickVisibleExact(aliases);
-            if (!result.clicked) console.warn(`Could not click source category ${key}: ${JSON.stringify(result)}`);
             return result.clicked;
           }
-
-          async function setSourceDifficulty(key) {
-            const aliases = SOURCE_FILTER_ALIASES.difficulty[key] || [];
-            if (!aliases.length) return false;
-
-            // Native select first.
-            const selectResult = await page.evaluate(({ aliases, triggerAliases }) => {
-              const norm = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim().toLocaleLowerCase();
-              const wanted = new Set(aliases.map(norm));
-              const triggerWanted = new Set(triggerAliases.map(norm));
-              for (const select of document.querySelectorAll('select')) {
-                const options = [...select.options];
-                const hit = options.find((option) => wanted.has(norm(option.textContent)));
-                if (!hit) continue;
-                const near = norm(select.getAttribute('aria-label')) + ' ' + norm(select.closest('label,div')?.innerText);
-                if (triggerWanted.size && ![...triggerWanted].some((token) => near.includes(token)) && options.length > 8) continue;
-                select.value = hit.value;
-                select.dispatchEvent(new Event('input', { bubbles:true }));
-                select.dispatchEvent(new Event('change', { bubbles:true }));
-                return { changed:true, value:hit.value };
-              }
-              return { changed:false };
-            }, { aliases, triggerAliases: SOURCE_FILTER_ALIASES.difficultyTrigger });
-            if (selectResult.changed) {
-              await page.waitForTimeout(650);
-              await deepScroll();
-              return true;
-            }
-
-            // Custom popover/menu: open difficulty trigger, then select exact option.
-            await clickVisibleExact(SOURCE_FILTER_ALIASES.difficultyTrigger);
-            await page.waitForTimeout(150);
-            const option = await clickVisibleExact(aliases);
-            if (!option.clicked) console.warn(`Could not click source difficulty ${key}: ${JSON.stringify(option)}`);
-            return option.clicked;
-          }
-
-          async function captureCurrentMain({ localize = true } = {}) {
-            const snapshot = await page.evaluate(() => {
+          
+          async function captureStructured(kind) {
+            const payload = await page.evaluate(({ kind, difficultyText }) => {
               const root = document.querySelector('main') || document.querySelector('[role="main"]') || document.body;
-              const clone = root.cloneNode(true);
-              const sourceElements = [root, ...root.querySelectorAll('*')];
-              const cloneElements = [clone, ...clone.querySelectorAll('*')];
-
-              const normText = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+              const normalize = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
               const hashText = (value) => {
-                const text = normText(value);
+                const text = normalize(value);
                 let h = 2166136261;
-                for (let i = 0; i < text.length; i++) {
-                  h ^= text.charCodeAt(i);
-                  h = Math.imul(h, 16777619);
-                }
+                for (let i = 0; i < text.length; i++) { h ^= text.charCodeAt(i); h = Math.imul(h, 16777619); }
                 return `j${(h >>> 0).toString(36)}`;
               };
-
-              // Preserve visual information needed by individual cards, but do not carry desktop page geometry into mobile.
+              const sourceElements = [root, ...root.querySelectorAll('*')];
+              const clone = root.cloneNode(true);
+              const cloneElements = [clone, ...clone.querySelectorAll('*')];
               for (let i = 0; i < Math.min(sourceElements.length, cloneElements.length); i++) {
                 const source = sourceElements[i];
                 const target = cloneElements[i];
                 if (!(source instanceof Element) || !(target instanceof Element)) continue;
+                target.setAttribute('data-v76-source-index', String(i));
                 const style = getComputedStyle(source);
-                const rect = source.getBoundingClientRect();
-                const compact = rect.width > 0 && rect.height > 0 && rect.width <= 180 && rect.height <= 180;
-                const keep = [
-                  'display','visibility','opacity','flex-direction','flex-wrap','align-items','justify-content','gap','grid-template-columns','grid-auto-flow',
-                  'margin-top','margin-right','margin-bottom','margin-left','padding-top','padding-right','padding-bottom','padding-left',
-                  'border-top-width','border-right-width','border-bottom-width','border-left-width','border-style','border-color','border-radius',
-                  'background-color','background-image','background-size','background-position','background-repeat',
-                  'color','font-size','font-weight','line-height','letter-spacing','text-align','white-space','overflow-wrap','word-break','object-fit'
-                ];
-                if (compact) keep.push('position','width','height','max-width','max-height','overflow','inset','z-index','aspect-ratio');
-                const pieces = [];
-                for (const prop of keep) {
-                  const value = style.getPropertyValue(prop);
-                  if (value && value !== 'normal' && value !== 'auto' && (prop === 'display' || value !== 'none') && value !== '0px') pieces.push(`${prop}:${value}`);
-                }
-                if (pieces.length) target.setAttribute('style', pieces.join(';'));
+                target.style.display = style.display;
+                target.style.visibility = style.visibility;
+                target.style.opacity = style.opacity;
               }
-
               clone.querySelectorAll('script,noscript,iframe,source').forEach((el) => el.remove());
-
-              // Resolve images against the live page and remember the source-rendered size.
-              const trackerHosts = new Set(['myhits.vercel.app', 'hits.seeyoufarm.com']);
-              const images = [];
-              const sourceImages = [...root.querySelectorAll('img')];
-              const cloneImages = [...clone.querySelectorAll('img')];
-              for (let i = 0; i < Math.min(sourceImages.length, cloneImages.length); i++) {
-                const sourceImg = sourceImages[i];
-                const cloneImg = cloneImages[i];
-                let src = '';
-                try {
-                  const raw = sourceImg.getAttribute('src') || '';
-                  if (raw) src = new URL(raw, location.href).href;
-                } catch (_) {}
-                const currentSrc = sourceImg.currentSrc || '';
-                let hostname = '';
-                try { hostname = new URL(currentSrc || src).hostname; } catch (_) {}
-                if (trackerHosts.has(hostname)) {
-                  cloneImg.remove();
-                  continue;
-                }
-                const nearby = sourceImg.closest('article,section,li,div')?.innerText || '';
-                const token = `__JOURNEY_LOCAL_IMAGE_${i}__`;
-                const rect = sourceImg.getBoundingClientRect();
-                const renderedWidth = Math.max(18, Math.min(96, Math.round(rect.width || 48)));
-                cloneImg.setAttribute('src', token);
-                cloneImg.removeAttribute('srcset');
-                cloneImg.removeAttribute('sizes');
-                cloneImg.removeAttribute('loading');
-                cloneImg.setAttribute('data-journey-image', '1');
-                cloneImg.style.setProperty('--journey-img-width', `${renderedWidth}px`);
-                cloneImg.style.maxWidth = '96px';
-                cloneImg.style.height = 'auto';
-                images.push({
-                  token,
-                  src,
-                  currentSrc,
-                  alt: (sourceImg.getAttribute('alt') || '').trim(),
-                  nearby: nearby.replace(/\s+/g, ' ').trim().slice(0, 80)
-                });
-              }
-
-              const sourceMenuTokens = [
-                '가챠 시뮬레이터','여정 아이템','몬스터 정보','잠재력','월페이퍼','구원자 시뮬레이터',
-                'Gacha Simulator','Journey Items','Monster Info','Potential','Wallpaper','Savior Simulator',
-                'ガチャシミュレーター','旅程アイテム','モンスター情報','潜在力','壁紙','救援者シミュレーター',
-                '抽卡模擬器','旅程道具','怪物資訊','潛力','桌布','救援者模擬器',
-                '抽卡模拟器','旅程道具','怪物信息','潜力','壁纸','救援者模拟器'
-              ];
-              const sourceFilterTokens = [
-                '난이도','아르카나','여정 이벤트','전체','리세트','토벌','아가논','플로라','칼라이드','날씨','성공 보상','실패 보상',
-                'Difficulty','Arcana','Journey Events','All','Reset','Raid','Aganon','Flora','Kalaid','Weather','Success Reward','Failure Reward'
-              ];
-
-              function tokenHits(text, tokens) {
-                return tokens.reduce((count, token) => count + (text.includes(token) ? 1 : 0), 0);
-              }
-
-              function removeCompactCluster(tokens, minHits, maxTextLength) {
+          
+              const menuTokens = ['가챠 시뮬레이터','여정 아이템','몬스터 정보','잠재력','월페이퍼','구원자 시뮬레이터','Gacha Simulator','Journey Items','Monster Info','Potential','Wallpaper','Savior Simulator'];
+              const filterTokens = ['난이도','아르카나','여정 이벤트','전체','리세트','토벌','아가논','플로라','칼라이드','날씨','성공 보상','실패 보상','Difficulty','Arcana','Journey Events','All','Reset','Raid','Aganon','Flora','Kalaid','Weather'];
+              const hits = (text, tokens) => tokens.reduce((n,t) => n + (text.includes(t) ? 1 : 0), 0);
+              const removeClusters = (tokens, minHits, maxLength) => {
                 const candidates = [...clone.querySelectorAll('header,nav,aside,section,div,form')]
-                  .map((el) => {
-                    const text = normText(el.innerText || el.textContent);
-                    return { el, text, hits: tokenHits(text, tokens) };
-                  })
-                  .filter((item) => item.hits >= minHits && item.text.length <= maxTextLength)
-                  .sort((a, b) => a.text.length - b.text.length);
+                  .map((el) => ({ el, text: normalize(el.textContent), hits: hits(normalize(el.textContent), tokens) }))
+                  .filter((item) => item.hits >= minHits && item.text.length <= maxLength)
+                  .sort((a,b) => a.text.length - b.text.length);
                 for (const item of candidates) if (item.el.isConnected) item.el.remove();
-              }
-
+              };
               clone.querySelectorAll('header,nav,aside,[role="navigation"],[role="menu"],[role="menubar"]').forEach((el) => {
-                const text = normText(el.innerText || el.textContent);
-                if (tokenHits(text, sourceMenuTokens) >= 1 || /Change Theme|메뉴|Menu|メニュー/.test(text)) el.remove();
+                const text = normalize(el.textContent);
+                if (hits(text, menuTokens) || /Change Theme|메뉴|Menu/.test(text)) el.remove();
               });
-              removeCompactCluster(sourceMenuTokens, 2, 1800);
-
-              // A search input uniquely identifies the source filter block. Remove its largest compact ancestor.
+              removeClusters(menuTokens, 2, 1800);
               for (const control of [...clone.querySelectorAll('input,select,textarea')]) {
                 let node = control;
                 let best = null;
-                for (let depth = 0; depth < 8 && node && node !== clone; depth++, node = node.parentElement) {
-                  const text = normText(node.innerText || node.textContent);
-                  const hits = tokenHits(text, sourceFilterTokens);
-                  if (hits >= 3 && text.length <= 1400) best = node;
-                  if (text.length > 1800) break;
+                for (let depth = 0; depth < 9 && node && node !== clone; depth++, node = node.parentElement) {
+                  const text = normalize(node.textContent);
+                  if (hits(text, filterTokens) >= 3 && text.length <= 1800) best = node;
+                  if (text.length > 2400) break;
                 }
                 if (best?.isConnected) best.remove();
               }
-              removeCompactCluster(sourceFilterTokens, 4, 1600);
-
-              // Remove source page interaction from the card clone without deleting choice text blocks.
-              clone.querySelectorAll('a[href]').forEach((a) => { a.removeAttribute('href'); a.removeAttribute('target'); });
-              clone.querySelectorAll('*').forEach((el) => {
-                for (const attr of [...el.attributes]) if (/^on/i.test(attr.name)) el.removeAttribute(attr.name);
-              });
-
-              // Keep small absolute-position icon composites intact; normalize only page-sized positioning.
-              clone.querySelectorAll('*').forEach((el) => {
-                const style = el.style;
-                if (!style) return;
-                const width = parseFloat(style.width || '0');
-                const height = parseFloat(style.height || '0');
-                const compact = width > 0 && height > 0 && width <= 180 && height <= 180;
-                if (style.position === 'fixed' || style.position === 'sticky' || (style.position === 'absolute' && !compact)) {
-                  style.position = 'static';
-                  style.inset = '';
-                  style.left = '';
-                  style.right = '';
-                  style.top = '';
-                  style.bottom = '';
-                  style.transform = '';
-                }
-                style.boxSizing = 'border-box';
-                if (!compact) {
-                  style.maxWidth = '100%';
-                  if (style.width && /px$/.test(style.width) && parseFloat(style.width) > 900) style.width = '100%';
-                  if (style.minWidth && /px$/.test(style.minWidth)) style.minWidth = '0';
-                }
-              });
-
-              function entrySignature(node) {
-                const classes = [...node.classList].filter(Boolean).slice(0, 4).sort().join('.');
-                return `${node.tagName}|${classes}`;
+              removeClusters(filterTokens, 4, 1800);
+          
+              function signature(node) {
+                return `${node.tagName}|${[...node.classList].filter(Boolean).slice(0,4).sort().join('.')}`;
               }
-
               function discoverEntries(container) {
                 let best = null;
                 const parents = [container, ...container.querySelectorAll('main,section,div,ul,ol')];
                 for (const parent of parents) {
                   const direct = [...parent.children].filter((child) => {
-                    const text = normText(child.innerText || child.textContent);
-                    if (text.length < 45) return false;
+                    const text = normalize(child.textContent);
                     const style = child.style;
-                    return !child.hidden && style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
+                    return text.length >= 35 && style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
                   });
                   if (direct.length < 2) continue;
                   const groups = new Map();
                   for (const child of direct) {
-                    const sig = entrySignature(child);
+                    const sig = signature(child);
                     if (!groups.has(sig)) groups.set(sig, []);
                     groups.get(sig).push(child);
                   }
                   for (const group of groups.values()) {
                     if (group.length < 2) continue;
-                    const lengths = group.map((child) => normText(child.innerText || child.textContent).length);
-                    const avg = lengths.reduce((a,b) => a+b, 0) / lengths.length;
-                    if (avg < 55) continue;
-                    const score = group.length * 10000 + Math.min(avg, 1200) * 20 - Math.max(0, direct.length - group.length) * 80;
-                    if (!best || score > best.score) best = { parent, entries: group, score };
+                    const lengths = group.map((child) => normalize(child.textContent).length);
+                    const avg = lengths.reduce((a,b)=>a+b,0) / lengths.length;
+                    if (avg < 50) continue;
+                    const score = group.length * 10000 + Math.min(avg, 1500) * 20 - Math.max(0, direct.length - group.length) * 80;
+                    if (!best || score > best.score) best = { entries: group, score };
                   }
                 }
-                if (best) return best;
-
-                const articles = [...container.querySelectorAll('article')].filter((node) => normText(node.innerText || node.textContent).length >= 45);
-                if (articles.length) return { parent: container, entries: articles, score: 1 };
-                const children = [...container.children].filter((node) => normText(node.innerText || node.textContent).length >= 45);
-                return { parent: container, entries: children, score: 0 };
+                if (best) return best.entries;
+                const articles = [...container.querySelectorAll('article')].filter((el) => normalize(el.textContent).length >= 35);
+                if (articles.length >= 2) return articles;
+                return [...container.children].filter((el) => normalize(el.textContent).length >= 35);
               }
-
-              const detected = discoverEntries(clone);
-              const clean = document.createElement('div');
-              clean.className = 'journey-captured-list';
-              const entryKeys = [];
-              detected.entries.forEach((entry, index) => {
-                const copy = entry.cloneNode(true);
-                const text = normText(copy.innerText || copy.textContent);
-                const key = hashText(text + '|' + [...copy.querySelectorAll('img')].map((img) => img.getAttribute('alt') || '').join('|'));
-                copy.setAttribute('data-journey-entry', '1');
-                copy.setAttribute('data-journey-index', String(index));
-                copy.setAttribute('data-journey-key', key);
-                entryKeys.push(key);
-                clean.appendChild(copy);
-              });
-
-              const backgrounds = [];
-              const seenBackgrounds = new Set();
-              for (const element of sourceElements) {
-                if (!(element instanceof Element)) continue;
-                const value = getComputedStyle(element).backgroundImage || '';
-                for (const match of value.matchAll(/url\(["']?([^"')]+)["']?\)/g)) {
-                  let resolved = '';
-                  try { resolved = new URL(match[1], location.href).href; } catch (_) {}
-                  if (!resolved || seenBackgrounds.has(resolved)) continue;
-                  seenBackgrounds.add(resolved);
-                  backgrounds.push({ url: resolved, nearby: (element.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 80) });
+          
+              function parseRgb(value) {
+                const m = String(value || '').match(/rgba?\((\d+)[, ]+(\d+)[, ]+(\d+)(?:[, /]+([\d.]+))?\)/i);
+                if (!m) return null;
+                return { r:+m[1], g:+m[2], b:+m[3], a:m[4] == null ? 1 : +m[4] };
+              }
+              function toneFrom(rgb) {
+                if (!rgb || rgb.a < .05) return 'plain';
+                if (rgb.g > rgb.r * 1.28 && rgb.g > rgb.b * 1.12) return 'success';
+                if (rgb.r > rgb.g * 1.28 && rgb.r > rgb.b * 1.08) return 'failure';
+                if (rgb.r > 90 && rgb.g > 65 && rgb.b < Math.min(rgb.r, rgb.g) * .82) return 'highlight';
+                return 'neutral';
+              }
+          
+              function extractEntry(sourceEntry, index) {
+                const entryRect = sourceEntry.getBoundingClientRect();
+                const regionIds = new WeakMap();
+                let regionSeq = 0;
+                function regionInfo(el) {
+                  let node = el instanceof Element ? el : el?.parentElement;
+                  while (node && node !== sourceEntry) {
+                    const rect = node.getBoundingClientRect();
+                    const style = getComputedStyle(node);
+                    const bg = parseRgb(style.backgroundColor);
+                    const tone = toneFrom(bg);
+                    const border = parseFloat(style.borderTopWidth || '0') + parseFloat(style.borderRightWidth || '0') + parseFloat(style.borderBottomWidth || '0') + parseFloat(style.borderLeftWidth || '0');
+                    const areaRatio = entryRect.width * entryRect.height > 0 ? (rect.width * rect.height) / (entryRect.width * entryRect.height) : 1;
+                    if (rect.width > 15 && rect.height > 12 && areaRatio < .94 && ((bg && bg.a >= .06 && tone !== 'plain') || border > 0)) {
+                      if (!regionIds.has(node)) regionIds.set(node, `r${++regionSeq}`);
+                      return { id: regionIds.get(node), tone };
+                    }
+                    node = node.parentElement;
+                  }
+                  return { id: '', tone: 'plain' };
                 }
-              }
-
-              return {
-                html: clean.outerHTML,
-                text: (root.innerText || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim(),
-                images,
-                backgrounds,
-                entryKeys,
-                entryCount: entryKeys.length
-              };
-            });
-
-            if (!localize) return snapshot;
-            return localizeImagesInFragment(snapshot);
-          }
-
-          function indicesForKeys(defaultKeys, filteredKeys) {
-            const set = new Set(filteredKeys || []);
-            const indices = [];
-            defaultKeys.forEach((key, index) => { if (set.has(key)) indices.push(index); });
-            return indices;
-          }
-
-          async function captureKoreanFilterMembership(defaultArcana, defaultEvents) {
-            const membership = {
-              category: {},
-              difficulty: { arcana: {}, events: {} }
-            };
-
-            for (const key of Object.keys(SOURCE_FILTER_ALIASES.category)) {
-              await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
-              await waitForJourneyReady();
-              await clickJourneyTab('events');
-              if (!await setSourceCategory(key)) throw new Error(`Could not classify Journey category ${key} from source.`);
-              const filtered = await captureCurrentMain({ localize:false });
-              const indices = indicesForKeys(defaultEvents.entryKeys, filtered.entryKeys);
-              if (!indices.length || indices.length >= defaultEvents.entryKeys.length) {
-                throw new Error(`Journey category ${key} classification was invalid (${indices.length}/${defaultEvents.entryKeys.length}).`);
-              }
-              membership.category[key] = indices;
-              console.log(`Journey category ${key}: ${indices.length} entries`);
-            }
-
-            for (const key of Object.keys(SOURCE_FILTER_ALIASES.difficulty)) {
-              for (const kind of ['arcana','events']) {
-                await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
-                await waitForJourneyReady();
-                await clickJourneyTab(kind);
-                if (!await setSourceDifficulty(key)) throw new Error(`Could not classify Journey ${kind} difficulty ${key} from source.`);
-                const filtered = await captureCurrentMain({ localize:false });
-                const defaults = kind === 'arcana' ? defaultArcana : defaultEvents;
-                const indices = indicesForKeys(defaults.entryKeys, filtered.entryKeys);
-                if (!indices.length) throw new Error(`Journey ${kind} difficulty ${key} classification returned no entries.`);
-                membership.difficulty[kind][key] = indices;
-                console.log(`Journey ${kind} difficulty ${key}: ${indices.length} entries`);
-              }
-            }
-            return membership;
-          }
-
-          function archivePage(language, arcanaSnapshot, eventSnapshot, capturedAt, filterMembership) {
-            const labels = {
-              ko: {
-                title:'여정', arcana:'아르카나', events:'여정 이벤트', difficulty:'난이도', all:'전체', easy:'이지', normal:'노말', hard:'하드',
-                search:'카드 명, 이벤트 명, 보상 등...', reset:'리세트', raid:'토벌', aganon:'아가논', flora:'플로라', kalaid:'칼라이드', weather:'날씨',
-                success:'성공 보상', failure:'실패 보상', empty:'검색 결과가 없습니다.'
-              },
-              en: {
-                title:'Journey', arcana:'Arcana', events:'Journey Events', difficulty:'Difficulty', all:'All', easy:'Easy', normal:'Normal', hard:'Hard',
-                search:'Card name, event name, rewards...', reset:'Reset', raid:'Raid', aganon:'Aganon', flora:'Flora', kalaid:'Kalaid', weather:'Weather',
-                success:'Success Reward', failure:'Failure Reward', empty:'No matching results.'
-              },
-              ja: {
-                title:'旅程', arcana:'アルカナ', events:'旅程イベント', difficulty:'難易度', all:'すべて', easy:'イージー', normal:'ノーマル', hard:'ハード',
-                search:'カード名・イベント名・報酬など...', reset:'リセット', raid:'討伐', aganon:'アガノン', flora:'フローラ', kalaid:'カライド', weather:'天気',
-                success:'成功報酬', failure:'失敗報酬', empty:'検索結果がありません。'
-              },
-              'zh-TW': {
-                title:'旅程', arcana:'阿爾克那', events:'旅程事件', difficulty:'難度', all:'全部', easy:'簡單', normal:'普通', hard:'困難',
-                search:'卡片名稱、事件名稱、獎勵等...', reset:'重置', raid:'討伐', aganon:'阿加農', flora:'芙蘿拉', kalaid:'卡萊德', weather:'天氣',
-                success:'成功獎勵', failure:'失敗獎勵', empty:'找不到符合的結果。'
-              },
-              'zh-CN': {
-                title:'旅程', arcana:'阿尔克那', events:'旅程事件', difficulty:'难度', all:'全部', easy:'简单', normal:'普通', hard:'困难',
-                search:'卡片名称、事件名称、奖励等...', reset:'重置', raid:'讨伐', aganon:'阿加农', flora:'芙萝拉', kalaid:'卡莱德', weather:'天气',
-                success:'成功奖励', failure:'失败奖励', empty:'没有匹配的结果。'
-              }
-            }[language.key];
-
-            const categories = [
-              ['all', labels.all], ['reset', labels.reset], ['raid', labels.raid], ['aganon', labels.aganon],
-              ['flora', labels.flora], ['kalaid', labels.kalaid], ['weather', labels.weather]
-            ];
-            const categoryButtons = categories.map(([key, label], index) => `<button class="journey-chip${index === 0 ? ' is-active' : ''}" type="button" data-category="${key}">${label}</button>`).join('');
-            const membershipJson = JSON.stringify(filterMembership || {}).replace(/</g, '\\u003c');
-
-            return `<!doctype html>
-          <html lang="${language.htmlLang}">
-          <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta name="color-scheme" content="dark light">
-            <title>${labels.title}</title>
-            <style>
-              :root{color-scheme:dark;--bg:#020817;--panel:#07101f;--panel2:#0b1425;--line:#26344a;--text:#f5f7ff;--muted:#a9b3c7;--accent:#4a82ff;--green:#265a46;--red:#5a3a40}
-              *{box-sizing:border-box}
-              html,body{margin:0;background:transparent;color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
-              body{padding:0 12px 28px}
-              .journey-controls{padding:8px 2px 14px;max-width:1180px;margin:0 auto}
-              .journey-top-row{display:grid;grid-template-columns:minmax(118px,140px) minmax(0,1fr);gap:10px;align-items:center}
-              .difficulty-wrap{position:relative}
-              .difficulty-wrap summary{list-style:none;display:flex;align-items:center;justify-content:center;min-height:54px;padding:0 18px;border:1px solid var(--line);border-radius:28px;background:#060d1b;color:#c4cddd;font-weight:800;cursor:pointer;user-select:none}
-              .difficulty-wrap summary::-webkit-details-marker{display:none}
-              .difficulty-menu{position:absolute;z-index:30;top:62px;left:0;min-width:140px;padding:7px;border:1px solid var(--line);border-radius:14px;background:#050b18;box-shadow:0 18px 40px rgba(0,0,0,.45)}
-              .difficulty-option{display:block;width:100%;border:0;border-radius:9px;background:transparent;color:var(--text);padding:10px 13px;text-align:left;font:inherit;font-weight:800;cursor:pointer}
-              .difficulty-option.is-active{background:rgba(74,130,255,.18);color:#8fb2ff}
-              .journey-search{width:100%;height:54px;border:1px solid #334159;border-radius:28px;background:#101a2d;color:var(--text);padding:0 20px;font:inherit;font-size:16px;font-weight:700;outline:none}
-              .journey-search::placeholder{color:#9ea8ba}.journey-search:focus{border-color:#527fff;box-shadow:0 0 0 2px rgba(82,127,255,.12)}
-              .journey-type-row{display:flex;justify-content:center;gap:20px;align-items:center;margin-top:10px;flex-wrap:wrap}
-              .journey-check{display:inline-flex;align-items:center;gap:7px;color:#c6cedd;font-size:16px;font-weight:750;cursor:pointer}.journey-check input{width:22px;height:22px;margin:0;accent-color:#6a89ff}
-              .journey-category-row{display:flex;justify-content:center;gap:7px;margin-top:10px;flex-wrap:wrap}
-              .journey-chip{min-height:40px;padding:0 14px;border:1px solid #3a4251;border-radius:10px;background:#313744;color:#f0f2f7;font:inherit;font-size:14px;font-weight:900;cursor:pointer}
-              .journey-chip.is-active{border-color:#367ad5;background:#145fae;color:#fff}
-              .journey-legend{display:flex;justify-content:center;gap:4px;width:max-content;max-width:100%;margin:12px auto 0;padding:5px;border:1px solid #68707e;border-radius:9px;background:#03070f}
-              .legend-item{display:inline-flex;align-items:center;gap:8px;padding:3px 8px;color:#e6e9ef;font-size:13px;font-weight:800}.legend-swatch{width:26px;height:25px;border-radius:5px;background:var(--green)}.legend-item.failure .legend-swatch{background:var(--red)}
-              .archive-pane{max-width:1180px;margin:0 auto 14px;min-width:0}.archive-pane[hidden]{display:none!important}
-              .journey-captured-list{display:grid!important;gap:12px!important;width:100%!important;max-width:100%!important;margin:0!important;padding:0!important}
-              [data-journey-entry="1"]{width:100%!important;max-width:100%!important;min-width:0!important;margin-left:0!important;margin-right:0!important;box-sizing:border-box!important;transform:none!important}
-              [data-journey-entry="1"] *{max-width:100%;box-sizing:border-box}
-              [data-journey-entry="1"] img[data-journey-image="1"]{display:inline-block!important;width:min(var(--journey-img-width,48px),96px)!important;max-width:96px!important;height:auto!important;object-fit:contain!important;vertical-align:middle!important;flex:0 0 auto!important}
-              [data-journey-entry="1"] a{color:inherit;text-decoration:none}
-              [data-journey-entry="1"] table{width:100%!important;max-width:100%!important;overflow-wrap:anywhere}
-              .archive-dim{display:none;padding:34px 18px;text-align:center;color:var(--muted);font-weight:800}.archive-pane.is-no-match .archive-dim{display:block}.archive-pane.is-no-match .journey-captured-list{display:none!important}
-              @media(max-width:700px){body{padding:0 8px 24px}.journey-top-row{grid-template-columns:132px minmax(0,1fr);gap:8px}.difficulty-wrap summary,.journey-search{height:52px;min-height:52px}.journey-search{padding:0 15px;font-size:14px}.journey-type-row{gap:16px;margin-top:9px}.journey-check{font-size:14px}.journey-check input{width:21px;height:21px}.journey-category-row{gap:6px;margin-top:9px}.journey-chip{min-height:38px;padding:0 11px;font-size:13px}.journey-legend{margin-top:10px}.legend-item{font-size:12px}.legend-swatch{width:24px;height:23px}.archive-pane{margin-bottom:10px}}
-              @media(max-width:390px){body{padding-left:5px;padding-right:5px}.journey-top-row{grid-template-columns:112px minmax(0,1fr)}.difficulty-wrap summary{padding:0 10px}.journey-search{font-size:13px}.journey-chip{padding:0 9px;font-size:12px}}
-            </style>
-          </head>
-          <body>
-            <section class="journey-controls" aria-label="${labels.title}">
-              <div class="journey-top-row">
-                <details class="difficulty-wrap" id="difficulty-wrap"><summary>${labels.difficulty}</summary><div class="difficulty-menu">
-                  <button class="difficulty-option is-active" type="button" data-difficulty="all">${labels.all}</button><button class="difficulty-option" type="button" data-difficulty="easy">${labels.easy}</button><button class="difficulty-option" type="button" data-difficulty="normal">${labels.normal}</button><button class="difficulty-option" type="button" data-difficulty="hard">${labels.hard}</button>
-                </div></details>
-                <input class="journey-search" id="journey-search" type="search" placeholder="${labels.search}" autocomplete="off">
-              </div>
-              <div class="journey-type-row"><label class="journey-check"><input id="toggle-arcana" type="checkbox" checked> ${labels.arcana}</label><label class="journey-check"><input id="toggle-events" type="checkbox" checked> ${labels.events}</label></div>
-              <div class="journey-category-row">${categoryButtons}</div>
-              <div class="journey-legend" aria-label="reward legend"><span class="legend-item"><span class="legend-swatch"></span>${labels.success}</span><span class="legend-item failure"><span class="legend-swatch"></span>${labels.failure}</span></div>
-            </section>
-            <section class="archive-pane" id="pane-arcana"><div class="snapshot-root">${arcanaSnapshot.html}</div><div class="archive-dim">${labels.empty}</div></section>
-            <section class="archive-pane" id="pane-events"><div class="snapshot-root">${eventSnapshot.html}</div><div class="archive-dim">${labels.empty}</div></section>
-            <script>
-              (() => {
-                const membership = ${membershipJson};
-                const input = document.querySelector('#journey-search');
-                const difficultyWrap = document.querySelector('#difficulty-wrap');
-                const difficultyButtons = [...document.querySelectorAll('.difficulty-option')];
-                const categoryButtons = [...document.querySelectorAll('.journey-chip')];
-                const toggleArcana = document.querySelector('#toggle-arcana');
-                const toggleEvents = document.querySelector('#toggle-events');
-                const panes = { arcana:document.querySelector('#pane-arcana'), events:document.querySelector('#pane-events') };
-                const entries = {
-                  arcana:[...panes.arcana.querySelectorAll('[data-journey-entry="1"]')],
-                  events:[...panes.events.querySelectorAll('[data-journey-entry="1"]')]
-                };
-                let category = 'all';
-                let difficulty = 'all';
-
-                function searchable(node) {
-                  const alt = [...node.querySelectorAll('img')].map((img) => img.getAttribute('alt') || '').join(' ');
-                  return ((node.innerText || '') + ' ' + alt + ' ' + (node.getAttribute('data-journey-key') || '')).replace(/\s+/g,' ').trim().toLocaleLowerCase();
+                function isVisible(el) {
+                  if (!(el instanceof Element)) return false;
+                  const rect = el.getBoundingClientRect();
+                  const style = getComputedStyle(el);
+                  return rect.width > 0 && rect.height > 0 && style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
                 }
-                function inMembership(kind, group, key, index) {
-                  if (key === 'all') return true;
-                  const list = group === 'category' ? membership?.category?.[key] : membership?.difficulty?.[kind]?.[key];
-                  if (!Array.isArray(list)) return true;
-                  return list.includes(index);
-                }
-                function applyPane(kind) {
-                  const pane = panes[kind];
-                  const query = (input.value || '').replace(/\s+/g,' ').trim().toLocaleLowerCase();
-                  let visible = 0;
-                  entries[kind].forEach((node, index) => {
-                    const searchMatch = !query || searchable(node).includes(query);
-                    const categoryMatch = kind === 'arcana' || inMembership(kind, 'category', category, index);
-                    const difficultyMatch = inMembership(kind, 'difficulty', difficulty, index);
-                    const show = searchMatch && categoryMatch && difficultyMatch;
-                    node.hidden = !show;
-                    node.style.display = show ? '' : 'none';
-                    if (show) visible += 1;
+                const atoms = [];
+                const walker = document.createTreeWalker(sourceEntry, NodeFilter.SHOW_TEXT);
+                let node;
+                while ((node = walker.nextNode())) {
+                  const parent = node.parentElement;
+                  if (!parent || !isVisible(parent) || parent.closest('script,style,noscript')) continue;
+                  const text = normalize(node.nodeValue);
+                  if (!text) continue;
+                  const range = document.createRange();
+                  range.selectNodeContents(node);
+                  const rect = range.getBoundingClientRect();
+                  if (!(rect.width > 0 && rect.height > 0)) continue;
+                  const style = getComputedStyle(parent);
+                  const region = regionInfo(parent);
+                  atoms.push({
+                    type:'text', text,
+                    x: Math.round((rect.left - entryRect.left) * 10) / 10,
+                    y: Math.round((rect.top - entryRect.top) * 10) / 10,
+                    w: Math.round(rect.width * 10) / 10,
+                    h: Math.round(rect.height * 10) / 10,
+                    fontSize: parseFloat(style.fontSize) || 14,
+                    weight: parseInt(style.fontWeight, 10) || (/bold/i.test(style.fontWeight) ? 700 : 400),
+                    region: region.id,
+                    tone: region.tone
                   });
-                  pane.classList.toggle('is-no-match', entries[kind].length > 0 && visible === 0);
                 }
-                function applyAll() {
-                  panes.arcana.hidden = !toggleArcana.checked;
-                  panes.events.hidden = !toggleEvents.checked;
-                  if (toggleArcana.checked) applyPane('arcana');
-                  if (toggleEvents.checked) applyPane('events');
+                for (const img of sourceEntry.querySelectorAll('img')) {
+                  if (!isVisible(img)) continue;
+                  const rect = img.getBoundingClientRect();
+                  let src = '';
+                  try { src = new URL(img.currentSrc || img.getAttribute('src') || '', location.href).href; } catch (_) {}
+                  if (!src || /myhits\.vercel\.app|hits\.seeyoufarm\.com/i.test(src)) continue;
+                  const region = regionInfo(img);
+                  atoms.push({
+                    type:'image', src, alt: normalize(img.getAttribute('alt')),
+                    x: Math.round((rect.left - entryRect.left) * 10) / 10,
+                    y: Math.round((rect.top - entryRect.top) * 10) / 10,
+                    w: Math.round(rect.width * 10) / 10,
+                    h: Math.round(rect.height * 10) / 10,
+                    region: region.id,
+                    tone: region.tone
+                  });
                 }
-                input.addEventListener('input', applyAll);
-                input.addEventListener('search', applyAll);
-                toggleArcana.addEventListener('change', applyAll);
-                toggleEvents.addEventListener('change', applyAll);
-                categoryButtons.forEach((button) => button.addEventListener('click', () => {
-                  category = button.dataset.category || 'all';
-                  categoryButtons.forEach((item) => item.classList.toggle('is-active', item === button));
-                  applyAll();
-                }));
-                difficultyButtons.forEach((button) => button.addEventListener('click', () => {
-                  difficulty = button.dataset.difficulty || 'all';
-                  difficultyButtons.forEach((item) => item.classList.toggle('is-active', item === button));
-                  difficultyWrap.open = false;
-                  applyAll();
-                }));
-                document.addEventListener('click', (event) => { if (difficultyWrap.open && !difficultyWrap.contains(event.target)) difficultyWrap.open = false; });
-                applyAll();
-              })();
-            </script>
-          </body>
-          </html>`;
+                atoms.sort((a,b) => a.y - b.y || a.x - b.x || (a.type === 'image' ? -1 : 1));
+                const rows = [];
+                for (const atom of atoms) {
+                  const center = atom.y + atom.h / 2;
+                  let row = rows.findLast((candidate) => {
+                    const overlap = Math.min(candidate.bottom, atom.y + atom.h) - Math.max(candidate.top, atom.y);
+                    return overlap > Math.min(candidate.height, atom.h) * .25 || Math.abs(candidate.center - center) <= 7;
+                  });
+                  if (!row || atom.y - row.bottom > 10) {
+                    row = { top: atom.y, bottom: atom.y + atom.h, center, height: atom.h, atoms: [] };
+                    rows.push(row);
+                  }
+                  row.atoms.push(atom);
+                  row.top = Math.min(row.top, atom.y);
+                  row.bottom = Math.max(row.bottom, atom.y + atom.h);
+                  row.height = row.bottom - row.top;
+                  row.center = (row.top + row.bottom) / 2;
+                }
+                const serializedRows = rows.map((row) => {
+                  row.atoms.sort((a,b) => a.x - b.x || (a.type === 'image' ? -1 : 1));
+                  const segments = [];
+                  for (const atom of row.atoms) {
+                    if (atom.type === 'image') {
+                      const previous = segments[segments.length - 1];
+                      if (previous?.type === 'images' && Math.abs(atom.x - previous.lastX) < Math.max(12, atom.w * .55)) {
+                        previous.images.push({ src:atom.src, alt:atom.alt, sourceWidth:atom.w, sourceHeight:atom.h });
+                        previous.lastX = atom.x;
+                      } else {
+                        segments.push({ type:'images', images:[{ src:atom.src, alt:atom.alt, sourceWidth:atom.w, sourceHeight:atom.h }], lastX:atom.x });
+                      }
+                    } else {
+                      const previous = segments[segments.length - 1];
+                      if (previous?.type === 'text' && atom.x - previous.lastRight < 24) {
+                        previous.text = normalize(`${previous.text} ${atom.text}`);
+                        previous.lastRight = atom.x + atom.w;
+                        previous.fontSize = Math.max(previous.fontSize, atom.fontSize);
+                        previous.weight = Math.max(previous.weight, atom.weight);
+                      } else {
+                        segments.push({ type:'text', text:atom.text, fontSize:atom.fontSize, weight:atom.weight, lastRight:atom.x + atom.w });
+                      }
+                    }
+                  }
+                  for (const segment of segments) { delete segment.lastX; delete segment.lastRight; }
+                  const text = normalize(segments.filter((s)=>s.type==='text').map((s)=>s.text).join(' '));
+                  const regionAtoms = row.atoms.filter((a)=>a.region);
+                  const region = regionAtoms[0]?.region || '';
+                  const tone = regionAtoms.find((a)=>a.tone==='success')?.tone || regionAtoms.find((a)=>a.tone==='failure')?.tone || regionAtoms.find((a)=>a.tone==='highlight')?.tone || regionAtoms[0]?.tone || 'plain';
+                  const fontSize = Math.max(0, ...row.atoms.filter((a)=>a.type==='text').map((a)=>a.fontSize || 0));
+                  const weight = Math.max(0, ...row.atoms.filter((a)=>a.type==='text').map((a)=>a.weight || 0));
+                  return { text, segments, region, tone, fontSize, weight };
+                }).filter((row)=>row.text || row.segments.some((s)=>s.type==='images'));
+                const titleRow = serializedRows.find((row) => row.text && !/^or$/i.test(row.text)) || { text:`Entry ${index+1}` };
+                const title = titleRow.text;
+                const secondIdentity = serializedRows.find((row, i) => i > 0 && /^(구원자\s*:|Savior\s*:|救援者\s*:|救援者：)/i.test(row.text))?.text || '';
+                const key = hashText(`${title}|${secondIdentity}`);
+                const imageText = serializedRows.flatMap((row) => row.segments || []).filter((segment) => segment.type === 'images').flatMap((segment) => segment.images || []).map((image) => image.alt || '').join(' ');
+                const combinedText = normalize(`${serializedRows.map((row)=>row.text).join(' ')} ${imageText}`);
+                const difficulties = [];
+                for (const [diff, aliases] of Object.entries(difficultyText)) {
+                  if (aliases.some((alias) => combinedText === alias || combinedText.startsWith(`${alias} `) || combinedText.endsWith(` ${alias}`) || combinedText.includes(` ${alias} `) || combinedText.includes(` ${alias},`) || combinedText.includes(` ${alias}:`))) difficulties.push(diff);
+                }
+                return { key, title, searchText: combinedText, difficulties, rows: serializedRows };
+              }
+          
+              const detected = discoverEntries(clone);
+              const entries = [];
+              for (let i = 0; i < detected.length; i++) {
+                const cloneEntry = detected[i];
+                const sourceIndex = Number(cloneEntry.getAttribute('data-v76-source-index'));
+                const sourceEntry = sourceElements[sourceIndex];
+                if (!(sourceEntry instanceof Element)) continue;
+                entries.push(extractEntry(sourceEntry, i));
+              }
+              return { kind, entries, bodyText: normalize(root.innerText) };
+            }, { kind, difficultyText: DIFFICULTY_TEXT });
+          
+            // Download and localize every image referenced by structured rows.
+            for (const entry of payload.entries) {
+              for (const row of entry.rows) {
+                for (const segment of row.segments) {
+                  if (segment.type !== 'images') continue;
+                  for (const image of segment.images) {
+                    const preferred = image.alt || row.text || entry.title || 'journey-image';
+                    image.asset = await downloadAsset(image.src, preferred);
+                    delete image.src;
+                  }
+                }
+              }
+            }
+            return payload;
           }
-
-          await page.goto(SOURCE_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
-          await waitForJourneyReady();
-          const snapshots = {};
-          let filterMembership = null;
-
+          
+          function keyIndex(entries) {
+            const map = new Map();
+            entries.forEach((entry, index) => {
+              if (!map.has(entry.key)) map.set(entry.key, []);
+              map.get(entry.key).push(index);
+            });
+            return map;
+          }
+          
+          function indicesForFiltered(defaultEntries, filteredEntries) {
+            const defaults = keyIndex(defaultEntries);
+            const indices = new Set();
+            for (const entry of filteredEntries) {
+              for (const index of defaults.get(entry.key) || []) indices.add(index);
+            }
+            return [...indices].sort((a,b)=>a-b);
+          }
+          
+          async function captureCategoryMembership(defaultEvents) {
+            const result = {};
+            for (const [category, aliases] of Object.entries(CATEGORY_ALIASES)) {
+              await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
+              await waitReady();
+              await clickJourneyTab('events');
+              const clicked = await clickVisibleExact(aliases);
+              if (!clicked) throw new Error(`Could not click source Journey category: ${category}`);
+              const filtered = await captureStructured('events');
+              const indices = indicesForFiltered(defaultEvents.entries, filtered.entries);
+              if (!indices.length || indices.length >= defaultEvents.entries.length) {
+                throw new Error(`Invalid source Journey category membership ${category}: ${indices.length}/${defaultEvents.entries.length}`);
+              }
+              result[category] = indices;
+              console.log(`category ${category}: ${indices.length}`);
+            }
+            return result;
+          }
+          
+          const captures = {};
+          let categoryMembership = null;
+          
           for (const language of LANGUAGES) {
-            console.log(`\n=== Capture ${language.key} ===`);
-            await page.goto(SOURCE_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
-            await waitForJourneyReady();
-            const changed = await selectLanguage(language.label);
-            if (!changed && language.key !== 'ko') console.warn(`Language selector did not expose ${language.label}; capturing the currently rendered locale instead.`);
-            await waitForJourneyReady();
-
+            await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
+            await waitReady();
+            if (language.label !== '한국어') await selectLanguage(language.label);
             await clickJourneyTab('arcana');
-            const arcana = await captureCurrentMain();
-            console.log(`${language.key} arcana text=${arcana.text.length}, entries=${arcana.entryCount}, images=${arcana.images.length}`);
-
+            await expandAll();
+            const arcana = await captureStructured('arcana');
             await clickJourneyTab('events');
-            const events = await captureCurrentMain();
-            console.log(`${language.key} events text=${events.text.length}, entries=${events.entryCount}, images=${events.images.length}`);
-
+            await expandAll();
+            const events = await captureStructured('events');
+          
             if (language.key === 'ko') {
-              const mustInclude = ['훈련의 방향성', '리세트의 일과', '오늘의 날씨', '의뢰 실패', '두통이 생기다'];
-              const missing = mustInclude.filter((token) => !events.text.includes(token));
-              if (events.text.length < 12000 || missing.length) throw new Error(`Korean Journey-event snapshot looks incomplete. text=${events.text.length}, missing=${missing.join(', ')}`);
-              if (arcana.text.length < 2500) throw new Error(`Korean Arcana Journey snapshot looks incomplete. text=${arcana.text.length}`);
-              if (arcana.entryCount < 2 || events.entryCount < 4) throw new Error(`Journey card extraction looks incomplete: arcana=${arcana.entryCount}, events=${events.entryCount}`);
-              filterMembership = await captureKoreanFilterMembership(arcana, events);
+              if (arcana.entries.length < 5) throw new Error(`Arcana Journey extraction too small: ${arcana.entries.length}`);
+              if (events.entries.length < 20) throw new Error(`Journey event extraction too small: ${events.entries.length}`);
+              const body = events.bodyText;
+              for (const token of ['훈련의 방향성','리세트의 일과','오늘의 날씨','두통이 생기다']) {
+                if (!body.includes(token)) throw new Error(`Journey source missing expected event: ${token}`);
+              }
             }
-
-            if (!filterMembership) throw new Error('Journey filter membership was not captured from the Korean source pass.');
-
-            const capturedAt = new Date().toISOString();
-            const forbiddenRuntimeHosts = ['myhits.vercel.app', 'hits.seeyoufarm.com', 'star-savior-arcana-db.pages.dev'];
-            for (const [kind, snapshot] of [['arcana', arcana], ['events', events]]) {
-              const leftovers = forbiddenRuntimeHosts.filter((host) => snapshot.html.includes(host));
-              if (leftovers.length) throw new Error(`${language.key} ${kind} snapshot still contains forbidden runtime hosts: ${leftovers.join(', ')}`);
+            if (language.key !== 'ko') {
+              if (arcana.entries.length !== captures.ko.arcana.entries.length || events.entries.length !== captures.ko.events.entries.length) {
+                throw new Error(`Journey entry order/count changed for ${language.key}: arcana=${arcana.entries.length}/${captures.ko.arcana.entries.length}, events=${events.entries.length}/${captures.ko.events.entries.length}`);
+              }
             }
-
-            const langDir = path.join(OUT_DIR, language.key);
-            fs.mkdirSync(langDir, { recursive:true });
-            fs.writeFileSync(path.join(langDir, 'index.html'), archivePage(language, arcana, events, capturedAt, filterMembership), 'utf8');
-            fs.writeFileSync(path.join(langDir, 'arcana.html'), arcana.html, 'utf8');
-            fs.writeFileSync(path.join(langDir, 'events.html'), events.html, 'utf8');
-            fs.writeFileSync(path.join(langDir, 'arcana.txt'), arcana.text, 'utf8');
-            fs.writeFileSync(path.join(langDir, 'events.txt'), events.text, 'utf8');
-            snapshots[language.key] = {
-              arcanaTextLength:arcana.text.length, eventTextLength:events.text.length,
-              arcanaEntries:arcana.entryCount, eventEntries:events.entryCount,
-              arcanaImages:arcana.images.length, eventImages:events.images.length
-            };
+            captures[language.key] = { arcana, events };
+            console.log(`${language.key}: arcana=${arcana.entries.length}, events=${events.entries.length}`);
           }
-
+          
+          // Category classification uses the Korean source once and is then applied by source order to every language.
+          await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
+          await waitReady();
+          await clickJourneyTab('events');
+          categoryMembership = await captureCategoryMembership(captures.ko.events);
+          
+          for (const language of LANGUAGES) {
+            const snapshot = captures[language.key];
+            snapshot.events.entries.forEach((entry, index) => {
+              entry.categories = Object.entries(categoryMembership).filter(([, indices]) => indices.includes(index)).map(([key]) => key);
+              entry.kind = 'events';
+            });
+            snapshot.arcana.entries.forEach((entry) => {
+              entry.categories = [];
+              entry.kind = 'arcana';
+            });
+            const langDir = path.join(OUT_DIR, language.key);
+            fs.mkdirSync(langDir, { recursive: true });
+            fs.writeFileSync(path.join(langDir, 'journey.json'), JSON.stringify({
+              version: 1,
+              language: language.key,
+              arcana: snapshot.arcana.entries,
+              events: snapshot.events.entries
+            }, null, 2), 'utf8');
+          }
+          
           await browser.close();
-
+          
           const meta = {
-            source: SOURCE_URL,
             capturedAt: new Date().toISOString(),
-            mode: 'fully-local-static-archive',
+            source: SOURCE_URL,
+            mode: 'structured-local-json',
             sourceRequiredAtRuntime: false,
-            languages: LANGUAGES.map((item) => item.key),
-            localAssetCount: fs.readdirSync(ASSET_DIR).filter((name) => fs.statSync(path.join(ASSET_DIR, name)).isFile()).length,
-            snapshots
+            languages: LANGUAGES.map((item)=>item.key),
+            localAssetCount: fs.readdirSync(ASSET_DIR).filter((name)=>fs.statSync(path.join(ASSET_DIR,name)).isFile()).length,
+            counts: Object.fromEntries(LANGUAGES.map((language) => [language.key, {
+              arcana: captures[language.key].arcana.entries.length,
+              events: captures[language.key].events.entries.length
+            }])),
+            categories: Object.fromEntries(Object.entries(categoryMembership).map(([key, value])=>[key, value.length]))
           };
           fs.writeFileSync(META_PATH, JSON.stringify(meta, null, 2), 'utf8');
-          console.log('\nJourney archive complete:');
           console.log(JSON.stringify(meta, null, 2));
           NODE
+          node /tmp/capture-journey.mjs
 
-      - name: Verify local Journey archive has no runtime source dependency
+      - name: Verify structured local Journey database
         shell: bash
         run: |
-          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/journey-http.log 2>&1 &
-          SERVER_PID=$!
-          trap 'kill $SERVER_PID || true' EXIT
-          sleep 2
-
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
-          import { chromium } from 'playwright';
+          import path from 'node:path';
 
-          const meta = JSON.parse(fs.readFileSync('data/journey/backup-meta.json', 'utf8'));
-          if (meta.sourceRequiredAtRuntime !== false) throw new Error('Journey metadata still declares a runtime source dependency.');
-
-          const browser = await chromium.launch({ headless: true });
-          const context = await browser.newContext({ viewport: { width: 1100, height: 1400 } });
-          const page = await context.newPage();
-          const externalRequests = [];
-          await page.route('**/*', async (route) => {
-            const url = new URL(route.request().url());
-            if (['127.0.0.1', 'localhost'].includes(url.hostname) || ['data:', 'blob:'].includes(url.protocol)) {
-              return route.continue();
+          const languages = ['ko','en','ja','zh-TW','zh-CN'];
+          const meta = JSON.parse(fs.readFileSync('data/journey/backup-meta.json','utf8'));
+          if (meta.sourceRequiredAtRuntime !== false || meta.mode !== 'structured-local-json') {
+            throw new Error('Journey metadata is not local structured JSON.');
+          }
+          for (const language of languages) {
+            const file = `data/journey/${language}/journey.json`;
+            if (!fs.existsSync(file)) throw new Error(`Missing ${file}`);
+            const raw = fs.readFileSync(file,'utf8');
+            if (/https?:\/\//i.test(raw)) throw new Error(`External URL remained in ${file}`);
+            const data = JSON.parse(raw);
+            if (!Array.isArray(data.arcana) || data.arcana.length < 5) throw new Error(`Arcana data too small for ${language}`);
+            if (!Array.isArray(data.events) || data.events.length < 20) throw new Error(`Journey event data too small for ${language}`);
+            const combined = [...data.arcana, ...data.events];
+            for (const entry of combined) {
+              if (!entry.title || !Array.isArray(entry.rows) || !entry.rows.length) throw new Error(`Malformed Journey entry in ${language}`);
             }
-            externalRequests.push(route.request().url());
-            return route.abort();
-          });
-
-          await page.goto('http://127.0.0.1:4173/data/journey/ko/', { waitUntil: 'domcontentloaded', timeout: 30000 });
-          await page.waitForTimeout(500);
-          const text = (await page.locator('body').innerText()).replace(/\s+/g, ' ');
-          if (!text.includes('훈련의 방향성') || !text.includes('두통이 생기다')) {
-            throw new Error('Local Journey events were not available during offline verification.');
           }
-
-
-          const duplicatedControls = await page.locator('.snapshot-root input,.snapshot-root select,.snapshot-root textarea').count();
-          if (duplicatedControls) throw new Error(`Source filter controls leaked into local snapshots (${duplicatedControls}).`);
-
-          const arcanaEntries = page.locator('#pane-arcana [data-journey-entry="1"]');
-          const eventEntries = page.locator('#pane-events [data-journey-entry="1"]');
-          const allArcanaCount = await arcanaEntries.count();
-          const allEventCount = await eventEntries.count();
-          if (allArcanaCount < 2 || allEventCount < 4) throw new Error(`Local Journey entry extraction was too small: arcana=${allArcanaCount}, events=${allEventCount}`);
-
-          const searchInput = page.locator('#journey-search');
-          await searchInput.fill('린');
-          await page.waitForTimeout(100);
-          const visibleArcanaAfterSearch = await arcanaEntries.evaluateAll((nodes) => nodes.filter((node) => !node.hidden && getComputedStyle(node).display !== 'none').length);
-          if (!visibleArcanaAfterSearch) throw new Error('Local Journey search did not find Arcana entries for 린.');
-          await searchInput.fill('');
-          await page.waitForTimeout(100);
-
-          const resetButton = page.locator('.journey-chip[data-category="reset"]');
-          await resetButton.click();
-          await page.waitForTimeout(100);
-          const resetVisible = await eventEntries.evaluateAll((nodes) => nodes.filter((node) => !node.hidden && getComputedStyle(node).display !== 'none').length);
-          if (!resetVisible || resetVisible >= allEventCount) throw new Error(`Reset category filter did not narrow Journey events (${resetVisible}/${allEventCount}).`);
-          await page.locator('.journey-chip[data-category="all"]').click();
-
-          const imageWidths = await page.locator('[data-journey-entry="1"] img[data-journey-image="1"]').evaluateAll((nodes) => nodes.map((node) => node.getBoundingClientRect().width));
-          if (imageWidths.some((width) => width > 100.5)) throw new Error(`Journey image exceeded local size cap: ${Math.max(...imageWidths)}`);
-
-          const arcanaText = (await page.locator('#pane-arcana').innerText()).trim();
-          if (arcanaText.length < 2000) throw new Error(`Local Journey Arcana archive was too small (${arcanaText.length}).`);
-
-          const search = page.locator('#journey-search');
-          if (await search.count() !== 1) throw new Error('Journey search UI was not generated.');
-          if (await page.locator('.journey-chip').count() !== 7) throw new Error('Journey category filter UI was incomplete.');
-          if (await page.locator('#toggle-arcana').count() !== 1 || await page.locator('#toggle-events').count() !== 1) {
-            throw new Error('Journey type checkboxes were not generated.');
+          const assets = fs.readdirSync('data/journey-assets').filter((name) => fs.statSync(path.join('data/journey-assets',name)).isFile());
+          if (assets.length < 10) throw new Error(`Journey asset backup too small: ${assets.length}`);
+          const ko = JSON.parse(fs.readFileSync('data/journey/ko/journey.json','utf8'));
+          const koText = [...ko.arcana,...ko.events].map((entry)=>entry.searchText).join(' ');
+          for (const token of ['훈련의 방향성','리세트의 일과','오늘의 날씨','두통이 생기다']) {
+            if (!koText.includes(token)) throw new Error(`Missing Korean Journey token: ${token}`);
           }
-
-          const forbiddenUi = ['LOCAL ARCHIVE','가챠 시뮬레이터','여정 아이템','몬스터 정보','월페이퍼','구원자 시뮬레이터'];
-          const leakedUi = forbiddenUi.filter((token) => text.includes(token));
-          if (leakedUi.length) throw new Error(`Source-site UI leaked into local Journey archive: ${leakedUi.join(', ')}`);
-
-          if (externalRequests.length) {
-            throw new Error(`Journey archive attempted external runtime requests:\n${externalRequests.join('\n')}`);
+          const arcanaSearch = ko.arcana.some((entry) => (entry.searchText || '').includes('린'));
+          if (!arcanaSearch) throw new Error('Arcana Journey search corpus does not contain 린.');
+          for (const category of ['reset','raid','aganon','flora','kalaid','weather']) {
+            const count = ko.events.filter((entry)=>entry.categories?.includes(category)).length;
+            if (!count) throw new Error(`Journey category has no entries: ${category}`);
           }
-
-          await browser.close();
-          console.log('Offline verification passed: Journey works without the source site.');
+          console.log(`Structured Journey verification passed. assets=${assets.length}`);
           NODE
 
-      - name: Commit Journey archive
+      - name: Commit Journey database
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
@@ -1232,6 +752,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No Journey changes to commit."
           else
-            git commit -m "Backup Journey database locally"
+            git commit -m "Rebuild Journey database as local JSON"
             git push
           fi
