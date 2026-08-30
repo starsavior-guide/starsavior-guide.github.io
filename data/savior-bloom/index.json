@@ -1,0 +1,73 @@
+{
+  "1501": {
+    "key": "besta",
+    "id": 1501,
+    "file": "./1501.html",
+    "source": "https://star-savior-arcana-db.pages.dev/savior/1501",
+    "capturedAt": "2026-08-30T09:51:48.382Z",
+    "mode": "bloom-text-only"
+  },
+  "1502": {
+    "key": "annah",
+    "id": 1502,
+    "file": "./1502.html",
+    "source": "https://star-savior-arcana-db.pages.dev/savior/1502",
+    "capturedAt": "2026-08-30T09:51:51.301Z",
+    "mode": "bloom-text-only"
+  },
+  "1506": {
+    "key": "marcille",
+    "id": 1506,
+    "file": "./1506.html",
+    "source": "https://star-savior-arcana-db.pages.dev/savior/1506",
+    "capturedAt": "2026-08-30T09:51:54.317Z",
+    "mode": "bloom-text-only"
+  },
+  "1507": {
+    "key": "vera",
+    "id": 1507,
+    "file": "./1507.html",
+    "source": "https://star-savior-arcana-db.pages.dev/savior/1507",
+    "capturedAt": "2026-08-30T09:51:57.303Z",
+    "mode": "bloom-text-only"
+  },
+  "1508": {
+    "key": "naru",
+    "id": 1508,
+    "file": "./1508.html",
+    "source": "https://star-savior-arcana-db.pages.dev/savior/1508",
+    "capturedAt": "2026-08-30T09:52:00.290Z",
+    "mode": "bloom-text-only"
+  },
+  "1509": {
+    "key": "bunny-claire",
+    "id": 1509,
+    "file": "./1509.html",
+    "source": "https://star-savior-arcana-db.pages.dev/savior/1509",
+    "capturedAt": "2026-08-30T09:52:03.162Z",
+    "mode": "bloom-text-only"
+  },
+  "1510": {
+    "key": "bunny-scarlet",
+    "id": 1510,
+    "file": "./1510.html",
+    "source": "https://star-savior-arcana-db.pages.dev/savior/1510",
+    "capturedAt": "2026-08-30T09:52:06.050Z",
+    "mode": "bloom-text-only"
+  },
+  "1511": {
+    "key": "clarissa",
+    "id": 1511,
+    "file": "./1511.html",
+    "source": "https://star-savior-arcana-db.pages.dev/savior/1511",
+    "capturedAt": "2026-08-30T09:52:09.032Z",
+    "mode": "bloom-text-only"
+  },
+  "_meta": {
+    "sourceRoot": "https://star-savior-arcana-db.pages.dev/savior",
+    "generatedAt": "2026-08-30T09:52:09.100Z",
+    "count": 8,
+    "mode": "bloom-text-only",
+    "imagesDownloaded": false
+  }
+}
