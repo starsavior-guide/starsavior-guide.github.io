@@ -1419,22 +1419,63 @@ jobs:
                   || regionAtoms[0]?.tone || 'plain';
                 const fontSize = Math.max(0, ...row.atoms.filter((atom) => atom.type === 'text').map((atom) => atom.fontSize || 0));
                 const weight = Math.max(0, ...row.atoms.filter((atom) => atom.type === 'text').map((atom) => atom.weight || 0));
-                return { text, segments, region, tone, fontSize, weight };
+                return { text, segments, region, tone, fontSize, weight, y:row.top, height:row.height };
               }).filter((row) => row.text || row.segments.some((segment) => segment.type === 'images'));
 
-              const metadataRows = [
-                { text:`[아르카나]${name}`, segments:[{ type:'text', text:`[아르카나]${name}`, fontSize:24, weight:850 }], region:'', tone:'plain', fontSize:24, weight:850 },
-                { text:`${saviorLabel} : ${savior || '-'}`, segments:[{ type:'text', text:`${saviorLabel} : ${savior || '-'}`, fontSize:15, weight:700 }], region:'', tone:'plain', fontSize:15, weight:700 }
+              // The source footer is not always a semantic <footer>, so trim it by
+              // its actual disclaimer text before building Arcana Journey data.
+              const footerMarkers = [
+                '이 페이지는 게임', '비영리 팬 프로젝트', '프로젝트에 사용된 모든 자산',
+                'STUDIOBSIDE', '제보/문의 Discord', 'hippo2003',
+                'This page is', 'fan project', 'All assets, data, images', 'Report/Inquiries Discord',
+                'このページは', '非営利ファン', '使用されているすべての', 'お問い合わせ Discord'
               ];
-              if (grade) metadataRows.splice(1, 0, { text:grade, segments:[{ type:'text', text:grade, fontSize:14, weight:800 }], region:'', tone:'plain', fontSize:14, weight:800 });
+              const footerIndex = serialized.findIndex((row) => {
+                const text = normalize(row.text).toLowerCase();
+                return footerMarkers.some((marker) => text.includes(marker.toLowerCase()));
+              });
+              const cleanedSerialized = (footerIndex >= 0 ? serialized.slice(0, footerIndex) : serialized)
+                .filter((row) => {
+                  const text = normalize(row.text);
+                  return (text && !/^hits?\b/i.test(text)) || row.segments.some((segment) => segment.type === 'images');
+                });
 
-              const imageText = serialized.flatMap((row) => row.segments || [])
-                .filter((segment) => segment.type === 'images')
-                .flatMap((segment) => segment.images || [])
-                .map((image) => image.alt || '')
+              // Mark event headings while we still have the source typography and geometry.
+              const fontSizes = cleanedSerialized
+                .filter((row) => normalize(row.text))
+                .map((row) => Number(row.fontSize) || 0)
+                .filter((value) => value > 0)
+                .sort((a,b) => a-b);
+              const medianFont = fontSizes.length ? fontSizes[Math.floor(fontSizes.length / 2)] : 14;
+              const titleThreshold = Math.max(16.5, medianFont + 1.25);
+              const titleExcluded = /^(성공|실패|Success|Failure|成功|失敗|or)$/i;
+              const statLike = /(잠재력|스태미나|컨디션|힘\s*[+-]|체력\s*[+-]|인내\s*[+-]|집중\s*[+-]|보호\s*[+-]|공격력|방어력|생명력|속도|할인|여정 버프|턴$)/i;
+
+              for (let index = 0; index < cleanedSerialized.length; index++) {
+                const row = cleanedSerialized[index];
+                const text = normalize(row.text);
+                const hasImages = (row.segments || []).some((segment) => segment.type === 'images');
+                const previous = index > 0 ? cleanedSerialized[index - 1] : null;
+                const verticalGap = previous ? (Number(row.y) || 0) - ((Number(previous.y) || 0) + (Number(previous.height) || 0)) : 999;
+                const looksLikeTitle = text && text.length <= 90 && !titleExcluded.test(text) && !statLike.test(text) && !hasImages
+                  && (index === 0 || ((Number(row.fontSize) || 0) >= titleThreshold && (Number(row.weight) || 0) >= 600)
+                    || (verticalGap >= 18 && (Number(row.weight) || 0) >= 650));
+                row.isEventTitle = Boolean(looksLikeTitle);
+              }
+
+              const metadataRows = [
+                { text:`[아르카나]${name}`, segments:[{ type:'text', text:`[아르카나]${name}`, fontSize:24, weight:850 }], region:'', tone:'plain', fontSize:24, weight:850, isEventTitle:false },
+                { text:`${saviorLabel} : ${savior || '-'}`, segments:[{ type:'text', text:`${saviorLabel} : ${savior || '-'}`, fontSize:15, weight:700 }], region:'', tone:'plain', fontSize:15, weight:700, isEventTitle:false }
+              ];
+              if (grade) metadataRows.splice(1, 0, { text:grade, segments:[{ type:'text', text:grade, fontSize:14, weight:800 }], region:'', tone:'plain', fontSize:14, weight:800, isEventTitle:false });
+
+              const eventTitleText = cleanedSerialized
+                .filter((row) => row.isEventTitle)
+                .map((row) => row.text)
                 .join(' ');
-              const eventText = normalize(serialized.map((row) => row.text).join(' '));
-              const searchText = normalize(`${name} ${grade} ${savior} ${eventText} ${imageText}`);
+              // Arcana search intentionally indexes card name, Savior, and event headings.
+              // Narrative story text is excluded so names mentioned in another card do not cause false matches.
+              const searchText = normalize(`${name} ${grade} ${savior} ${eventTitleText}`);
               return {
                 key: `arcana:${normalize(name)}:${normalize(savior)}`,
                 title: `[아르카나]${name}`,
@@ -1445,7 +1486,7 @@ jobs:
                 difficulties: [],
                 categories: [],
                 kind: 'arcana',
-                rows: [...metadataRows, ...serialized]
+                rows: [...metadataRows, ...cleanedSerialized]
               };
             }, {
               eventLabels: language.eventLabels,
@@ -1474,6 +1515,29 @@ jobs:
                 }
               }
             }
+
+            // Persist explicit event groups after local asset replacement so the
+            // site does not have to guess the boundaries on every render.
+            const contentRows = payload.rows.filter((row) =>
+              row && !/^\[아르카나\]/.test(String(row.text || ''))
+              && String(row.text || '') !== String(payload.grade || '')
+              && !/^(구원자|Savior|救援者)\s*[:：]/i.test(String(row.text || ''))
+            );
+            const eventGroups = [];
+            let currentGroup = null;
+            for (const row of contentRows) {
+              if (row.isEventTitle) {
+                currentGroup = { title: String(row.text || '').trim(), rows: [] };
+                eventGroups.push(currentGroup);
+                continue;
+              }
+              if (!currentGroup) {
+                currentGroup = { title: '', rows: [] };
+                eventGroups.push(currentGroup);
+              }
+              currentGroup.rows.push(row);
+            }
+            payload.eventGroups = eventGroups.filter((group) => group.title || group.rows.length);
             return payload;
           }
 
@@ -1577,6 +1641,21 @@ jobs:
             if (!(knownArcana.searchText || '').includes(token)) throw new Error(`Known Arcana event token missing: ${token}`);
           }
           if (!(knownArcana.searchText || '').includes('린')) throw new Error('Known Arcana Savior mapping missing: 린');
+          if (!Array.isArray(knownArcana.eventGroups) || knownArcana.eventGroups.length < 3) {
+            throw new Error(`Known Arcana event grouping failed: ${knownArcana.eventGroups?.length || 0}`);
+          }
+          const knownEventTitles = knownArcana.eventGroups.map((group) => group.title || '').join(' ');
+          for (const token of ['부끄럽지 않아요','만물이 지닌 가치','건강이 제일이에요']) {
+            if (!knownEventTitles.includes(token)) throw new Error(`Known Arcana grouped event title missing: ${token}`);
+          }
+          const arcanaRawText = JSON.stringify(ko.arcana);
+          for (const marker of ['비영리 팬 프로젝트','제보/문의 Discord','hippo2003']) {
+            if (arcanaRawText.includes(marker)) throw new Error(`Arcana footer text leaked into local data: ${marker}`);
+          }
+          const unrelated = ko.arcana.find((entry) => String(entry.arcanaName || '').includes('완벽한 바니걸'));
+          if (unrelated && String(unrelated.searchText || '').includes('린')) {
+            throw new Error('Arcana search corpus false-positive check failed: 완벽한 바니걸 contains 린');
+          }
           for (const language of languages) {
             const data = JSON.parse(fs.readFileSync(`data/journey/${language}/journey.json`,'utf8'));
             for (const category of ['reset','raid','aganon','flora','kalaid','weather']) {
