@@ -8,7 +8,7 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=56-selfhost-images"></script>
+  <script defer src="./app.js?v=57-inline-savior-details"></script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -610,6 +610,83 @@
         width: 66px;
         padding-left: 6px;
         font-size: 9px;
+      }
+    }
+  </style>
+
+
+  <style id="savior-source-detail-styles">
+    .savior-source-detail {
+      width: 100%;
+    }
+
+    .savior-detail-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .savior-detail-toggle:disabled {
+      opacity: .65;
+      cursor: wait;
+    }
+
+    .savior-detail-chevron {
+      display: inline-block;
+      font-size: 18px;
+      line-height: 1;
+      transition: transform .2s ease;
+    }
+
+    .savior-detail-toggle[aria-expanded="true"] .savior-detail-chevron {
+      transform: rotate(180deg);
+    }
+
+    .savior-source-panel {
+      width: 100%;
+      margin-top: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .savior-source-panel[hidden] {
+      display: none !important;
+    }
+
+    .savior-source-frame {
+      display: block;
+      width: 100%;
+      min-height: 280px;
+      border: 0;
+      background: transparent;
+    }
+
+    .savior-source-status {
+      padding: 22px 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .savior-source-status.error {
+      color: #ff9da6;
+    }
+
+    @media (max-width: 640px) {
+      .savior-source-detail,
+      .savior-detail-toggle {
+        width: 100%;
+      }
+
+      .savior-source-panel {
+        margin-top: 12px;
+        border-radius: 12px;
       }
     }
   </style>
