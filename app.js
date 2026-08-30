@@ -7444,43 +7444,70 @@ function renderJourneyArcanaLogicalText(text, iconHtml = "", tone = "neutral") {
     else if (/[.!?。！？]$/.test(line) || /증가합니다|감소합니다|획득합니다|발생합니다|턴$/.test(line)) kind = "effect-desc";
     else if (index === 0 && iconHtml) kind = "effect-title";
 
-    return `<div class="journey-arcana-detail-line is-${kind} tone-${escapeHtml(tone)}">${index === 0 ? iconHtml : ""}<span>${escapeHtml(line)}</span></div>`;
+    const polarity = getJourneyArcanaLinePolarity(line);
+    return `<div class="journey-arcana-detail-line is-${kind} tone-${escapeHtml(tone)} polarity-${escapeHtml(polarity)}">${index === 0 ? iconHtml : ""}<span>${escapeHtml(line)}</span></div>`;
   }).join("");
 }
 
-function inferJourneyArcanaPairedSegments(segments) {
+function getJourneyArcanaSegmentX(segment) {
+  const value = Number(segment?.x);
+  return Number.isFinite(value) ? value : null;
+}
+
+function getJourneyArcanaSegmentRegion(segment) {
+  return String(segment?.region || "");
+}
+
+function groupJourneyArcanaSegmentsBySourceRegion(segments) {
   const list = Array.isArray(segments) ? segments.filter(Boolean) : [];
-  if (list.length < 2) return null;
+  if (!list.length) return [];
 
-  const imageIndexes = list
-    .map((segment, index) => segment?.type === "images" ? index : -1)
-    .filter((index) => index >= 0);
-
-  // Two icon groups almost always mean the source DB rendered two result columns.
-  if (imageIndexes.length >= 2) {
-    const splitAt = imageIndexes[1];
-    if (splitAt > 0 && splitAt < list.length) return [list.slice(0, splitAt), list.slice(splitAt)];
-  }
-
-  // A common source pattern is:
-  // left = one short stat line, right = buff label + icon + description.
-  // The archived JSON no longer contains x coordinates, so reconstruct that
-  // two-column row from the segment order before rendering it vertically.
-  if (imageIndexes.length === 1 && imageIndexes[0] >= 1) {
-    const first = list[0];
-    const firstText = first?.type === "text" ? String(first.text || "").trim() : "";
-    const shortResult = /^(?:(?:잠재력\s*포인트|스태미나|컨디션|힘|체력|인내|집중|보호)\s*[+-]\s*\d+)(?:\s+(?:잠재력\s*포인트|스태미나|컨디션|힘|체력|인내|집중|보호)\s*[+-]\s*\d+)*$/i;
-    if (firstText && firstText.length <= 80 && shortResult.test(firstText) && list.length >= 3) {
-      return [[first], list.slice(1)];
+  const groups = [];
+  const byKey = new Map();
+  list.forEach((segment, index) => {
+    const region = getJourneyArcanaSegmentRegion(segment);
+    // Empty-region segments are kept together only when adjacent. A real source
+    // box always has a region id, which is the important discriminator here.
+    const key = region ? `region:${region}` : `plain:${index}`;
+    let group = byKey.get(key);
+    if (!group) {
+      group = { region, segments: [], x: null, tone: "neutral" };
+      byKey.set(key, group);
+      groups.push(group);
     }
-  }
+    group.segments.push(segment);
+    const x = getJourneyArcanaSegmentX(segment);
+    if (x != null) group.x = group.x == null ? x : Math.min(group.x, x);
+    const segTone = getJourneyArcanaPieceTone({ segments: [segment], tone: segment?.tone }, "neutral");
+    if (segTone === "failure") group.tone = "failure";
+    else if (segTone === "success" && group.tone !== "failure") group.tone = "success";
+    else if (segTone === "highlight" && !["failure", "success"].includes(group.tone)) group.tone = "highlight";
+  });
 
-  if (list.length === 2 && list.every((segment) => segment?.type === "text")) {
-    const left = String(list[0]?.text || "").trim();
-    const right = String(list[1]?.text || "").trim();
-    if (left && right && left.length <= 180 && right.length <= 180) return [[list[0]], [list[1]]];
-  }
-  return null;
+  return groups.sort((a, b) => {
+    if (a.x == null && b.x == null) return 0;
+    if (a.x == null) return 1;
+    if (b.x == null) return -1;
+    return a.x - b.x;
+  });
+}
+
+function inferJourneyArcanaPairedSegments(segments) {
+  const groups = groupJourneyArcanaSegmentsBySourceRegion(segments);
+  if (groups.length < 2) return null;
+
+  // Only treat a row as two source columns when two distinct bordered/background
+  // regions were actually captured and their horizontal positions are clearly
+  // separated. This prevents single automatic-choice events from being split
+  // merely because the row happened to contain two text segments.
+  const regionGroups = groups.filter((group) => group.region && group.x != null);
+  if (regionGroups.length < 2) return null;
+
+  const left = regionGroups[0];
+  const right = regionGroups[regionGroups.length - 1];
+  if (Math.abs(right.x - left.x) < 72) return null;
+
+  return [left, right];
 }
 
 function getJourneyArcanaRowPieces(row) {
@@ -7489,18 +7516,51 @@ function getJourneyArcanaRowPieces(row) {
   const rowRegion = String(row?.region || "");
   if (!segments.length) {
     const text = String(row?.text || "").trim();
-    return text ? [{ region: rowRegion, tone: rowTone, lane: "", segments: [{ type: "text", text }] }] : [];
+    return text ? [{ region: rowRegion, tone: rowTone, lane: "", x: null, segments: [{ type: "text", text }] }] : [];
   }
+
   const paired = inferJourneyArcanaPairedSegments(segments);
   if (paired) {
-    return paired.map((part, index) => ({
-      region: `${rowRegion || "pair"}-${index}`,
-      tone: index === 0 ? "success" : "failure",
+    return paired.map((group, index) => ({
+      region: group.region,
+      tone: group.tone || rowTone,
       lane: index === 0 ? "left" : "right",
-      segments: part
+      x: group.x,
+      segments: group.segments
     }));
   }
-  return [{ region: rowRegion, tone: rowTone, lane: "", segments }];
+
+  const groups = groupJourneyArcanaSegmentsBySourceRegion(segments);
+  if (groups.length === 1) {
+    const group = groups[0];
+    return [{
+      region: group.region || rowRegion,
+      tone: group.tone !== "neutral" ? group.tone : rowTone,
+      lane: "",
+      x: group.x,
+      segments: group.segments
+    }];
+  }
+
+  // Multiple source regions on the same visual row that are not far enough
+  // apart to be separate columns remain one logical row, preserving each
+  // segment's original region/tone for icon-to-text pairing.
+  return [{ region: rowRegion, tone: rowTone, lane: "", x: groups[0]?.x ?? null, segments }];
+}
+
+function getJourneyArcanaLinePolarity(line) {
+  const text = String(line || "").replace(/\s+/g, " ").trim();
+  if (!text) return "neutral";
+
+  if (/^(?:잠재력\s*포인트|스태미나|컨디션|힘|체력|인내|집중|보호)\s*\+\s*\d+/i.test(text)) return "positive";
+  if (/^(?:잠재력\s*포인트|스태미나|컨디션|힘|체력|인내|집중|보호)\s*-\s*\d+/i.test(text)) return "negative";
+  if (/^(여정 버프 획득|Journey Buff Acquired|旅程バフ獲得)$/i.test(text)) return "positive";
+  if (/(여정\s*디버프|Journey\s*Debuff|旅程デバフ)/i.test(text)) return "negative";
+  if (/\b\d+(?:\.\d+)?%\s*(?:할인|discount|割引)\b/i.test(text)) return "positive";
+  if (/(증가합니다|상승합니다|획득합니다|회복합니다)/i.test(text)) return "positive";
+  if (/(실패율|받는\s*피해|피해량).*감소합니다/i.test(text)) return "positive";
+  if (/감소합니다/i.test(text)) return "negative";
+  return "neutral";
 }
 
 function renderJourneyArcanaPieceLine(piece) {
@@ -7528,24 +7588,30 @@ function renderJourneyArcanaPieceLine(piece) {
 
 function renderJourneyArcanaPieceSequence(pieces, forcedTone = "") {
   const output = [];
-  let toneBucket = "";
+  let bucketTone = "";
+  let bucketRegion = "";
   let bucket = [];
   const flush = () => {
     if (!bucket.length) return;
-    const tone = forcedTone || toneBucket || "neutral";
+    const tone = forcedTone || bucketTone || "neutral";
     if (tone === "success" || tone === "failure" || tone === "highlight") {
       output.push(`<div class="journey-result-block journey-arcana-result-block tone-${escapeHtml(tone)}">${bucket.map(renderJourneyArcanaPieceLine).join("")}</div>`);
     } else {
       output.push(bucket.map(renderJourneyArcanaPieceLine).join(""));
     }
     bucket = [];
-    toneBucket = "";
+    bucketTone = "";
+    bucketRegion = "";
   };
+
   for (const piece of pieces || []) {
     const tone = forcedTone || getJourneyArcanaPieceTone(piece, "neutral");
-    if (!toneBucket) toneBucket = tone;
-    if (tone !== toneBucket) flush();
-    toneBucket = tone;
+    const region = String(piece?.region || "");
+    if (!bucketTone) bucketTone = tone;
+    if (!bucketRegion) bucketRegion = region;
+    if (bucket.length && (tone !== bucketTone || (region && bucketRegion && region !== bucketRegion))) flush();
+    bucketTone = tone;
+    bucketRegion = region;
     bucket.push(piece);
   }
   flush();
@@ -7554,42 +7620,49 @@ function renderJourneyArcanaPieceSequence(pieces, forcedTone = "") {
 
 function renderJourneyArcanaEventBody(group) {
   const rows = Array.isArray(group?.rows) ? group.rows : [];
-  const rowsWithPieces = rows.map((row, rowIndex) => ({ row, rowIndex, pieces: getJourneyArcanaRowPieces(row) })).filter((item) => item.pieces.length);
-  const hasPairedRows = rowsWithPieces.some((item) => item.pieces.some((piece) => piece?.lane === "left" || piece?.lane === "right"));
+  const rowsWithPieces = rows
+    .map((row, rowIndex) => ({ row, rowIndex, pieces: getJourneyArcanaRowPieces(row) }))
+    .filter((item) => item.pieces.length);
 
-  if (hasPairedRows) {
+  const firstPairIndex = rowsWithPieces.findIndex((item) =>
+    item.pieces.some((piece) => piece?.lane === "left") &&
+    item.pieces.some((piece) => piece?.lane === "right")
+  );
+
+  if (firstPairIndex >= 0) {
+    const firstPair = rowsWithPieces[firstPairIndex];
+    const leftAnchor = firstPair.pieces.find((piece) => piece?.lane === "left")?.x;
+    const rightAnchor = firstPair.pieces.find((piece) => piece?.lane === "right")?.x;
+    const canUseAnchors = Number.isFinite(leftAnchor) && Number.isFinite(rightAnchor) && rightAnchor > leftAnchor;
+    const mid = canUseAnchors ? (leftAnchor + rightAnchor) / 2 : null;
+
     const before = [];
     const left = [];
     const right = [];
+    const after = [];
     let pairStarted = false;
-    let activeLane = "";
 
-    const pieceWeight = (pieces) => (pieces || []).reduce((total, piece) => {
-      const segments = Array.isArray(piece?.segments) ? piece.segments : [];
-      return total + segments.reduce((sum, segment) => {
-        if (segment?.type === "images") return sum + 80;
-        if (segment?.type === "text") return sum + String(segment.text || "").length;
-        return sum;
-      }, 0);
-    }, 0);
+    const assignByX = (piece) => {
+      const x = Number(piece?.x);
+      if (!canUseAnchors || !Number.isFinite(x)) return "";
+      return x < mid ? "left" : "right";
+    };
 
-    for (const item of rowsWithPieces) {
-      const leftPieces = item.pieces.filter((piece) => piece?.lane === "left");
-      const rightPieces = item.pieces.filter((piece) => piece?.lane === "right");
+    for (let itemIndex = 0; itemIndex < rowsWithPieces.length; itemIndex++) {
+      const item = rowsWithPieces[itemIndex];
+      const hasLeft = item.pieces.some((piece) => piece?.lane === "left");
+      const hasRight = item.pieces.some((piece) => piece?.lane === "right");
 
-      if (leftPieces.length || rightPieces.length) {
+      if (hasLeft || hasRight) {
         pairStarted = true;
-        left.push(...leftPieces);
-        right.push(...rightPieces);
-
-        // If one side contains the longer result (buff icon/description), rows
-        // immediately following it belong to that same source column. This is
-        // required because the old local JSON intentionally omitted x coords.
-        const leftWeight = pieceWeight(leftPieces);
-        const rightWeight = pieceWeight(rightPieces);
-        if (leftPieces.length && !rightPieces.length) activeLane = "left";
-        else if (rightPieces.length && !leftPieces.length) activeLane = "right";
-        else if (leftWeight !== rightWeight) activeLane = leftWeight > rightWeight ? "left" : "right";
+        item.pieces.forEach((piece) => {
+          if (piece.lane === "left") left.push(piece);
+          else if (piece.lane === "right") right.push(piece);
+          else {
+            const lane = assignByX(piece);
+            (lane === "right" ? right : left).push(piece);
+          }
+        });
         continue;
       }
 
@@ -7598,52 +7671,36 @@ function renderJourneyArcanaEventBody(group) {
         continue;
       }
 
-      // Once a two-choice row has started, do not drop its following reward
-      // lines into a shared neutral area. Keep them attached to the most recent
-      // branch so success/failure choice + effects remain one vertical block.
-      const explicitTone = getJourneyArcanaTextTone(item.row?.text, getJourneyArcanaPieceTone(item.pieces[0], ""));
-      if (explicitTone === "success") activeLane = "left";
-      if (explicitTone === "failure") activeLane = "right";
-
-      if (!activeLane) {
-        const text = String(item.row?.text || "").trim();
-        // A short positive stat immediately after the choices is generally the
-        // left result in the source layout; richer follow-up content defaults
-        // to the right branch once a right-side paired row appears.
-        activeLane = /^(?:잠재력\s*포인트|스태미나|컨디션|힘|체력|인내|집중|보호)\s*\+/.test(text) ? "left" : "right";
+      let assigned = false;
+      for (const piece of item.pieces) {
+        const lane = assignByX(piece);
+        if (lane === "left") {
+          left.push(piece);
+          assigned = true;
+        } else if (lane === "right") {
+          right.push(piece);
+          assigned = true;
+        }
       }
 
-      (activeLane === "left" ? left : right).push(...item.pieces);
+      // Full-width source rows after a paired choice are shared text, not a
+      // branch result. Keep them outside the two choice stacks.
+      if (!assigned) after.push(...item.pieces);
     }
 
     return [
       renderJourneyArcanaPieceSequence(before),
       `<div class="journey-arcana-stacked-choices">
-        ${left.length ? `<div class="journey-arcana-choice-stack tone-success">${renderJourneyArcanaPieceSequence(left, "success")}</div>` : ""}
-        ${right.length ? `<div class="journey-arcana-choice-stack tone-failure">${renderJourneyArcanaPieceSequence(right, "failure")}</div>` : ""}
-      </div>`
+        ${left.length ? `<div class="journey-arcana-choice-stack">${renderJourneyArcanaPieceSequence(left)}</div>` : ""}
+        ${right.length ? `<div class="journey-arcana-choice-stack">${renderJourneyArcanaPieceSequence(right)}</div>` : ""}
+      </div>`,
+      renderJourneyArcanaPieceSequence(after)
     ].join("");
   }
 
-  const output = [];
-  let currentTone = "";
-  let currentPieces = [];
-  const flush = () => {
-    if (!currentPieces.length) return;
-    output.push(renderJourneyArcanaPieceSequence(currentPieces, currentTone));
-    currentPieces = [];
-  };
-  for (const item of rowsWithPieces) {
-    const text = String(item.row?.text || "").trim();
-    const explicitTone = getJourneyArcanaTextTone(text, "");
-    if (explicitTone) {
-      flush();
-      currentTone = explicitTone;
-    }
-    currentPieces.push(...item.pieces.map((piece) => ({ ...piece, tone: explicitTone || currentTone || piece.tone })));
-  }
-  flush();
-  return output.join("");
+  // No actual source two-column regions: keep the event as one selection.
+  // Success/failure blocks are still separated by their captured source tone.
+  return renderJourneyArcanaPieceSequence(rowsWithPieces.flatMap((item) => item.pieces));
 }
 
 function renderJourneyArcanaEntry(entry) {
