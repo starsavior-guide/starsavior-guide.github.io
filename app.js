@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v87-journey-arcana-layout-search";
+const SITE_BUILD_VERSION = "v88-journey-arcana-result-layout";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -7376,140 +7376,215 @@ function getJourneyArcanaPieceTone(piece, fallback = "neutral") {
   if (tones.includes("success")) return "success";
   if (tones.includes("highlight")) return "highlight";
   const own = String(piece?.tone || "");
-  return ["failure", "success", "highlight", "neutral"].includes(own) ? own : fallback;
+  return ["failure", "success", "highlight", "neutral", "plain"].includes(own)
+    ? (own === "plain" ? fallback : own)
+    : fallback;
+}
+
+function getJourneyArcanaTextTone(value, fallback = "neutral") {
+  const text = String(value || "").trim();
+  if (/^(실패|Failure|失敗)\b/i.test(text)) return "failure";
+  if (/^(성공|Success|成功)\b/i.test(text)) return "success";
+  return fallback;
+}
+
+function splitJourneyArcanaTextLines(value) {
+  const source = String(value || "").replace(/\s+/g, " ").trim();
+  if (!source) return [];
+
+  const statPattern = /(?:잠재력\s*포인트|스태미나|컨디션|힘|체력|인내|집중|보호)\s*[+-]\s*\d+/gi;
+  const stats = [];
+  let main = source.replace(statPattern, (match) => {
+    stats.push(match.replace(/\s*([+-])\s*/g, " $1"));
+    return " ";
+  }).replace(/\s+/g, " ").trim();
+
+  const lines = [];
+  const push = (value) => {
+    const clean = String(value || "").replace(/\s+/g, " ").trim();
+    if (clean) lines.push(clean);
+  };
+
+  const buffMarkers = ["여정 버프 획득", "Journey Buff Acquired", "旅程バフ獲得"];
+  for (const marker of buffMarkers) {
+    const index = main.toLocaleLowerCase().indexOf(marker.toLocaleLowerCase());
+    if (index >= 0) {
+      push(main.slice(0, index));
+      push(marker);
+      main = main.slice(index + marker.length).trim();
+      break;
+    }
+  }
+
+  const discountMatch = main.match(/^(.+?)\s+(\d+(?:\.\d+)?%\s*(?:할인|discount|割引).*)$/i);
+  if (discountMatch) {
+    push(discountMatch[1]);
+    push(discountMatch[2]);
+    main = "";
+  }
+
+  if (main) {
+    const sentenceParts = main.split(/(?<=[.!?。！？])\s+/).map((part) => part.trim()).filter(Boolean);
+    sentenceParts.forEach(push);
+  }
+
+  stats.forEach(push);
+  return lines;
+}
+
+function renderJourneyArcanaLogicalText(text, iconHtml = "", tone = "neutral") {
+  const lines = splitJourneyArcanaTextLines(text);
+  if (!lines.length) return iconHtml ? `<div class="journey-arcana-detail-line">${iconHtml}</div>` : "";
+
+  return lines.map((line, index) => {
+    let kind = "detail";
+    if (/^(여정 버프 획득|Journey Buff Acquired|旅程バフ獲得)$/i.test(line)) kind = "buff-label";
+    else if (/^(잠재력\s*포인트|스태미나|컨디션|힘|체력|인내|집중|보호)\s*[+-]\s*\d+/i.test(line)) kind = "stat";
+    else if (/\b\d+(?:\.\d+)?%\s*(?:할인|discount|割引)\b/i.test(line)) kind = "effect-desc";
+    else if (/[.!?。！？]$/.test(line) || /증가합니다|감소합니다|획득합니다|발생합니다|턴$/.test(line)) kind = "effect-desc";
+    else if (index === 0 && iconHtml) kind = "effect-title";
+
+    return `<div class="journey-arcana-detail-line is-${kind} tone-${escapeHtml(tone)}">${index === 0 ? iconHtml : ""}<span>${escapeHtml(line)}</span></div>`;
+  }).join("");
+}
+
+function inferJourneyArcanaPairedSegments(segments) {
+  const list = Array.isArray(segments) ? segments.filter(Boolean) : [];
+  if (list.length < 2) return null;
+  const imageIndexes = list.map((segment, index) => segment?.type === "images" ? index : -1).filter((index) => index >= 0);
+  if (imageIndexes.length >= 2) {
+    const splitAt = imageIndexes[1];
+    if (splitAt > 0 && splitAt < list.length) return [list.slice(0, splitAt), list.slice(splitAt)];
+  }
+  if (list.length === 2 && list.every((segment) => segment?.type === "text")) {
+    const left = String(list[0]?.text || "").trim();
+    const right = String(list[1]?.text || "").trim();
+    if (left && right && left.length <= 180 && right.length <= 180) return [[list[0]], [list[1]]];
+  }
+  return null;
 }
 
 function getJourneyArcanaRowPieces(row) {
   const segments = Array.isArray(row?.segments) ? row.segments.filter(Boolean) : [];
+  const rowTone = getJourneyArcanaTextTone(row?.text, getJourneyArcanaPieceTone(row, "neutral"));
+  const rowRegion = String(row?.region || "");
   if (!segments.length) {
     const text = String(row?.text || "").trim();
-    return text ? [{ region: row?.region || "", tone: row?.tone || "neutral", x: Number(row?.x) || 0, segments: [{ type: "text", text }] }] : [];
+    return text ? [{ region: rowRegion, tone: rowTone, lane: "", segments: [{ type: "text", text }] }] : [];
   }
-
-  // v87 Arcana snapshots keep the source region/tone/x on every segment.
-  // Segments from the same source box stay together; left/right source boxes
-  // remain separate so they can be stacked vertically on this site.
-  const pieces = [];
-  for (const segment of segments) {
-    const region = String(segment?.region || row?.region || "");
-    const tone = String(segment?.tone || row?.tone || "neutral");
-    const x = Number.isFinite(Number(segment?.x)) ? Number(segment.x) : 0;
-    const previous = pieces[pieces.length - 1];
-    if (region && previous?.region === region) {
-      previous.segments.push(segment);
-      previous.x = Math.min(previous.x, x || previous.x);
-      if (tone === "failure" || (tone === "success" && previous.tone !== "failure") || (tone === "highlight" && !["failure", "success"].includes(previous.tone))) previous.tone = tone;
-    } else if (!region && previous && !previous.region) {
-      previous.segments.push(segment);
-      previous.x = Math.min(previous.x, x || previous.x);
-    } else {
-      pieces.push({ region, tone, x, segments: [segment] });
-    }
+  const paired = inferJourneyArcanaPairedSegments(segments);
+  if (paired) {
+    return paired.map((part, index) => ({
+      region: `${rowRegion || "pair"}-${index}`,
+      tone: index === 0 ? "success" : "failure",
+      lane: index === 0 ? "left" : "right",
+      segments: part
+    }));
   }
-  return pieces;
+  return [{ region: rowRegion, tone: rowTone, lane: "", segments }];
 }
 
 function renderJourneyArcanaPieceLine(piece) {
-  const segments = (piece?.segments || []).map((segment) => {
-    if (segment?.type === "images") return renderJourneyImageGroup(segment);
-    if (segment?.type === "text") return `<span>${escapeHtml(segment.text || "")}</span>`;
-    return "";
-  }).join("");
-  if (!segments) return "";
-  return `<div class="journey-data-row journey-arcana-data-line">${segments}</div>`;
-}
-
-function renderJourneyArcanaPieceSequence(pieces) {
+  const segments = Array.isArray(piece?.segments) ? piece.segments.filter(Boolean) : [];
+  if (!segments.length) return "";
+  const tone = getJourneyArcanaPieceTone(piece, "neutral");
   const output = [];
-  let index = 0;
-  while (index < pieces.length) {
-    const piece = pieces[index];
-    const region = String(piece?.region || "");
-    if (!region) {
-      output.push(renderJourneyArcanaPieceLine(piece));
-      index += 1;
+  let pendingIcon = "";
+  for (const segment of segments) {
+    if (segment?.type === "images") {
+      const icon = renderJourneyImageGroup(segment);
+      if (pendingIcon) output.push(`<div class="journey-arcana-detail-line">${pendingIcon}</div>`);
+      pendingIcon = icon;
       continue;
     }
-
-    const regionPieces = [];
-    let cursor = index;
-    while (cursor < pieces.length && String(pieces[cursor]?.region || "") === region) {
-      regionPieces.push(pieces[cursor]);
-      cursor += 1;
+    if (segment?.type === "text") {
+      const rendered = renderJourneyArcanaLogicalText(segment.text || "", pendingIcon, tone);
+      if (rendered) output.push(rendered);
+      pendingIcon = "";
     }
-    const tone = regionPieces.reduce((current, item) => {
-      const next = getJourneyArcanaPieceTone(item, current);
-      if (next === "failure") return "failure";
-      if (next === "success" && current !== "failure") return "success";
-      if (next === "highlight" && !["failure", "success"].includes(current)) return "highlight";
-      return current;
-    }, "neutral");
-    output.push(`<div class="journey-result-block journey-arcana-result-block tone-${escapeHtml(tone)}">${regionPieces.map(renderJourneyArcanaPieceLine).join("")}</div>`);
-    index = cursor;
   }
+  if (pendingIcon) output.push(`<div class="journey-arcana-detail-line">${pendingIcon}</div>`);
+  return output.join("");
+}
+
+function renderJourneyArcanaPieceSequence(pieces, forcedTone = "") {
+  const output = [];
+  let toneBucket = "";
+  let bucket = [];
+  const flush = () => {
+    if (!bucket.length) return;
+    const tone = forcedTone || toneBucket || "neutral";
+    if (tone === "success" || tone === "failure" || tone === "highlight") {
+      output.push(`<div class="journey-result-block journey-arcana-result-block tone-${escapeHtml(tone)}">${bucket.map(renderJourneyArcanaPieceLine).join("")}</div>`);
+    } else {
+      output.push(bucket.map(renderJourneyArcanaPieceLine).join(""));
+    }
+    bucket = [];
+    toneBucket = "";
+  };
+  for (const piece of pieces || []) {
+    const tone = forcedTone || getJourneyArcanaPieceTone(piece, "neutral");
+    if (!toneBucket) toneBucket = tone;
+    if (tone !== toneBucket) flush();
+    toneBucket = tone;
+    bucket.push(piece);
+  }
+  flush();
   return output.join("");
 }
 
 function renderJourneyArcanaEventBody(group) {
   const rows = Array.isArray(group?.rows) ? group.rows : [];
-  const rowsWithPieces = rows.map((row, rowIndex) => ({
-    row,
-    rowIndex,
-    pieces: getJourneyArcanaRowPieces(row)
-  })).filter((item) => item.pieces.length);
+  const rowsWithPieces = rows.map((row, rowIndex) => ({ row, rowIndex, pieces: getJourneyArcanaRowPieces(row) })).filter((item) => item.pieces.length);
+  const hasPairedRows = rowsWithPieces.some((item) => item.pieces.some((piece) => piece?.lane === "left" || piece?.lane === "right"));
 
-  // Find a source row that had two horizontally separated boxes. The source DB
-  // uses this for paired choices/results. We preserve their pairing but render
-  // the left lane first and the right lane second (vertical 2-block layout).
-  let laneAnchors = null;
-  for (const item of rowsWithPieces) {
-    const positioned = item.pieces.filter((piece) => Number.isFinite(piece.x) && piece.x > 0);
-    if (positioned.length < 2) continue;
-    const xs = positioned.map((piece) => piece.x).sort((a, b) => a - b);
-    if (xs[xs.length - 1] - xs[0] >= 80) {
-      laneAnchors = [xs[0], xs[xs.length - 1]];
-      break;
-    }
-  }
-
-  if (!laneAnchors) {
-    return renderJourneyArcanaPieceSequence(rowsWithPieces.flatMap((item) => item.pieces));
-  }
-
-  const [leftAnchor, rightAnchor] = laneAnchors;
-  const left = [];
-  const right = [];
-  const common = [];
-
-  for (const item of rowsWithPieces) {
-    if (item.pieces.length === 1) {
-      const piece = item.pieces[0];
-      const x = Number(piece.x) || 0;
-      // A single full-width/plain line belongs to the common flow. A boxed line
-      // positioned close to a source lane remains with that lane.
-      if (!piece.region || !x) {
-        common.push({ order: item.rowIndex, html: renderJourneyArcanaPieceSequence([piece]) });
-      } else if (Math.abs(x - rightAnchor) + 24 < Math.abs(x - leftAnchor)) {
-        right.push({ order: item.rowIndex, piece });
-      } else {
-        left.push({ order: item.rowIndex, piece });
+  if (hasPairedRows) {
+    const before = [];
+    const left = [];
+    const right = [];
+    const after = [];
+    let pairStarted = false;
+    for (const item of rowsWithPieces) {
+      const leftPieces = item.pieces.filter((piece) => piece?.lane === "left");
+      const rightPieces = item.pieces.filter((piece) => piece?.lane === "right");
+      if (leftPieces.length || rightPieces.length) {
+        pairStarted = true;
+        left.push(...leftPieces);
+        right.push(...rightPieces);
+        continue;
       }
-      continue;
+      const target = pairStarted ? after : before;
+      target.push(...item.pieces);
     }
-
-    for (const piece of item.pieces) {
-      const x = Number(piece.x) || leftAnchor;
-      if (Math.abs(x - rightAnchor) < Math.abs(x - leftAnchor)) right.push({ order: item.rowIndex, piece });
-      else left.push({ order: item.rowIndex, piece });
-    }
+    return [
+      renderJourneyArcanaPieceSequence(before),
+      `<div class="journey-arcana-stacked-choices">
+        ${left.length ? `<div class="journey-arcana-choice-stack tone-success">${renderJourneyArcanaPieceSequence(left, "success")}</div>` : ""}
+        ${right.length ? `<div class="journey-arcana-choice-stack tone-failure">${renderJourneyArcanaPieceSequence(right, "failure")}</div>` : ""}
+      </div>`,
+      renderJourneyArcanaPieceSequence(after)
+    ].join("");
   }
 
-  // If the source truly contains two lanes, show them top/bottom as requested.
-  // Common lines are kept above the paired blocks when present.
-  const commonHtml = common.sort((a, b) => a.order - b.order).map((item) => item.html).join("");
-  const leftHtml = renderJourneyArcanaPieceSequence(left.sort((a, b) => a.order - b.order).map((item) => item.piece));
-  const rightHtml = renderJourneyArcanaPieceSequence(right.sort((a, b) => a.order - b.order).map((item) => item.piece));
-  return `${commonHtml}<div class="journey-arcana-stacked-choices">${leftHtml ? `<div class="journey-arcana-choice-stack">${leftHtml}</div>` : ""}${rightHtml ? `<div class="journey-arcana-choice-stack">${rightHtml}</div>` : ""}</div>`;
+  const output = [];
+  let currentTone = "";
+  let currentPieces = [];
+  const flush = () => {
+    if (!currentPieces.length) return;
+    output.push(renderJourneyArcanaPieceSequence(currentPieces, currentTone));
+    currentPieces = [];
+  };
+  for (const item of rowsWithPieces) {
+    const text = String(item.row?.text || "").trim();
+    const explicitTone = getJourneyArcanaTextTone(text, "");
+    if (explicitTone) {
+      flush();
+      currentTone = explicitTone;
+    }
+    currentPieces.push(...item.pieces.map((piece) => ({ ...piece, tone: explicitTone || currentTone || piece.tone })));
+  }
+  flush();
+  return output.join("");
 }
 
 function renderJourneyArcanaEntry(entry) {
