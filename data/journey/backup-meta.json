@@ -1,0 +1,46 @@
+{
+  "source": "https://star-savior-arcana-db.pages.dev/journey",
+  "capturedAt": "2026-08-30T11:56:28.141Z",
+  "mode": "fully-local-static-archive",
+  "sourceRequiredAtRuntime": false,
+  "languages": [
+    "ko",
+    "en",
+    "ja",
+    "zh-TW",
+    "zh-CN"
+  ],
+  "localAssetCount": 97,
+  "snapshots": {
+    "ko": {
+      "arcanaTextLength": 16032,
+      "eventTextLength": 16032,
+      "arcanaImages": 425,
+      "eventImages": 425
+    },
+    "en": {
+      "arcanaTextLength": 28556,
+      "eventTextLength": 28556,
+      "arcanaImages": 425,
+      "eventImages": 425
+    },
+    "ja": {
+      "arcanaTextLength": 13242,
+      "eventTextLength": 13242,
+      "arcanaImages": 425,
+      "eventImages": 425
+    },
+    "zh-TW": {
+      "arcanaTextLength": 11891,
+      "eventTextLength": 11891,
+      "arcanaImages": 425,
+      "eventImages": 425
+    },
+    "zh-CN": {
+      "arcanaTextLength": 11882,
+      "eventTextLength": 11882,
+      "arcanaImages": 425,
+      "eventImages": 425
+    }
+  }
+}
