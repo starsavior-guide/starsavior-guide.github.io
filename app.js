@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v73-journey-clean-ui";
+const SITE_BUILD_VERSION = "v74-journey-cache-refresh";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -7112,9 +7112,33 @@ function createEquipmentDatabaseMarkup() {
   `;
 }
 
-function getJourneyArchivePath(language = currentLanguage) {
+function getJourneyArchivePath(language = currentLanguage, archiveVersion = SITE_BUILD_VERSION) {
   const selected = SUPPORTED_LANGUAGES.includes(language) ? language : "ko";
-  return `./data/journey/${encodeURIComponent(selected)}/index.html?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
+  const version = archiveVersion || SITE_BUILD_VERSION;
+  return `./data/journey/${encodeURIComponent(selected)}/index.html?v=${encodeURIComponent(version)}`;
+}
+
+async function refreshJourneyArchiveSource() {
+  const frame = document.querySelector("#journey-archive-frame");
+  if (!frame) return;
+
+  let archiveVersion = SITE_BUILD_VERSION;
+  try {
+    const response = await fetch(`./data/journey/backup-meta.json?site=${encodeURIComponent(SITE_BUILD_VERSION)}&t=${Date.now()}`, {
+      cache: "no-store"
+    });
+    if (response.ok) {
+      const meta = await response.json();
+      if (meta?.capturedAt) archiveVersion = `${SITE_BUILD_VERSION}-${meta.capturedAt}`;
+    }
+  } catch (_) {
+    // If metadata is unavailable, the site build version still busts stale iframe caches.
+  }
+
+  const nextSrc = getJourneyArchivePath(currentLanguage, archiveVersion);
+  const currentSrc = frame.getAttribute("src") || "";
+  if (currentSrc !== nextSrc) frame.setAttribute("src", nextSrc);
+  frame.setAttribute("title", translateString("여정"));
 }
 
 function createJourneyDatabaseMarkup() {
@@ -7141,10 +7165,8 @@ function createJourneyDatabaseMarkup() {
 function updateJourneyArchiveLanguage() {
   const frame = document.querySelector("#journey-archive-frame");
   if (!frame) return;
-  const nextSrc = getJourneyArchivePath();
-  const currentSrc = frame.getAttribute("src") || "";
-  if (currentSrc !== nextSrc) frame.setAttribute("src", nextSrc);
   frame.setAttribute("title", translateString("여정"));
+  refreshJourneyArchiveSource();
 }
 
 function openSimple(section, options = {}) {
