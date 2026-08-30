@@ -264,82 +264,33 @@ jobs:
             await deepScroll();
           }
           
-          async function setJourneyType(kind, desired) {
-            const aliases = TYPE_ALIASES[kind];
-            const result = await page.evaluate(({ aliases, desired }) => {
-              const norm = (v) => String(v || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim().toLocaleLowerCase();
-              const wanted = new Set(aliases.map(norm));
-              const visible = (el) => {
-                if (!(el instanceof HTMLElement)) return false;
-                const r = el.getBoundingClientRect();
-                const s = getComputedStyle(el);
-                return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
-              };
-              const textFor = (el) => {
-                const parts = [el.getAttribute?.('aria-label') || '', el.getAttribute?.('title') || ''];
-                if (el instanceof HTMLInputElement && el.id) {
-                  const label = document.querySelector(`label[for="${CSS.escape(el.id)}"]`);
-                  if (label) parts.push(label.innerText || label.textContent || '');
-                }
-                const parentLabel = el.closest?.('label');
-                if (parentLabel) parts.push(parentLabel.innerText || parentLabel.textContent || '');
-                const nearest = el.parentElement;
-                if (nearest) parts.push(nearest.innerText || nearest.textContent || '');
-                parts.push(el.innerText || el.textContent || '');
-                return [...new Set(parts.map(norm).filter(Boolean))];
-              };
-              const stateFor = (el) => {
-                if (el instanceof HTMLInputElement && el.type === 'checkbox') return el.checked;
-                const aria = el.getAttribute?.('aria-checked');
-                if (aria === 'true' || aria === 'false') return aria === 'true';
-                const pressed = el.getAttribute?.('aria-pressed');
-                if (pressed === 'true' || pressed === 'false') return pressed === 'true';
-                const selected = el.getAttribute?.('aria-selected');
-                if (selected === 'true' || selected === 'false') return selected === 'true';
-                return null;
-              };
-              const controls = [
-                ...document.querySelectorAll('input[type="checkbox"], [role="checkbox"], button[aria-pressed], [aria-selected]')
-              ];
-              const candidates = [];
-              for (const el of controls) {
-                const texts = textFor(el);
-                const exact = texts.some((text) => wanted.has(text));
-                const contained = texts.some((text) => [...wanted].some((name) => text === name || text.includes(name)));
-                if (!exact && !contained) continue;
-                const state = stateFor(el);
-                if (state == null) continue;
-                let score = exact ? 200 : 80;
-                if (el instanceof HTMLInputElement && el.type === 'checkbox') score += 100;
-                if (el.getAttribute('role') === 'checkbox') score += 80;
-                const shortest = Math.min(...texts.map((text) => text.length));
-                score -= Math.min(shortest, 80);
-                candidates.push({ el, state, score, texts });
-              }
-              candidates.sort((a,b) => b.score - a.score);
-              const hit = candidates[0];
-              if (!hit) {
-                return {
-                  found: false,
-                  desired,
-                  visibleLabels: [...document.querySelectorAll('label,[role="checkbox"]')]
-                    .filter(visible)
-                    .map((el) => norm(el.innerText || el.textContent || el.getAttribute('aria-label')))
-                    .filter(Boolean)
-                    .slice(0, 40)
-                };
-              }
-              if (hit.state !== desired) hit.el.click();
-              return { found: true, before: hit.state, desired, texts: hit.texts };
-            }, { aliases, desired });
-            if (!result.found) throw new Error(`Could not find Journey ${kind} checkbox: ${JSON.stringify(result)}`);
-            await page.waitForTimeout(350);
-          }
+          // The source renders Arcana / Journey Event as custom clickable UI, not semantic checkboxes.
+          // A fresh Journey page starts with both enabled. For a single-type capture, reload the page
+          // and click the *other* label once to disable it. This avoids relying on aria/input state.
+          async function prepareJourneyMode(kind, language) {
+            await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
+            await waitReady();
+            if (language.label !== '한국어') {
+              const changed = await selectLanguage(language.label);
+              if (!changed) throw new Error(`Could not select Journey language ${language.key}`);
+              await waitReady();
+            }
 
-          async function setJourneyTypes(arcanaEnabled, eventsEnabled) {
-            await setJourneyType('arcana', arcanaEnabled);
-            await setJourneyType('events', eventsEnabled);
-            await page.waitForTimeout(350);
+            const unwantedKind = kind === 'arcana' ? 'events' : 'arcana';
+            const clicked = await clickVisibleExact(TYPE_ALIASES[unwantedKind]);
+            if (!clicked) {
+              const visibleTexts = await page.evaluate(() => [...document.querySelectorAll('button,div,span,p,label')]
+                .filter((el) => {
+                  const r = el.getBoundingClientRect();
+                  const s = getComputedStyle(el);
+                  return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+                })
+                .map((el) => String(el.innerText || el.textContent || '').replace(/\s+/g,' ').trim())
+                .filter((text) => text && text.length <= 40)
+                .slice(0, 120));
+              throw new Error(`Could not disable Journey ${unwantedKind} while preparing ${kind} for ${language.key}. Visible text: ${JSON.stringify(visibleTexts)}`);
+            }
+            await page.waitForTimeout(450);
             await deepScroll();
           }
 
@@ -396,7 +347,7 @@ jobs:
                 if (clickable.tagName === 'BUTTON') score += 100;
                 if (clickable.getAttribute('role') === 'option') score += 80;
                 if (clickable.getAttribute('role') === 'button') score += 70;
-                score -= normalize(clickable.innerText).length;
+                score -= norm(clickable.innerText).length;
                 candidates.push({ clickable, score, text });
               }
               candidates.sort((a,b) => b.score - a.score);
@@ -695,10 +646,7 @@ jobs:
           async function captureCategoryMembership(defaultEvents, language) {
             const result = {};
             for (const [category, aliases] of Object.entries(CATEGORY_ALIASES)) {
-              await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
-              await waitReady();
-              if (language.label !== '한국어') await selectLanguage(language.label);
-              await setJourneyTypes(false, true);
+              await prepareJourneyMode('events', language);
               const clicked = await clickVisibleExact(aliases);
               if (!clicked) throw new Error(`Could not click source Journey category ${category} for ${language.key}`);
               await expandAll();
@@ -717,17 +665,13 @@ jobs:
           const categoryMembership = {};
           
           for (const language of LANGUAGES) {
-            await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
-            await waitReady();
-            if (language.label !== '한국어') await selectLanguage(language.label);
-
-            // Source Journey uses two checkboxes. Capture only Arcana first.
-            await setJourneyTypes(true, false);
+            // Fresh page: both types are enabled. Disable Journey Events and capture Arcana only.
+            await prepareJourneyMode('arcana', language);
             await expandAll();
             const arcana = await captureStructured('arcana');
 
-            // Then capture only Journey Events.
-            await setJourneyTypes(false, true);
+            // Fresh page again: disable Arcana and capture Journey Events only.
+            await prepareJourneyMode('events', language);
             await expandAll();
             const events = await captureStructured('events');
           
