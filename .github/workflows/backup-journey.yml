@@ -208,50 +208,157 @@ jobs:
             }
           }
 
-          async function findTabTargets() {
+          const JOURNEY_TAB_PATTERNS = {
+            arcana: [
+              /^아르카나(?:\s|$)/i,
+              /^arcana(?:\s|$)/i,
+              /^アルカナ(?:\s|$)/i,
+              /^阿爾克那(?:\s|$)/i,
+              /^阿尔克那(?:\s|$)/i,
+              /아르카나/i,
+              /arcana/i,
+              /アルカナ/i,
+              /阿爾克那/i,
+              /阿尔克那/i
+            ],
+            events: [
+              /여정\s*이벤트/i,
+              /journey\s*events?/i,
+              /旅程\s*イベント/i,
+              /旅程\s*事件/i,
+              /여정.*이벤트/i,
+              /event/i
+            ]
+          };
+
+          async function journeyControlDiagnostics() {
             return await page.evaluate(() => {
-              const norm = (value) => String(value || '').replace(/\s+/g, ' ').trim();
-              const buttons = [...document.querySelectorAll('button')];
-              const cssPath = (element) => {
-                const parts = [];
-                let current = element;
-                while (current && current !== document.documentElement) {
-                  const parent = current.parentElement;
-                  if (!parent) break;
-                  const index = [...parent.children].indexOf(current) + 1;
-                  parts.unshift(`${current.tagName.toLowerCase()}:nth-child(${index})`);
-                  current = parent;
-                }
-                return `html > ${parts.join(' > ')}`;
-              };
-              const arcanaButton = buttons.find((button) => norm(button.textContent) === '아르카나');
-              const eventButton = buttons.find((button) => norm(button.textContent) === '여정 이벤트');
-              return {
-                arcana: arcanaButton ? { index: buttons.indexOf(arcanaButton), selector: cssPath(arcanaButton) } : null,
-                events: eventButton ? { index: buttons.indexOf(eventButton), selector: cssPath(eventButton) } : null,
-                count: buttons.length
-              };
+              const norm = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+              const selector = [
+                '[role="tab"]',
+                'button',
+                'a',
+                '[role="button"]',
+                'label',
+                '[aria-selected]',
+                '[aria-controls]',
+                '[data-state]',
+                '[data-value]',
+                'div',
+                'span'
+              ].join(',');
+              const seen = new Set();
+              const items = [];
+              for (const element of document.querySelectorAll(selector)) {
+                if (!(element instanceof HTMLElement)) continue;
+                const rect = element.getBoundingClientRect();
+                const style = getComputedStyle(element);
+                const visible = rect.width > 0 && rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none';
+                if (!visible) continue;
+                const text = norm(element.innerText || element.textContent);
+                const aria = norm(element.getAttribute('aria-label'));
+                const title = norm(element.getAttribute('title'));
+                const value = norm(element.getAttribute('data-value'));
+                const key = [element.tagName, element.getAttribute('role') || '', text, aria, title, value].join('|');
+                if (seen.has(key)) continue;
+                seen.add(key);
+                items.push({
+                  tag: element.tagName.toLowerCase(),
+                  role: element.getAttribute('role') || '',
+                  text: text.slice(0, 120),
+                  aria: aria.slice(0, 120),
+                  title: title.slice(0, 120),
+                  value: value.slice(0, 120),
+                  selected: element.getAttribute('aria-selected'),
+                  state: element.getAttribute('data-state')
+                });
+              }
+              return items.slice(0, 120);
             });
           }
 
-          async function clickTabTarget(target) {
-            if (!target) throw new Error('Journey tab button was not found.');
-            let clicked = false;
-            if (target.selector) {
-              try {
-                const locator = page.locator(target.selector);
-                if (await locator.count()) {
-                  await locator.first().click();
-                  clicked = true;
-                }
-              } catch (_) {}
+          async function clickJourneyTab(kind) {
+            const patterns = JOURNEY_TAB_PATTERNS[kind];
+            if (!patterns) throw new Error(`Unknown Journey tab kind: ${kind}`);
+            const patternSources = patterns.map((pattern) => ({ source: pattern.source, flags: pattern.flags }));
+
+            const result = await page.evaluate(({ kind, patternSources }) => {
+              const norm = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+              const patterns = patternSources.map((item) => new RegExp(item.source, item.flags));
+              const selector = [
+                '[role="tab"]',
+                'button',
+                'a',
+                '[role="button"]',
+                'label',
+                '[aria-selected]',
+                '[aria-controls]',
+                '[data-state]',
+                '[data-value]',
+                'div',
+                'span'
+              ].join(',');
+
+              const candidates = [];
+              for (const element of document.querySelectorAll(selector)) {
+                if (!(element instanceof HTMLElement)) continue;
+                const rect = element.getBoundingClientRect();
+                const style = getComputedStyle(element);
+                if (!(rect.width > 0 && rect.height > 0) || style.visibility === 'hidden' || style.display === 'none') continue;
+
+                const text = norm(element.innerText || element.textContent);
+                const aria = norm(element.getAttribute('aria-label'));
+                const title = norm(element.getAttribute('title'));
+                const value = norm(element.getAttribute('data-value'));
+                const combined = [text, aria, title, value].filter(Boolean).join(' | ');
+                if (!combined || !patterns.some((pattern) => pattern.test(combined))) continue;
+
+                let score = 0;
+                const role = element.getAttribute('role') || '';
+                if (role === 'tab') score += 120;
+                if (element.tagName === 'BUTTON') score += 80;
+                if (element.hasAttribute('aria-selected')) score += 55;
+                if (element.hasAttribute('aria-controls')) score += 35;
+                if (element.closest('[role="tablist"]')) score += 100;
+                if (element.closest('nav')) score += 20;
+                if (combined.length <= 40) score += 20;
+
+                const exactish = kind === 'arcana'
+                  ? /^(아르카나|arcana|アルカナ|阿爾克那|阿尔克那)$/i.test(text || aria || value)
+                  : /^(여정\s*이벤트|journey\s*events?|旅程\s*イベント|旅程\s*事件)$/i.test(text || aria || value);
+                if (exactish) score += 250;
+
+                candidates.push({ element, score, text, aria, title, value, role, tag: element.tagName.toLowerCase() });
+              }
+
+              candidates.sort((a, b) => b.score - a.score || (a.text.length - b.text.length));
+              const hit = candidates[0];
+              if (!hit) return { clicked: false, kind, candidates: [] };
+
+              hit.element.scrollIntoView({ block: 'center', inline: 'nearest' });
+              hit.element.click();
+              return {
+                clicked: true,
+                kind,
+                score: hit.score,
+                text: hit.text,
+                aria: hit.aria,
+                title: hit.title,
+                value: hit.value,
+                role: hit.role,
+                tag: hit.tag,
+                candidateCount: candidates.length
+              };
+            }, { kind, patternSources });
+
+            if (!result.clicked) {
+              const diagnostics = await journeyControlDiagnostics();
+              throw new Error(`Could not identify Journey ${kind} tab. Visible controls: ${JSON.stringify(diagnostics)}`);
             }
-            if (!clicked) {
-              const buttons = page.locator('button');
-              if (target.index < 0 || target.index >= await buttons.count()) throw new Error(`Journey tab target changed (${target.index}).`);
-              await buttons.nth(target.index).click();
-            }
-            await page.waitForTimeout(650);
+
+            console.log(`Journey ${kind} tab: ${JSON.stringify(result)}`);
+            await page.waitForTimeout(750);
+            try { await page.waitForLoadState('networkidle', { timeout: 6000 }); } catch (_) {}
             await expandMoreButtons();
             await expandContentAccordions();
             await deepScroll();
@@ -516,12 +623,6 @@ jobs:
 
           await page.goto(SOURCE_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
           await waitForJourneyReady();
-          const tabTargets = await findTabTargets();
-          if (!tabTargets.arcana || !tabTargets.events) {
-            throw new Error(`Could not identify Journey tabs. ${JSON.stringify(tabTargets)}`);
-          }
-          console.log(`Journey tab targets: ${JSON.stringify(tabTargets)}`);
-
           const snapshots = {};
 
           for (const language of LANGUAGES) {
@@ -535,12 +636,12 @@ jobs:
             await waitForJourneyReady();
 
             // Arcana tab snapshot.
-            await clickTabTarget(tabTargets.arcana);
+            await clickJourneyTab('arcana');
             const arcana = await captureCurrentMain();
             console.log(`${language.key} arcana text=${arcana.text.length}, images=${arcana.images.length}`);
 
             // Journey-event tab snapshot. Default filters are kept at "All" so every difficulty/category is included.
-            await clickTabTarget(tabTargets.events);
+            await clickJourneyTab('events');
             const events = await captureCurrentMain();
             console.log(`${language.key} events text=${events.text.length}, images=${events.images.length}`);
 
