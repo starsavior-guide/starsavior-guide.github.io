@@ -14,9 +14,7 @@ const ASSET_MANIFEST_PATH = path.join(OUT_DIR, "arcana-assets.json");
 const LANGUAGES = [
   { key: "ko", locale: "ko-KR" },
   { key: "en", locale: "en-US" },
-  { key: "ja", locale: "ja-JP" },
-  { key: "zh-TW", locale: "zh-TW" },
-  { key: "zh-CN", locale: "zh-CN" }
+  { key: "ja", locale: "ja-JP" }
 ];
 
 // These labels are the constants used by the source /arcana renderer.
