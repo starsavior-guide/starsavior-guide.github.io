@@ -531,8 +531,7 @@ jobs:
                 if (!(source instanceof Element) || !(target instanceof Element)) continue;
                 const style = getComputedStyle(source);
                 const keep = [
-                  'display','position','flex-direction','flex-wrap','align-items','justify-content','gap',
-                  'grid-template-columns','grid-auto-flow','width','max-width','min-width','height','min-height',
+                  'display','flex-direction','flex-wrap','align-items','justify-content','gap',
                   'margin-top','margin-right','margin-bottom','margin-left','padding-top','padding-right','padding-bottom','padding-left',
                   'border-top-width','border-right-width','border-bottom-width','border-left-width','border-style','border-color','border-radius',
                   'background-color','background-image','background-size','background-position','background-repeat','color','font-size','font-weight','line-height','letter-spacing','text-align','white-space','overflow-wrap','word-break'
@@ -583,6 +582,59 @@ jobs:
                 });
               }
 
+              // Strip the source site's chrome and filter controls. Only Journey content is archived.
+              const normText = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+              const sourceMenuTokens = [
+                '가챠 시뮬레이터','여정 아이템','몬스터 정보','잠재력','월페이퍼','구원자 시뮬레이터',
+                'Gacha Simulator','Journey Items','Monster Info','Potential','Wallpaper','Savior Simulator',
+                'ガチャシミュレーター','旅程アイテム','モンスター情報','潜在力','壁紙','救援者シミュレーター',
+                '抽卡模擬器','旅程道具','怪物資訊','潛力','桌布','救援者模擬器',
+                '抽卡模拟器','旅程道具','怪物信息','潜力','壁纸','救援者模拟器'
+              ];
+              const sourceFilterTokens = [
+                '난이도','아르카나','여정 이벤트','전체','리세트','토벌','아가논','플로라','칼라이드','날씨','성공 보상','실패 보상',
+                'Difficulty','Arcana','Journey Events','All','Reset','Raid','Aganon','Flora','Kalaid','Weather','Success Reward','Failure Reward'
+              ];
+
+              function removeCompactCluster(tokens, minHits, maxTextLength) {
+                const candidates = [...clone.querySelectorAll('header,nav,aside,section,div,form')]
+                  .map((el) => {
+                    const text = normText(el.innerText || el.textContent);
+                    const hits = tokens.reduce((count, token) => count + (text.includes(token) ? 1 : 0), 0);
+                    return { el, text, hits };
+                  })
+                  .filter((item) => item.hits >= minHits && item.text.length <= maxTextLength)
+                  .sort((a, b) => a.text.length - b.text.length);
+                for (const item of candidates) {
+                  if (item.el.isConnected) item.el.remove();
+                }
+              }
+
+              // Remove explicit navigation containers first, then the smallest matching menu/filter clusters.
+              clone.querySelectorAll('header,nav,aside,[role="navigation"],[role="menu"],[role="menubar"]').forEach((el) => {
+                const text = normText(el.innerText || el.textContent);
+                const menuHits = sourceMenuTokens.reduce((count, token) => count + (text.includes(token) ? 1 : 0), 0);
+                if (menuHits >= 1 || /Change Theme|메뉴|Menu|メニュー/.test(text)) el.remove();
+              });
+              removeCompactCluster(sourceMenuTokens, 2, 1800);
+              removeCompactCluster(sourceFilterTokens, 5, 2200);
+
+              // Source desktop pixel widths/positions are intentionally discarded so the archive is responsive.
+              clone.querySelectorAll('*').forEach((el) => {
+                const style = el.style;
+                if (!style) return;
+                if (style.position === 'fixed' || style.position === 'sticky') style.position = 'static';
+                style.maxWidth = '100%';
+                style.boxSizing = 'border-box';
+                if (style.width && /px$/.test(style.width) && parseFloat(style.width) > innerWidth) style.width = '100%';
+                if (style.minWidth && /px$/.test(style.minWidth)) style.minWidth = '0';
+                style.left = '';
+                style.right = '';
+                style.top = '';
+                style.bottom = '';
+                style.transform = '';
+              });
+
               clone.querySelectorAll('a[href]').forEach((a) => {
                 a.removeAttribute('href');
                 a.removeAttribute('target');
@@ -629,12 +681,37 @@ jobs:
 
           function archivePage(language, arcanaSnapshot, eventSnapshot, capturedAt) {
             const labels = {
-              ko: { title: '여정', arcana: '아르카나', events: '여정 이벤트', search: '이름, 이벤트, 보상 검색', empty: '검색 결과가 없습니다.' },
-              en: { title: 'Journey', arcana: 'Arcana', events: 'Journey Events', search: 'Search names, events, rewards', empty: 'No matching results.' },
-              ja: { title: '旅程', arcana: 'アルカナ', events: '旅程イベント', search: '名前・イベント・報酬を検索', empty: '検索結果がありません。' },
-              'zh-TW': { title: '旅程', arcana: '阿爾克那', events: '旅程事件', search: '搜尋名稱、事件、獎勵', empty: '找不到符合的結果。' },
-              'zh-CN': { title: '旅程', arcana: '阿尔克那', events: '旅程事件', search: '搜索名称、事件、奖励', empty: '没有匹配的结果。' }
+              ko: {
+                title:'여정', arcana:'아르카나', events:'여정 이벤트', difficulty:'난이도', all:'전체', easy:'이지', normal:'노말', hard:'하드',
+                search:'카드 명, 이벤트 명, 보상 등...', reset:'리세트', raid:'토벌', aganon:'아가논', flora:'플로라', kalaid:'칼라이드', weather:'날씨',
+                success:'성공 보상', failure:'실패 보상', empty:'검색 결과가 없습니다.'
+              },
+              en: {
+                title:'Journey', arcana:'Arcana', events:'Journey Events', difficulty:'Difficulty', all:'All', easy:'Easy', normal:'Normal', hard:'Hard',
+                search:'Card name, event name, rewards...', reset:'Reset', raid:'Raid', aganon:'Aganon', flora:'Flora', kalaid:'Kalaid', weather:'Weather',
+                success:'Success Reward', failure:'Failure Reward', empty:'No matching results.'
+              },
+              ja: {
+                title:'旅程', arcana:'アルカナ', events:'旅程イベント', difficulty:'難易度', all:'全体', easy:'イージー', normal:'ノーマル', hard:'ハード',
+                search:'カード名、イベント名、報酬など...', reset:'リセット', raid:'討伐', aganon:'アガノン', flora:'フローラ', kalaid:'カライド', weather:'天気',
+                success:'成功報酬', failure:'失敗報酬', empty:'検索結果がありません。'
+              },
+              'zh-TW': {
+                title:'旅程', arcana:'阿爾克那', events:'旅程事件', difficulty:'難度', all:'全部', easy:'簡單', normal:'普通', hard:'困難',
+                search:'卡片名稱、事件名稱、獎勵等...', reset:'重置', raid:'討伐', aganon:'阿加農', flora:'芙蘿拉', kalaid:'卡萊德', weather:'天氣',
+                success:'成功獎勵', failure:'失敗獎勵', empty:'找不到符合的結果。'
+              },
+              'zh-CN': {
+                title:'旅程', arcana:'阿尔克那', events:'旅程事件', difficulty:'难度', all:'全部', easy:'简单', normal:'普通', hard:'困难',
+                search:'卡片名称、事件名称、奖励等...', reset:'重置', raid:'讨伐', aganon:'阿加农', flora:'芙萝拉', kalaid:'卡莱德', weather:'天气',
+                success:'成功奖励', failure:'失败奖励', empty:'没有匹配的结果。'
+              }
             }[language.key];
+
+            const categoryButtons = [
+              ['all', labels.all], ['reset', labels.reset], ['raid', labels.raid], ['aganon', labels.aganon],
+              ['flora', labels.flora], ['kalaid', labels.kalaid], ['weather', labels.weather]
+            ].map(([value, text], index) => `<button class="journey-chip${index === 0 ? ' is-active' : ''}" type="button" data-category="${value}">${text}</button>`).join('');
 
             return `<!doctype html>
           <html lang="${language.htmlLang}">
@@ -644,101 +721,195 @@ jobs:
             <meta name="color-scheme" content="dark light">
             <title>${labels.title}</title>
             <style>
-              :root{color-scheme:dark;--bg:#020817;--panel:#07101f;--panel2:#0b1425;--line:#26344a;--text:#f5f7ff;--muted:#a9b3c7;--accent:#6e8dff}
+              :root{color-scheme:dark;--bg:#020817;--panel:#07101f;--panel2:#0b1425;--line:#26344a;--text:#f5f7ff;--muted:#a9b3c7;--accent:#4a82ff;--green:#265a46;--red:#5a3a40}
               *{box-sizing:border-box}
-              html,body{margin:0;background:transparent;color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-              body{padding:0 2px 24px;overflow-x:hidden}
-              .archive-toolbar{position:sticky;top:0;z-index:20;padding:12px 10px;background:rgba(2,8,23,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-              .archive-toolbar-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;max-width:1180px;margin:0 auto}
-              .archive-search{flex:1 1 260px;height:42px;border:1px solid var(--line);border-radius:11px;background:var(--panel);color:var(--text);padding:0 13px;font:inherit;font-weight:700;outline:none}
-              .archive-search:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(110,141,255,.14)}
-              .archive-tab{min-height:42px;border:1px solid var(--line);border-radius:11px;background:var(--panel);color:var(--muted);padding:0 14px;font:inherit;font-weight:900;cursor:pointer}
-              .archive-tab.is-active{border-color:rgba(110,141,255,.72);background:rgba(71,104,225,.18);color:#dfe7ff}
-              .archive-meta{max-width:1180px;margin:10px auto 0;color:var(--muted);font-size:11px;font-weight:700}
-              .archive-pane{max-width:1180px;margin:14px auto 0;min-width:0}
+              html,body{margin:0;background:transparent;color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
+              body{padding:0 12px 28px}
+              .journey-controls{padding:8px 2px 14px;max-width:1180px;margin:0 auto}
+              .journey-top-row{display:grid;grid-template-columns:minmax(118px,140px) minmax(0,1fr);gap:10px;align-items:center}
+              .difficulty-wrap{position:relative}
+              .difficulty-wrap summary{list-style:none;display:flex;align-items:center;justify-content:center;min-height:54px;padding:0 18px;border:1px solid var(--line);border-radius:28px;background:#060d1b;color:#c4cddd;font-weight:800;cursor:pointer;user-select:none}
+              .difficulty-wrap summary::-webkit-details-marker{display:none}
+              .difficulty-menu{position:absolute;z-index:30;top:62px;left:0;min-width:140px;padding:7px;border:1px solid var(--line);border-radius:14px;background:#050b18;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+              .difficulty-option{display:block;width:100%;border:0;border-radius:9px;background:transparent;color:var(--text);padding:10px 13px;text-align:left;font:inherit;font-weight:800;cursor:pointer}
+              .difficulty-option.is-active{background:rgba(74,130,255,.18);color:#8fb2ff}
+              .journey-search{width:100%;height:54px;border:1px solid #334159;border-radius:28px;background:#101a2d;color:var(--text);padding:0 20px;font:inherit;font-size:16px;font-weight:700;outline:none}
+              .journey-search::placeholder{color:#9ea8ba}
+              .journey-search:focus{border-color:#527fff;box-shadow:0 0 0 2px rgba(82,127,255,.12)}
+              .journey-type-row{display:flex;justify-content:center;gap:20px;align-items:center;margin-top:10px;flex-wrap:wrap}
+              .journey-check{display:inline-flex;align-items:center;gap:7px;color:#c6cedd;font-size:16px;font-weight:750;cursor:pointer}
+              .journey-check input{width:22px;height:22px;margin:0;accent-color:#6a89ff}
+              .journey-category-row{display:flex;justify-content:center;gap:7px;margin-top:10px;flex-wrap:wrap}
+              .journey-chip{min-height:40px;padding:0 14px;border:1px solid #3a4251;border-radius:10px;background:#313744;color:#f0f2f7;font:inherit;font-size:14px;font-weight:900;cursor:pointer}
+              .journey-chip.is-active{border-color:#367ad5;background:#145fae;color:#fff}
+              .journey-legend{display:flex;justify-content:center;gap:4px;width:max-content;max-width:100%;margin:12px auto 0;padding:5px;border:1px solid #68707e;border-radius:9px;background:#03070f}
+              .legend-item{display:inline-flex;align-items:center;gap:8px;padding:3px 8px;color:#e6e9ef;font-size:13px;font-weight:800}
+              .legend-swatch{width:26px;height:25px;border-radius:5px;background:var(--green)}
+              .legend-item.failure .legend-swatch{background:var(--red)}
+              .archive-pane{max-width:1180px;margin:0 auto 14px;min-width:0}
               .archive-pane[hidden]{display:none!important}
-              .snapshot-root{min-width:0;max-width:100%!important}
-              .snapshot-root *{max-width:100%}
+              .snapshot-root{min-width:0;width:100%;max-width:100%!important;overflow:visible!important}
+              .snapshot-root>*{width:100%!important;max-width:100%!important;margin-left:0!important;margin-right:0!important;transform:none!important}
+              .snapshot-root *{max-width:100%!important;min-width:0!important;box-sizing:border-box!important}
               .snapshot-root img{height:auto!important;object-fit:contain;vertical-align:middle}
-              .snapshot-root button,.snapshot-root input,.snapshot-root select,.snapshot-root textarea{pointer-events:none}
               .snapshot-root a{color:inherit;text-decoration:none}
-              .snapshot-root table{max-width:100%;overflow-wrap:anywhere}
-              .archive-dim{display:none;padding:28px 18px;text-align:center;color:var(--muted);font-weight:800}
+              .snapshot-root table{width:100%!important;max-width:100%!important;overflow-wrap:anywhere}
+              .snapshot-root [style*="position: fixed"],.snapshot-root [style*="position:fixed"],.snapshot-root [style*="position: sticky"],.snapshot-root [style*="position:sticky"]{position:static!important;inset:auto!important;transform:none!important}
+              .archive-dim{display:none;padding:34px 18px;text-align:center;color:var(--muted);font-weight:800}
               .archive-pane.is-no-match .archive-dim{display:block}
+              .archive-pane.is-no-match .snapshot-root{display:none}
               @media(max-width:700px){
-                .archive-toolbar{padding:10px 7px}.archive-toolbar-row{gap:6px}.archive-tab{padding:0 10px;font-size:12px}.archive-search{height:40px;font-size:13px}
-                .archive-pane{margin-top:10px}.snapshot-root{font-size:13px!important}.snapshot-root *{min-width:0!important}
+                body{padding:0 8px 24px}
+                .journey-top-row{grid-template-columns:132px minmax(0,1fr);gap:8px}
+                .difficulty-wrap summary,.journey-search{height:52px;min-height:52px}
+                .journey-search{padding:0 15px;font-size:14px}
+                .journey-type-row{gap:16px;margin-top:9px}.journey-check{font-size:14px}.journey-check input{width:21px;height:21px}
+                .journey-category-row{gap:6px;margin-top:9px}.journey-chip{min-height:38px;padding:0 11px;font-size:13px}
+                .journey-legend{margin-top:10px}.legend-item{font-size:12px}.legend-swatch{width:24px;height:23px}
+                .snapshot-root{font-size:14px!important}.archive-pane{margin-bottom:10px}
+              }
+              @media(max-width:390px){
+                body{padding-left:5px;padding-right:5px}.journey-top-row{grid-template-columns:112px minmax(0,1fr)}
+                .difficulty-wrap summary{padding:0 10px}.journey-search{font-size:13px}.journey-chip{padding:0 9px;font-size:12px}
               }
             </style>
           </head>
           <body>
-            <div class="archive-toolbar">
-              <div class="archive-toolbar-row">
-                <button class="archive-tab is-active" type="button" data-tab="events">${labels.events}</button>
-                <button class="archive-tab" type="button" data-tab="arcana">${labels.arcana}</button>
-                <input class="archive-search" id="archive-search" type="search" placeholder="${labels.search}" autocomplete="off">
+            <section class="journey-controls" aria-label="${labels.title}">
+              <div class="journey-top-row">
+                <details class="difficulty-wrap" id="difficulty-wrap">
+                  <summary>${labels.difficulty}</summary>
+                  <div class="difficulty-menu">
+                    <button class="difficulty-option is-active" type="button" data-difficulty="all">${labels.all}</button>
+                    <button class="difficulty-option" type="button" data-difficulty="easy">${labels.easy}</button>
+                    <button class="difficulty-option" type="button" data-difficulty="normal">${labels.normal}</button>
+                    <button class="difficulty-option" type="button" data-difficulty="hard">${labels.hard}</button>
+                  </div>
+                </details>
+                <input class="journey-search" id="journey-search" type="search" placeholder="${labels.search}" autocomplete="off">
               </div>
-              <div class="archive-meta">Local archive · ${capturedAt}</div>
-            </div>
+              <div class="journey-type-row">
+                <label class="journey-check"><input id="toggle-arcana" type="checkbox" checked> ${labels.arcana}</label>
+                <label class="journey-check"><input id="toggle-events" type="checkbox" checked> ${labels.events}</label>
+              </div>
+              <div class="journey-category-row">${categoryButtons}</div>
+              <div class="journey-legend" aria-label="reward legend">
+                <span class="legend-item"><span class="legend-swatch"></span>${labels.success}</span>
+                <span class="legend-item failure"><span class="legend-swatch"></span>${labels.failure}</span>
+              </div>
+            </section>
+
+            <section class="archive-pane" id="pane-arcana">
+              <div class="snapshot-root">${arcanaSnapshot.html}</div>
+              <div class="archive-dim">${labels.empty}</div>
+            </section>
             <section class="archive-pane" id="pane-events">
               <div class="snapshot-root">${eventSnapshot.html}</div>
               <div class="archive-dim">${labels.empty}</div>
             </section>
-            <section class="archive-pane" id="pane-arcana" hidden>
-              <div class="snapshot-root">${arcanaSnapshot.html}</div>
-              <div class="archive-dim">${labels.empty}</div>
-            </section>
+
             <script>
               (() => {
-                const tabs = [...document.querySelectorAll('.archive-tab')];
-                const panes = { events: document.querySelector('#pane-events'), arcana: document.querySelector('#pane-arcana') };
-                const input = document.querySelector('#archive-search');
-                let active = 'events';
+                const input = document.querySelector('#journey-search');
+                const difficultyWrap = document.querySelector('#difficulty-wrap');
+                const difficultyButtons = [...document.querySelectorAll('.difficulty-option')];
+                const categoryButtons = [...document.querySelectorAll('.journey-chip')];
+                const toggleArcana = document.querySelector('#toggle-arcana');
+                const toggleEvents = document.querySelector('#toggle-events');
+                const panes = { arcana: document.querySelector('#pane-arcana'), events: document.querySelector('#pane-events') };
+                let category = 'all';
+                let difficulty = 'all';
+
+                const tokenSets = {
+                  category: {
+                    reset:['리세트','reset','リセット','重置'], raid:['토벌','raid','討伐'], aganon:['아가논','aganon','アガノン','阿加農','阿加农'],
+                    flora:['플로라','flora','フローラ','芙蘿拉','芙萝拉'], kalaid:['칼라이드','kalaid','カライド','卡萊德','卡莱德'], weather:['날씨','weather','天気','天氣','天气']
+                  },
+                  difficulty: {
+                    easy:['이지','easy','イージー','簡單','简单'], normal:['노말','normal','ノーマル','普通'], hard:['하드','hard','ハード','困難','困难']
+                  }
+                };
 
                 function chooseEntries(root) {
-                  const candidates = [...root.querySelectorAll('div,section,article,li,tbody')]
-                    .map((node) => {
-                      const children = [...node.children].filter((child) => (child.innerText || '').trim().length > 10);
-                      const score = children.length >= 4 ? children.length : 0;
-                      return { node, children, score };
-                    })
-                    .filter((item) => item.score > 0)
-                    .sort((a,b) => b.score - a.score);
-                  return candidates[0]?.children || [];
+                  const selectors = ['article','li','section','div'];
+                  const scored = [];
+                  for (const selector of selectors) {
+                    for (const node of root.querySelectorAll(selector)) {
+                      const children = [...node.children].filter((child) => (child.innerText || '').trim().length > 12);
+                      if (children.length < 3) continue;
+                      const total = children.reduce((sum, child) => sum + (child.innerText || '').trim().length, 0);
+                      const score = children.length * 100 + Math.min(total, 5000) - (node.innerText || '').length * .02;
+                      scored.push({ node, children, score });
+                    }
+                  }
+                  scored.sort((a,b) => b.score - a.score);
+                  return scored[0]?.children || [...root.children];
                 }
 
                 const entries = {
-                  events: chooseEntries(panes.events.querySelector('.snapshot-root')),
-                  arcana: chooseEntries(panes.arcana.querySelector('.snapshot-root'))
+                  arcana: chooseEntries(panes.arcana.querySelector('.snapshot-root')),
+                  events: chooseEntries(panes.events.querySelector('.snapshot-root'))
                 };
 
-                function applySearch() {
-                  const q = (input.value || '').trim().toLocaleLowerCase();
-                  const pane = panes[active];
-                  const list = entries[active];
-                  if (!list.length) {
-                    pane.classList.toggle('is-no-match', q && !(pane.innerText || '').toLocaleLowerCase().includes(q));
-                    return;
-                  }
+                function haystack(node) {
+                  return ((node.innerText || '') + ' ' + (node.outerHTML || '')).toLocaleLowerCase();
+                }
+
+                function markerAvailability(list, tokens) {
+                  return list.some((node) => tokens.some((token) => haystack(node).includes(token.toLocaleLowerCase())));
+                }
+
+                function applyPane(kind) {
+                  const pane = panes[kind];
+                  const list = entries[kind];
+                  const query = (input.value || '').trim().toLocaleLowerCase();
+                  const categoryTokens = category === 'all' ? [] : (tokenSets.category[category] || []);
+                  const difficultyTokens = difficulty === 'all' ? [] : (tokenSets.difficulty[difficulty] || []);
+                  const hasCategoryMarkers = categoryTokens.length && markerAvailability(list, categoryTokens);
+                  const hasDifficultyMarkers = difficultyTokens.length && markerAvailability(list, difficultyTokens);
                   let visible = 0;
+
                   for (const node of list) {
-                    const match = !q || (node.innerText || '').toLocaleLowerCase().includes(q);
-                    node.style.display = match ? '' : 'none';
-                    if (match) visible += 1;
+                    const text = haystack(node);
+                    const searchMatch = !query || text.includes(query);
+                    const categoryMatch = kind !== 'events' || !hasCategoryMarkers || categoryTokens.some((token) => text.includes(token.toLocaleLowerCase()));
+                    const difficultyMatch = !hasDifficultyMarkers || difficultyTokens.some((token) => text.includes(token.toLocaleLowerCase()));
+                    const show = searchMatch && categoryMatch && difficultyMatch;
+                    node.style.display = show ? '' : 'none';
+                    if (show) visible += 1;
                   }
-                  pane.classList.toggle('is-no-match', visible === 0);
+                  pane.classList.toggle('is-no-match', list.length > 0 && visible === 0);
                 }
 
-                function setTab(tab) {
-                  active = tab;
-                  for (const [key, pane] of Object.entries(panes)) pane.hidden = key !== tab;
-                  for (const button of tabs) button.classList.toggle('is-active', button.dataset.tab === tab);
-                  applySearch();
-                  window.scrollTo({ top: 0, behavior: 'instant' });
+                function applyAll() {
+                  panes.arcana.hidden = !toggleArcana.checked;
+                  panes.events.hidden = !toggleEvents.checked;
+                  if (toggleArcana.checked) applyPane('arcana');
+                  if (toggleEvents.checked) applyPane('events');
                 }
 
-                tabs.forEach((button) => button.addEventListener('click', () => setTab(button.dataset.tab)));
-                input.addEventListener('input', applySearch);
+                input.addEventListener('input', applyAll);
+                toggleArcana.addEventListener('change', applyAll);
+                toggleEvents.addEventListener('change', applyAll);
+
+                categoryButtons.forEach((button) => button.addEventListener('click', () => {
+                  category = button.dataset.category || 'all';
+                  categoryButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+                  applyAll();
+                }));
+
+                difficultyButtons.forEach((button) => button.addEventListener('click', () => {
+                  difficulty = button.dataset.difficulty || 'all';
+                  difficultyButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+                  difficultyWrap.open = false;
+                  applyAll();
+                }));
+
+                document.addEventListener('click', (event) => {
+                  if (difficultyWrap.open && !difficultyWrap.contains(event.target)) difficultyWrap.open = false;
+                });
+
+                applyAll();
               })();
             </script>
           </body>
@@ -858,11 +1029,19 @@ jobs:
             throw new Error('Local Journey events were not available during offline verification.');
           }
 
-          const arcanaTab = page.getByRole('button', { name: '아르카나', exact: true });
-          await arcanaTab.click();
-          await page.waitForTimeout(250);
           const arcanaText = (await page.locator('#pane-arcana').innerText()).trim();
           if (arcanaText.length < 2000) throw new Error(`Local Journey Arcana archive was too small (${arcanaText.length}).`);
+
+          const search = page.locator('#journey-search');
+          if (await search.count() !== 1) throw new Error('Journey search UI was not generated.');
+          if (await page.locator('.journey-chip').count() !== 7) throw new Error('Journey category filter UI was incomplete.');
+          if (await page.locator('#toggle-arcana').count() !== 1 || await page.locator('#toggle-events').count() !== 1) {
+            throw new Error('Journey type checkboxes were not generated.');
+          }
+
+          const forbiddenUi = ['LOCAL ARCHIVE','가챠 시뮬레이터','여정 아이템','몬스터 정보','월페이퍼','구원자 시뮬레이터'];
+          const leakedUi = forbiddenUi.filter((token) => text.includes(token));
+          if (leakedUi.length) throw new Error(`Source-site UI leaked into local Journey archive: ${leakedUi.join(', ')}`);
 
           if (externalRequests.length) {
             throw new Error(`Journey archive attempted external runtime requests:\n${externalRequests.join('\n')}`);
