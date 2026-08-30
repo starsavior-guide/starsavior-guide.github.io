@@ -65,8 +65,8 @@ jobs:
           };
           
           const CATEGORY_ALIASES = {
-            reset: ['리세트','Reset','リセット','重置'],
-            raid: ['토벌','Raid','討伐','讨伐'],
+            reset: ['리세트','Lisette','Reset','リセッテ','リセット','莉賽特','莉赛特','重置'],
+            raid: ['토벌','Hunt','Raid','討伐','讨伐'],
             aganon: ['아가논','Aganon','アガノン','阿加農','阿加农'],
             flora: ['플로라','Flora','フローラ','芙蘿拉','芙萝拉'],
             kalaid: ['칼라이드','Kalaid','カライド','卡萊德','卡莱德'],
@@ -126,6 +126,7 @@ jobs:
           const usedNames = new Map();
           const savedTabPaths = { arcana: null, events: null };
           const savedTypePaths = { arcana: null, events: null };
+          const savedCategoryPaths = Object.fromEntries(Object.keys(CATEGORY_ALIASES).map((key) => [key, null]));
           
           async function downloadAsset(url, preferredName = '') {
             if (!url || !/^https?:\/\//i.test(url)) return null;
@@ -360,10 +361,8 @@ jobs:
           async function prepareJourneyMode(kind, language) {
             await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
             await waitReady();
-            if (language.label !== '한국어') {
-              await selectLanguage(language.label);
-              await waitReady();
-            }
+            await selectLanguage(language.label);
+            await waitReady();
 
             const unwantedKind = kind === 'arcana' ? 'events' : 'arcana';
             const result = await clickJourneyType(unwantedKind);
@@ -385,10 +384,11 @@ jobs:
           }
 
           async function selectLanguage(label) {
-            if (label === '한국어') return true;
             const selects = page.locator('select');
             for (let i = 0; i < await selects.count(); i++) {
               const select = selects.nth(i);
+              const currentText = await select.locator('option:checked').first().textContent().catch(() => '');
+              if ((currentText || '').trim() === label) return true;
               const options = await select.locator('option').evaluateAll((nodes) => nodes.map((node) => ({ value: node.value, text: (node.textContent || '').trim() })));
               const option = options.find((item) => item.text === label);
               if (!option) continue;
@@ -733,12 +733,110 @@ jobs:
             return [...indices].sort((a,b)=>a-b);
           }
           
+          async function clickJourneyCategory(category, aliases) {
+            const savedPath = savedCategoryPaths[category];
+            const result = await page.evaluate(({ aliases, savedPath }) => {
+              const norm = (v) => String(v || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim().toLocaleLowerCase();
+              const wanted = aliases.map(norm);
+              const visible = (el) => {
+                if (!(el instanceof HTMLElement)) return false;
+                const r = el.getBoundingClientRect();
+                const s = getComputedStyle(el);
+                return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+              };
+              const resolvePath = (path) => {
+                let node = document.body;
+                for (const index of path || []) {
+                  node = node?.children?.[index];
+                  if (!node) return null;
+                }
+                return node;
+              };
+              const makePath = (el) => {
+                const path = [];
+                let node = el;
+                while (node && node !== document.body) {
+                  const parent = node.parentElement;
+                  if (!parent) return null;
+                  path.unshift([...parent.children].indexOf(node));
+                  node = parent;
+                }
+                return node === document.body ? path : null;
+              };
+              const clickableFor = (el) => {
+                const semantic = el.closest('button,[role="button"],label,a');
+                if (semantic && visible(semantic)) return semantic;
+                let node = el;
+                for (let depth = 0; node && node !== document.body && depth < 6; depth++, node = node.parentElement) {
+                  if (!(node instanceof HTMLElement) || !visible(node)) continue;
+                  const style = getComputedStyle(node);
+                  if (style.cursor === 'pointer' || node.onclick || node.tabIndex >= 0) return node;
+                }
+                return el;
+              };
+
+              if (Array.isArray(savedPath)) {
+                const saved = resolvePath(savedPath);
+                if (saved && visible(saved)) {
+                  saved.scrollIntoView({ block: 'center' });
+                  saved.click();
+                  return { clicked: true, path: savedPath, via: 'saved', text: norm(saved.innerText || saved.textContent) };
+                }
+              }
+
+              const candidates = [];
+              for (const el of document.querySelectorAll('button,[role="button"],label,a,div,span,p')) {
+                if (!visible(el)) continue;
+                const text = norm(el.innerText || el.textContent);
+                if (!text) continue;
+                const exact = wanted.includes(text);
+                const fuzzy = wanted.some((target) => target.length >= 3 && (text.includes(target) || target.includes(text)));
+                if (!exact && !fuzzy) continue;
+                const clickable = clickableFor(el);
+                if (!clickable || !visible(clickable)) continue;
+                let score = exact ? 500 : 180;
+                if (clickable.tagName === 'BUTTON') score += 180;
+                if (clickable.getAttribute?.('role') === 'button') score += 100;
+                if (getComputedStyle(clickable).cursor === 'pointer') score += 60;
+                score -= text.length;
+                candidates.push({ clickable, score, text });
+              }
+              candidates.sort((a,b) => b.score - a.score);
+              const hit = candidates[0];
+              if (!hit) return { clicked: false };
+              hit.clickable.scrollIntoView({ block: 'center' });
+              hit.clickable.click();
+              return { clicked: true, path: makePath(hit.clickable), via: 'search', text: hit.text };
+            }, { aliases, savedPath });
+
+            if (result.clicked && !savedCategoryPaths[category] && Array.isArray(result.path)) {
+              savedCategoryPaths[category] = result.path;
+            }
+            if (result.clicked) {
+              await page.waitForTimeout(500);
+              await deepScroll();
+            }
+            return result;
+          }
+
           async function captureCategoryMembership(defaultEvents, language) {
             const result = {};
             for (const [category, aliases] of Object.entries(CATEGORY_ALIASES)) {
               await prepareJourneyMode('events', language);
-              const clicked = await clickVisibleExact(aliases);
-              if (!clicked) throw new Error(`Could not click source Journey category ${category} for ${language.key}`);
+              const categoryClick = await clickJourneyCategory(category, aliases);
+              if (!categoryClick.clicked) {
+                const controls = await page.evaluate(() => [...document.querySelectorAll('button,[role="button"],label,a')]
+                  .filter((el) => {
+                    const r = el.getBoundingClientRect();
+                    const s = getComputedStyle(el);
+                    return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+                  })
+                  .map((el) => String(el.innerText || el.textContent || '').replace(/\s+/g,' ').trim())
+                  .filter(Boolean)
+                  .slice(0,100));
+                throw new Error(`Could not click source Journey category ${category} for ${language.key}. Visible controls: ${JSON.stringify(controls)}`);
+              }
+              console.log(`${language.key} category ${category}: clicked via ${categoryClick.via}${categoryClick.text ? ` (${categoryClick.text})` : ''}`);
               await expandAll();
               const filtered = await captureStructured('events');
               const indices = indicesForFiltered(defaultEvents.entries, filtered.entries);
