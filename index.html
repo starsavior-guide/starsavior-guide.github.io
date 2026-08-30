@@ -8,7 +8,7 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=90-journey-arcana-source-layout"></script>
+  <script defer src="./app.js?v=91-arcana-source-audit"></script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -1073,6 +1073,38 @@
     .journey-arcana-choice-stack + .journey-arcana-choice-stack { margin-top:0; }
     .journey-arcana-result-block.tone-success { border-color:rgba(39,150,95,.48); background:rgba(0,77,48,.32); }
     .journey-arcana-result-block.tone-failure { border-color:rgba(190,71,83,.48); background:rgba(103,20,31,.34); }
+    .journey-arcana-structured-choices { display:grid; gap:10px; margin-top:7px; }
+    .journey-arcana-structured-choices.is-automatic { gap:0; }
+    .journey-arcana-automatic-choice { min-width:0; }
+    .journey-arcana-automatic-choice .journey-arcana-result-block { margin:0; }
+    .journey-arcana-choice-title { display:flex; align-items:center; gap:8px; margin:0 0 9px; font-size:14px; font-weight:950; line-height:1.45; }
+    .journey-arcana-choice-title span { display:inline-flex; flex:0 0 23px; width:23px; height:23px; align-items:center; justify-content:center; border:1px solid currentColor; border-radius:50%; font-size:11px; }
+    .journey-arcana-choice-stack.tone-success .journey-arcana-choice-title { color:rgba(104,213,158,.98); }
+    .journey-arcana-choice-stack.tone-failure .journey-arcana-choice-title { color:rgba(238,139,150,.98); }
+    .journey-arcana-choice-stack .journey-arcana-structured-outcome { padding:9px 10px; border:1px solid var(--line); border-radius:9px; }
+    .journey-arcana-choice-stack .journey-arcana-structured-outcome.tone-success { border-color:rgba(39,150,95,.42); background:rgba(0,77,48,.25); }
+    .journey-arcana-choice-stack .journey-arcana-structured-outcome.tone-failure { border-color:rgba(190,71,83,.42); background:rgba(103,20,31,.27); }
+    .journey-arcana-choice-stack .journey-arcana-structured-outcome + .journey-arcana-structured-outcome { margin-top:8px; padding-top:9px; }
+    .journey-arcana-outcome-title { margin-bottom:7px; color:var(--text); font-size:12px; font-weight:950; }
+    .journey-arcana-structured-outcome.tone-success .journey-arcana-outcome-title { color:rgba(104,213,158,.98); }
+    .journey-arcana-structured-outcome.tone-failure .journey-arcana-outcome-title { color:rgba(238,139,150,.98); }
+    .journey-arcana-reward-list { display:grid; gap:7px; }
+    .journey-arcana-reward-group { display:flex; min-width:0; align-items:stretch; gap:7px; flex-wrap:wrap; }
+    .journey-arcana-reward-alternative { flex:1 1 210px; min-width:0; padding:8px 9px; border:1px solid color-mix(in srgb,var(--line) 84%,transparent); border-radius:8px; background:color-mix(in srgb,var(--surface) 58%,transparent); }
+    .journey-arcana-reward-main { display:flex; min-width:0; align-items:center; gap:7px; flex-wrap:wrap; }
+    .journey-arcana-reward-icon { position:relative; display:inline-flex; flex:0 0 32px; width:32px; height:32px; vertical-align:middle; }
+    .journey-arcana-reward-icon img { position:absolute; inset:0; display:block; width:32px; height:32px; max-width:32px; max-height:32px; object-fit:contain; }
+    .journey-arcana-reward-label { min-width:0; color:var(--text); font-size:13px; font-weight:900; line-height:1.45; overflow-wrap:anywhere; }
+    .journey-arcana-reward-value { margin-left:auto; color:var(--text); font-size:13px; font-weight:950; white-space:nowrap; }
+    .journey-arcana-reward-alternative.polarity-positive .journey-arcana-reward-value { color:rgba(104,213,158,.98); }
+    .journey-arcana-reward-alternative.polarity-negative .journey-arcana-reward-value { color:rgba(238,139,150,.98); }
+    .journey-arcana-reward-alternative.effect-positive .journey-arcana-reward-label { color:rgba(104,213,158,.98); }
+    .journey-arcana-reward-alternative.effect-negative .journey-arcana-reward-label { color:rgba(238,139,150,.98); }
+    .journey-arcana-reward-alternative.effect-special .journey-arcana-reward-label { color:#e2bd67; }
+    .journey-arcana-reward-description { margin-top:6px; padding-top:6px; border-top:1px solid color-mix(in srgb,var(--line) 70%,transparent); color:color-mix(in srgb,var(--text) 86%,var(--muted)); font-size:12px; font-weight:680; line-height:1.55; }
+    .journey-arcana-reward-alternative.effect-positive .journey-arcana-reward-description { color:color-mix(in srgb,rgba(104,213,158,.98) 70%,var(--text)); }
+    .journey-arcana-reward-alternative.effect-negative .journey-arcana-reward-description { color:color-mix(in srgb,rgba(238,139,150,.98) 70%,var(--text)); }
+    .journey-arcana-reward-or { display:inline-flex; align-items:center; justify-content:center; color:var(--muted); font-size:11px; font-weight:900; text-transform:uppercase; }
     html[data-theme="light"] .journey-arcana-choice-stack.tone-success,
     html[data-theme="light"] .journey-arcana-result-block.tone-success { background:rgba(39,150,95,.12); }
     html[data-theme="light"] .journey-arcana-choice-stack.tone-failure,
@@ -1097,6 +1129,12 @@
       .journey-data-row { font-size:13px; }
       .journey-data-row.is-title { font-size:17px; }
       .journey-inline-icon-stack,.journey-inline-icon-stack img { width:28px; height:28px; max-width:28px; max-height:28px; flex-basis:28px; }
+      .journey-arcana-choice-title { font-size:13px; }
+      .journey-arcana-reward-group { display:grid; grid-template-columns:minmax(0,1fr); }
+      .journey-arcana-reward-alternative { width:100%; padding:8px; }
+      .journey-arcana-reward-or { min-height:17px; }
+      .journey-arcana-reward-label,.journey-arcana-reward-value { font-size:12px; }
+      .journey-arcana-reward-description { font-size:11px; }
     }
     @media (max-width:390px) {
       .journey-top-row { grid-template-columns:112px minmax(0,1fr); }

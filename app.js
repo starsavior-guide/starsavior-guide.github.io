@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v88-journey-arcana-result-layout";
+const SITE_BUILD_VERSION = "v91-arcana-source-audit";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -7218,10 +7218,11 @@ function getJourneyArcanaEventGroups(entry) {
     return entry.eventGroups
       .map((group) => ({
         title: String(group?.title || "").trim(),
+        choices: Array.isArray(group?.choices) ? group.choices : [],
         rows: (Array.isArray(group?.rows) ? group.rows : [])
           .filter((row) => !isJourneyArcanaFooterText(row?.text))
       }))
-      .filter((group) => group.title || group.rows.length);
+      .filter((group) => group.title || group.choices.length || group.rows.length);
   }
 
   const rows = getJourneyArcanaContentRows(entry);
@@ -7270,7 +7271,18 @@ function getJourneyArcanaEventGroups(entry) {
 function getJourneyEntrySearchText(entry) {
   if (entry?.kind === "arcana" || entry?.arcanaName) {
     const eventTitles = getJourneyArcanaEventGroups(entry)
-      .map((group) => group.title || "")
+      .flatMap((group) => [
+        group.title || "",
+        ...(group.choices || []).flatMap((choice) => [
+          choice?.name || "",
+          ...[...(choice?.successRewards || []), ...(choice?.failureRewards || [])]
+            .flatMap((rewardGroup) => (rewardGroup || []).flatMap((reward) => [
+              reward?.label || "",
+              reward?.value || "",
+              reward?.description || ""
+            ]))
+        ])
+      ])
       .filter(Boolean)
       .join(" ");
     return normalizeJourneySearch(
@@ -7618,7 +7630,98 @@ function renderJourneyArcanaPieceSequence(pieces, forcedTone = "") {
   return output.join("");
 }
 
+function renderJourneyArcanaStructuredIcon(reward) {
+  const assets = Array.isArray(reward?.iconAssets)
+    ? reward.iconAssets.filter(Boolean)
+    : (reward?.iconAsset ? [reward.iconAsset] : []);
+  if (!assets.length) return "";
+  const label = String(reward?.label || "").trim();
+  return `<span class="journey-arcana-reward-icon"${label ? ` title="${escapeHtml(label)}"` : ""}>${assets.map((asset, index) => `
+    <img src="${escapeHtml(getJourneyAssetUrl(asset))}" alt="" loading="lazy" style="z-index:${index + 1}">
+  `).join("")}</span>`;
+}
+
+function renderJourneyArcanaStructuredReward(reward) {
+  const label = String(reward?.label || "").trim();
+  const value = String(reward?.value || "").trim();
+  const description = String(reward?.description || "").trim();
+  const polarity = ["positive", "negative", "neutral"].includes(reward?.polarity)
+    ? reward.polarity
+    : "neutral";
+  const effectTone = ["positive", "negative", "special", "neutral"].includes(reward?.effectTone)
+    ? reward.effectTone
+    : "neutral";
+  const icon = renderJourneyArcanaStructuredIcon(reward);
+
+  return `
+    <div class="journey-arcana-reward-alternative polarity-${escapeHtml(polarity)} effect-${escapeHtml(effectTone)}">
+      <div class="journey-arcana-reward-main">
+        ${icon}
+        ${label ? `<span class="journey-arcana-reward-label">${escapeHtml(label)}</span>` : ""}
+        ${value ? `<span class="journey-arcana-reward-value">${escapeHtml(value)}</span>` : ""}
+      </div>
+      ${description ? `<div class="journey-arcana-reward-description">${escapeHtml(description)}</div>` : ""}
+    </div>
+  `;
+}
+
+function renderJourneyArcanaStructuredRewardGroup(rewardGroup) {
+  const rewards = Array.isArray(rewardGroup) ? rewardGroup.filter(Boolean) : [];
+  if (!rewards.length) return "";
+  return `<div class="journey-arcana-reward-group">${rewards.map((reward, index) => `
+    ${index ? `<span class="journey-arcana-reward-or">or</span>` : ""}
+    ${renderJourneyArcanaStructuredReward(reward)}
+  `).join("")}</div>`;
+}
+
+function renderJourneyArcanaStructuredOutcome(rewardGroups, tone, showTitle) {
+  const groups = Array.isArray(rewardGroups) ? rewardGroups.filter((group) => Array.isArray(group) && group.length) : [];
+  if (!groups.length) return "";
+  const labels = getJourneyLabels();
+  const title = tone === "failure" ? labels.failure : labels.success;
+  return `
+    <div class="journey-result-block journey-arcana-result-block journey-arcana-structured-outcome tone-${escapeHtml(tone)}">
+      ${showTitle ? `<div class="journey-arcana-outcome-title">${escapeHtml(title)}</div>` : ""}
+      <div class="journey-arcana-reward-list">${groups.map(renderJourneyArcanaStructuredRewardGroup).join("")}</div>
+    </div>
+  `;
+}
+
+function renderJourneyArcanaStructuredEventBody(group) {
+  const choices = Array.isArray(group?.choices) ? group.choices.filter(Boolean) : [];
+  if (!choices.length) return "";
+  const isBranch = choices.length > 1 || choices.some((choice) => String(choice?.name || "").trim());
+
+  return `<div class="journey-arcana-structured-choices${isBranch ? " is-branch" : " is-automatic"}">${choices.map((choice, index) => {
+    const name = String(choice?.name || "").trim();
+    const recommended = typeof choice?.recommended === "boolean" ? choice.recommended : index === 0;
+    const choiceTone = recommended ? "success" : "failure";
+    const successRewards = Array.isArray(choice?.successRewards) ? choice.successRewards : [];
+    const failureRewards = Array.isArray(choice?.failureRewards) ? choice.failureRewards : [];
+    const showOutcomeTitle = failureRewards.length > 0;
+    const outcomes = [
+      renderJourneyArcanaStructuredOutcome(successRewards, "success", showOutcomeTitle),
+      renderJourneyArcanaStructuredOutcome(failureRewards, "failure", true)
+    ].join("");
+
+    if (!isBranch && !name) {
+      return `<div class="journey-arcana-automatic-choice">${outcomes}</div>`;
+    }
+
+    return `
+      <div class="journey-arcana-choice-stack tone-${escapeHtml(choiceTone)}">
+        ${name ? `<div class="journey-arcana-choice-title"><span>${index + 1}</span>${escapeHtml(name)}</div>` : ""}
+        ${outcomes}
+      </div>
+    `;
+  }).join("")}</div>`;
+}
+
 function renderJourneyArcanaEventBody(group) {
+  if (Array.isArray(group?.choices) && group.choices.length) {
+    return renderJourneyArcanaStructuredEventBody(group);
+  }
+
   const rows = Array.isArray(group?.rows) ? group.rows : [];
   const rowsWithPieces = rows
     .map((row, rowIndex) => ({ row, rowIndex, pieces: getJourneyArcanaRowPieces(row) }))
