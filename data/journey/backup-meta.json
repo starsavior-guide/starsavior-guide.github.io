@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-08-30T14:59:24.930Z",
+  "capturedAt": "2026-08-30T17:08:01.549Z",
   "source": "https://star-savior-arcana-db.pages.dev/journey",
   "mode": "structured-local-json",
   "sourceRequiredAtRuntime": false,
@@ -54,5 +54,22 @@
     "arcana": "https://star-savior-arcana-db.pages.dev/arcana"
   },
   "arcanaSource": "https://star-savior-arcana-db.pages.dev/arcana",
-  "arcanaMode": "arcana-detail-ids-from-app"
+  "arcanaMode": "arcana-detail-ids-from-app",
+  "arcana": {
+    "source": "https://star-savior-arcana-db.pages.dev/arcana",
+    "sourceDataSha256": "de22aab98f6500995bc2182ce76d3186c1647ae18888147bd4ba30615fd2d09c",
+    "counts": {
+      "cards": 79,
+      "events": 191,
+      "choices": 236,
+      "automaticChoices": 146,
+      "branchEvents": 45,
+      "choicesWithFailure": 13,
+      "successRewardGroups": 586,
+      "failureRewardGroups": 42,
+      "rewardItems": 628,
+      "assets": 71
+    },
+    "generalJourneyFrozen": true
+  }
 }

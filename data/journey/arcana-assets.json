@@ -1,0 +1,361 @@
+{
+  "source": "https://star-savior-arcana-db.pages.dev/arcana",
+  "capturedAt": "2026-08-30T17:08:01.549Z",
+  "assets": {
+    "arcana-buff-공감능력.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EA%B3%B5%EA%B0%90%EB%8A%A5%EB%A0%A5.webp",
+      "size": 2152,
+      "sha256": "7b6039640fb1beb72d39e7f32219991615728938c6cea0982e650820833ae223"
+    },
+    "arcana-buff-과식.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EA%B3%BC%EC%8B%9D.webp",
+      "size": 2228,
+      "sha256": "707ba5eccafce68725ea7b5ab2c41a4203c9402f1e31831590fc2cf36e7f9b1b"
+    },
+    "arcana-buff-근육부상.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EA%B7%BC%EC%9C%A1%EB%B6%80%EC%83%81.webp",
+      "size": 2228,
+      "sha256": "707ba5eccafce68725ea7b5ab2c41a4203c9402f1e31831590fc2cf36e7f9b1b"
+    },
+    "arcana-buff-눈썰미.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EB%88%88%EC%8D%B0%EB%AF%B8.webp",
+      "size": 2538,
+      "sha256": "2f582b4ddf7bb4c189e1bed37f1e0112d811f08a9d1dea824f18e4fddcb2b9a5"
+    },
+    "arcana-buff-메타인지.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EB%A9%94%ED%83%80%EC%9D%B8%EC%A7%80.webp",
+      "size": 2506,
+      "sha256": "f5f639588bc83eebb57dc09492c9eb91f170203e9f7d98bae0531adfc2af9546"
+    },
+    "arcana-buff-번아웃.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EB%B2%88%EC%95%84%EC%9B%83.webp",
+      "size": 2234,
+      "sha256": "42f30c0cfee24967c556ccac8ae11b402ec27220bb8e36d2095519774e602548"
+    },
+    "arcana-buff-생존왕.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EC%83%9D%EC%A1%B4%EC%99%95.webp",
+      "size": 2234,
+      "sha256": "bb677b05b0535c211a4fc210372ffb48ea0075254e395463f9df9e56fd9c4264"
+    },
+    "arcana-buff-슈거하이.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EC%8A%88%EA%B1%B0%ED%95%98%EC%9D%B4.webp",
+      "size": 2250,
+      "sha256": "3211f116928779e0821cfe97acbe61dc755ba5e5b4c9c515d954dc91af64af5b"
+    },
+    "arcana-buff-영양식.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EC%98%81%EC%96%91%EC%8B%9D.webp",
+      "size": 2050,
+      "sha256": "fef5ac4b10ecde3b71b03657bb91e4dc23dc2da6a9da47b9a987c20793ce52c6"
+    },
+    "arcana-buff-자신감.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EC%9E%90%EC%8B%A0%EA%B0%90.webp",
+      "size": 2250,
+      "sha256": "3211f116928779e0821cfe97acbe61dc755ba5e5b4c9c515d954dc91af64af5b"
+    },
+    "arcana-buff-작전방침.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EC%9E%91%EC%A0%84%EB%B0%A9%EC%B9%A8.webp",
+      "size": 2136,
+      "sha256": "0855b3808a1d01805eb2c23974cfd44912bb1170757f9afaec864f9997c1ab6f"
+    },
+    "arcana-buff-책임감.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EC%B1%85%EC%9E%84%EA%B0%90.webp",
+      "size": 2136,
+      "sha256": "0855b3808a1d01805eb2c23974cfd44912bb1170757f9afaec864f9997c1ab6f"
+    },
+    "arcana-buff-탕진.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%ED%83%95%EC%A7%84.webp",
+      "size": 2228,
+      "sha256": "707ba5eccafce68725ea7b5ab2c41a4203c9402f1e31831590fc2cf36e7f9b1b"
+    },
+    "arcana-potential-감각적인수비.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EA%B0%90%EA%B0%81%EC%A0%81%EC%9D%B8%EC%88%98%EB%B9%84.webp",
+      "size": 4572,
+      "sha256": "154085fc25ca178bf6fdbd6fa76f147a8f109eb213fffb7c5199d74c96218567"
+    },
+    "arcana-potential-강인한의지.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EA%B0%95%EC%9D%B8%ED%95%9C%EC%9D%98%EC%A7%80.webp",
+      "size": 4572,
+      "sha256": "154085fc25ca178bf6fdbd6fa76f147a8f109eb213fffb7c5199d74c96218567"
+    },
+    "arcana-potential-견고한파괴.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EA%B2%AC%EA%B3%A0%ED%95%9C%ED%8C%8C%EA%B4%B4.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-결연한각오.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EA%B2%B0%EC%97%B0%ED%95%9C%EA%B0%81%EC%98%A4.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-고고한구도자.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EA%B3%A0%EA%B3%A0%ED%95%9C%EA%B5%AC%EB%8F%84%EC%9E%90.webp",
+      "size": 5338,
+      "sha256": "4e5eb8a10ab400c04bd06ece9e5d92b2b0d60b1b747b74232a9cd94a38c72024"
+    },
+    "arcana-potential-공격의감각.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EA%B3%B5%EA%B2%A9%EC%9D%98%EA%B0%90%EA%B0%81.webp",
+      "size": 2508,
+      "sha256": "a176c08b1efff58f620e0326bee7f2cc818520924ea0af7596caef0ae456eab3"
+    },
+    "arcana-potential-공격의성흔.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EA%B3%B5%EA%B2%A9%EC%9D%98%EC%84%B1%ED%9D%94.webp",
+      "size": 5102,
+      "sha256": "1e7eaeca6cd2626cc1f96a1d2fd7d6ee932f71a0d8147274c85a123b55020fbe"
+    },
+    "arcana-potential-공격의솜씨.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EA%B3%B5%EA%B2%A9%EC%9D%98%EC%86%9C%EC%94%A8.webp",
+      "size": 2700,
+      "sha256": "728a81612b6356b05ba89317ca4b0d5eaebd245ee7dc30f900e732ef0cb3b1e9"
+    },
+    "arcana-potential-공격의재능.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EA%B3%B5%EA%B2%A9%EC%9D%98%EC%9E%AC%EB%8A%A5.webp",
+      "size": 2824,
+      "sha256": "1f22af03690717b1a15f2bf4fe6ba7d188a2cd74c62433115338588ce59d5274"
+    },
+    "arcana-potential-긴급주문영창법.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EA%B8%B4%EA%B8%89%EC%A3%BC%EB%AC%B8%EC%98%81%EC%B0%BD%EB%B2%95.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-날카로운공세.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EB%82%A0%EC%B9%B4%EB%A1%9C%EC%9A%B4%EA%B3%B5%EC%84%B8.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-날카로운성장.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EB%82%A0%EC%B9%B4%EB%A1%9C%EC%9A%B4%EC%84%B1%EC%9E%A5.webp",
+      "size": 4572,
+      "sha256": "154085fc25ca178bf6fdbd6fa76f147a8f109eb213fffb7c5199d74c96218567"
+    },
+    "arcana-potential-더블탭.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EB%8D%94%EB%B8%94%ED%83%AD.webp",
+      "size": 4980,
+      "sha256": "5d3c447d7820ab80d42fc9011446c092a2792e5cfadab75aef1534cf41c89dbb"
+    },
+    "arcana-potential-두번째심장.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EB%91%90%EB%B2%88%EC%A7%B8%EC%8B%AC%EC%9E%A5.webp",
+      "size": 4572,
+      "sha256": "154085fc25ca178bf6fdbd6fa76f147a8f109eb213fffb7c5199d74c96218567"
+    },
+    "arcana-potential-방어의감각.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EB%B0%A9%EC%96%B4%EC%9D%98%EA%B0%90%EA%B0%81.webp",
+      "size": 1958,
+      "sha256": "c750a7ce7ee3c469f85e76a0c07b1649053489dd755eb2c6893ac660583106fa"
+    },
+    "arcana-potential-방어의솜씨.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EB%B0%A9%EC%96%B4%EC%9D%98%EC%86%9C%EC%94%A8.webp",
+      "size": 2096,
+      "sha256": "e802ec2f2f322d726bca535cced1ca403f27f5198af5b67876caa19351625bbe"
+    },
+    "arcana-potential-별빛은총.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EB%B3%84%EB%B9%9B%EC%9D%80%EC%B4%9D.webp",
+      "size": 5338,
+      "sha256": "4e5eb8a10ab400c04bd06ece9e5d92b2b0d60b1b747b74232a9cd94a38c72024"
+    },
+    "arcana-potential-보호의감각.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EB%B3%B4%ED%98%B8%EC%9D%98%EA%B0%90%EA%B0%81.webp",
+      "size": 4234,
+      "sha256": "88c22d6de906e1adf2bc493e2399ce7eb24c89dce42f792b5fbdfda55fe76e10"
+    },
+    "arcana-potential-보호의솜씨.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EB%B3%B4%ED%98%B8%EC%9D%98%EC%86%9C%EC%94%A8.webp",
+      "size": 4056,
+      "sha256": "8dd69573981ec26a4a3f8a02d74ce2f48756bc0eafbbb750f5d44a4acc6f8d40"
+    },
+    "arcana-potential-사랑의행진.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%82%AC%EB%9E%91%EC%9D%98%ED%96%89%EC%A7%84.webp",
+      "size": 5338,
+      "sha256": "4e5eb8a10ab400c04bd06ece9e5d92b2b0d60b1b747b74232a9cd94a38c72024"
+    },
+    "arcana-potential-생명의감각.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%83%9D%EB%AA%85%EC%9D%98%EA%B0%90%EA%B0%81.webp",
+      "size": 2156,
+      "sha256": "ab3e76449da1290a3bcf98ab1399e8d74f6b38fd8da7e62a14de17a928fe2d39"
+    },
+    "arcana-potential-생명의성흔.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%83%9D%EB%AA%85%EC%9D%98%EC%84%B1%ED%9D%94.webp",
+      "size": 4332,
+      "sha256": "99d86aca15a2cf4a254a08a3dd10319e06f65f470d4563fc641cdbf25998883c"
+    },
+    "arcana-potential-생명의솜씨.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%83%9D%EB%AA%85%EC%9D%98%EC%86%9C%EC%94%A8.webp",
+      "size": 2310,
+      "sha256": "1273ded67ccc3b173fcc025fad7e8a7d17eb7783d60184b45f961e3b39675c14"
+    },
+    "arcana-potential-생명의재능.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%83%9D%EB%AA%85%EC%9D%98%EC%9E%AC%EB%8A%A5.webp",
+      "size": 2494,
+      "sha256": "55a734c308677c224d44bb08d470d7246657642e541d0f08d60b871baad6032d"
+    },
+    "arcana-potential-속도의감각.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%86%8D%EB%8F%84%EC%9D%98%EA%B0%90%EA%B0%81.webp",
+      "size": 2514,
+      "sha256": "72baf57ffe5921d0b0e9ef9cc0bb4d1247626488423aa9516d50a6aa356994c3"
+    },
+    "arcana-potential-속도의성흔.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%86%8D%EB%8F%84%EC%9D%98%EC%84%B1%ED%9D%94.webp",
+      "size": 4714,
+      "sha256": "59fcd43778bbac1b568c6d8303928319b66d1c91273621c10e216f1ede146854"
+    },
+    "arcana-potential-속도의솜씨.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%86%8D%EB%8F%84%EC%9D%98%EC%86%9C%EC%94%A8.webp",
+      "size": 2570,
+      "sha256": "8dbceac7664215ae43f7445349a03b86d30cac5e284f1661012d7fa2c9238634"
+    },
+    "arcana-potential-속도의재능.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%86%8D%EB%8F%84%EC%9D%98%EC%9E%AC%EB%8A%A5.webp",
+      "size": 2870,
+      "sha256": "a2377a0f64000601df6189066368739c741133762940b435cb7a8354c70bb388"
+    },
+    "arcana-potential-스택트리거.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%8A%A4%ED%83%9D%ED%8A%B8%EB%A6%AC%EA%B1%B0.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-신중한전술.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%8B%A0%EC%A4%91%ED%95%9C%EC%A0%84%EC%88%A0.webp",
+      "size": 5338,
+      "sha256": "4e5eb8a10ab400c04bd06ece9e5d92b2b0d60b1b747b74232a9cd94a38c72024"
+    },
+    "arcana-potential-여유로운응수.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%97%AC%EC%9C%A0%EB%A1%9C%EC%9A%B4%EC%9D%91%EC%88%98.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-운명의길.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%9A%B4%EB%AA%85%EC%9D%98%EA%B8%B8.webp",
+      "size": 4980,
+      "sha256": "5d3c447d7820ab80d42fc9011446c092a2792e5cfadab75aef1534cf41c89dbb"
+    },
+    "arcana-potential-웃음유발메커니즘.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%9B%83%EC%9D%8C%EC%9C%A0%EB%B0%9C%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-유연한판단.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%9C%A0%EC%97%B0%ED%95%9C%ED%8C%90%EB%8B%A8.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-응급처치.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%9D%91%EA%B8%89%EC%B2%98%EC%B9%98.webp",
+      "size": 5338,
+      "sha256": "4e5eb8a10ab400c04bd06ece9e5d92b2b0d60b1b747b74232a9cd94a38c72024"
+    },
+    "arcana-potential-잠식의그림자.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%9E%A0%EC%8B%9D%EC%9D%98%EA%B7%B8%EB%A6%BC%EC%9E%90.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-재난대응프로토콜.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%9E%AC%EB%82%9C%EB%8C%80%EC%9D%91%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C.webp",
+      "size": 5338,
+      "sha256": "4e5eb8a10ab400c04bd06ece9e5d92b2b0d60b1b747b74232a9cd94a38c72024"
+    },
+    "arcana-potential-준비됐노라.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%A4%80%EB%B9%84%EB%90%90%EB%85%B8%EB%9D%BC!.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-진홍의맹세.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%A7%84%ED%99%8D%EC%9D%98%EB%A7%B9%EC%84%B8.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-집중의감각.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%A7%91%EC%A4%91%EC%9D%98%EA%B0%90%EA%B0%81.webp",
+      "size": 4572,
+      "sha256": "601020b08fa354a5d8ab949fbd52c665453d7aca4a4890f289ded24e67c5818b"
+    },
+    "arcana-potential-집중의솜씨.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%A7%91%EC%A4%91%EC%9D%98%EC%86%9C%EC%94%A8.webp",
+      "size": 4502,
+      "sha256": "08d4d479ffa35b8aac0c0c2e6045bdc0312f91f6b28f8bcf2cd5bacf83380866"
+    },
+    "arcana-potential-집중의재능.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%A7%91%EC%A4%91%EC%9D%98%EC%9E%AC%EB%8A%A5.webp",
+      "size": 4442,
+      "sha256": "d22954785368b4170b28fa913f7982ab8a0dc94351400b7f22ccc3c906b225dd"
+    },
+    "arcana-potential-침묵의방패.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%B9%A8%EB%AC%B5%EC%9D%98%EB%B0%A9%ED%8C%A8.webp",
+      "size": 5338,
+      "sha256": "4e5eb8a10ab400c04bd06ece9e5d92b2b0d60b1b747b74232a9cd94a38c72024"
+    },
+    "arcana-potential-카탈리스트.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EC%B9%B4%ED%83%88%EB%A6%AC%EC%8A%A4%ED%8A%B8.webp",
+      "size": 4980,
+      "sha256": "5d3c447d7820ab80d42fc9011446c092a2792e5cfadab75aef1534cf41c89dbb"
+    },
+    "arcana-potential-탄력가속.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%ED%83%84%EB%A0%A5%EA%B0%80%EC%86%8D.webp",
+      "size": 5338,
+      "sha256": "4e5eb8a10ab400c04bd06ece9e5d92b2b0d60b1b747b74232a9cd94a38c72024"
+    },
+    "arcana-potential-통찰의성흔.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%ED%86%B5%EC%B0%B0%EC%9D%98%EC%84%B1%ED%9D%94.webp",
+      "size": 7218,
+      "sha256": "4369a72a3f19c0700cd6749f1acc361ce0054c2c60357e68424ffb21a677d5fb"
+    },
+    "arcana-potential-통찰의솜씨.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%ED%86%B5%EC%B0%B0%EC%9D%98%EC%86%9C%EC%94%A8.webp",
+      "size": 3282,
+      "sha256": "5aed8b8c97011a088e9c26bec298accd40bd9df006ae5123a1dd18cfd8493fbc"
+    },
+    "arcana-potential-통찰의재능.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%ED%86%B5%EC%B0%B0%EC%9D%98%EC%9E%AC%EB%8A%A5.webp",
+      "size": 3624,
+      "sha256": "9280d7afdcf4150f6b5fa68e2febc954924d252d98cee8a4b490261c9f40927e"
+    },
+    "arcana-potential-튀김파티.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%ED%8A%80%EA%B9%80%ED%8C%8C%ED%8B%B0.webp",
+      "size": 5338,
+      "sha256": "4e5eb8a10ab400c04bd06ece9e5d92b2b0d60b1b747b74232a9cd94a38c72024"
+    },
+    "arcana-potential-파괴의감각.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%ED%8C%8C%EA%B4%B4%EC%9D%98%EA%B0%90%EA%B0%81.webp",
+      "size": 2556,
+      "sha256": "ba61c6368eca3ba8c7186839cbe09969e98fcdec43975208aff547590c12bff2"
+    },
+    "arcana-potential-파괴의솜씨.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%ED%8C%8C%EA%B4%B4%EC%9D%98%EC%86%9C%EC%94%A8.webp",
+      "size": 2636,
+      "sha256": "b25f254662205830ab36aeda8ad8e0972bfe2dcde0bd0736755bb875e7c721dc"
+    },
+    "arcana-potential-표적정렬마법진.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%ED%91%9C%EC%A0%81%EC%A0%95%EB%A0%AC%EB%A7%88%EB%B2%95%EC%A7%84.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-피의메아리.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%ED%94%BC%EC%9D%98%EB%A9%94%EC%95%84%EB%A6%AC.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
+    },
+    "arcana-potential-확고한믿음.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%ED%99%95%EA%B3%A0%ED%95%9C%EB%AF%BF%EC%9D%8C.webp",
+      "size": 4572,
+      "sha256": "154085fc25ca178bf6fdbd6fa76f147a8f109eb213fffb7c5199d74c96218567"
+    },
+    "arcana-potential-bg_blue.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/bg_blue.webp",
+      "size": 1474,
+      "sha256": "ec94510c21088a38003d0f30bf1828751852a740270b3060416914bca050bded"
+    },
+    "arcana-potential-bg_red.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/bg_red.webp",
+      "size": 1526,
+      "sha256": "af9d13d9663e14fc110aecfacc02d65c90110ecbf843c1ee85f185037e7f3f30"
+    },
+    "arcana-potential-bg_special.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/bg_special.webp",
+      "size": 1538,
+      "sha256": "7ecb0b7c081a698c9f1f210f9ce793e357e6fb32be85e419b0469ccc1aa8b8eb"
+    },
+    "arcana-potential-bg_yellow.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/bg_yellow.webp",
+      "size": 1470,
+      "sha256": "2e9afe4b9ffab669975fc474e3849534aaf8f6689c9103851fff119eeee1dbbc"
+    }
+  }
+}
