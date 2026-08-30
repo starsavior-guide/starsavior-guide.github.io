@@ -1,0 +1,196 @@
+name: Self-host Star Savior images
+
+on:
+  push:
+    paths:
+      - '.github/workflows/selfhost-images.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  self-host-images:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Download images and switch app.js to local paths
+        shell: bash
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import re
+          import shutil
+          import sys
+          import time
+          from pathlib import Path
+          from urllib.parse import unquote, urlparse
+          from urllib.request import Request, urlopen
+
+          ROOT = Path.cwd()
+          APP = ROOT / "app.js"
+          INDEX = ROOT / "index.html"
+          SAVIOR_DIR = ROOT / "images" / "savior"
+          ARCANA_DIR = ROOT / "images" / "arcana"
+
+          ARCANA_REMOTE_ROOT = "https://starsavior-db.pages.dev/images/arcana"
+          LOCAL_ARCANA_ROOT = "./images/arcana"
+
+          IMAGE_URL_RE = re.compile(
+              r'https://(?:star-savior-arcana-db|starsavior-db)\.pages\.dev/images/[^"\'`\s]+?\.(?:webp|png|jpe?g|gif)'
+          )
+          ARCANA_TEMPLATE_RE = re.compile(
+              r'image:\s*`\$\{ARCANA_IMAGE_ROOT\}/([^`]+?\.(?:webp|png|jpe?g|gif))`'
+          )
+
+          if not APP.exists():
+              raise SystemExit("app.js was not found in the repository root.")
+
+          def classify(url: str) -> str:
+              if "/images/icons/" in url or "/images/icon/portrait/" in url:
+                  return "savior"
+              if "/images/arcana/" in url or "/images/cards/" in url:
+                  return "arcana"
+              raise ValueError(f"Unknown image category: {url}")
+
+          def local_filename(url: str) -> str:
+              name = unquote(Path(urlparse(url).path).name)
+              if not name:
+                  raise ValueError(f"Could not determine filename: {url}")
+              return name
+
+          def collect_urls(text: str) -> list[str]:
+              urls = set(IMAGE_URL_RE.findall(text))
+              for filename in ARCANA_TEMPLATE_RE.findall(text):
+                  urls.add(f"{ARCANA_REMOTE_ROOT}/{filename}")
+              return sorted(urls)
+
+          def fetch(url: str, dest: Path, retries: int = 4) -> None:
+              dest.parent.mkdir(parents=True, exist_ok=True)
+              tmp = dest.with_suffix(dest.suffix + ".part")
+              headers = {
+                  "User-Agent": "Mozilla/5.0 StarSaviorGuideImageBackup/1.0",
+                  "Accept": "image/webp,image/avif,image/apng,image/*,*/*;q=0.8",
+              }
+              last_error = None
+
+              for attempt in range(1, retries + 1):
+                  try:
+                      req = Request(url, headers=headers)
+                      with urlopen(req, timeout=45) as response, open(tmp, "wb") as f:
+                          content_type = response.headers.get("Content-Type", "")
+                          shutil.copyfileobj(response, f)
+
+                      size = tmp.stat().st_size
+                      if size < 100:
+                          raise RuntimeError(f"Downloaded file is suspiciously small: {size} bytes")
+                      if content_type and "image" not in content_type.lower():
+                          raise RuntimeError(f"Unexpected Content-Type: {content_type}")
+
+                      tmp.replace(dest)
+                      return
+                  except Exception as exc:
+                      last_error = exc
+                      if tmp.exists():
+                          tmp.unlink()
+                      if attempt < retries:
+                          time.sleep(attempt * 2)
+
+              raise RuntimeError(f"Failed to download {url}: {last_error}")
+
+          text = APP.read_text("utf-8")
+          urls = collect_urls(text)
+          saviors = [u for u in urls if classify(u) == "savior"]
+          arcanas = [u for u in urls if classify(u) == "arcana"]
+
+          print(f"Savior images: {len(saviors)}")
+          print(f"Arcana images: {len(arcanas)}")
+          print(f"Total images: {len(urls)}")
+
+          if not urls:
+              print("No external image URLs found. The migration may already be complete.")
+          else:
+              for index, url in enumerate(urls, 1):
+                  category = classify(url)
+                  dest_dir = SAVIOR_DIR if category == "savior" else ARCANA_DIR
+                  dest = dest_dir / local_filename(url)
+
+                  if dest.exists() and dest.stat().st_size >= 100:
+                      print(f"[{index}/{len(urls)}] exists: {dest.relative_to(ROOT)}")
+                      continue
+
+                  print(f"[{index}/{len(urls)}] download: {url}")
+                  fetch(url, dest)
+
+              # ARCANA_IMAGE_ROOT로 만들어지는 기존 카드 이미지 경로를 로컬 폴더로 변경.
+              text = text.replace(
+                  f'const ARCANA_IMAGE_ROOT = "{ARCANA_REMOTE_ROOT}";',
+                  f'const ARCANA_IMAGE_ROOT = "{LOCAL_ARCANA_ROOT}";'
+              )
+
+              # app.js에 직접 박혀 있는 외부 이미지 URL도 로컬 파일로 변경.
+              for url in urls:
+                  if url.startswith(ARCANA_REMOTE_ROOT + "/"):
+                      continue
+                  category = classify(url)
+                  local = f'./images/{category}/{local_filename(url)}'
+                  text = text.replace(url, local)
+
+              remaining = sorted(set(IMAGE_URL_RE.findall(text)))
+              if remaining:
+                  print("ERROR: external image URLs remain in app.js:", file=sys.stderr)
+                  for url in remaining:
+                      print(url, file=sys.stderr)
+                  raise SystemExit(2)
+
+              # 캐시 갱신용 버전명 변경.
+              text = re.sub(
+                  r'const SITE_BUILD_VERSION = "[^"]+";',
+                  'const SITE_BUILD_VERSION = "v56-selfhost-images";',
+                  text,
+                  count=1,
+              )
+              APP.write_text(text, "utf-8")
+
+              if INDEX.exists():
+                  index_text = INDEX.read_text("utf-8")
+                  index_text = re.sub(
+                      r'\./app\.js\?v=[^"\']+',
+                      './app.js?v=56-selfhost-images',
+                      index_text,
+                      count=1,
+                  )
+                  INDEX.write_text(index_text, "utf-8")
+
+              files = list(SAVIOR_DIR.glob("*")) + list(ARCANA_DIR.glob("*"))
+              files = [p for p in files if p.is_file()]
+              total_bytes = sum(p.stat().st_size for p in files)
+              print(f"Saved {len(files)} images, {total_bytes / 1024 / 1024:.2f} MiB total")
+              print("app.js now uses local image paths only.")
+          PY
+
+      - name: Validate JavaScript
+        run: node --check app.js
+
+      - name: Commit self-hosted images
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app.js index.html images/
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Self-host Savior and Arcana images"
+            git push
+          fi
