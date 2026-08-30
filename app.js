@@ -7451,11 +7451,30 @@ function renderJourneyArcanaLogicalText(text, iconHtml = "", tone = "neutral") {
 function inferJourneyArcanaPairedSegments(segments) {
   const list = Array.isArray(segments) ? segments.filter(Boolean) : [];
   if (list.length < 2) return null;
-  const imageIndexes = list.map((segment, index) => segment?.type === "images" ? index : -1).filter((index) => index >= 0);
+
+  const imageIndexes = list
+    .map((segment, index) => segment?.type === "images" ? index : -1)
+    .filter((index) => index >= 0);
+
+  // Two icon groups almost always mean the source DB rendered two result columns.
   if (imageIndexes.length >= 2) {
     const splitAt = imageIndexes[1];
     if (splitAt > 0 && splitAt < list.length) return [list.slice(0, splitAt), list.slice(splitAt)];
   }
+
+  // A common source pattern is:
+  // left = one short stat line, right = buff label + icon + description.
+  // The archived JSON no longer contains x coordinates, so reconstruct that
+  // two-column row from the segment order before rendering it vertically.
+  if (imageIndexes.length === 1 && imageIndexes[0] >= 1) {
+    const first = list[0];
+    const firstText = first?.type === "text" ? String(first.text || "").trim() : "";
+    const shortResult = /^(?:(?:잠재력\s*포인트|스태미나|컨디션|힘|체력|인내|집중|보호)\s*[+-]\s*\d+)(?:\s+(?:잠재력\s*포인트|스태미나|컨디션|힘|체력|인내|집중|보호)\s*[+-]\s*\d+)*$/i;
+    if (firstText && firstText.length <= 80 && shortResult.test(firstText) && list.length >= 3) {
+      return [[first], list.slice(1)];
+    }
+  }
+
   if (list.length === 2 && list.every((segment) => segment?.type === "text")) {
     const left = String(list[0]?.text || "").trim();
     const right = String(list[1]?.text || "").trim();
@@ -7542,27 +7561,67 @@ function renderJourneyArcanaEventBody(group) {
     const before = [];
     const left = [];
     const right = [];
-    const after = [];
     let pairStarted = false;
+    let activeLane = "";
+
+    const pieceWeight = (pieces) => (pieces || []).reduce((total, piece) => {
+      const segments = Array.isArray(piece?.segments) ? piece.segments : [];
+      return total + segments.reduce((sum, segment) => {
+        if (segment?.type === "images") return sum + 80;
+        if (segment?.type === "text") return sum + String(segment.text || "").length;
+        return sum;
+      }, 0);
+    }, 0);
+
     for (const item of rowsWithPieces) {
       const leftPieces = item.pieces.filter((piece) => piece?.lane === "left");
       const rightPieces = item.pieces.filter((piece) => piece?.lane === "right");
+
       if (leftPieces.length || rightPieces.length) {
         pairStarted = true;
         left.push(...leftPieces);
         right.push(...rightPieces);
+
+        // If one side contains the longer result (buff icon/description), rows
+        // immediately following it belong to that same source column. This is
+        // required because the old local JSON intentionally omitted x coords.
+        const leftWeight = pieceWeight(leftPieces);
+        const rightWeight = pieceWeight(rightPieces);
+        if (leftPieces.length && !rightPieces.length) activeLane = "left";
+        else if (rightPieces.length && !leftPieces.length) activeLane = "right";
+        else if (leftWeight !== rightWeight) activeLane = leftWeight > rightWeight ? "left" : "right";
         continue;
       }
-      const target = pairStarted ? after : before;
-      target.push(...item.pieces);
+
+      if (!pairStarted) {
+        before.push(...item.pieces);
+        continue;
+      }
+
+      // Once a two-choice row has started, do not drop its following reward
+      // lines into a shared neutral area. Keep them attached to the most recent
+      // branch so success/failure choice + effects remain one vertical block.
+      const explicitTone = getJourneyArcanaTextTone(item.row?.text, getJourneyArcanaPieceTone(item.pieces[0], ""));
+      if (explicitTone === "success") activeLane = "left";
+      if (explicitTone === "failure") activeLane = "right";
+
+      if (!activeLane) {
+        const text = String(item.row?.text || "").trim();
+        // A short positive stat immediately after the choices is generally the
+        // left result in the source layout; richer follow-up content defaults
+        // to the right branch once a right-side paired row appears.
+        activeLane = /^(?:잠재력\s*포인트|스태미나|컨디션|힘|체력|인내|집중|보호)\s*\+/.test(text) ? "left" : "right";
+      }
+
+      (activeLane === "left" ? left : right).push(...item.pieces);
     }
+
     return [
       renderJourneyArcanaPieceSequence(before),
       `<div class="journey-arcana-stacked-choices">
         ${left.length ? `<div class="journey-arcana-choice-stack tone-success">${renderJourneyArcanaPieceSequence(left, "success")}</div>` : ""}
         ${right.length ? `<div class="journey-arcana-choice-stack tone-failure">${renderJourneyArcanaPieceSequence(right, "failure")}</div>` : ""}
-      </div>`,
-      renderJourneyArcanaPieceSequence(after)
+      </div>`
     ].join("");
   }
 
