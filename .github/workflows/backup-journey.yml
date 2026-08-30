@@ -56,6 +56,13 @@ jobs:
             arcana: [/^아르카나$/i, /^arcana$/i, /^アルカナ$/i, /^阿爾克那$/i, /^阿尔克那$/i, /아르카나/i, /arcana/i, /アルカナ/i, /阿爾克那/i, /阿尔克那/i],
             events: [/여정\s*이벤트/i, /journey\s*events?/i, /旅程\s*イベント/i, /旅程\s*事件/i, /event/i]
           };
+
+          // The source Journey page uses two independent checkboxes, not tabs.
+          // Capture each content type by explicitly setting these checkbox states.
+          const TYPE_ALIASES = {
+            arcana: ['아르카나','Arcana','アルカナ','阿爾克那','阿尔克那'],
+            events: ['여정 이벤트','Journey Event','Journey Events','旅程イベント','旅程事件']
+          };
           
           const CATEGORY_ALIASES = {
             reset: ['리세트','Reset','リセット','重置'],
@@ -257,6 +264,85 @@ jobs:
             await deepScroll();
           }
           
+          async function setJourneyType(kind, desired) {
+            const aliases = TYPE_ALIASES[kind];
+            const result = await page.evaluate(({ aliases, desired }) => {
+              const norm = (v) => String(v || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim().toLocaleLowerCase();
+              const wanted = new Set(aliases.map(norm));
+              const visible = (el) => {
+                if (!(el instanceof HTMLElement)) return false;
+                const r = el.getBoundingClientRect();
+                const s = getComputedStyle(el);
+                return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+              };
+              const textFor = (el) => {
+                const parts = [el.getAttribute?.('aria-label') || '', el.getAttribute?.('title') || ''];
+                if (el instanceof HTMLInputElement && el.id) {
+                  const label = document.querySelector(`label[for="${CSS.escape(el.id)}"]`);
+                  if (label) parts.push(label.innerText || label.textContent || '');
+                }
+                const parentLabel = el.closest?.('label');
+                if (parentLabel) parts.push(parentLabel.innerText || parentLabel.textContent || '');
+                const nearest = el.parentElement;
+                if (nearest) parts.push(nearest.innerText || nearest.textContent || '');
+                parts.push(el.innerText || el.textContent || '');
+                return [...new Set(parts.map(norm).filter(Boolean))];
+              };
+              const stateFor = (el) => {
+                if (el instanceof HTMLInputElement && el.type === 'checkbox') return el.checked;
+                const aria = el.getAttribute?.('aria-checked');
+                if (aria === 'true' || aria === 'false') return aria === 'true';
+                const pressed = el.getAttribute?.('aria-pressed');
+                if (pressed === 'true' || pressed === 'false') return pressed === 'true';
+                const selected = el.getAttribute?.('aria-selected');
+                if (selected === 'true' || selected === 'false') return selected === 'true';
+                return null;
+              };
+              const controls = [
+                ...document.querySelectorAll('input[type="checkbox"], [role="checkbox"], button[aria-pressed], [aria-selected]')
+              ];
+              const candidates = [];
+              for (const el of controls) {
+                const texts = textFor(el);
+                const exact = texts.some((text) => wanted.has(text));
+                const contained = texts.some((text) => [...wanted].some((name) => text === name || text.includes(name)));
+                if (!exact && !contained) continue;
+                const state = stateFor(el);
+                if (state == null) continue;
+                let score = exact ? 200 : 80;
+                if (el instanceof HTMLInputElement && el.type === 'checkbox') score += 100;
+                if (el.getAttribute('role') === 'checkbox') score += 80;
+                const shortest = Math.min(...texts.map((text) => text.length));
+                score -= Math.min(shortest, 80);
+                candidates.push({ el, state, score, texts });
+              }
+              candidates.sort((a,b) => b.score - a.score);
+              const hit = candidates[0];
+              if (!hit) {
+                return {
+                  found: false,
+                  desired,
+                  visibleLabels: [...document.querySelectorAll('label,[role="checkbox"]')]
+                    .filter(visible)
+                    .map((el) => norm(el.innerText || el.textContent || el.getAttribute('aria-label')))
+                    .filter(Boolean)
+                    .slice(0, 40)
+                };
+              }
+              if (hit.state !== desired) hit.el.click();
+              return { found: true, before: hit.state, desired, texts: hit.texts };
+            }, { aliases, desired });
+            if (!result.found) throw new Error(`Could not find Journey ${kind} checkbox: ${JSON.stringify(result)}`);
+            await page.waitForTimeout(350);
+          }
+
+          async function setJourneyTypes(arcanaEnabled, eventsEnabled) {
+            await setJourneyType('arcana', arcanaEnabled);
+            await setJourneyType('events', eventsEnabled);
+            await page.waitForTimeout(350);
+            await deepScroll();
+          }
+
           async function selectLanguage(label) {
             if (label === '한국어') return;
             const selects = page.locator('select');
@@ -606,66 +692,67 @@ jobs:
             return [...indices].sort((a,b)=>a-b);
           }
           
-          async function captureCategoryMembership(defaultEvents) {
+          async function captureCategoryMembership(defaultEvents, language) {
             const result = {};
             for (const [category, aliases] of Object.entries(CATEGORY_ALIASES)) {
               await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
               await waitReady();
-              await clickJourneyTab('events');
+              if (language.label !== '한국어') await selectLanguage(language.label);
+              await setJourneyTypes(false, true);
               const clicked = await clickVisibleExact(aliases);
-              if (!clicked) throw new Error(`Could not click source Journey category: ${category}`);
+              if (!clicked) throw new Error(`Could not click source Journey category ${category} for ${language.key}`);
+              await expandAll();
               const filtered = await captureStructured('events');
               const indices = indicesForFiltered(defaultEvents.entries, filtered.entries);
               if (!indices.length || indices.length >= defaultEvents.entries.length) {
-                throw new Error(`Invalid source Journey category membership ${category}: ${indices.length}/${defaultEvents.entries.length}`);
+                throw new Error(`Invalid source Journey category membership ${category} for ${language.key}: ${indices.length}/${defaultEvents.entries.length}`);
               }
               result[category] = indices;
-              console.log(`category ${category}: ${indices.length}`);
+              console.log(`${language.key} category ${category}: ${indices.length}`);
             }
             return result;
           }
           
           const captures = {};
-          let categoryMembership = null;
+          const categoryMembership = {};
           
           for (const language of LANGUAGES) {
             await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
             await waitReady();
             if (language.label !== '한국어') await selectLanguage(language.label);
-            await clickJourneyTab('arcana');
+
+            // Source Journey uses two checkboxes. Capture only Arcana first.
+            await setJourneyTypes(true, false);
             await expandAll();
             const arcana = await captureStructured('arcana');
-            await clickJourneyTab('events');
+
+            // Then capture only Journey Events.
+            await setJourneyTypes(false, true);
             await expandAll();
             const events = await captureStructured('events');
           
+            if (arcana.entries.length < 5) throw new Error(`Arcana Journey extraction too small for ${language.key}: ${arcana.entries.length}`);
+            if (events.entries.length < 20) throw new Error(`Journey event extraction too small for ${language.key}: ${events.entries.length}`);
             if (language.key === 'ko') {
-              if (arcana.entries.length < 5) throw new Error(`Arcana Journey extraction too small: ${arcana.entries.length}`);
-              if (events.entries.length < 20) throw new Error(`Journey event extraction too small: ${events.entries.length}`);
               const body = events.bodyText;
               for (const token of ['훈련의 방향성','리세트의 일과','오늘의 날씨','두통이 생기다']) {
                 if (!body.includes(token)) throw new Error(`Journey source missing expected event: ${token}`);
               }
             }
-            if (language.key !== 'ko') {
-              if (arcana.entries.length !== captures.ko.arcana.entries.length || events.entries.length !== captures.ko.events.entries.length) {
-                throw new Error(`Journey entry order/count changed for ${language.key}: arcana=${arcana.entries.length}/${captures.ko.arcana.entries.length}, events=${events.entries.length}/${captures.ko.events.entries.length}`);
-              }
-            }
             captures[language.key] = { arcana, events };
             console.log(`${language.key}: arcana=${arcana.entries.length}, events=${events.entries.length}`);
           }
-          
-          // Category classification uses the Korean source once and is then applied by source order to every language.
-          await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
-          await waitReady();
-          await clickJourneyTab('events');
-          categoryMembership = await captureCategoryMembership(captures.ko.events);
+
+          // Do not assume translated DOMs have identical counts/order. Classify each language independently.
+          for (const language of LANGUAGES) {
+            categoryMembership[language.key] = await captureCategoryMembership(captures[language.key].events, language);
+          }
           
           for (const language of LANGUAGES) {
             const snapshot = captures[language.key];
+            const membership = categoryMembership[language.key];
             snapshot.events.entries.forEach((entry, index) => {
-              entry.categories = Object.entries(categoryMembership).filter(([, indices]) => indices.includes(index)).map(([key]) => key);
+              entry.categories = Object.entries(membership).filter(([, indices]) => indices.includes(index)).map(([key]) => key);
               entry.kind = 'events';
             });
             snapshot.arcana.entries.forEach((entry) => {
@@ -675,7 +762,7 @@ jobs:
             const langDir = path.join(OUT_DIR, language.key);
             fs.mkdirSync(langDir, { recursive: true });
             fs.writeFileSync(path.join(langDir, 'journey.json'), JSON.stringify({
-              version: 1,
+              version: 2,
               language: language.key,
               arcana: snapshot.arcana.entries,
               events: snapshot.events.entries
@@ -695,7 +782,9 @@ jobs:
               arcana: captures[language.key].arcana.entries.length,
               events: captures[language.key].events.entries.length
             }])),
-            categories: Object.fromEntries(Object.entries(categoryMembership).map(([key, value])=>[key, value.length]))
+            categories: Object.fromEntries(LANGUAGES.map((language) => [language.key,
+              Object.fromEntries(Object.entries(categoryMembership[language.key]).map(([key, value]) => [key, value.length]))
+            ]))
           };
           fs.writeFileSync(META_PATH, JSON.stringify(meta, null, 2), 'utf8');
           console.log(JSON.stringify(meta, null, 2));
@@ -737,9 +826,12 @@ jobs:
           }
           const arcanaSearch = ko.arcana.some((entry) => (entry.searchText || '').includes('린'));
           if (!arcanaSearch) throw new Error('Arcana Journey search corpus does not contain 린.');
-          for (const category of ['reset','raid','aganon','flora','kalaid','weather']) {
-            const count = ko.events.filter((entry)=>entry.categories?.includes(category)).length;
-            if (!count) throw new Error(`Journey category has no entries: ${category}`);
+          for (const language of languages) {
+            const data = JSON.parse(fs.readFileSync(`data/journey/${language}/journey.json`,'utf8'));
+            for (const category of ['reset','raid','aganon','flora','kalaid','weather']) {
+              const count = data.events.filter((entry)=>entry.categories?.includes(category)).length;
+              if (!count) throw new Error(`Journey category has no entries for ${language}: ${category}`);
+            }
           }
           console.log(`Structured Journey verification passed. assets=${assets.length}`);
           NODE
