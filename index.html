@@ -8,7 +8,7 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=86-journey-arcana-clean"></script>
+  <script defer src="./app.js?v=87-journey-arcana-layout-search"></script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -1053,6 +1053,18 @@
     .journey-result-block.tone-failure { border-color:rgba(159,69,78,.30); background:rgba(86,19,27,.25); }
     .journey-result-block.tone-highlight { border-color:rgba(190,146,54,.34); background:rgba(99,67,12,.20); }
     .journey-result-block.tone-neutral { background:color-mix(in srgb,var(--surface) 65%,transparent); }
+    .journey-arcana-event-group { margin-top:14px; padding:13px; border:1px solid var(--line); border-radius:13px; background:color-mix(in srgb,var(--surface) 58%,transparent); }
+    .journey-arcana-event-title { margin:0 0 10px; color:var(--text); font-size:15px; font-weight:950; line-height:1.4; }
+    .journey-arcana-result-block { margin:6px 0; padding:9px 10px; }
+    .journey-arcana-data-line { display:flex; width:100%; align-items:center; padding:3px 0; line-height:1.55; }
+    .journey-arcana-data-line + .journey-arcana-data-line { margin-top:1px; }
+    .journey-arcana-stacked-choices { display:grid; grid-template-columns:minmax(0,1fr); gap:10px; margin-top:6px; }
+    .journey-arcana-choice-stack { min-width:0; padding:1px 0; }
+    .journey-arcana-choice-stack + .journey-arcana-choice-stack { padding-top:10px; border-top:1px dashed var(--line-strong); }
+    .journey-arcana-result-block.tone-success { border-color:rgba(39,150,95,.48); background:rgba(0,77,48,.32); }
+    .journey-arcana-result-block.tone-failure { border-color:rgba(190,71,83,.48); background:rgba(103,20,31,.34); }
+    html[data-theme="light"] .journey-arcana-result-block.tone-success { background:rgba(39,150,95,.12); }
+    html[data-theme="light"] .journey-arcana-result-block.tone-failure { background:rgba(190,71,83,.12); }
     .journey-or { padding:2px 0; color:var(--muted); font-size:12px; font-weight:800; text-align:center; }
     .journey-inline-icon-stack { position:relative; display:inline-flex; flex:0 0 30px; width:30px; height:30px; vertical-align:middle; }
     .journey-inline-icon-stack img { position:absolute; inset:0; display:block; width:30px; height:30px; max-width:30px; max-height:30px; object-fit:contain; }

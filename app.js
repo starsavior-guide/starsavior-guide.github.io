@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v86-journey-arcana-clean";
+const SITE_BUILD_VERSION = "v87-journey-arcana-layout-search";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -7174,7 +7174,9 @@ function getJourneyJsonPath(language = currentLanguage, archiveVersion = SITE_BU
 }
 
 function normalizeJourneySearch(value) {
-  return String(value || "").normalize("NFKC").replace(/\s+/g, " ").trim().toLocaleLowerCase();
+  // Journey search ignores whitespace so queries such as "누각위유리달맞이"
+  // match "누각 위, 유리달 맞이" without changing the displayed text.
+  return String(value || "").normalize("NFKC").replace(/\s+/g, "").trim().toLocaleLowerCase();
 }
 
 const JOURNEY_ARCANA_FOOTER_MARKERS = [
@@ -7368,6 +7370,148 @@ function renderJourneyRowGroups(rows, entry, options = {}) {
   return pieces.join("");
 }
 
+function getJourneyArcanaPieceTone(piece, fallback = "neutral") {
+  const tones = (piece?.segments || []).map((segment) => String(segment?.tone || ""));
+  if (tones.includes("failure")) return "failure";
+  if (tones.includes("success")) return "success";
+  if (tones.includes("highlight")) return "highlight";
+  const own = String(piece?.tone || "");
+  return ["failure", "success", "highlight", "neutral"].includes(own) ? own : fallback;
+}
+
+function getJourneyArcanaRowPieces(row) {
+  const segments = Array.isArray(row?.segments) ? row.segments.filter(Boolean) : [];
+  if (!segments.length) {
+    const text = String(row?.text || "").trim();
+    return text ? [{ region: row?.region || "", tone: row?.tone || "neutral", x: Number(row?.x) || 0, segments: [{ type: "text", text }] }] : [];
+  }
+
+  // v87 Arcana snapshots keep the source region/tone/x on every segment.
+  // Segments from the same source box stay together; left/right source boxes
+  // remain separate so they can be stacked vertically on this site.
+  const pieces = [];
+  for (const segment of segments) {
+    const region = String(segment?.region || row?.region || "");
+    const tone = String(segment?.tone || row?.tone || "neutral");
+    const x = Number.isFinite(Number(segment?.x)) ? Number(segment.x) : 0;
+    const previous = pieces[pieces.length - 1];
+    if (region && previous?.region === region) {
+      previous.segments.push(segment);
+      previous.x = Math.min(previous.x, x || previous.x);
+      if (tone === "failure" || (tone === "success" && previous.tone !== "failure") || (tone === "highlight" && !["failure", "success"].includes(previous.tone))) previous.tone = tone;
+    } else if (!region && previous && !previous.region) {
+      previous.segments.push(segment);
+      previous.x = Math.min(previous.x, x || previous.x);
+    } else {
+      pieces.push({ region, tone, x, segments: [segment] });
+    }
+  }
+  return pieces;
+}
+
+function renderJourneyArcanaPieceLine(piece) {
+  const segments = (piece?.segments || []).map((segment) => {
+    if (segment?.type === "images") return renderJourneyImageGroup(segment);
+    if (segment?.type === "text") return `<span>${escapeHtml(segment.text || "")}</span>`;
+    return "";
+  }).join("");
+  if (!segments) return "";
+  return `<div class="journey-data-row journey-arcana-data-line">${segments}</div>`;
+}
+
+function renderJourneyArcanaPieceSequence(pieces) {
+  const output = [];
+  let index = 0;
+  while (index < pieces.length) {
+    const piece = pieces[index];
+    const region = String(piece?.region || "");
+    if (!region) {
+      output.push(renderJourneyArcanaPieceLine(piece));
+      index += 1;
+      continue;
+    }
+
+    const regionPieces = [];
+    let cursor = index;
+    while (cursor < pieces.length && String(pieces[cursor]?.region || "") === region) {
+      regionPieces.push(pieces[cursor]);
+      cursor += 1;
+    }
+    const tone = regionPieces.reduce((current, item) => {
+      const next = getJourneyArcanaPieceTone(item, current);
+      if (next === "failure") return "failure";
+      if (next === "success" && current !== "failure") return "success";
+      if (next === "highlight" && !["failure", "success"].includes(current)) return "highlight";
+      return current;
+    }, "neutral");
+    output.push(`<div class="journey-result-block journey-arcana-result-block tone-${escapeHtml(tone)}">${regionPieces.map(renderJourneyArcanaPieceLine).join("")}</div>`);
+    index = cursor;
+  }
+  return output.join("");
+}
+
+function renderJourneyArcanaEventBody(group) {
+  const rows = Array.isArray(group?.rows) ? group.rows : [];
+  const rowsWithPieces = rows.map((row, rowIndex) => ({
+    row,
+    rowIndex,
+    pieces: getJourneyArcanaRowPieces(row)
+  })).filter((item) => item.pieces.length);
+
+  // Find a source row that had two horizontally separated boxes. The source DB
+  // uses this for paired choices/results. We preserve their pairing but render
+  // the left lane first and the right lane second (vertical 2-block layout).
+  let laneAnchors = null;
+  for (const item of rowsWithPieces) {
+    const positioned = item.pieces.filter((piece) => Number.isFinite(piece.x) && piece.x > 0);
+    if (positioned.length < 2) continue;
+    const xs = positioned.map((piece) => piece.x).sort((a, b) => a - b);
+    if (xs[xs.length - 1] - xs[0] >= 80) {
+      laneAnchors = [xs[0], xs[xs.length - 1]];
+      break;
+    }
+  }
+
+  if (!laneAnchors) {
+    return renderJourneyArcanaPieceSequence(rowsWithPieces.flatMap((item) => item.pieces));
+  }
+
+  const [leftAnchor, rightAnchor] = laneAnchors;
+  const left = [];
+  const right = [];
+  const common = [];
+
+  for (const item of rowsWithPieces) {
+    if (item.pieces.length === 1) {
+      const piece = item.pieces[0];
+      const x = Number(piece.x) || 0;
+      // A single full-width/plain line belongs to the common flow. A boxed line
+      // positioned close to a source lane remains with that lane.
+      if (!piece.region || !x) {
+        common.push({ order: item.rowIndex, html: renderJourneyArcanaPieceSequence([piece]) });
+      } else if (Math.abs(x - rightAnchor) + 24 < Math.abs(x - leftAnchor)) {
+        right.push({ order: item.rowIndex, piece });
+      } else {
+        left.push({ order: item.rowIndex, piece });
+      }
+      continue;
+    }
+
+    for (const piece of item.pieces) {
+      const x = Number(piece.x) || leftAnchor;
+      if (Math.abs(x - rightAnchor) < Math.abs(x - leftAnchor)) right.push({ order: item.rowIndex, piece });
+      else left.push({ order: item.rowIndex, piece });
+    }
+  }
+
+  // If the source truly contains two lanes, show them top/bottom as requested.
+  // Common lines are kept above the paired blocks when present.
+  const commonHtml = common.sort((a, b) => a.order - b.order).map((item) => item.html).join("");
+  const leftHtml = renderJourneyArcanaPieceSequence(left.sort((a, b) => a.order - b.order).map((item) => item.piece));
+  const rightHtml = renderJourneyArcanaPieceSequence(right.sort((a, b) => a.order - b.order).map((item) => item.piece));
+  return `${commonHtml}<div class="journey-arcana-stacked-choices">${leftHtml ? `<div class="journey-arcana-choice-stack">${leftHtml}</div>` : ""}${rightHtml ? `<div class="journey-arcana-choice-stack">${rightHtml}</div>` : ""}</div>`;
+}
+
 function renderJourneyArcanaEntry(entry) {
   const labels = getJourneyLabels();
   const groups = getJourneyArcanaEventGroups(entry);
@@ -7376,12 +7520,12 @@ function renderJourneyArcanaEntry(entry) {
   const savior = String(entry?.savior || "").trim();
 
   const groupMarkup = groups.map((group, groupIndex) => {
-    const body = renderJourneyRowGroups(group.rows || [], entry, { suppressTitle: true });
+    const body = renderJourneyArcanaEventBody(group);
     const heading = group.title
-      ? `<div style="margin:0 0 9px;font-size:15px;font-weight:950;line-height:1.35;color:var(--text);">${groupIndex + 1}. ${escapeHtml(group.title)}</div>`
+      ? `<div class="journey-arcana-event-title">${groupIndex + 1}. ${escapeHtml(group.title)}</div>`
       : "";
     return `
-      <section class="journey-arcana-event-group" style="margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--surface) 58%,transparent);">
+      <section class="journey-arcana-event-group">
         ${heading}
         ${body}
       </section>
