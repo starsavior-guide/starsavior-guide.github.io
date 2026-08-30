@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v63-bloom-grade-effect-icons";
+const SITE_BUILD_VERSION = "v65-bloom-effect-asset-fixes";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -6073,18 +6073,45 @@ async function loadSaviorSourcePanel(button, panel) {
   }
 }
 
+const ALL_SAVIOR_EFFECT_IMAGE_DONORS = [...new Set(Object.values(SAVIOR_DETAIL_IDS))];
+const STATIC_SAVIOR_EFFECT_IMAGES = {
+  // 마르실 개화 전용 효과 이미지는 사이트 로컬 자산을 직접 사용합니다.
+  "헥사 너트": "./data/savior-detail-assets/헥사너트.webp",
+  "부서진 너트": "./data/savior-detail-assets/부서진너트.webp"
+};
+
 const SHARED_SAVIOR_EFFECT_IMAGE_DONORS = {
   "연소": [1017],
   "점화": [1502, 1511],
   "도약": [1508, 1501, 1511],
-  "냉각": [1001, 1509]
+  "냉각": [1001, 1509],
+  // 개화 스킬에 새로 추가되어 일반 스킬에서 같은 위치의 이미지를 복제할 수 없는 효과들.
+  // 앞쪽 ID는 해당 효과를 찾기 쉬운 우선 탐색 대상이며, 못 찾으면 전체 백업을 순회합니다.
+  "공격력 증가": [1014, 1033, 1043, 1509],
+  "은신": [1015, 1025, 1026, 1044, 1508],
+  "효과저항 감소": [1024, 1033, 1508, 1511],
+  "보호막": [1009, 1042, 1501, 1502],
+  "공격력 감소": [1008, 1023, 1024, 1501, 1502],
+  "헥사 너트": [],
+  "부서진 너트": []
+};
+const SHARED_SAVIOR_EFFECT_ALIASES = {
+  "효과저항 감소": ["효과저항 감소", "효과 저항 감소"]
 };
 const sharedSaviorEffectImageCache = new Map();
 
-function getSharedSaviorEffectName(text) {
+function getSharedSaviorEffectAliases(effectName) {
+  return SHARED_SAVIOR_EFFECT_ALIASES[effectName] || [effectName];
+}
+
+function doesSaviorEffectTextMatch(text, effectName) {
   const value = normalizeSaviorSourceText(text);
+  return getSharedSaviorEffectAliases(effectName).some((alias) => value.includes(alias));
+}
+
+function getSharedSaviorEffectName(text) {
   return Object.keys(SHARED_SAVIOR_EFFECT_IMAGE_DONORS)
-    .find((name) => value.includes(name)) || "";
+    .find((name) => doesSaviorEffectTextMatch(text, name)) || "";
 }
 
 function getEffectRowKey(row) {
@@ -6097,12 +6124,17 @@ function getEffectRowKey(row) {
 
 async function getSharedSaviorEffectImage(effectName) {
   if (!effectName) return "";
+  if (STATIC_SAVIOR_EFFECT_IMAGES[effectName]) {
+    return STATIC_SAVIOR_EFFECT_IMAGES[effectName];
+  }
   if (sharedSaviorEffectImageCache.has(effectName)) {
     return sharedSaviorEffectImageCache.get(effectName) || "";
   }
 
   const pending = (async () => {
-    for (const detailId of SHARED_SAVIOR_EFFECT_IMAGE_DONORS[effectName] || []) {
+    const preferredDonors = SHARED_SAVIOR_EFFECT_IMAGE_DONORS[effectName] || [];
+    const donorIds = [...new Set([...preferredDonors, ...ALL_SAVIOR_EFFECT_IMAGE_DONORS])];
+    for (const detailId of donorIds) {
       try {
         const url = getSaviorBackupUrl(detailId);
         const response = await fetch(url, { cache: "no-store" });
@@ -6113,7 +6145,7 @@ async function getSharedSaviorEffectImage(effectName) {
         const firstSkillIndex = findSourceTokenIndex(tokens, (text) => isSourceSkillType(text));
         const skills = parseSaviorSourceSkills(root, tokens, firstSkillIndex, url);
         for (const skill of skills) {
-          const effect = (skill.effects || []).find((item) => normalizeSaviorSourceText(item.text).includes(effectName) && item.image);
+          const effect = (skill.effects || []).find((item) => doesSaviorEffectTextMatch(item.text, effectName) && item.image);
           if (effect?.image) return effect.image;
         }
       } catch (error) {
@@ -6129,6 +6161,22 @@ async function getSharedSaviorEffectImage(effectName) {
   return resolved;
 }
 
+async function setBloomEffectRowImage(row, effectName, { force = false } = {}) {
+  if (!row || !effectName) return;
+  const currentImage = row.querySelector("img");
+  if (currentImage && !force) return;
+  const image = await getSharedSaviorEffectImage(effectName);
+  if (!image) return;
+  if (force) row.querySelectorAll("img").forEach((img) => img.remove());
+  if (row.querySelector("img")) return;
+  const img = document.createElement("img");
+  img.src = image;
+  img.alt = "";
+  img.loading = "lazy";
+  img.onerror = () => img.remove();
+  row.insertBefore(img, row.firstChild);
+}
+
 async function hydrateSharedBloomEffectImages(bloomList) {
   if (!bloomList) return;
   const rows = [...bloomList.querySelectorAll(".source-skill-effect-row")];
@@ -6136,30 +6184,142 @@ async function hydrateSharedBloomEffectImages(bloomList) {
     if (row.querySelector("img")) return;
     const effectName = getSharedSaviorEffectName(row.textContent || "");
     if (!effectName) return;
-    const image = await getSharedSaviorEffectImage(effectName);
-    if (!image || row.querySelector("img")) return;
-    const img = document.createElement("img");
-    img.src = image;
-    img.alt = "";
-    img.loading = "lazy";
-    img.onerror = () => img.remove();
-    row.insertBefore(img, row.firstChild);
+    await setBloomEffectRowImage(row, effectName);
   }));
+}
+
+function getBloomSkillCardsByType(bloomList, skillType) {
+  if (!bloomList) return [];
+  return [...bloomList.querySelectorAll(".source-skill-card")].filter((card) => {
+    const type = normalizeSaviorSourceText(card.querySelector(".source-skill-type")?.textContent || "");
+    return type === skillType;
+  });
+}
+
+function getBloomEffectRowsByName(card, effectName) {
+  if (!card) return [];
+  return [...card.querySelectorAll(".source-skill-effect-row")]
+    .filter((row) => doesSaviorEffectTextMatch(row.textContent || "", effectName));
+}
+
+function ensureBloomEffectRow(card, effectName) {
+  if (!card || !effectName) return [];
+  const existingRows = getBloomEffectRowsByName(card, effectName);
+  if (existingRows.length) return existingRows;
+
+  // 개화 백업에 효과 텍스트만 있고 효과 아이콘 행이 없는 경우에만
+  // 해당 스킬 설명에 실제로 등장하는 효과를 별도 행으로 보강합니다.
+  const cardText = normalizeSaviorSourceText(card.textContent || "");
+  if (!doesSaviorEffectTextMatch(cardText, effectName)) return [];
+
+  let effects = card.querySelector(".source-skill-effects");
+  if (!effects) {
+    effects = document.createElement("div");
+    effects.className = "source-skill-effects";
+    const nova = card.querySelector(".source-nova-burst");
+    const levels = card.querySelector(".source-skill-level-wrap");
+    card.insertBefore(effects, nova || levels || null);
+  }
+
+  const row = document.createElement("div");
+  row.className = "source-skill-effect-row";
+  const paragraph = document.createElement("p");
+  paragraph.textContent = effectName;
+  row.appendChild(paragraph);
+  effects.appendChild(row);
+  return [row];
+}
+
+function isStandaloneMarcilleHealEffectRow(row) {
+  const text = normalizeSaviorSourceText(row?.textContent || "");
+  if (!text || text.includes("회복 감소")) return false;
+  return /^회복(?:\s*[:：]|$)/.test(text);
+}
+
+async function applyBloomEffectVisualCorrections(bloomList, savior) {
+  if (!bloomList || !savior) return;
+
+  // 마르실 개화 궁극기에는 '회복' 단독 효과가 없습니다.
+  // 정상 효과인 '회복 감소'는 유지하고, 잘못 복제된 '회복' 행만 제거합니다.
+  if (savior.id === "marcille") {
+    getBloomSkillCardsByType(bloomList, "궁극기").forEach((card) => {
+      [...card.querySelectorAll(".source-skill-effect-row")].forEach((row) => {
+        if (isStandaloneMarcilleHealEffectRow(row)) row.remove();
+      });
+    });
+  }
+
+  const corrections = {
+    "bunny-claire": {
+      "궁극기": ["공격력 증가", "은신"]
+    },
+    "naru": {
+      "기본기": ["효과저항 감소"],
+      "특수기": ["효과저항 감소"],
+      "궁극기": ["효과저항 감소"],
+      "패시브": ["효과저항 감소"]
+    },
+    "annah": {
+      "특수기": ["보호막"]
+    },
+    "besta": {
+      "패시브": ["보호막"],
+      "기본기": ["공격력 감소"],
+      "궁극기": ["보호막"]
+    },
+    "marcille": {
+      "패시브": ["부서진 너트", "헥사 너트"],
+      "특수기": ["부서진 너트"],
+      "궁극기": ["부서진 너트"]
+    }
+  };
+
+  const saviorCorrections = corrections[savior.id];
+  if (!saviorCorrections) return;
+
+  for (const [skillType, effectNames] of Object.entries(saviorCorrections)) {
+    const cards = getBloomSkillCardsByType(bloomList, skillType);
+    for (const card of cards) {
+      for (const effectName of effectNames) {
+        const rows = ensureBloomEffectRow(card, effectName);
+        for (const row of rows) {
+          // 지정된 개화 효과는 기존에 잘못 복제된 이미지가 있어도 올바른 효과 이미지로 교체합니다.
+          await setBloomEffectRowImage(row, effectName, { force: true });
+        }
+      }
+    }
+  }
 }
 
 function normalizeClarissaBloomLeapText(bloomList, savior) {
   if (!bloomList || savior?.id !== "clarissa") return;
-  const walker = document.createTreeWalker(bloomList, NodeFilter.SHOW_TEXT);
-  const nodes = [];
-  let node;
-  while ((node = walker.nextNode())) nodes.push(node);
-  nodes.forEach((textNode) => {
-    let value = textNode.nodeValue || "";
-    value = value
-      .replace(/도약\s*스택\s*([2-5])/g, "도약 $1중첩")
-      .replace(/도약\s*([2-5])\s*스택/g, "도약 $1중첩")
-      .replace(/도약\s*([2-5])(?!\s*중첩)/g, "도약 $1중첩");
-    textNode.nodeValue = value;
+
+  const normalizeLeapLabel = (value) => String(value || "")
+    .replace(/도약\s*스택\s*([2-5])/g, "도약 $1중첩")
+    .replace(/도약\s*([2-5])\s*스택/g, "도약 $1중첩")
+    .replace(/도약\s*([2-5])(?!\s*중첩)/g, "도약 $1중첩")
+    .replace(/도약\s*([2-5])중첩\s*[:：]?\s*/g, "도약 $1중첩 : ");
+
+  const paragraphs = [...bloomList.querySelectorAll(".source-skill-description p, .source-skill-effect-row p")];
+  paragraphs.forEach((paragraph) => {
+    const normalized = normalizeLeapLabel(paragraph.textContent || "");
+    if (!/도약 [2-5]중첩\s*:/.test(normalized)) return;
+
+    // 각 중첩 설명을 독립된 줄로 표시합니다. 원문 내용은 건드리지 않습니다.
+    const parts = normalized
+      .split(/\s*(?=도약 [2-5]중첩\s*:)/)
+      .map((part) => part.trim())
+      .filter(Boolean);
+    if (parts.length < 2) {
+      paragraph.textContent = normalized;
+      return;
+    }
+
+    paragraph.replaceChildren();
+    parts.forEach((part, index) => {
+      if (index) paragraph.appendChild(document.createElement("br"));
+      paragraph.appendChild(document.createTextNode(part));
+    });
   });
 }
 
@@ -6172,7 +6332,7 @@ function setSaviorBloomProfileGrade(panel, enabled) {
   gradeCell.textContent = enabled ? "SSR" : gradeCell.dataset.normalGrade;
 }
 
-function cloneSaviorSkillVisuals(normalList, bloomList) {
+function cloneSaviorSkillVisuals(normalList, bloomList, savior) {
   if (!normalList || !bloomList) return;
   const normalCards = [...normalList.querySelectorAll(".source-skill-card")];
   const bloomCards = [...bloomList.querySelectorAll(".source-skill-card")];
@@ -6189,6 +6349,8 @@ function cloneSaviorSkillVisuals(normalList, bloomList) {
 
     const normalEffects = [...normalCard.querySelectorAll(".source-skill-effect-row")];
     const bloomEffects = [...bloomCard.querySelectorAll(".source-skill-effect-row")];
+    const bloomSkillType = normalizeSaviorSourceText(bloomCard.querySelector(".source-skill-type")?.textContent || "");
+    const allowPositionalFallback = !(savior?.id === "marcille" && bloomSkillType === "궁극기");
     bloomEffects.forEach((row, effectIndex) => {
       if (row.querySelector("img")) return;
       const bloomKey = getEffectRowKey(row);
@@ -6196,7 +6358,9 @@ function cloneSaviorSkillVisuals(normalList, bloomList) {
         ? normalEffects.find((candidate) => getEffectRowKey(candidate) === bloomKey)
         : null;
       const normalEffectImage = matchedRow?.querySelector("img")
-        || (!getSharedSaviorEffectName(row.textContent || "") ? normalEffects[effectIndex]?.querySelector("img") : null);
+        || (allowPositionalFallback && !getSharedSaviorEffectName(row.textContent || "")
+          ? normalEffects[effectIndex]?.querySelector("img")
+          : null);
       if (normalEffectImage) row.insertBefore(normalEffectImage.cloneNode(true), row.firstChild);
     });
   });
@@ -6255,9 +6419,10 @@ async function applySaviorBloomMode(button, panel) {
     if (!bloomList) throw new Error("Bloom skill list not found");
 
     // 개화 백업은 텍스트 전용이다. 스킬 아이콘은 일반 백업을 재사용하고,
-    // 연소/점화/도약/냉각은 다른 구원자 백업에 이미 존재하는 동일 효과 아이콘을 공용으로 재사용한다.
-    cloneSaviorSkillVisuals(normalList, bloomList);
+    // 개화로 새로 생긴 효과는 다른 구원자 백업의 동일 효과 아이콘을 공용으로 재사용한다.
+    cloneSaviorSkillVisuals(normalList, bloomList, savior);
     normalizeClarissaBloomLeapText(bloomList, savior);
+    await applyBloomEffectVisualCorrections(bloomList, savior);
     await hydrateSharedBloomEffectImages(bloomList);
     liveSkillList.innerHTML = bloomList.innerHTML;
     setSaviorBloomProfileGrade(panel, true);
