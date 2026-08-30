@@ -8,7 +8,7 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=74-journey-cache-refresh"></script>
+  <script defer src="./app.js?v=76-journey-json-rebuild"></script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -1012,63 +1012,71 @@
   </style>
 
   <style id="journey-database-styles">
-    .journey-page {
-      display: grid;
-      gap: 16px;
-      min-width: 0;
+    .journey-page { display:grid; gap:16px; min-width:0; }
+    .journey-hero { padding:2px 2px 4px; }
+    .journey-hero .eyebrow { margin-bottom:7px; }
+    .journey-hero h1 { margin:0; font-size:clamp(36px,6vw,54px); font-weight:950; letter-spacing:-.055em; line-height:1.05; }
+    .journey-database-panel { overflow:visible; border:1px solid var(--line); border-radius:16px; background:var(--surface); box-shadow:var(--shadow); }
+    .journey-controls { position:sticky; top:74px; z-index:25; padding:14px; border-bottom:1px solid var(--line); border-radius:16px 16px 0 0; background:color-mix(in srgb,var(--surface) 95%,transparent); backdrop-filter:blur(12px); }
+    .journey-top-row { display:grid; grid-template-columns:170px minmax(0,1fr); gap:10px; }
+    .journey-difficulty { position:relative; min-width:0; }
+    .journey-difficulty summary { list-style:none; display:flex; height:54px; align-items:center; justify-content:center; border:1px solid var(--line-strong); border-radius:27px; background:var(--surface-2); color:var(--muted); font-size:15px; font-weight:900; cursor:pointer; }
+    .journey-difficulty summary::-webkit-details-marker { display:none; }
+    .journey-difficulty-menu { position:absolute; z-index:60; top:61px; left:0; width:100%; min-width:138px; padding:7px; border:1px solid var(--line-strong); border-radius:14px; background:var(--surface); box-shadow:0 18px 40px rgba(0,0,0,.45); }
+    .journey-difficulty-menu button { display:block; width:100%; padding:10px 12px; border:0; border-radius:9px; background:transparent; color:var(--text); font:inherit; font-weight:850; text-align:left; cursor:pointer; }
+    .journey-difficulty-menu button.is-active { background:color-mix(in srgb,var(--accent) 18%,transparent); color:var(--accent); }
+    .journey-search-wrap { position:relative; min-width:0; }
+    .journey-search { width:100%; height:54px; padding:0 48px 0 18px; border:1px solid var(--line-strong); border-radius:27px; background:color-mix(in srgb,var(--accent) 5%,var(--surface-2)); color:var(--text); font:inherit; font-size:15px; font-weight:800; outline:none; }
+    .journey-search:focus { border-color:var(--accent); box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 17%,transparent); }
+    .journey-search-clear { position:absolute; top:50%; right:12px; width:34px; height:34px; transform:translateY(-50%); border:0; border-radius:50%; background:transparent; color:var(--muted); font-size:24px; font-weight:700; cursor:pointer; }
+    .journey-type-row { display:flex; justify-content:center; gap:20px; margin-top:10px; flex-wrap:wrap; }
+    .journey-type-row label { display:inline-flex; align-items:center; gap:7px; color:var(--muted); font-size:15px; font-weight:850; cursor:pointer; }
+    .journey-type-row input { width:22px; height:22px; accent-color:var(--accent); }
+    .journey-category-row { display:flex; justify-content:center; gap:7px; margin-top:10px; flex-wrap:wrap; }
+    .journey-category-button { min-height:40px; padding:0 13px; border:1px solid var(--line-strong); border-radius:10px; background:var(--surface-2); color:var(--text); font:inherit; font-size:13px; font-weight:900; cursor:pointer; }
+    .journey-category-button.is-active { border-color:color-mix(in srgb,var(--accent) 70%,var(--line)); background:color-mix(in srgb,var(--accent) 64%,#004b8c); color:#fff; }
+    .journey-legend { display:flex; width:max-content; max-width:100%; margin:12px auto 0; overflow:hidden; border:1px solid var(--line-strong); border-radius:10px; background:#03070d; }
+    .journey-legend span { display:inline-flex; align-items:center; gap:8px; padding:7px 11px; color:var(--text); font-size:12px; font-weight:850; }
+    .journey-legend i { width:28px; height:25px; border-radius:5px; }
+    .journey-legend i.success { background:rgba(0,83,48,.65); }
+    .journey-legend i.failure { background:rgba(104,13,20,.55); }
+    .journey-results { display:grid; gap:14px; padding:16px; }
+    .journey-status { padding:46px 16px; color:var(--muted); font-size:15px; font-weight:850; text-align:center; }
+    .journey-status.error { color:#ff9da6; }
+    .journey-status small { display:block; margin-top:8px; opacity:.75; }
+    .journey-entry-card { min-width:0; padding:14px; border:1px solid var(--line); border-radius:15px; background:color-mix(in srgb,var(--surface-2) 72%,#020817); }
+    .journey-data-row { display:flex; min-width:0; align-items:center; flex-wrap:wrap; gap:6px; padding:3px 0; color:var(--text); font-size:14px; font-weight:680; line-height:1.55; overflow-wrap:anywhere; }
+    .journey-data-row.is-title { padding:0 0 5px; color:color-mix(in srgb,var(--accent) 62%,var(--text)); font-size:18px; font-weight:950; line-height:1.3; }
+    .journey-data-row.is-difficulty { display:inline-flex; width:fit-content; margin:4px 0; padding:3px 8px; border:1px solid var(--line-strong); border-radius:7px; background:var(--surface); font-size:12px; font-weight:900; }
+    .journey-result-block { margin:5px 0; padding:7px 9px; border:1px solid var(--line); border-radius:9px; }
+    .journey-result-block.tone-success { border-color:rgba(30,125,79,.30); background:rgba(0,67,42,.25); }
+    .journey-result-block.tone-failure { border-color:rgba(159,69,78,.30); background:rgba(86,19,27,.25); }
+    .journey-result-block.tone-highlight { border-color:rgba(190,146,54,.34); background:rgba(99,67,12,.20); }
+    .journey-result-block.tone-neutral { background:color-mix(in srgb,var(--surface) 65%,transparent); }
+    .journey-or { padding:2px 0; color:var(--muted); font-size:12px; font-weight:800; text-align:center; }
+    .journey-inline-icon-stack { position:relative; display:inline-flex; flex:0 0 30px; width:30px; height:30px; vertical-align:middle; }
+    .journey-inline-icon-stack img { position:absolute; inset:0; display:block; width:30px; height:30px; max-width:30px; max-height:30px; object-fit:contain; }
+    html[data-theme="light"] .journey-entry-card { background:color-mix(in srgb,var(--surface-2) 94%,white); }
+    @media (max-width:760px) {
+      .journey-page { gap:12px; }
+      .journey-hero h1 { font-size:clamp(34px,11vw,48px); }
+      .journey-database-panel { border-radius:13px; }
+      .journey-controls { top:68px; padding:12px 10px; border-radius:13px 13px 0 0; }
+      .journey-top-row { grid-template-columns:132px minmax(0,1fr); gap:8px; }
+      .journey-difficulty summary,.journey-search { height:52px; }
+      .journey-search { padding-left:15px; font-size:14px; }
+      .journey-type-row { gap:16px; margin-top:9px; }
+      .journey-category-row { gap:6px; margin-top:9px; }
+      .journey-category-button { min-height:38px; padding:0 11px; font-size:12px; }
+      .journey-results { gap:12px; padding:10px; }
+      .journey-entry-card { padding:12px; border-radius:13px; }
+      .journey-data-row { font-size:13px; }
+      .journey-data-row.is-title { font-size:17px; }
+      .journey-inline-icon-stack,.journey-inline-icon-stack img { width:28px; height:28px; max-width:28px; max-height:28px; flex-basis:28px; }
     }
-
-    .journey-hero {
-      padding: 2px 2px 4px;
-    }
-
-    .journey-hero .eyebrow {
-      margin-bottom: 7px;
-    }
-
-    .journey-hero h1 {
-      margin: 0;
-      font-size: clamp(36px, 6vw, 54px);
-      font-weight: 950;
-      letter-spacing: -0.055em;
-      line-height: 1.05;
-    }
-
-    .journey-hero p:last-child {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.65;
-    }
-
-
-    .journey-archive-shell {
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .journey-archive-frame {
-      display: block;
-      width: 100%;
-      height: max(720px, calc(100dvh - 150px));
-      min-height: 720px;
-      border: 0;
-      background: #020817;
-    }
-
-    @media (max-width: 760px) {
-      .journey-page { gap: 12px; }
-      .journey-hero h1 { font-size: clamp(34px, 11vw, 48px); }
-      .journey-hero p:last-child { font-size: 13px; }
-      .journey-archive-shell { border-radius: 13px; }
-      .journey-archive-frame {
-        height: calc(100dvh - 112px);
-        min-height: 620px;
-      }
+    @media (max-width:390px) {
+      .journey-top-row { grid-template-columns:112px minmax(0,1fr); }
+      .journey-category-button { padding:0 9px; font-size:11px; }
     }
   </style>
 

@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v74-journey-cache-refresh";
+const SITE_BUILD_VERSION = "v76-journey-json-rebuild";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -7112,61 +7112,358 @@ function createEquipmentDatabaseMarkup() {
   `;
 }
 
-function getJourneyArchivePath(language = currentLanguage, archiveVersion = SITE_BUILD_VERSION) {
-  const selected = SUPPORTED_LANGUAGES.includes(language) ? language : "ko";
-  const version = archiveVersion || SITE_BUILD_VERSION;
-  return `./data/journey/${encodeURIComponent(selected)}/index.html?v=${encodeURIComponent(version)}`;
+const JOURNEY_CATEGORY_KEYS = ["all", "reset", "raid", "aganon", "flora", "kalaid", "weather"];
+const JOURNEY_DIFFICULTY_KEYS = ["all", "easy", "normal", "hard"];
+
+let journeyDatabaseState = {
+  requestToken: 0,
+  data: null,
+  meta: null,
+  query: "",
+  category: "all",
+  difficulty: "all",
+  showArcana: true,
+  showEvents: true
+};
+
+function getJourneyLabels(language = currentLanguage) {
+  const table = {
+    ko: {
+      difficulty: "난이도", all: "전체", easy: "이지", normal: "노말", hard: "하드",
+      search: "카드 명, 이벤트 명, 보상 등...", arcana: "아르카나", events: "여정 이벤트",
+      reset: "리세트", raid: "토벌", aganon: "아가논", flora: "플로라", kalaid: "칼라이드", weather: "날씨",
+      success: "성공 보상", failure: "실패 보상", loading: "여정 데이터를 불러오는 중입니다.",
+      empty: "검색 결과가 없습니다.", loadError: "여정 데이터를 불러오지 못했습니다.", clear: "검색어 지우기"
+    },
+    en: {
+      difficulty: "Difficulty", all: "All", easy: "Easy", normal: "Normal", hard: "Hard",
+      search: "Card name, event name, rewards...", arcana: "Arcana", events: "Journey Events",
+      reset: "Reset", raid: "Raid", aganon: "Aganon", flora: "Flora", kalaid: "Kalaid", weather: "Weather",
+      success: "Success Reward", failure: "Failure Reward", loading: "Loading Journey data...",
+      empty: "No matching results.", loadError: "Could not load Journey data.", clear: "Clear search"
+    },
+    ja: {
+      difficulty: "難易度", all: "すべて", easy: "イージー", normal: "ノーマル", hard: "ハード",
+      search: "カード名・イベント名・報酬など...", arcana: "アルカナ", events: "旅程イベント",
+      reset: "リセット", raid: "討伐", aganon: "アガノン", flora: "フローラ", kalaid: "カライド", weather: "天気",
+      success: "成功報酬", failure: "失敗報酬", loading: "旅程データを読み込んでいます。",
+      empty: "検索結果がありません。", loadError: "旅程データを読み込めませんでした。", clear: "検索語を消去"
+    },
+    "zh-TW": {
+      difficulty: "難度", all: "全部", easy: "簡單", normal: "普通", hard: "困難",
+      search: "卡片名稱、事件名稱、獎勵等...", arcana: "阿爾克那", events: "旅程事件",
+      reset: "重置", raid: "討伐", aganon: "阿加農", flora: "芙蘿拉", kalaid: "卡萊德", weather: "天氣",
+      success: "成功獎勵", failure: "失敗獎勵", loading: "正在載入旅程資料。",
+      empty: "找不到符合的結果。", loadError: "無法載入旅程資料。", clear: "清除搜尋"
+    },
+    "zh-CN": {
+      difficulty: "难度", all: "全部", easy: "简单", normal: "普通", hard: "困难",
+      search: "卡片名称、事件名称、奖励等...", arcana: "阿尔克那", events: "旅程事件",
+      reset: "重置", raid: "讨伐", aganon: "阿加农", flora: "芙萝拉", kalaid: "卡莱德", weather: "天气",
+      success: "成功奖励", failure: "失败奖励", loading: "正在加载旅程数据。",
+      empty: "没有匹配的结果。", loadError: "无法加载旅程数据。", clear: "清除搜索"
+    }
+  };
+  return table[SUPPORTED_LANGUAGES.includes(language) ? language : "ko"] || table.ko;
 }
 
-async function refreshJourneyArchiveSource() {
-  const frame = document.querySelector("#journey-archive-frame");
-  if (!frame) return;
+function getJourneyJsonPath(language = currentLanguage, archiveVersion = SITE_BUILD_VERSION) {
+  const selected = SUPPORTED_LANGUAGES.includes(language) ? language : "ko";
+  const version = archiveVersion || SITE_BUILD_VERSION;
+  return `./data/journey/${encodeURIComponent(selected)}/journey.json?v=${encodeURIComponent(version)}`;
+}
+
+function normalizeJourneySearch(value) {
+  return String(value || "").normalize("NFKC").replace(/\s+/g, " ").trim().toLocaleLowerCase();
+}
+
+function getJourneyEntrySearchText(entry) {
+  const imageAlt = (entry?.rows || []).flatMap((row) => row?.segments || [])
+    .filter((segment) => segment?.type === "images")
+    .flatMap((segment) => segment.images || [])
+    .map((image) => image.alt || "")
+    .join(" ");
+  return normalizeJourneySearch(`${entry?.title || ""} ${entry?.searchText || ""} ${imageAlt}`);
+}
+
+function journeyEntryMatches(entry, kind) {
+  const state = journeyDatabaseState;
+  if (kind === "arcana" && !state.showArcana) return false;
+  if (kind === "events" && !state.showEvents) return false;
+
+  if (state.category !== "all") {
+    if (kind !== "events") return false;
+    if (!Array.isArray(entry.categories) || !entry.categories.includes(state.category)) return false;
+  }
+
+  if (state.difficulty !== "all") {
+    const difficulties = Array.isArray(entry.difficulties) ? entry.difficulties : [];
+    // Events without an explicit difficulty apply to every difficulty, matching the source DB behavior.
+    if (difficulties.length && !difficulties.includes(state.difficulty)) return false;
+  }
+
+  const query = normalizeJourneySearch(state.query);
+  if (query && !getJourneyEntrySearchText(entry).includes(query)) return false;
+  return true;
+}
+
+function getJourneyAssetUrl(filename) {
+  if (!filename) return "";
+  return `./data/journey-assets/${encodeURIComponent(filename)}`;
+}
+
+function renderJourneyImageGroup(segment) {
+  const images = Array.isArray(segment?.images) ? segment.images.filter((image) => image?.asset) : [];
+  if (!images.length) return "";
+  const title = images.map((image) => image.alt || "").filter(Boolean).join(" / ");
+  return `<span class="journey-inline-icon-stack"${title ? ` title="${escapeHtml(title)}"` : ""}>${images.map((image, index) => `
+    <img src="${escapeHtml(getJourneyAssetUrl(image.asset))}" alt="${escapeHtml(image.alt || "")}" loading="lazy" style="z-index:${index + 1}">
+  `).join("")}</span>`;
+}
+
+function renderJourneyRow(row, entry, rowIndex) {
+  const text = String(row?.text || "").trim();
+  if (/^or$/i.test(text)) return `<div class="journey-or">or</div>`;
+
+  const isTitle = rowIndex === 0 || text === entry?.title;
+  const segments = (row?.segments || []).map((segment) => {
+    if (segment?.type === "images") return renderJourneyImageGroup(segment);
+    if (segment?.type === "text") return `<span>${escapeHtml(segment.text || "")}</span>`;
+    return "";
+  }).join("");
+
+  const difficultyLabels = new Set([
+    "이지", "노말", "하드", "Easy", "Normal", "Hard", "イージー", "ノーマル", "ハード",
+    "簡單", "简单", "普通", "困難", "困难"
+  ]);
+  const rowClass = ["journey-data-row"];
+  if (isTitle) rowClass.push("is-title");
+  if (difficultyLabels.has(text)) rowClass.push("is-difficulty");
+  if (!segments && text) return `<div class="${rowClass.join(" ")}">${escapeHtml(text)}</div>`;
+  return `<div class="${rowClass.join(" ")}">${segments || escapeHtml(text)}</div>`;
+}
+
+function renderJourneyEntry(entry) {
+  const rows = Array.isArray(entry?.rows) ? entry.rows : [];
+  const pieces = [];
+  let index = 0;
+  while (index < rows.length) {
+    const row = rows[index];
+    const region = row?.region || "";
+    if (!region) {
+      pieces.push(renderJourneyRow(row, entry, index));
+      index += 1;
+      continue;
+    }
+    const group = [];
+    let cursor = index;
+    while (cursor < rows.length && rows[cursor]?.region === region) {
+      group.push({ row: rows[cursor], index: cursor });
+      cursor += 1;
+    }
+    const tone = group.find((item) => item.row?.tone === "failure")?.row?.tone
+      || group.find((item) => item.row?.tone === "success")?.row?.tone
+      || group.find((item) => item.row?.tone === "highlight")?.row?.tone
+      || "neutral";
+    pieces.push(`<div class="journey-result-block tone-${escapeHtml(tone)}">${group.map((item) => renderJourneyRow(item.row, entry, item.index)).join("")}</div>`);
+    index = cursor;
+  }
+  return `<article class="journey-entry-card" data-journey-kind="${escapeHtml(entry?.kind || "")}">${pieces.join("")}</article>`;
+}
+
+function renderJourneyDatabaseResults() {
+  const results = document.querySelector("#journey-results");
+  if (!results) return;
+  const labels = getJourneyLabels();
+  const data = journeyDatabaseState.data;
+  if (!data) {
+    results.innerHTML = `<div class="journey-status">${escapeHtml(labels.loading)}</div>`;
+    return;
+  }
+
+  const arcana = (data.arcana || []).filter((entry) => journeyEntryMatches(entry, "arcana"));
+  const events = (data.events || []).filter((entry) => journeyEntryMatches(entry, "events"));
+  const entries = [...arcana, ...events];
+  if (!entries.length) {
+    results.innerHTML = `<div class="journey-status">${escapeHtml(labels.empty)}</div>`;
+    return;
+  }
+  results.innerHTML = entries.map(renderJourneyEntry).join("");
+}
+
+function updateJourneyControlState() {
+  const labels = getJourneyLabels();
+  document.querySelectorAll("[data-journey-category]").forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.journeyCategory === journeyDatabaseState.category);
+  });
+  document.querySelectorAll("[data-journey-difficulty]").forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.journeyDifficulty === journeyDatabaseState.difficulty);
+  });
+  const summary = document.querySelector("#journey-difficulty-summary");
+  if (summary) summary.textContent = labels.difficulty;
+  const search = document.querySelector("#journey-search");
+  const clear = document.querySelector("#journey-search-clear");
+  if (search && search.value !== journeyDatabaseState.query) search.value = journeyDatabaseState.query;
+  if (clear) clear.hidden = !journeyDatabaseState.query;
+}
+
+async function loadJourneyDatabase() {
+  const results = document.querySelector("#journey-results");
+  if (!results) return;
+  const labels = getJourneyLabels();
+  const token = ++journeyDatabaseState.requestToken;
+  journeyDatabaseState.data = null;
+  results.innerHTML = `<div class="journey-status">${escapeHtml(labels.loading)}</div>`;
 
   let archiveVersion = SITE_BUILD_VERSION;
   try {
-    const response = await fetch(`./data/journey/backup-meta.json?site=${encodeURIComponent(SITE_BUILD_VERSION)}&t=${Date.now()}`, {
-      cache: "no-store"
-    });
-    if (response.ok) {
-      const meta = await response.json();
+    const metaResponse = await fetch(`./data/journey/backup-meta.json?site=${encodeURIComponent(SITE_BUILD_VERSION)}&t=${Date.now()}`, { cache: "no-store" });
+    if (metaResponse.ok) {
+      const meta = await metaResponse.json();
+      journeyDatabaseState.meta = meta;
       if (meta?.capturedAt) archiveVersion = `${SITE_BUILD_VERSION}-${meta.capturedAt}`;
     }
-  } catch (_) {
-    // If metadata is unavailable, the site build version still busts stale iframe caches.
-  }
+  } catch (_) {}
 
-  const nextSrc = getJourneyArchivePath(currentLanguage, archiveVersion);
-  const currentSrc = frame.getAttribute("src") || "";
-  if (currentSrc !== nextSrc) frame.setAttribute("src", nextSrc);
-  frame.setAttribute("title", translateString("여정"));
+  try {
+    const response = await fetch(getJourneyJsonPath(currentLanguage, archiveVersion), { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    if (token !== journeyDatabaseState.requestToken) return;
+    journeyDatabaseState.data = data;
+    renderJourneyDatabaseResults();
+  } catch (error) {
+    if (token !== journeyDatabaseState.requestToken) return;
+    results.innerHTML = `<div class="journey-status error">${escapeHtml(labels.loadError)}<small>${escapeHtml(error?.message || "")}</small></div>`;
+  }
+}
+
+function bindJourneyDatabaseControls() {
+  const search = document.querySelector("#journey-search");
+  const clear = document.querySelector("#journey-search-clear");
+  const arcana = document.querySelector("#journey-type-arcana");
+  const events = document.querySelector("#journey-type-events");
+  const difficulty = document.querySelector("#journey-difficulty");
+
+  search?.addEventListener("input", (event) => {
+    journeyDatabaseState.query = event.currentTarget.value || "";
+    updateJourneyControlState();
+    renderJourneyDatabaseResults();
+  });
+  clear?.addEventListener("click", () => {
+    journeyDatabaseState.query = "";
+    if (search) { search.value = ""; search.focus(); }
+    updateJourneyControlState();
+    renderJourneyDatabaseResults();
+  });
+  arcana?.addEventListener("change", (event) => {
+    journeyDatabaseState.showArcana = event.currentTarget.checked;
+    renderJourneyDatabaseResults();
+  });
+  events?.addEventListener("change", (event) => {
+    journeyDatabaseState.showEvents = event.currentTarget.checked;
+    renderJourneyDatabaseResults();
+  });
+  document.querySelectorAll("[data-journey-category]").forEach((button) => button.addEventListener("click", () => {
+    journeyDatabaseState.category = JOURNEY_CATEGORY_KEYS.includes(button.dataset.journeyCategory) ? button.dataset.journeyCategory : "all";
+    updateJourneyControlState();
+    renderJourneyDatabaseResults();
+  }));
+  document.querySelectorAll("[data-journey-difficulty]").forEach((button) => button.addEventListener("click", () => {
+    journeyDatabaseState.difficulty = JOURNEY_DIFFICULTY_KEYS.includes(button.dataset.journeyDifficulty) ? button.dataset.journeyDifficulty : "all";
+    if (difficulty) difficulty.open = false;
+    updateJourneyControlState();
+    renderJourneyDatabaseResults();
+  }));
+  document.addEventListener("click", (event) => {
+    if (difficulty?.open && !difficulty.contains(event.target)) difficulty.open = false;
+  }, { once: true });
 }
 
 function createJourneyDatabaseMarkup() {
+  const labels = getJourneyLabels();
   return `
     <div class="journey-page">
       <header class="journey-hero">
         <p class="eyebrow">JOURNEY DATABASE</p>
         <h1 data-i18n-source="여정">${escapeHtml(translateString("여정"))}</h1>
       </header>
-      <section class="journey-archive-shell" aria-label="${escapeHtml(translateString("여정"))}">
-        <iframe
-          class="journey-archive-frame"
-          id="journey-archive-frame"
-          title="${escapeHtml(translateString("여정"))}"
-          src="${escapeHtml(getJourneyArchivePath())}"
-          loading="eager"
-          sandbox="allow-scripts allow-same-origin"
-        ></iframe>
+      <section class="journey-database-panel" aria-label="${escapeHtml(translateString("여정"))}">
+        <div class="journey-controls">
+          <div class="journey-top-row">
+            <details class="journey-difficulty" id="journey-difficulty">
+              <summary id="journey-difficulty-summary">${escapeHtml(labels.difficulty)}</summary>
+              <div class="journey-difficulty-menu">
+                ${JOURNEY_DIFFICULTY_KEYS.map((key) => `<button type="button" data-journey-difficulty="${key}" class="${key === "all" ? "is-active" : ""}">${escapeHtml(labels[key])}</button>`).join("")}
+              </div>
+            </details>
+            <label class="journey-search-wrap">
+              <input id="journey-search" class="journey-search" type="search" autocomplete="off" placeholder="${escapeHtml(labels.search)}">
+              <button id="journey-search-clear" class="journey-search-clear" type="button" aria-label="${escapeHtml(labels.clear)}" hidden>×</button>
+            </label>
+          </div>
+          <div class="journey-type-row">
+            <label><input id="journey-type-arcana" type="checkbox" checked> <span>${escapeHtml(labels.arcana)}</span></label>
+            <label><input id="journey-type-events" type="checkbox" checked> <span>${escapeHtml(labels.events)}</span></label>
+          </div>
+          <div class="journey-category-row">
+            ${JOURNEY_CATEGORY_KEYS.map((key) => `<button type="button" data-journey-category="${key}" class="journey-category-button${key === "all" ? " is-active" : ""}">${escapeHtml(labels[key])}</button>`).join("")}
+          </div>
+          <div class="journey-legend">
+            <span><i class="success"></i>${escapeHtml(labels.success)}</span>
+            <span><i class="failure"></i>${escapeHtml(labels.failure)}</span>
+          </div>
+        </div>
+        <div class="journey-results" id="journey-results">
+          <div class="journey-status">${escapeHtml(labels.loading)}</div>
+        </div>
       </section>
     </div>
   `;
 }
 
+function initializeJourneyDatabase() {
+  journeyDatabaseState = {
+    requestToken: journeyDatabaseState.requestToken + 1,
+    data: null,
+    meta: null,
+    query: "",
+    category: "all",
+    difficulty: "all",
+    showArcana: true,
+    showEvents: true
+  };
+  bindJourneyDatabaseControls();
+  updateJourneyControlState();
+  loadJourneyDatabase();
+}
+
 function updateJourneyArchiveLanguage() {
-  const frame = document.querySelector("#journey-archive-frame");
-  if (!frame) return;
-  frame.setAttribute("title", translateString("여정"));
-  refreshJourneyArchiveSource();
+  if (!document.querySelector("#journey-results")) return;
+  const currentQuery = journeyDatabaseState.query;
+  const currentCategory = journeyDatabaseState.category;
+  const currentDifficulty = journeyDatabaseState.difficulty;
+  const showArcana = journeyDatabaseState.showArcana;
+  const showEvents = journeyDatabaseState.showEvents;
+  const replacement = createJourneyDatabaseMarkup();
+  const page = document.querySelector(".journey-page");
+  if (page) {
+    const temp = document.createElement("div");
+    temp.innerHTML = replacement;
+    page.replaceWith(temp.firstElementChild);
+  }
+  journeyDatabaseState.query = currentQuery;
+  journeyDatabaseState.category = currentCategory;
+  journeyDatabaseState.difficulty = currentDifficulty;
+  journeyDatabaseState.showArcana = showArcana;
+  journeyDatabaseState.showEvents = showEvents;
+  const arcana = document.querySelector("#journey-type-arcana");
+  const events = document.querySelector("#journey-type-events");
+  if (arcana) arcana.checked = showArcana;
+  if (events) events.checked = showEvents;
+  bindJourneyDatabaseControls();
+  updateJourneyControlState();
+  loadJourneyDatabase();
 }
 
 function openSimple(section, options = {}) {
@@ -7206,7 +7503,7 @@ function openSimple(section, options = {}) {
   }
 
   applyLanguageToDOM(simpleView);
-  updateJourneyArchiveLanguage();
+  if (section === "journey") initializeJourneyDatabase();
   showOnly("simple");
   setActiveNav(section);
 
