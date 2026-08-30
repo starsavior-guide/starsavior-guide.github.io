@@ -239,78 +239,61 @@ jobs:
                 await page.waitForTimeout(500);
 
                 const snapshot = await page.evaluate(() => {
-                  // The source site currently renders the actual Savior detail outside an otherwise
-                  // mostly-empty <main> shell on some routes. Always clone <body> and strip chrome
-                  // afterward so we do not accidentally snapshot an empty container.
-                  const source = document.body;
-                  const clone = source.cloneNode(true);
+                  // Build the backup from a DOM Range instead of deleting structural wrappers.
+                  // This avoids wiping the whole page when Illustration/Arc Point or footer text
+                  // lives inside a large application container.
+                  const body = document.body;
 
-                  clone.querySelectorAll('script,noscript,style,link,nav,footer,form,dialog').forEach((el) => el.remove());
-                  clone.querySelectorAll('details').forEach((el) => el.setAttribute('open', ''));
-                  clone.querySelectorAll('[hidden]').forEach((el) => el.removeAttribute('hidden'));
-                  clone.querySelectorAll('[aria-hidden="true"]').forEach((el) => el.removeAttribute('aria-hidden'));
-                  clone.querySelectorAll('[inert]').forEach((el) => el.removeAttribute('inert'));
-                  clone.querySelectorAll('[style]').forEach((el) => {
-                    const style = el.getAttribute('style') || '';
-                    if (/display\s*:\s*none|visibility\s*:\s*hidden|max-height\s*:\s*0|height\s*:\s*0/i.test(style)) {
-                      el.removeAttribute('style');
-                    }
+                  const normalize = (value) => String(value || '').replace(/\s+/g, ' ').trim();
+                  const markerCandidates = [...body.querySelectorAll('h1,h2,h3,h4,h5,h6,[role="heading"],p,span,strong')];
+                  const marker = markerCandidates.find((el) => {
+                    const text = normalize(el.textContent);
+                    return text === '일러스트' || /^아크\s*포인트(?:\s|$|\()/.test(text);
                   });
 
-                  // Source-site navigation chrome is not part of the Savior data backup.
-                  clone.querySelectorAll('header').forEach((el) => {
-                    const text = (el.textContent || '').trim();
-                    if (/구원자|한국어|English|日本語|繁體|简体/.test(text) && el.querySelector('button,a,select')) {
+                  const range = document.createRange();
+                  range.setStart(body, 0);
+                  if (marker) {
+                    range.setEndBefore(marker);
+                  } else {
+                    range.setEnd(body, body.childNodes.length);
+                  }
+
+                  const wrapper = document.createElement('div');
+                  wrapper.className = 'captured-savior-detail';
+                  wrapper.appendChild(range.cloneContents());
+
+                  // Remove executable/source-site chrome only. Do not remove ancestor wrappers by text.
+                  wrapper.querySelectorAll('script,noscript,style,link,nav,footer,form,dialog').forEach((el) => el.remove());
+                  wrapper.querySelectorAll('header').forEach((el) => el.remove());
+                  wrapper.querySelectorAll('details').forEach((el) => el.setAttribute('open', ''));
+                  wrapper.querySelectorAll('[hidden]').forEach((el) => el.removeAttribute('hidden'));
+                  wrapper.querySelectorAll('[aria-hidden="true"]').forEach((el) => el.removeAttribute('aria-hidden'));
+                  wrapper.querySelectorAll('[inert]').forEach((el) => el.removeAttribute('inert'));
+
+                  // Remove only obvious navigation controls. Skill/detail content has already been expanded above.
+                  wrapper.querySelectorAll('button,select,input,textarea').forEach((el) => {
+                    const text = normalize(el.textContent || el.getAttribute('aria-label') || el.getAttribute('title'));
+                    if (!text || /^(뒤로|한국어|English|日本語|繁體中文|简体中文|터치하여 확인)$/.test(text)) {
                       el.remove();
                     }
                   });
 
-                  // Remove the lower Illustration / Arc Point area. Illustration comes first on current pages,
-                  // so everything from that section downward is intentionally excluded.
-                  const markerCandidates = [...clone.querySelectorAll('h1,h2,h3,h4,h5,h6,p,span,strong,div')];
-                  const marker = markerCandidates.find((el) => {
-                    const text = (el.textContent || '').replace(/\s+/g, ' ').trim();
-                    if (text.length > 40) return false;
-                    return /^일러스트(?:\s|$)/.test(text) || /^아크\s*포인트(?:\s|$|\()/.test(text);
-                  });
-
-                  if (marker) {
-                    let block = marker.closest('section,article') || marker.parentElement || marker;
-                    let node = block;
-                    while (node) {
-                      const next = node.nextSibling;
-                      node.remove();
-                      node = next;
+                  // A source-site top bar may be a plain div rather than <header>. Only remove very small
+                  // containers whose direct text is clearly the language/back navigation itself.
+                  [...wrapper.querySelectorAll('div')].forEach((el) => {
+                    if (el.children.length > 8) return;
+                    const own = normalize([...el.childNodes]
+                      .filter((n) => n.nodeType === Node.TEXT_NODE)
+                      .map((n) => n.textContent)
+                      .join(' '));
+                    if (own && own.length < 80 && /^(구원자\s*)?(한국어|English|日本語|繁體中文|简体中文)/.test(own)) {
+                      el.remove();
                     }
-                  }
-
-                  // Remove only the actual footer/legal area. Do NOT scan every wrapping <div>
-                  // for footer keywords: the app root contains the footer text as a descendant, and
-                  // removing that wrapper would wipe the entire Savior snapshot.
-                  const legalCandidates = [...clone.querySelectorAll('p,small,span')];
-                  const legalMarker = legalCandidates.find((el) => {
-                    const text = (el.textContent || '').replace(/\s+/g, ' ').trim();
-                    if (!text || text.length > 220) return false;
-                    return /비영리 팬 프로젝트|STUDIOBSIDE Co\.|제보\/문의 Discord/.test(text);
-                  });
-                  if (legalMarker) {
-                    const legalBlock = legalMarker.closest('footer,section') || legalMarker.parentElement || legalMarker;
-                    let node = legalBlock;
-                    while (node) {
-                      const next = node.nextSibling;
-                      node.remove();
-                      node = next;
-                    }
-                  }
-
-                  // Preserve all skill/detail content, including collapsed content, but remove controls whose only job was navigation.
-                  clone.querySelectorAll('button').forEach((el) => {
-                    const text = (el.textContent || '').replace(/\s+/g, ' ').trim();
-                    if (/^(뒤로|한국어|English|日本語|繁體中文|简体中文|터치하여 확인)$/.test(text)) el.remove();
                   });
 
                   const assetUrls = new Set();
-                  clone.querySelectorAll('img').forEach((img) => {
+                  wrapper.querySelectorAll('img').forEach((img) => {
                     const raw = img.getAttribute('src') || img.src || '';
                     if (!raw) return;
                     const abs = new URL(raw, document.baseURI).href;
@@ -318,7 +301,7 @@ jobs:
                     img.removeAttribute('srcset');
                     assetUrls.add(abs);
                   });
-                  clone.querySelectorAll('source').forEach((sourceEl) => {
+                  wrapper.querySelectorAll('source').forEach((sourceEl) => {
                     const raw = sourceEl.getAttribute('src') || '';
                     if (raw) {
                       const abs = new URL(raw, document.baseURI).href;
@@ -327,24 +310,26 @@ jobs:
                     }
                     sourceEl.removeAttribute('srcset');
                   });
-                  clone.querySelectorAll('a[href]').forEach((a) => {
-                    a.setAttribute('href', new URL(a.getAttribute('href'), document.baseURI).href);
+                  wrapper.querySelectorAll('a[href]').forEach((a) => {
+                    try {
+                      a.setAttribute('href', new URL(a.getAttribute('href'), document.baseURI).href);
+                    } catch (_) {}
                     a.setAttribute('target', '_blank');
                     a.setAttribute('rel', 'noopener noreferrer');
                   });
 
-                  const cleanedTextLength = (clone.innerText || clone.textContent || '').replace(/\s+/g, ' ').trim().length;
-
+                  const cleanedTextLength = normalize(wrapper.innerText || wrapper.textContent).length;
                   return {
                     title: document.title,
-                    html: clone.innerHTML,
+                    html: wrapper.innerHTML,
                     assets: [...assetUrls],
-                    cleanedTextLength
+                    cleanedTextLength,
+                    markerText: marker ? normalize(marker.textContent) : '',
+                    markerFound: Boolean(marker)
                   };
                 });
-
                 const plainLength = (snapshot.html || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().length;
-                console.log(`snapshot cleaned=${snapshot.cleanedTextLength || 0} plain=${plainLength} assets=${snapshot.assets.length}`);
+                console.log(`snapshot cleaned=${snapshot.cleanedTextLength || 0} plain=${plainLength} assets=${snapshot.assets.length} marker=${snapshot.markerFound ? snapshot.markerText : "none"}`);
                 if (!snapshot.html || plainLength < 300) {
                   const bodyPreview = await page.evaluate(() => (document.body?.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 220));
                   throw new Error(`Captured Savior content was unexpectedly empty (snapshot=${plainLength}). body preview: ${bodyPreview}`);
