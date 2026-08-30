@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v55-cristelle-alt4-remove";
+const SITE_BUILD_VERSION = "v56-selfhost-images";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -700,7 +700,7 @@ const ELEMENT_LABELS = {
 
 const SAVIOR_DETAIL_ROOT = "https://star-savior-arcana-db.pages.dev/savior";
 const ARCANA_DETAIL_ROOT = "https://star-savior-arcana-db.pages.dev/arcana";
-const ARCANA_IMAGE_ROOT = "https://starsavior-db.pages.dev/images/arcana";
+const ARCANA_IMAGE_ROOT = "./images/arcana";
 
 const SAVIOR_DETAIL_IDS = {
   "asherah-voyager": 1001,
@@ -886,7 +886,7 @@ const ARCANA_LIBRARY = {
     { name: "하얀 달의 온기는 햇빛처럼", image: `${ARCANA_IMAGE_ROOT}/ARCANA_EASTERN_SWORDMASTER_SSR_02_S.webp` }
   ],
   "휴가 준비는 쇼핑에서부터!": [
-    { name: "휴가 준비는 쇼핑에서부터!", image: "https://star-savior-arcana-db.pages.dev/images/cards/%ED%9C%B4%EA%B0%80%EC%A4%80%EB%B9%84%EB%8A%94%EC%87%BC%ED%95%91%EC%97%90%EC%84%9C%EB%B6%80%ED%84%B0!.webp" }
+    { name: "휴가 준비는 쇼핑에서부터!", image: "./images/arcana/휴가준비는쇼핑에서부터!.webp" }
   ],
   "노 페인, 노 게인": [
     { name: "노 페인, 노 게인", image: `${ARCANA_IMAGE_ROOT}/ARCANA_INDEPENDENT_DRAGON_SSR_01_S.webp` }
@@ -922,7 +922,7 @@ const ARCANA_LIBRARY = {
     { name: "허수의 개척자", image: `${ARCANA_IMAGE_ROOT}/ARCANA_STARPIERCER_OMEGA_SSR_01_S.webp` }
   ],
   "영원 속박의 굴레": [
-    { name: "영원 속박의 굴레", image: "https://star-savior-arcana-db.pages.dev/images/cards/%EC%98%81%EC%9B%90%EC%86%8D%EB%B0%95%EC%9D%98%EA%B5%B4%EB%A0%88.webp" }
+    { name: "영원 속박의 굴레", image: "./images/arcana/영원속박의굴레.webp" }
   ]
 };
 
@@ -1133,7 +1133,7 @@ const SAVIORS = [
     "className": "스트라이커",
     "role": "스트라이커",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_VOYAGER_STRANIS.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_VOYAGER_STRANIS.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -1196,7 +1196,7 @@ const SAVIORS = [
     "className": "레인저",
     "role": "레인저",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_VOYAGER_SMILE.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_VOYAGER_SMILE.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -1277,7 +1277,7 @@ const SAVIORS = [
     "className": "캐스터",
     "role": "캐스터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_VOYAGER_ORACLE.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_VOYAGER_ORACLE.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -1355,7 +1355,7 @@ const SAVIORS = [
     "className": "캐스터",
     "role": "캐스터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_LANTERN.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_MAID_LANTERN.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1005",
     "detail": {
@@ -1429,7 +1429,7 @@ const SAVIORS = [
     "className": "레인저",
     "role": "레인저",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_BELL.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_MAID_BELL.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -1504,7 +1504,7 @@ const SAVIORS = [
     "className": "디펜더",
     "role": "디펜더",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_TWOHANDER.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_MAID_TWOHANDER.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -1578,7 +1578,7 @@ const SAVIORS = [
     "className": "스트라이커",
     "role": "스트라이커",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_KINGDOM_KNIGHT.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_KINGDOM_KNIGHT.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -1641,7 +1641,7 @@ const SAVIORS = [
     "className": "디펜더",
     "role": "디펜더",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_KINGDOM_SHIELDER.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_KINGDOM_SHIELDER.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -1715,7 +1715,7 @@ const SAVIORS = [
     "className": "서포터",
     "role": "서포터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_KINGDOM_PRAY.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_KINGDOM_PRAY.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -1789,7 +1789,7 @@ const SAVIORS = [
     "className": "스트라이커",
     "role": "스트라이커",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_NIGHTMARE_REAPER.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_NIGHTMARE_REAPER.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -1852,7 +1852,7 @@ const SAVIORS = [
     "className": "어쌔신",
     "role": "어쌔신",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_STELLAR_THIEF.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_STELLAR_THIEF.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -1930,7 +1930,7 @@ const SAVIORS = [
     "className": "스트라이커",
     "role": "스트라이커",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_EASTERN_SWORDMASTER.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_EASTERN_SWORDMASTER.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -1993,7 +1993,7 @@ const SAVIORS = [
     "className": "레인저",
     "role": "레인저",
     "attackType": "",
-    "image": "https://star-savior-arcana-db.pages.dev/images/icon/portrait/%ED%81%AC%EB%A6%AC%EC%8A%A4%ED%85%94(%EB%AA%A8%EB%A0%90%20%ED%95%B4%EC%9A%B4%EC%83%81%ED%9A%8C).webp",
+    "image": "./images/savior/크리스텔(모렐 해운상회).webp",
     "summary": "PVE 장비·아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1017",
     "detail": {
@@ -2083,7 +2083,7 @@ const SAVIORS = [
     "className": "디펜더",
     "role": "디펜더",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_INCOGNITA_FLOWER.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_INCOGNITA_FLOWER.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -2157,7 +2157,7 @@ const SAVIORS = [
     "className": "서포터",
     "role": "서포터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_EASTERN_OWL.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_EASTERN_OWL.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -2231,7 +2231,7 @@ const SAVIORS = [
     "className": "캐스터",
     "role": "캐스터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAGICIAN_DRUID.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_MAGICIAN_DRUID.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -2306,7 +2306,7 @@ const SAVIORS = [
     "className": "캐스터",
     "role": "캐스터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_SAINTESS_DEMON.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_SAINTESS_DEMON.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -2381,7 +2381,7 @@ const SAVIORS = [
     "className": "서포터",
     "role": "서포터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_SAINTESS_ELF.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_SAINTESS_ELF.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -2455,7 +2455,7 @@ const SAVIORS = [
     "className": "스트라이커",
     "role": "스트라이커",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_APOSTLE_TYRIA.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_APOSTLE_TYRIA.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -2530,7 +2530,7 @@ const SAVIORS = [
     "className": "스트라이커",
     "role": "스트라이커",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_RECON_KNUCKLE.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_RECON_KNUCKLE.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -2608,7 +2608,7 @@ const SAVIORS = [
     "className": "레인저",
     "role": "레인저",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_RECON_AMULET.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_RECON_AMULET.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -2671,7 +2671,7 @@ const SAVIORS = [
     "className": "어쌔신",
     "role": "어쌔신",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_INDEPENDENT_VAGABOND.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_INDEPENDENT_VAGABOND.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -2747,7 +2747,7 @@ const SAVIORS = [
     "className": "어쌔신",
     "role": "어쌔신",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_GRACE_DUALSWORD.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_GRACE_DUALSWORD.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -2825,7 +2825,7 @@ const SAVIORS = [
     "className": "캐스터",
     "role": "캐스터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_STARPIERCER_OMEGA.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_STARPIERCER_OMEGA.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -2900,7 +2900,7 @@ const SAVIORS = [
     "className": "어쌔신",
     "role": "어쌔신",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_BUNNY_KNIGHT.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_BUNNY_KNIGHT.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -2978,7 +2978,7 @@ const SAVIORS = [
     "className": "스트라이커",
     "role": "스트라이커",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WEST_BEAMSWORD.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_WEST_BEAMSWORD.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3053,7 +3053,7 @@ const SAVIORS = [
     "className": "레인저",
     "role": "레인저",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WEST_ROD.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_WEST_ROD.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3128,7 +3128,7 @@ const SAVIORS = [
     "className": "디펜더",
     "role": "디펜더",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WILD_HOG.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_WILD_HOG.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3202,7 +3202,7 @@ const SAVIORS = [
     "className": "레인저",
     "role": "레인저",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_CONSTRUCT_BOMB.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_CONSTRUCT_BOMB.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3265,7 +3265,7 @@ const SAVIORS = [
     "className": "레인저",
     "role": "레인저",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_BUNNY_SCISSORS.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_BUNNY_SCISSORS.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3340,7 +3340,7 @@ const SAVIORS = [
     "className": "스트라이커",
     "role": "스트라이커",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_BUNNY_SPEAR.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_BUNNY_SPEAR.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3416,7 +3416,7 @@ const SAVIORS = [
     "className": "레인저",
     "role": "레인저",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_INDEPENDENT_DRAGON.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_INDEPENDENT_DRAGON.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3494,7 +3494,7 @@ const SAVIORS = [
     "className": "스트라이커",
     "role": "스트라이커",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_CONSTRUCT_GADGET.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_CONSTRUCT_GADGET.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3557,7 +3557,7 @@ const SAVIORS = [
     "className": "캐스터",
     "role": "캐스터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_DETECTIVE_WATSON.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_DETECTIVE_WATSON.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3632,7 +3632,7 @@ const SAVIORS = [
     "className": "어쌔신",
     "role": "어쌔신",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MUTANT_MASK.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_MUTANT_MASK.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3707,7 +3707,7 @@ const SAVIORS = [
     "className": "서포터",
     "role": "서포터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_DRESS_STRANIS.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_DRESS_STRANIS.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3785,7 +3785,7 @@ const SAVIORS = [
     "className": "서포터",
     "role": "서포터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WEDDING_SHIELDER.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_WEDDING_SHIELDER.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3859,7 +3859,7 @@ const SAVIORS = [
     "className": "캐스터",
     "role": "캐스터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WEDDING_DUALSWORD.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_WEDDING_DUALSWORD.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -3934,7 +3934,7 @@ const SAVIORS = [
     "className": "캐스터",
     "role": "캐스터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_BUNNY_PRAY.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_BUNNY_PRAY.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -4010,7 +4010,7 @@ const SAVIORS = [
     "className": "디펜더",
     "role": "디펜더",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_WEST_LANCER.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_WEST_LANCER.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -4084,7 +4084,7 @@ const SAVIORS = [
     "className": "디펜더",
     "role": "디펜더",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_OFFICER_POLICE.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_OFFICER_POLICE.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -4159,7 +4159,7 @@ const SAVIORS = [
     "className": "어쌔신",
     "role": "어쌔신",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_CONSTRUCT_WRENCH.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_CONSTRUCT_WRENCH.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1506",
     "detail": {
@@ -4237,7 +4237,7 @@ const SAVIORS = [
     "className": "서포터",
     "role": "서포터",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_LPU_POST.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_LPU_POST.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -4311,7 +4311,7 @@ const SAVIORS = [
     "className": "레인저",
     "role": "레인저",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_NOA_OBSERVER.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_NOA_OBSERVER.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1508",
     "detail": {
@@ -4386,7 +4386,7 @@ const SAVIORS = [
     "className": "어쌔신",
     "role": "어쌔신",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_SPEAR.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_MAID_SPEAR.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1509",
     "detail": {
@@ -4464,7 +4464,7 @@ const SAVIORS = [
     "className": "스트라이커",
     "role": "스트라이커",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAID_SCISSORS.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_MAID_SCISSORS.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1510",
     "detail": {
@@ -4539,7 +4539,7 @@ const SAVIORS = [
     "className": "레인저",
     "role": "레인저",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_MAGICIAN_SNIPER.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_MAGICIAN_SNIPER.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1511",
     "detail": {
@@ -4615,7 +4615,7 @@ const SAVIORS = [
     "className": "디펜더",
     "role": "디펜더",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_COUNTERSIDE_HILDE.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_COUNTERSIDE_HILDE.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -4689,7 +4689,7 @@ const SAVIORS = [
     "className": "레인저",
     "role": "레인저",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_COUNTERSIDE_MINA.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_COUNTERSIDE_MINA.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -4764,7 +4764,7 @@ const SAVIORS = [
     "className": "레인저",
     "role": "레인저",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_COUNTERSIDE_ROSARIA.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_COUNTERSIDE_ROSARIA.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
     "detail": {
@@ -4840,7 +4840,7 @@ const SAVIORS = [
     "className": "디펜더",
     "role": "디펜더",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_SUMMER_ORACLE.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_SUMMER_ORACLE.webp",
     "summary": "원본 자료 기준 PVE 장비·아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1045",
     "detail": {
@@ -4929,7 +4929,7 @@ const SAVIORS = [
     "className": "어쌔신",
     "role": "어쌔신",
     "attackType": "",
-    "image": "https://starsavior-db.pages.dev/images/icons/UFS_NKM_UNIT_S_SUMMER_SMILE.webp",
+    "image": "./images/savior/UFS_NKM_UNIT_S_SUMMER_SMILE.webp",
     "summary": "PVE 장비·아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1046",
     "detail": {
