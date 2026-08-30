@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v62-bloom-toggle";
+const SITE_BUILD_VERSION = "v63-bloom-grade-effect-icons";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -5870,18 +5870,18 @@ function parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl) {
 
 function renderSaviorInfoTable(savior, profile) {
   const rows = [
-    ["이름", getLocalizedSaviorName(profile.name || savior.name)],
-    ["등급", profile.grade || savior.grade || "-"],
-    ["속성", translateString(profile.element || ELEMENT_LABELS[savior.element] || "-")],
-    ["클래스", translateString(profile.className || savior.className || "-")],
-    ["유형", translateString(profile.attackType || "-")]
+    { label: "이름", value: getLocalizedSaviorName(profile.name || savior.name) },
+    { label: "등급", value: profile.grade || savior.grade || "-", key: "grade" },
+    { label: "속성", value: translateString(profile.element || ELEMENT_LABELS[savior.element] || "-") },
+    { label: "클래스", value: translateString(profile.className || savior.className || "-") },
+    { label: "유형", value: translateString(profile.attackType || "-") }
   ];
   return `
     <section class="source-detail-block source-profile-block">
       <div class="source-detail-heading"><h3>${escapeHtml(translateString("구원자 상세정보"))}</h3></div>
       <div class="source-kv-table-wrap">
         <table class="source-kv-table">
-          <tbody>${rows.map(([label, value]) => `<tr><th>${escapeHtml(translateString(label))}</th><td>${escapeHtml(value)}</td></tr>`).join("")}</tbody>
+          <tbody>${rows.map((row) => `<tr><th>${escapeHtml(translateString(row.label))}</th><td${row.key === "grade" ? ` data-source-profile-grade data-normal-grade="${escapeHtml(row.value)}"` : ""}>${escapeHtml(row.value)}</td></tr>`).join("")}</tbody>
         </table>
       </div>
       ${profile.description ? `<div class="source-character-description"><strong>${escapeHtml(translateString("구원자 설명"))}</strong><p>${escapeHtml(profile.description)}</p></div>` : ""}
@@ -6073,6 +6073,105 @@ async function loadSaviorSourcePanel(button, panel) {
   }
 }
 
+const SHARED_SAVIOR_EFFECT_IMAGE_DONORS = {
+  "연소": [1017],
+  "점화": [1502, 1511],
+  "도약": [1508, 1501, 1511],
+  "냉각": [1001, 1509]
+};
+const sharedSaviorEffectImageCache = new Map();
+
+function getSharedSaviorEffectName(text) {
+  const value = normalizeSaviorSourceText(text);
+  return Object.keys(SHARED_SAVIOR_EFFECT_IMAGE_DONORS)
+    .find((name) => value.includes(name)) || "";
+}
+
+function getEffectRowKey(row) {
+  if (!row) return "";
+  const text = normalizeSaviorSourceText(row.textContent || "");
+  const shared = getSharedSaviorEffectName(text);
+  if (shared) return shared;
+  return normalizeSaviorSourceText(text.split(/[:：]/, 1)[0]);
+}
+
+async function getSharedSaviorEffectImage(effectName) {
+  if (!effectName) return "";
+  if (sharedSaviorEffectImageCache.has(effectName)) {
+    return sharedSaviorEffectImageCache.get(effectName) || "";
+  }
+
+  const pending = (async () => {
+    for (const detailId of SHARED_SAVIOR_EFFECT_IMAGE_DONORS[effectName] || []) {
+      try {
+        const url = getSaviorBackupUrl(detailId);
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) continue;
+        const sourceHtml = await response.text();
+        const { root } = getSaviorSourceRoot(sourceHtml);
+        const tokens = getSaviorSourceTokens(root);
+        const firstSkillIndex = findSourceTokenIndex(tokens, (text) => isSourceSkillType(text));
+        const skills = parseSaviorSourceSkills(root, tokens, firstSkillIndex, url);
+        for (const skill of skills) {
+          const effect = (skill.effects || []).find((item) => normalizeSaviorSourceText(item.text).includes(effectName) && item.image);
+          if (effect?.image) return effect.image;
+        }
+      } catch (error) {
+        console.warn("Shared Savior effect image lookup failed:", effectName, detailId, error);
+      }
+    }
+    return "";
+  })();
+
+  sharedSaviorEffectImageCache.set(effectName, pending);
+  const resolved = await pending;
+  sharedSaviorEffectImageCache.set(effectName, resolved);
+  return resolved;
+}
+
+async function hydrateSharedBloomEffectImages(bloomList) {
+  if (!bloomList) return;
+  const rows = [...bloomList.querySelectorAll(".source-skill-effect-row")];
+  await Promise.all(rows.map(async (row) => {
+    if (row.querySelector("img")) return;
+    const effectName = getSharedSaviorEffectName(row.textContent || "");
+    if (!effectName) return;
+    const image = await getSharedSaviorEffectImage(effectName);
+    if (!image || row.querySelector("img")) return;
+    const img = document.createElement("img");
+    img.src = image;
+    img.alt = "";
+    img.loading = "lazy";
+    img.onerror = () => img.remove();
+    row.insertBefore(img, row.firstChild);
+  }));
+}
+
+function normalizeClarissaBloomLeapText(bloomList, savior) {
+  if (!bloomList || savior?.id !== "clarissa") return;
+  const walker = document.createTreeWalker(bloomList, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  let node;
+  while ((node = walker.nextNode())) nodes.push(node);
+  nodes.forEach((textNode) => {
+    let value = textNode.nodeValue || "";
+    value = value
+      .replace(/도약\s*스택\s*([2-5])/g, "도약 $1중첩")
+      .replace(/도약\s*([2-5])\s*스택/g, "도약 $1중첩")
+      .replace(/도약\s*([2-5])(?!\s*중첩)/g, "도약 $1중첩");
+    textNode.nodeValue = value;
+  });
+}
+
+function setSaviorBloomProfileGrade(panel, enabled) {
+  const gradeCell = panel?.querySelector("[data-source-profile-grade]");
+  if (!gradeCell) return;
+  if (!gradeCell.dataset.normalGrade) {
+    gradeCell.dataset.normalGrade = normalizeSaviorSourceText(gradeCell.textContent) || "-";
+  }
+  gradeCell.textContent = enabled ? "SSR" : gradeCell.dataset.normalGrade;
+}
+
 function cloneSaviorSkillVisuals(normalList, bloomList) {
   if (!normalList || !bloomList) return;
   const normalCards = [...normalList.querySelectorAll(".source-skill-card")];
@@ -6092,7 +6191,12 @@ function cloneSaviorSkillVisuals(normalList, bloomList) {
     const bloomEffects = [...bloomCard.querySelectorAll(".source-skill-effect-row")];
     bloomEffects.forEach((row, effectIndex) => {
       if (row.querySelector("img")) return;
-      const normalEffectImage = normalEffects[effectIndex]?.querySelector("img");
+      const bloomKey = getEffectRowKey(row);
+      const matchedRow = bloomKey
+        ? normalEffects.find((candidate) => getEffectRowKey(candidate) === bloomKey)
+        : null;
+      const normalEffectImage = matchedRow?.querySelector("img")
+        || (!getSharedSaviorEffectName(row.textContent || "") ? normalEffects[effectIndex]?.querySelector("img") : null);
       if (normalEffectImage) row.insertBefore(normalEffectImage.cloneNode(true), row.firstChild);
     });
   });
@@ -6124,6 +6228,7 @@ async function applySaviorBloomMode(button, panel) {
       );
       if (!normalList) throw new Error("Normal skill list not found");
       liveSkillList.innerHTML = normalList.innerHTML;
+      setSaviorBloomProfileGrade(panel, false);
       button.setAttribute("aria-pressed", "false");
       applyLanguageToDOM(liveSkillList);
       return;
@@ -6149,9 +6254,13 @@ async function applySaviorBloomMode(button, panel) {
     );
     if (!bloomList) throw new Error("Bloom skill list not found");
 
-    // 개화 백업은 텍스트 전용이다. 아이콘/효과 이미지는 기존 일반 스킬 백업을 그대로 재사용한다.
+    // 개화 백업은 텍스트 전용이다. 스킬 아이콘은 일반 백업을 재사용하고,
+    // 연소/점화/도약/냉각은 다른 구원자 백업에 이미 존재하는 동일 효과 아이콘을 공용으로 재사용한다.
     cloneSaviorSkillVisuals(normalList, bloomList);
+    normalizeClarissaBloomLeapText(bloomList, savior);
+    await hydrateSharedBloomEffectImages(bloomList);
     liveSkillList.innerHTML = bloomList.innerHTML;
+    setSaviorBloomProfileGrade(panel, true);
     button.setAttribute("aria-pressed", "true");
     applyLanguageToDOM(liveSkillList);
   } catch (error) {
