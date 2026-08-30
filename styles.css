@@ -1289,6 +1289,21 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
   text-decoration: none;
 }
 
+.footer-hits {
+  margin-top: 10px;
+}
+
+.footer-hits a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-hits img {
+  display: block;
+  width: auto;
+  height: 20px;
+}
+
 .noscript {
   position: fixed;
   z-index: 999;
