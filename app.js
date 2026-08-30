@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v69-journey-local-archive";
+const SITE_BUILD_VERSION = "v73-journey-clean-ui";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -7123,11 +7123,6 @@ function createJourneyDatabaseMarkup() {
       <header class="journey-hero">
         <p class="eyebrow">JOURNEY DATABASE</p>
         <h1 data-i18n-source="여정">${escapeHtml(translateString("여정"))}</h1>
-        <p>
-          <span class="journey-local-badge">LOCAL ARCHIVE</span><br>
-          <span data-i18n-source="여정 데이터는 우리 저장소에 백업된 로컬 사본만 사용합니다.">${escapeHtml(translateString("여정 데이터는 우리 저장소에 백업된 로컬 사본만 사용합니다."))}</span>
-          <span data-i18n-source="원본 사이트에 연결하지 않습니다.">${escapeHtml(translateString("원본 사이트에 연결하지 않습니다."))}</span>
-        </p>
       </header>
       <section class="journey-archive-shell" aria-label="${escapeHtml(translateString("여정"))}">
         <iframe
