@@ -1,0 +1,277 @@
+name: Backup Savior Bloom skills
+
+on:
+  push:
+    paths:
+      - '.github/workflows/backup-savior-bloom.yml'
+      - 'app.js'
+  workflow_dispatch:
+    inputs:
+      refresh_all:
+        description: 'Refresh every Bloom skill snapshot'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  backup-savior-bloom:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Install browser
+        shell: bash
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Backup Bloom skill text
+        shell: bash
+        env:
+          REFRESH_ALL: ${{ github.event.inputs.refresh_all || 'false' }}
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { chromium } from 'playwright';
+
+          const ROOT = process.cwd();
+          const APP_PATH = path.join(ROOT, 'app.js');
+          const OUT_DIR = path.join(ROOT, 'data', 'savior-bloom');
+          const INDEX_PATH = path.join(OUT_DIR, 'index.json');
+          const SOURCE_ROOT = 'https://star-savior-arcana-db.pages.dev/savior';
+          const refreshAll = String(process.env.REFRESH_ALL || 'false').toLowerCase() === 'true';
+
+          fs.mkdirSync(OUT_DIR, { recursive: true });
+
+          const fallbackEntries = [
+            { key: 'besta', id: 1501 },
+            { key: 'annah', id: 1502 },
+            { key: 'marcille', id: 1506 },
+            { key: 'vera', id: 1507 },
+            { key: 'naru', id: 1508 },
+            { key: 'bunny-claire', id: 1509 },
+            { key: 'bunny-scarlet', id: 1510 },
+            { key: 'clarissa', id: 1511 }
+          ];
+
+          let saviors = fallbackEntries;
+          if (fs.existsSync(APP_PATH)) {
+            const appText = fs.readFileSync(APP_PATH, 'utf8');
+            const block = appText.match(/const\s+SAVIOR_BLOOM_DETAIL_IDS\s*=\s*\{([\s\S]*?)\n\};/);
+            if (block) {
+              const parsed = [...block[1].matchAll(/["']([^"']+)["']\s*:\s*(\d+)/g)]
+                .map((m) => ({ key: m[1], id: Number(m[2]) }));
+              if (parsed.length) saviors = parsed;
+            }
+          }
+          saviors = [...new Map(saviors.map((item) => [item.id, item])).values()].sort((a, b) => a.id - b.id);
+
+          let oldIndex = {};
+          if (fs.existsSync(INDEX_PATH)) {
+            try { oldIndex = JSON.parse(fs.readFileSync(INDEX_PATH, 'utf8')); } catch (_) {}
+          }
+          const newIndex = { ...oldIndex };
+
+          const esc = (value) => String(value || '')
+            .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;');
+
+          function snapshotShell(title, content, sourceUrl, capturedAt) {
+            return `<!doctype html>
+          <html lang="ko">
+          <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title || 'Bloom skills')}</title></head>
+          <body>
+            <div class="snapshot-meta" data-source="${esc(sourceUrl)}" data-captured-at="${esc(capturedAt)}"></div>
+            <main class="snapshot-root">${content}</main>
+          </body>
+          </html>`;
+          }
+
+          const browser = await chromium.launch({ headless: true });
+          const context = await browser.newContext({ locale: 'ko-KR', viewport: { width: 1280, height: 1600 } });
+          const page = await context.newPage();
+          page.setDefaultTimeout(60000);
+          const failures = [];
+
+          for (const [position, savior] of saviors.entries()) {
+            const outputPath = path.join(OUT_DIR, `${savior.id}.html`);
+            const sourceUrl = `${SOURCE_ROOT}/${savior.id}`;
+
+            if (!refreshAll && fs.existsSync(outputPath) && fs.statSync(outputPath).size > 500) {
+              console.log(`[${position + 1}/${saviors.length}] keep ${savior.key} (${savior.id})`);
+              newIndex[String(savior.id)] = {
+                ...(newIndex[String(savior.id)] || {}), key: savior.key, id: savior.id,
+                file: `./${savior.id}.html`, source: sourceUrl
+              };
+              continue;
+            }
+
+            console.log(`[${position + 1}/${saviors.length}] capture Bloom ${savior.key} (${savior.id})`);
+            let success = false;
+            let lastError;
+
+            for (let attempt = 1; attempt <= 3 && !success; attempt++) {
+              try {
+                await page.goto(sourceUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
+                try { await page.waitForLoadState('networkidle', { timeout: 20000 }); } catch (_) {}
+                await page.waitForFunction(() => (document.body?.innerText || '').trim().length > 300, null, { timeout: 30000 });
+                await page.waitForTimeout(900);
+
+                const before = await page.evaluate(() => (document.body?.innerText || '').replace(/\s+/g, ' ').trim());
+
+                const clickResult = await page.evaluate(() => {
+                  const normalize = (value) => String(value || '').replace(/\s+/g, ' ').trim();
+                  const candidates = [...document.querySelectorAll('button,[role="button"],label')];
+                  let target = candidates.find((el) => normalize(el.textContent) === '개화');
+                  if (!target) {
+                    target = candidates.find((el) => {
+                      const text = normalize(el.textContent);
+                      return text.includes('개화') && text.length <= 12 && !text.includes('개화 필수');
+                    });
+                  }
+                  if (!target) {
+                    const exactText = [...document.querySelectorAll('span,div,p,strong')]
+                      .find((el) => normalize(el.textContent) === '개화');
+                    target = exactText?.closest('button,[role="button"],label') || exactText;
+                  }
+                  if (!target) return { clicked: false, text: '' };
+                  const text = normalize(target.textContent);
+                  target.click();
+                  return { clicked: true, text };
+                });
+
+                if (!clickResult.clicked) throw new Error('Bloom button was not found.');
+                console.log(`clicked Bloom control: ${clickResult.text || '개화'}`);
+
+                try {
+                  await page.waitForFunction((beforeText) => {
+                    const now = (document.body?.innerText || '').replace(/\s+/g, ' ').trim();
+                    return now !== beforeText;
+                  }, before, { timeout: 12000 });
+                } catch (_) {
+                  // Some pages update the same text nodes without changing overall length immediately.
+                  await page.waitForTimeout(1200);
+                }
+
+                // Open only skill-level accordions after Bloom has been activated.
+                const levelButtons = page.locator('button').filter({ hasText: /스킬\s*레벨\s*정보/ });
+                const levelCount = await levelButtons.count();
+                for (let i = 0; i < levelCount; i++) {
+                  const control = levelButtons.nth(i);
+                  const expanded = await control.getAttribute('aria-expanded').catch(() => null);
+                  if (expanded !== 'true') await control.click({ timeout: 1800 }).catch(() => {});
+                }
+                await page.waitForTimeout(500);
+
+                const after = await page.evaluate(() => (document.body?.innerText || '').replace(/\s+/g, ' ').trim());
+                if (after === before) throw new Error('Bloom button did not change the skill text.');
+
+                const snapshot = await page.evaluate(() => {
+                  const body = document.body;
+                  const normalize = (value) => String(value || '').replace(/\s+/g, ' ').trim();
+                  const markerCandidates = [...body.querySelectorAll('h1,h2,h3,h4,h5,h6,[role="heading"],p,span,strong')];
+                  const marker = markerCandidates.find((el) => {
+                    const text = normalize(el.textContent);
+                    return text === '일러스트' || /^아크\s*포인트(?:\s|$|\()/.test(text);
+                  });
+
+                  const range = document.createRange();
+                  range.setStart(body, 0);
+                  if (marker) range.setEndBefore(marker);
+                  else range.setEnd(body, body.childNodes.length);
+
+                  const wrapper = document.createElement('div');
+                  wrapper.className = 'captured-savior-bloom';
+                  wrapper.appendChild(range.cloneContents());
+
+                  wrapper.querySelectorAll('script,noscript,style,link,nav,footer,form,dialog,header').forEach((el) => el.remove());
+                  wrapper.querySelectorAll('details').forEach((el) => el.setAttribute('open', ''));
+                  wrapper.querySelectorAll('[hidden]').forEach((el) => el.removeAttribute('hidden'));
+                  wrapper.querySelectorAll('[aria-hidden="true"]').forEach((el) => el.removeAttribute('aria-hidden'));
+                  wrapper.querySelectorAll('[inert]').forEach((el) => el.removeAttribute('inert'));
+
+                  // Keep image elements as structural markers for the local parser, but strip every URL.
+                  // No Bloom images are downloaded or hotlinked.
+                  wrapper.querySelectorAll('img').forEach((img) => {
+                    img.removeAttribute('src');
+                    img.removeAttribute('srcset');
+                    img.removeAttribute('data-src');
+                    img.removeAttribute('data-original');
+                    img.setAttribute('alt', '');
+                  });
+                  wrapper.querySelectorAll('source,video,canvas,svg').forEach((el) => el.remove());
+                  wrapper.querySelectorAll('a[href]').forEach((a) => a.removeAttribute('href'));
+
+                  const textLength = normalize(wrapper.innerText || wrapper.textContent).length;
+                  const skillTypes = [...wrapper.querySelectorAll('*')]
+                    .map((el) => normalize(el.textContent))
+                    .filter((text) => /^(패시브|기본기|특수기|궁극기)$/.test(text)).length;
+
+                  return { title: document.title, html: wrapper.innerHTML, textLength, skillTypes };
+                });
+
+                console.log(`Bloom snapshot text=${snapshot.textLength} skillMarkers=${snapshot.skillTypes}`);
+                if (!snapshot.html || snapshot.textLength < 300 || snapshot.skillTypes < 2) {
+                  throw new Error(`Bloom snapshot was incomplete (text=${snapshot.textLength}, skillMarkers=${snapshot.skillTypes}).`);
+                }
+
+                const capturedAt = new Date().toISOString();
+                fs.writeFileSync(outputPath, snapshotShell(snapshot.title, snapshot.html, sourceUrl, capturedAt), 'utf8');
+                newIndex[String(savior.id)] = {
+                  key: savior.key, id: savior.id, file: `./${savior.id}.html`, source: sourceUrl, capturedAt,
+                  mode: 'bloom-text-only'
+                };
+                success = true;
+              } catch (error) {
+                lastError = error;
+                console.warn(`attempt ${attempt} failed: ${error.message}`);
+                if (attempt < 3) await page.waitForTimeout(attempt * 1800);
+              }
+            }
+
+            if (!success) failures.push(`${savior.key} (${savior.id}): ${lastError?.message || 'unknown error'}`);
+          }
+
+          await browser.close();
+          newIndex._meta = {
+            sourceRoot: SOURCE_ROOT,
+            generatedAt: new Date().toISOString(),
+            count: saviors.length,
+            mode: 'bloom-text-only',
+            imagesDownloaded: false
+          };
+          fs.writeFileSync(INDEX_PATH, JSON.stringify(newIndex, null, 2) + '\n', 'utf8');
+
+          if (failures.length) {
+            console.error('\nFailed Bloom pages:');
+            failures.forEach((failure) => console.error(`- ${failure}`));
+            process.exit(2);
+          }
+
+          console.log(`Backed up Bloom skill text for ${saviors.length} Saviors.`);
+          NODE
+
+      - name: Commit Bloom backups
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/savior-bloom
+          if git diff --cached --quiet; then
+            echo "No Bloom backup changes to commit."
+          else
+            git commit -m "Backup Savior Bloom skills"
+            git push
+          fi
