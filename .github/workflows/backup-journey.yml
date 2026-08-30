@@ -1,0 +1,651 @@
+name: Backup Journey database
+
+on:
+  push:
+    paths:
+      - '.github/workflows/backup-journey.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backup-journey:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Install browser
+        shell: bash
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Capture Journey database locally
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import crypto from 'node:crypto';
+          import { chromium } from 'playwright';
+
+          const ROOT = process.cwd();
+          const SOURCE_URL = 'https://star-savior-arcana-db.pages.dev/journey';
+          const OUT_DIR = path.join(ROOT, 'data', 'journey');
+          const ASSET_DIR = path.join(ROOT, 'data', 'journey-assets');
+          const META_PATH = path.join(OUT_DIR, 'backup-meta.json');
+
+          const LANGUAGES = [
+            { key: 'ko', label: '한국어', htmlLang: 'ko-KR', arcana: '아르카나', events: '여정 이벤트', search: '이름, 이벤트, 보상 검색' },
+            { key: 'en', label: 'English', htmlLang: 'en', arcana: 'Arcana', events: 'Journey Events', search: 'Search names, events, rewards' },
+            { key: 'ja', label: '日本語', htmlLang: 'ja', arcana: 'アルカナ', events: '旅程イベント', search: '名前・イベント・報酬を検索' },
+            { key: 'zh-TW', label: '繁體中文', htmlLang: 'zh-Hant', arcana: '阿爾克那', events: '旅程事件', search: '搜尋名稱、事件、獎勵' },
+            { key: 'zh-CN', label: '简体中文', htmlLang: 'zh-Hans', arcana: '阿尔克那', events: '旅程事件', search: '搜索名称、事件、奖励' }
+          ];
+
+          fs.rmSync(OUT_DIR, { recursive: true, force: true });
+          fs.rmSync(ASSET_DIR, { recursive: true, force: true });
+          fs.mkdirSync(OUT_DIR, { recursive: true });
+          fs.mkdirSync(ASSET_DIR, { recursive: true });
+
+          function normalize(value) {
+            return String(value ?? '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+          }
+
+          function safeFilename(value, fallback = 'asset') {
+            const cleaned = normalize(value)
+              .replace(/^Image\s*/i, '')
+              .replace(/[\\/:*?"<>|]/g, ' ')
+              .replace(/[. ]+$/g, '')
+              .replace(/\s+/g, ' ')
+              .slice(0, 90)
+              .trim();
+            return cleaned || fallback;
+          }
+
+          function extensionFrom(url, contentType = '') {
+            try {
+              const ext = path.extname(new URL(url).pathname).toLowerCase();
+              if (/^\.(webp|png|jpe?g|gif|svg|avif)$/.test(ext)) return ext === '.jpeg' ? '.jpg' : ext;
+            } catch (_) {}
+            if (/webp/i.test(contentType)) return '.webp';
+            if (/png/i.test(contentType)) return '.png';
+            if (/jpe?g/i.test(contentType)) return '.jpg';
+            if (/gif/i.test(contentType)) return '.gif';
+            if (/svg/i.test(contentType)) return '.svg';
+            if (/avif/i.test(contentType)) return '.avif';
+            if (/woff2/i.test(contentType)) return '.woff2';
+            if (/woff/i.test(contentType)) return '.woff';
+            if (/ttf/i.test(contentType)) return '.ttf';
+            return '.bin';
+          }
+
+          const browser = await chromium.launch({ headless: true });
+          const context = await browser.newContext({
+            locale: 'ko-KR',
+            viewport: { width: 1440, height: 1800 },
+            deviceScaleFactor: 1
+          });
+          const page = await context.newPage();
+          page.setDefaultTimeout(45000);
+
+          const assetMap = new Map();
+          const usedNames = new Map();
+          const captureLog = [];
+
+          async function downloadAsset(url, preferredName = '') {
+            if (!url || !/^https?:\/\//i.test(url)) return url;
+            if (assetMap.has(url)) return assetMap.get(url);
+
+            let response;
+            try {
+              response = await context.request.get(url, { timeout: 45000 });
+              if (!response.ok()) throw new Error(`HTTP ${response.status()}`);
+            } catch (error) {
+              throw new Error(`Journey asset download failed: ${url} (${error.message})`);
+            }
+
+            const body = await response.body();
+            if (body.length < 20) throw new Error(`Journey asset was too small: ${url}`);
+            const contentType = response.headers()['content-type'] || '';
+            const ext = extensionFrom(url, contentType);
+            const hash = crypto.createHash('sha256').update(body).digest('hex').slice(0, 10);
+            let base = safeFilename(preferredName || path.basename(new URL(url).pathname, path.extname(new URL(url).pathname)), hash);
+            let filename = `${base}${ext}`;
+
+            const previous = usedNames.get(filename);
+            if (previous && previous !== hash) filename = `${base}-${hash}${ext}`;
+            usedNames.set(filename, hash);
+
+            const dest = path.join(ASSET_DIR, filename);
+            if (!fs.existsSync(dest)) fs.writeFileSync(dest, body);
+            const local = `../../journey-assets/${encodeURIComponent(filename).replaceAll('%2F', '/')}`;
+            assetMap.set(url, local);
+            return local;
+          }
+
+          async function waitForJourneyReady() {
+            await page.waitForFunction(() => (document.body?.innerText || '').trim().length > 1500, null, { timeout: 45000 });
+            try { await page.waitForLoadState('networkidle', { timeout: 15000 }); } catch (_) {}
+            await page.waitForTimeout(1000);
+          }
+
+          async function deepScroll() {
+            let stable = 0;
+            let lastHeight = 0;
+            for (let i = 0; i < 90; i++) {
+              const info = await page.evaluate(() => {
+                window.scrollTo(0, document.documentElement.scrollHeight);
+                return { height: document.documentElement.scrollHeight, y: window.scrollY };
+              });
+              await page.waitForTimeout(180);
+              if (info.height === lastHeight) stable += 1;
+              else stable = 0;
+              lastHeight = info.height;
+              if (stable >= 5) break;
+            }
+            await page.evaluate(() => window.scrollTo(0, 0));
+            await page.waitForTimeout(250);
+          }
+
+          async function expandMoreButtons() {
+            const morePattern = /^(더\s*보기|더보기|Show more|Load more|もっと見る|顯示更多|显示更多)/i;
+            for (let round = 0; round < 40; round++) {
+              const buttons = page.locator('button');
+              const count = await buttons.count();
+              let clicked = 0;
+              for (let i = 0; i < count; i++) {
+                const button = buttons.nth(i);
+                let text = '';
+                try { text = normalize(await button.innerText()); } catch (_) { continue; }
+                if (!morePattern.test(text)) continue;
+                try {
+                  if (await button.isVisible()) {
+                    await button.click({ timeout: 2500 });
+                    clicked += 1;
+                    await page.waitForTimeout(180);
+                  }
+                } catch (_) {}
+              }
+              if (!clicked) break;
+              await deepScroll();
+            }
+          }
+
+          async function expandContentAccordions() {
+            const skip = new Set([
+              '전체','이지','노말','하드','아르카나','여정 이벤트','리세트','토벌','아가논','플로라','칼라이드','날씨',
+              '한국어','English','日本語','繁體中文','简体中文',
+              'All','Easy','Normal','Hard','Arcana','Journey Events'
+            ]);
+            for (let round = 0; round < 8; round++) {
+              const collapsed = page.locator('button[aria-expanded="false"]');
+              const count = await collapsed.count();
+              let clicked = 0;
+              for (let i = 0; i < count; i++) {
+                const button = collapsed.nth(i);
+                let text = '';
+                try { text = normalize(await button.innerText()); } catch (_) { continue; }
+                if (skip.has(text) || text.length > 120) continue;
+                try {
+                  if (await button.isVisible()) {
+                    await button.click({ timeout: 2000 });
+                    clicked += 1;
+                    await page.waitForTimeout(80);
+                  }
+                } catch (_) {}
+              }
+              if (!clicked) break;
+            }
+          }
+
+          async function findTabTargets() {
+            return await page.evaluate(() => {
+              const norm = (value) => String(value || '').replace(/\s+/g, ' ').trim();
+              const buttons = [...document.querySelectorAll('button')];
+              const cssPath = (element) => {
+                const parts = [];
+                let current = element;
+                while (current && current !== document.documentElement) {
+                  const parent = current.parentElement;
+                  if (!parent) break;
+                  const index = [...parent.children].indexOf(current) + 1;
+                  parts.unshift(`${current.tagName.toLowerCase()}:nth-child(${index})`);
+                  current = parent;
+                }
+                return `html > ${parts.join(' > ')}`;
+              };
+              const arcanaButton = buttons.find((button) => norm(button.textContent) === '아르카나');
+              const eventButton = buttons.find((button) => norm(button.textContent) === '여정 이벤트');
+              return {
+                arcana: arcanaButton ? { index: buttons.indexOf(arcanaButton), selector: cssPath(arcanaButton) } : null,
+                events: eventButton ? { index: buttons.indexOf(eventButton), selector: cssPath(eventButton) } : null,
+                count: buttons.length
+              };
+            });
+          }
+
+          async function clickTabTarget(target) {
+            if (!target) throw new Error('Journey tab button was not found.');
+            let clicked = false;
+            if (target.selector) {
+              try {
+                const locator = page.locator(target.selector);
+                if (await locator.count()) {
+                  await locator.first().click();
+                  clicked = true;
+                }
+              } catch (_) {}
+            }
+            if (!clicked) {
+              const buttons = page.locator('button');
+              if (target.index < 0 || target.index >= await buttons.count()) throw new Error(`Journey tab target changed (${target.index}).`);
+              await buttons.nth(target.index).click();
+            }
+            await page.waitForTimeout(650);
+            await expandMoreButtons();
+            await expandContentAccordions();
+            await deepScroll();
+          }
+
+          async function selectLanguage(label) {
+            if (label === '한국어') return true;
+
+            const selects = page.locator('select');
+            for (let i = 0; i < await selects.count(); i++) {
+              const select = selects.nth(i);
+              const options = await select.locator('option').evaluateAll((nodes) => nodes.map((node) => ({ value: node.value, text: (node.textContent || '').trim() })));
+              const option = options.find((item) => item.text === label);
+              if (!option) continue;
+              await select.selectOption(option.value);
+              await page.waitForTimeout(800);
+              return true;
+            }
+
+            // Custom language menu fallback.
+            const triggerCandidates = page.getByText(/한국어|English|日本語|繁體中文|简体中文/, { exact: true });
+            const triggerCount = await triggerCandidates.count();
+            for (let i = 0; i < triggerCount; i++) {
+              try {
+                const el = triggerCandidates.nth(i);
+                if (!await el.isVisible()) continue;
+                await el.click();
+                await page.waitForTimeout(250);
+                const target = page.getByText(label, { exact: true });
+                const targetCount = await target.count();
+                for (let j = 0; j < targetCount; j++) {
+                  if (await target.nth(j).isVisible()) {
+                    await target.nth(j).click();
+                    await page.waitForTimeout(800);
+                    return true;
+                  }
+                }
+              } catch (_) {}
+            }
+            return false;
+          }
+
+          async function localizeImagesInFragment(snapshot) {
+            for (const image of snapshot.images) {
+              if (!image.src || !/^https?:\/\//i.test(image.src)) continue;
+              const local = await downloadAsset(image.src, image.alt || image.nearby || 'journey-image');
+              snapshot.html = snapshot.html.split(image.src).join(local);
+              if (image.currentSrc && image.currentSrc !== image.src) snapshot.html = snapshot.html.split(image.currentSrc).join(local);
+            }
+            for (const background of snapshot.backgrounds || []) {
+              if (!background.url || !/^https?:\/\//i.test(background.url)) continue;
+              const local = await downloadAsset(background.url, background.nearby || 'journey-background');
+              snapshot.html = snapshot.html.split(background.url).join(local);
+            }
+            return snapshot;
+          }
+
+          async function captureCurrentMain() {
+            const snapshot = await page.evaluate(() => {
+              const root = document.querySelector('main') || document.querySelector('[role="main"]') || document.body;
+              const clone = root.cloneNode(true);
+              const sourceElements = [root, ...root.querySelectorAll('*')];
+              const cloneElements = [clone, ...clone.querySelectorAll('*')];
+
+              // Copy a small set of computed layout properties so the archive remains readable without the source CSS.
+              for (let i = 0; i < Math.min(sourceElements.length, cloneElements.length); i++) {
+                const source = sourceElements[i];
+                const target = cloneElements[i];
+                if (!(source instanceof Element) || !(target instanceof Element)) continue;
+                const style = getComputedStyle(source);
+                const keep = [
+                  'display','position','flex-direction','flex-wrap','align-items','justify-content','gap',
+                  'grid-template-columns','grid-auto-flow','width','max-width','min-width','height','min-height',
+                  'margin-top','margin-right','margin-bottom','margin-left','padding-top','padding-right','padding-bottom','padding-left',
+                  'border-top-width','border-right-width','border-bottom-width','border-left-width','border-style','border-color','border-radius',
+                  'background-color','background-image','background-size','background-position','background-repeat','color','font-size','font-weight','line-height','letter-spacing','text-align','white-space','overflow-wrap','word-break'
+                ];
+                const pieces = [];
+                for (const prop of keep) {
+                  const value = style.getPropertyValue(prop);
+                  if (value && value !== 'normal' && value !== 'auto' && value !== 'none' && value !== '0px') pieces.push(`${prop}:${value}`);
+                }
+                if (pieces.length) target.setAttribute('style', pieces.join(';'));
+              }
+
+              clone.querySelectorAll('script,noscript,iframe,source').forEach((el) => el.remove());
+              clone.querySelectorAll('img').forEach((img) => {
+                img.removeAttribute('srcset');
+                img.removeAttribute('sizes');
+              });
+              clone.querySelectorAll('a[href]').forEach((a) => {
+                a.removeAttribute('href');
+                a.removeAttribute('target');
+              });
+              clone.querySelectorAll('button').forEach((button) => {
+                button.disabled = true;
+                button.removeAttribute('onclick');
+              });
+              clone.querySelectorAll('input,textarea,select').forEach((el) => {
+                el.disabled = true;
+                el.removeAttribute('name');
+              });
+              clone.querySelectorAll('details').forEach((el) => el.setAttribute('open', ''));
+              clone.querySelectorAll('*').forEach((el) => {
+                for (const attr of [...el.attributes]) {
+                  if (/^on/i.test(attr.name)) el.removeAttribute(attr.name);
+                }
+              });
+
+              const images = [...root.querySelectorAll('img')].map((img) => {
+                const nearby = img.closest('article,section,li,div')?.innerText || '';
+                return {
+                  src: img.getAttribute('src') ? new URL(img.getAttribute('src'), location.href).href : '',
+                  currentSrc: img.currentSrc || '',
+                  alt: (img.getAttribute('alt') || '').trim(),
+                  nearby: nearby.replace(/\s+/g, ' ').trim().slice(0, 80)
+                };
+              });
+
+              const backgrounds = [];
+              const seenBackgrounds = new Set();
+              for (const element of sourceElements) {
+                if (!(element instanceof Element)) continue;
+                const value = getComputedStyle(element).backgroundImage || '';
+                for (const match of value.matchAll(/url\(["']?([^"')]+)["']?\)/g)) {
+                  let resolved = '';
+                  try { resolved = new URL(match[1], location.href).href; } catch (_) {}
+                  if (!resolved || seenBackgrounds.has(resolved)) continue;
+                  seenBackgrounds.add(resolved);
+                  backgrounds.push({ url: resolved, nearby: (element.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 80) });
+                }
+              }
+
+              return {
+                html: clone.outerHTML,
+                text: (root.innerText || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim(),
+                images,
+                backgrounds
+              };
+            });
+
+            return localizeImagesInFragment(snapshot);
+          }
+
+          function archivePage(language, arcanaSnapshot, eventSnapshot, capturedAt) {
+            const labels = {
+              ko: { title: '여정', arcana: '아르카나', events: '여정 이벤트', search: '이름, 이벤트, 보상 검색', empty: '검색 결과가 없습니다.' },
+              en: { title: 'Journey', arcana: 'Arcana', events: 'Journey Events', search: 'Search names, events, rewards', empty: 'No matching results.' },
+              ja: { title: '旅程', arcana: 'アルカナ', events: '旅程イベント', search: '名前・イベント・報酬を検索', empty: '検索結果がありません。' },
+              'zh-TW': { title: '旅程', arcana: '阿爾克那', events: '旅程事件', search: '搜尋名稱、事件、獎勵', empty: '找不到符合的結果。' },
+              'zh-CN': { title: '旅程', arcana: '阿尔克那', events: '旅程事件', search: '搜索名称、事件、奖励', empty: '没有匹配的结果。' }
+            }[language.key];
+
+            return `<!doctype html>
+          <html lang="${language.htmlLang}">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="color-scheme" content="dark light">
+            <title>${labels.title}</title>
+            <style>
+              :root{color-scheme:dark;--bg:#020817;--panel:#07101f;--panel2:#0b1425;--line:#26344a;--text:#f5f7ff;--muted:#a9b3c7;--accent:#6e8dff}
+              *{box-sizing:border-box}
+              html,body{margin:0;background:transparent;color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+              body{padding:0 2px 24px;overflow-x:hidden}
+              .archive-toolbar{position:sticky;top:0;z-index:20;padding:12px 10px;background:rgba(2,8,23,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+              .archive-toolbar-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;max-width:1180px;margin:0 auto}
+              .archive-search{flex:1 1 260px;height:42px;border:1px solid var(--line);border-radius:11px;background:var(--panel);color:var(--text);padding:0 13px;font:inherit;font-weight:700;outline:none}
+              .archive-search:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(110,141,255,.14)}
+              .archive-tab{min-height:42px;border:1px solid var(--line);border-radius:11px;background:var(--panel);color:var(--muted);padding:0 14px;font:inherit;font-weight:900;cursor:pointer}
+              .archive-tab.is-active{border-color:rgba(110,141,255,.72);background:rgba(71,104,225,.18);color:#dfe7ff}
+              .archive-meta{max-width:1180px;margin:10px auto 0;color:var(--muted);font-size:11px;font-weight:700}
+              .archive-pane{max-width:1180px;margin:14px auto 0;min-width:0}
+              .archive-pane[hidden]{display:none!important}
+              .snapshot-root{min-width:0;max-width:100%!important}
+              .snapshot-root *{max-width:100%}
+              .snapshot-root img{height:auto!important;object-fit:contain;vertical-align:middle}
+              .snapshot-root button,.snapshot-root input,.snapshot-root select,.snapshot-root textarea{pointer-events:none}
+              .snapshot-root a{color:inherit;text-decoration:none}
+              .snapshot-root table{max-width:100%;overflow-wrap:anywhere}
+              .archive-dim{display:none;padding:28px 18px;text-align:center;color:var(--muted);font-weight:800}
+              .archive-pane.is-no-match .archive-dim{display:block}
+              @media(max-width:700px){
+                .archive-toolbar{padding:10px 7px}.archive-toolbar-row{gap:6px}.archive-tab{padding:0 10px;font-size:12px}.archive-search{height:40px;font-size:13px}
+                .archive-pane{margin-top:10px}.snapshot-root{font-size:13px!important}.snapshot-root *{min-width:0!important}
+              }
+            </style>
+          </head>
+          <body>
+            <div class="archive-toolbar">
+              <div class="archive-toolbar-row">
+                <button class="archive-tab is-active" type="button" data-tab="events">${labels.events}</button>
+                <button class="archive-tab" type="button" data-tab="arcana">${labels.arcana}</button>
+                <input class="archive-search" id="archive-search" type="search" placeholder="${labels.search}" autocomplete="off">
+              </div>
+              <div class="archive-meta">Local archive · ${capturedAt}</div>
+            </div>
+            <section class="archive-pane" id="pane-events">
+              <div class="snapshot-root">${eventSnapshot.html}</div>
+              <div class="archive-dim">${labels.empty}</div>
+            </section>
+            <section class="archive-pane" id="pane-arcana" hidden>
+              <div class="snapshot-root">${arcanaSnapshot.html}</div>
+              <div class="archive-dim">${labels.empty}</div>
+            </section>
+            <script>
+              (() => {
+                const tabs = [...document.querySelectorAll('.archive-tab')];
+                const panes = { events: document.querySelector('#pane-events'), arcana: document.querySelector('#pane-arcana') };
+                const input = document.querySelector('#archive-search');
+                let active = 'events';
+
+                function chooseEntries(root) {
+                  const candidates = [...root.querySelectorAll('div,section,article,li,tbody')]
+                    .map((node) => {
+                      const children = [...node.children].filter((child) => (child.innerText || '').trim().length > 10);
+                      const score = children.length >= 4 ? children.length : 0;
+                      return { node, children, score };
+                    })
+                    .filter((item) => item.score > 0)
+                    .sort((a,b) => b.score - a.score);
+                  return candidates[0]?.children || [];
+                }
+
+                const entries = {
+                  events: chooseEntries(panes.events.querySelector('.snapshot-root')),
+                  arcana: chooseEntries(panes.arcana.querySelector('.snapshot-root'))
+                };
+
+                function applySearch() {
+                  const q = (input.value || '').trim().toLocaleLowerCase();
+                  const pane = panes[active];
+                  const list = entries[active];
+                  if (!list.length) {
+                    pane.classList.toggle('is-no-match', q && !(pane.innerText || '').toLocaleLowerCase().includes(q));
+                    return;
+                  }
+                  let visible = 0;
+                  for (const node of list) {
+                    const match = !q || (node.innerText || '').toLocaleLowerCase().includes(q);
+                    node.style.display = match ? '' : 'none';
+                    if (match) visible += 1;
+                  }
+                  pane.classList.toggle('is-no-match', visible === 0);
+                }
+
+                function setTab(tab) {
+                  active = tab;
+                  for (const [key, pane] of Object.entries(panes)) pane.hidden = key !== tab;
+                  for (const button of tabs) button.classList.toggle('is-active', button.dataset.tab === tab);
+                  applySearch();
+                  window.scrollTo({ top: 0, behavior: 'instant' });
+                }
+
+                tabs.forEach((button) => button.addEventListener('click', () => setTab(button.dataset.tab)));
+                input.addEventListener('input', applySearch);
+              })();
+            </script>
+          </body>
+          </html>`;
+          }
+
+          await page.goto(SOURCE_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
+          await waitForJourneyReady();
+          const tabTargets = await findTabTargets();
+          if (!tabTargets.arcana || !tabTargets.events) {
+            throw new Error(`Could not identify Journey tabs. ${JSON.stringify(tabTargets)}`);
+          }
+          console.log(`Journey tab targets: ${JSON.stringify(tabTargets)}`);
+
+          const snapshots = {};
+
+          for (const language of LANGUAGES) {
+            console.log(`\n=== Capture ${language.key} ===`);
+            await page.goto(SOURCE_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
+            await waitForJourneyReady();
+            const changed = await selectLanguage(language.label);
+            if (!changed && language.key !== 'ko') {
+              console.warn(`Language selector did not expose ${language.label}; capturing the currently rendered locale instead.`);
+            }
+            await waitForJourneyReady();
+
+            // Arcana tab snapshot.
+            await clickTabTarget(tabTargets.arcana);
+            const arcana = await captureCurrentMain();
+            console.log(`${language.key} arcana text=${arcana.text.length}, images=${arcana.images.length}`);
+
+            // Journey-event tab snapshot. Default filters are kept at "All" so every difficulty/category is included.
+            await clickTabTarget(tabTargets.events);
+            const events = await captureCurrentMain();
+            console.log(`${language.key} events text=${events.text.length}, images=${events.images.length}`);
+
+            if (language.key === 'ko') {
+              const mustInclude = ['훈련의 방향성', '리세트의 일과', '오늘의 날씨', '의뢰 실패', '두통이 생기다'];
+              const missing = mustInclude.filter((token) => !events.text.includes(token));
+              if (events.text.length < 12000 || missing.length) {
+                throw new Error(`Korean Journey-event snapshot looks incomplete. text=${events.text.length}, missing=${missing.join(', ')}`);
+              }
+              if (arcana.text.length < 2500) {
+                throw new Error(`Korean Arcana Journey snapshot looks incomplete. text=${arcana.text.length}`);
+              }
+            }
+
+            const capturedAt = new Date().toISOString();
+            const langDir = path.join(OUT_DIR, language.key);
+            fs.mkdirSync(langDir, { recursive: true });
+            // Keep both the ready-to-display page and raw local snapshots so the source site is never needed for future redesigns/parsing.
+            fs.writeFileSync(path.join(langDir, 'index.html'), archivePage(language, arcana, events, capturedAt), 'utf8');
+            fs.writeFileSync(path.join(langDir, 'arcana.html'), arcana.html, 'utf8');
+            fs.writeFileSync(path.join(langDir, 'events.html'), events.html, 'utf8');
+            fs.writeFileSync(path.join(langDir, 'arcana.txt'), arcana.text, 'utf8');
+            fs.writeFileSync(path.join(langDir, 'events.txt'), events.text, 'utf8');
+            snapshots[language.key] = {
+              arcanaTextLength: arcana.text.length,
+              eventTextLength: events.text.length,
+              arcanaImages: arcana.images.length,
+              eventImages: events.images.length
+            };
+          }
+
+          await browser.close();
+
+          const meta = {
+            source: SOURCE_URL,
+            capturedAt: new Date().toISOString(),
+            mode: 'fully-local-static-archive',
+            sourceRequiredAtRuntime: false,
+            languages: LANGUAGES.map((item) => item.key),
+            localAssetCount: fs.readdirSync(ASSET_DIR).filter((name) => fs.statSync(path.join(ASSET_DIR, name)).isFile()).length,
+            snapshots
+          };
+          fs.writeFileSync(META_PATH, JSON.stringify(meta, null, 2), 'utf8');
+          console.log('\nJourney archive complete:');
+          console.log(JSON.stringify(meta, null, 2));
+          NODE
+
+      - name: Verify local Journey archive has no runtime source dependency
+        shell: bash
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/journey-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import { chromium } from 'playwright';
+
+          const meta = JSON.parse(fs.readFileSync('data/journey/backup-meta.json', 'utf8'));
+          if (meta.sourceRequiredAtRuntime !== false) throw new Error('Journey metadata still declares a runtime source dependency.');
+
+          const browser = await chromium.launch({ headless: true });
+          const context = await browser.newContext({ viewport: { width: 1100, height: 1400 } });
+          const page = await context.newPage();
+          const externalRequests = [];
+          await page.route('**/*', async (route) => {
+            const url = new URL(route.request().url());
+            if (['127.0.0.1', 'localhost'].includes(url.hostname) || ['data:', 'blob:'].includes(url.protocol)) {
+              return route.continue();
+            }
+            externalRequests.push(route.request().url());
+            return route.abort();
+          });
+
+          await page.goto('http://127.0.0.1:4173/data/journey/ko/', { waitUntil: 'domcontentloaded', timeout: 30000 });
+          await page.waitForTimeout(500);
+          const text = (await page.locator('body').innerText()).replace(/\s+/g, ' ');
+          if (!text.includes('훈련의 방향성') || !text.includes('두통이 생기다')) {
+            throw new Error('Local Journey events were not available during offline verification.');
+          }
+
+          const arcanaTab = page.getByRole('button', { name: '아르카나', exact: true });
+          await arcanaTab.click();
+          await page.waitForTimeout(250);
+          const arcanaText = (await page.locator('#pane-arcana').innerText()).trim();
+          if (arcanaText.length < 2000) throw new Error(`Local Journey Arcana archive was too small (${arcanaText.length}).`);
+
+          if (externalRequests.length) {
+            throw new Error(`Journey archive attempted external runtime requests:\n${externalRequests.join('\n')}`);
+          }
+
+          await browser.close();
+          console.log('Offline verification passed: Journey works without the source site.');
+          NODE
+
+      - name: Commit Journey archive
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/journey data/journey-assets
+          if git diff --cached --quiet; then
+            echo "No Journey changes to commit."
+          else
+            git commit -m "Backup Journey database locally"
+            git push
+          fi
