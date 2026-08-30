@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v91-arcana-source-audit";
+const SITE_BUILD_VERSION = "v92-arcana-clean-layout-search-fix";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -7271,18 +7271,7 @@ function getJourneyArcanaEventGroups(entry) {
 function getJourneyEntrySearchText(entry) {
   if (entry?.kind === "arcana" || entry?.arcanaName) {
     const eventTitles = getJourneyArcanaEventGroups(entry)
-      .flatMap((group) => [
-        group.title || "",
-        ...(group.choices || []).flatMap((choice) => [
-          choice?.name || "",
-          ...[...(choice?.successRewards || []), ...(choice?.failureRewards || [])]
-            .flatMap((rewardGroup) => (rewardGroup || []).flatMap((reward) => [
-              reward?.label || "",
-              reward?.value || "",
-              reward?.description || ""
-            ]))
-        ])
-      ])
+      .map((group) => group.title || "")
       .filter(Boolean)
       .join(" ");
     return normalizeJourneySearch(
@@ -7651,10 +7640,14 @@ function renderJourneyArcanaStructuredReward(reward) {
   const effectTone = ["positive", "negative", "special", "neutral"].includes(reward?.effectTone)
     ? reward.effectTone
     : "neutral";
+  const sourceType = String(reward?.sourceType || "").trim();
+  const rewardTypeClass = /^RT_[A-Z_]+$/.test(sourceType)
+    ? ` reward-type-${sourceType.toLowerCase().replaceAll("_", "-")}`
+    : "";
   const icon = renderJourneyArcanaStructuredIcon(reward);
 
   return `
-    <div class="journey-arcana-reward-alternative polarity-${escapeHtml(polarity)} effect-${escapeHtml(effectTone)}">
+    <div class="journey-arcana-reward-alternative polarity-${escapeHtml(polarity)} effect-${escapeHtml(effectTone)}${rewardTypeClass}">
       <div class="journey-arcana-reward-main">
         ${icon}
         ${label ? `<span class="journey-arcana-reward-label">${escapeHtml(label)}</span>` : ""}
