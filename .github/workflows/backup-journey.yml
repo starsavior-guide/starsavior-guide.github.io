@@ -60,8 +60,8 @@ jobs:
           // The source Journey page uses two independent checkboxes, not tabs.
           // Capture each content type by explicitly setting these checkbox states.
           const TYPE_ALIASES = {
-            arcana: ['아르카나','Arcana','アルカナ','阿爾克那','阿尔克那'],
-            events: ['여정 이벤트','Journey Event','Journey Events','旅程イベント','旅程事件']
+            arcana: ['아르카나','Arcana','Arcana Event','Arcana Events','Show Arcana Event','Show Arcana Events','アルカナ','阿爾克那','阿尔克那'],
+            events: ['여정 이벤트','Journey Event','Journey Events','Show Journey Event','Show Journey Events','旅程イベント','旅程事件']
           };
           
           const CATEGORY_ALIASES = {
@@ -125,6 +125,7 @@ jobs:
           const assetMap = new Map();
           const usedNames = new Map();
           const savedTabPaths = { arcana: null, events: null };
+          const savedTypePaths = { arcana: null, events: null };
           
           async function downloadAsset(url, preferredName = '') {
             if (!url || !/^https?:\/\//i.test(url)) return null;
@@ -267,6 +268,95 @@ jobs:
           // The source renders Arcana / Journey Event as custom clickable UI, not semantic checkboxes.
           // A fresh Journey page starts with both enabled. For a single-type capture, reload the page
           // and click the *other* label once to disable it. This avoids relying on aria/input state.
+          async function clickJourneyType(kind) {
+            const savedPath = savedTypePaths[kind];
+            const result = await page.evaluate(({ labels, savedPath }) => {
+              const norm = (v) => String(v || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim().toLocaleLowerCase();
+              const wanted = labels.map(norm);
+              const visible = (el) => {
+                if (!(el instanceof HTMLElement)) return false;
+                const r = el.getBoundingClientRect();
+                const s = getComputedStyle(el);
+                return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+              };
+              const resolvePath = (path) => {
+                let node = document.body;
+                for (const index of path || []) {
+                  node = node?.children?.[index];
+                  if (!node) return null;
+                }
+                return node;
+              };
+              const makePath = (el) => {
+                const path = [];
+                let node = el;
+                while (node && node !== document.body) {
+                  const parent = node.parentElement;
+                  if (!parent) return null;
+                  path.unshift([...parent.children].indexOf(node));
+                  node = parent;
+                }
+                return node === document.body ? path : null;
+              };
+              const clickableFor = (el) => {
+                const semantic = el.closest('button,label,a,[role="checkbox"],[role="switch"],[role="button"],input[type="checkbox"]');
+                if (semantic && visible(semantic)) return semantic;
+                let node = el;
+                for (let depth = 0; node && node !== document.body && depth < 7; depth++, node = node.parentElement) {
+                  if (!(node instanceof HTMLElement) || !visible(node)) continue;
+                  const style = getComputedStyle(node);
+                  if (style.cursor === 'pointer' || node.onclick || node.tabIndex >= 0) return node;
+                  const input = node.querySelector?.('input[type="checkbox"]');
+                  if (input) return input.closest('label') || input;
+                }
+                return el.parentElement || el;
+              };
+
+              if (Array.isArray(savedPath)) {
+                const saved = resolvePath(savedPath);
+                if (saved && visible(saved)) {
+                  saved.scrollIntoView({ block: 'center' });
+                  saved.click();
+                  return { clicked: true, path: savedPath, via: 'saved' };
+                }
+              }
+
+              const candidates = [];
+              for (const el of document.querySelectorAll('button,label,a,[role="checkbox"],[role="switch"],[role="button"],div,span,p')) {
+                if (!visible(el)) continue;
+                const text = norm(el.innerText || el.textContent);
+                if (!text) continue;
+                const exact = wanted.includes(text);
+                const fuzzy = wanted.some((target) => target.length >= 4 && (text.includes(target) || target.includes(text)));
+                if (!exact && !fuzzy) continue;
+                const clickable = clickableFor(el);
+                if (!clickable || !visible(clickable)) continue;
+                let score = exact ? 400 : 160;
+                if (clickable.tagName === 'LABEL') score += 180;
+                if (clickable.matches?.('[role="checkbox"],input[type="checkbox"]')) score += 170;
+                if (clickable.tagName === 'BUTTON' || clickable.getAttribute?.('role') === 'button') score += 120;
+                if (getComputedStyle(clickable).cursor === 'pointer') score += 70;
+                score -= text.length;
+                candidates.push({ clickable, score, text });
+              }
+              candidates.sort((a,b) => b.score - a.score);
+              const hit = candidates[0];
+              if (!hit) return { clicked: false };
+              hit.clickable.scrollIntoView({ block: 'center' });
+              hit.clickable.click();
+              return { clicked: true, path: makePath(hit.clickable), text: hit.text, via: 'search' };
+            }, { labels: TYPE_ALIASES[kind], savedPath });
+
+            if (result.clicked && !savedTypePaths[kind] && Array.isArray(result.path)) {
+              savedTypePaths[kind] = result.path;
+            }
+            if (result.clicked) {
+              await page.waitForTimeout(650);
+              await deepScroll();
+            }
+            return result;
+          }
+
           async function prepareJourneyMode(kind, language) {
             await page.goto(SOURCE_URL, { waitUntil:'domcontentloaded', timeout:60000 });
             await waitReady();
@@ -276,8 +366,8 @@ jobs:
             }
 
             const unwantedKind = kind === 'arcana' ? 'events' : 'arcana';
-            const clicked = await clickVisibleExact(TYPE_ALIASES[unwantedKind]);
-            if (!clicked) {
+            const result = await clickJourneyType(unwantedKind);
+            if (!result.clicked) {
               const visibleTexts = await page.evaluate(() => [...document.querySelectorAll('button,div,span,p,label')]
                 .filter((el) => {
                   const r = el.getBoundingClientRect();
@@ -285,10 +375,11 @@ jobs:
                   return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
                 })
                 .map((el) => String(el.innerText || el.textContent || '').replace(/\s+/g,' ').trim())
-                .filter((text) => text && text.length <= 40)
-                .slice(0, 120));
+                .filter((text) => text && text.length <= 60)
+                .slice(0, 160));
               throw new Error(`Could not disable Journey ${unwantedKind} while preparing ${kind} for ${language.key}. Visible text: ${JSON.stringify(visibleTexts)}`);
             }
+            console.log(`${language.key} ${kind}: disabled ${unwantedKind} via ${result.via}${result.text ? ` (${result.text})` : ''}`);
             await page.waitForTimeout(450);
             await deepScroll();
           }
