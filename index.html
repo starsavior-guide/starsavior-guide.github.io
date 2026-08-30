@@ -8,7 +8,7 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=57-inline-savior-details"></script>
+  <script defer src="./app.js?v=58-clean-inline-savior-details"></script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -618,14 +618,34 @@
   <style id="savior-source-detail-styles">
     .savior-source-detail {
       width: 100%;
+      margin: 20px 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
     }
 
     .savior-detail-toggle {
-      display: inline-flex;
+      display: flex;
+      width: 100%;
+      min-height: 64px;
+      padding: 16px 20px;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
+      justify-content: space-between;
+      gap: 14px;
+      border: 0;
+      border-radius: 0;
+      background: linear-gradient(180deg, rgba(111, 141, 255, .10), rgba(111, 141, 255, .035));
+      color: var(--text);
+      font: inherit;
+      font-size: 16px;
+      font-weight: 900;
+      text-align: left;
       cursor: pointer;
+    }
+
+    .savior-detail-toggle:hover {
+      background: linear-gradient(180deg, rgba(111, 141, 255, .16), rgba(111, 141, 255, .06));
     }
 
     .savior-detail-toggle:disabled {
@@ -634,8 +654,9 @@
     }
 
     .savior-detail-chevron {
+      flex: 0 0 auto;
       display: inline-block;
-      font-size: 18px;
+      font-size: 20px;
       line-height: 1;
       transition: transform .2s ease;
     }
@@ -646,27 +667,176 @@
 
     .savior-source-panel {
       width: 100%;
-      margin-top: 14px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--surface);
+      border-top: 1px solid var(--line);
+      background: rgba(2, 8, 23, .22);
     }
 
     .savior-source-panel[hidden] {
       display: none !important;
     }
 
-    .savior-source-frame {
-      display: block;
+    .savior-source-structured {
+      display: grid;
+      gap: 22px;
+      padding: 22px;
+    }
+
+    .savior-source-intro,
+    .savior-source-table-section {
+      min-width: 0;
+    }
+
+    .savior-source-intro h3,
+    .savior-source-table-heading h3 {
+      margin: 0;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -.025em;
+    }
+
+    .savior-source-intro p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.75;
+    }
+
+    .savior-source-table-heading {
+      display: flex;
+      margin-bottom: 10px;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .savior-source-table-heading span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .savior-source-table-scroll {
       width: 100%;
-      min-height: 280px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .savior-source-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(3, 10, 24, .34);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .savior-source-data-table th,
+    .savior-source-data-table td {
+      padding: 11px 13px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .savior-source-data-table tr:last-child > * {
+      border-bottom: 0;
+    }
+
+    .savior-source-data-table thead th {
+      background: rgba(111, 141, 255, .10);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .savior-source-data-table tbody th {
+      width: 34%;
+      max-width: 210px;
+      background: rgba(111, 141, 255, .045);
+      color: var(--muted);
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .savior-source-data-table tbody td {
+      font-weight: 750;
+    }
+
+    .savior-skill-table-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .savior-skill-table-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(3, 10, 24, .34);
+    }
+
+    .savior-skill-table-title {
+      display: flex;
+      min-height: 74px;
+      padding: 12px 14px;
+      align-items: center;
+      gap: 13px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(111, 141, 255, .06);
+    }
+
+    .savior-skill-icon,
+    .savior-skill-icon-fallback {
+      flex: 0 0 54px;
+      width: 54px;
+      height: 54px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, .24);
+      object-fit: cover;
+    }
+
+    .savior-skill-icon-fallback {
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 22px;
+    }
+
+    .savior-skill-table-title > div {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .savior-skill-table-title strong {
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .savior-skill-table-title span {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .savior-skill-table-card .savior-source-table-scroll {
       border: 0;
-      background: transparent;
+      border-radius: 0;
+    }
+
+    .savior-skill-data-table tbody th {
+      width: 86px;
+      max-width: 86px;
     }
 
     .savior-source-status {
-      padding: 22px 18px;
+      padding: 24px 18px;
       color: var(--muted);
       font-size: 14px;
       font-weight: 750;
@@ -679,14 +849,51 @@
     }
 
     @media (max-width: 640px) {
-      .savior-source-detail,
-      .savior-detail-toggle {
-        width: 100%;
+      .savior-source-detail {
+        margin: 14px 0;
+        border-radius: 14px;
       }
 
-      .savior-source-panel {
-        margin-top: 12px;
-        border-radius: 12px;
+      .savior-detail-toggle {
+        min-height: 58px;
+        padding: 14px 16px;
+        font-size: 14px;
+      }
+
+      .savior-source-structured {
+        gap: 18px;
+        padding: 16px 14px 18px;
+      }
+
+      .savior-source-intro h3,
+      .savior-source-table-heading h3 {
+        font-size: 16px;
+      }
+
+      .savior-source-data-table {
+        font-size: 13px;
+      }
+
+      .savior-source-data-table th,
+      .savior-source-data-table td {
+        padding: 10px 11px;
+      }
+
+      .savior-source-data-table tbody th {
+        width: 108px;
+        max-width: 108px;
+      }
+
+      .savior-skill-data-table tbody th {
+        width: 70px;
+        max-width: 70px;
+      }
+
+      .savior-skill-icon,
+      .savior-skill-icon-fallback {
+        flex-basis: 48px;
+        width: 48px;
+        height: 48px;
       }
     }
   </style>

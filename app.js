@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v57-inline-savior-details";
+const SITE_BUILD_VERSION = "v58-clean-inline-savior-details";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -43,6 +43,70 @@ Object.assign(I18N_DATA.ui.en, { "아르카나 상세정보": "Arcana details" }
 Object.assign(I18N_DATA.ui.ja, { "아르카나 상세정보": "アルカナ詳細情報" });
 Object.assign(I18N_DATA.ui["zh-TW"], { "아르카나 상세정보": "阿爾克那詳細資訊" });
 Object.assign(I18N_DATA.ui["zh-CN"], { "아르카나 상세정보": "阿尔克那详细信息" });
+Object.assign(I18N_DATA.ui.en, {
+  "구원자 설명": "Savior Overview",
+  "기본 스테이터스": "Base Stats",
+  "여정 스테이터스": "Journey Stats",
+  "공명 잠재력": "Resonance Potential",
+  "스킬 정보": "Skill Information",
+  "LV.200 기준": "Lv.200",
+  "항목": "Stat",
+  "수치": "Value",
+  "레벨": "Level",
+  "효과": "Effect",
+  "유형": "Type",
+  "설명": "Description",
+  "추가 정보": "Additional Information",
+  "백업된 상세정보에서 표 데이터를 구성하지 못했습니다.": "The backed-up details could not be converted into tables."
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "구원자 설명": "救援者概要",
+  "기본 스테이터스": "基本ステータス",
+  "여정 스테이터스": "旅程ステータス",
+  "공명 잠재력": "共鳴潜在力",
+  "스킬 정보": "スキル情報",
+  "LV.200 기준": "Lv.200基準",
+  "항목": "項目",
+  "수치": "数値",
+  "레벨": "レベル",
+  "효과": "効果",
+  "유형": "タイプ",
+  "설명": "説明",
+  "추가 정보": "追加情報",
+  "백업된 상세정보에서 표 데이터를 구성하지 못했습니다.": "バックアップ済み詳細を表形式に変換できませんでした。"
+});
+Object.assign(I18N_DATA.ui["zh-TW"], {
+  "구원자 설명": "救援者概要",
+  "기본 스테이터스": "基本能力值",
+  "여정 스테이터스": "旅程能力值",
+  "공명 잠재력": "共鳴潛能",
+  "스킬 정보": "技能資訊",
+  "LV.200 기준": "LV.200 基準",
+  "항목": "項目",
+  "수치": "數值",
+  "레벨": "等級",
+  "효과": "效果",
+  "유형": "類型",
+  "설명": "說明",
+  "추가 정보": "追加資訊",
+  "백업된 상세정보에서 표 데이터를 구성하지 못했습니다.": "無法將已備份的詳細資訊整理成表格。"
+});
+Object.assign(I18N_DATA.ui["zh-CN"], {
+  "구원자 설명": "救援者概要",
+  "기본 스테이터스": "基本属性",
+  "여정 스테이터스": "旅程属性",
+  "공명 잠재력": "共鸣潜能",
+  "스킬 정보": "技能信息",
+  "LV.200 기준": "LV.200 基准",
+  "항목": "项目",
+  "수치": "数值",
+  "레벨": "等级",
+  "효과": "效果",
+  "유형": "类型",
+  "설명": "说明",
+  "추가 정보": "附加信息",
+  "백업된 상세정보에서 표 데이터를 구성하지 못했습니다.": "无法将已备份的详细信息整理成表格。"
+});
 
 // 스마일(보이저 구원단) 아르카나 대체 설명 다국어 보정
 Object.assign(I18N_DATA.ui.en, {
@@ -650,14 +714,14 @@ function applyLanguageToDOM(root = document.body) {
     {
       acceptNode(node) {
         if (node.nodeType === Node.ELEMENT_NODE) {
-          if (node.matches?.("script, style, #language-select, #language-select *")) {
+          if (node.matches?.("script, style, #language-select, #language-select *, [data-i18n-preserve], [data-i18n-preserve] *")) {
             return NodeFilter.FILTER_REJECT;
           }
           return NodeFilter.FILTER_ACCEPT;
         }
         if (node.nodeType === Node.TEXT_NODE) {
           const parent = node.parentElement;
-          if (!parent || parent.closest("script, style, #language-select")) return NodeFilter.FILTER_REJECT;
+          if (!parent || parent.closest("script, style, #language-select, [data-i18n-preserve]")) return NodeFilter.FILTER_REJECT;
           return /[가-힣]/.test(node.nodeValue || "") || ORIGINAL_TEXT_NODES.has(node)
             ? NodeFilter.FILTER_ACCEPT
             : NodeFilter.FILTER_SKIP;
@@ -5281,27 +5345,356 @@ function setSaviorSourcePanelStatus(panel, sourceText, kind = "") {
   panel.innerHTML = `<div class="savior-source-status ${escapeHtml(kind)}">${escapeHtml(translateString(sourceText))}</div>`;
 }
 
-function resizeSaviorSourceFrame(frame) {
-  try {
-    const doc = frame.contentDocument;
-    if (!doc) return;
-    const height = Math.max(
-      doc.documentElement?.scrollHeight || 0,
-      doc.body?.scrollHeight || 0
-    );
-    if (height > 0) frame.style.height = `${height + 8}px`;
-  } catch (_) {}
+function normalizeSaviorSourceText(value) {
+  return String(value || "").replace(/\s+/g, " ").trim();
 }
 
-function observeSaviorSourceFrame(frame) {
-  resizeSaviorSourceFrame(frame);
+function escapeRegExp(value) {
+  return String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function getSaviorByDetailId(detailId) {
+  const numericId = Number(detailId);
+  return SAVIORS.find((item) => SAVIOR_DETAIL_IDS[item.id] === numericId) || null;
+}
+
+function resolveSaviorBackupAssetUrl(rawUrl, detailId) {
+  if (!rawUrl) return "";
   try {
-    const doc = frame.contentDocument;
-    if (!doc?.body || typeof ResizeObserver === "undefined") return;
-    const observer = new ResizeObserver(() => resizeSaviorSourceFrame(frame));
-    observer.observe(doc.body);
-    frame._saviorResizeObserver = observer;
-  } catch (_) {}
+    const base = new URL(`./data/saviors/${encodeURIComponent(detailId)}.html`, window.location.href);
+    return new URL(rawUrl, base).href;
+  } catch (_) {
+    return rawUrl;
+  }
+}
+
+function sectionTextBetween(fullText, startLabel, endLabels = []) {
+  const start = fullText.indexOf(startLabel);
+  if (start < 0) return "";
+  const from = start + startLabel.length;
+  let end = fullText.length;
+  for (const label of endLabels) {
+    const idx = fullText.indexOf(label, from);
+    if (idx >= 0 && idx < end) end = idx;
+  }
+  return fullText.slice(from, end).trim();
+}
+
+function extractMetricRows(sectionText, labels) {
+  return labels.flatMap((label) => {
+    const match = sectionText.match(new RegExp(`${escapeRegExp(label)}\\s*([0-9][0-9,]*(?:\\.[0-9]+)?%?)`));
+    return match ? [{ label, value: match[1] }] : [];
+  });
+}
+
+function extractSaviorSourceIntro(fullText, savior) {
+  const basicIndex = fullText.indexOf("기본 스테이터스");
+  if (basicIndex < 0) return "";
+  let prefix = fullText.slice(0, basicIndex).trim();
+
+  const anchors = [savior?.attackType, savior?.className, savior?.grade]
+    .filter(Boolean)
+    .map(String);
+  let lastAnchorEnd = -1;
+  for (const anchor of anchors) {
+    const index = prefix.lastIndexOf(anchor);
+    if (index >= 0) lastAnchorEnd = Math.max(lastAnchorEnd, index + anchor.length);
+  }
+  if (lastAnchorEnd >= 0) prefix = prefix.slice(lastAnchorEnd).trim();
+
+  prefix = prefix
+    .replace(/^구원자\s*/g, "")
+    .replace(/^한국어\s*/g, "")
+    .replace(/^(English|日本語|繁體中文|简体中文)\s*/g, "")
+    .trim();
+
+  return prefix.length >= 12 ? prefix : "";
+}
+
+function extractResonanceRows(root) {
+  const rows = [];
+  const seen = new Set();
+  const all = [...root.querySelectorAll("*")];
+  for (const el of all) {
+    const text = normalizeSaviorSourceText(el.textContent);
+    const match = text.match(/^Lv\.?\s*(\d+)\s+(.{2,100})$/i);
+    if (!match) continue;
+    if ([...el.children].some((child) => /^Lv\.?\s*\d+/i.test(normalizeSaviorSourceText(child.textContent)))) continue;
+    const level = `Lv.${match[1]}`;
+    const effect = match[2].trim();
+    const key = `${level}|${effect}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      rows.push({ level, effect });
+    }
+  }
+  return rows.slice(0, 10);
+}
+
+const SAVIOR_SKILL_TYPE_LABELS = new Set([
+  "패시브", "액티브", "기본기", "특수기", "궁극기", "패시브 스킬", "액티브 스킬"
+]);
+
+function isExactSkillTypeElement(el) {
+  const text = normalizeSaviorSourceText(el.textContent);
+  if (!SAVIOR_SKILL_TYPE_LABELS.has(text)) return false;
+  return ![...el.children].some((child) => SAVIOR_SKILL_TYPE_LABELS.has(normalizeSaviorSourceText(child.textContent)));
+}
+
+function findSkillCardForType(typeEl, root) {
+  let node = typeEl.parentElement;
+  while (node && node !== root) {
+    const text = normalizeSaviorSourceText(node.textContent);
+    const hasImage = node.querySelector("img") !== null;
+    if (hasImage && text.length >= 30 && text.length <= 7000) {
+      return node;
+    }
+    node = node.parentElement;
+  }
+  return null;
+}
+
+function chooseSkillName(block, typeEl) {
+  const ignored = new Set([...SAVIOR_SKILL_TYPE_LABELS, "스킬 레벨 정보"]);
+  const candidates = [...block.querySelectorAll("h1,h2,h3,h4,h5,h6,strong,b")]
+    .map((el) => ({ el, text: normalizeSaviorSourceText(el.textContent) }))
+    .filter(({ text }) => text && text.length <= 90 && !ignored.has(text) && !/^Lv\.?\s*\d+/i.test(text) && !/^\d+$/.test(text));
+
+  const before = candidates.filter(({ el }) => {
+    const pos = el.compareDocumentPosition(typeEl);
+    return Boolean(pos & Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+  if (before.length) return before[before.length - 1].text;
+  if (candidates.length) return candidates[0].text;
+
+  const blockText = normalizeSaviorSourceText(block.textContent);
+  const typeText = normalizeSaviorSourceText(typeEl.textContent);
+  const index = blockText.indexOf(typeText);
+  if (index > 0) {
+    const prefix = blockText.slice(0, index).trim();
+    const words = prefix.split(" ");
+    return words.slice(Math.max(0, words.length - 6)).join(" ").slice(0, 90);
+  }
+  return "스킬";
+}
+
+function extractSkillLevelRows(block) {
+  const all = [...block.querySelectorAll("*")];
+  const levelHeader = all.find((el) => normalizeSaviorSourceText(el.textContent) === "스킬 레벨 정보") || null;
+  const rows = [];
+  const seen = new Set();
+
+  if (levelHeader) {
+    for (const el of all) {
+      const exact = normalizeSaviorSourceText(el.textContent);
+      if (!/^(?:[1-9]|10)$/.test(exact)) continue;
+      const relation = levelHeader.compareDocumentPosition(el);
+      if (!(relation & Node.DOCUMENT_POSITION_FOLLOWING)) continue;
+
+      let row = el.parentElement;
+      while (row && row !== block) {
+        const rowText = normalizeSaviorSourceText(row.textContent);
+        if (rowText.startsWith(`${exact} `) && rowText.length > exact.length + 3 && rowText.length < 900) {
+          const description = rowText.slice(exact.length).trim();
+          const key = `${exact}|${description}`;
+          if (!seen.has(key)) {
+            seen.add(key);
+            rows.push({ level: exact, description });
+          }
+          break;
+        }
+        row = row.parentElement;
+      }
+    }
+  }
+
+  if (!rows.length) {
+    const full = normalizeSaviorSourceText(block.textContent);
+    const marker = full.indexOf("스킬 레벨 정보");
+    const tail = marker >= 0 ? full.slice(marker + "스킬 레벨 정보".length) : "";
+    const regex = /(?:^|\s)(10|[1-9])\s+(.+?)(?=(?:\s(?:10|[1-9])\s+)|$)/g;
+    let match;
+    while ((match = regex.exec(tail))) {
+      const description = match[2].trim();
+      if (description.length < 4) continue;
+      const key = `${match[1]}|${description}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        rows.push({ level: match[1], description });
+      }
+    }
+  }
+
+  return rows.slice(0, 20);
+}
+
+function extractSkillBlocks(root, detailId) {
+  const typeElements = [...root.querySelectorAll("*")].filter(isExactSkillTypeElement);
+  const found = [];
+  const seenBlocks = new Set();
+
+  for (const typeEl of typeElements) {
+    const block = findSkillCardForType(typeEl, root);
+    if (!block || seenBlocks.has(block)) continue;
+    seenBlocks.add(block);
+
+    const type = normalizeSaviorSourceText(typeEl.textContent);
+    const name = chooseSkillName(block, typeEl);
+    const full = normalizeSaviorSourceText(block.textContent);
+    const levelMarker = full.indexOf("스킬 레벨 정보");
+    let description = (levelMarker >= 0 ? full.slice(0, levelMarker) : full).trim();
+
+    if (name) description = description.replace(name, " ");
+    if (type) description = description.replace(type, " ");
+    description = normalizeSaviorSourceText(description)
+      .replace(/^스킬\s*/i, "")
+      .trim();
+
+    const image = block.querySelector("img");
+    const imageUrl = image ? resolveSaviorBackupAssetUrl(image.getAttribute("src") || "", detailId) : "";
+    const levels = extractSkillLevelRows(block);
+
+    found.push({ block, name, type, description, imageUrl, levels });
+  }
+
+  return found
+    .sort((a, b) => {
+      const pos = a.block.compareDocumentPosition(b.block);
+      if (pos & Node.DOCUMENT_POSITION_FOLLOWING) return -1;
+      if (pos & Node.DOCUMENT_POSITION_PRECEDING) return 1;
+      return 0;
+    })
+    .map(({ block, ...skill }) => skill);
+}
+
+function parseSaviorBackupDocument(html, detailId) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, "text/html");
+  const root = doc.querySelector(".snapshot-root") || doc.body;
+  const savior = getSaviorByDetailId(detailId);
+  if (!root) throw new Error("Missing snapshot root");
+
+  const fullText = normalizeSaviorSourceText(root.textContent);
+  const intro = extractSaviorSourceIntro(fullText, savior);
+
+  const basicSection = sectionTextBetween(fullText, "기본 스테이터스", ["여정 스테이터스", "공명 잠재력"]);
+  const basicLevelMatch = fullText.match(/기본 스테이터스\s*\((Lv\.?\s*\d+)\)/i);
+  const basicRows = extractMetricRows(basicSection, [
+    "공격력", "생명력", "방어력", "속도", "치명타 확률", "치명타 피해", "효과 적중", "효과 저항", "명중률"
+  ]);
+
+  const journeySection = sectionTextBetween(fullText, "여정 스테이터스", ["공명 잠재력"]);
+  const journeyRows = extractMetricRows(journeySection, ["힘", "체력", "인내", "집중", "보호"]);
+  const resonanceRows = extractResonanceRows(root);
+  const skills = extractSkillBlocks(root, detailId);
+
+  return {
+    savior,
+    intro,
+    basicLevel: basicLevelMatch ? basicLevelMatch[1].replace(/\s+/g, "").toUpperCase() : "LV.200",
+    basicRows,
+    journeyRows,
+    resonanceRows,
+    skills
+  };
+}
+
+function sourceTableMarkup(title, rows, options = {}) {
+  if (!rows?.length) return "";
+  const firstHeader = options.firstHeader || "항목";
+  const secondHeader = options.secondHeader || "수치";
+  const subtitle = options.subtitle || "";
+  return `
+    <section class="savior-source-table-section">
+      <div class="savior-source-table-heading">
+        <h3>${escapeHtml(title)}</h3>
+        ${subtitle ? `<span>${escapeHtml(subtitle)}</span>` : ""}
+      </div>
+      <div class="savior-source-table-scroll">
+        <table class="savior-source-data-table">
+          <thead>
+            <tr><th>${escapeHtml(firstHeader)}</th><th>${escapeHtml(secondHeader)}</th></tr>
+          </thead>
+          <tbody>
+            ${rows.map((row) => `
+              <tr>
+                <th>${escapeHtml(row.label ?? row.level ?? "")}</th>
+                <td data-i18n-preserve>${escapeHtml(row.value ?? row.effect ?? "")}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  `;
+}
+
+function skillTableMarkup(skill, index) {
+  const icon = skill.imageUrl
+    ? `<img class="savior-skill-icon" src="${escapeHtml(skill.imageUrl)}" alt="" loading="lazy">`
+    : `<span class="savior-skill-icon-fallback" aria-hidden="true">✦</span>`;
+  const type = skill.type || `스킬 ${index + 1}`;
+
+  return `
+    <div class="savior-skill-table-card">
+      <div class="savior-skill-table-title">
+        ${icon}
+        <div>
+          <strong data-i18n-preserve>${escapeHtml(skill.name || `스킬 ${index + 1}`)}</strong>
+          <span data-i18n-preserve>${escapeHtml(type)}</span>
+        </div>
+      </div>
+      <div class="savior-source-table-scroll">
+        <table class="savior-source-data-table savior-skill-data-table">
+          <tbody>
+            ${skill.description ? `
+              <tr>
+                <th>설명</th>
+                <td data-i18n-preserve>${escapeHtml(skill.description)}</td>
+              </tr>
+            ` : ""}
+            ${skill.levels.map((row) => `
+              <tr>
+                <th>Lv.${escapeHtml(row.level)}</th>
+                <td data-i18n-preserve>${escapeHtml(row.description)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+function createSaviorSourceStructuredMarkup(data) {
+  const hasAny = data.intro || data.basicRows.length || data.journeyRows.length || data.resonanceRows.length || data.skills.length;
+  if (!hasAny) {
+    return `<div class="savior-source-status error">${escapeHtml(translateString("백업된 상세정보에서 표 데이터를 구성하지 못했습니다."))}</div>`;
+  }
+
+  return `
+    <div class="savior-source-structured">
+      ${data.intro ? `
+        <section class="savior-source-intro">
+          <h3>구원자 설명</h3>
+          <p data-i18n-preserve>${escapeHtml(data.intro)}</p>
+        </section>
+      ` : ""}
+
+      ${sourceTableMarkup("기본 스테이터스", data.basicRows, { subtitle: `${data.basicLevel || "LV.200"} 기준` })}
+      ${sourceTableMarkup("여정 스테이터스", data.journeyRows)}
+      ${sourceTableMarkup("공명 잠재력", data.resonanceRows, { firstHeader: "레벨", secondHeader: "효과" })}
+
+      ${data.skills.length ? `
+        <section class="savior-source-table-section savior-source-skills-section">
+          <div class="savior-source-table-heading"><h3>스킬 정보</h3></div>
+          <div class="savior-skill-table-list">
+            ${data.skills.map(skillTableMarkup).join("")}
+          </div>
+        </section>
+      ` : ""}
+    </div>
+  `;
 }
 
 async function loadSaviorSourcePanel(button, panel) {
@@ -5316,18 +5709,12 @@ async function loadSaviorSourcePanel(button, panel) {
   try {
     const response = await fetch(url, { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-    const frame = document.createElement("iframe");
-    frame.className = "savior-source-frame";
-    frame.title = `${getLocalizedSaviorName(SAVIORS.find((item) => SAVIOR_DETAIL_IDS[item.id] === Number(detailId))?.name || "")} ${translateString("스킬설명 및 상세정보")}`.trim();
-    frame.loading = "lazy";
-    frame.setAttribute("sandbox", "allow-same-origin allow-popups");
-    frame.addEventListener("load", () => observeSaviorSourceFrame(frame));
-
-    panel.replaceChildren(frame);
-    frame.src = url;
+    const html = await response.text();
+    const parsed = parseSaviorBackupDocument(html, detailId);
+    panel.innerHTML = createSaviorSourceStructuredMarkup(parsed);
     panel.dataset.loaded = "true";
     panel.dataset.state = "ready";
+    applyLanguageToDOM(panel);
   } catch (error) {
     console.warn("Savior detail backup load failed:", detailId, error);
     setSaviorSourcePanelStatus(panel, "상세정보 백업 데이터를 불러올 수 없습니다.", "error");
@@ -5350,11 +5737,7 @@ detailContent.addEventListener("click", async (event) => {
   panel.hidden = !nextOpen;
   button.setAttribute("aria-label", translateString(nextOpen ? "상세정보 접기" : "상세정보 펼치기"));
 
-  if (nextOpen) {
-    await loadSaviorSourcePanel(button, panel);
-    const frame = panel.querySelector(".savior-source-frame");
-    if (frame) resizeSaviorSourceFrame(frame);
-  }
+  if (nextOpen) await loadSaviorSourcePanel(button, panel);
 });
 
 function getResolvedArcanaNames(slots) {
@@ -5595,11 +5978,10 @@ function createDetailMarkup(savior) {
         <p class="detail-subtitle" data-i18n-kind="subtitle" data-i18n-source="${escapeHtml(savior.subtitle)}">${escapeHtml(getLocalizedSubtitle(savior.subtitle))}</p>
         <p class="detail-summary">구원자 정보는 <a href="https://star-savior-arcana-db.pages.dev/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">스타세이비어 DB</a> 기준입니다.</p>
 
-        <div class="detail-quick-links">
-          ${guideButton}
-        </div>
       </div>
     </header>
+
+    ${guideButton}
 
     <section class="content-section growth-priority-section" id="growth-priority">
       <div class="section-titlebar">
