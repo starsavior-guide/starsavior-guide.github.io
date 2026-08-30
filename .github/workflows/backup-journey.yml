@@ -1,4 +1,5 @@
 name: Backup Journey database
+# v72: strip tracking badges and token-localize all archived images
 
 on:
   push:
@@ -488,17 +489,30 @@ jobs:
             return false;
           }
 
+          function replaceSerializedUrl(html, remoteUrl, localUrl) {
+            if (!remoteUrl) return html;
+            let next = html.split(remoteUrl).join(localUrl);
+            // outerHTML serializes query-string ampersands as &amp;. Replace that form too.
+            const escaped = remoteUrl.replaceAll('&', '&amp;');
+            if (escaped !== remoteUrl) next = next.split(escaped).join(localUrl);
+            return next;
+          }
+
           async function localizeImagesInFragment(snapshot) {
             for (const image of snapshot.images) {
-              if (!image.src || !/^https?:\/\//i.test(image.src)) continue;
-              const local = await downloadAsset(image.src, image.alt || image.nearby || 'journey-image');
-              snapshot.html = snapshot.html.split(image.src).join(local);
-              if (image.currentSrc && image.currentSrc !== image.src) snapshot.html = snapshot.html.split(image.currentSrc).join(local);
+              const remote = image.currentSrc || image.src;
+              if (!remote || !/^https?:\/\//i.test(remote)) continue;
+              const local = await downloadAsset(remote, image.alt || image.nearby || 'journey-image');
+              // Every cloned <img> gets a stable token before serialization, so encoded query strings
+              // cannot leave a remote URL behind in the static archive.
+              if (image.token) snapshot.html = snapshot.html.split(image.token).join(local);
+              snapshot.html = replaceSerializedUrl(snapshot.html, image.src, local);
+              snapshot.html = replaceSerializedUrl(snapshot.html, image.currentSrc, local);
             }
             for (const background of snapshot.backgrounds || []) {
               if (!background.url || !/^https?:\/\//i.test(background.url)) continue;
               const local = await downloadAsset(background.url, background.nearby || 'journey-background');
-              snapshot.html = snapshot.html.split(background.url).join(local);
+              snapshot.html = replaceSerializedUrl(snapshot.html, background.url, local);
             }
             return snapshot;
           }
@@ -532,10 +546,43 @@ jobs:
               }
 
               clone.querySelectorAll('script,noscript,iframe,source').forEach((el) => el.remove());
-              clone.querySelectorAll('img').forEach((img) => {
-                img.removeAttribute('srcset');
-                img.removeAttribute('sizes');
-              });
+
+              // Resolve images against the live page, but serialize the clone with localizable tokens.
+              // Analytics / hit-counter badges are not Journey data and must never be archived.
+              const trackerHosts = new Set(['myhits.vercel.app', 'hits.seeyoufarm.com']);
+              const images = [];
+              const sourceImages = [...root.querySelectorAll('img')];
+              const cloneImages = [...clone.querySelectorAll('img')];
+              for (let i = 0; i < Math.min(sourceImages.length, cloneImages.length); i++) {
+                const sourceImg = sourceImages[i];
+                const cloneImg = cloneImages[i];
+                let src = '';
+                try {
+                  const raw = sourceImg.getAttribute('src') || '';
+                  if (raw) src = new URL(raw, location.href).href;
+                } catch (_) {}
+                const currentSrc = sourceImg.currentSrc || '';
+                let hostname = '';
+                try { hostname = new URL(currentSrc || src).hostname; } catch (_) {}
+                if (trackerHosts.has(hostname)) {
+                  cloneImg.remove();
+                  continue;
+                }
+                const nearby = sourceImg.closest('article,section,li,div')?.innerText || '';
+                const token = `__JOURNEY_LOCAL_IMAGE_${i}__`;
+                cloneImg.setAttribute('src', token);
+                cloneImg.removeAttribute('srcset');
+                cloneImg.removeAttribute('sizes');
+                cloneImg.removeAttribute('loading');
+                images.push({
+                  token,
+                  src,
+                  currentSrc,
+                  alt: (sourceImg.getAttribute('alt') || '').trim(),
+                  nearby: nearby.replace(/\s+/g, ' ').trim().slice(0, 80)
+                });
+              }
+
               clone.querySelectorAll('a[href]').forEach((a) => {
                 a.removeAttribute('href');
                 a.removeAttribute('target');
@@ -553,16 +600,6 @@ jobs:
                 for (const attr of [...el.attributes]) {
                   if (/^on/i.test(attr.name)) el.removeAttribute(attr.name);
                 }
-              });
-
-              const images = [...root.querySelectorAll('img')].map((img) => {
-                const nearby = img.closest('article,section,li,div')?.innerText || '';
-                return {
-                  src: img.getAttribute('src') ? new URL(img.getAttribute('src'), location.href).href : '',
-                  currentSrc: img.currentSrc || '',
-                  alt: (img.getAttribute('alt') || '').trim(),
-                  nearby: nearby.replace(/\s+/g, ' ').trim().slice(0, 80)
-                };
               });
 
               const backgrounds = [];
@@ -744,6 +781,16 @@ jobs:
             }
 
             const capturedAt = new Date().toISOString();
+
+            // Data snapshots must be self-contained. Tracker hosts are stripped instead of archived.
+            const forbiddenRuntimeHosts = ['myhits.vercel.app', 'hits.seeyoufarm.com', 'star-savior-arcana-db.pages.dev'];
+            for (const [kind, snapshot] of [['arcana', arcana], ['events', events]]) {
+              const leftovers = forbiddenRuntimeHosts.filter((host) => snapshot.html.includes(host));
+              if (leftovers.length) {
+                throw new Error(`${language.key} ${kind} snapshot still contains forbidden runtime hosts: ${leftovers.join(', ')}`);
+              }
+            }
+
             const langDir = path.join(OUT_DIR, language.key);
             fs.mkdirSync(langDir, { recursive: true });
             // Keep both the ready-to-display page and raw local snapshots so the source site is never needed for future redesigns/parsing.
