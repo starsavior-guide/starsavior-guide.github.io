@@ -1,0 +1,380 @@
+﻿분류,기존 파일명,새 파일명
+effect,b3ed139de59014f266713886.webp,강화 불가.webp
+effect,57ede9fdbd16eeb32adfd8a6.webp,격동.webp
+effect,de6c32fbaa98d901809a22e5.webp,고립.webp
+effect,c241e9dde466d21bed9b15be.webp,공격력 감소.webp
+effect,69d0d25769061a2e97a0c27a.webp,공격력 증가.webp
+effect,1901a2b2de3c47841dde37c1.webp,기절.webp
+effect,11466e47e450f836e611145d.webp,깨어나는 기억(해제불가).webp
+effect,aa401a49d7f9d7544ff4095c.webp,냉각.webp
+effect,2b091183a3cb85379944b78f.webp,도발.webp
+effect,e77a765ab0340c980d5a9f28.webp,도약.webp
+effect,36e6f856a6ad03ef047f0a13.webp,뒤엉킨 꿈결.webp
+effect,02f5a9916f4e106f5af7767a.webp,럭키 토큰(해제불가).webp
+effect,11d427ba80be65da52730b87.webp,면역.webp
+effect,48fd79a5a80357675c0d6f87.webp,명월(해제불가).webp
+effect,77a341b9bc1fe4e5b8dc0865.webp,명중률 감소.webp
+effect,97eaffd075aec21c100370b9.webp,모나스티르의 규율.webp
+effect,8e4081075e6379ef58e63a97.webp,물폭탄.webp
+effect,ccb95132dad03d81e67fac4a.webp,미지의 주문.webp
+effect,57fd4c82db2aba2c75f3cf2d.webp,방어력 감소.webp
+effect,1b432b4bab34ed4e5715064f.webp,방어력 증가.webp
+effect,026c4c6214d285e9b89a4ae8.webp,별빛 소망(해제불가).webp
+effect,1ec58624a5b6e9fbdaeda095.webp,보호막.webp
+effect,4d36e7e1e6b573d2af3832c8.webp,복수심(해제불가).webp
+effect,부서진너트.webp,부서진 너트.webp
+effect,d218e3f63fd5fccee222f520.webp,불사.webp
+effect,eebbc749a48fe6cda72f0613.webp,빙결.webp
+effect,be4439903a4db972b24e7ddd.webp,사랑의 서약(해제불가).webp
+effect,a1659afd2cadc3065f1b8802.webp,상급 공격력 증가.webp
+effect,23d5842d3c35133928e0b462.webp,서부의 바람.webp
+effect,6c9ede0c15c557d0832d70c9.webp,성스러운 가호.webp
+effect,8a90322937361e088b7bda89.webp,세븐볼(해제불가).webp
+effect,9dd7faae4ccff0b67187359d.webp,속도 감소.webp
+effect,0ceec7ff138f53230fc96b3b.webp,속도 증가.webp
+effect,31d6711254baef334edb06c9.webp,속박.webp
+effect,1fc74fc982dae69cfc8d94ce.webp,수호.webp
+effect,1a311b81a03f49b304f1b7ac.webp,스마일 매트릭스(해제불가).webp
+effect,a1506494b0c259efec4fb19b.webp,스킬 피해 무효.webp
+effect,a9a04795d20034759e09fbdb.webp,스파클라(해제불가).webp
+effect,40dee3fabce6fcefb6cf628a.webp,업화(해제불가).webp
+effect,4f8a1c4388b3e834ed3fb6a3.webp,연소.webp
+effect,1135c98f18681da4a592282c.webp,영몽의 빛.webp
+effect,5c66522e529a13202131dcc1.webp,옥좌의 주인(해제불가).webp
+effect,5b8f6ce38bf9a08fe478edfd.webp,워터 프루프 선크림.webp
+effect,c0bbe81b44b4c02fa46892cb.webp,은신.webp
+effect,c09ad34a26bb26a19ee94da1.webp,잭팟 블룸.webp
+effect,eb851f4caa1214c023e034f4.webp,점화.webp
+effect,a7a76f1d596124679fcb42a9.webp,참극의 가시(해제불가).webp
+effect,0e534ba8bb0211eceffc02d1.webp,철거 모드.webp
+effect,719feaec7b0f49da869739e3.webp,청풍(해제불가).webp
+effect,15f6c9c23abf60f6912a7078.webp,출혈.webp
+effect,a96c081fd43605e9f6c99dd0.webp,치명타 피해 증가.webp
+effect,89470e7162652497eef4da16.webp,치명타 확률 증가.webp
+effect,e7d96a30c68140e4c8980b35.webp,칠흑의 잔향(해제불가).webp
+effect,f4a94e3b89bcd4943e1e086d.webp,침묵.webp
+effect,295d15f0a6d5c8e22712e5e2.webp,토끼씨의 수사 자문.webp
+effect,58d6fbbca05ee444c6e31079.webp,통찰.webp
+effect,ae42548bacbc5aaf4713b013.webp,파쇄.webp
+effect,c0f7ac5f5a84262df366d0ab.webp,파워업 스타.webp
+effect,6a2d71be49207746303560e9.webp,파프닐의 강림(해제불가).webp
+effect,86c6df99a3e50e93b1151844.webp,폭주 모드(해제불가).webp
+effect,3e544e2e4b26886a57a757cf.webp,필중.webp
+effect,9b0199f557c9224a069fb4c8.webp,하이 롤러(해제불가).webp
+effect,헥사너트.webp,헥사 너트.webp
+effect,fffcef7120650e5277b3f823.webp,회복 감소.webp
+effect,e2dbfd9782754dfe86c536f4.webp,회복.webp
+effect,d83b44748c1989fe9cd77ab5.webp,회피율 증가.webp
+effect,9ccfb5eb5c1e7026699c8cdc.webp,효과 적중 증가.webp
+illustration,532f902f797021b2d564c546.webp,(궤도 수색대) 나루 일러스트.webp
+illustration,5b91df1487eed27ef25a3080.webp,(궤도 수색대) 로베르타 일러스트.webp
+illustration,554a49c45978079f14910133.webp,(궤도 수색대) 루그 일러스트.webp
+illustration,1253040607d911520e5a2cd9.webp,(나이트메어) 세이라 일러스트.webp
+illustration,99a63c5c8bcdabb5f5f3ecdf.webp,(노블 프린세스) 프레이 일러스트.webp
+illustration,7ac1e99f206cefff72c2ae2a.webp,(노아 마을 경비대) 안나 일러스트.webp
+illustration,5bf35ee52351c1ab6978b106.webp,(람파디스) 릴리 일러스트.webp
+illustration,bc9c6ea4b34df07b65600691.webp,(리틀 타이런트) 스칼렛 일러스트.webp
+illustration,be5768dda2c95ae6a785c291.webp,(모나스티르 기사단) 샤를 일러스트.webp
+illustration,89dfb24511073fa40bb28485.webp,(모나스티르 기사단) 카르멘 일러스트.webp
+illustration,06d3b31bdacb2ec83dc1f2fd.webp,(모나스티르 기사단) 프레이 일러스트.webp
+illustration,a18d95bec33ea53543018816.webp,(모노리스 교단) 뮤리엘 일러스트.webp
+illustration,283709dbcbfec31b4cf12d1c.webp,(모노리스 교단) 엘리사 일러스트.webp
+illustration,fbf18dc99c5e095fe5df568c.webp,(모렐 해양상단) 에데 일러스트.webp
+illustration,d1097261dd1d62c5c77a17af.webp,(모렐해운상회) 크리스텔 일러스트.webp
+illustration,36db79a2f50ea051b310219f.webp,(방랑자) 레이시 일러스트.webp
+illustration,508741154a81f4d364717806.webp,(방랑자) 카넬리아 일러스트.webp
+illustration,7d80c88486b906ea6c33bd2f.webp,(방랑자) 페이 일러스트.webp
+illustration,8d298fa9f704edb1bc8f745e.webp,(보이저 구원단) 루나 일러스트.webp
+illustration,18a1952ba5ec3a15fb5037eb.webp,(보이저 구원단) 스마일 일러스트.webp
+illustration,a44f7230b39b982550cd38d5.webp,(보이저 구원단) 아세라 일러스트.webp
+illustration,7c082f40e55fd6f05b592924.webp,(보이저 구원단) 오메가 일러스트.webp
+illustration,bb91244307490bf3dfb3c5e7.webp,(블레싱 인 블룸) 에핀델 일러스트.webp
+illustration,36c708a64cef1ced32859261.webp,(서부 해방군) 리디아 일러스트.webp
+illustration,5bac5f77f4de5c791aace704.webp,(서부 해방군) 베스타 일러스트.webp
+illustration,4426b095a52349351a5af610.webp,(서부 해방군) 세레스 일러스트.webp
+illustration,12feb8a1758318dc2c3ba8a1.webp,(선샤인 캣) 스마일 일러스트.webp
+illustration,b69a8033a7f6e72cf78bd38d.webp,(아셀루스 협회) 트리쉬 일러스트.webp
+illustration,fa6e97cafa29a7bcba73044f.webp,(오를랑 가문) 에핀델 일러스트.webp
+illustration,96679578a2cf89e93716d8c4.webp,(왈츠 오브 스타라이트) 아세라 일러스트.webp
+illustration,014298260d6a584d3583420a.webp,(운송 길드) 베라 일러스트.webp
+illustration,d1b5f48ee2ff3f59402714de.webp,(이터널 프로미스) 카르멘 일러스트.webp
+illustration,97258edcd6bf18119abaf17b.webp,(집행자) 티리아 일러스트.webp
+illustration,36888cceddc11fb20c9153a9.webp,(카노푸스 레인저) 다나 일러스트.webp
+illustration,020ecf944a8b3937aca68b67.webp,(카노푸스 레인저) 클라리사 일러스트.webp
+illustration,c64c10ccc24c9caa8f5a0b82.webp,(캔들 스퀘어) 벨 리스 일러스트.webp
+illustration,9146871ba35c6d19023d2c5b.webp,(캔들 스퀘어) 스칼렛 일러스트.webp
+illustration,1cb4b5a545098284b97bb76f.webp,(캔들 스퀘어) 에밀리 일러스트.webp
+illustration,86f59a40f7ffb79888eb5233.webp,(캔들 스퀘어) 클레어 일러스트.webp
+illustration,cc44a3f360e2f9f55a100ff8.webp,(키라는 친구 같은 거 없어) 키라 일러스트.webp
+illustration,d049d3d4f9cc2d2b6b570b01.webp,(페트라 조합) 마르실 일러스트.webp
+illustration,a196ae2403e897d3fff98b3b.webp,(페트라 조합) 타냐 일러스트.webp
+illustration,5735078b97f88d56fa847e99.webp,(페트라 조합) 페트라 일러스트.webp
+illustration,9e08d7d042f6dae5dd78489f.webp,(펜릴 소대) 유미나 일러스트.webp
+illustration,f4a9eddc956b39955fcfa94f.webp,(펜릴 소대) 힐데 일러스트.webp
+illustration,580087a8e20d5ad33243bc57.webp,(폴른 호크) 로자리아 일러스트.webp
+illustration,f491f14db5683fd5d950170d.webp,(풍월문) 린 일러스트.webp
+illustration,ff6abd4cf926465016882e91.webp,(풍월문) 세르팡 일러스트.webp
+illustration,6c4a58e5d20ffceeda78132a.webp,(플로리스 블루 로즈) 클레어 일러스트.webp
+illustration,c61a0c7db4e02158c670495b.webp,(하트 오브 모나스티르) 샤를 일러스트.webp
+illustration,cbdeccbd41bdfb08bf2f56aa.webp,(헬 세이비어) 할리 일러스트.webp
+illustration,2a3aa9eb5ff1ab74ddd465f9.webp,(화이트 펄 트랩) 루나 일러스트.webp
+portrait,6676da4bbd51dd3d19dd7665.webp,(궤도 수색대) 나루.webp
+portrait,06fe552d22d9dbafcf28c323.webp,(궤도 수색대) 로베르타.webp
+portrait,48128f3cee9f4c5ce32b5c01.webp,(궤도 수색대) 루그.webp
+portrait,ea76bcb21e21b35936ef8947.webp,(나이트메어) 세이라.webp
+portrait,04effd5bf2e4a9055157c823.webp,(노블 프린세스) 프레이.webp
+portrait,b4a461e47c6863e99abfaf59.webp,(노아 마을 경비대) 안나.webp
+portrait,ec8fec7d8ebd7a620c977e41.webp,(람파디스) 릴리.webp
+portrait,15728a572c6ef42fb1213cb7.webp,(리틀 타이런트) 스칼렛.webp
+portrait,cf0e430174480efb842c8679.webp,(모나스티르 기사단) 샤를.webp
+portrait,67b583356ef42bea7fe07317.webp,(모나스티르 기사단) 카르멘.webp
+portrait,e9e167a2022167c7c8975b18.webp,(모나스티르 기사단) 프레이.webp
+portrait,5068d6d92056e8c8a256b908.webp,(모노리스 교단) 뮤리엘.webp
+portrait,b5ca71d6fac0949025d287b6.webp,(모노리스 교단) 엘리사.webp
+portrait,4b00c64f46460b725721cb6a.webp,(모렐 해양상단) 에데.webp
+portrait,1c938d95251c9e72478db1c5.webp,(모렐해운상회) 크리스텔.webp
+portrait,4d3a821cc766c9c1510f3ded.webp,(방랑자) 레이시.webp
+portrait,34191d673f8dfcd0371307eb.webp,(방랑자) 카넬리아.webp
+portrait,63fce94ad7036181723e24de.webp,(방랑자) 페이.webp
+portrait,7198dcb18dc0dec5e3a25417.webp,(보이저 구원단) 루나.webp
+portrait,b175a0a29213ca51e122bfdd.webp,(보이저 구원단) 스마일.webp
+portrait,101c55304ff27df50d32cb94.webp,(보이저 구원단) 아세라.webp
+portrait,79430768eed1f15b6846afc9.webp,(보이저 구원단) 오메가.webp
+portrait,9c210d4b5dd4ce5a81c921da.webp,(블레싱 인 블룸) 에핀델.webp
+portrait,97aeb7bf8a03f110319479d1.webp,(서부 해방군) 리디아.webp
+portrait,7b1729121929cb440b54c4e6.webp,(서부 해방군) 베스타.webp
+portrait,5d0bd23eb7ec31b7c9d55c17.webp,(서부 해방군) 세레스.webp
+portrait,4dd0e86c9df0298978452290.webp,(선샤인 캣) 스마일.webp
+portrait,92bb01f54d3a8c8b1589245b.webp,(아셀루스 협회) 트리쉬.webp
+portrait,1bd319d04ae98e1b91e137b9.webp,(오를랑 가문) 에핀델.webp
+portrait,aa3a30078b35438caf5e6cbd.webp,(왈츠 오브 스타라이트) 아세라.webp
+portrait,b02ff2aaf031565ac48f33a5.webp,(운송 길드) 베라.webp
+portrait,56859b70c67b00ee3ad76393.webp,(이터널 프로미스) 카르멘.webp
+portrait,b18b7b69e0e068a24e0049c2.webp,(집행자) 티리아.webp
+portrait,ec7e2a21b3b1651f8a50d877.webp,(카노푸스 레인저) 다나.webp
+portrait,1af2d494d3f68d23a90bac27.webp,(카노푸스 레인저) 클라리사.webp
+portrait,1e0f28d12de6285823e136ff.webp,(캔들 스퀘어) 벨 리스.webp
+portrait,135bffc102aaa919b8ba6ec7.webp,(캔들 스퀘어) 스칼렛.webp
+portrait,71fa81107cc70e6e5516eb96.webp,(캔들 스퀘어) 에밀리.webp
+portrait,d1daccda9d84a9ab8e8ba438.webp,(캔들 스퀘어) 클레어.webp
+portrait,69de8c54b64f4ff7b61e1b87.webp,(키라는 친구 같은 거 없어) 키라.webp
+portrait,0a42d986f16d8dbae5fca57e.webp,(페트라 조합) 마르실.webp
+portrait,1a6c8d2cd96ff6560b03b09b.webp,(페트라 조합) 타냐.webp
+portrait,5bf4997bfec6f9b38b4cf171.webp,(페트라 조합) 페트라.webp
+portrait,1bad9de8b1119ec005b40f46.webp,(펜릴 소대) 유미나.webp
+portrait,2cf296915b5df4802f63c7e3.webp,(펜릴 소대) 힐데.webp
+portrait,715cedb33c594df198cda104.webp,(폴른 호크) 로자리아.webp
+portrait,485cf085b453f574e84585d6.webp,(풍월문) 린.webp
+portrait,be09a8ef3b907d63657ec01c.webp,(풍월문) 세르팡.webp
+portrait,17d3e11f55b9cbb71da8494e.webp,(플로리스 블루 로즈) 클레어.webp
+portrait,16ecc1420b70b466da4f8e32.webp,(하트 오브 모나스티르) 샤를.webp
+portrait,149389a07d51a017f8f3399a.webp,(헬 세이비어) 할리.webp
+portrait,8400561d40fa293a39aa43b0.webp,(화이트 펄 트랩) 루나.webp
+skill,1bf740377c77fa846d3ffd1b.webp,(궤도 수색대) 나루 궁극기.webp
+skill,dd03323b03020c237bf313a8.webp,(궤도 수색대) 나루 기본기.webp
+skill,0aee42b047b955210d179a94.webp,(궤도 수색대) 나루 특수기.webp
+skill,24b1dd0ce1019112787b494d.webp,(궤도 수색대) 나루 패시브.webp
+skill,7cdfe5fdbd416a7a70edb902.webp,(궤도 수색대) 로베르타 궁극기.webp
+skill,3389a47d62f43fd5415a654b.webp,(궤도 수색대) 로베르타 기본기.webp
+skill,d761849efc23a27317847471.webp,(궤도 수색대) 로베르타 특수기.webp
+skill,1f73a615fd9fd4b5da53b782.webp,(궤도 수색대) 로베르타 패시브.webp
+skill,a8217280b89a29b4fab63361.webp,(궤도 수색대) 루그 궁극기.webp
+skill,1ee16709f5946d2d82fb8bec.webp,(궤도 수색대) 루그 기본기.webp
+skill,c3c24d32d31296c34d64f9bb.webp,(궤도 수색대) 루그 특수기.webp
+skill,cdf01f75470a57561f4b7b9c.webp,(궤도 수색대) 루그 패시브.webp
+skill,8bab81c23336842813b8925a.webp,(나이트메어) 세이라 궁극기.webp
+skill,19a2073fe68ef5a75fe5f609.webp,(나이트메어) 세이라 기본기.webp
+skill,6e0c4f500cbe4ca5d266b1be.webp,(나이트메어) 세이라 특수기.webp
+skill,30f5d309a608be4aa1562244.webp,(나이트메어) 세이라 패시브.webp
+skill,57adf51cfc6681bb5367ac1d.webp,(노블 프린세스) 프레이 궁극기.webp
+skill,572d062a762687fb08ad98b0.webp,(노블 프린세스) 프레이 기본기.webp
+skill,3ecf1d5a63d3d7c83991b2b1.webp,(노블 프린세스) 프레이 특수기.webp
+skill,5092f5e92fd31a1ce86bbd0a.webp,(노블 프린세스) 프레이 패시브.webp
+skill,c312d670d26dbb36c9a5f12d.webp,(노아 마을 경비대) 안나 궁극기.webp
+skill,f3628597d5d761e76de48857.webp,(노아 마을 경비대) 안나 기본기.webp
+skill,6ff61d20810382a18597b162.webp,(노아 마을 경비대) 안나 특수기.webp
+skill,43c33e20d23a27e642c74a60.webp,(노아 마을 경비대) 안나 패시브.webp
+skill,5f8902d071be6ee5906a9499.webp,(람파디스) 릴리 궁극기.webp
+skill,8735a1f9a00966bf14d72616.webp,(람파디스) 릴리 기본기.webp
+skill,6116b0d082432cdff977d169.webp,(람파디스) 릴리 특수기.webp
+skill,d5e05ffa938a00c0daa6db32.webp,(람파디스) 릴리 패시브.webp
+skill,1ee30294fed2713cfb93078d.webp,(리틀 타이런트) 스칼렛 궁극기.webp
+skill,7a2c428b89fe8ebe58536a2e.webp,(리틀 타이런트) 스칼렛 기본기.webp
+skill,bcb4ff8ddc9dd2c97f90837d.webp,(리틀 타이런트) 스칼렛 특수기.webp
+skill,8d06c228ca7eee8b2d12e8cd.webp,(리틀 타이런트) 스칼렛 패시브.webp
+skill,bafab81db32a4b7b2debf93d.webp,(모나스티르 기사단) 샤를 궁극기.webp
+skill,e95de0e45763d52290b504a0.webp,(모나스티르 기사단) 샤를 기본기.webp
+skill,78fb11d59af03208e134c90b.webp,(모나스티르 기사단) 샤를 특수기.webp
+skill,7f44ae3798e602b545ad11c0.webp,(모나스티르 기사단) 샤를 패시브.webp
+skill,699118687c517ceb58f63bec.webp,(모나스티르 기사단) 카르멘 궁극기.webp
+skill,20bfb26289be68adb13fb9e1.webp,(모나스티르 기사단) 카르멘 기본기.webp
+skill,02532a0a46445cb2d2cb5a19.webp,(모나스티르 기사단) 카르멘 특수기.webp
+skill,63ec0aacf933a4e7fdfad3a2.webp,(모나스티르 기사단) 카르멘 패시브.webp
+skill,b80a0c68f5b9319756651687.webp,(모나스티르 기사단) 프레이 궁극기.webp
+skill,2d97e70fb4ab319f77eee5c3.webp,(모나스티르 기사단) 프레이 기본기.webp
+skill,123d7f25c4d560b90de5277b.webp,(모나스티르 기사단) 프레이 특수기.webp
+skill,46aebd13e92dc2eb05b2334b.webp,(모나스티르 기사단) 프레이 패시브.webp
+skill,9fee2974da29e672c266120d.webp,(모노리스 교단) 뮤리엘 궁극기.webp
+skill,f3c018d38f29fe2f7943d4b2.webp,(모노리스 교단) 뮤리엘 기본기.webp
+skill,46d64de81a311b64d33eda3d.webp,(모노리스 교단) 뮤리엘 특수기.webp
+skill,47e3bc3b7345da1caaef841d.webp,(모노리스 교단) 뮤리엘 패시브.webp
+skill,1673567c1798bc04a1f19bd2.webp,(모노리스 교단) 엘리사 궁극기.webp
+skill,aae9ff235a5042f0a71ec96d.webp,(모노리스 교단) 엘리사 기본기.webp
+skill,9f58bc11efc02476ed0081f7.webp,(모노리스 교단) 엘리사 특수기.webp
+skill,96c5b95f42b47607fc18a474.webp,(모노리스 교단) 엘리사 패시브.webp
+skill,c87af4f353f0a90454980fdc.webp,(모렐 해양상단) 에데 궁극기.webp
+skill,d3073aeffb6ce2adb01835d6.webp,(모렐 해양상단) 에데 기본기.webp
+skill,0d21b7da9c3b3bc7ab6cef94.webp,(모렐 해양상단) 에데 특수기.webp
+skill,5650186cb9d2427256733a1b.webp,(모렐 해양상단) 에데 패시브.webp
+skill,8cf52b719106f1b25d386505.webp,(모렐해운상회) 크리스텔 궁극기.webp
+skill,609cf38ad269e0d33145fe51.webp,(모렐해운상회) 크리스텔 기본기.webp
+skill,1ba4191b1d8eda80e8126c33.webp,(모렐해운상회) 크리스텔 특수기.webp
+skill,a66fa565f9682631b5981074.webp,(모렐해운상회) 크리스텔 패시브.webp
+skill,6f39d884e28322dde3c42247.webp,(방랑자) 레이시 궁극기.webp
+skill,a7752b867e4f471db2997c43.webp,(방랑자) 레이시 기본기.webp
+skill,66451d62952a54e6d01124f4.webp,(방랑자) 레이시 특수기.webp
+skill,d276969562410baaba996127.webp,(방랑자) 레이시 패시브.webp
+skill,621af08da5d386a36e71474c.webp,(방랑자) 카넬리아 궁극기.webp
+skill,48f569c0c3a1d692c3bf8727.webp,(방랑자) 카넬리아 기본기.webp
+skill,86025f21ff33deee64b71608.webp,(방랑자) 카넬리아 특수기.webp
+skill,47c11cb3f165c31583e19d5c.webp,(방랑자) 카넬리아 패시브.webp
+skill,d4141e54f7b17d28200d2db9.webp,(방랑자) 페이 궁극기.webp
+skill,6ab90a49594ac409278e859f.webp,(방랑자) 페이 기본기.webp
+skill,0bdf146109f612b16dee1862.webp,(방랑자) 페이 특수기.webp
+skill,1dcaf46cc3556fd16ddc56f2.webp,(방랑자) 페이 패시브.webp
+skill,48724f51808bd2ee0b5c447b.webp,(보이저 구원단) 루나 궁극기.webp
+skill,28557b4cfbd8887ea77b5def.webp,(보이저 구원단) 루나 기본기.webp
+skill,bedba9dafa80d9f18ff82f34.webp,(보이저 구원단) 루나 특수기.webp
+skill,b3321eb29d6dabfa8b7bc6c2.webp,(보이저 구원단) 루나 패시브.webp
+skill,3d47616d6042dedeae5016bc.webp,(보이저 구원단) 스마일 궁극기.webp
+skill,d40f31f9919262b029c1149f.webp,(보이저 구원단) 스마일 기본기.webp
+skill,575b4e7fe32c0e80f2b3764c.webp,(보이저 구원단) 스마일 특수기.webp
+skill,24bbe0a59509ac09cfba3283.webp,(보이저 구원단) 스마일 패시브.webp
+skill,ec8a4974a0fc008687649776.webp,(보이저 구원단) 아세라 궁극기.webp
+skill,9bbfc381e40bafb5ad99ec0e.webp,(보이저 구원단) 아세라 기본기.webp
+skill,d4f73f9d165b449d1308702d.webp,(보이저 구원단) 아세라 특수기.webp
+skill,beb1c112f39b3f0c89f56a32.webp,(보이저 구원단) 아세라 패시브.webp
+skill,299e066f5949b48fc9c1862a.webp,(보이저 구원단) 오메가 궁극기.webp
+skill,43a3a98380b9c5d484defccf.webp,(보이저 구원단) 오메가 기본기.webp
+skill,59edb81bb890ef9532ef9f70.webp,(보이저 구원단) 오메가 특수기.webp
+skill,4f22e491a857b52ea89bad85.webp,(보이저 구원단) 오메가 패시브.webp
+skill,fb63531043ec0bff9796bad9.webp,(블레싱 인 블룸) 에핀델 궁극기.webp
+skill,da1a01debcc6f02e1d465521.webp,(블레싱 인 블룸) 에핀델 기본기.webp
+skill,8b56ae200766cdc42077cb35.webp,(블레싱 인 블룸) 에핀델 특수기.webp
+skill,37d3d328206f249f44c6749d.webp,(블레싱 인 블룸) 에핀델 패시브.webp
+skill,3f3bb6cade2d7506d52ba403.webp,(서부 해방군) 리디아 궁극기.webp
+skill,746e6e2cc1cb3662e9720b56.webp,(서부 해방군) 리디아 기본기.webp
+skill,1080e8f45511ee16a48fdd86.webp,(서부 해방군) 리디아 특수기.webp
+skill,6f8076e1920d9ea454c64647.webp,(서부 해방군) 리디아 패시브.webp
+skill,475be84ae0c062e00b4f24ed.webp,(서부 해방군) 베스타 궁극기.webp
+skill,4d8bbe5e020ae7437bf4fc85.webp,(서부 해방군) 베스타 기본기.webp
+skill,608637568b7b86fc18ee9b06.webp,(서부 해방군) 베스타 특수기.webp
+skill,d60facd899bd44debb635a24.webp,(서부 해방군) 베스타 패시브.webp
+skill,2a78e559c1627969b01d2d82.webp,(서부 해방군) 세레스 궁극기.webp
+skill,0b670742d0159af842fe74a7.webp,(서부 해방군) 세레스 기본기.webp
+skill,a18ded00c8c55959e8c0a943.webp,(서부 해방군) 세레스 특수기.webp
+skill,d7fb87ec24579b72e6ec67c4.webp,(서부 해방군) 세레스 패시브.webp
+skill,7007217e5e804023bc2c87a1.webp,(선샤인 캣) 스마일 궁극기.webp
+skill,cc3f037e9ba480d16ace735b.webp,(선샤인 캣) 스마일 기본기.webp
+skill,f28d0a41a564cbd3dac7d887.webp,(선샤인 캣) 스마일 특수기.webp
+skill,83c3d72cb626ee7a956643a1.webp,(선샤인 캣) 스마일 패시브.webp
+skill,9d6b84c0b994c749001bb817.webp,(아셀루스 협회) 트리쉬 궁극기.webp
+skill,ba28dd982e060f19c48a1d9c.webp,(아셀루스 협회) 트리쉬 기본기.webp
+skill,d859b52a7dec5802a30e132d.webp,(아셀루스 협회) 트리쉬 특수기.webp
+skill,50a523fcbdf5ed7491bc00f5.webp,(아셀루스 협회) 트리쉬 패시브.webp
+skill,bf6d5c40852b7b6844c49323.webp,(오를랑 가문) 에핀델 궁극기.webp
+skill,c9dd50233a05bff65d118d03.webp,(오를랑 가문) 에핀델 기본기.webp
+skill,c6e34bd1a84a7cdfb08ef9b7.webp,(오를랑 가문) 에핀델 특수기.webp
+skill,7f7f27eab59dfe910695d4b5.webp,(오를랑 가문) 에핀델 패시브.webp
+skill,a7eaeda3dc0c49cc8fbb77a8.webp,(왈츠 오브 스타라이트) 아세라 궁극기.webp
+skill,5fede19e3db77d16ffaea602.webp,(왈츠 오브 스타라이트) 아세라 기본기.webp
+skill,1a1a2df84a254c81529a3b1b.webp,(왈츠 오브 스타라이트) 아세라 특수기.webp
+skill,b888c8660bc82d9a5ef350cc.webp,(왈츠 오브 스타라이트) 아세라 패시브.webp
+skill,b7107b45b3d6be4e5ef1b666.webp,(운송 길드) 베라 궁극기.webp
+skill,5d817681ee8054feff0b1490.webp,(운송 길드) 베라 기본기.webp
+skill,3752b71a44fdfddec9c4c1fa.webp,(운송 길드) 베라 특수기.webp
+skill,f3153d0169bc9e6442ee49cb.webp,(운송 길드) 베라 패시브.webp
+skill,5e11d4e2d3b4860bd14be64a.webp,(이터널 프로미스) 카르멘 궁극기.webp
+skill,7f9e9a4f7672dbcc6a7dd769.webp,(이터널 프로미스) 카르멘 기본기.webp
+skill,f950d0f43df924c2d07d33ec.webp,(이터널 프로미스) 카르멘 특수기.webp
+skill,4b9cf31a6229c73d189802e0.webp,(이터널 프로미스) 카르멘 패시브.webp
+skill,61bd2b346e6753476ce02ca6.webp,(집행자) 티리아 궁극기.webp
+skill,b9f48ee3b7c17ea2b5e5e492.webp,(집행자) 티리아 기본기.webp
+skill,83a8c93954f444dfc16f6d1b.webp,(집행자) 티리아 특수기.webp
+skill,1e026ad1a19a44c08cafad2c.webp,(집행자) 티리아 패시브.webp
+skill,88f886d624304a1cb66e5eb1.webp,(카노푸스 레인저) 다나 궁극기.webp
+skill,3165aca8af9d23976f4b9355.webp,(카노푸스 레인저) 다나 기본기.webp
+skill,29f1a74ac0e4f38f70503167.webp,(카노푸스 레인저) 다나 특수기.webp
+skill,80e8cfa352c38e93756905ba.webp,(카노푸스 레인저) 다나 패시브.webp
+skill,07b2e7ea5c34c1fcdc65dc2c.webp,(카노푸스 레인저) 클라리사 궁극기.webp
+skill,a973d04367c0103294cd341a.webp,(카노푸스 레인저) 클라리사 기본기.webp
+skill,17a85d207922135cad1795a8.webp,(카노푸스 레인저) 클라리사 특수기.webp
+skill,f96d1e5c035b262e37662185.webp,(카노푸스 레인저) 클라리사 패시브.webp
+skill,416fcd74d66de05dbaeeb15a.webp,(캔들 스퀘어) 벨 리스 궁극기.webp
+skill,60e9ddfc0947d403c592f705.webp,(캔들 스퀘어) 벨 리스 기본기.webp
+skill,0d1aae715fd2f2d865d8e531.webp,(캔들 스퀘어) 벨 리스 특수기.webp
+skill,9a64ac6528c74385e54e2df5.webp,(캔들 스퀘어) 벨 리스 패시브.webp
+skill,6a0f8f2e262eb1d0c39d5693.webp,(캔들 스퀘어) 스칼렛 궁극기.webp
+skill,987bc140f8b1ab742dab9694.webp,(캔들 스퀘어) 스칼렛 기본기.webp
+skill,ed65eb08cd8c7e5e6a740dbb.webp,(캔들 스퀘어) 스칼렛 특수기.webp
+skill,3587390d2395f952dd6e46f5.webp,(캔들 스퀘어) 스칼렛 패시브.webp
+skill,db3c53053240c9ff75d8ce41.webp,(캔들 스퀘어) 에밀리 궁극기.webp
+skill,7acd80677aaca5a2783982be.webp,(캔들 스퀘어) 에밀리 기본기.webp
+skill,b3831c144389a024adc66b02.webp,(캔들 스퀘어) 에밀리 특수기.webp
+skill,3d67da6eb36019cc5095afd6.webp,(캔들 스퀘어) 에밀리 패시브.webp
+skill,c575dedb640e7be466a9f00a.webp,(캔들 스퀘어) 클레어 궁극기.webp
+skill,6c70a9999813b21365efa117.webp,(캔들 스퀘어) 클레어 기본기.webp
+skill,87f04306926746a20cf6dbe8.webp,(캔들 스퀘어) 클레어 특수기.webp
+skill,6f1d0dd3b1a389401c22a866.webp,(캔들 스퀘어) 클레어 패시브.webp
+skill,26e84a2d6221eb38800f486c.webp,(키라는 친구 같은 거 없어) 키라 궁극기.webp
+skill,64fdda4dd08a50087e4dcb33.webp,(키라는 친구 같은 거 없어) 키라 기본기.webp
+skill,e50c4e38a3b2793d8dae0509.webp,(키라는 친구 같은 거 없어) 키라 특수기.webp
+skill,c49073e8d10abaf9fea97681.webp,(키라는 친구 같은 거 없어) 키라 패시브.webp
+skill,994afb478dacce8b78937910.webp,(페트라 조합) 마르실 궁극기.webp
+skill,f8b79540b067cc9e4266a3cf.webp,(페트라 조합) 마르실 기본기.webp
+skill,9b199cdb638f642013128148.webp,(페트라 조합) 마르실 특수기.webp
+skill,9aba59b405c32286f1e3ec0a.webp,(페트라 조합) 마르실 패시브.webp
+skill,2e12b91e319e03edd4051af5.webp,(페트라 조합) 타냐 궁극기.webp
+skill,073e083438f60bbd1025e19b.webp,(페트라 조합) 타냐 기본기.webp
+skill,c28178c737138ed1c34ab42b.webp,(페트라 조합) 타냐 특수기.webp
+skill,5011066a2848e39c2b568db2.webp,(페트라 조합) 타냐 패시브.webp
+skill,d2d500503fee2d59c5020c50.webp,(페트라 조합) 페트라 궁극기.webp
+skill,f3aaf84ccc708b104da087ea.webp,(페트라 조합) 페트라 기본기.webp
+skill,49923f580c852c9902351101.webp,(페트라 조합) 페트라 특수기.webp
+skill,e4221c61822c9ae8a1fdf742.webp,(페트라 조합) 페트라 패시브.webp
+skill,c7dcabb046af13a6f4ceb9d1.webp,(펜릴 소대) 유미나 궁극기.webp
+skill,3b0d18064ad9292289695efc.webp,(펜릴 소대) 유미나 기본기.webp
+skill,a4e8b0b40f67c194b60fa95c.webp,(펜릴 소대) 유미나 특수기.webp
+skill,63c0117a108b2401eabf830f.webp,(펜릴 소대) 유미나 패시브.webp
+skill,94afd58823b8d9fe0615cf8e.webp,(펜릴 소대) 힐데 궁극기.webp
+skill,773cce5396b19ffaa82c41f3.webp,(펜릴 소대) 힐데 기본기.webp
+skill,0b4360950b10ce8af8517853.webp,(펜릴 소대) 힐데 특수기.webp
+skill,de76221b5daf40398cb7abb3.webp,(펜릴 소대) 힐데 패시브.webp
+skill,3523e0f19c4cb83d0d85ce1c.webp,(폴른 호크) 로자리아 궁극기.webp
+skill,2a404bcdf5266263f14da311.webp,(폴른 호크) 로자리아 기본기.webp
+skill,6fe3eb2070e25e6ab8352a0c.webp,(폴른 호크) 로자리아 특수기.webp
+skill,598422e5f3fb11ff28ce36e0.webp,(폴른 호크) 로자리아 패시브.webp
+skill,0b38002e14af5b13c43776d1.webp,(풍월문) 린 궁극기.webp
+skill,2ed2491f39f139c3366fd69b.webp,(풍월문) 린 기본기.webp
+skill,5609ca0e34edabc6d1b354e4.webp,(풍월문) 린 특수기.webp
+skill,783d40bc85b8917a09009304.webp,(풍월문) 린 패시브.webp
+skill,a22ca2ceb471107107449df1.webp,(풍월문) 세르팡 궁극기.webp
+skill,5f59a290d53f1db3892e7be5.webp,(풍월문) 세르팡 기본기.webp
+skill,15f2dc8f51075933bcfdb6ac.webp,(풍월문) 세르팡 특수기.webp
+skill,529f1ef2ee11bae7068d26ca.webp,(풍월문) 세르팡 패시브.webp
+skill,53f75676bce35c21524b10f8.webp,(플로리스 블루 로즈) 클레어 궁극기.webp
+skill,303e09f7d66cf7e97bee1a9a.webp,(플로리스 블루 로즈) 클레어 기본기.webp
+skill,90ac99352f5f0f253693608a.webp,(플로리스 블루 로즈) 클레어 특수기.webp
+skill,7d4b6b73aba74dde1f1dba83.webp,(플로리스 블루 로즈) 클레어 패시브.webp
+skill,7b5b5498cd06c476b94363c4.webp,(하트 오브 모나스티르) 샤를 궁극기.webp
+skill,9028e165a3979d3dd683876e.webp,(하트 오브 모나스티르) 샤를 기본기.webp
+skill,56668a2075d6d8d5d55cf732.webp,(하트 오브 모나스티르) 샤를 특수기.webp
+skill,0b48fc1e3b4d0152241e631c.webp,(하트 오브 모나스티르) 샤를 패시브.webp
+skill,46070908e0b0b190e29f8a7f.webp,(헬 세이비어) 할리 궁극기.webp
+skill,5b33eea8a62dcbf6e121e7fa.webp,(헬 세이비어) 할리 기본기.webp
+skill,c07ef238cda3fdcffabfdeae.webp,(헬 세이비어) 할리 특수기.webp
+skill,6c6ab6c1e7a3114abb3e0a3d.webp,(헬 세이비어) 할리 패시브.webp
+skill,c43557e52b1b7baf31e4a4c0.webp,(화이트 펄 트랩) 루나 궁극기.webp
+skill,ae4fdbb1e6c1e2bc1e5a2734.webp,(화이트 펄 트랩) 루나 기본기.webp
+skill,7e6ec40f31d8f85a27d4c488.webp,(화이트 펄 트랩) 루나 특수기.webp
+skill,ca1fecdb8923721a246adf57.webp,(화이트 펄 트랩) 루나 패시브.webp

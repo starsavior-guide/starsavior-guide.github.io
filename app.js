@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v65-bloom-effect-asset-fixes";
+const SITE_BUILD_VERSION = "v66-korean-asset-filenames";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -6076,8 +6076,8 @@ async function loadSaviorSourcePanel(button, panel) {
 const ALL_SAVIOR_EFFECT_IMAGE_DONORS = [...new Set(Object.values(SAVIOR_DETAIL_IDS))];
 const STATIC_SAVIOR_EFFECT_IMAGES = {
   // 마르실 개화 전용 효과 이미지는 사이트 로컬 자산을 직접 사용합니다.
-  "헥사 너트": "./data/savior-detail-assets/헥사너트.webp",
-  "부서진 너트": "./data/savior-detail-assets/부서진너트.webp"
+  "헥사 너트": "./data/savior-detail-assets/헥사 너트.webp",
+  "부서진 너트": "./data/savior-detail-assets/부서진 너트.webp"
 };
 
 const SHARED_SAVIOR_EFFECT_IMAGE_DONORS = {
