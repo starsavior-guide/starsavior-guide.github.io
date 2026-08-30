@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v76-journey-json-rebuild";
+const SITE_BUILD_VERSION = "v86-journey-arcana-clean";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -7133,35 +7133,35 @@ function getJourneyLabels(language = currentLanguage) {
       search: "카드 명, 이벤트 명, 보상 등...", arcana: "아르카나", events: "여정 이벤트",
       reset: "리세트", raid: "토벌", aganon: "아가논", flora: "플로라", kalaid: "칼라이드", weather: "날씨",
       success: "성공 보상", failure: "실패 보상", loading: "여정 데이터를 불러오는 중입니다.",
-      empty: "검색 결과가 없습니다.", loadError: "여정 데이터를 불러오지 못했습니다.", clear: "검색어 지우기"
+      empty: "검색 결과가 없습니다.", loadError: "여정 데이터를 불러오지 못했습니다.", clear: "검색어 지우기", savior: "구원자"
     },
     en: {
       difficulty: "Difficulty", all: "All", easy: "Easy", normal: "Normal", hard: "Hard",
       search: "Card name, event name, rewards...", arcana: "Arcana", events: "Journey Events",
       reset: "Reset", raid: "Raid", aganon: "Aganon", flora: "Flora", kalaid: "Kalaid", weather: "Weather",
       success: "Success Reward", failure: "Failure Reward", loading: "Loading Journey data...",
-      empty: "No matching results.", loadError: "Could not load Journey data.", clear: "Clear search"
+      empty: "No matching results.", loadError: "Could not load Journey data.", clear: "Clear search", savior: "Savior"
     },
     ja: {
       difficulty: "難易度", all: "すべて", easy: "イージー", normal: "ノーマル", hard: "ハード",
       search: "カード名・イベント名・報酬など...", arcana: "アルカナ", events: "旅程イベント",
       reset: "リセット", raid: "討伐", aganon: "アガノン", flora: "フローラ", kalaid: "カライド", weather: "天気",
       success: "成功報酬", failure: "失敗報酬", loading: "旅程データを読み込んでいます。",
-      empty: "検索結果がありません。", loadError: "旅程データを読み込めませんでした。", clear: "検索語を消去"
+      empty: "検索結果がありません。", loadError: "旅程データを読み込めませんでした。", clear: "検索語を消去", savior: "救援者"
     },
     "zh-TW": {
       difficulty: "難度", all: "全部", easy: "簡單", normal: "普通", hard: "困難",
       search: "卡片名稱、事件名稱、獎勵等...", arcana: "阿爾克那", events: "旅程事件",
       reset: "重置", raid: "討伐", aganon: "阿加農", flora: "芙蘿拉", kalaid: "卡萊德", weather: "天氣",
       success: "成功獎勵", failure: "失敗獎勵", loading: "正在載入旅程資料。",
-      empty: "找不到符合的結果。", loadError: "無法載入旅程資料。", clear: "清除搜尋"
+      empty: "找不到符合的結果。", loadError: "無法載入旅程資料。", clear: "清除搜尋", savior: "救援者"
     },
     "zh-CN": {
       difficulty: "难度", all: "全部", easy: "简单", normal: "普通", hard: "困难",
       search: "卡片名称、事件名称、奖励等...", arcana: "阿尔克那", events: "旅程事件",
       reset: "重置", raid: "讨伐", aganon: "阿加农", flora: "芙萝拉", kalaid: "卡莱德", weather: "天气",
       success: "成功奖励", failure: "失败奖励", loading: "正在加载旅程数据。",
-      empty: "没有匹配的结果。", loadError: "无法加载旅程数据。", clear: "清除搜索"
+      empty: "没有匹配的结果。", loadError: "无法加载旅程数据。", clear: "清除搜索", savior: "救援者"
     }
   };
   return table[SUPPORTED_LANGUAGES.includes(language) ? language : "ko"] || table.ko;
@@ -7177,7 +7177,105 @@ function normalizeJourneySearch(value) {
   return String(value || "").normalize("NFKC").replace(/\s+/g, " ").trim().toLocaleLowerCase();
 }
 
+const JOURNEY_ARCANA_FOOTER_MARKERS = [
+  "이 페이지는 게임", "비영리 팬 프로젝트", "프로젝트에 사용된 모든 자산",
+  "STUDIOBSIDE", "제보/문의 Discord", "hippo2003",
+  "This page is", "fan project", "All assets, data, images", "Report/Inquiries Discord",
+  "このページは", "非営利ファン", "使用されているすべての", "お問い合わせ Discord"
+];
+
+function isJourneyArcanaFooterText(value) {
+  const text = String(value || "").trim();
+  if (!text) return false;
+  return JOURNEY_ARCANA_FOOTER_MARKERS.some((marker) =>
+    text.toLocaleLowerCase().includes(String(marker).toLocaleLowerCase())
+  );
+}
+
+function isJourneyArcanaMetadataRow(row, entry) {
+  const text = String(row?.text || "").trim();
+  if (!text) return false;
+  const title = String(entry?.title || "").trim();
+  const arcanaName = String(entry?.arcanaName || "").trim();
+  const grade = String(entry?.grade || "").trim();
+  if (text === title || text === arcanaName || text === `[아르카나]${arcanaName}`) return true;
+  if (grade && text === grade) return true;
+  return /^(구원자|Savior|救援者)\s*[:：]/i.test(text);
+}
+
+function getJourneyArcanaContentRows(entry) {
+  let rows = Array.isArray(entry?.rows) ? entry.rows.slice() : [];
+  while (rows.length && isJourneyArcanaMetadataRow(rows[0], entry)) rows.shift();
+  const footerIndex = rows.findIndex((row) => isJourneyArcanaFooterText(row?.text));
+  if (footerIndex >= 0) rows = rows.slice(0, footerIndex);
+  return rows;
+}
+
+function getJourneyArcanaEventGroups(entry) {
+  if (Array.isArray(entry?.eventGroups) && entry.eventGroups.length) {
+    return entry.eventGroups
+      .map((group) => ({
+        title: String(group?.title || "").trim(),
+        rows: (Array.isArray(group?.rows) ? group.rows : [])
+          .filter((row) => !isJourneyArcanaFooterText(row?.text))
+      }))
+      .filter((group) => group.title || group.rows.length);
+  }
+
+  const rows = getJourneyArcanaContentRows(entry);
+  if (!rows.length) return [];
+
+  const markedIndexes = rows
+    .map((row, index) => row?.isEventTitle ? index : -1)
+    .filter((index) => index >= 0);
+
+  let titleIndexes = markedIndexes;
+  if (!titleIndexes.length) {
+    const fontSizes = rows
+      .filter((row) => String(row?.text || "").trim())
+      .map((row) => Number(row?.fontSize) || 0)
+      .filter((value) => value > 0)
+      .sort((a, b) => a - b);
+    const medianFont = fontSizes.length ? fontSizes[Math.floor(fontSizes.length / 2)] : 14;
+    const threshold = Math.max(16.5, medianFont + 1.25);
+    const excluded = /^(성공|실패|Success|Failure|成功|失敗|or)$/i;
+    const statLike = /(잠재력|스태미나|컨디션|힘\s*[+-]|체력\s*[+-]|인내\s*[+-]|집중\s*[+-]|보호\s*[+-]|공격력|방어력|생명력|속도|할인|여정 버프|턴$)/i;
+
+    titleIndexes = rows
+      .map((row, index) => {
+        const text = String(row?.text || "").trim();
+        const hasImages = (row?.segments || []).some((segment) => segment?.type === "images");
+        const fontSize = Number(row?.fontSize) || 0;
+        const weight = Number(row?.weight) || 0;
+        if (!text || text.length > 90 || excluded.test(text) || statLike.test(text) || hasImages) return -1;
+        return fontSize >= threshold && weight >= 600 ? index : -1;
+      })
+      .filter((index) => index >= 0);
+  }
+
+  if (!titleIndexes.length) return [{ title: "", rows }];
+
+  const groups = [];
+  for (let i = 0; i < titleIndexes.length; i++) {
+    const start = titleIndexes[i];
+    const end = i + 1 < titleIndexes.length ? titleIndexes[i + 1] : rows.length;
+    const title = String(rows[start]?.text || "").trim();
+    groups.push({ title, rows: rows.slice(start + 1, end) });
+  }
+  return groups.filter((group) => group.title || group.rows.length);
+}
+
 function getJourneyEntrySearchText(entry) {
+  if (entry?.kind === "arcana" || entry?.arcanaName) {
+    const eventTitles = getJourneyArcanaEventGroups(entry)
+      .map((group) => group.title || "")
+      .filter(Boolean)
+      .join(" ");
+    return normalizeJourneySearch(
+      `${entry?.arcanaName || ""} ${entry?.title || ""} ${entry?.savior || ""} ${eventTitles}`
+    );
+  }
+
   const imageAlt = (entry?.rows || []).flatMap((row) => row?.segments || [])
     .filter((segment) => segment?.type === "images")
     .flatMap((segment) => segment.images || [])
@@ -7221,11 +7319,11 @@ function renderJourneyImageGroup(segment) {
   `).join("")}</span>`;
 }
 
-function renderJourneyRow(row, entry, rowIndex) {
+function renderJourneyRow(row, entry, rowIndex, options = {}) {
   const text = String(row?.text || "").trim();
   if (/^or$/i.test(text)) return `<div class="journey-or">or</div>`;
 
-  const isTitle = rowIndex === 0 || text === entry?.title;
+  const isTitle = !options.suppressTitle && (rowIndex === 0 || text === entry?.title);
   const segments = (row?.segments || []).map((segment) => {
     if (segment?.type === "images") return renderJourneyImageGroup(segment);
     if (segment?.type === "text") return `<span>${escapeHtml(segment.text || "")}</span>`;
@@ -7243,15 +7341,14 @@ function renderJourneyRow(row, entry, rowIndex) {
   return `<div class="${rowClass.join(" ")}">${segments || escapeHtml(text)}</div>`;
 }
 
-function renderJourneyEntry(entry) {
-  const rows = Array.isArray(entry?.rows) ? entry.rows : [];
+function renderJourneyRowGroups(rows, entry, options = {}) {
   const pieces = [];
   let index = 0;
   while (index < rows.length) {
     const row = rows[index];
     const region = row?.region || "";
     if (!region) {
-      pieces.push(renderJourneyRow(row, entry, index));
+      pieces.push(renderJourneyRow(row, entry, index, options));
       index += 1;
       continue;
     }
@@ -7265,10 +7362,46 @@ function renderJourneyEntry(entry) {
       || group.find((item) => item.row?.tone === "success")?.row?.tone
       || group.find((item) => item.row?.tone === "highlight")?.row?.tone
       || "neutral";
-    pieces.push(`<div class="journey-result-block tone-${escapeHtml(tone)}">${group.map((item) => renderJourneyRow(item.row, entry, item.index)).join("")}</div>`);
+    pieces.push(`<div class="journey-result-block tone-${escapeHtml(tone)}">${group.map((item) => renderJourneyRow(item.row, entry, item.index, options)).join("")}</div>`);
     index = cursor;
   }
-  return `<article class="journey-entry-card" data-journey-kind="${escapeHtml(entry?.kind || "")}">${pieces.join("")}</article>`;
+  return pieces.join("");
+}
+
+function renderJourneyArcanaEntry(entry) {
+  const labels = getJourneyLabels();
+  const groups = getJourneyArcanaEventGroups(entry);
+  const title = entry?.title || (entry?.arcanaName ? `[아르카나]${entry.arcanaName}` : "");
+  const grade = String(entry?.grade || "").trim();
+  const savior = String(entry?.savior || "").trim();
+
+  const groupMarkup = groups.map((group, groupIndex) => {
+    const body = renderJourneyRowGroups(group.rows || [], entry, { suppressTitle: true });
+    const heading = group.title
+      ? `<div style="margin:0 0 9px;font-size:15px;font-weight:950;line-height:1.35;color:var(--text);">${groupIndex + 1}. ${escapeHtml(group.title)}</div>`
+      : "";
+    return `
+      <section class="journey-arcana-event-group" style="margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--surface) 58%,transparent);">
+        ${heading}
+        ${body}
+      </section>
+    `;
+  }).join("");
+
+  return `
+    <article class="journey-entry-card journey-arcana-card" data-journey-kind="arcana">
+      <div class="journey-data-row is-title">${escapeHtml(title)}</div>
+      ${grade ? `<div class="journey-data-row" style="font-weight:850;">${escapeHtml(grade)}</div>` : ""}
+      ${savior ? `<div class="journey-data-row" style="font-weight:850;">${escapeHtml(labels.savior || "구원자")} : ${escapeHtml(savior)}</div>` : ""}
+      ${groupMarkup || renderJourneyRowGroups(getJourneyArcanaContentRows(entry), entry, { suppressTitle: true })}
+    </article>
+  `;
+}
+
+function renderJourneyEntry(entry) {
+  if (entry?.kind === "arcana" || entry?.arcanaName) return renderJourneyArcanaEntry(entry);
+  const rows = Array.isArray(entry?.rows) ? entry.rows : [];
+  return `<article class="journey-entry-card" data-journey-kind="${escapeHtml(entry?.kind || "")}">${renderJourneyRowGroups(rows, entry)}</article>`;
 }
 
 function renderJourneyDatabaseResults() {
