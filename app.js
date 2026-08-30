@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v59-detail-fidelity";
+const SITE_BUILD_VERSION = "v60-v57-detail-rebuild";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -39,67 +39,28 @@ Object.assign(I18N_DATA.ui["zh-CN"], {
   "상세정보 접기": "收起详细信息"
 });
 
-
-// v58: 백업 구원자 상세정보 정리 화면 UI 다국어
+Object.assign(I18N_DATA.ui.en, { "아르카나 상세정보": "Arcana details" });
 Object.assign(I18N_DATA.ui.en, {
-  "구원자 상세": "Savior Details",
-  "기본 스테이터스": "Base Stats",
-  "Lv.200 기준": "Lv.200",
-  "여정 스테이터스": "Journey Stats",
-  "공명 잠재력": "Resonance Potentials",
-  "레벨": "Level",
-  "스킬": "Skill",
-  "설명": "Description",
-  "스킬 레벨 정보": "Skill Level Info",
-  "백업된 스킬 정보를 표 형식으로 표시합니다.": "Backed-up skill information is shown in table format."
+  "구원자 상세정보":"Savior Details","구원자 설명":"Savior Description","이름":"Name","등급":"Grade","유형":"Type",
+  "기본 스테이터스":"Base Stats","LV.200 기준":"Lv.200","여정 스테이터스":"Journey Stats","공명 잠재력":"Resonance Potential",
+  "레벨":"Level","스킬 정보":"Skill Information","스킬 레벨 정보":"Skill Level Information","스킬 레벨 설명":"Skill Level Description","노바 버스트":"Nova Burst"
 });
 Object.assign(I18N_DATA.ui.ja, {
-  "구원자 상세": "救援者詳細",
-  "기본 스테이터스": "基本ステータス",
-  "Lv.200 기준": "Lv.200基準",
-  "여정 스테이터스": "旅程ステータス",
-  "공명 잠재력": "共鳴潜在力",
-  "레벨": "レベル",
-  "스킬": "スキル",
-  "설명": "説明",
-  "스킬 레벨 정보": "スキルレベル情報",
-  "백업된 스킬 정보를 표 형식으로 표시합니다.": "バックアップ済みのスキル情報を表形式で表示します。"
+  "구원자 상세정보":"救援者詳細情報","구원자 설명":"救援者説明","이름":"名前","등급":"レアリティ","유형":"タイプ",
+  "기본 스테이터스":"基本ステータス","LV.200 기준":"Lv.200基準","여정 스테이터스":"旅程ステータス","공명 잠재력":"共鳴潜在力",
+  "레벨":"レベル","스킬 정보":"スキル情報","스킬 레벨 정보":"スキルレベル情報","스킬 레벨 설명":"スキルレベル説明","노바 버스트":"ノヴァバースト"
 });
 Object.assign(I18N_DATA.ui["zh-TW"], {
-  "구원자 상세": "救援者詳細資訊",
-  "기본 스테이터스": "基本能力值",
-  "Lv.200 기준": "Lv.200基準",
-  "여정 스테이터스": "旅程能力值",
-  "공명 잠재력": "共鳴潛能",
-  "레벨": "等級",
-  "스킬": "技能",
-  "설명": "說明",
-  "스킬 레벨 정보": "技能等級資訊",
-  "백업된 스킬 정보를 표 형식으로 표시합니다.": "以表格形式顯示已備份的技能資訊。"
+  "구원자 상세정보":"救援者詳細資訊","구원자 설명":"救援者說明","이름":"名稱","등급":"稀有度","유형":"類型",
+  "기본 스테이터스":"基本能力值","LV.200 기준":"Lv.200基準","여정 스테이터스":"旅程能力值","공명 잠재력":"共鳴潛能",
+  "레벨":"等級","스킬 정보":"技能資訊","스킬 레벨 정보":"技能等級資訊","스킬 레벨 설명":"技能等級說明","노바 버스트":"Nova Burst"
 });
 Object.assign(I18N_DATA.ui["zh-CN"], {
-  "구원자 상세": "救援者详细信息",
-  "기본 스테이터스": "基本属性",
-  "Lv.200 기준": "Lv.200基准",
-  "여정 스테이터스": "旅程属性",
-  "공명 잠재력": "共鸣潜能",
-  "레벨": "等级",
-  "스킬": "技能",
-  "설명": "说明",
-  "스킬 레벨 정보": "技能等级信息",
-  "백업된 스킬 정보를 표 형식으로 표시합니다.": "以表格形式显示已备份的技能信息。"
+  "구원자 상세정보":"救援者详细信息","구원자 설명":"救援者说明","이름":"名称","등급":"稀有度","유형":"类型",
+  "기본 스테이터스":"基本属性","LV.200 기준":"Lv.200标准","여정 스테이터스":"旅程属性","공명 잠재력":"共鸣潜能",
+  "레벨":"等级","스킬 정보":"技能信息","스킬 레벨 정보":"技能等级信息","스킬 레벨 설명":"技能等级说明","노바 버스트":"Nova Burst"
 });
-Object.assign(I18N_DATA.ui.en, { "구원자 설명": "Savior Description", "스킬 정보": "Skill Information", "스킬 레벨 설명": "Skill Level Description", "LV.200 기준": "LV.200" });
-Object.assign(I18N_DATA.ui.ja, { "구원자 설명": "救援者説明", "스킬 정보": "スキル情報", "스킬 레벨 설명": "スキルレベル説明", "LV.200 기준": "LV.200基準" });
-Object.assign(I18N_DATA.ui["zh-TW"], { "구원자 설명": "救援者說明", "스킬 정보": "技能資訊", "스킬 레벨 설명": "技能等級說明", "LV.200 기준": "LV.200基準" });
-Object.assign(I18N_DATA.ui["zh-CN"], { "구원자 설명": "救援者说明", "스킬 정보": "技能信息", "스킬 레벨 설명": "技能等级说明", "LV.200 기준": "LV.200基准" });
 
-Object.assign(I18N_DATA.terms.en, { "힘": "Strength", "체력": "Vitality", "인내": "Endurance", "집중": "Focus", "보호": "Protection", "명중률": "Accuracy" });
-Object.assign(I18N_DATA.terms.ja, { "힘": "力", "체력": "体力", "인내": "忍耐", "집중": "集中", "보호": "保護", "명중률": "命中率" });
-Object.assign(I18N_DATA.terms["zh-TW"], { "힘": "力量", "체력": "體力", "인내": "忍耐", "집중": "集中", "보호": "保護", "명중률": "命中率" });
-Object.assign(I18N_DATA.terms["zh-CN"], { "힘": "力量", "체력": "体力", "인내": "忍耐", "집중": "集中", "보호": "保护", "명중률": "命中率" });
-
-Object.assign(I18N_DATA.ui.en, { "아르카나 상세정보": "Arcana details" });
 Object.assign(I18N_DATA.ui.ja, { "아르카나 상세정보": "アルカナ詳細情報" });
 Object.assign(I18N_DATA.ui["zh-TW"], { "아르카나 상세정보": "阿爾克那詳細資訊" });
 Object.assign(I18N_DATA.ui["zh-CN"], { "아르카나 상세정보": "阿尔克那详细信息" });
@@ -5341,121 +5302,212 @@ function setSaviorSourcePanelStatus(panel, sourceText, kind = "") {
   panel.innerHTML = `<div class="savior-source-status ${escapeHtml(kind)}">${escapeHtml(translateString(sourceText))}</div>`;
 }
 
-function normalizeSourceText(value) {
-  return String(value ?? "")
-    .replace(/\u00a0/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+function normalizeSaviorSourceText(value) {
+  return String(value || "").replace(/\s+/g, " ").trim();
 }
 
-function escapeRegExp(value) {
-  return String(value ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function getSaviorSourceRoot(sourceHtml) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(sourceHtml, "text/html");
+  const root = doc.querySelector(".snapshot-root") || doc.querySelector("main") || doc.body;
+  if (!root) throw new Error("Snapshot root not found");
+  root.querySelectorAll("script,style,noscript,.snapshot-meta").forEach((node) => node.remove());
+  return { doc, root };
 }
 
-function getTextSlice(text, startLabel, endLabels = []) {
-  const normalized = normalizeSourceText(text);
-  const startIndex = normalized.indexOf(startLabel);
-  if (startIndex < 0) return "";
-  const from = startIndex + startLabel.length;
-  let to = normalized.length;
-  endLabels.forEach((label) => {
-    const index = normalized.indexOf(label, from);
-    if (index >= 0 && index < to) to = index;
-  });
-  return normalized.slice(from, to).trim();
+function getSaviorSourceTokens(root) {
+  const doc = root.ownerDocument;
+  const walker = doc.createTreeWalker(root, 4); // NodeFilter.SHOW_TEXT
+  const tokens = [];
+  let node;
+  while ((node = walker.nextNode())) {
+    const parent = node.parentElement;
+    if (!parent || parent.closest("script,style,noscript")) continue;
+    const text = normalizeSaviorSourceText(node.nodeValue);
+    if (!text) continue;
+    tokens.push({ text, node, parent });
+  }
+  return tokens;
 }
 
-function getTextLeafElements(root) {
-  return [...root.querySelectorAll("*")].filter((element) => {
-    const text = normalizeSourceText(element.textContent);
-    if (!text) return false;
-    return ![...element.children].some((child) => normalizeSourceText(child.textContent) === text);
-  });
+function findSourceTokenIndex(tokens, matcher, from = 0) {
+  for (let i = Math.max(0, from); i < tokens.length; i++) {
+    if (matcher(tokens[i].text, tokens[i], i)) return i;
+  }
+  return -1;
 }
 
-function findSmallestTextElement(root, exactText) {
-  const candidates = [...root.querySelectorAll("*")]
-    .filter((element) => normalizeSourceText(element.textContent) === exactText)
-    .sort((a, b) => {
-      const aChildren = a.querySelectorAll("*").length;
-      const bChildren = b.querySelectorAll("*").length;
-      return aChildren - bChildren || (a.textContent || "").length - (b.textContent || "").length;
-    });
-  return candidates[0] || null;
+function getSourceRangeTokens(tokens, start, end) {
+  const from = Math.max(0, start ?? 0);
+  const to = end == null || end < 0 ? tokens.length : Math.min(tokens.length, end);
+  return tokens.slice(from, to);
 }
 
-function isAfterNode(node, reference) {
-  if (!reference) return true;
-  return Boolean(reference.compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING);
-}
-
-function isBeforeNode(node, reference) {
-  if (!reference) return true;
-  return Boolean(reference.compareDocumentPosition(node) & Node.DOCUMENT_POSITION_PRECEDING);
-}
-
-function isBetweenNodes(node, startNode, endNode) {
-  return isAfterNode(node, startNode) && isBeforeNode(node, endNode);
-}
-
-const SAVIOR_SKILL_TYPES = [
-  "패시브", "액티브", "궁극기", "기본기", "특수기", "일반 공격", "연계기", "추가 스킬", "전용 스킬"
+const SAVIOR_SOURCE_SKILL_TYPES = ["패시브", "기본기", "특수기", "궁극기"];
+const SAVIOR_SOURCE_BASE_STATS = [
+  ["공격력", false], ["생명력", false], ["방어력", false], ["속도", false],
+  ["치명타 확률", true], ["치명타 피해", true], ["효과 적중", true], ["효과 저항", true], ["명중률", true]
 ];
+const SAVIOR_SOURCE_JOURNEY_STATS = ["힘", "체력", "인내", "집중", "보호"];
 
-function textLinesFromElement(element) {
-  const clone = element.cloneNode(true);
-  clone.querySelectorAll("script,style").forEach((node) => node.remove());
-  clone.querySelectorAll("br").forEach((node) => node.replaceWith("\n"));
-  clone.querySelectorAll("h1,h2,h3,h4,h5,h6,p,li,button,tr,dt,dd,section,article,div").forEach((node) => {
-    node.insertBefore(clone.ownerDocument.createTextNode("\n"), node.firstChild);
-    node.appendChild(clone.ownerDocument.createTextNode("\n"));
-  });
-  const lines = clone.textContent
-    .split(/\n+/)
-    .map(normalizeSourceText)
-    .filter(Boolean);
-  return lines.filter((line, index) => index === 0 || line !== lines[index - 1]);
+function isSourceSkillType(text) {
+  return SAVIOR_SOURCE_SKILL_TYPES.includes(normalizeSaviorSourceText(text));
 }
 
-function findSkillBlocks(root, resonanceMarker) {
-  const typeElements = [...root.querySelectorAll("*")].filter((element) => {
-    const text = normalizeSourceText(element.textContent);
-    return SAVIOR_SKILL_TYPES.includes(text) && isAfterNode(element, resonanceMarker);
-  });
-
-  const blocks = [];
-  const seen = new Set();
-
-  typeElements.forEach((typeElement) => {
-    let node = typeElement.parentElement;
-    let candidate = null;
-
-    while (node && node !== root) {
-      const text = normalizeSourceText(node.textContent);
-      const imageCount = node.querySelectorAll("img").length;
-      const containsOtherSections = /기본 스테이터스|여정 스테이터스|공명 잠재력/.test(text);
-      const skillTypeCount = SAVIOR_SKILL_TYPES.filter((type) => text.includes(type)).length;
-
-      if (!containsOtherSections && skillTypeCount >= 1 && imageCount >= 1 && imageCount <= 20 && text.length >= 20 && text.length <= 6000) {
-        candidate = node;
-        if (/스킬\s*레벨\s*정보/.test(text)) break;
-      }
-      node = node.parentElement;
-    }
-
-    if (candidate && !seen.has(candidate)) {
-      seen.add(candidate);
-      blocks.push(candidate);
-    }
-  });
-
-  return blocks.sort((a, b) => {
-    if (a === b) return 0;
-    return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
-  });
+function extractSourceNumberToken(text, percentExpected = false) {
+  const value = normalizeSaviorSourceText(text);
+  if (!value || /^\d{1,3}위$/.test(value)) return "";
+  if (percentExpected) return value.match(/[+-]?\d+(?:\.\d+)?%/)?.[0] || "";
+  if (/^[+-]?\d{1,3}(?:,\d{3})+(?:\.\d+)?$/.test(value)) return value;
+  if (/^[+-]?\d+(?:\.\d+)?$/.test(value)) return value;
+  return "";
 }
 
-function resolveSourceAssetUrl(src, backupUrl) {
+function extractSourceStat(tokens, label, percentExpected = false) {
+  const labelIndex = findSourceTokenIndex(tokens, (text) => text === label);
+  if (labelIndex < 0) return "";
+  const allLabels = new Set([
+    ...SAVIOR_SOURCE_BASE_STATS.map(([name]) => name),
+    ...SAVIOR_SOURCE_JOURNEY_STATS,
+    "기본 스테이터스", "여정 스테이터스", "공명 잠재력"
+  ]);
+  for (let i = labelIndex + 1; i < Math.min(tokens.length, labelIndex + 8); i++) {
+    const text = tokens[i].text;
+    if (allLabels.has(text) || text.startsWith("기본 스테이터스")) break;
+    const value = extractSourceNumberToken(text, percentExpected);
+    if (value) return value;
+  }
+  return "";
+}
+
+function extractSaviorSourceDescription(tokens, baseIndex, savior) {
+  const before = getSourceRangeTokens(tokens, 0, baseIndex > 0 ? baseIndex : tokens.length);
+  const expected = [
+    savior.name,
+    savior.grade,
+    ELEMENT_LABELS[savior.element],
+    savior.className,
+    savior.attackType
+  ].filter(Boolean);
+
+  let cursor = 0;
+  for (const value of expected) {
+    const index = findSourceTokenIndex(before, (text) => text === value, cursor);
+    if (index >= 0) cursor = index + 1;
+  }
+
+  const descriptionTokens = before.slice(cursor)
+    .map((token) => token.text)
+    .filter((text) => text && !expected.includes(text))
+    .filter((text) => !/^(구원자|한국어|English|日本語|繁體中文|简体中文)$/.test(text));
+
+  // Source descriptions are the prose immediately before the Basic Stats section.
+  // Keep every remaining prose token in order instead of guessing a "longest" element.
+  return normalizeSaviorSourceText(descriptionTokens.join(" "));
+}
+
+function extractSaviorResonanceRows(tokens, resonanceIndex, firstSkillIndex) {
+  if (resonanceIndex < 0) return [];
+  const section = getSourceRangeTokens(tokens, resonanceIndex + 1, firstSkillIndex > resonanceIndex ? firstSkillIndex : tokens.length);
+  const rows = [];
+  for (let i = 0; i < section.length; i++) {
+    const match = section[i].text.match(/^Lv\.?\s*(\d{1,2})(?:\s+(.+))?$/i);
+    if (!match) continue;
+    const level = match[1];
+    const pieces = [];
+    if (match[2]) pieces.push(match[2]);
+    for (let j = i + 1; j < section.length; j++) {
+      if (/^Lv\.?\s*\d{1,2}/i.test(section[j].text)) break;
+      if (isSourceSkillType(section[j].text)) break;
+      if (!/^\d+$/.test(section[j].text)) pieces.push(section[j].text);
+    }
+    const name = normalizeSaviorSourceText(pieces.join(" "));
+    if (name && !rows.some((row) => row.level === level)) rows.push({ level, name });
+  }
+  return rows;
+}
+
+function countSourceSkillTypes(tokens) {
+  return tokens.filter((token) => isSourceSkillType(token.text)).length;
+}
+
+function findSaviorSkillBlock(typeToken, root) {
+  let node = typeToken.parent;
+  let fallback = null;
+  while (node && node !== root) {
+    const tokens = getSaviorSourceTokens(node);
+    const typeCount = countSourceSkillTypes(tokens);
+    const hasImage = node.querySelectorAll("img").length > 0;
+    const hasLevelInfo = tokens.some((token) => /스킬\s*레벨\s*정보/.test(token.text));
+    const textLength = normalizeSaviorSourceText(node.textContent).length;
+    if (typeCount === 1 && hasImage && textLength >= 20 && textLength <= 10000) {
+      fallback = node;
+      if (hasLevelInfo) return node;
+    }
+    node = node.parentElement;
+  }
+  return fallback;
+}
+
+function getSkillTitleFromTokens(tokens, typeIndex) {
+  const ignored = new Set(["스킬", "스킬 정보", "스킬 레벨 정보"]);
+  for (let i = typeIndex - 1; i >= Math.max(0, typeIndex - 8); i--) {
+    const text = tokens[i].text;
+    if (!text || ignored.has(text) || isSourceSkillType(text)) continue;
+    if (/^\d+(?:\.\d+)?%?$/.test(text) || /^Lv\.?\s*\d+/i.test(text)) continue;
+    if (/^(적|아군)\s*(단일|전체)$/.test(text) || /^노바\s*(획득|소모)/.test(text) || /^\d+\s*턴$/.test(text)) continue;
+    if (text.length <= 90) return text;
+  }
+  return "스킬";
+}
+
+function parseSkillMetaFromHeader(tokens, typeIndex) {
+  const metas = [];
+  let lastConsumed = typeIndex;
+  let i = typeIndex + 1;
+  const max = Math.min(tokens.length, typeIndex + 10);
+
+  while (i < max) {
+    const text = tokens[i].text;
+    const next = tokens[i + 1]?.text || "";
+    const next2 = tokens[i + 2]?.text || "";
+
+    let consumed = 0;
+    let value = "";
+
+    if (/^\d+\s*턴$/.test(text)) {
+      value = text.replace(/\s+/g, "");
+      consumed = 1;
+    } else if (/^\d+$/.test(text) && next === "턴") {
+      value = `${text}턴`;
+      consumed = 2;
+    } else if (/^(?:적|아군)\s*(?:단일|전체)$/.test(text)) {
+      value = normalizeSaviorSourceText(text);
+      consumed = 1;
+    } else if (/^(?:적|아군)$/.test(text) && /^(?:단일|전체)$/.test(next)) {
+      value = `${text} ${next}`;
+      consumed = 2;
+    } else if (/^노바\s*(?:획득|소모)\s*\d+$/.test(text)) {
+      value = normalizeSaviorSourceText(text);
+      consumed = 1;
+    } else if (/^노바\s*(?:획득|소모)$/.test(text) && /^\d+$/.test(next)) {
+      value = `${normalizeSaviorSourceText(text)} ${next}`;
+      consumed = 2;
+    } else if (text === "노바" && /^(?:획득|소모)$/.test(next) && /^\d+$/.test(next2)) {
+      value = `노바 ${next} ${next2}`;
+      consumed = 3;
+    }
+
+    if (!consumed) break;
+    if (value && !metas.includes(value)) metas.push(value);
+    lastConsumed = i + consumed - 1;
+    i += consumed;
+  }
+
+  return { metas, lastConsumed };
+}
+
+function resolveSaviorSourceAsset(src, backupUrl) {
   if (!src) return "";
   try {
     return new URL(src, new URL(backupUrl, window.location.href)).href;
@@ -5464,449 +5516,296 @@ function resolveSourceAssetUrl(src, backupUrl) {
   }
 }
 
-function findSectionBoundary(root, headingText, nextHeadingTexts = []) {
-  const heading = findSmallestTextElement(root, headingText);
-  const next = nextHeadingTexts
-    .map((text) => findSmallestTextElement(root, text))
-    .filter((node) => node && isAfterNode(node, heading))
-    .sort((a, b) => a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1)[0] || null;
-  return { heading, next };
-}
-
-function collectLeafTexts(node) {
-  if (!node) return [];
-  const leaves = getTextLeafElements(node)
-    .map((element) => normalizeSourceText(element.textContent))
-    .filter(Boolean);
-  return leaves.filter((text, index) => index === 0 || text !== leaves[index - 1]);
-}
-
-function getRowContainerForLabel(labelElement, stopRoot) {
-  if (!labelElement) return null;
-  let node = labelElement.parentElement;
-  while (node && node !== stopRoot) {
-    const text = normalizeSourceText(node.textContent);
-    const leaves = collectLeafTexts(node);
-    if (leaves.length >= 2 && leaves.length <= 10 && text.length <= 220) return node;
-    node = node.parentElement;
-  }
-  return labelElement.parentElement;
-}
-
-function normalizeStatValue(raw, percentExpected = false) {
-  let text = normalizeSourceText(raw);
-  if (!text) return "";
-  text = text.replace(/\s*\d{1,2}위\s*$/, "").trim();
-  if (percentExpected) {
-    return text.match(/[+-]?\d+(?:\.\d+)?%/)?.[0] || "";
-  }
-  const commaNumber = text.match(/[+-]?\d{1,3}(?:,\d{3})+/)?.[0];
-  if (commaNumber) return commaNumber;
-  return text.match(/[+-]?\d+(?:\.\d+)?/)?.[0] || "";
-}
-
-function extractStatFromDom(sectionRoot, label, percentExpected = false) {
-  const labelElement = findSmallestTextElement(sectionRoot, label);
-  if (!labelElement) return "";
-  const row = getRowContainerForLabel(labelElement, sectionRoot);
-  const leaves = collectLeafTexts(row);
-  const labelIndex = leaves.findIndex((text) => text === label);
-  const candidates = (labelIndex >= 0 ? leaves.slice(labelIndex + 1) : leaves)
-    .filter((text) => text !== label && !/^\d{1,2}위$/.test(text));
-
-  for (const candidate of candidates) {
-    const value = normalizeStatValue(candidate, percentExpected);
-    if (value) return value;
-  }
-
-  const rowText = normalizeSourceText(row?.textContent || "");
-  const afterLabel = rowText.split(label).slice(1).join(label);
-  return normalizeStatValue(afterLabel, percentExpected);
-}
-
-function findDescriptionBeforeBase(root, savior) {
-  const baseMarker = findSmallestTextElement(root, "기본 스테이터스");
-  const candidates = [...root.querySelectorAll("p,div,span")].filter((element) => {
-    if (baseMarker && !isBeforeNode(element, baseMarker)) return false;
-    const text = normalizeSourceText(element.textContent);
-    if (text.length < 20 || text.length > 650) return false;
-    if (/구원자\s*$|한국어|English|日本語|繁體中文|简体中文/.test(text)) return false;
-    if (/기본 스테이터스|여정 스테이터스|공명 잠재력/.test(text)) return false;
-    if ([savior.name, savior.grade, ELEMENT_LABELS[savior.element], savior.className, savior.role, savior.attackType].filter(Boolean).includes(text)) return false;
-    return ![...element.children].some((child) => normalizeSourceText(child.textContent) === text);
-  });
-
-  const unique = [];
-  const seen = new Set();
-  for (const element of candidates) {
-    const text = normalizeSourceText(element.textContent);
-    if (!seen.has(text)) {
-      seen.add(text);
-      unique.push(text);
-    }
-  }
-  unique.sort((a, b) => b.length - a.length);
-  return unique[0] || "";
-}
-
-function findFirstSkillTypeElement(root, resonanceMarker) {
-  return [...root.querySelectorAll("*")].find((element) => {
-    const text = normalizeSourceText(element.textContent);
-    return SAVIOR_SKILL_TYPES.includes(text) && isAfterNode(element, resonanceMarker);
-  }) || null;
-}
-
-function parseResonanceRowsFromDom(root) {
-  const resonanceMarker = findSmallestTextElement(root, "공명 잠재력");
-  if (!resonanceMarker) return [];
-  const firstSkill = findFirstSkillTypeElement(root, resonanceMarker);
-
-  const levelElements = [...root.querySelectorAll("*")].filter((element) => {
-    const text = normalizeSourceText(element.textContent);
-    return /^Lv\.?\s*\d{1,2}$/i.test(text) && isBetweenNodes(element, resonanceMarker, firstSkill);
-  });
-
-  const rows = [];
-  const seen = new Set();
-  levelElements.forEach((levelElement) => {
-    const level = normalizeSourceText(levelElement.textContent).match(/\d{1,2}/)?.[0];
-    if (!level || seen.has(level)) return;
-    let node = levelElement.parentElement;
-    let row = null;
-    while (node && node !== root) {
-      const leaves = collectLeafTexts(node);
-      const levelCount = leaves.filter((text) => /^Lv\.?\s*\d{1,2}$/i.test(text)).length;
-      if (leaves.length >= 2 && leaves.length <= 8 && levelCount === 1 && normalizeSourceText(node.textContent).length <= 220) {
-        row = node;
-        break;
-      }
-      node = node.parentElement;
-    }
-    const leaves = collectLeafTexts(row || levelElement.parentElement);
-    const name = leaves
-      .filter((text) => !/^Lv\.?\s*\d{1,2}$/i.test(text) && text !== "공명 잠재력")
-      .filter((text) => !/^\d+$/.test(text))
-      .sort((a, b) => b.length - a.length)[0] || "";
-    if (name) {
-      seen.add(level);
-      rows.push({ level, name });
-    }
-  });
-
-  return rows.sort((a, b) => Number(a.level) - Number(b.level));
-}
-
-function isSkillMetaText(text) {
-  return SAVIOR_SKILL_TYPES.includes(text)
-    || /^\d+\s*턴$/.test(text)
-    || /^(적|아군)\s*(단일|전체)$/.test(text)
-    || /^노바\s*(획득|소모)\s*\d+/.test(text)
-    || /^쿨타임\s*\d+/.test(text)
-    || /^(참격|타격|마법|정신)$/.test(text);
-}
-
-function findSkillTitle(block, type) {
-  const generic = new Set([type, "스킬 레벨 정보", "스킬레벨 정보", "스킬", "설명"]);
-  const selectors = ["a", "h1", "h2", "h3", "h4", "h5", "h6", "strong", "b"];
-  for (const selector of selectors) {
-    const candidates = [...block.querySelectorAll(selector)]
-      .map((node) => normalizeSourceText(node.textContent))
-      .filter((text) => text && text.length <= 90)
-      .filter((text) => !generic.has(text) && !isSkillMetaText(text))
-      .filter((text) => !/^\d+(?:\.\d+)?%?$/.test(text))
-      .filter((text) => !/^Lv\.?\s*\d+$/i.test(text));
-    if (candidates.length) return candidates[0];
-  }
-
-  return textLinesFromElement(block).find((text) =>
-    text.length <= 90 && !generic.has(text) && !isSkillMetaText(text)
-    && !/^\d+(?:\.\d+)?%?$/.test(text) && !/^Lv\.?\s*\d+$/i.test(text)
-  ) || "스킬";
-}
-
-function findLevelInfoMarker(block) {
-  return [...block.querySelectorAll("*")]
-    .filter((element) => /스킬\s*레벨\s*정보/.test(normalizeSourceText(element.textContent)))
-    .sort((a, b) => a.querySelectorAll("*").length - b.querySelectorAll("*").length)[0] || null;
-}
-
-function collectSkillMeta(block, title, levelMarker) {
-  const metas = [];
-  getTextLeafElements(block).forEach((element) => {
-    if (levelMarker && !isBeforeNode(element, levelMarker)) return;
-    const text = normalizeSourceText(element.textContent);
-    if (!text || text === title) return;
-    if (isSkillMetaText(text) && !metas.includes(text)) metas.push(text);
-  });
-  return metas;
-}
-
-function getSmallestImageTextBlock(image, block, levelMarker) {
-  let node = image.parentElement;
-  let candidate = null;
+function getSmallestEffectContainer(img, block, levelMarkerParent) {
+  let node = img.parentElement;
   while (node && node !== block) {
-    if (levelMarker && !isBeforeNode(node, levelMarker)) break;
-    const text = normalizeSourceText(node.textContent);
-    const images = node.querySelectorAll("img").length;
-    if (text.length >= 4 && text.length <= 500 && images <= 3) {
-      candidate = node;
-      if (text.length >= 10) break;
+    if (levelMarkerParent && node.contains(levelMarkerParent)) break;
+    const tokens = getSaviorSourceTokens(node);
+    const text = normalizeSaviorSourceText(tokens.map((token) => token.text).join(" "));
+    const imageCount = node.querySelectorAll("img").length;
+    if (text.length >= 3 && text.length <= 700 && imageCount === 1 && !/스킬\s*레벨\s*정보/.test(text)) {
+      return node;
     }
     node = node.parentElement;
   }
-  return candidate;
+  return null;
 }
 
-function collectSkillEffects(block, mainImage, levelMarker, backupUrl) {
+function parseSaviorSkillEffects(block, mainImage, levelMarkerToken, blockTokens, backupUrl) {
   const effects = [];
-  const seenText = new Set();
-  const effectImages = [...block.querySelectorAll("img")].filter((img) => img !== mainImage);
-
-  effectImages.forEach((img) => {
-    if (levelMarker && !isBeforeNode(img, levelMarker)) return;
-    const effectBlock = getSmallestImageTextBlock(img, block, levelMarker);
-    const text = normalizeSourceText(effectBlock?.textContent || "");
-    if (!text || text.length > 500 || seenText.has(text)) return;
-    seenText.add(text);
+  const containers = [];
+  const images = [...block.querySelectorAll("img")].filter((img) => img !== mainImage);
+  for (const img of images) {
+    if (levelMarkerToken && (levelMarkerToken.node.compareDocumentPosition(img) & 2) === 0) {
+      // If the image is not before the level marker, do not treat level/decorative images as effects.
+      continue;
+    }
+    const container = getSmallestEffectContainer(img, block, levelMarkerToken?.parent || null);
+    if (!container) continue;
+    const effectTokens = getSaviorSourceTokens(container);
+    const text = normalizeSaviorSourceText(effectTokens.map((token) => token.text).join(" "));
+    if (!text || /계수/.test(text) || effects.some((effect) => effect.text === text)) continue;
     effects.push({
-      image: resolveSourceAssetUrl(img.getAttribute("src") || img.getAttribute("data-src") || "", backupUrl),
+      image: resolveSaviorSourceAsset(img.getAttribute("src") || img.getAttribute("data-src") || "", backupUrl),
       text
     });
-  });
+    containers.push(container);
+  }
 
-  [...block.querySelectorAll("*")].forEach((element) => {
-    if (levelMarker && !isBeforeNode(element, levelMarker)) return;
-    const text = normalizeSourceText(element.textContent);
-    if (!/노바\s*버스트/.test(text) || text.length > 500) return;
-    let node = element;
+  let firstIndex = -1;
+  for (let i = 0; i < blockTokens.length; i++) {
+    if (containers.some((container) => container.contains(blockTokens[i].parent))) {
+      firstIndex = i;
+      break;
+    }
+  }
+  return { effects, firstIndex };
+}
+
+function parseSaviorNovaBurst(block, blockTokens, levelIndex) {
+  const novaIndex = findSourceTokenIndex(blockTokens, (text) => /^노바\s*버스트/.test(text));
+  if (novaIndex < 0 || (levelIndex >= 0 && novaIndex > levelIndex)) return { text: "", index: -1 };
+  const token = blockTokens[novaIndex];
+  let text = token.text.replace(/^노바\s*버스트\s*/g, "").trim();
+  if (!text) {
+    let node = token.parent;
     while (node && node !== block) {
-      const candidateText = normalizeSourceText(node.textContent);
-      if (candidateText.length >= text.length && candidateText.length <= 500) {
-        if (!seenText.has(candidateText)) {
-          seenText.add(candidateText);
-          effects.push({ image: "", text: candidateText });
-        }
+      const candidate = normalizeSaviorSourceText(getSaviorSourceTokens(node).map((item) => item.text).join(" "));
+      if (candidate.length > "노바 버스트".length && candidate.length <= 650 && !/스킬\s*레벨\s*정보/.test(candidate)) {
+        text = candidate.replace(/^.*?노바\s*버스트\s*/g, "").trim();
         break;
       }
       node = node.parentElement;
     }
-  });
-
-  return effects;
-}
-
-function collectSkillDescriptionParagraphs(block, title, metas, effects, levelMarker) {
-  const effectTexts = new Set(effects.map((effect) => effect.text));
-  const candidates = [...block.querySelectorAll("p,li")]
-    .filter((element) => !levelMarker || isBeforeNode(element, levelMarker))
-    .map((element) => normalizeSourceText(element.textContent))
-    .filter((text) => text.length >= 8 && text.length <= 1200)
-    .filter((text) => text !== title && !metas.includes(text) && !effectTexts.has(text))
-    .filter((text) => !/스킬\s*레벨\s*정보/.test(text));
-
-  const unique = [];
-  const seen = new Set();
-  for (const text of candidates) {
-    if (!seen.has(text)) {
-      seen.add(text);
-      unique.push(text);
-    }
   }
-  if (unique.length) return unique;
-
-  const lines = textLinesFromElement(block);
-  return lines.filter((text) =>
-    text.length >= 8 && text.length <= 1200 && text !== title
-    && !metas.includes(text) && !effectTexts.has(text)
-    && !/스킬\s*레벨\s*정보/.test(text)
-    && !/^\d{1,2}$/.test(text)
-  ).slice(0, 6);
+  return { text, index: novaIndex };
 }
 
-function parseSkillLevelsFromDom(block, levelMarker) {
-  if (!levelMarker) return [];
-  const numberElements = [...block.querySelectorAll("*")].filter((element) => {
-    const text = normalizeSourceText(element.textContent);
-    return /^\d{1,2}$/.test(text) && Number(text) >= 1 && Number(text) <= 10 && isAfterNode(element, levelMarker);
-  });
+function findLevelMarkerIndex(tokens) {
+  return findSourceTokenIndex(tokens, (text) => /스킬\s*레벨\s*정보/.test(text));
+}
 
-  const rows = [];
+function parseSaviorSkillLevels(block, blockTokens, levelIndex) {
+  if (levelIndex < 0) return [];
+  const levelRows = [];
   const seen = new Set();
-  numberElements.forEach((numberElement) => {
-    const level = normalizeSourceText(numberElement.textContent);
-    if (seen.has(level)) return;
-    let node = numberElement.parentElement;
+  const candidateTokens = blockTokens.slice(levelIndex + 1);
+
+  for (const token of candidateTokens) {
+    if (!/^(?:10|[1-9])$/.test(token.text)) continue;
+    const level = token.text;
+    if (seen.has(level)) continue;
+    let node = token.parent;
     let row = null;
     while (node && node !== block) {
-      const leaves = collectLeafTexts(node);
-      const numbers = leaves.filter((text) => /^\d{1,2}$/.test(text) && Number(text) >= 1 && Number(text) <= 10);
-      const text = normalizeSourceText(node.textContent);
-      if (numbers.length === 1 && leaves.length >= 2 && leaves.length <= 10 && text.length <= 900) {
+      const rowTokens = getSaviorSourceTokens(node);
+      const textLength = normalizeSaviorSourceText(rowTokens.map((item) => item.text).join(" ")).length;
+      const firstToken = rowTokens[0]?.text || "";
+      if (firstToken === level && rowTokens.length >= 2 && textLength <= 1200 && !rowTokens.some((item) => /스킬\s*레벨\s*정보/.test(item.text))) {
         row = node;
         break;
       }
       node = node.parentElement;
     }
-    const leaves = collectLeafTexts(row || numberElement.parentElement);
-    const description = normalizeSourceText(leaves.filter((text) => text !== level).join(" "));
-    if (description && description !== "스킬 레벨 정보") {
-      seen.add(level);
-      rows.push({ level, description });
-    }
-  });
+    if (!row) continue;
+    const rowTokens = getSaviorSourceTokens(row);
+    let removedLevel = false;
+    const description = normalizeSaviorSourceText(rowTokens.map((item) => {
+      if (!removedLevel && item.text === level) {
+        removedLevel = true;
+        return "";
+      }
+      return item.text;
+    }).filter(Boolean).join(" "));
+    if (!description) continue;
+    seen.add(level);
+    levelRows.push({ level, description });
+  }
 
-  return rows.sort((a, b) => Number(a.level) - Number(b.level));
+  return levelRows.sort((a, b) => Number(a.level) - Number(b.level));
 }
 
-function parseSkillBlock(block, backupUrl, index) {
-  const typeElement = [...block.querySelectorAll("*")].find((element) =>
-    SAVIOR_SKILL_TYPES.includes(normalizeSourceText(element.textContent))
-  );
-  const type = typeElement ? normalizeSourceText(typeElement.textContent) : "스킬";
-  const title = findSkillTitle(block, type) || `스킬 ${index + 1}`;
-  const levelMarker = findLevelInfoMarker(block);
+function parseSaviorSkillBlock(block, backupUrl) {
+  const tokens = getSaviorSourceTokens(block);
+  const typeIndex = findSourceTokenIndex(tokens, (text) => isSourceSkillType(text));
+  if (typeIndex < 0) return null;
+  const type = tokens[typeIndex].text;
+  const title = getSkillTitleFromTokens(tokens, typeIndex);
+  const levelIndex = findLevelMarkerIndex(tokens);
+  const levelMarkerToken = levelIndex >= 0 ? tokens[levelIndex] : null;
   const mainImage = block.querySelector("img");
-  const image = mainImage
-    ? resolveSourceAssetUrl(mainImage.getAttribute("src") || mainImage.getAttribute("data-src") || "", backupUrl)
+  const mainImageUrl = mainImage
+    ? resolveSaviorSourceAsset(mainImage.getAttribute("src") || mainImage.getAttribute("data-src") || "", backupUrl)
     : "";
-  const metas = collectSkillMeta(block, title, levelMarker);
-  const effects = collectSkillEffects(block, mainImage, levelMarker, backupUrl);
-  const descriptionParagraphs = collectSkillDescriptionParagraphs(block, title, metas, effects, levelMarker);
-  const levels = parseSkillLevelsFromDom(block, levelMarker);
 
-  return { title, type, image, metas, effects, descriptionParagraphs, levels };
+  const { metas, lastConsumed } = parseSkillMetaFromHeader(tokens, typeIndex);
+  const { effects, firstIndex: firstEffectIndex } = parseSaviorSkillEffects(block, mainImage, levelMarkerToken, tokens, backupUrl);
+  const nova = parseSaviorNovaBurst(block, tokens, levelIndex);
+  const coefficientIndex = findSourceTokenIndex(tokens, (text) => /(?:데미지|공격력|생명력|방어력)\s*계수|계수\s*-/.test(text), lastConsumed + 1);
+
+  const endCandidates = [coefficientIndex, firstEffectIndex, nova.index, levelIndex].filter((value) => value >= 0 && value > lastConsumed);
+  const descriptionEnd = endCandidates.length ? Math.min(...endCandidates) : tokens.length;
+  const description = normalizeSaviorSourceText(tokens.slice(lastConsumed + 1, descriptionEnd)
+    .map((token) => token.text)
+    .filter((text) => !/계수/.test(text))
+    .filter((text) => !isSourceSkillType(text))
+    .filter((text) => !/스킬\s*레벨\s*정보/.test(text))
+    .join(" "));
+
+  const levels = parseSaviorSkillLevels(block, tokens, levelIndex);
+  return {
+    title,
+    type,
+    image: mainImageUrl,
+    metas,
+    description,
+    effects,
+    novaBurst: nova.text,
+    levels
+  };
 }
 
-function createCleanKeyValueTable(title, subtitle, rows, extraClass = "") {
-  const validRows = rows.filter((row) => row?.[1]);
+function parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl) {
+  if (firstSkillIndex < 0) return [];
+  const typeTokens = tokens.slice(firstSkillIndex).filter((token) => isSourceSkillType(token.text));
+  const blocks = [];
+  const seen = new Set();
+  for (const token of typeTokens) {
+    const block = findSaviorSkillBlock(token, root);
+    if (!block || seen.has(block)) continue;
+    seen.add(block);
+    const parsed = parseSaviorSkillBlock(block, backupUrl);
+    if (parsed) blocks.push(parsed);
+  }
+  return blocks;
+}
+
+function renderSaviorInfoTable(savior, description) {
+  const rows = [
+    ["이름", getLocalizedSaviorName(savior.name)],
+    ["등급", savior.grade],
+    ["속성", translateString(ELEMENT_LABELS[savior.element])],
+    ["클래스", translateString(savior.className)],
+    ["유형", translateString(savior.attackType || savior.role || "-")]
+  ];
+  return `
+    <section class="source-detail-block source-profile-block">
+      <div class="source-detail-heading"><h3>${escapeHtml(translateString("구원자 상세정보"))}</h3></div>
+      <div class="source-kv-table-wrap">
+        <table class="source-kv-table">
+          <tbody>${rows.map(([label, value]) => `<tr><th>${escapeHtml(translateString(label))}</th><td>${escapeHtml(value)}</td></tr>`).join("")}</tbody>
+        </table>
+      </div>
+      ${description ? `<div class="source-character-description"><strong>${escapeHtml(translateString("구원자 설명"))}</strong><p>${escapeHtml(description)}</p></div>` : ""}
+    </section>
+  `;
+}
+
+function renderSourceStatTable(title, subtitle, rows) {
+  const validRows = rows.filter(([, value]) => value);
   if (!validRows.length) return "";
   return `
-    <section class="clean-detail-block ${escapeHtml(extraClass)}">
-      <div class="clean-detail-heading">
-        <h3>${escapeHtml(title)}</h3>
-        ${subtitle ? `<span>${escapeHtml(subtitle)}</span>` : ""}
+    <section class="source-detail-block">
+      <div class="source-detail-heading">
+        <h3>${escapeHtml(translateString(title))}</h3>
+        ${subtitle ? `<span>${escapeHtml(translateString(subtitle))}</span>` : ""}
       </div>
-      <div class="clean-detail-table-wrap">
-        <table class="clean-detail-table">
-          <tbody>
-            ${validRows.map(([label, value]) => `
-              <tr><th scope="row">${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>
-            `).join("")}
-          </tbody>
+      <div class="source-kv-table-wrap">
+        <table class="source-kv-table">
+          <tbody>${validRows.map(([label, value]) => `<tr><th>${escapeHtml(translateString(label))}</th><td>${escapeHtml(value)}</td></tr>`).join("")}</tbody>
         </table>
       </div>
     </section>
   `;
 }
 
-function createCleanResonanceTable(rows) {
+function renderSourceResonanceTable(rows) {
   if (!rows.length) return "";
   return `
-    <section class="clean-detail-block resonance-block">
-      <div class="clean-detail-heading"><h3>공명 잠재력</h3></div>
-      <div class="clean-detail-table-wrap">
-        <table class="clean-detail-table resonance-table">
-          <thead><tr><th>레벨</th><th>공명 잠재력</th></tr></thead>
-          <tbody>${rows.map((row) => `<tr><th scope="row">Lv.${escapeHtml(row.level)}</th><td>${escapeHtml(row.name)}</td></tr>`).join("")}</tbody>
+    <section class="source-detail-block">
+      <div class="source-detail-heading"><h3>${escapeHtml(translateString("공명 잠재력"))}</h3></div>
+      <div class="source-wide-table-wrap">
+        <table class="source-wide-table source-resonance-table">
+          <thead><tr><th>${escapeHtml(translateString("레벨"))}</th><th>${escapeHtml(translateString("공명 잠재력"))}</th></tr></thead>
+          <tbody>${rows.map((row) => `<tr><th>Lv.${escapeHtml(row.level)}</th><td>${escapeHtml(row.name)}</td></tr>`).join("")}</tbody>
         </table>
       </div>
     </section>
   `;
 }
 
-function createSkillMetaMarkup(metas) {
-  if (!metas.length) return "";
-  return `<div class="clean-skill-meta">${metas.map((meta) => `<span>${escapeHtml(meta)}</span>`).join("")}</div>`;
-}
-
-function createSkillEffectsMarkup(effects) {
-  if (!effects.length) return "";
+function renderSourceSkillCard(skill) {
+  const metaTags = [skill.type, ...skill.metas];
   return `
-    <div class="clean-skill-effects">
-      ${effects.map((effect) => `
-        <div class="clean-skill-effect">
-          ${effect.image ? `<img src="${escapeHtml(effect.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}
-          <span>${escapeHtml(effect.text)}</span>
+    <article class="source-skill-card">
+      <div class="source-skill-header">
+        ${skill.image ? `<img class="source-skill-icon" src="${escapeHtml(skill.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}
+        <div class="source-skill-title-wrap">
+          <div class="source-skill-title-line">
+            <strong>${escapeHtml(skill.title)}</strong>
+            <span class="source-skill-type">${escapeHtml(translateString(skill.type))}</span>
+          </div>
+          ${skill.metas.length ? `<div class="source-skill-meta">${skill.metas.map((meta) => `<span>${escapeHtml(meta)}</span>`).join("")}</div>` : ""}
         </div>
-      `).join("")}
-    </div>
-  `;
-}
-
-function createCleanSkillsTable(skills) {
-  if (!skills.length) return "";
-  return `
-    <section class="clean-detail-block clean-skills-block">
-      <div class="clean-detail-heading"><h3>스킬 정보</h3></div>
-      <div class="clean-skill-list">
-        ${skills.map((skill) => `
-          <article class="clean-skill-card">
-            <div class="clean-skill-head">
-              ${skill.image ? `<img class="clean-skill-main-icon" src="${escapeHtml(skill.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}
-              <div class="clean-skill-head-copy">
-                <strong>${escapeHtml(skill.title)}</strong>
-                ${createSkillMetaMarkup(skill.metas.length ? skill.metas : [skill.type])}
-              </div>
+      </div>
+      ${skill.description ? `<div class="source-skill-description"><p>${escapeHtml(skill.description)}</p></div>` : ""}
+      ${skill.effects.length ? `
+        <div class="source-skill-effects">
+          ${skill.effects.map((effect) => `
+            <div class="source-skill-effect-row">
+              ${effect.image ? `<img src="${escapeHtml(effect.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}
+              <p>${escapeHtml(effect.text)}</p>
             </div>
-            ${skill.descriptionParagraphs.length ? `
-              <div class="clean-skill-description-block">
-                ${skill.descriptionParagraphs.map((text) => `<p>${escapeHtml(text)}</p>`).join("")}
-              </div>
-            ` : ""}
-            ${createSkillEffectsMarkup(skill.effects)}
-            ${skill.levels.length ? `
-              <div class="clean-skill-level-table-wrap">
-                <table class="clean-detail-table clean-skill-level-table">
-                  <thead><tr><th>Lv.</th><th>스킬 레벨 설명</th></tr></thead>
-                  <tbody>
-                    ${skill.levels.map((level) => `<tr><th scope="row">${escapeHtml(level.level)}</th><td>${escapeHtml(level.description)}</td></tr>`).join("")}
-                  </tbody>
-                </table>
-              </div>
-            ` : ""}
-          </article>
-        `).join("")}
-      </div>
-    </section>
+          `).join("")}
+        </div>
+      ` : ""}
+      ${skill.novaBurst ? `
+        <div class="source-nova-burst">
+          <strong>${escapeHtml(translateString("노바 버스트"))}</strong>
+          <p>${escapeHtml(skill.novaBurst)}</p>
+        </div>
+      ` : ""}
+      ${skill.levels.length ? `
+        <div class="source-skill-level-wrap">
+          <div class="source-skill-level-title">${escapeHtml(translateString("스킬 레벨 정보"))}</div>
+          <table class="source-wide-table source-skill-level-table">
+            <thead><tr><th>Lv.</th><th>${escapeHtml(translateString("스킬 레벨 설명"))}</th></tr></thead>
+            <tbody>${skill.levels.map((level) => `<tr><th>${escapeHtml(level.level)}</th><td>${escapeHtml(level.description)}</td></tr>`).join("")}</tbody>
+          </table>
+        </div>
+      ` : ""}
+    </article>
   `;
 }
 
-function createCleanSaviorDetailMarkup(sourceHtml, backupUrl, savior) {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(sourceHtml, "text/html");
-  const root = doc.querySelector(".snapshot-root") || doc.querySelector("main") || doc.body;
-  if (!root) throw new Error("Snapshot root not found");
+function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior) {
+  const { root } = getSaviorSourceRoot(sourceHtml);
+  const tokens = getSaviorSourceTokens(root);
+  const baseIndex = findSourceTokenIndex(tokens, (text) => text.startsWith("기본 스테이터스"));
+  const journeyIndex = findSourceTokenIndex(tokens, (text) => text === "여정 스테이터스", Math.max(0, baseIndex + 1));
+  const resonanceIndex = findSourceTokenIndex(tokens, (text) => text === "공명 잠재력", Math.max(0, journeyIndex + 1));
+  const firstSkillIndex = findSourceTokenIndex(tokens, (text) => isSourceSkillType(text), Math.max(0, resonanceIndex + 1));
 
-  root.querySelectorAll("script,style,.snapshot-meta").forEach((node) => node.remove());
-
-  const { heading: baseHeading, next: baseNext } = findSectionBoundary(root, "기본 스테이터스", ["여정 스테이터스", "공명 잠재력"]);
-  const { heading: journeyHeading, next: journeyNext } = findSectionBoundary(root, "여정 스테이터스", ["공명 잠재력"]);
-  const baseRoot = baseHeading?.parentElement || root;
-  const journeyRoot = journeyHeading?.parentElement || root;
-
-  const baseStats = [
-    ["공격력", false], ["생명력", false], ["방어력", false], ["속도", false],
-    ["치명타 확률", true], ["치명타 피해", true], ["효과 적중", true], ["효과 저항", true], ["명중률", true]
-  ].map(([label, percent]) => [label, extractStatFromDom(baseRoot, label, percent) || extractStatFromDom(root, label, percent)]);
-
-  const journeyStats = ["힘", "체력", "인내", "집중", "보호"]
-    .map((label) => [label, extractStatFromDom(journeyRoot, label, false) || extractStatFromDom(root, label, false)]);
-
-  const resonanceMarker = findSmallestTextElement(root, "공명 잠재력");
-  const skillBlocks = findSkillBlocks(root, resonanceMarker);
-  const skills = skillBlocks.map((block, index) => parseSkillBlock(block, backupUrl, index));
-  const resonanceRows = parseResonanceRowsFromDom(root);
-  const intro = findDescriptionBeforeBase(root, savior);
+  const baseTokens = getSourceRangeTokens(tokens, baseIndex + 1, journeyIndex > baseIndex ? journeyIndex : resonanceIndex);
+  const journeyTokens = getSourceRangeTokens(tokens, journeyIndex + 1, resonanceIndex > journeyIndex ? resonanceIndex : firstSkillIndex);
+  const baseStats = SAVIOR_SOURCE_BASE_STATS.map(([label, percent]) => [label, extractSourceStat(baseTokens, label, percent)]);
+  const journeyStats = SAVIOR_SOURCE_JOURNEY_STATS.map((label) => [label, extractSourceStat(journeyTokens, label, false)]);
+  const resonanceRows = extractSaviorResonanceRows(tokens, resonanceIndex, firstSkillIndex);
+  const description = extractSaviorSourceDescription(tokens, baseIndex, savior);
+  const skills = parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl);
 
   return `
-    <div class="clean-savior-detail">
-      ${intro ? `<section class="clean-detail-intro"><h3>구원자 설명</h3><p>${escapeHtml(intro)}</p></section>` : ""}
-      ${createCleanKeyValueTable("기본 스테이터스", "LV.200 기준", baseStats, "base-stat-table")}
-      <div class="clean-detail-two-column">
-        ${createCleanKeyValueTable("여정 스테이터스", "", journeyStats, "journey-stat-table")}
-        ${createCleanResonanceTable(resonanceRows)}
-      </div>
-      ${createCleanSkillsTable(skills)}
+    <div class="parsed-savior-source">
+      ${renderSaviorInfoTable(savior, description)}
+      ${renderSourceStatTable("기본 스테이터스", "LV.200 기준", baseStats)}
+      ${renderSourceStatTable("여정 스테이터스", "", journeyStats)}
+      ${renderSourceResonanceTable(resonanceRows)}
+      ${skills.length ? `
+        <section class="source-detail-block source-skills-block">
+          <div class="source-detail-heading"><h3>${escapeHtml(translateString("스킬 정보"))}</h3></div>
+          <div class="source-skill-list">${skills.map(renderSourceSkillCard).join("")}</div>
+        </section>
+      ` : ""}
     </div>
   `;
 }
@@ -5925,7 +5824,8 @@ async function loadSaviorSourcePanel(button, panel) {
     const response = await fetch(url, { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const sourceHtml = await response.text();
-    panel.innerHTML = createCleanSaviorDetailMarkup(sourceHtml, url, savior || {});
+    if (!savior) throw new Error("Savior mapping not found");
+    panel.innerHTML = createParsedSaviorSourceMarkup(sourceHtml, url, savior);
     panel.dataset.loaded = "true";
     panel.dataset.state = "ready";
     applyLanguageToDOM(panel);
@@ -6197,11 +6097,7 @@ function createDetailMarkup(savior) {
       </div>
     </header>
 
-    ${guideButton ? `
-      <section class="content-section savior-detail-section" id="savior-detail">
-        <div class="section-body">${guideButton}</div>
-      </section>
-    ` : ""}
+    ${guideButton ? `<section class="content-section savior-source-section">${guideButton}</section>` : ""}
 
     <section class="content-section growth-priority-section" id="growth-priority">
       <div class="section-titlebar">
