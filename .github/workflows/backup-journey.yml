@@ -922,6 +922,599 @@ jobs:
           node .journey-capture.mjs
           rm -f .journey-capture.mjs
 
+      - name: Replace Arcana events from Arcana detail pages
+        shell: bash
+        run: |
+          cat > .arcana-journey-capture.mjs <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import crypto from 'node:crypto';
+          import { chromium } from 'playwright';
+
+          const ROOT = process.cwd();
+          const ARCANA_ROOT = 'https://star-savior-arcana-db.pages.dev/arcana';
+          const OUT_DIR = path.join(ROOT, 'data', 'journey');
+          const ASSET_DIR = path.join(ROOT, 'data', 'journey-assets');
+          const META_PATH = path.join(OUT_DIR, 'backup-meta.json');
+          const LANGUAGES = [
+            { key: 'ko', label: '한국어', eventLabels: ['이벤트'], saviorLabel: '구원자' },
+            { key: 'en', label: 'English', eventLabels: ['Event', 'Events'], saviorLabel: 'Savior' },
+            { key: 'ja', label: '日本語', eventLabels: ['イベント'], saviorLabel: '救援者' }
+          ];
+
+          fs.mkdirSync(ASSET_DIR, { recursive: true });
+
+          const normalize = (value) => String(value ?? '')
+            .replace(/\u00a0/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+
+          function safeFilename(value, fallback = 'arcana-event-asset') {
+            const cleaned = normalize(value)
+              .replace(/^Image\s*/i, '')
+              .replace(/[\\/:*?"<>|]/g, ' ')
+              .replace(/[. ]+$/g, '')
+              .replace(/\s+/g, ' ')
+              .slice(0, 90)
+              .trim();
+            return cleaned || fallback;
+          }
+
+          function extensionFrom(url, contentType = '') {
+            try {
+              const ext = path.extname(new URL(url).pathname).toLowerCase();
+              if (/^\.(webp|png|jpe?g|gif|svg|avif)$/.test(ext)) return ext === '.jpeg' ? '.jpg' : ext;
+            } catch (_) {}
+            if (/webp/i.test(contentType)) return '.webp';
+            if (/png/i.test(contentType)) return '.png';
+            if (/jpe?g/i.test(contentType)) return '.jpg';
+            if (/gif/i.test(contentType)) return '.gif';
+            if (/svg/i.test(contentType)) return '.svg';
+            if (/avif/i.test(contentType)) return '.avif';
+            return '.bin';
+          }
+
+          const browser = await chromium.launch({ headless: true });
+          const context = await browser.newContext({ locale: 'ko-KR', viewport: { width: 1180, height: 1800 }, deviceScaleFactor: 1 });
+          const page = await context.newPage();
+          page.setDefaultTimeout(45000);
+
+          const assetMap = new Map();
+          const usedNames = new Map();
+
+          async function downloadAsset(url, preferredName = '') {
+            if (!url || !/^https?:\/\//i.test(url)) return null;
+            if (/myhits\.vercel\.app|hits\.seeyoufarm\.com/i.test(url)) return null;
+            if (assetMap.has(url)) return assetMap.get(url);
+            let response;
+            try {
+              response = await context.request.get(url, { timeout: 45000 });
+              if (!response.ok()) throw new Error(`HTTP ${response.status()}`);
+            } catch (error) {
+              throw new Error(`Arcana event asset download failed: ${url} (${error.message})`);
+            }
+            const body = await response.body();
+            if (body.length < 20) throw new Error(`Arcana event asset was too small: ${url}`);
+            const contentType = response.headers()['content-type'] || '';
+            const ext = extensionFrom(url, contentType);
+            const bodyHash = crypto.createHash('sha256').update(body).digest('hex').slice(0, 10);
+            let base = safeFilename(preferredName || path.basename(new URL(url).pathname, path.extname(new URL(url).pathname)), bodyHash);
+            let filename = `${base}${ext}`;
+            if (usedNames.has(filename) && usedNames.get(filename) !== bodyHash) filename = `${base}-${bodyHash}${ext}`;
+            usedNames.set(filename, bodyHash);
+            const target = path.join(ASSET_DIR, filename);
+            if (!fs.existsSync(target)) fs.writeFileSync(target, body);
+            assetMap.set(url, filename);
+            return filename;
+          }
+
+          async function waitReady(minLength = 350) {
+            await page.waitForFunction((minimum) => (document.body?.innerText || '').trim().length > minimum, minLength, { timeout: 45000 });
+            await page.waitForTimeout(350);
+          }
+
+          async function deepScroll() {
+            let stable = 0;
+            let previous = 0;
+            for (let i = 0; i < 70; i++) {
+              const height = await page.evaluate(() => {
+                window.scrollTo(0, document.documentElement.scrollHeight);
+                return document.documentElement.scrollHeight;
+              });
+              await page.waitForTimeout(90);
+              stable = height === previous ? stable + 1 : 0;
+              previous = height;
+              if (stable >= 4) break;
+            }
+            await page.evaluate(() => window.scrollTo(0, 0));
+            await page.waitForTimeout(120);
+          }
+
+          async function selectLanguage(label) {
+            const selects = page.locator('select');
+            for (let i = 0; i < await selects.count(); i++) {
+              const select = selects.nth(i);
+              const currentText = await select.locator('option:checked').first().textContent().catch(() => '');
+              if ((currentText || '').trim() === label) return true;
+              const options = await select.locator('option').evaluateAll((nodes) => nodes.map((node) => ({ value: node.value, text: (node.textContent || '').trim() })));
+              const option = options.find((item) => item.text === label);
+              if (!option) continue;
+              await select.selectOption(option.value);
+              await page.waitForTimeout(550);
+              return true;
+            }
+
+            // If only one language label is visibly exposed, it is normally the current-language trigger.
+            const current = await page.evaluate((wanted) => {
+              const labels = ['한국어','English','日本語','繁體中文','简体中文'];
+              const visible = (el) => {
+                if (!(el instanceof HTMLElement)) return false;
+                const r = el.getBoundingClientRect();
+                const s = getComputedStyle(el);
+                return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+              };
+              const norm = (v) => String(v || '').replace(/\s+/g,' ').trim();
+              const exposed = [...document.querySelectorAll('button,[role="button"],label,a,div,span')]
+                .filter(visible)
+                .map((el) => norm(el.innerText || el.textContent))
+                .filter((text) => labels.includes(text));
+              const unique = [...new Set(exposed)];
+              return unique.length === 1 && unique[0] === wanted;
+            }, label);
+            if (current) return true;
+
+            const triggers = page.getByText(/한국어|English|日本語|繁體中文|简体中文/, { exact: true });
+            for (let i = 0; i < await triggers.count(); i++) {
+              const trigger = triggers.nth(i);
+              try {
+                if (!await trigger.isVisible()) continue;
+                await trigger.click();
+                await page.waitForTimeout(180);
+                const targets = page.getByText(label, { exact: true });
+                for (let j = 0; j < await targets.count(); j++) {
+                  if (await targets.nth(j).isVisible()) {
+                    await targets.nth(j).click();
+                    await page.waitForTimeout(600);
+                    return true;
+                  }
+                }
+              } catch (_) {}
+            }
+            throw new Error(`Could not switch Arcana language to ${label}.`);
+          }
+
+          async function prepareArcanaIndex(language) {
+            await page.goto(ARCANA_ROOT, { waitUntil: 'domcontentloaded', timeout: 60000 });
+            await waitReady(900);
+            await selectLanguage(language.label);
+            await waitReady(900);
+            await deepScroll();
+          }
+
+          async function discoverArcanaTargets() {
+            return page.evaluate(() => {
+              const norm = (v) => String(v || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+              const visible = (el) => {
+                if (!(el instanceof HTMLElement)) return false;
+                const r = el.getBoundingClientRect();
+                const s = getComputedStyle(el);
+                return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+              };
+              const origin = location.origin;
+              const generic = new Set(['아르카나','Arcana','アルカナ','이벤트','Event','Events','イベント']);
+              const results = [];
+              const seen = new Set();
+
+              // Preferred path: real links to detail pages.
+              for (const a of document.querySelectorAll('a[href]')) {
+                let url;
+                try { url = new URL(a.getAttribute('href'), location.href); } catch (_) { continue; }
+                if (url.origin !== origin || !url.pathname.startsWith('/arcana')) continue;
+                const isRoot = url.pathname.replace(/\/+$/,'') === '/arcana' && !url.search && !url.hash;
+                if (isRoot) continue;
+                const card = a.closest('article,li,[class*="card"],[class*="item"]') || a;
+                const heading = card.querySelector('h1,h2,h3,h4,h5,h6') || a.querySelector('h1,h2,h3,h4,h5,h6');
+                const name = norm(heading?.textContent || a.textContent);
+                const text = norm(card.textContent);
+                if (!name || generic.has(name) || text.length < 3) continue;
+                const key = url.href;
+                if (seen.has(key)) continue;
+                seen.add(key);
+                const grade = (text.match(/(?:^|\s)(SSR|SR|R)(?:\s|$)/) || [])[1] || '';
+                const lines = String(card.innerText || '').split(/\n+/).map(norm).filter(Boolean);
+                const savior = lines.find((line) => line !== name && line !== grade && !/^Image$/i.test(line) && line.length <= 40 && !/^(Lv\.|레벨|Level)/i.test(line)) || '';
+                results.push({ href: url.href, name, savior, grade, mode: 'href' });
+              }
+              if (results.length >= 10) return results;
+
+              // Fallback for SPA cards without href: save name + savior, then click the card again later.
+              const candidates = [];
+              for (const heading of document.querySelectorAll('h2,h3,h4,h5')) {
+                if (!visible(heading)) continue;
+                const name = norm(heading.textContent);
+                if (!name || generic.has(name)) continue;
+                let card = heading;
+                for (let depth = 0; card && card !== document.body && depth < 7; depth++, card = card.parentElement) {
+                  const text = norm(card.textContent);
+                  if (/(?:^|\s)(SSR|SR|R)(?:\s|$)/.test(text) && text.length <= 700) break;
+                }
+                if (!(card instanceof HTMLElement) || card === document.body) continue;
+                const text = norm(card.textContent);
+                const grade = (text.match(/(?:^|\s)(SSR|SR|R)(?:\s|$)/) || [])[1] || '';
+                if (!grade) continue;
+                const lines = String(card.innerText || '').split(/\n+/).map(norm).filter(Boolean);
+                const savior = lines.find((line) => line !== name && line !== grade && !/^Image$/i.test(line) && line.length <= 40 && !/^(Lv\.|레벨|Level)/i.test(line)) || '';
+                candidates.push({ href: '', name, savior, grade, mode: 'click' });
+              }
+              const byKey = new Map();
+              for (const item of candidates) {
+                const key = `${item.name}\u0000${item.savior}\u0000${item.grade}`;
+                if (!byKey.has(key)) byKey.set(key, item);
+              }
+              return [...byKey.values()];
+            });
+          }
+
+          async function openArcanaTarget(target, language) {
+            if (target.href) {
+              await page.goto(target.href, { waitUntil: 'domcontentloaded', timeout: 60000 });
+              await waitReady(300);
+              await selectLanguage(language.label);
+              await waitReady(300);
+              await deepScroll();
+              return;
+            }
+
+            await prepareArcanaIndex(language);
+            const clicked = await page.evaluate(({ name, savior, grade }) => {
+              const norm = (v) => String(v || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+              const visible = (el) => {
+                if (!(el instanceof HTMLElement)) return false;
+                const r = el.getBoundingClientRect();
+                const s = getComputedStyle(el);
+                return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden';
+              };
+              const clickableFor = (el) => {
+                const semantic = el.closest('a[href],button,[role="button"]');
+                if (semantic && visible(semantic)) return semantic;
+                let node = el;
+                for (let depth = 0; node && node !== document.body && depth < 7; depth++, node = node.parentElement) {
+                  if (!(node instanceof HTMLElement) || !visible(node)) continue;
+                  const style = getComputedStyle(node);
+                  if (style.cursor === 'pointer' || node.onclick || node.tabIndex >= 0) return node;
+                }
+                return null;
+              };
+              const hits = [];
+              for (const el of document.querySelectorAll('h1,h2,h3,h4,h5,h6,button,a,div,span')) {
+                if (!visible(el) || norm(el.textContent) !== name) continue;
+                const clickable = clickableFor(el);
+                if (!clickable) continue;
+                const card = clickable.closest('article,li,[class*="card"],[class*="item"]') || clickable.parentElement || clickable;
+                const text = norm(card.textContent);
+                let score = 1000;
+                if (savior && text.includes(savior)) score += 500;
+                if (grade && text.includes(grade)) score += 200;
+                score -= text.length;
+                hits.push({ clickable, score });
+              }
+              hits.sort((a,b) => b.score - a.score);
+              if (!hits.length) return false;
+              hits[0].clickable.scrollIntoView({ block: 'center' });
+              hits[0].clickable.click();
+              return true;
+            }, target);
+            if (!clicked) throw new Error(`Could not open Arcana card: ${target.name} / ${target.savior}`);
+            await page.waitForTimeout(650);
+            await waitReady(300);
+            await deepScroll();
+          }
+
+          async function captureArcanaDetail(language, target, ordinal) {
+            const payload = await page.evaluate(({ eventLabels, saviorLabel, fallbackName, fallbackSavior, fallbackGrade, ordinal }) => {
+              const normalize = (value) => String(value || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+              const isVisible = (el) => {
+                if (!(el instanceof Element)) return false;
+                const rect = el.getBoundingClientRect();
+                const style = getComputedStyle(el);
+                return rect.width > 0 && rect.height > 0 && style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
+              };
+              const root = document.querySelector('main') || document.querySelector('[role="main"]') || document.body;
+              const allVisible = [...root.querySelectorAll('h1,h2,h3,h4,h5,h6,div,span,p,strong')].filter(isVisible);
+              const eventHeading = allVisible
+                .filter((el) => eventLabels.includes(normalize(el.textContent)))
+                .sort((a,b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0] || null;
+              if (!eventHeading) return { error: 'event-heading-not-found', bodyText: normalize(root.innerText).slice(0, 1200) };
+
+              const eventTop = eventHeading.getBoundingClientRect().bottom - 2;
+              const footer = [...document.querySelectorAll('footer,[role="contentinfo"]')].find(isVisible);
+              const footerTop = footer ? footer.getBoundingClientRect().top : Number.POSITIVE_INFINITY;
+
+              // Metadata is above the Event heading. Prefer the largest non-generic heading.
+              const generic = new Set(['아르카나','Arcana','アルカナ','이벤트','Event','Events','イベント']);
+              const headings = [...root.querySelectorAll('h1,h2,h3,h4,h5,h6')]
+                .filter(isVisible)
+                .map((el) => ({
+                  el,
+                  text: normalize(el.textContent),
+                  top: el.getBoundingClientRect().top,
+                  size: parseFloat(getComputedStyle(el).fontSize) || 0
+                }))
+                .filter((item) => item.top < eventHeading.getBoundingClientRect().top && item.text && !generic.has(item.text));
+              headings.sort((a,b) => b.size - a.size || a.top - b.top);
+              const name = headings[0]?.text || fallbackName || `Arcana ${ordinal + 1}`;
+
+              const headerText = normalize(root.innerText).split(/\s+/);
+              const rootLines = String(root.innerText || '').split(/\n+/).map(normalize).filter(Boolean);
+              const eventLineIndex = rootLines.findIndex((line) => eventLabels.includes(line));
+              const beforeLines = eventLineIndex >= 0 ? rootLines.slice(0, eventLineIndex) : rootLines.slice(0, 25);
+              const grade = beforeLines.find((line) => /^(SSR|SR|R)$/.test(line)) || fallbackGrade || '';
+
+              let savior = fallbackSavior || '';
+              if (!savior) {
+                const nameIndex = beforeLines.findIndex((line) => line === name);
+                const gradeIndex = beforeLines.findIndex((line) => line === grade);
+                const start = Math.max(nameIndex, gradeIndex, -1) + 1;
+                savior = beforeLines.slice(start, start + 8).find((line) =>
+                  line && line !== name && line !== grade && line.length <= 40 &&
+                  !/^(Lv\.|레벨|Level|한국어|English|日本語|아르카나|Arcana|アルカナ)/i.test(line)
+                ) || '';
+              }
+
+              function parseRgb(value) {
+                const m = String(value || '').match(/rgba?\((\d+)[, ]+(\d+)[, ]+(\d+)(?:[, /]+([\d.]+))?\)/i);
+                if (!m) return null;
+                return { r:+m[1], g:+m[2], b:+m[3], a:m[4] == null ? 1 : +m[4] };
+              }
+              function toneFrom(rgb) {
+                if (!rgb || rgb.a < .05) return 'plain';
+                if (rgb.g > rgb.r * 1.28 && rgb.g > rgb.b * 1.12) return 'success';
+                if (rgb.r > rgb.g * 1.28 && rgb.r > rgb.b * 1.08) return 'failure';
+                if (rgb.r > 90 && rgb.g > 65 && rgb.b < Math.min(rgb.r, rgb.g) * .82) return 'highlight';
+                return 'neutral';
+              }
+
+              const regionIds = new WeakMap();
+              let regionSeq = 0;
+              function regionInfo(el) {
+                let node = el instanceof Element ? el : el?.parentElement;
+                while (node && node !== root) {
+                  if (node.closest('header,nav,aside,footer,[role="navigation"],[role="contentinfo"]')) return { id:'', tone:'plain' };
+                  const rect = node.getBoundingClientRect();
+                  const style = getComputedStyle(node);
+                  const bg = parseRgb(style.backgroundColor);
+                  const tone = toneFrom(bg);
+                  const border = parseFloat(style.borderTopWidth || '0') + parseFloat(style.borderRightWidth || '0') + parseFloat(style.borderBottomWidth || '0') + parseFloat(style.borderLeftWidth || '0');
+                  if (rect.width > 15 && rect.height > 12 && ((bg && bg.a >= .06 && tone !== 'plain') || border > 0)) {
+                    if (!regionIds.has(node)) regionIds.set(node, `ar${++regionSeq}`);
+                    return { id: regionIds.get(node), tone };
+                  }
+                  node = node.parentElement;
+                }
+                return { id:'', tone:'plain' };
+              }
+
+              const atoms = [];
+              const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+              let node;
+              while ((node = walker.nextNode())) {
+                const parent = node.parentElement;
+                if (!parent || !isVisible(parent) || parent.closest('script,style,noscript,header,nav,aside,footer,[role="navigation"],[role="contentinfo"]')) continue;
+                const text = normalize(node.nodeValue);
+                if (!text) continue;
+                const range = document.createRange();
+                range.selectNodeContents(node);
+                const rect = range.getBoundingClientRect();
+                if (!(rect.width > 0 && rect.height > 0) || rect.top < eventTop || rect.top >= footerTop) continue;
+                const style = getComputedStyle(parent);
+                const region = regionInfo(parent);
+                atoms.push({
+                  type:'text', text,
+                  x: Math.round(rect.left * 10) / 10,
+                  y: Math.round((rect.top - eventTop) * 10) / 10,
+                  w: Math.round(rect.width * 10) / 10,
+                  h: Math.round(rect.height * 10) / 10,
+                  fontSize: parseFloat(style.fontSize) || 14,
+                  weight: parseInt(style.fontWeight, 10) || (/bold/i.test(style.fontWeight) ? 700 : 400),
+                  region: region.id,
+                  tone: region.tone
+                });
+              }
+
+              for (const img of root.querySelectorAll('img')) {
+                if (!isVisible(img) || img.closest('header,nav,aside,footer,[role="navigation"],[role="contentinfo"]')) continue;
+                const rect = img.getBoundingClientRect();
+                if (rect.top < eventTop || rect.top >= footerTop) continue;
+                let src = '';
+                try { src = new URL(img.currentSrc || img.getAttribute('src') || '', location.href).href; } catch (_) {}
+                if (!src || /myhits\.vercel\.app|hits\.seeyoufarm\.com/i.test(src)) continue;
+                const region = regionInfo(img);
+                atoms.push({
+                  type:'image', src, alt: normalize(img.getAttribute('alt')),
+                  x: Math.round(rect.left * 10) / 10,
+                  y: Math.round((rect.top - eventTop) * 10) / 10,
+                  w: Math.round(rect.width * 10) / 10,
+                  h: Math.round(rect.height * 10) / 10,
+                  region: region.id,
+                  tone: region.tone
+                });
+              }
+
+              atoms.sort((a,b) => a.y - b.y || a.x - b.x || (a.type === 'image' ? -1 : 1));
+              const rows = [];
+              for (const atom of atoms) {
+                const center = atom.y + atom.h / 2;
+                let row = rows.findLast((candidate) => {
+                  const overlap = Math.min(candidate.bottom, atom.y + atom.h) - Math.max(candidate.top, atom.y);
+                  return overlap > Math.min(candidate.height, atom.h) * .25 || Math.abs(candidate.center - center) <= 7;
+                });
+                if (!row || atom.y - row.bottom > 10) {
+                  row = { top:atom.y, bottom:atom.y + atom.h, center, height:atom.h, atoms:[] };
+                  rows.push(row);
+                }
+                row.atoms.push(atom);
+                row.top = Math.min(row.top, atom.y);
+                row.bottom = Math.max(row.bottom, atom.y + atom.h);
+                row.height = row.bottom - row.top;
+                row.center = (row.top + row.bottom) / 2;
+              }
+
+              const serialized = rows.map((row) => {
+                row.atoms.sort((a,b) => a.x - b.x || (a.type === 'image' ? -1 : 1));
+                const segments = [];
+                for (const atom of row.atoms) {
+                  if (atom.type === 'image') {
+                    const previous = segments[segments.length - 1];
+                    if (previous?.type === 'images' && Math.abs(atom.x - previous.lastX) < Math.max(12, atom.w * .55)) {
+                      previous.images.push({ src:atom.src, alt:atom.alt, sourceWidth:atom.w, sourceHeight:atom.h });
+                      previous.lastX = atom.x;
+                    } else {
+                      segments.push({ type:'images', images:[{ src:atom.src, alt:atom.alt, sourceWidth:atom.w, sourceHeight:atom.h }], lastX:atom.x });
+                    }
+                  } else {
+                    const previous = segments[segments.length - 1];
+                    if (previous?.type === 'text' && atom.x - previous.lastRight < 24) {
+                      previous.text = normalize(`${previous.text} ${atom.text}`);
+                      previous.lastRight = atom.x + atom.w;
+                      previous.fontSize = Math.max(previous.fontSize, atom.fontSize);
+                      previous.weight = Math.max(previous.weight, atom.weight);
+                    } else {
+                      segments.push({ type:'text', text:atom.text, fontSize:atom.fontSize, weight:atom.weight, lastRight:atom.x + atom.w });
+                    }
+                  }
+                }
+                for (const segment of segments) { delete segment.lastX; delete segment.lastRight; }
+                const text = normalize(segments.filter((segment) => segment.type === 'text').map((segment) => segment.text).join(' '));
+                const regionAtoms = row.atoms.filter((atom) => atom.region);
+                const region = regionAtoms[0]?.region || '';
+                const tone = regionAtoms.find((atom) => atom.tone === 'failure')?.tone
+                  || regionAtoms.find((atom) => atom.tone === 'success')?.tone
+                  || regionAtoms.find((atom) => atom.tone === 'highlight')?.tone
+                  || regionAtoms[0]?.tone || 'plain';
+                const fontSize = Math.max(0, ...row.atoms.filter((atom) => atom.type === 'text').map((atom) => atom.fontSize || 0));
+                const weight = Math.max(0, ...row.atoms.filter((atom) => atom.type === 'text').map((atom) => atom.weight || 0));
+                return { text, segments, region, tone, fontSize, weight };
+              }).filter((row) => row.text || row.segments.some((segment) => segment.type === 'images'));
+
+              const metadataRows = [
+                { text:`[아르카나]${name}`, segments:[{ type:'text', text:`[아르카나]${name}`, fontSize:24, weight:850 }], region:'', tone:'plain', fontSize:24, weight:850 },
+                { text:`${saviorLabel} : ${savior || '-'}`, segments:[{ type:'text', text:`${saviorLabel} : ${savior || '-'}`, fontSize:15, weight:700 }], region:'', tone:'plain', fontSize:15, weight:700 }
+              ];
+              if (grade) metadataRows.splice(1, 0, { text:grade, segments:[{ type:'text', text:grade, fontSize:14, weight:800 }], region:'', tone:'plain', fontSize:14, weight:800 });
+
+              const imageText = serialized.flatMap((row) => row.segments || [])
+                .filter((segment) => segment.type === 'images')
+                .flatMap((segment) => segment.images || [])
+                .map((image) => image.alt || '')
+                .join(' ');
+              const eventText = normalize(serialized.map((row) => row.text).join(' '));
+              const searchText = normalize(`${name} ${grade} ${savior} ${eventText} ${imageText}`);
+              return {
+                key: `arcana:${normalize(name)}:${normalize(savior)}`,
+                title: `[아르카나]${name}`,
+                arcanaName: name,
+                grade,
+                savior,
+                searchText,
+                difficulties: [],
+                categories: [],
+                kind: 'arcana',
+                rows: [...metadataRows, ...serialized]
+              };
+            }, {
+              eventLabels: language.eventLabels,
+              saviorLabel: language.saviorLabel,
+              fallbackName: target.name || '',
+              fallbackSavior: target.savior || '',
+              fallbackGrade: target.grade || '',
+              ordinal
+            });
+
+            if (payload?.error) {
+              throw new Error(`Arcana detail extraction failed (${payload.error}) for ${target.name || target.href}. ${payload.bodyText || ''}`);
+            }
+            if (!payload?.title || !Array.isArray(payload.rows) || payload.rows.length < 3) {
+              throw new Error(`Arcana detail extraction was too small for ${target.name || target.href}`);
+            }
+
+            for (const row of payload.rows) {
+              for (const segment of row.segments || []) {
+                if (segment.type !== 'images') continue;
+                for (const image of segment.images || []) {
+                  if (!image.src) continue;
+                  const preferred = image.alt || row.text || payload.arcanaName || 'arcana-event-image';
+                  image.asset = await downloadAsset(image.src, preferred);
+                  delete image.src;
+                }
+              }
+            }
+            return payload;
+          }
+
+          const arcanaByLanguage = {};
+          for (const language of LANGUAGES) {
+            await prepareArcanaIndex(language);
+            const targets = await discoverArcanaTargets();
+            if (targets.length < 20) {
+              throw new Error(`Arcana index discovery too small for ${language.key}: ${targets.length}`);
+            }
+            console.log(`${language.key}: discovered ${targets.length} Arcana cards`);
+
+            const entries = [];
+            const seen = new Set();
+            for (let i = 0; i < targets.length; i++) {
+              const target = targets[i];
+              await openArcanaTarget(target, language);
+              const entry = await captureArcanaDetail(language, target, i);
+              const key = `${normalize(entry.arcanaName)}\u0000${normalize(entry.savior)}`;
+              if (!seen.has(key)) {
+                seen.add(key);
+                entries.push(entry);
+              }
+              console.log(`${language.key} arcana ${i + 1}/${targets.length}: ${entry.arcanaName} / ${entry.savior}`);
+            }
+            if (entries.length < 20) throw new Error(`Arcana detail capture too small for ${language.key}: ${entries.length}`);
+            arcanaByLanguage[language.key] = entries;
+          }
+
+          for (const language of LANGUAGES) {
+            const file = path.join(OUT_DIR, language.key, 'journey.json');
+            if (!fs.existsSync(file)) throw new Error(`Journey JSON missing before Arcana merge: ${file}`);
+            const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+            // IMPORTANT: preserve the already-working generic Journey event data and category memberships verbatim.
+            data.arcana = arcanaByLanguage[language.key];
+            data.version = Math.max(Number(data.version) || 2, 3);
+            fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf8');
+          }
+
+          let meta = {};
+          if (fs.existsSync(META_PATH)) {
+            try { meta = JSON.parse(fs.readFileSync(META_PATH, 'utf8')); } catch (_) {}
+          }
+          meta.sources = {
+            journey: meta.source || 'https://star-savior-arcana-db.pages.dev/journey',
+            arcana: ARCANA_ROOT
+          };
+          meta.arcanaSource = ARCANA_ROOT;
+          meta.arcanaMode = 'arcana-detail-event-section';
+          meta.counts = meta.counts || {};
+          for (const language of LANGUAGES) {
+            meta.counts[language.key] = meta.counts[language.key] || {};
+            meta.counts[language.key].arcana = arcanaByLanguage[language.key].length;
+          }
+          meta.localAssetCount = fs.readdirSync(ASSET_DIR).filter((name) => fs.statSync(path.join(ASSET_DIR, name)).isFile()).length;
+          fs.writeFileSync(META_PATH, JSON.stringify(meta, null, 2), 'utf8');
+
+          await browser.close();
+          console.log(JSON.stringify({
+            source: ARCANA_ROOT,
+            counts: Object.fromEntries(LANGUAGES.map((language) => [language.key, arcanaByLanguage[language.key].length])),
+            assets: meta.localAssetCount
+          }, null, 2));
+          NODE
+          node .arcana-journey-capture.mjs
+          rm -f .arcana-journey-capture.mjs
+
       - name: Verify structured local Journey database
         shell: bash
         run: |
@@ -956,6 +1549,12 @@ jobs:
           }
           const arcanaSearch = ko.arcana.some((entry) => (entry.searchText || '').includes('린'));
           if (!arcanaSearch) throw new Error('Arcana Journey search corpus does not contain 린.');
+          const knownArcana = ko.arcana.find((entry) => (entry.searchText || '').includes('누각 위, 유리달 맞이'));
+          if (!knownArcana) throw new Error('Missing known Arcana detail: 누각 위, 유리달 맞이');
+          for (const token of ['부끄럽지 않아요','만물이 지닌 가치','건강이 제일이에요']) {
+            if (!(knownArcana.searchText || '').includes(token)) throw new Error(`Known Arcana event token missing: ${token}`);
+          }
+          if (!(knownArcana.searchText || '').includes('린')) throw new Error('Known Arcana Savior mapping missing: 린');
           for (const language of languages) {
             const data = JSON.parse(fs.readFileSync(`data/journey/${language}/journey.json`,'utf8'));
             for (const category of ['reset','raid','aganon','flora','kalaid','weather']) {
