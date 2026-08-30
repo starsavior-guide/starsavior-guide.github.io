@@ -1,56 +1,52 @@
 {
+  "capturedAt": "2026-08-30T13:48:55.365Z",
   "source": "https://star-savior-arcana-db.pages.dev/journey",
-  "capturedAt": "2026-08-30T12:48:19.792Z",
-  "mode": "fully-local-static-archive",
+  "mode": "structured-local-json",
   "sourceRequiredAtRuntime": false,
   "languages": [
     "ko",
     "en",
-    "ja",
-    "zh-TW",
-    "zh-CN"
+    "ja"
   ],
-  "localAssetCount": 91,
-  "snapshots": {
+  "localAssetCount": 173,
+  "counts": {
     "ko": {
-      "arcanaTextLength": 16032,
-      "eventTextLength": 16032,
-      "arcanaEntries": 65,
-      "eventEntries": 65,
-      "arcanaImages": 425,
-      "eventImages": 425
+      "arcana": 69,
+      "events": 69
     },
     "en": {
-      "arcanaTextLength": 28556,
-      "eventTextLength": 28556,
-      "arcanaEntries": 81,
-      "eventEntries": 81,
-      "arcanaImages": 425,
-      "eventImages": 425
+      "arcana": 82,
+      "events": 82
     },
     "ja": {
-      "arcanaTextLength": 13242,
-      "eventTextLength": 13242,
-      "arcanaEntries": 59,
-      "eventEntries": 59,
-      "arcanaImages": 425,
-      "eventImages": 425
+      "arcana": 65,
+      "events": 65
+    }
+  },
+  "categories": {
+    "ko": {
+      "reset": 6,
+      "raid": 8,
+      "aganon": 7,
+      "flora": 4,
+      "kalaid": 4,
+      "weather": 8
     },
-    "zh-TW": {
-      "arcanaTextLength": 11891,
-      "eventTextLength": 11891,
-      "arcanaEntries": 59,
-      "eventEntries": 59,
-      "arcanaImages": 425,
-      "eventImages": 425
+    "en": {
+      "reset": 6,
+      "raid": 10,
+      "aganon": 8,
+      "flora": 5,
+      "kalaid": 5,
+      "weather": 8
     },
-    "zh-CN": {
-      "arcanaTextLength": 11882,
-      "eventTextLength": 11882,
-      "arcanaEntries": 59,
-      "eventEntries": 59,
-      "arcanaImages": 425,
-      "eventImages": 425
+    "ja": {
+      "reset": 5,
+      "raid": 7,
+      "aganon": 5,
+      "flora": 4,
+      "kalaid": 4,
+      "weather": 8
     }
   }
 }
