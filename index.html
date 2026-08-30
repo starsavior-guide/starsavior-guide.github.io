@@ -8,7 +8,7 @@
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=61-v57-detail-fixes"></script>
+  <script defer src="./app.js?v=62-bloom-toggle"></script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -675,6 +675,58 @@
     .parsed-savior-source {
       display: grid;
       gap: 16px;
+    }
+
+    .source-bloom-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 42px;
+    }
+
+    .source-bloom-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 38px;
+      padding: 8px 13px;
+      border: 1px solid rgba(255, 89, 157, .52);
+      border-radius: 999px;
+      background: rgba(150, 29, 86, .14);
+      color: #ff8fc2;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: background .18s ease, border-color .18s ease, transform .18s ease;
+    }
+
+    .source-bloom-toggle:hover {
+      border-color: rgba(255, 119, 177, .85);
+      background: rgba(177, 35, 99, .2);
+    }
+
+    .source-bloom-toggle[aria-pressed="true"] {
+      border-color: rgba(255, 112, 173, .95);
+      background: rgba(190, 38, 106, .32);
+      box-shadow: 0 0 0 2px rgba(255, 86, 157, .08), 0 0 22px rgba(255, 72, 148, .12);
+    }
+
+    .source-bloom-toggle:disabled {
+      opacity: .65;
+      cursor: wait;
+    }
+
+    .source-bloom-flower {
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    .source-bloom-error {
+      color: #ff9da6;
+      font-size: 12px;
+      font-weight: 800;
     }
 
     .source-detail-block {

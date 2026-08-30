@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v61-v57-detail-fixes";
+const SITE_BUILD_VERSION = "v62-bloom-toggle";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja", "zh-TW", "zh-CN"];
 const LANGUAGE_HTML_CODES = {
@@ -37,6 +37,27 @@ Object.assign(I18N_DATA.ui["zh-CN"], {
   "상세정보 백업 데이터를 불러올 수 없습니다.": "无法加载已备份的救援者详细信息。",
   "상세정보 펼치기": "展开详细信息",
   "상세정보 접기": "收起详细信息"
+});
+
+Object.assign(I18N_DATA.ui.en, {
+  "개화": "Bloom",
+  "개화 스킬을 불러오는 중입니다.": "Loading Bloom skill data.",
+  "개화 스킬 백업 데이터를 불러올 수 없습니다.": "The backed-up Bloom skill data could not be loaded."
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "개화": "開花",
+  "개화 스킬을 불러오는 중입니다.": "開花スキルデータを読み込んでいます。",
+  "개화 스킬 백업 데이터를 불러올 수 없습니다.": "バックアップ済みの開花スキルデータを読み込めませんでした。"
+});
+Object.assign(I18N_DATA.ui["zh-TW"], {
+  "개화": "開花",
+  "개화 스킬을 불러오는 중입니다.": "正在載入開花技能資料。",
+  "개화 스킬 백업 데이터를 불러올 수 없습니다.": "無法載入已備份的開花技能資料。"
+});
+Object.assign(I18N_DATA.ui["zh-CN"], {
+  "개화": "开花",
+  "개화 스킬을 불러오는 중입니다.": "正在加载开花技能数据。",
+  "개화 스킬 백업 데이터를 불러올 수 없습니다.": "无法加载已备份的开花技能数据。"
 });
 
 Object.assign(I18N_DATA.ui.en, { "아르카나 상세정보": "Arcana details" });
@@ -812,6 +833,20 @@ const SAVIOR_DETAIL_IDS = {
   "yoo-mina": 3002,
   "rosaria": 3003
 };
+
+// 원본 DB에서 개화 토글로 스킬 설명이 변경되는 구원자.
+// 신규 개화 구원자는 이 목록에 상세 ID만 추가하면 백업 Action이 자동으로 수집한다.
+const SAVIOR_BLOOM_DETAIL_IDS = {
+  "besta": 1501,
+  "annah": 1502,
+  "marcille": 1506,
+  "vera": 1507,
+  "naru": 1508,
+  "bunny-claire": 1509,
+  "bunny-scarlet": 1510,
+  "clarissa": 1511
+};
+const SAVIOR_BLOOM_DETAIL_ID_SET = new Set(Object.values(SAVIOR_BLOOM_DETAIL_IDS));
 
 const ARCANA_DETAIL_IDS = {
   "단점 보완 맞춤 훈련": 7102501,
@@ -5303,6 +5338,10 @@ function getSaviorBackupUrl(detailId) {
   return `./data/saviors/${encodeURIComponent(detailId)}.html?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
 }
 
+function getSaviorBloomBackupUrl(detailId) {
+  return `./data/savior-bloom/${encodeURIComponent(detailId)}.html?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
+}
+
 function setSaviorSourcePanelStatus(panel, sourceText, kind = "") {
   panel.dataset.state = kind;
   panel.innerHTML = `<div class="savior-source-status ${escapeHtml(kind)}">${escapeHtml(translateString(sourceText))}</div>`;
@@ -5977,8 +6016,19 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior) {
   const resonanceRows = extractSaviorResonanceRows(tokens, resonanceIndex, resonanceStopIndex);
   const skills = parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl);
 
+  const detailId = SAVIOR_DETAIL_IDS[savior.id];
+  const bloomAvailable = SAVIOR_BLOOM_DETAIL_ID_SET.has(Number(detailId));
+
   return `
     <div class="parsed-savior-source">
+      ${bloomAvailable ? `
+        <div class="source-bloom-toolbar">
+          <button class="source-bloom-toggle" type="button" data-savior-bloom-toggle data-detail-id="${escapeHtml(detailId)}" aria-pressed="false">
+            <span class="source-bloom-flower" aria-hidden="true">✿</span>
+            <span>${escapeHtml(translateString("개화"))}</span>
+          </button>
+        </div>
+      ` : ""}
       ${renderSaviorInfoTable(savior, profile)}
       ${renderSourceStatTable("기본 스테이터스", "LV.200 기준", baseStats)}
       ${renderSourceStatTable("여정 스테이터스", "", journeyStats)}
@@ -6009,6 +6059,9 @@ async function loadSaviorSourcePanel(button, panel) {
     const sourceHtml = await response.text();
     if (!savior) throw new Error("Savior mapping not found");
     panel.innerHTML = createParsedSaviorSourceMarkup(sourceHtml, url, savior);
+    panel._normalSaviorSourceHtml = sourceHtml;
+    panel._normalSaviorSourceUrl = url;
+    panel._saviorSourceId = savior.id;
     panel.dataset.loaded = "true";
     panel.dataset.state = "ready";
     applyLanguageToDOM(panel);
@@ -6020,7 +6073,106 @@ async function loadSaviorSourcePanel(button, panel) {
   }
 }
 
+function cloneSaviorSkillVisuals(normalList, bloomList) {
+  if (!normalList || !bloomList) return;
+  const normalCards = [...normalList.querySelectorAll(".source-skill-card")];
+  const bloomCards = [...bloomList.querySelectorAll(".source-skill-card")];
+
+  bloomCards.forEach((bloomCard, index) => {
+    const normalCard = normalCards[index];
+    if (!normalCard) return;
+
+    const normalIcon = normalCard.querySelector(".source-skill-icon");
+    const bloomHeader = bloomCard.querySelector(".source-skill-header");
+    if (normalIcon && bloomHeader && !bloomCard.querySelector(".source-skill-icon")) {
+      bloomHeader.insertBefore(normalIcon.cloneNode(true), bloomHeader.firstChild);
+    }
+
+    const normalEffects = [...normalCard.querySelectorAll(".source-skill-effect-row")];
+    const bloomEffects = [...bloomCard.querySelectorAll(".source-skill-effect-row")];
+    bloomEffects.forEach((row, effectIndex) => {
+      if (row.querySelector("img")) return;
+      const normalEffectImage = normalEffects[effectIndex]?.querySelector("img");
+      if (normalEffectImage) row.insertBefore(normalEffectImage.cloneNode(true), row.firstChild);
+    });
+  });
+}
+
+function createSaviorSkillListFromSource(sourceHtml, sourceUrl, savior) {
+  const temp = document.createElement("div");
+  temp.innerHTML = createParsedSaviorSourceMarkup(sourceHtml, sourceUrl, savior);
+  return temp.querySelector(".source-skill-list");
+}
+
+async function applySaviorBloomMode(button, panel) {
+  const detailId = Number(button.dataset.detailId || 0);
+  const savior = SAVIORS.find((item) => SAVIOR_DETAIL_IDS[item.id] === detailId);
+  if (!detailId || !savior || !panel._normalSaviorSourceHtml) return;
+
+  const currentPressed = button.getAttribute("aria-pressed") === "true";
+  const nextPressed = !currentPressed;
+  const liveSkillList = panel.querySelector(".source-skill-list");
+  if (!liveSkillList) return;
+
+  button.disabled = true;
+  try {
+    if (!nextPressed) {
+      const normalList = createSaviorSkillListFromSource(
+        panel._normalSaviorSourceHtml,
+        panel._normalSaviorSourceUrl || getSaviorBackupUrl(detailId),
+        savior
+      );
+      if (!normalList) throw new Error("Normal skill list not found");
+      liveSkillList.innerHTML = normalList.innerHTML;
+      button.setAttribute("aria-pressed", "false");
+      applyLanguageToDOM(liveSkillList);
+      return;
+    }
+
+    if (!panel._bloomSaviorSourceHtml) {
+      const bloomUrl = getSaviorBloomBackupUrl(detailId);
+      const response = await fetch(bloomUrl, { cache: "no-store" });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      panel._bloomSaviorSourceHtml = await response.text();
+      panel._bloomSaviorSourceUrl = bloomUrl;
+    }
+
+    const normalList = createSaviorSkillListFromSource(
+      panel._normalSaviorSourceHtml,
+      panel._normalSaviorSourceUrl || getSaviorBackupUrl(detailId),
+      savior
+    );
+    const bloomList = createSaviorSkillListFromSource(
+      panel._bloomSaviorSourceHtml,
+      panel._bloomSaviorSourceUrl || getSaviorBloomBackupUrl(detailId),
+      savior
+    );
+    if (!bloomList) throw new Error("Bloom skill list not found");
+
+    // 개화 백업은 텍스트 전용이다. 아이콘/효과 이미지는 기존 일반 스킬 백업을 그대로 재사용한다.
+    cloneSaviorSkillVisuals(normalList, bloomList);
+    liveSkillList.innerHTML = bloomList.innerHTML;
+    button.setAttribute("aria-pressed", "true");
+    applyLanguageToDOM(liveSkillList);
+  } catch (error) {
+    console.warn("Savior Bloom backup load failed:", detailId, error);
+    const status = document.createElement("div");
+    status.className = "source-bloom-error";
+    status.textContent = translateString("개화 스킬 백업 데이터를 불러올 수 없습니다.");
+    button.closest(".source-bloom-toolbar")?.appendChild(status);
+  } finally {
+    button.disabled = false;
+  }
+}
+
 detailContent.addEventListener("click", async (event) => {
+  const bloomButton = event.target.closest("[data-savior-bloom-toggle]");
+  if (bloomButton && detailContent.contains(bloomButton)) {
+    const panel = bloomButton.closest("[data-savior-source-panel]");
+    if (panel) await applySaviorBloomMode(bloomButton, panel);
+    return;
+  }
+
   const button = event.target.closest("[data-savior-source-toggle]");
   if (!button || !detailContent.contains(button)) return;
 
