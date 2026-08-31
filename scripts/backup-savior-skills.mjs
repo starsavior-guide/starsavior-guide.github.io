@@ -125,6 +125,21 @@ function archiveSkill(skill, buffs, icon) {
   };
 }
 
+function archiveResonancePotential(resonance, potential, saviorId) {
+  if (!potential) {
+    throw new Error(`Savior ${saviorId}: resonance potential ${resonance.potential} is missing`);
+  }
+
+  return {
+    step: resonance.step,
+    unlockLevel: resonance.unlock_level,
+    id: potential.id,
+    strId: potential.str_id,
+    name: localized(potential.name, `potential ${potential.id} name`),
+    description: localized(potential.desc, `potential ${potential.id} description`)
+  };
+}
+
 function skillIconSource(savior, skill, blossomed) {
   const characterName = `${savior.name[LANGUAGES.ko]}(${savior.title[LANGUAGES.ko]})`;
   const type = SKILL_TYPE_KO[skill.type];
@@ -189,10 +204,11 @@ await Promise.all([
   fs.mkdir(BUFF_ASSET_DIR, { recursive: true })
 ]);
 
-console.log("Downloading Savior skill source data...");
-const [sourceSaviors, sourceBuffs] = await Promise.all([
+console.log("Downloading Savior skill and resonance source data...");
+const [sourceSaviors, sourceBuffs, sourcePotentials] = await Promise.all([
   fetchJson("saviors.json"),
-  fetchJson("buffs.json")
+  fetchJson("buffs.json"),
+  fetchJson("potentials.json")
 ]);
 
 if (!Array.isArray(sourceSaviors) || sourceSaviors.length !== 52) {
@@ -201,6 +217,11 @@ if (!Array.isArray(sourceSaviors) || sourceSaviors.length !== 52) {
 if (!Array.isArray(sourceBuffs) || sourceBuffs.length < 1) {
   throw new Error("Buff data is missing");
 }
+if (!Array.isArray(sourcePotentials) || sourcePotentials.length < 1) {
+  throw new Error("Potential data is missing");
+}
+
+const potentialByStrId = new Map(sourcePotentials.map((potential) => [potential.str_id, potential]));
 
 const assetMap = new Map();
 const addAsset = (source, destination) => {
@@ -209,6 +230,17 @@ const addAsset = (source, destination) => {
 };
 
 const archivedSaviors = sourceSaviors.map((savior) => {
+  const resonancePotentials = (savior.resonances || [])
+    .filter((resonance) => resonance.potential)
+    .map((resonance) => archiveResonancePotential(
+      resonance,
+      potentialByStrId.get(resonance.potential),
+      savior.id
+    ));
+  if (resonancePotentials.length !== 3) {
+    throw new Error(`Savior ${savior.id}: expected 3 resonance potentials, received ${resonancePotentials.length}`);
+  }
+
   const skills = savior.skills.map((skill) => {
     const icon = `./data/savior-skill-assets/skills/${skill.id}.webp`;
     addAsset(skillIconSource(savior, skill, false), path.join(SKILL_ASSET_DIR, `${skill.id}.webp`));
@@ -237,6 +269,7 @@ const archivedSaviors = sourceSaviors.map((savior) => {
     name: localized(savior.name, `Savior ${savior.id} name`),
     title: localized(savior.title, `Savior ${savior.id} title`),
     description: localized(savior.inst?.desc, `Savior ${savior.id} description`),
+    resonancePotentials,
     skills,
     blossomSkills
   };
@@ -248,7 +281,7 @@ const assetResults = await downloadAssets(assets);
 
 const capturedAt = new Date().toISOString();
 const archive = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   source: `${SOURCE_DATA_ROOT}/saviors.json`,
   capturedAt,
   languages: Object.keys(LANGUAGES),
@@ -257,17 +290,19 @@ const archive = {
 
 const skillCount = archivedSaviors.reduce((total, savior) => total + savior.skills.length, 0);
 const blossomSkillCount = archivedSaviors.reduce((total, savior) => total + savior.blossomSkills.length, 0);
+const resonancePotentialCount = archivedSaviors.reduce((total, savior) => total + savior.resonancePotentials.length, 0);
 const buffCount = new Set(archivedSaviors.flatMap((savior) => [...savior.skills, ...savior.blossomSkills]
   .flatMap((skill) => skill.buffs.map((buff) => buff.strId)))).size;
 
 const manifest = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   sourceOrigin: SOURCE_ORIGIN,
   capturedAt,
   languages: Object.keys(LANGUAGES),
   saviorCount: archivedSaviors.length,
   skillCount,
   blossomSkillCount,
+  resonancePotentialCount,
   buffCount,
   assetCount: assetResults.length,
   localOnly: true
