@@ -14226,6 +14226,61 @@
       "kind": "events"
     },
     {
+      "key": "jgp5dzw",
+      "title": "古代救援者の遺物",
+      "searchText": "古代救援者の遺物 Mid 3 +10",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "古代救援者の遺物",
+          "segments": [
+            {
+              "type": "text",
+              "text": "古代救援者の遺物",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Mid 3",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Mid 3",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
       "key": "j107pcn1",
       "title": "自由時間",
       "searchText": "自由時間 Mid 3 1. 期間限定スイーツを食べに行こう！ 古いコイン使用 50 +1 or +2 +10 2. 最新の映画を見に行こう！ 古いコイン使用 30 +15 or +30 特典ポスター 3. サンドイッチを持ってピクニックに行こう！ スタミナ使用 20 +10 or +20 or +10 or +20 or +10 or +20 +5 or +10 or +5 or +10 4. 今日はこのままゆっくり休もう。 +5 or +10",
@@ -14478,6 +14533,76 @@
             }
           ],
           "region": "r8",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
+      "key": "j10zmw4g",
+      "title": "旅のプレゼント",
+      "searchText": "旅のプレゼント Early 4 +5 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "旅のプレゼント",
+          "segments": [
+            {
+              "type": "text",
+              "text": "旅のプレゼント",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Early 4",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Early 4",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "+1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
           "tone": "success",
           "fontSize": 13.6,
           "weight": 400
@@ -14777,7 +14902,7 @@
     {
       "key": "j1b0rqmq",
       "title": "レイダーズ・エンカウンター 勝利",
-      "searchText": "レイダーズ・エンカウンター 勝利 Late 4 イージー レイダー討伐依頼Ⅰ, , 防御の感覚 +1 +5 or +5 +5 カフェ・ストレガのクーポン or ノーマル レイダー討伐依頼Ⅰ, , 防御の感覚 10 % Discount +1 +5 or +5 +7.5 カフェ・ストレガのクーポン",
+      "searchText": "レイダーズ・エンカウンター 勝利 Late 4 イージー レイダー討伐依頼Ⅰ, レイダー討伐依頼Ⅱ, レイダー討伐依頼Ⅲ 防御の感覚 +1 +5 or +5 +5 カフェ・ストレガのクーポン or ノーマル レイダー討伐依頼Ⅰ, レイダー討伐依頼Ⅱ, レイダー討伐依頼Ⅲ 防御の感覚 10 % Discount +1 +5 or +5 +7.5 カフェ・ストレガのクーポン",
       "difficulties": [
         "easy",
         "normal"
@@ -14814,11 +14939,11 @@
           "weight": 700
         },
         {
-          "text": "イージー レイダー討伐依頼Ⅰ, ,",
+          "text": "イージー レイダー討伐依頼Ⅰ, レイダー討伐依頼Ⅱ, レイダー討伐依頼Ⅲ",
           "segments": [
             {
               "type": "text",
-              "text": "イージー レイダー討伐依頼Ⅰ, ,",
+              "text": "イージー レイダー討伐依頼Ⅰ, レイダー討伐依頼Ⅱ, レイダー討伐依頼Ⅲ",
               "fontSize": 13.6,
               "weight": 400
             }
@@ -14947,11 +15072,11 @@
           "weight": 400
         },
         {
-          "text": "ノーマル レイダー討伐依頼Ⅰ, ,",
+          "text": "ノーマル レイダー討伐依頼Ⅰ, レイダー討伐依頼Ⅱ, レイダー討伐依頼Ⅲ",
           "segments": [
             {
               "type": "text",
-              "text": "ノーマル レイダー討伐依頼Ⅰ, ,",
+              "text": "ノーマル レイダー討伐依頼Ⅰ, レイダー討伐依頼Ⅱ, レイダー討伐依頼Ⅲ",
               "fontSize": 13.6,
               "weight": 400
             }
@@ -15063,6 +15188,93 @@
           "tone": "success",
           "fontSize": 13.6,
           "weight": 600
+        }
+      ],
+      "categories": [
+        "raid"
+      ],
+      "kind": "events"
+    },
+    {
+      "key": "jdtc2pz",
+      "title": "レイダーズ・エンカウンター 敗北",
+      "searchText": "レイダーズ・エンカウンター 敗北 Late 4 +5 +5 +30",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "レイダーズ・エンカウンター 敗北",
+          "segments": [
+            {
+              "type": "text",
+              "text": "レイダーズ・エンカウンター 敗北",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Late 4",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Late 4",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "+5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "+30",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+30",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
         }
       ],
       "categories": [
@@ -16857,6 +17069,76 @@
       "kind": "events"
     },
     {
+      "key": "j10vha2g",
+      "title": "心温まるプレゼント",
+      "searchText": "心温まるプレゼント Early 6 +5 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "心温まるプレゼント",
+          "segments": [
+            {
+              "type": "text",
+              "text": "心温まるプレゼント",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Early 6",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Early 6",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "+1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
       "key": "jui8ygi",
       "title": "リセットの誘惑",
       "searchText": "リセットの誘惑 Late 6 1. 代わりに買ってあげる。 古いコイン使用 30 +15~+20 ムーンライトパフュームのサンプル or 古いコイン使用 30 +15~+20 ムーンライトリップバームのサンプル or 古いコイン使用 30 undefined トレンドフォロワー +8Turn ムーンライトエッセンスのサンプル 2. コインは旅のために取っておく。 なし",
@@ -17630,6 +17912,63 @@
           "tone": "success",
           "fontSize": 13.6,
           "weight": 600
+        }
+      ],
+      "categories": [
+        "raid"
+      ],
+      "kind": "events"
+    },
+    {
+      "key": "jg9wb0l",
+      "title": "スティル・カム・イン 敗北",
+      "searchText": "スティル・カム・イン 敗北 Late 6 +10",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "スティル・カム・イン 敗北",
+          "segments": [
+            {
+              "type": "text",
+              "text": "スティル・カム・イン 敗北",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Late 6",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Late 6",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
         }
       ],
       "categories": [
@@ -18764,6 +19103,78 @@
           ],
           "region": "",
           "tone": "plain",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [
+        "aganon"
+      ],
+      "kind": "events"
+    },
+    {
+      "key": "j19rojpc",
+      "title": "救命のプレゼント",
+      "searchText": "救命のプレゼント Mid 8 +5 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "救命のプレゼント",
+          "segments": [
+            {
+              "type": "text",
+              "text": "救命のプレゼント",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Mid 8",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Mid 8",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "+1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
           "fontSize": 13.6,
           "weight": 400
         }
@@ -20018,6 +20429,76 @@
       "categories": [
         "reset"
       ],
+      "kind": "events"
+    },
+    {
+      "key": "j1xd0837",
+      "title": "善行のプレゼント",
+      "searchText": "善行のプレゼント Mid 10 +5 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "善行のプレゼント",
+          "segments": [
+            {
+              "type": "text",
+              "text": "善行のプレゼント",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Mid 10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Mid 10",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "+1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
       "kind": "events"
     },
     {
@@ -21694,6 +22175,63 @@
           "tone": "success",
           "fontSize": 13.6,
           "weight": 600
+        }
+      ],
+      "categories": [
+        "raid"
+      ],
+      "kind": "events"
+    },
+    {
+      "key": "jlr5mb4",
+      "title": "ノーポーション、ノーパッション！敗北",
+      "searchText": "ノーポーション、ノーパッション！敗北 Late 10 +10",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "ノーポーション、ノーパッション！敗北",
+          "segments": [
+            {
+              "type": "text",
+              "text": "ノーポーション、ノーパッション！敗北",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Late 10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Late 10",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
         }
       ],
       "categories": [
@@ -24496,6 +25034,150 @@
       "kind": "events"
     },
     {
+      "key": "j12z7jm6",
+      "title": "幸福のプレゼント",
+      "searchText": "幸福のプレゼント Mid 12 +5 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "幸福のプレゼント",
+          "segments": [
+            {
+              "type": "text",
+              "text": "幸福のプレゼント",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Mid 12",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Mid 12",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "+1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [
+        "flora"
+      ],
+      "kind": "events"
+    },
+    {
+      "key": "j1jmk2ws",
+      "title": "巡り合わせのプレゼント",
+      "searchText": "巡り合わせのプレゼント Mid 12 +5 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "巡り合わせのプレゼント",
+          "segments": [
+            {
+              "type": "text",
+              "text": "巡り合わせのプレゼント",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Mid 12",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Mid 12",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "+1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [
+        "kalaid"
+      ],
+      "kind": "events"
+    },
+    {
       "key": "jj9tajs",
       "title": "リセットの憂鬱",
       "searchText": "リセットの憂鬱 Late 1 1. もしかしてこれじゃない？ Use アンティーク調の鍵 +20 リセットの貯金箱 2. 技術者を呼ぼう。 +15",
@@ -24639,6 +25321,78 @@
             }
           ],
           "region": "r4",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [
+        "reset"
+      ],
+      "kind": "events"
+    },
+    {
+      "key": "jbe4c0n",
+      "title": "リセットの友達",
+      "searchText": "リセットの友達 Late 2 +10 or +10 +20",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "リセットの友達",
+          "segments": [
+            {
+              "type": "text",
+              "text": "リセットの友達",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Late 2",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Late 2",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+10 or +10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+10 or +10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "+20",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+20",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
           "tone": "success",
           "fontSize": 13.6,
           "weight": 400
@@ -29349,6 +30103,76 @@
       "kind": "events"
     },
     {
+      "key": "jzm2nn3",
+      "title": "基礎試験 準備",
+      "searchText": "基礎試験 準備 Early 3 +5 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "基礎試験 準備",
+          "segments": [
+            {
+              "type": "text",
+              "text": "基礎試験 準備",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Early 3",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Early 3",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "+1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
       "key": "jlyoqfy",
       "title": "救援団からの補給品",
       "searchText": "救援団からの補給品 Mid 3 1. 栄養剤を選ぼう。 +10 満足度アンケート 2. ふかふかの枕を選ぼう。 +10 満足度アンケート 3. 辛い食べ物を選ぼう。 +10 満足度アンケート",
@@ -29761,6 +30585,61 @@
           ],
           "region": "",
           "tone": "plain",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
+      "key": "j1cl5vxw",
+      "title": "討伐の戦利品",
+      "searchText": "討伐の戦利品 Late 4 Late 6 Late 10 +10",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "討伐の戦利品",
+          "segments": [
+            {
+              "type": "text",
+              "text": "討伐の戦利品",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Late 4 Late 6 Late 10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Late 4 Late 6 Late 10",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r4",
+          "tone": "success",
           "fontSize": 13.6,
           "weight": 400
         }
@@ -32939,6 +33818,135 @@
         }
       ],
       "categories": [],
+      "kind": "events"
+    },
+    {
+      "key": "j2dwuh7",
+      "title": "団員との観劇",
+      "searchText": "団員との観劇 Late 8 Late 12 +1 or +15",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "団員との観劇",
+          "segments": [
+            {
+              "type": "text",
+              "text": "団員との観劇",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Late 8 Late 12",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Late 8 Late 12",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+1 or +15",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+1 or +15",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r3",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [
+        "aganon"
+      ],
+      "kind": "events"
+    },
+    {
+      "key": "j1c33xsf",
+      "title": "団員との会話",
+      "searchText": "団員との会話 Late 8 Late 12 +10 or +10 +10",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "団員との会話",
+          "segments": [
+            {
+              "type": "text",
+              "text": "団員との会話",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "Late 8 Late 12",
+          "segments": [
+            {
+              "type": "text",
+              "text": "Late 8 Late 12",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "+10 or +10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+10 or +10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r3",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "+10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r3",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [
+        "aganon"
+      ],
       "kind": "events"
     },
     {
@@ -38440,6 +39448,46 @@
       "kind": "events"
     },
     {
+      "key": "j16elucj",
+      "title": "依頼大成功",
+      "searchText": "依頼大成功 +10",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "依頼大成功",
+          "segments": [
+            {
+              "type": "text",
+              "text": "依頼大成功",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "+10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r1",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
       "key": "j1u2762c",
       "title": "依頼失敗",
       "searchText": "依頼失敗 1. 戻ろう… -10 +30 -1 -10 +30 2. 活力ポーションを渡す。 Use 活力ポーション +10 +30 -5 +10 +30",
@@ -38663,6 +39711,61 @@
           ],
           "region": "r5",
           "tone": "failure",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
+      "key": "j16elucj",
+      "title": "依頼成功",
+      "searchText": "依頼成功 -10 +5",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "依頼成功",
+          "segments": [
+            {
+              "type": "text",
+              "text": "依頼成功",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "-10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "-10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r1",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "+5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "+5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r1",
+          "tone": "success",
           "fontSize": 13.6,
           "weight": 400
         }
