@@ -5,10 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="스타세이비어 구원자별 PVE 장비와 아르카나 조합을 확인하는 비공식 가이드 데이터베이스">
   <meta name="theme-color" content="#0d111b">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css">
-  <script defer src="./app.js?v=93-localized-savior-skills"></script>
+  <link id="site-styles" rel="stylesheet">
+  <noscript><link rel="stylesheet" href="./styles.css"></noscript>
+  <script>
+    (() => {
+      const url = new URL(window.location.href);
+      const cacheKey = Math.floor(Date.now() / 60000).toString(36);
+
+      if (url.searchParams.get("_cache") !== cacheKey) {
+        url.searchParams.set("_cache", cacheKey);
+        window.location.replace(url.toString());
+        return;
+      }
+
+      window.__SITE_CACHE_KEY__ = cacheKey;
+      document.querySelector("#site-styles").href = `./styles.css?v=${encodeURIComponent(cacheKey)}`;
+      window.addEventListener("DOMContentLoaded", () => {
+        const script = document.createElement("script");
+        script.src = `./app.js?v=${encodeURIComponent(cacheKey)}`;
+        script.async = false;
+        document.body.appendChild(script);
+      }, { once: true });
+    })();
+  </script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -1249,21 +1273,12 @@
 
     <section class="detail-view" id="detail-view" aria-live="polite" hidden>
       <div class="page-wrap">
-        <button class="back-button" type="button" data-open-list>
-          <span aria-hidden="true">←</span>
-          구원자 목록
-        </button>
-
         <article id="detail-content"></article>
       </div>
     </section>
 
     <section class="simple-view" id="simple-view" hidden>
       <div class="page-wrap">
-        <button class="back-button" type="button" data-open-list>
-          <span aria-hidden="true">←</span>
-          구원자 목록
-        </button>
         <div id="simple-content"></div>
       </div>
     </section>

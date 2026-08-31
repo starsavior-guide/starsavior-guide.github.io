@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v94-remove-list-buttons";
+const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v95-auto-cache";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
