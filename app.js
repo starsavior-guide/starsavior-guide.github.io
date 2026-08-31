@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v93-savior-3lang-source";
+const SITE_BUILD_VERSION = "v92-arcana-clean-layout-search-fix";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -8,15 +8,6 @@ const LANGUAGE_HTML_CODES = {
 };
 const I18N_DATA = {"saviorNames":{"en":{"아세라":"Asherah","스마일":"Smile","루나":"Luna","카넬리아":"Carnelia","벨 리스":"Bell","에밀리":"Emily","샤를":"Charlotte","카르멘":"Carmen","프레이":"Frey","세이라":"Seira","트리쉬":"Trish","린":"Lyn","에데":"Haydee","세르팡":"Serpang","다나":"Dana","뮤리엘":"Muriel","엘리사":"Elisa","티리아":"Tyria","로베르타":"Roberta","루그":"Lugh","페이":"Fei","에핀델":"Epindel","오메가":"Omega","세레스":"Ceres","리디아":"Lydia","할리":"Harley","페트라":"Petra","스칼렛":"Scarlet","클레어":"Claire","레이시":"Lacy","타냐":"Tanya","릴리":"Lily","키라":"Kyra","베스타":"Besta","안나":"Annah","마르실":"Marcille","베라":"Vera","나루":"Naru","클라리사":"Clarissa","힐데":"Hilde","유미나":"Yoo Mina","로자리아":"Rosaria"},"ja":{"아세라":"アセラ","스마일":"スマイル","루나":"ルナ","카넬리아":"カーネリア","벨 리스":"ベル・リース","에밀리":"エミリー","샤를":"シャル","카르멘":"カルメン","프레이":"フレイ","세이라":"セイラ","트리쉬":"トリッシュ","린":"リン","에데":"エデ","세르팡":"セルパン","다나":"ダナ","뮤리엘":"ミュリエル","엘리사":"エリサ","티리아":"ティリア","로베르타":"ロベルタ","루그":"ルグ","페이":"フェイ","에핀델":"エピンデル","오메가":"オメガ","세레스":"セレス","리디아":"リディア","할리":"ハーレー","페트라":"ペトラ","스칼렛":"スカーレット","클레어":"クレア","레이시":"レイシー","타냐":"ターニャ","릴리":"リリー","키라":"キラ","베스타":"ベスタ","안나":"アンナ","마르실":"マルシル","베라":"ベラ","나루":"ナル","클라리사":"クラリッサ","힐데":"ヒルデ","유미나":"ユ・ミナ","로자리아":"ロザリア"}},"subtitles":{"en":{"보이저 구원단":"Voyager Savior Party","방랑자":"Wanderer","캔들 스퀘어":"Candle Square","모나스티르 기사단":"Monastir Knights","나이트메어":"Nightmare","아셀루스 협회":"Aselus Association","풍월문":"Wind Moon Sect","모렐 해양상단":"Morrel Ocean Traders","카노푸스 레인저":"Canopus Rangers","모노리스 교단":"Monolith Order","집행자":"Executor","궤도 수색대":"Orbital Search Team","오를랑 가문":"House Orlang","하트 오브 모나스티르":"Heart of Monastir","서부 해방군":"Western Liberators","헬 세이비어":"Hell Savior","페트라 조합":"Petra Construction","리틀 타이런트":"Little Tyrant","플로리스 블루 로즈":"Flawless Blue Rose","람파디스":"Lampadis","키라는 친구 같은 거 없어":"Kyra Doesn't Have Friends","왈츠 오브 스타라이트":"Waltz of Starlight","이터널 프로미스":"Eternal Promise","블레싱 인 블룸":"Blessing in Bloom","노블 프린세스":"Noble Princess","노아 마을 경비대":"NOA Town Guard","운송 길드":"Courier Guild","펜릴 소대":"Fenrir Squad","폴른 호크":"Fallen Hawk","화이트 펄 트랩":"White Pearl Trap","선샤인 캣":"Sunshine Cat"},"ja":{"보이저 구원단":"ボイジャー救援団","방랑자":"放浪者","캔들 스퀘어":"キャンドルスクエア","모나스티르 기사단":"モナスティール騎士団","나이트메어":"ナイトメア","아셀루스 협회":"アセルス協会","풍월문":"風月門","모렐 해양상단":"モレル海洋商団","카노푸스 레인저":"カノープス・レンジャー","모노리스 교단":"モノリス教団","집행자":"執行者","궤도 수색대":"軌道捜索隊","오를랑 가문":"オルラン家","하트 오브 모나스티르":"ハート・オブ・モナスティール","서부 해방군":"西部解放軍","헬 세이비어":"ヘル・セイバー","페트라 조합":"ペトラ組合","리틀 타이런트":"リトル・タイラント","플로리스 블루 로즈":"フローレス・ブルーローズ","람파디스":"ランパディス","키라는 친구 같은 거 없어":"キラに友達なんていない","왈츠 오브 스타라이트":"ワルツ・オブ・スターライト","이터널 프로미스":"エターナル・プロミス","블레싱 인 블룸":"ブレッシング・イン・ブルーム","노블 프린세스":"ノーブル・プリンセス","노아 마을 경비대":"NOA村警備隊","운송 길드":"運送ギルド","펜릴 소대":"フェンリル小隊","폴른 호크":"フォールン・ホーク","화이트 펄 트랩":"ホワイト・パール・トラップ","선샤인 캣":"サンシャイン・キャット"}},"arcana":{"en":{"단점 보완 맞춤 훈련":"Customized Training to Cover Weaknesses","꽃들에게 죽음을":"Death for the Flowers","하늘의 심판":"Divine Judgement","죽음이 둘을 갈라놓을 때까지":"Till Death Do Us Part","불굴의 역작":"The Indomitable Masterpiece","하얀 달의 온기는 햇빛처럼":"A White Moon Shines With the Sun's Warmth","누각 위, 유리달 맞이":"Under the Glass Moon, Over the Pavilion","조용한 휴식 시간":"A Quiet Moment of Rest","스트라니스의 영애":"Young Lady of Stranis","완벽한 바니걸":"The Perfect Bunny Girl","키라만큼 귀여워!":"As Cute as Kyra!","오늘의 한 걸음":"Today's Step Forward","나른한 오후의 틈새":"A Drowsy Afternoon Interlude","공녀, 왕좌에 오르다":"The Princess Ascends the Throne","본 투 비 와일드":"Born to Be Wild","허수의 개척자":"The Imaginary Pioneer","종말은 소녀의 얼굴을 하고 있다.":"The End Wears the Face of a Girl","깊은 애도":"Deep Mourning","노스텔지어의 역습":"Nostalgia Strikes Back","하늘의 시련":"Divine Trial","금단의 기록물 Vol. 1":"Forbidden Archive Vol. 1","금단의 기록물":"Forbidden Archive Vol. 1","만족스러운 식사":"A Satisfying Meal","어느 한 기사의 맹세":"A Knight's Oath","서투른 욕망 해소법":"A Clumsy Way to Relieve Desire","노 페인, 노 게인":"No Pain, No Gain","메이드 바이 페트라♡":"Made by Petra♡","별을 보며 꿈을":"Dreams Under the Stars","음독의 각오":"Even If It's Poison","누구보다 프로페셔널":"More Than Professional","서류 더미 위의 책임감":"Responsibility Atop a Pile of Paperwork","언더커버 캅":"Undercover Cop","빛을 쫓아라!":"Follow the Light!","빛을 쫓아라":"Follow the Light!","휴가 준비는 쇼핑에서부터!":"Vacation Prep Starts with Shopping!"},"ja":{"단점 보완 맞춤 훈련":"弱点補完カスタムトレーニング","꽃들에게 죽음을":"花々に死を","하늘의 심판":"天の審判","죽음이 둘을 갈라놓을 때까지":"死が二人を分かつまで","불굴의 역작":"不屈の傑作","하얀 달의 온기는 햇빛처럼":"白い月のぬくもりは陽光のように","누각 위, 유리달 맞이":"楼閣の上、硝子の月を迎えて","조용한 휴식 시간":"静かな休息のひととき","스트라니스의 영애":"ストラニスの令嬢","완벽한 바니걸":"完璧なバニーガール","키라만큼 귀여워!":"キラくらいかわいい！","오늘의 한 걸음":"今日の一歩","나른한 오후의 틈새":"けだるい午後のひととき","공녀, 왕좌에 오르다":"公女、王座に就く","본 투 비 와일드":"ボーン・トゥ・ビー・ワイルド","허수의 개척자":"虚数の開拓者","종말은 소녀의 얼굴을 하고 있다.":"終末は少女の顔をしている","깊은 애도":"深い哀悼","노스텔지어의 역습":"ノスタルジアの逆襲","하늘의 시련":"天の試練","금단의 기록물 Vol. 1":"禁断の記録物 Vol. 1","금단의 기록물":"禁断の記録物 Vol. 1","만족스러운 식사":"満足な食事","어느 한 기사의 맹세":"ある騎士の誓い","서투른 욕망 해소법":"不器用な欲望解消法","노 페인, 노 게인":"ノーペイン・ノーゲイン","메이드 바이 페트라♡":"メイド・バイ・ペトラ♡","별을 보며 꿈을":"星を見ながら夢を","음독의 각오":"毒でも覚悟のうえ","누구보다 프로페셔널":"誰よりもプロフェッショナル","서류 더미 위의 책임감":"書類の山の上の責任感","언더커버 캅":"アンダーカバー・コップ","빛을 쫓아라!":"光を追え！","빛을 쫓아라":"光を追え！","휴가 준비는 쇼핑에서부터!":"休暇の準備はショッピングから！"}},"ui":{"en":{"본문으로 바로가기":"Skip to content","구원자 목록으로 이동":"Go to Savior list","주요 메뉴":"Main navigation","구원자":"Saviors","장비":"Equipment","코스모 게이트":"Cosmo Gate","밝은 테마로 변경":"Switch to light theme","어두운 테마로 변경":"Switch to dark theme","등록된 구원자":"Registered Saviors","구원자 검색 및 필터":"Savior search and filters","구원자 검색":"Search Saviors","이름, 소속, 역할 검색":"Search name, affiliation, or role","속성":"Element","전체":"All","클래스":"Class","명의 구원자":" Saviors","필터 초기화":"Reset filters","조건에 맞는 구원자가 없습니다.":"No Saviors match the current filters.","검색어나 필터를 변경해 주세요.":"Try changing the search term or filters.","구원자 목록":"Savior List","스킬설명 및 상세정보":"Skills & Details","육성 우선순위":"Growth Priority","PVE 기준":"PVE Standard","주 사용 콘텐츠":"Main Content","장비 세팅":"Equipment Setup","아르카나 세팅":"Arcana Setup","PVE 추천 아르카나":"Recommended PVE Arcana","대체 아르카나":"Alternative Arcana","주요 PVE 콘텐츠":"Main PVE Content","보유 상황에 따라 교체":"Swap based on availability","목걸이":"Necklace","반지":"Ring","추천 세트":"Recommended Sets","잠재력":"Potential","미정":"TBD","미등록":"Not Registered","대체 아르카나가 등록되지 않았습니다.":"No alternative Arcana registered.","원본 시트 표기":"Source sheet notation","선택":"Choose","주옵션 (Tier 2)":"Main Stats (Tier 2)","부옵션 (Tier 2)":"Substats (Tier 2)","장비 개요":"Equipment Overview","구원자 장비 주옵션 및 부옵션 정보입니다.":"Main-stat and substat information for Savior equipment.","부위":"Slot","주 능력치":"Main Stat","기본 주능력치 (+0)":"Base Main Stat (+0)","기본 주능력치 (+15)":"Base Main Stat (+15)","옵션":"Option","세트별 권장 능력치":"Recommended stats by set","장비 티어 판정 기준":"Equipment tier criteria","작전":"Operations","회랑":"Cloister","플래시 포인트":"Flash Point","인자작":"Trait Farming","없음":"None","기본기":"Basic Skill","특수기":"Special Skill","궁극기":"Ultimate","한정":"Limited","개화 필수":"Bloom required","1돌파 이상 필수":"Resonance 1+ required","1돌파 이상 권장":"Resonance 1+ recommended","PVE 추천 세팅":"Recommended PVE Setup","장비 가이드 바로가기":"Open Equipment Guide","필터":"Filter","구원자 정보는 ":"Savior information follows "," 기준입니다.":" as the source.","스타세이비어 DB":"Star Savior DB","아카라이브 스타세이비어 채널 원샷 세팅표":"Arca.live Star Savior one-shot setup sheet","PVE장비 및 아르카나는 ":"PVE equipment and Arcana follow ","를 기준으로 합니다.":" as the source.","작전 · 회랑 · 코스모 게이트":"Operations · Cloister · Cosmo Gate","적중(2)는 투지(2)로 대체가능.":"Accuracy(2) can be replaced with Fighting Spirit(2).","* 적중(2)는 투지(2)로 대체가능.":"* Accuracy(2) can be replaced with Fighting Spirit(2).","※ 딜러 기준으로 공격력% 수치가 높을 시 0.5티어 상승.":"※ For DPS units, high ATK% can raise the equipment rating by 0.5 tier.","* 속도 수치가 높을 시 0.5티어 상승.":"* High SPD can raise the equipment rating by 0.5 tier.","딜러 서브딜러 딜탱은 공격력, 공격력% 또는 생명력, 생명력%, 치명타 확률, 치명타 피해, 속도를 유효 옵션으로 사용합니다.":"DPS, sub-DPS, and bruisers use ATK/ATK%, HP/HP%, CRIT Rate, CRIT DMG, and SPD as useful stats.","일부 구원자는 효과 적중, 방어력, 방어력% 도 유효 옵션으로 활용합니다.":"Some Saviors also make effective use of Effect Hit, DEF, and DEF%.","장비 부족 시 치명타 확률 + 추가 유효 옵션 1줄 조합도 사용할 수 있습니다.":"When gear is limited, CRIT Rate plus one additional useful substat is acceptable.","장비 세팅이 충분히 갖춰진 이후에는 유효 옵션 3 이상 장비 사용을 권장합니다.":"Once your gear pool is established, equipment with at least three useful substats is recommended.","착용 시 권장 치확 90% 이상, 치피 90% 이상":"Recommended: CRIT Rate 90%+ and CRIT DMG 90%+.","착용 시 권장 치확 80% 이상, 치피 140% 이상":"Recommended: CRIT Rate 80%+ and CRIT DMG 140%+.","착용 시 권장 효적 140% 이상":"Recommended: Effect Hit 140%+.","치확 + 치피의 합이 ":"If CRIT Rate + CRIT DMG totals ","일 경우 0티어 장비.":", the item is Tier 0.","일 경우 1티어 장비.":", the item is Tier 1.","일 경우 2티어 장비.":", the item is Tier 2.","일 경우 3티어 장비.":", the item is Tier 3.","이 페이지는 게임 '스타 세이비어'의 비영리 팬 프로젝트입니다.":"This page is a non-profit fan project for Star Savior.","프로젝트에 사용된 모든 자산, 데이터, 이미지 및 텍스트의 소유권은 STUDIOBSIDE 에 있습니다.":"All assets, data, images, and text used in this project belong to STUDIOBSIDE.","검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.":"Please enable JavaScript to use search and detail views.","상세 세팅 보기":"View detailed setup"},"ja":{"본문으로 바로가기":"本文へスキップ","구원자 목록으로 이동":"救援者一覧へ","주요 메뉴":"メインメニュー","구원자":"救援者","장비":"装備","코스모 게이트":"コスモゲート","밝은 테마로 변경":"ライトテーマに変更","어두운 테마로 변경":"ダークテーマに変更","등록된 구원자":"登録済み救援者","구원자 검색 및 필터":"救援者の検索とフィルター","구원자 검색":"救援者を検索","이름, 소속, 역할 검색":"名前・所属・役割で検索","속성":"属性","전체":"すべて","클래스":"クラス","명의 구원자":"人の救援者","필터 초기화":"フィルターをリセット","조건에 맞는 구원자가 없습니다.":"条件に一致する救援者はいません。","검색어나 필터를 변경해 주세요.":"検索語やフィルターを変更してください。","구원자 목록":"救援者一覧","스킬설명 및 상세정보":"スキル説明・詳細情報","육성 우선순위":"育成優先度","PVE 기준":"PVE基準","주 사용 콘텐츠":"主な使用コンテンツ","장비 세팅":"装備セッティング","아르카나 세팅":"アルカナセッティング","PVE 추천 아르카나":"PVEおすすめアルカナ","대체 아르카나":"代替アルカナ","주요 PVE 콘텐츠":"主要PVEコンテンツ","보유 상황에 따라 교체":"所持状況に応じて交換","목걸이":"ネックレス","반지":"リング","추천 세트":"おすすめセット","잠재력":"潜在力","미정":"未定","미등록":"未登録","대체 아르카나가 등록되지 않았습니다.":"代替アルカナは登録されていません。","원본 시트 표기":"元シート表記","선택":"選択","주옵션 (Tier 2)":"メインオプション (Tier 2)","부옵션 (Tier 2)":"サブオプション (Tier 2)","장비 개요":"装備概要","구원자 장비 주옵션 및 부옵션 정보입니다.":"救援者装備のメイン・サブオプション情報です。","부위":"部位","주 능력치":"メイン能力値","기본 주능력치 (+0)":"基本メイン能力値 (+0)","기본 주능력치 (+15)":"基本メイン能力値 (+15)","옵션":"オプション","세트별 권장 능력치":"セット別推奨能力値","장비 티어 판정 기준":"装備Tier判定基準","작전":"作戦","회랑":"回廊","플래시 포인트":"フラッシュポイント","인자작":"因子厳選","없음":"なし","기본기":"基本技","특수기":"特殊技","궁극기":"究極技","한정":"限定","개화 필수":"開花必須","1돌파 이상 필수":"1凸以上必須","1돌파 이상 권장":"1凸以上推奨","PVE 추천 세팅":"PVEおすすめセッティング","장비 가이드 바로가기":"装備ガイドを開く","구원자 정보는 ":"救援者情報は "," 기준입니다.":" を基準としています。","스타세이비어 DB":"Star Savior DB","아카라이브 스타세이비어 채널 원샷 세팅표":"Arca.live Star Savior ワンショットセッティング表","PVE장비 및 아르카나는 ":"PVE装備・アルカナは ","를 기준으로 합니다.":" を基準としています。","작전 · 회랑 · 코스모 게이트":"作戦 · 回廊 · コスモゲート","적중(2)는 투지(2)로 대체가능.":"的中セット(2)は闘志セット(2)で代用可能です。","* 적중(2)는 투지(2)로 대체가능.":"* 的中セット(2)は闘志セット(2)で代用可能です。","※ 딜러 기준으로 공격력% 수치가 높을 시 0.5티어 상승.":"※ アタッカー基準で攻撃力(%)が高い場合、0.5 Tier上昇。","* 속도 수치가 높을 시 0.5티어 상승.":"* 速度が高い場合、0.5 Tier上昇。","딜러 서브딜러 딜탱은 공격력, 공격력% 또는 생명력, 생명력%, 치명타 확률, 치명타 피해, 속도를 유효 옵션으로 사용합니다.":"アタッカー、サブアタッカー、ブルーザーは攻撃力、攻撃力(%)またはHP、HP(%)、会心率、会心ダメージ、速度を有効オプションとして使用します。","일부 구원자는 효과 적중, 방어력, 방어력% 도 유효 옵션으로 활용합니다.":"一部の救援者は効果命中、防御力、防御力(%)も有効オプションとして使用します。","장비 부족 시 치명타 확률 + 추가 유효 옵션 1줄 조합도 사용할 수 있습니다.":"装備が不足している場合、会心率＋追加の有効オプション1枠の組み合わせも使用できます。","장비 세팅이 충분히 갖춰진 이후에는 유효 옵션 3 이상 장비 사용을 권장합니다.":"装備が揃った後は、有効オプション3つ以上の装備を推奨します。","이 페이지는 게임 '스타 세이비어'의 비영리 팬 프로젝트입니다.":"このページはゲーム『Star Savior』の非営利ファンプロジェクトです。","프로젝트에 사용된 모든 자산, 데이터, 이미지 및 텍스트의 소유권은 STUDIOBSIDE 에 있습니다.":"本プロジェクトで使用するすべてのアセット、データ、画像、テキストの権利はSTUDIOBSIDEに帰属します。","검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.":"検索と詳細画面を利用するにはJavaScriptを有効にしてください。","상세 세팅 보기":"詳細セッティングを見る","통찰 4세트":"洞察セット(4)","파괴 4세트":"破壊セット(4)","적중 2세트":"的中セット(2)"}},"terms":{"en":{"태양":"Sun","달":"Moon","별":"Star","질서":"Order","혼돈":"Chaos","스트라이커":"Striker","어쌔신":"Assassin","레인저":"Ranger","캐스터":"Caster","디펜더":"Defender","서포터":"Supporter","딜러":"DPS","서브딜러":"Sub-DPS","딜탱":"Bruiser","참격":"Slash","타격":"Impact","마법":"Element","정신":"Spirit","속도":"SPD","공격력%":"ATK%","공격력":"ATK","생명력%":"HP%","생명력":"HP","방어력%":"DEF%","방어력":"DEF","치명타 확률":"CRIT Rate","치명타 피해":"CRIT DMG","효과 적중":"Effect Hit","효과 저항":"Effect RES","치확":"CRIT Rate","치피":"CRIT DMG","효적":"Effect Hit","통찰(4)":"Insight(4)","파괴(4)":"Destruction(4)","적중(2)":"Accuracy(2)","투지(2)":"Fighting Spirit(2)","정밀(4)":"Precision(4)","대체":" substitute","공용 아르카나":"Universal Arcana","원본 자료 미등록":"TBD","해당 엑셀에 없음":"Not listed in source sheet","1티어":"Tier 1","2티어":"Tier 2","3티어":"Tier 3","4티어":"Tier 4","0티어":"Tier 0","0.5티어":"Tier 0.5"},"ja":{"태양":"太陽","달":"月","별":"星","질서":"秩序","혼돈":"混沌","스트라이커":"ストライカー","어쌔신":"アサシン","레인저":"レンジャー","캐스터":"キャスター","디펜더":"ディフェンダー","서포터":"サポーター","딜러":"アタッカー","서브딜러":"サブアタッカー","딜탱":"ブルーザー","참격":"斬撃","타격":"打撃","마법":"元素","정신":"精神","속도":"速度","공격력%":"攻撃力(%)","공격력":"攻撃力","생명력%":"HP(%)","생명력":"HP","방어력%":"防御力(%)","방어력":"防御力","치명타 확률":"会心率","치명타 피해":"会心ダメージ","효과 적중":"効果命中","효과 저항":"効果耐性","치확":"会心率","치피":"会心ダメージ","효적":"効果命中","통찰(4)":"洞察セット(4)","파괴(4)":"破壊セット(4)","적중(2)":"的中セット(2)","투지(2)":"闘志セット(2)","정밀(4)":"精密セット(4)","대체":" の代替","공용 아르카나":"共通アルカナ","원본 자료 미등록":"未定","해당 엑셀에 없음":"元シートに記載なし","1티어":"Tier 1","2티어":"Tier 2","3티어":"Tier 3","4티어":"Tier 4","0티어":"Tier 0","0.5티어":"Tier 0.5","공격력 증가율(%)":"攻撃力(%)","생명력 증가율(%)":"HP(%)","방어력 증가율(%)":"防御力(%)","효과적중":"効果命中","공생방%":"攻撃力/HP/防御力(%)","적중&저항":"効果命中＆効果耐性","속도 세트":"速度セット","방어 세트":"防御セット","적중 세트":"的中セット","저항 세트":"抵抗セット","공격 세트":"攻撃セット","통찰 세트":"洞察セット","투지 세트":"闘志セット","정밀 세트":"精密セット","생명 세트":"体力セット","파괴 세트":"破壊セット","장벽 세트":"防壁セット","섬멸 세트":"殲滅セット","속도(4)":"速度セット(4)","방어(2)":"防御セット(2)","방어(4)":"防御セット(4)","저항(2)":"抵抗セット(2)","공격(4)":"攻撃セット(4)","생명(4)":"体力セット(4)","장벽(2)":"防壁セット(2)","섬멸(2)":"殲滅セット(2)","방퍼":"防御力(%)"}}};
 // 이름 렌더링에 사용하는 접근성 문구
-Object.assign(I18N_DATA.ui.en, {
-  "패시브":"Passive", "적 단일":"Single Enemy", "적 전체":"All Enemies", "아군 단일":"Single Ally", "아군 전체":"All Allies",
-  "턴":"turn", "노바 획득":"Nova Gain", "노바 소모":"Nova Cost"
-});
-Object.assign(I18N_DATA.ui.ja, {
-  "패시브":"パッシブ", "적 단일":"敵単体", "적 전체":"敵全体", "아군 단일":"味方単体", "아군 전체":"味方全体",
-  "턴":"ターン", "노바 획득":"ノヴァ獲得", "노바 소모":"ノヴァ消費"
-});
-
 Object.assign(I18N_DATA.ui.en, {
   "스킬설명 및 상세정보": "Skills & Details",
   "상세정보를 불러오는 중입니다.": "Loading backed-up Savior details.",
@@ -31,7 +22,6 @@ Object.assign(I18N_DATA.ui.ja, {
   "상세정보 펼치기": "詳細を開く",
   "상세정보 접기": "詳細を閉じる"
 });
-
 Object.assign(I18N_DATA.ui.en, {
   "개화": "Bloom",
   "개화 스킬을 불러오는 중입니다.": "Loading Bloom skill data.",
@@ -42,25 +32,21 @@ Object.assign(I18N_DATA.ui.ja, {
   "개화 스킬을 불러오는 중입니다.": "開花スキルデータを読み込んでいます。",
   "개화 스킬 백업 데이터를 불러올 수 없습니다.": "バックアップ済みの開花スキルデータを読み込めませんでした。"
 });
-
 Object.assign(I18N_DATA.ui.en, { "아르카나 상세정보": "Arcana details" });
 Object.assign(I18N_DATA.ui.en, {
   "구원자 상세정보":"Savior Details","구원자 설명":"Savior Description","이름":"Name","등급":"Grade","유형":"Type",
   "기본 스테이터스":"Base Stats","LV.200 기준":"Lv.200","여정 스테이터스":"Journey Stats","공명 잠재력":"Resonance Potential",
-  "레벨":"Level","스킬 정보":"Skill Information","스킬 레벨 정보":"Skill Level Information","스킬 레벨 설명":"Skill Level Description","노바 버스트":"Nova Burst","패시브":"Passive"
+  "레벨":"Level","스킬 정보":"Skill Information","스킬 레벨 정보":"Skill Level Information","스킬 레벨 설명":"Skill Level Description","노바 버스트":"Nova Burst"
 });
 Object.assign(I18N_DATA.ui.ja, {
   "구원자 상세정보":"救援者詳細情報","구원자 설명":"救援者説明","이름":"名前","등급":"レアリティ","유형":"タイプ",
   "기본 스테이터스":"基本ステータス","LV.200 기준":"Lv.200基準","여정 스테이터스":"旅程ステータス","공명 잠재력":"共鳴潜在力",
-  "레벨":"レベル","스킬 정보":"スキル情報","스킬 레벨 정보":"スキルレベル情報","스킬 레벨 설명":"スキルレベル説明","노바 버스트":"ノヴァバースト","패시브":"パッシブ"
+  "레벨":"レベル","스킬 정보":"スキル情報","스킬 레벨 정보":"スキルレベル情報","스킬 레벨 설명":"スキルレベル説明","노바 버스트":"ノヴァバースト"
 });
-
 // 상세 백업 원문에서 사용하는 공격 유형 표기 보정
 Object.assign(I18N_DATA.terms.en, { "충격": "Impact", "원소": "Element" });
 Object.assign(I18N_DATA.terms.ja, { "충격": "衝撃", "원소": "元素" });
-
 Object.assign(I18N_DATA.ui.ja, { "아르카나 상세정보": "アルカナ詳細情報" });
-
 // 스마일(보이저 구원단) 아르카나 대체 설명 다국어 보정
 Object.assign(I18N_DATA.ui.en, {
   "종말은 소녀의 얼굴을 하고 있다. 대체": "Alternative to The End Wears the Face of a Girl",
@@ -70,7 +56,6 @@ Object.assign(I18N_DATA.ui.ja, {
   "종말은 소녀의 얼굴을 하고 있다. 대체": "『終末は少女の顔をしている』の代替",
   "허수의 개척자 대체": "『虚数の開拓者』の代替"
 });
-
 // 선샤인 캣 스마일 신규 세팅 문구 다국어 보정
 Object.assign(I18N_DATA.ui.en, {
   "* 효과적중 150% 이상 권장": "* Effect Hit 150%+ recommended.",
@@ -84,7 +69,6 @@ Object.assign(I18N_DATA.ui.ja, {
   "꽃들에게 죽음을 대체": "『花々に死を』の代替",
   "허수의 개척자/불굴의 역작 대체": "『虚数の開拓者／不屈の傑作』の代替"
 });
-
 // 일본어 정식 표기 및 문장 번역 보정
 Object.assign(I18N_DATA.ui.ja, {
   "구원자 정보는": "救援者情報は",
@@ -198,14 +182,6 @@ Object.assign(I18N_DATA.terms.en, {
 
 
 
-
-
-
-
-
-
-
-
 // v51: 크리스텔 / 영원 속박의 굴레 다국어 표시
 Object.assign(I18N_DATA.saviorNames.en, {
   "크리스텔": "Cristelle"
@@ -213,21 +189,18 @@ Object.assign(I18N_DATA.saviorNames.en, {
 Object.assign(I18N_DATA.saviorNames.ja, {
   "크리스텔": "クリステル"
 });
-
 Object.assign(I18N_DATA.subtitles.en, {
   "모렐해운상회": "Morrel Ocean Traders"
 });
 Object.assign(I18N_DATA.subtitles.ja, {
   "모렐해운상회": "モレル海運商会"
 });
-
 Object.assign(I18N_DATA.arcana.en, {
   "영원 속박의 굴레": "Bound for Eternity"
 });
 Object.assign(I18N_DATA.arcana.ja, {
   "영원 속박의 굴레": "永遠なる束縛の連鎖"
 });
-
 Object.assign(I18N_DATA.ui.en, {
   "PVE 장비·아르카나 세팅을 반영했습니다.": "PVE equipment and Arcana setup has been applied.",
   "투지(2)는 적중(2)로 대체가능.": "Valor Set (2) can be replaced with Hit Set (2).",
@@ -244,7 +217,6 @@ Object.assign(I18N_DATA.ui.ja, {
   "영원 속박의 굴레 대체": "「永遠なる束縛の連鎖」の代替",
   "하얀 달의 온기는 햇빛처럼 대체": "「白い月のぬくもりは陽光のように」の代替"
 });
-
 // v54: 크리스텔 장비 세팅 안내 다국어 표시
 Object.assign(I18N_DATA.ui.en, {
   "본인 조합과 세팅에 따라 다르나 속도 권장.": "Depends on your team composition and setup, but SPD is recommended."
@@ -252,7 +224,6 @@ Object.assign(I18N_DATA.ui.en, {
 Object.assign(I18N_DATA.ui.ja, {
   "본인 조합과 세팅에 따라 다르나 속도 권장.": "編成やセッティングによって異なりますが、速度を推奨します。"
 });
-
 const ORIGINAL_TEXT_NODES = new WeakMap();
 const ORIGINAL_ATTRIBUTES = new WeakMap();
 
@@ -441,10 +412,8 @@ function setLanguage(language, options = {}) {
   refreshLanguageChrome();
   renderList();
   applyLanguageToDOM(document.body);
+  refreshLoadedSaviorSourcePanels();
   updateJourneyArchiveLanguage();
-  // Open Savior detail backups are language-specific local snapshots. Reload an open panel
-  // immediately so skill names/descriptions switch to the selected source language too.
-  void refreshLoadedSaviorSourcePanels();
   // 테마 버튼의 현재 상태에 맞는 접근성 라벨을 선택 언어로 갱신합니다.
   if (typeof applyTheme === "function") {
     applyTheme(document.documentElement.dataset.theme || "dark", { skipSave: true });
@@ -462,7 +431,6 @@ Object.assign(I18N_DATA.ui.ja, {
   "여정 데이터는 우리 저장소에 백업된 로컬 사본만 사용합니다.": "旅程データは、このリポジトリに保存したローカルアーカイブのみを使用します。",
   "원본 사이트에 연결하지 않습니다.": "元サイトへの接続は不要です。"
 });
-
 const ELEMENT_LABELS = {
   sun: "태양",
   moon: "달",
@@ -5031,16 +4999,123 @@ function openSavior(id, options = {}) {
   }
 }
 
-function getSaviorBackupUrl(detailId, language = currentLanguage) {
-  const selected = SUPPORTED_LANGUAGES.includes(language) ? language : "ko";
-  const prefix = selected === "ko" ? "./data/saviors" : `./data/saviors/${selected}`;
-  return `${prefix}/${encodeURIComponent(detailId)}.html?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
+function getSaviorBackupUrl(detailId) {
+  return `./data/saviors/${encodeURIComponent(detailId)}.html?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
 }
 
-function getSaviorBloomBackupUrl(detailId, language = currentLanguage) {
-  const selected = SUPPORTED_LANGUAGES.includes(language) ? language : "ko";
-  const prefix = selected === "ko" ? "./data/savior-bloom" : `./data/savior-bloom/${selected}`;
-  return `${prefix}/${encodeURIComponent(detailId)}.html?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
+const SAVIOR_SKILL_ARCHIVE_URL = "./data/savior-skills/saviors.json";
+const SAVIOR_SKILL_TYPE_KEYS = ["패시브", "기본기", "특수기", "궁극기"];
+const SAVIOR_SKILL_TYPE_LABELS = {
+  ko: ["패시브", "기본기", "특수기", "궁극기"],
+  en: ["Passive", "Basic Skill", "Special Skill", "Ultimate"],
+  ja: ["パッシブ", "基本技", "特殊技", "究極技"]
+};
+const SAVIOR_SKILL_TARGET_LABELS = {
+  ko: {
+    NSTT_ALLY_ALL: "아군 전체", NSTT_ALLY_ONE: "아군 단일", NSTT_ENEMY_ALL: "적 전체", NSTT_ENEMY_ONE: "적 단일",
+    NSTT_MYSELF: "자신", NSTT_REACT_ALLY_TARGET: "반응 대상 아군", NSTT_REACT_ENEMY_TARGET: "반응 대상 적"
+  },
+  en: {
+    NSTT_ALLY_ALL: "All Allies", NSTT_ALLY_ONE: "1 Ally", NSTT_ENEMY_ALL: "All Enemies", NSTT_ENEMY_ONE: "1 Enemy",
+    NSTT_MYSELF: "Self", NSTT_REACT_ALLY_TARGET: "Target Ally", NSTT_REACT_ENEMY_TARGET: "Target Enemy"
+  },
+  ja: {
+    NSTT_ALLY_ALL: "味方全体", NSTT_ALLY_ONE: "味方単体", NSTT_ENEMY_ALL: "敵全体", NSTT_ENEMY_ONE: "敵単体",
+    NSTT_MYSELF: "自身", NSTT_REACT_ALLY_TARGET: "対象の味方", NSTT_REACT_ENEMY_TARGET: "対象の敵"
+  }
+};
+const SAVIOR_SKILL_META_LABELS = {
+  ko: { turn: "턴", nova: "노바 획득" },
+  en: { turn: "Turn", nova: "Nova Gain" },
+  ja: { turn: "ターン", nova: "ノヴァ獲得" }
+};
+let saviorSkillArchivePromise = null;
+
+function getSaviorSkillLanguage(language = currentLanguage) {
+  return SUPPORTED_LANGUAGES.includes(language) ? language : "ko";
+}
+
+function getArchivedLanguageText(value, language = currentLanguage) {
+  const selected = getSaviorSkillLanguage(language);
+  return String(value?.[selected] ?? value?.ko ?? "");
+}
+
+async function loadSaviorSkillArchive() {
+  if (!saviorSkillArchivePromise) {
+    const url = `${SAVIOR_SKILL_ARCHIVE_URL}?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
+    saviorSkillArchivePromise = fetch(url, { cache: "no-store" }).then(async (response) => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const archive = await response.json();
+      if (!Array.isArray(archive?.saviors) || archive.saviors.length !== 52) {
+        throw new Error("Invalid Savior skill archive");
+      }
+      return archive;
+    }).catch((error) => {
+      saviorSkillArchivePromise = null;
+      throw error;
+    });
+  }
+  return saviorSkillArchivePromise;
+}
+
+function renderSaviorSourceRichText(value) {
+  return escapeHtml(value || "")
+    .replace(/&lt;b&gt;&lt;color=#([0-9a-f]{6})&gt;/gi, '<strong style="color:#$1">')
+    .replace(/&lt;\/color&gt;&lt;\/b&gt;/gi, "</strong>")
+    .replace(/&lt;color=#([0-9a-f]{6})&gt;/gi, '<span style="color:#$1">')
+    .replace(/&lt;\/color&gt;/gi, "</span>")
+    .replace(/&lt;b&gt;/gi, "<strong>")
+    .replace(/&lt;\/b&gt;/gi, "</strong>")
+    .replace(/&lt;br\s*\/?&gt;/gi, "<br>")
+    .replace(/\r?\n/g, "<br>");
+}
+
+function createArchivedSaviorSkills(archivedSavior, options = {}) {
+  const language = getSaviorSkillLanguage(options.language);
+  const sourceSkills = options.blossomed ? archivedSavior?.blossomSkills : archivedSavior?.skills;
+  if (!Array.isArray(sourceSkills)) return [];
+
+  return sourceSkills.map((skill) => {
+    const typeCode = Number(skill.type);
+    const type = SAVIOR_SKILL_TYPE_KEYS[typeCode] || "스킬";
+    const labels = SAVIOR_SKILL_META_LABELS[language] || SAVIOR_SKILL_META_LABELS.ko;
+    const metas = [];
+    if (Number(skill.cooltime) > 0) {
+      metas.push(language === "ko" ? `${skill.cooltime}${labels.turn}` : `${skill.cooltime} ${labels.turn}`);
+    }
+    if (skill.target && skill.target !== "NSTT_INVALID") {
+      const target = SAVIOR_SKILL_TARGET_LABELS[language]?.[skill.target] || SAVIOR_SKILL_TARGET_LABELS.ko[skill.target];
+      if (target) metas.push(target);
+    }
+    if (Number(skill.nova) > 0) metas.push(`${labels.nova} ${skill.nova}`);
+
+    const maxLevel = skill.levels?.at(-1);
+    const novaKo = getArchivedLanguageText(skill.novaDescription, "ko");
+    return {
+      title: getArchivedLanguageText(skill.name, language),
+      type,
+      typeCode,
+      typeLabel: SAVIOR_SKILL_TYPE_LABELS[language]?.[typeCode] || type,
+      image: skill.icon || "",
+      metas,
+      description: getArchivedLanguageText(maxLevel?.skillDescription, language),
+      effects: (skill.buffs || []).map((buff) => ({
+        image: buff.icon || "",
+        name: getArchivedLanguageText(buff.name, language),
+        description: getArchivedLanguageText(buff.description, language)
+      })),
+      novaBurst: novaKo && novaKo !== "구원자" ? getArchivedLanguageText(skill.novaDescription, language) : "",
+      levels: (skill.levels || []).map((level) => ({
+        level: level.level,
+        description: getArchivedLanguageText(typeCode === 0 ? level.skillDescription : level.levelDescription, language),
+        richText: typeCode === 0
+      }))
+    };
+  });
+}
+
+function getSaviorBloomBackupUrl(detailId) {
+  return `./data/savior-bloom/${encodeURIComponent(detailId)}.html?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
 }
 
 function setSaviorSourcePanelStatus(panel, sourceText, kind = "") {
@@ -5059,89 +5134,6 @@ function getSaviorSourceRoot(sourceHtml) {
   if (!root) throw new Error("Snapshot root not found");
   root.querySelectorAll("script,style,noscript,.snapshot-meta").forEach((node) => node.remove());
   return { doc, root };
-}
-
-function getSaviorSourceTextEntries(root) {
-  const entries = [];
-  const doc = root.ownerDocument;
-  const walker = doc.createTreeWalker(root, 4); // NodeFilter.SHOW_TEXT
-  let node;
-  while ((node = walker.nextNode())) {
-    const text = normalizeSaviorSourceText(node.nodeValue);
-    if (!text) continue;
-    const path = [];
-    let cursor = node;
-    while (cursor && cursor !== root) {
-      const parent = cursor.parentNode;
-      if (!parent) break;
-      path.push(Array.prototype.indexOf.call(parent.childNodes, cursor));
-      cursor = parent;
-    }
-    if (cursor !== root) continue;
-    entries.push({ path: path.reverse().join("."), text });
-  }
-  return entries;
-}
-
-function buildSaviorSourceTranslationMap(koreanHtml, localizedHtml) {
-  if (!localizedHtml || currentLanguage === "ko") return null;
-  try {
-    const { root: koreanRoot } = getSaviorSourceRoot(koreanHtml);
-    const { root: localizedRoot } = getSaviorSourceRoot(localizedHtml);
-    const koreanEntries = getSaviorSourceTextEntries(koreanRoot);
-    const localizedEntries = getSaviorSourceTextEntries(localizedRoot);
-    const localizedByPath = new Map(localizedEntries.map((entry) => [entry.path, entry.text]));
-    const exact = new Map();
-    let pathMatches = 0;
-
-    koreanEntries.forEach((entry, index) => {
-      let translated = localizedByPath.get(entry.path) || "";
-      if (translated) pathMatches += 1;
-      // Source DOM structure is normally identical across languages. If a tiny wrapper differs,
-      // use the same text-node position as a conservative fallback.
-      if (!translated && localizedEntries[index]) translated = localizedEntries[index].text;
-      if (!translated || translated === entry.text) return;
-      if (!exact.has(entry.text)) exact.set(entry.text, translated);
-    });
-
-    const replacements = [...exact.entries()]
-      .filter(([from, to]) => from && to && from !== to && /[가-힣]/.test(from))
-      .sort((a, b) => b[0].length - a[0].length);
-
-    if (!replacements.length) return null;
-    return { exact, replacements, pathMatches, koreanCount: koreanEntries.length, localizedCount: localizedEntries.length };
-  } catch (error) {
-    console.warn("Savior source translation map failed:", error);
-    return null;
-  }
-}
-
-function translateSaviorSourceValue(value, translationMap) {
-  const source = String(value ?? "");
-  if (!source || !translationMap) return source;
-  const normalized = normalizeSaviorSourceText(source);
-  const exact = translationMap.exact.get(normalized);
-  if (exact && normalized === source.trim()) {
-    const leading = source.match(/^\s*/)?.[0] || "";
-    const trailing = source.match(/\s*$/)?.[0] || "";
-    return `${leading}${exact}${trailing}`;
-  }
-  let translated = source;
-  translationMap.replacements.forEach(([from, to]) => {
-    if (from.length < 2 || !translated.includes(from)) return;
-    translated = translated.split(from).join(to);
-  });
-  return translated;
-}
-
-function applySaviorSourceTranslationToDOM(root, translationMap) {
-  if (!root || !translationMap) return;
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-  let node;
-  while ((node = walker.nextNode())) {
-    const next = translateSaviorSourceValue(node.nodeValue || "", translationMap);
-    if (next !== node.nodeValue) node.nodeValue = next;
-  }
 }
 
 function getSaviorSourceTokens(root) {
@@ -5654,7 +5646,7 @@ function parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl) {
 
 function renderSaviorInfoTable(savior, profile) {
   const rows = [
-    { label: "이름", value: getLocalizedSaviorName(profile.name || savior.name) },
+    { label: "이름", value: profile.localizedName || getLocalizedSaviorName(profile.name || savior.name) },
     { label: "등급", value: profile.grade || savior.grade || "-", key: "grade" },
     { label: "속성", value: translateString(profile.element || ELEMENT_LABELS[savior.element] || "-") },
     { label: "클래스", value: translateString(profile.className || savior.className || "-") },
@@ -5712,34 +5704,35 @@ function renderSourceResonanceTable(rows) {
 }
 
 function renderSaviorSkillLevelDescription(skill, description) {
-  let html = escapeHtml(description);
-  if (skill.type === "패시브") {
+  let html = renderSaviorSourceRichText(description);
+  if (skill.typeCode == null && skill.type === "패시브") {
     html = html.replace(/([+-]?\d+(?:\.\d+)?%)/g, '<span class="source-skill-level-value">$1</span>');
   }
   return html;
 }
 
 function renderSourceSkillCard(skill) {
-  const metaTags = [skill.type, ...skill.metas];
   return `
-    <article class="source-skill-card" data-source-skill-type="${escapeHtml(skill.type)}">
+    <article class="source-skill-card">
       <div class="source-skill-header">
         ${skill.image ? `<img class="source-skill-icon" src="${escapeHtml(skill.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}
         <div class="source-skill-title-wrap">
           <div class="source-skill-title-line">
             <strong>${escapeHtml(skill.title)}</strong>
-            <span class="source-skill-type">${escapeHtml(translateString(skill.type))}</span>
+            <span class="source-skill-type">${escapeHtml(skill.typeLabel || translateString(skill.type))}</span>
           </div>
           ${skill.metas.length ? `<div class="source-skill-meta">${skill.metas.map((meta) => `<span>${escapeHtml(meta)}</span>`).join("")}</div>` : ""}
         </div>
       </div>
-      ${skill.description ? `<div class="source-skill-description"><p>${escapeHtml(skill.description)}</p></div>` : ""}
+      ${skill.description ? `<div class="source-skill-description"><p>${renderSaviorSourceRichText(skill.description)}</p></div>` : ""}
       ${skill.effects.length ? `
         <div class="source-skill-effects">
           ${skill.effects.map((effect) => `
             <div class="source-skill-effect-row">
               ${effect.image ? `<img src="${escapeHtml(effect.image)}" alt="" loading="lazy" onerror="this.remove()">` : ""}
-              <p>${escapeHtml(effect.text)}</p>
+              <p>${effect.name
+                ? `<strong style="color:#DD982C">${escapeHtml(effect.name)}</strong> : ${renderSaviorSourceRichText(effect.description)}`
+                : escapeHtml(effect.text)}</p>
             </div>
           `).join("")}
         </div>
@@ -5747,7 +5740,7 @@ function renderSourceSkillCard(skill) {
       ${skill.novaBurst ? `
         <div class="source-nova-burst">
           <strong>${escapeHtml(translateString("노바 버스트"))}</strong>
-          <p>${escapeHtml(skill.novaBurst)}</p>
+          <p>${renderSaviorSourceRichText(skill.novaBurst)}</p>
         </div>
       ` : ""}
       ${skill.levels.length ? `
@@ -5764,7 +5757,7 @@ function renderSourceSkillCard(skill) {
   `;
 }
 
-function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior) {
+function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options = {}) {
   const { root } = getSaviorSourceRoot(sourceHtml);
   const tokens = getSaviorSourceTokens(root);
   const baseIndex = findSourceTokenIndex(tokens, (text) => text.startsWith("기본 스테이터스"));
@@ -5798,16 +5791,30 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior) {
   const journeyStats = SAVIOR_SOURCE_JOURNEY_STATS.map((label) => [label, extractSourceStat(journeyTokens, label, false)]);
   const profile = parseSaviorSourceProfile(tokens, baseIndex, savior);
   const resonanceRows = extractSaviorResonanceRows(tokens, resonanceIndex, resonanceStopIndex);
-  const skills = parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl);
+  const parsedSkills = parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl);
+  const archivedSavior = options.archivedSavior || null;
+  const archivedSkills = archivedSavior
+    ? createArchivedSaviorSkills(archivedSavior, {
+        language: options.language || currentLanguage,
+        blossomed: Boolean(options.blossomed)
+      })
+    : [];
+  const skills = archivedSkills.length ? archivedSkills : parsedSkills;
+
+  if (archivedSavior) {
+    profile.localizedName = getArchivedLanguageText(archivedSavior.name, options.language || currentLanguage);
+    profile.description = getArchivedLanguageText(archivedSavior.description, options.language || currentLanguage);
+  }
 
   const detailId = SAVIOR_DETAIL_IDS[savior.id];
-  const bloomAvailable = SAVIOR_BLOOM_DETAIL_ID_SET.has(Number(detailId));
+  const bloomAvailable = (archivedSavior?.blossomSkills?.length || 0) > 0
+    || SAVIOR_BLOOM_DETAIL_ID_SET.has(Number(detailId));
 
   return `
     <div class="parsed-savior-source">
       ${bloomAvailable ? `
         <div class="source-bloom-toolbar">
-          <button class="source-bloom-toggle" type="button" data-savior-bloom-toggle data-detail-id="${escapeHtml(detailId)}" aria-pressed="false">
+          <button class="source-bloom-toggle" type="button" data-savior-bloom-toggle data-detail-id="${escapeHtml(detailId)}" aria-pressed="${options.blossomed ? "true" : "false"}">
             <span class="source-bloom-flower" aria-hidden="true">✿</span>
             <span>${escapeHtml(translateString("개화"))}</span>
           </button>
@@ -5827,46 +5834,35 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior) {
   `;
 }
 
-async function loadSaviorSourcePanel(button, panel, options = {}) {
-  if (panel.dataset.loaded === "true" && panel.dataset.language === currentLanguage && !options.force) return;
+async function loadSaviorSourcePanel(button, panel) {
+  if (panel.dataset.loaded === "true") return;
   const detailId = button.dataset.detailId;
   if (!detailId) return;
 
-  const koreanUrl = getSaviorBackupUrl(detailId, "ko");
-  const localizedUrl = getSaviorBackupUrl(detailId, currentLanguage);
+  const url = getSaviorBackupUrl(detailId);
   const savior = SAVIORS.find((item) => SAVIOR_DETAIL_IDS[item.id] === Number(detailId));
   button.disabled = true;
   setSaviorSourcePanelStatus(panel, "상세정보를 불러오는 중입니다.", "loading");
 
   try {
-    const koreanResponse = await fetch(koreanUrl, { cache: "no-store" });
-    if (!koreanResponse.ok) throw new Error(`Korean backup HTTP ${koreanResponse.status}`);
-    const sourceHtml = await koreanResponse.text();
+    const [response, archive] = await Promise.all([
+      fetch(url, { cache: "no-store" }),
+      loadSaviorSkillArchive()
+    ]);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const sourceHtml = await response.text();
     if (!savior) throw new Error("Savior mapping not found");
-
-    let localizedSourceHtml = "";
-    if (currentLanguage !== "ko") {
-      const localizedResponse = await fetch(localizedUrl, { cache: "no-store" });
-      if (localizedResponse.ok) {
-        localizedSourceHtml = await localizedResponse.text();
-      } else {
-        console.warn(`Localized Savior backup missing: ${currentLanguage}/${detailId} HTTP ${localizedResponse.status}`);
-      }
-    }
-
-    panel.innerHTML = createParsedSaviorSourceMarkup(sourceHtml, koreanUrl, savior);
-    if (localizedSourceHtml) {
-      applySaviorSourceTranslationToDOM(panel, buildSaviorSourceTranslationMap(sourceHtml, localizedSourceHtml));
-    }
+    const archivedSavior = archive.saviors.find((item) => Number(item.id) === Number(detailId));
+    if (!archivedSavior) throw new Error("Savior skill archive mapping not found");
+    panel.innerHTML = createParsedSaviorSourceMarkup(sourceHtml, url, savior, {
+      archivedSavior,
+      language: currentLanguage
+    });
     panel._normalSaviorSourceHtml = sourceHtml;
-    panel._normalLocalizedSaviorSourceHtml = localizedSourceHtml;
-    panel._normalSaviorSourceUrl = koreanUrl;
-    panel._localizedSaviorSourceUrl = localizedSourceHtml ? localizedUrl : "";
+    panel._normalSaviorSourceUrl = url;
+    panel._archivedSaviorSkills = archivedSavior;
     panel._saviorSourceId = savior.id;
-    panel._bloomSaviorSourceHtml = "";
-    panel._localizedBloomSaviorSourceHtml = "";
     panel.dataset.loaded = "true";
-    panel.dataset.language = currentLanguage;
     panel.dataset.state = "ready";
     applyLanguageToDOM(panel);
   } catch (error) {
@@ -5877,18 +5873,24 @@ async function loadSaviorSourcePanel(button, panel, options = {}) {
   }
 }
 
-async function refreshLoadedSaviorSourcePanels() {
-  const wrappers = [...detailContent.querySelectorAll("[data-savior-source-detail]")];
-  for (const wrapper of wrappers) {
-    const button = wrapper.querySelector("[data-savior-source-toggle]");
-    const panel = wrapper.querySelector("[data-savior-source-panel]");
-    if (!button || !panel) continue;
-    panel.dataset.loaded = "false";
-    panel.dataset.language = "";
-    if (button.getAttribute("aria-expanded") === "true" && !panel.hidden) {
-      await loadSaviorSourcePanel(button, panel, { force: true });
-    }
-  }
+function refreshLoadedSaviorSourcePanels() {
+  document.querySelectorAll("[data-savior-source-panel][data-loaded='true']").forEach((panel) => {
+    const savior = SAVIORS.find((item) => item.id === panel._saviorSourceId);
+    if (!savior || !panel._normalSaviorSourceHtml || !panel._archivedSaviorSkills) return;
+    const blossomed = panel.querySelector("[data-savior-bloom-toggle]")?.getAttribute("aria-pressed") === "true";
+    panel.innerHTML = createParsedSaviorSourceMarkup(
+      panel._normalSaviorSourceHtml,
+      panel._normalSaviorSourceUrl || getSaviorBackupUrl(SAVIOR_DETAIL_IDS[savior.id]),
+      savior,
+      {
+        archivedSavior: panel._archivedSaviorSkills,
+        language: currentLanguage,
+        blossomed
+      }
+    );
+    if (blossomed) setSaviorBloomProfileGrade(panel, true);
+    applyLanguageToDOM(panel);
+  });
 }
 
 const ALL_SAVIOR_EFFECT_IMAGE_DONORS = [...new Set(Object.values(SAVIOR_DETAIL_IDS))];
@@ -5967,7 +5969,7 @@ async function getSharedSaviorEffectImage(effectName) {
     const donorIds = [...new Set([...preferredDonors, ...ALL_SAVIOR_EFFECT_IMAGE_DONORS])];
     for (const detailId of donorIds) {
       try {
-        const url = getSaviorBackupUrl(detailId, "ko");
+        const url = getSaviorBackupUrl(detailId);
         const response = await fetch(url, { cache: "no-store" });
         if (!response.ok) continue;
         const sourceHtml = await response.text();
@@ -6035,7 +6037,7 @@ async function hydrateSharedBloomEffectImages(bloomList) {
 function getBloomSkillCardsByType(bloomList, skillType) {
   if (!bloomList) return [];
   return [...bloomList.querySelectorAll(".source-skill-card")].filter((card) => {
-    const type = card.dataset.sourceSkillType || normalizeSaviorSourceText(card.querySelector(".source-skill-type")?.textContent || "");
+    const type = normalizeSaviorSourceText(card.querySelector(".source-skill-type")?.textContent || "");
     return type === skillType;
   });
 }
@@ -6197,7 +6199,7 @@ function cloneSaviorSkillVisuals(normalList, bloomList, savior) {
 
     const normalEffects = [...normalCard.querySelectorAll(".source-skill-effect-row")];
     const bloomEffects = [...bloomCard.querySelectorAll(".source-skill-effect-row")];
-    const bloomSkillType = bloomCard.dataset.sourceSkillType || normalizeSaviorSourceText(bloomCard.querySelector(".source-skill-type")?.textContent || "");
+    const bloomSkillType = normalizeSaviorSourceText(bloomCard.querySelector(".source-skill-type")?.textContent || "");
     const allowPositionalFallback = !(savior?.id === "marcille" && bloomSkillType === "궁극기");
     bloomEffects.forEach((row, effectIndex) => {
       if (row.querySelector("img")) return;
@@ -6214,12 +6216,9 @@ function cloneSaviorSkillVisuals(normalList, bloomList, savior) {
   });
 }
 
-function createSaviorSkillListFromSource(sourceHtml, sourceUrl, savior, localizedSourceHtml = "") {
+function createSaviorSkillListFromSource(sourceHtml, sourceUrl, savior) {
   const temp = document.createElement("div");
   temp.innerHTML = createParsedSaviorSourceMarkup(sourceHtml, sourceUrl, savior);
-  if (localizedSourceHtml && currentLanguage !== "ko") {
-    applySaviorSourceTranslationToDOM(temp, buildSaviorSourceTranslationMap(sourceHtml, localizedSourceHtml));
-  }
   return temp.querySelector(".source-skill-list");
 }
 
@@ -6235,12 +6234,24 @@ async function applySaviorBloomMode(button, panel) {
 
   button.disabled = true;
   try {
+    if (panel._archivedSaviorSkills) {
+      const archivedSkills = createArchivedSaviorSkills(panel._archivedSaviorSkills, {
+        language: currentLanguage,
+        blossomed: nextPressed
+      });
+      if (!archivedSkills.length) throw new Error("Archived Bloom skill list not found");
+      liveSkillList.innerHTML = archivedSkills.map(renderSourceSkillCard).join("");
+      setSaviorBloomProfileGrade(panel, nextPressed);
+      button.setAttribute("aria-pressed", String(nextPressed));
+      applyLanguageToDOM(liveSkillList);
+      return;
+    }
+
     if (!nextPressed) {
       const normalList = createSaviorSkillListFromSource(
         panel._normalSaviorSourceHtml,
-        panel._normalSaviorSourceUrl || getSaviorBackupUrl(detailId, "ko"),
-        savior,
-        panel._normalLocalizedSaviorSourceHtml || ""
+        panel._normalSaviorSourceUrl || getSaviorBackupUrl(detailId),
+        savior
       );
       if (!normalList) throw new Error("Normal skill list not found");
       liveSkillList.innerHTML = normalList.innerHTML;
@@ -6251,35 +6262,21 @@ async function applySaviorBloomMode(button, panel) {
     }
 
     if (!panel._bloomSaviorSourceHtml) {
-      const bloomUrl = getSaviorBloomBackupUrl(detailId, "ko");
+      const bloomUrl = getSaviorBloomBackupUrl(detailId);
       const response = await fetch(bloomUrl, { cache: "no-store" });
-      if (!response.ok) throw new Error(`Korean Bloom HTTP ${response.status}`);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       panel._bloomSaviorSourceHtml = await response.text();
       panel._bloomSaviorSourceUrl = bloomUrl;
-
-      if (currentLanguage !== "ko") {
-        const localizedBloomUrl = getSaviorBloomBackupUrl(detailId, currentLanguage);
-        const localizedResponse = await fetch(localizedBloomUrl, { cache: "no-store" });
-        if (localizedResponse.ok) {
-          panel._localizedBloomSaviorSourceHtml = await localizedResponse.text();
-          panel._localizedBloomSaviorSourceUrl = localizedBloomUrl;
-        } else {
-          console.warn(`Localized Bloom backup missing: ${currentLanguage}/${detailId} HTTP ${localizedResponse.status}`);
-        }
-      }
     }
 
-    // Visual correction helpers depend on the Korean semantic effect/type names, so build and
-    // correct the Bloom list in Korean first. Only after the structure/images are final do we
-    // replace its visible text with the selected source-language snapshot.
     const normalList = createSaviorSkillListFromSource(
       panel._normalSaviorSourceHtml,
-      panel._normalSaviorSourceUrl || getSaviorBackupUrl(detailId, "ko"),
+      panel._normalSaviorSourceUrl || getSaviorBackupUrl(detailId),
       savior
     );
     const bloomList = createSaviorSkillListFromSource(
       panel._bloomSaviorSourceHtml,
-      panel._bloomSaviorSourceUrl || getSaviorBloomBackupUrl(detailId, "ko"),
+      panel._bloomSaviorSourceUrl || getSaviorBloomBackupUrl(detailId),
       savior
     );
     if (!bloomList) throw new Error("Bloom skill list not found");
@@ -6290,12 +6287,6 @@ async function applySaviorBloomMode(button, panel) {
     normalizeClarissaBloomLeapText(bloomList, savior);
     await applyBloomEffectVisualCorrections(bloomList, savior);
     await hydrateSharedBloomEffectImages(bloomList);
-    if (panel._localizedBloomSaviorSourceHtml && currentLanguage !== "ko") {
-      applySaviorSourceTranslationToDOM(
-        bloomList,
-        buildSaviorSourceTranslationMap(panel._bloomSaviorSourceHtml, panel._localizedBloomSaviorSourceHtml)
-      );
-    }
     liveSkillList.innerHTML = bloomList.innerHTML;
     setSaviorBloomProfileGrade(panel, true);
     button.setAttribute("aria-pressed", "true");
@@ -6967,7 +6958,7 @@ function getJourneyLabels(language = currentLanguage) {
       reset: "リセット", raid: "討伐", aganon: "アガノン", flora: "フローラ", kalaid: "カライド", weather: "天気",
       success: "成功報酬", failure: "失敗報酬", loading: "旅程データを読み込んでいます。",
       empty: "検索結果がありません。", loadError: "旅程データを読み込めませんでした。", clear: "検索語を消去", savior: "救援者"
-    },
+    }
   };
   return table[SUPPORTED_LANGUAGES.includes(language) ? language : "ko"] || table.ko;
 }
