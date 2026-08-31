@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "sourceOrigin": "https://star-savior-arcana-db.pages.dev",
-  "capturedAt": "2026-08-31T02:56:57.152Z",
+  "capturedAt": "2026-08-31T12:26:38.381Z",
   "languages": [
     "ko",
     "en",
@@ -10,6 +10,7 @@
   "saviorCount": 52,
   "skillCount": 208,
   "blossomSkillCount": 32,
+  "resonancePotentialCount": 156,
   "buffCount": 78,
   "assetCount": 318,
   "localOnly": true

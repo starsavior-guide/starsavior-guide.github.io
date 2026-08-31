@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "source": "https://star-savior-arcana-db.pages.dev/data/saviors.json",
-  "capturedAt": "2026-08-31T02:56:57.152Z",
+  "capturedAt": "2026-08-31T12:26:38.381Z",
   "languages": [
     "ko",
     "en",
@@ -26,6 +26,56 @@
         "en": "A noble young lady who joined the Journey to become a Savior like the Star Savior she admires. Her strong drive to act first rather than worry is both her strength and her weakness.",
         "ja": "星の救援者に憧れ、救援者になるため旅に参加した貴族令嬢。悩まないですぐ行動に移すところは長所でもあり短所でもある。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20005,
+          "strId": "POTEN_PASSIVE_0005",
+          "name": {
+            "ko": "통찰의 감각",
+            "en": "Sense of Insight",
+            "ja": "洞察の感覚"
+          },
+          "description": {
+            "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self CRIT Rate by a certain percentage.",
+            "ja": "会心率が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21006,
+          "strId": "POTEN_PASSIVE_1006",
+          "name": {
+            "ko": "파괴의 솜씨",
+            "en": "Skill of Destruction",
+            "ja": "破壊の腕前"
+          },
+          "description": {
+            "ko": "치명타 피해가 4% 증가합니다.",
+            "en": "Increases CRIT DMG by 4%.",
+            "ja": "会心ダメージが4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10014,
@@ -626,6 +676,56 @@
         "en": "A science devotee who claims to be a being created by advanced technology, rather than a human. Having never smiled since birth, she uses the Captain as a test subject for her research on how to smile.",
         "ja": "自分は人間ではなく高度な科学技術が作り出した存在だと主張する科学の信奉者。生まれてから一度も笑ったことがない。笑えるようになるために研究をしていて、団長をその実験台として使っている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21007,
+          "strId": "POTEN_PASSIVE_1007",
+          "name": {
+            "ko": "집중의 솜씨",
+            "en": "Skill of Focus",
+            "ja": "集中の腕前"
+          },
+          "description": {
+            "ko": "효과 적중이 4% 증가합니다.",
+            "en": "Increases Effect Hit by 4%.",
+            "ja": "効果命中が4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10024,
@@ -1287,6 +1387,56 @@
         "en": "The self-proclaimed greatest oracle of Lavistar, apprentice to Magi, the Grand Witch of Dreams, and inheritor of the Moon Staff. She lives recklessly, spending all the money she earns each day at the casino.",
         "ja": "夢の大魔女マギの一番弟子で、彼女の「月の杖」を受け継いだ、自称ラビスター最高の予言者。その日手に入ったお金はその日カジノで使い果たしてしまうほど後先考えない生き方をしている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20006,
+          "strId": "POTEN_PASSIVE_0006",
+          "name": {
+            "ko": "파괴의 감각",
+            "en": "Sense of Destruction",
+            "ja": "破壊の感覚"
+          },
+          "description": {
+            "ko": "치명타 피해가 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self CRIT DMG by a certain percentage.",
+            "ja": "会心ダメージが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21005,
+          "strId": "POTEN_PASSIVE_1005",
+          "name": {
+            "ko": "통찰의 솜씨",
+            "en": "Skill of Insight",
+            "ja": "洞察の腕前"
+          },
+          "description": {
+            "ko": "치명타 확률이 3% 증가합니다.",
+            "en": "Increases CRIT Rate by 3%.",
+            "ja": "会心率が3%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10034,
@@ -1887,6 +2037,56 @@
         "en": "The former Master Maid of Candle Square and the eldest daughter of the Rhys family. Bound by the curse of immortality, she is incapable of dying and has grown indifferent to the happiness found in life. After a long disappearance, she has returned to NOA to free herself from the curse.",
         "ja": "キャンドル・スクエアの前任メイド長にして、リース家の長女。「不死の呪い」の影響で、死を迎えることができず、生の喜びにも無感覚となっている。行方不明となっていた彼女は、呪いを解くためNOAへと戻ってきた。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20005,
+          "strId": "POTEN_PASSIVE_0005",
+          "name": {
+            "ko": "통찰의 감각",
+            "en": "Sense of Insight",
+            "ja": "洞察の感覚"
+          },
+          "description": {
+            "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self CRIT Rate by a certain percentage.",
+            "ja": "会心率が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10054,
@@ -2578,6 +2778,56 @@
         "en": "The second daughter of House Rhys and caretaker of the NOA cemetery. A hexcaster who serves at Candle Square to fulfill her family's duty in place of her missing elder sister.",
         "ja": "リース家の次女でNOAの共同墓地の管理人。行方不明となった姉の後を継ぎ、リース家としての義務を果たすべくキャンドル・スクエアに奉仕する呪詛師。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20004,
+          "strId": "POTEN_PASSIVE_0004",
+          "name": {
+            "ko": "속도의 감각",
+            "en": "Sense of Speed",
+            "ja": "速度の感覚"
+          },
+          "description": {
+            "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
+            "en": "Slightly increases self SPD by a certain amount.",
+            "ja": "速度が一定値だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20007,
+          "strId": "POTEN_PASSIVE_0007",
+          "name": {
+            "ko": "집중의 감각",
+            "en": "Sense of Focus",
+            "ja": "集中の感覚"
+          },
+          "description": {
+            "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect Hit by a certain percentage.",
+            "ja": "効果命中が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21004,
+          "strId": "POTEN_PASSIVE_1004",
+          "name": {
+            "ko": "속도의 솜씨",
+            "en": "Skill of Speed",
+            "ja": "速度の腕前"
+          },
+          "description": {
+            "ko": "속도가 2 증가합니다.",
+            "en": "Increases SPD by 2.",
+            "ja": "速度が2上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10084,
@@ -3223,6 +3473,56 @@
         "en": "A Candle Square maid who always carries cleaning tools and enforces strict combat cleaning. She suffers from severe forgetfulness, often blanking on important matters or even remembering them in reverse.",
         "ja": "常に掃除用具を手に持ち、徹底的に戦闘掃除をするキャンドル・スクエアのメイド。ひどい物忘れのせいで、重要なことを忘れるのは日常茶飯事。時には真逆に覚えていることも。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20005,
+          "strId": "POTEN_PASSIVE_0005",
+          "name": {
+            "ko": "통찰의 감각",
+            "en": "Sense of Insight",
+            "ja": "洞察の感覚"
+          },
+          "description": {
+            "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self CRIT Rate by a certain percentage.",
+            "ja": "会心率が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21006,
+          "strId": "POTEN_PASSIVE_1006",
+          "name": {
+            "ko": "파괴의 솜씨",
+            "en": "Skill of Destruction",
+            "ja": "破壊の腕前"
+          },
+          "description": {
+            "ko": "치명타 피해가 4% 증가합니다.",
+            "en": "Increases CRIT DMG by 4%.",
+            "ja": "会心ダメージが4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10094,
@@ -3944,6 +4244,56 @@
         "en": "The Grand Master of the Knights of the Duchy of Monastir. Though she strives to be a solemn and dignified leader, her naturally cheerful and simple personality always gets in the way.",
         "ja": "モナスティル公国騎士団の団長。渋くて貫禄のある騎士団長を目指しているが、陽気で飾り気のない本来の性格が足を引っ張ってしまう。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10104,
@@ -4559,6 +4909,56 @@
         "en": "The Deputy Master of the Knights of the Duchy of Monastir. The shield of the order, who never loses her calm smile even in the most difficult situations.",
         "ja": "モナスティル公国騎士団の副団長。どんなに苦しい状況でも、常に笑顔を忘れない騎士団の盾的存在。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20003,
+          "strId": "POTEN_PASSIVE_0003",
+          "name": {
+            "ko": "방어의 감각",
+            "en": "Sense of Defense",
+            "ja": "防御の感覚"
+          },
+          "description": {
+            "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self DEF by a certain percentage.",
+            "ja": "防御力が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21002,
+          "strId": "POTEN_PASSIVE_1002",
+          "name": {
+            "ko": "생명의 솜씨",
+            "en": "Skill of Life",
+            "ja": "生命の腕前"
+          },
+          "description": {
+            "ko": "최대 생명력이 2% 증가합니다.",
+            "en": "Increases Max HP by 2%.",
+            "ja": "最大HPが2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10114,
@@ -5205,6 +5605,56 @@
         "en": "A girl who calls herself the quartermaster of the Knights of the Duchy of Monastir. Deeply interested in making money, she is always coming up with new business ideas, though most end in failure.",
         "ja": "モナスティル騎士団の補給官を自称する少女。お金を稼ぐことに目がなく、事業アイデアを次々と生み出すが、そのほとんどが失敗に終わる。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20003,
+          "strId": "POTEN_PASSIVE_0003",
+          "name": {
+            "ko": "방어의 감각",
+            "en": "Sense of Defense",
+            "ja": "防御の感覚"
+          },
+          "description": {
+            "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self DEF by a certain percentage.",
+            "ja": "防御力が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21002,
+          "strId": "POTEN_PASSIVE_1002",
+          "name": {
+            "ko": "생명의 솜씨",
+            "en": "Skill of Life",
+            "ja": "生命の腕前"
+          },
+          "description": {
+            "ko": "최대 생명력이 2% 증가합니다.",
+            "en": "Increases Max HP by 2%.",
+            "ja": "最大HPが2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10134,
@@ -5804,6 +6254,56 @@
         "en": "A succubus who has wandered Lavistar for a long time. She has the ability to give people pleasant dreams, but since this power can also become addictive, she cannot stay in one place for too long.",
         "ja": "長い間ラビスターをさまよっている夢魔。人々に良い夢を見せる能力を持つ。しかし、その力は時に人々を中毒させるため、同じ場所に長く留まることができない。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10144,
@@ -6449,6 +6949,56 @@
         "en": "A highly capable Hunter who is active in the Aselus Hunter Association. She earns enormous bounties, but lives her life in a way that sees her squandering all her wealth as quickly as it's earned.",
         "ja": "アセルスハンター協会に所属して活動する腕のいいハンター。その腕前で膨大な懸賞金を稼ぐが、湯水のように使ってしまうため懐は常に寂しい。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20008,
+          "strId": "POTEN_PASSIVE_0008",
+          "name": {
+            "ko": "보호의 감각",
+            "en": "Sense of Protection",
+            "ja": "保護の感覚"
+          },
+          "description": {
+            "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect RES by a certain percentage.",
+            "ja": "効果耐性が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21005,
+          "strId": "POTEN_PASSIVE_1005",
+          "name": {
+            "ko": "통찰의 솜씨",
+            "en": "Skill of Insight",
+            "ja": "洞察の腕前"
+          },
+          "description": {
+            "ko": "치명타 확률이 3% 증가합니다.",
+            "en": "Increases CRIT Rate by 3%.",
+            "ja": "会心率が3%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10154,
@@ -7080,6 +7630,56 @@
         "en": "An instructor of the children's class at the Wind Moon Sect. Having taught etiquette and martial arts to children, she often treats others as if she was handling kids.",
         "ja": "風月堂の幼年部の先生。子どもたちに礼儀作法や武芸を教えてきたため、大人に対しても子どもに接するように振る舞う時がある。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21004,
+          "strId": "POTEN_PASSIVE_1004",
+          "name": {
+            "ko": "속도의 솜씨",
+            "en": "Skill of Speed",
+            "ja": "速度の腕前"
+          },
+          "description": {
+            "ko": "속도가 2 증가합니다.",
+            "en": "Increases SPD by 2.",
+            "ja": "速度が2上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10164,
@@ -7801,6 +8401,56 @@
         "en": "The president of Morrel Ocean Traders, one of the largest trading companies around. A prominent figure in high society, famed for her eccentric manner.",
         "ja": "大手商会であるモレル海運商会の代表。個性的な言動で社交界で有名人である。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20007,
+          "strId": "POTEN_PASSIVE_0007",
+          "name": {
+            "ko": "집중의 감각",
+            "en": "Sense of Focus",
+            "ja": "集中の感覚"
+          },
+          "description": {
+            "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect Hit by a certain percentage.",
+            "ja": "効果命中が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10174,
@@ -8447,6 +9097,56 @@
         "en": "The vice president of the Morrel Ocean Traders, which conducts trade across the entire continent. Cold and aloof, she always keeps her distance from those around her.",
         "ja": "大陸全土を対象に貿易を行うモレル海運商会の副代表。周囲の人々とは常に距離を置く、冷たく無愛想な性格。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20008,
+          "strId": "POTEN_PASSIVE_0008",
+          "name": {
+            "ko": "보호의 감각",
+            "en": "Sense of Protection",
+            "ja": "保護の感覚"
+          },
+          "description": {
+            "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect RES by a certain percentage.",
+            "ja": "効果耐性が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21003,
+          "strId": "POTEN_PASSIVE_1003",
+          "name": {
+            "ko": "방어의 솜씨",
+            "en": "Skill of Defense",
+            "ja": "防御の腕前"
+          },
+          "description": {
+            "ko": "방어력이 2% 증가합니다.",
+            "en": "Increases DEF by 2%.",
+            "ja": "防御力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10184,
@@ -9228,6 +9928,56 @@
         "en": "A girl of the Wind Moon Sect who crossed over from the Eastern Continent together with a Mystic called Toto. She dislikes inconvenience and often tries to skip training.",
         "ja": "幻獣のトトと一緒に東大陸からやってきた風月堂所属の少女。面倒なことが大嫌いで、いつもトレーニングをサボろうとする。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20008,
+          "strId": "POTEN_PASSIVE_0008",
+          "name": {
+            "ko": "보호의 감각",
+            "en": "Sense of Protection",
+            "ja": "保護の感覚"
+          },
+          "description": {
+            "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect RES by a certain percentage.",
+            "ja": "効果耐性が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21007,
+          "strId": "POTEN_PASSIVE_1007",
+          "name": {
+            "ko": "집중의 솜씨",
+            "en": "Skill of Focus",
+            "ja": "集中の腕前"
+          },
+          "description": {
+            "ko": "효과 적중이 4% 증가합니다.",
+            "en": "Increases Effect Hit by 4%.",
+            "ja": "効果命中が4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10194,
@@ -9844,6 +10594,56 @@
         "en": "A girl born and raised in a druid village deep within the Canopus Mountains. Her overwhelmingly positive personality leads her to interpret any situation optimistically.",
         "ja": "カノプス山脈の奥深くにあるドルイドの村で生まれ育った少女。性格が非常に前向きで、どんな状況でもポジティブシンキング。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20006,
+          "strId": "POTEN_PASSIVE_0006",
+          "name": {
+            "ko": "파괴의 감각",
+            "en": "Sense of Destruction",
+            "ja": "破壊の感覚"
+          },
+          "description": {
+            "ko": "치명타 피해가 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self CRIT DMG by a certain percentage.",
+            "ja": "会心ダメージが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21005,
+          "strId": "POTEN_PASSIVE_1005",
+          "name": {
+            "ko": "통찰의 솜씨",
+            "en": "Skill of Insight",
+            "ja": "洞察の腕前"
+          },
+          "description": {
+            "ko": "치명타 확률이 3% 증가합니다.",
+            "en": "Increases CRIT Rate by 3%.",
+            "ja": "会心率が3%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10214,
@@ -10460,6 +11260,56 @@
         "en": "A saintess of the Monolith Order, ranked 116th. A troublemaker whose goal is to rise in rank and become the High Saintess, the pinnacle of all saintesses.",
         "ja": "モノリス教団の聖女。序列は116番。序列を上げて聖女のトップである大聖女になるのが夢な、トラブルメーカーな少女。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20007,
+          "strId": "POTEN_PASSIVE_0007",
+          "name": {
+            "ko": "집중의 감각",
+            "en": "Sense of Focus",
+            "ja": "集中の感覚"
+          },
+          "description": {
+            "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect Hit by a certain percentage.",
+            "ja": "効果命中が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21007,
+          "strId": "POTEN_PASSIVE_1007",
+          "name": {
+            "ko": "집중의 솜씨",
+            "en": "Skill of Focus",
+            "ja": "集中の腕前"
+          },
+          "description": {
+            "ko": "효과 적중이 4% 증가합니다.",
+            "en": "Increases Effect Hit by 4%.",
+            "ja": "効果命中が4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10234,
@@ -11090,6 +11940,56 @@
         "en": "A saintess of the Monolith Order, ranked 117th. Though deeply knowledgeable about relics, she struggles to assert herself due to her low self-esteem and tendency to be easily swayed.",
         "ja": "モノリス教団の聖女。序列は117番。遺物に関する知識は豊富だが、自己肯定感が低く流されやすい性格のため、自分の力を十分に発揮できていない。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20003,
+          "strId": "POTEN_PASSIVE_0003",
+          "name": {
+            "ko": "방어의 감각",
+            "en": "Sense of Defense",
+            "ja": "防御の感覚"
+          },
+          "description": {
+            "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self DEF by a certain percentage.",
+            "ja": "防御力が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21002,
+          "strId": "POTEN_PASSIVE_1002",
+          "name": {
+            "ko": "생명의 솜씨",
+            "en": "Skill of Life",
+            "ja": "生命の腕前"
+          },
+          "description": {
+            "ko": "최대 생명력이 2% 증가합니다.",
+            "en": "Increases Max HP by 2%.",
+            "ja": "最大HPが2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10244,
@@ -11720,6 +12620,56 @@
         "en": "A hard-to-please girl from Monastir. She normally maintains a proud and elegant manner of speech, but when pushed past her limit, her words can turn surprisingly harsh and vulgar.",
         "ja": "モナスティルから来た気難しい少女。普段は高飛車で上品な話し方をしているが、怒ると荒っぽく乱暴な言葉が飛び出すこともある。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10254,
@@ -12591,6 +13541,56 @@
         "en": "The leader of Polaris' Orbital Search Team. She strives to be a good team leader, and seems to relieve accumulated stress through drinking.",
         "ja": "ポラリス傘下の軌道捜索隊のリーダー。立派なリーダーになるため努力を重ね、そのたびに積み重なるストレスは酒で発散する。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10264,
@@ -13190,6 +14190,56 @@
         "en": "The deputy leader of the Orbital Search Team of Polaris. Due to her peculiar hereditary constitution, she cannot feel pain. According to rumors, she has a hobby she keeps strictly hidden from those around her...",
         "ja": "ポラリス所属軌道捜索隊の副隊長。家系代々受け継がれた特殊体質のため苦痛を感じない。周囲には徹底的に隠している趣味があるという噂が。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20007,
+          "strId": "POTEN_PASSIVE_0007",
+          "name": {
+            "ko": "집중의 감각",
+            "en": "Sense of Focus",
+            "ja": "集中の感覚"
+          },
+          "description": {
+            "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect Hit by a certain percentage.",
+            "ja": "効果命中が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21007,
+          "strId": "POTEN_PASSIVE_1007",
+          "name": {
+            "ko": "집중의 솜씨",
+            "en": "Skill of Focus",
+            "ja": "集中の腕前"
+          },
+          "description": {
+            "ko": "효과 적중이 4% 증가합니다.",
+            "en": "Increases Effect Hit by 4%.",
+            "ja": "効果命中が4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10274,
@@ -13821,6 +14871,56 @@
         "en": "A martial artist formerly of the Wind Moon Sect who stole the Celestial Manuscript and fled. Her goal is to complete the mystical martial art known as the Celestial Art and spread its splendor to the world.",
         "ja": "かつては風月堂に属していた武人だが、秘伝書「天問書」を盗み出して脱走した放浪の武士。幻想の武功「天問」を完成させ、その魅力を世に広めることを目標としている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20008,
+          "strId": "POTEN_PASSIVE_0008",
+          "name": {
+            "ko": "보호의 감각",
+            "en": "Sense of Protection",
+            "ja": "保護の感覚"
+          },
+          "description": {
+            "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect RES by a certain percentage.",
+            "ja": "効果耐性が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10294,
@@ -14482,6 +15582,56 @@
         "en": "The heir to House Orlan. Though she is Asherah's childhood friend, her strong competitive spirit makes her act more like a rival than anything else.",
         "ja": "オルラン家の次期当主。アセラとは幼なじみ。色々な面でアセラを意識して対抗心を燃やしている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20008,
+          "strId": "POTEN_PASSIVE_0008",
+          "name": {
+            "ko": "보호의 감각",
+            "en": "Sense of Protection",
+            "ja": "保護の感覚"
+          },
+          "description": {
+            "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect RES by a certain percentage.",
+            "ja": "効果耐性が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21005,
+          "strId": "POTEN_PASSIVE_1005",
+          "name": {
+            "ko": "통찰의 솜씨",
+            "en": "Skill of Insight",
+            "ja": "洞察の腕前"
+          },
+          "description": {
+            "ko": "치명타 확률이 3% 증가합니다.",
+            "en": "Increases CRIT Rate by 3%.",
+            "ja": "会心率が3%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10304,
@@ -15128,6 +16278,56 @@
         "en": "An artificial intelligence from a super-ancient civilization sealed within the Captain's sword. She joins the Voyager Savior Party in search of the family she was separated from long ago.",
         "ja": "団長の剣に封印されていた超古代文明の人工知能。大昔に別れた家族と再会するためボイジャー救援団に合流する。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21004,
+          "strId": "POTEN_PASSIVE_1004",
+          "name": {
+            "ko": "속도의 솜씨",
+            "en": "Skill of Speed",
+            "ja": "速度の腕前"
+          },
+          "description": {
+            "ko": "속도가 2 증가합니다.",
+            "en": "Increases SPD by 2.",
+            "ja": "速度が2上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10314,
@@ -15789,6 +16989,56 @@
         "en": "The Grand Master of the Knights of the Duchy of Monastir. Though she strives to be a solemn and dignified leader, her naturally cheerful and simple personality always gets in the way.",
         "ja": "モナスティル公国騎士団の団長。渋くて貫禄のある騎士団長を目指しているが、陽気で飾り気のない本来の性格が足を引っ張ってしまう。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20005,
+          "strId": "POTEN_PASSIVE_0005",
+          "name": {
+            "ko": "통찰의 감각",
+            "en": "Sense of Insight",
+            "ja": "洞察の感覚"
+          },
+          "description": {
+            "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self CRIT Rate by a certain percentage.",
+            "ja": "会心率が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21005,
+          "strId": "POTEN_PASSIVE_1005",
+          "name": {
+            "ko": "통찰의 솜씨",
+            "en": "Skill of Insight",
+            "ja": "洞察の腕前"
+          },
+          "description": {
+            "ko": "치명타 확률이 3% 증가합니다.",
+            "en": "Increases CRIT Rate by 3%.",
+            "ja": "会心率が3%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10324,
@@ -16450,6 +17700,56 @@
         "en": "The commander of the Western Liberators and the living hope of all Westerners who dream of reclaiming the West. Pursues strength and does not tolerate weakness.",
         "ja": "西部奪還隊の隊長で、西部の奪還を夢見る西部の人間たちのヒーロー。強さを追い求め、弱い姿を見せることは決して許さない。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20004,
+          "strId": "POTEN_PASSIVE_0004",
+          "name": {
+            "ko": "속도의 감각",
+            "en": "Sense of Speed",
+            "ja": "速度の感覚"
+          },
+          "description": {
+            "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
+            "en": "Slightly increases self SPD by a certain amount.",
+            "ja": "速度が一定値だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10334,
@@ -17141,6 +18441,56 @@
         "en": "The deputy commander of the Western Liberators. She always supports Ceres at her side. Though she wears a cheerful smile at all times, a darkness lurks behind it.",
         "ja": "西部奪還隊の副隊長。いつもセレスを隣で補佐している。常に明るい笑顔を浮かべているが、その笑顔の裏側には闇が潜んでいる。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20007,
+          "strId": "POTEN_PASSIVE_0007",
+          "name": {
+            "ko": "집중의 감각",
+            "en": "Sense of Focus",
+            "ja": "集中の感覚"
+          },
+          "description": {
+            "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect Hit by a certain percentage.",
+            "ja": "効果命中が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21007,
+          "strId": "POTEN_PASSIVE_1007",
+          "name": {
+            "ko": "집중의 솜씨",
+            "en": "Skill of Focus",
+            "ja": "集中の腕前"
+          },
+          "description": {
+            "ko": "효과 적중이 4% 증가합니다.",
+            "en": "Increases Effect Hit by 4%.",
+            "ja": "効果命中が4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10344,
@@ -17757,6 +19107,56 @@
         "en": "The leader of the bike hog biker gang, the Hell Saviors. Rumor has it she is wanted for an assortment of crimes. Above all, she is a magnanimous girl who values loyalty.",
         "ja": "バイクホッグの暴走族、ヘルセイヴァーのリーダー。数々の犯罪を犯し、指名手配中だというウワサも。何より義理を大事にする豪快な少女。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20008,
+          "strId": "POTEN_PASSIVE_0008",
+          "name": {
+            "ko": "보호의 감각",
+            "en": "Sense of Protection",
+            "ja": "保護の感覚"
+          },
+          "description": {
+            "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect RES by a certain percentage.",
+            "ja": "効果耐性が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21002,
+          "strId": "POTEN_PASSIVE_1002",
+          "name": {
+            "ko": "생명의 솜씨",
+            "en": "Skill of Life",
+            "ja": "生命の腕前"
+          },
+          "description": {
+            "ko": "최대 생명력이 2% 증가합니다.",
+            "en": "Increases Max HP by 2%.",
+            "ja": "最大HPが2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10414,
@@ -18433,6 +19833,56 @@
         "en": "The head of Petra Construction, which takes on any building-related job, from demolition to construction. She has a talent for developing bombs that blow away only their intended targets with precision.",
         "ja": "解体から建設まで、建築に関わるあらゆる仕事を請け負うペトラ組合の代表。目標だけを正確に破壊する爆弾の開発に才能を持つ。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20007,
+          "strId": "POTEN_PASSIVE_0007",
+          "name": {
+            "ko": "집중의 감각",
+            "en": "Sense of Focus",
+            "ja": "集中の感覚"
+          },
+          "description": {
+            "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect Hit by a certain percentage.",
+            "ja": "効果命中が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21007,
+          "strId": "POTEN_PASSIVE_1007",
+          "name": {
+            "ko": "집중의 솜씨",
+            "en": "Skill of Focus",
+            "ja": "集中の腕前"
+          },
+          "description": {
+            "ko": "효과 적중이 4% 증가합니다.",
+            "en": "Increases Effect Hit by 4%.",
+            "ja": "効果命中が4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10424,
@@ -19079,6 +20529,56 @@
         "en": "A Dragon girl who dreams of becoming a Grand Couturier. Her lack of common sense regarding human society often leads to her causing trouble and getting scolded by Claire.",
         "ja": "大仕立屋を夢見る竜族の少女。人間社会の常識に疎く、しょっちゅうトラブルを起こしてはクレアに叱られている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21007,
+          "strId": "POTEN_PASSIVE_1007",
+          "name": {
+            "ko": "집중의 솜씨",
+            "en": "Skill of Focus",
+            "ja": "集中の腕前"
+          },
+          "description": {
+            "ko": "효과 적중이 4% 증가합니다.",
+            "en": "Increases Effect Hit by 4%.",
+            "ja": "効果命中が4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10434,
@@ -19800,6 +21300,56 @@
         "en": "The Senior Maid of Candle Square and acting Master Maid. She values plans and principles, and always prepares for every possible unexpected situation.",
         "ja": "キャンドル・スクエアのノーブルメイドであり、メイド長代理。計画とルールを何よりも重視する性格で、イレギュラーな状況に備えた計画を常に立てている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10444,
@@ -20431,6 +21981,56 @@
         "en": "The self-proclaimed greatest oracle of Lavistar, apprentice to Magi, the Grand Witch of Dreams, and inheritor of the Moon Staff. She lives recklessly, spending all the money she earns each day at the casino.",
         "ja": "夢の大魔女マギの一番弟子で、彼女の「月の杖」を受け継いだ、自称ラビスター最高の予言者。その日手に入ったお金はその日カジノで使い果たしてしまうほど後先考えない生き方をしている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20007,
+          "strId": "POTEN_PASSIVE_0007",
+          "name": {
+            "ko": "집중의 감각",
+            "en": "Sense of Focus",
+            "ja": "集中の感覚"
+          },
+          "description": {
+            "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect Hit by a certain percentage.",
+            "ja": "効果命中が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21002,
+          "strId": "POTEN_PASSIVE_1002",
+          "name": {
+            "ko": "생명의 솜씨",
+            "en": "Skill of Life",
+            "ja": "生命の腕前"
+          },
+          "description": {
+            "ko": "최대 생명력이 2% 증가합니다.",
+            "en": "Increases Max HP by 2%.",
+            "ja": "最大HPが2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10454,
@@ -21167,6 +22767,56 @@
         "en": "A science devotee who claims to be a being created by advanced technology, rather than a human. Having never smiled since birth, she uses the Captain as a test subject for her research on how to smile.",
         "ja": "自分は人間ではなく高度な科学技術が作り出した存在だと主張する科学の信奉者。生まれてから一度も笑ったことがない。笑えるようになるために研究をしていて、団長をその実験台として使っている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20004,
+          "strId": "POTEN_PASSIVE_0004",
+          "name": {
+            "ko": "속도의 감각",
+            "en": "Sense of Speed",
+            "ja": "速度の感覚"
+          },
+          "description": {
+            "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
+            "en": "Slightly increases self SPD by a certain amount.",
+            "ja": "速度が一定値だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21007,
+          "strId": "POTEN_PASSIVE_1007",
+          "name": {
+            "ko": "집중의 솜씨",
+            "en": "Skill of Focus",
+            "ja": "集中の腕前"
+          },
+          "description": {
+            "ko": "효과 적중이 4% 증가합니다.",
+            "en": "Increases Effect Hit by 4%.",
+            "ja": "効果命中が4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10464,
@@ -21843,6 +23493,56 @@
         "en": "A Dragon from the Eastern Continent. She has worked as a writer for a long time and achieved great success, but recently seems to be in a slump.",
         "ja": "東大陸出身の龍族。長年作家として活動し、大きな成功を収めたが、最近はスランプに陥っている様子。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20004,
+          "strId": "POTEN_PASSIVE_0004",
+          "name": {
+            "ko": "속도의 감각",
+            "en": "Sense of Speed",
+            "ja": "速度の感覚"
+          },
+          "description": {
+            "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
+            "en": "Slightly increases self SPD by a certain amount.",
+            "ja": "速度が一定値だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20007,
+          "strId": "POTEN_PASSIVE_0007",
+          "name": {
+            "ko": "집중의 감각",
+            "en": "Sense of Focus",
+            "ja": "集中の感覚"
+          },
+          "description": {
+            "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect Hit by a certain percentage.",
+            "ja": "効果命中が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21004,
+          "strId": "POTEN_PASSIVE_1004",
+          "name": {
+            "ko": "속도의 솜씨",
+            "en": "Skill of Speed",
+            "ja": "速度の腕前"
+          },
+          "description": {
+            "ko": "속도가 2 증가합니다.",
+            "en": "Increases SPD by 2.",
+            "ja": "速度が2上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10494,
@@ -22489,6 +24189,56 @@
         "en": "An intern at Petra Construction. Possessing monstrous strength unlike others, she solves everything with brute force unless Marcille is there to rein her in. She loves fried foods of all kinds.",
         "ja": "ペトラ組合所属のインターン。並外れた怪力の持ち主で、マルシルが隣で見ていないと何もかも力づくで解決しようとする。大好物は天ぷら。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20003,
+          "strId": "POTEN_PASSIVE_0003",
+          "name": {
+            "ko": "방어의 감각",
+            "en": "Sense of Defense",
+            "ja": "防御の感覚"
+          },
+          "description": {
+            "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self DEF by a certain percentage.",
+            "ja": "防御力が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21002,
+          "strId": "POTEN_PASSIVE_1002",
+          "name": {
+            "ko": "생명의 솜씨",
+            "en": "Skill of Life",
+            "ja": "生命の腕前"
+          },
+          "description": {
+            "ko": "최대 생명력이 2% 증가합니다.",
+            "en": "Increases Max HP by 2%.",
+            "ja": "最大HPが2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10514,
@@ -23135,6 +24885,56 @@
         "en": "An assistant investigator at Lampadis Investigations. She always carries a large rabbit doll called Mr. Rabbit. She sometimes talks to Mr. Rabbit, eliciting concern from those around her.",
         "ja": "ランパディス捜査コンサルティングの見習い調査員。ウサギさんと名づけた大きなウサギのぬいぐるみをいつも抱いている。時々、ウサギさんと会話するので周りから心配されている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20007,
+          "strId": "POTEN_PASSIVE_0007",
+          "name": {
+            "ko": "집중의 감각",
+            "en": "Sense of Focus",
+            "ja": "集中の感覚"
+          },
+          "description": {
+            "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect Hit by a certain percentage.",
+            "ja": "効果命中が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21007,
+          "strId": "POTEN_PASSIVE_1007",
+          "name": {
+            "ko": "집중의 솜씨",
+            "en": "Skill of Focus",
+            "ja": "集中の腕前"
+          },
+          "description": {
+            "ko": "효과 적중이 4% 증가합니다.",
+            "en": "Increases Effect Hit by 4%.",
+            "ja": "効果命中が4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10524,
@@ -23795,6 +25595,56 @@
         "en": "A girl with a special ability called Kotodama, which imbues her voice with force. Because she was never able to properly control this power since a young age, she ended up harming others and grew introverted over time.",
         "ja": "声に力を宿す「言霊」という特殊な能力を持つ少女。幼少期から言霊をうまく制御できず、周囲に迷惑をかけたため、次第に内向的な性格になった。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20005,
+          "strId": "POTEN_PASSIVE_0005",
+          "name": {
+            "ko": "통찰의 감각",
+            "en": "Sense of Insight",
+            "ja": "洞察の感覚"
+          },
+          "description": {
+            "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self CRIT Rate by a certain percentage.",
+            "ja": "会心率が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10534,
@@ -24516,6 +26366,56 @@
         "en": "A noble young lady who joined the Journey to become a Savior like the Star Savior she admires. Her strong drive to act first rather than worry is both her strength and her weakness.",
         "ja": "星の救援者に憧れ、救援者になるため旅に参加した貴族令嬢。悩まないですぐ行動に移すところは長所でもあり短所でもある。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20003,
+          "strId": "POTEN_PASSIVE_0003",
+          "name": {
+            "ko": "방어의 감각",
+            "en": "Sense of Defense",
+            "ja": "防御の感覚"
+          },
+          "description": {
+            "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self DEF by a certain percentage.",
+            "ja": "防御力が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21004,
+          "strId": "POTEN_PASSIVE_1004",
+          "name": {
+            "ko": "속도의 솜씨",
+            "en": "Skill of Speed",
+            "ja": "速度の腕前"
+          },
+          "description": {
+            "ko": "속도가 2 증가합니다.",
+            "en": "Increases SPD by 2.",
+            "ja": "速度が2上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10544,
@@ -25147,6 +27047,56 @@
         "en": "The Deputy Master of the Knights of the Duchy of Monastir. The shield of the order, who never loses her calm smile even in the most difficult situations.",
         "ja": "モナスティル公国騎士団の副団長。どんなに苦しい状況でも、常に笑顔を忘れない騎士団の盾的存在。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20003,
+          "strId": "POTEN_PASSIVE_0003",
+          "name": {
+            "ko": "방어의 감각",
+            "en": "Sense of Defense",
+            "ja": "防御の感覚"
+          },
+          "description": {
+            "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self DEF by a certain percentage.",
+            "ja": "防御力が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21002,
+          "strId": "POTEN_PASSIVE_1002",
+          "name": {
+            "ko": "생명의 솜씨",
+            "en": "Skill of Life",
+            "ja": "生命の腕前"
+          },
+          "description": {
+            "ko": "최대 생명력이 2% 증가합니다.",
+            "en": "Increases Max HP by 2%.",
+            "ja": "最大HPが2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10554,
@@ -25838,6 +27788,56 @@
         "en": "The heir to House Orlan. Though she is Asherah's childhood friend, her strong competitive spirit makes her act more like a rival than anything else.",
         "ja": "オルラン家の次期当主。アセラとは幼なじみ。色々な面でアセラを意識して対抗心を燃やしている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20005,
+          "strId": "POTEN_PASSIVE_0005",
+          "name": {
+            "ko": "통찰의 감각",
+            "en": "Sense of Insight",
+            "ja": "洞察の感覚"
+          },
+          "description": {
+            "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self CRIT Rate by a certain percentage.",
+            "ja": "会心率が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10564,
@@ -26529,6 +28529,56 @@
         "en": "A girl who calls herself the quartermaster of the Knights of the Duchy of Monastir. Deeply interested in making money, she is always coming up with new business ideas, though most end in failure.",
         "ja": "モナスティル騎士団の補給官を自称する少女。お金を稼ぐことに目がなく、事業アイデアを次々と生み出すが、そのほとんどが失敗に終わる。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20006,
+          "strId": "POTEN_PASSIVE_0006",
+          "name": {
+            "ko": "파괴의 감각",
+            "en": "Sense of Destruction",
+            "ja": "破壊の感覚"
+          },
+          "description": {
+            "ko": "치명타 피해가 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self CRIT DMG by a certain percentage.",
+            "ja": "会心ダメージが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 10574,
@@ -27205,6 +29255,56 @@
         "en": "An assault trooper of the Western Liberators. She carries out missions with unwavering dedication, no matter the circumstances, so she is highly regarded by the warriors of the west.",
         "ja": "西部奪還隊の切り込み隊長。どんな状況でも愚痴ひとつこぼさず任務を遂行するので、西部の戦士の間でロールモデルになっている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20003,
+          "strId": "POTEN_PASSIVE_0003",
+          "name": {
+            "ko": "방어의 감각",
+            "en": "Sense of Defense",
+            "ja": "防御の感覚"
+          },
+          "description": {
+            "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self DEF by a certain percentage.",
+            "ja": "防御力が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21002,
+          "strId": "POTEN_PASSIVE_1002",
+          "name": {
+            "ko": "생명의 솜씨",
+            "en": "Skill of Life",
+            "ja": "生命の腕前"
+          },
+          "description": {
+            "ko": "최대 생명력이 2% 증가합니다.",
+            "en": "Increases Max HP by 2%.",
+            "ja": "最大HPが2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 15014,
@@ -28490,6 +30590,56 @@
         "en": "A town guard who protects NOA's security. She is cheerful and sociable, but always approaches her duties as a town guard with seriousness.",
         "ja": "NOAの治安を守るタウンガード。よく笑い、誰にでも話しかける気さくな性格だが、タウンガードの仕事にはいつでも真剣に取り組む。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20003,
+          "strId": "POTEN_PASSIVE_0003",
+          "name": {
+            "ko": "방어의 감각",
+            "en": "Sense of Defense",
+            "ja": "防御の感覚"
+          },
+          "description": {
+            "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self DEF by a certain percentage.",
+            "ja": "防御力が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21002,
+          "strId": "POTEN_PASSIVE_1002",
+          "name": {
+            "ko": "생명의 솜씨",
+            "en": "Skill of Life",
+            "ja": "生命の腕前"
+          },
+          "description": {
+            "ko": "최대 생명력이 2% 증가합니다.",
+            "en": "Increases Max HP by 2%.",
+            "ja": "最大HPが2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 15024,
@@ -29760,6 +31910,56 @@
         "en": "The site foreman of Petra Construction. She works hard every day in the hopes of eventually buying a carrot farm to run with her family.",
         "ja": "ペトラ組合の班長。家族で経営するための「にんじん農場」を手に入れるため、毎日必死に働いている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20005,
+          "strId": "POTEN_PASSIVE_0005",
+          "name": {
+            "ko": "통찰의 감각",
+            "en": "Sense of Insight",
+            "ja": "洞察の感覚"
+          },
+          "description": {
+            "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self CRIT Rate by a certain percentage.",
+            "ja": "会心率が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21005,
+          "strId": "POTEN_PASSIVE_1005",
+          "name": {
+            "ko": "통찰의 솜씨",
+            "en": "Skill of Insight",
+            "ja": "洞察の腕前"
+          },
+          "description": {
+            "ko": "치명타 확률이 3% 증가합니다.",
+            "en": "Increases CRIT Rate by 3%.",
+            "ja": "会心率が3%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 15064,
@@ -31105,6 +33305,56 @@
         "en": "A delivery girl who tirelessly travels around NOA. Her life goal is to earn a lot of money and buy a courier-exclusive vehicle — a cruiser.",
         "ja": "いつもせっせとNOAで荷物を届ける配達屋の少女。お金をたくさん稼いで、配達屋の専用車としてクルーザーを買うのが人生の目標。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20008,
+          "strId": "POTEN_PASSIVE_0008",
+          "name": {
+            "ko": "보호의 감각",
+            "en": "Sense of Protection",
+            "ja": "保護の感覚"
+          },
+          "description": {
+            "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect RES by a certain percentage.",
+            "ja": "効果耐性が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21008,
+          "strId": "POTEN_PASSIVE_1008",
+          "name": {
+            "ko": "보호의 솜씨",
+            "en": "Skill of Protection",
+            "ja": "保護の腕前"
+          },
+          "description": {
+            "ko": "효과 저항이 4% 증가합니다.",
+            "en": "Increases Effect RES by 4%.",
+            "ja": "効果耐性が4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 15074,
@@ -32283,6 +34533,56 @@
         "en": "An intern of the Orbital Search Team of Polaris. She dreams of a future where she can perfectly observe the future through equations she devised herself.",
         "ja": "ポラリス所属軌道捜索隊のインターン。自ら考案した方程式を通じて完璧な未来観測が可能となる未来を夢見ている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21007,
+          "strId": "POTEN_PASSIVE_1007",
+          "name": {
+            "ko": "집중의 솜씨",
+            "en": "Skill of Focus",
+            "ja": "集中の腕前"
+          },
+          "description": {
+            "ko": "효과 적중이 4% 증가합니다.",
+            "en": "Increases Effect Hit by 4%.",
+            "ja": "効果命中が4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 15084,
@@ -33523,6 +35823,56 @@
         "en": "The Senior Maid of Candle Square and acting Master Maid. She values plans and principles, and always prepares for every possible unexpected situation.",
         "ja": "キャンドル・スクエアのノーブルメイドであり、メイド長代理。計画とルールを何よりも重視する性格で、イレギュラーな状況に備えた計画を常に立てている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20008,
+          "strId": "POTEN_PASSIVE_0008",
+          "name": {
+            "ko": "보호의 감각",
+            "en": "Sense of Protection",
+            "ja": "保護の感覚"
+          },
+          "description": {
+            "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect RES by a certain percentage.",
+            "ja": "効果耐性が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21006,
+          "strId": "POTEN_PASSIVE_1006",
+          "name": {
+            "ko": "파괴의 솜씨",
+            "en": "Skill of Destruction",
+            "ja": "破壊の腕前"
+          },
+          "description": {
+            "ko": "치명타 피해가 4% 증가합니다.",
+            "en": "Increases CRIT DMG by 4%.",
+            "ja": "会心ダメージが4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 15094,
@@ -34717,6 +37067,56 @@
         "en": "A Dragon girl who dreams of becoming a Grand Couturier. Her lack of common sense regarding human society often leads to her causing trouble and getting scolded by Claire.",
         "ja": "大仕立屋を夢見る竜族の少女。人間社会の常識に疎く、しょっちゅうトラブルを起こしてはクレアに叱られている。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21007,
+          "strId": "POTEN_PASSIVE_1007",
+          "name": {
+            "ko": "집중의 솜씨",
+            "en": "Skill of Focus",
+            "ja": "集中の腕前"
+          },
+          "description": {
+            "ko": "효과 적중이 4% 증가합니다.",
+            "en": "Increases Effect Hit by 4%.",
+            "ja": "効果命中が4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 15104,
@@ -35987,6 +38387,56 @@
         "en": "A girl who once worked as a hunter in the Canopus Mountains. She was born with superhuman eyesight. Though she is energetic and loves pranks, she avoids getting too close to anyone.",
         "ja": "カノプス山脈のハンターとして活動していた少女。超人的な視力を持っている。イタズラ好きで明るい性格だが、みんなとは一定の距離を保とうとする。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20005,
+          "strId": "POTEN_PASSIVE_0005",
+          "name": {
+            "ko": "통찰의 감각",
+            "en": "Sense of Insight",
+            "ja": "洞察の感覚"
+          },
+          "description": {
+            "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self CRIT Rate by a certain percentage.",
+            "ja": "会心率が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21006,
+          "strId": "POTEN_PASSIVE_1006",
+          "name": {
+            "ko": "파괴의 솜씨",
+            "en": "Skill of Destruction",
+            "ja": "破壊の腕前"
+          },
+          "description": {
+            "ko": "치명타 피해가 4% 증가합니다.",
+            "en": "Increases CRIT DMG by 4%.",
+            "ja": "会心ダメージが4%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 15114,
@@ -37197,6 +39647,56 @@
         "en": "A veteran with experience working in a private military company. In another world, she was infamous among industry professionals as an aggressive commander who always advocated frontal assaults.",
         "ja": "民間軍事会社で活動したベテラン。別の世界では常に正面突破を主張する過激な指揮官で知られていた。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20003,
+          "strId": "POTEN_PASSIVE_0003",
+          "name": {
+            "ko": "방어의 감각",
+            "en": "Sense of Defense",
+            "ja": "防御の感覚"
+          },
+          "description": {
+            "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self DEF by a certain percentage.",
+            "ja": "防御力が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21002,
+          "strId": "POTEN_PASSIVE_1002",
+          "name": {
+            "ko": "생명의 솜씨",
+            "en": "Skill of Life",
+            "ja": "生命の腕前"
+          },
+          "description": {
+            "ko": "최대 생명력이 2% 증가합니다.",
+            "en": "Increases Max HP by 2%.",
+            "ja": "最大HPが2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 30014,
@@ -37888,6 +40388,56 @@
         "en": "A mercenary from another world who drifted into Lavistar after an accident. She cooperates with the Captain to return to her original world.",
         "ja": "不慮の事故に巻き込まれ、ラビスターへと流れ着いた別世界の傭兵。元いた世界へ帰るため、団長に協力している。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20007,
+          "strId": "POTEN_PASSIVE_0007",
+          "name": {
+            "ko": "집중의 감각",
+            "en": "Sense of Focus",
+            "ja": "集中の感覚"
+          },
+          "description": {
+            "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Effect Hit by a certain percentage.",
+            "ja": "効果命中が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 30024,
@@ -38548,6 +41098,56 @@
         "en": "One of the Demon Lords of Qliphoth who govern fate, also known as the Tyrant of the North. Turned countless stars to ash with a single sword.",
         "ja": "運命を司る「クリフォトの魔王」の一員で、北の暴君と呼ばれる者。たった一振りの剣で多くの星が灰に化した。"
       },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20004,
+          "strId": "POTEN_PASSIVE_0004",
+          "name": {
+            "ko": "속도의 감각",
+            "en": "Sense of Speed",
+            "ja": "速度の感覚"
+          },
+          "description": {
+            "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
+            "en": "Slightly increases self SPD by a certain amount.",
+            "ja": "速度が一定値だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          }
+        }
+      ],
       "skills": [
         {
           "id": 30034,
