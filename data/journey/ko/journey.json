@@ -14226,6 +14226,61 @@
       "kind": "events"
     },
     {
+      "key": "jgp5dzw",
+      "title": "고대 구원자의 유물",
+      "searchText": "고대 구원자의 유물 3월 중순 잠재력 포인트 +10",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "고대 구원자의 유물",
+          "segments": [
+            {
+              "type": "text",
+              "text": "고대 구원자의 유물",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "3월 중순",
+          "segments": [
+            {
+              "type": "text",
+              "text": "3월 중순",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "잠재력 포인트 +10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
       "key": "jex4ac5",
       "title": "여가 시간",
       "searchText": "여가 시간 3월 중순 1. 한정 디저트를 먹으러 가자! 오래된 동전 사용 50 컨디션 +1 or 컨디션 +2 잠재력 포인트 +10 2. 새로 나온 영화를 보러 가자! 오래된 동전 사용 30 잠재력 포인트 +15 or 잠재력 포인트 +30 특전 포스터 3. 샌드위치를 들고 소풍하러 갈까? 스태미나 사용 20 힘 +10 or 힘 +20 or 체력 +10 or 체력 +20 or 인내 +10 or 인내 +20 집중 +5 or 집중 +10 or 보호 +5 or 보호 +10 4. 오늘은 이대로 푹 쉬자. 스태미나 +5 or 스태미나 +10",
@@ -14493,6 +14548,76 @@
             }
           ],
           "region": "r8",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
+      "key": "j10zmw4g",
+      "title": "여정의 선물",
+      "searchText": "여정의 선물 4월 초순 잠재력 포인트 +5 선택 유물 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "여정의 선물",
+          "segments": [
+            {
+              "type": "text",
+              "text": "여정의 선물",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "4월 초순",
+          "segments": [
+            {
+              "type": "text",
+              "text": "4월 초순",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "잠재력 포인트 +5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "선택 유물 +1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "선택 유물 +1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
           "tone": "success",
           "fontSize": 13.6,
           "weight": 400
@@ -16941,6 +17066,76 @@
       "kind": "events"
     },
     {
+      "key": "j10vha2g",
+      "title": "친절의 선물",
+      "searchText": "친절의 선물 6월 초순 잠재력 포인트 +5 선택 유물 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "친절의 선물",
+          "segments": [
+            {
+              "type": "text",
+              "text": "친절의 선물",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "6월 초순",
+          "segments": [
+            {
+              "type": "text",
+              "text": "6월 초순",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "잠재력 포인트 +5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "선택 유물 +1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "선택 유물 +1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
       "key": "j1ghedac",
       "title": "리세트의 유혹",
       "searchText": "리세트의 유혹 6월 하순 1. 대신 구입해 준다. 오래된 동전 사용 30 보호 +15~+20 달빛 향수 샘플 or 오래된 동전 사용 30 집중 +15~+20 달빛 립밤 샘플 or 오래된 동전 사용 30 여정 버프 획득 트렌드 팔로워 +8턴 달빛 에센스 샘플 2. 여정을 위해 아낀다. 없음",
@@ -17714,6 +17909,63 @@
           "tone": "success",
           "fontSize": 13.6,
           "weight": 600
+        }
+      ],
+      "categories": [
+        "raid"
+      ],
+      "kind": "events"
+    },
+    {
+      "key": "jg9wb0l",
+      "title": "스틸 컴 인 패배",
+      "searchText": "스틸 컴 인 패배 6월 하순 잠재력 포인트 +10",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "스틸 컴 인 패배",
+          "segments": [
+            {
+              "type": "text",
+              "text": "스틸 컴 인 패배",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "6월 하순",
+          "segments": [
+            {
+              "type": "text",
+              "text": "6월 하순",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "잠재력 포인트 +10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
         }
       ],
       "categories": [
@@ -18848,6 +19100,78 @@
           ],
           "region": "",
           "tone": "plain",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [
+        "aganon"
+      ],
+      "kind": "events"
+    },
+    {
+      "key": "j19rojpc",
+      "title": "구명의 선물",
+      "searchText": "구명의 선물 8월 중순 잠재력 포인트 +5 선택 유물 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "구명의 선물",
+          "segments": [
+            {
+              "type": "text",
+              "text": "구명의 선물",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "8월 중순",
+          "segments": [
+            {
+              "type": "text",
+              "text": "8월 중순",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "잠재력 포인트 +5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "선택 유물 +1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "선택 유물 +1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
           "fontSize": 13.6,
           "weight": 400
         }
@@ -20102,6 +20426,76 @@
       "categories": [
         "reset"
       ],
+      "kind": "events"
+    },
+    {
+      "key": "j1xd0837",
+      "title": "모범의 선물",
+      "searchText": "모범의 선물 10월 중순 잠재력 포인트 +5 선택 유물 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "모범의 선물",
+          "segments": [
+            {
+              "type": "text",
+              "text": "모범의 선물",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "10월 중순",
+          "segments": [
+            {
+              "type": "text",
+              "text": "10월 중순",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "잠재력 포인트 +5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "선택 유물 +1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "선택 유물 +1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
       "kind": "events"
     },
     {
@@ -21778,6 +22172,63 @@
           "tone": "success",
           "fontSize": 13.6,
           "weight": 600
+        }
+      ],
+      "categories": [
+        "raid"
+      ],
+      "kind": "events"
+    },
+    {
+      "key": "jlr5mb4",
+      "title": "노 포션, 노 패션! 패배",
+      "searchText": "노 포션, 노 패션! 패배 10월 하순 잠재력 포인트 +10",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "노 포션, 노 패션! 패배",
+          "segments": [
+            {
+              "type": "text",
+              "text": "노 포션, 노 패션! 패배",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "10월 하순",
+          "segments": [
+            {
+              "type": "text",
+              "text": "10월 하순",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "잠재력 포인트 +10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
         }
       ],
       "categories": [
@@ -24569,6 +25020,150 @@
             }
           ],
           "region": "r25",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [
+        "kalaid"
+      ],
+      "kind": "events"
+    },
+    {
+      "key": "j12z7jm6",
+      "title": "행복의 선물",
+      "searchText": "행복의 선물 12월 중순 잠재력 포인트 +5 선택 유물 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "행복의 선물",
+          "segments": [
+            {
+              "type": "text",
+              "text": "행복의 선물",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "12월 중순",
+          "segments": [
+            {
+              "type": "text",
+              "text": "12월 중순",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "잠재력 포인트 +5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "선택 유물 +1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "선택 유물 +1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [
+        "flora"
+      ],
+      "kind": "events"
+    },
+    {
+      "key": "j1jmk2ws",
+      "title": "인연의 선물",
+      "searchText": "인연의 선물 12월 중순 잠재력 포인트 +5 선택 유물 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "인연의 선물",
+          "segments": [
+            {
+              "type": "text",
+              "text": "인연의 선물",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "12월 중순",
+          "segments": [
+            {
+              "type": "text",
+              "text": "12월 중순",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "잠재력 포인트 +5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "선택 유물 +1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "선택 유물 +1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
           "tone": "success",
           "fontSize": 13.6,
           "weight": 400
@@ -29505,6 +30100,76 @@
       "kind": "events"
     },
     {
+      "key": "jzm2nn3",
+      "title": "기초 평가전 준비",
+      "searchText": "기초 평가전 준비 3월 초순 잠재력 포인트 +5 선택 유물 +1",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "기초 평가전 준비",
+          "segments": [
+            {
+              "type": "text",
+              "text": "기초 평가전 준비",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "3월 초순",
+          "segments": [
+            {
+              "type": "text",
+              "text": "3월 초순",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "잠재력 포인트 +5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "선택 유물 +1",
+          "segments": [
+            {
+              "type": "text",
+              "text": "선택 유물 +1",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r2",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
       "key": "j1ecny4a",
       "title": "구원단 보급",
       "searchText": "구원단 보급 3월 중순 1. 영양제를 고르자. 힘 +10 만족도 설문지 2. 푹신한 베개를 고르자. 체력 +10 만족도 설문지 3. 매운 음식을 고르자. 인내 +10 만족도 설문지",
@@ -29917,6 +30582,61 @@
           ],
           "region": "",
           "tone": "plain",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
+      "key": "j1cl5vxw",
+      "title": "토벌의 전리품",
+      "searchText": "토벌의 전리품 4월 하순 6월 하순 10월 하순 잠재력 포인트 +10",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "토벌의 전리품",
+          "segments": [
+            {
+              "type": "text",
+              "text": "토벌의 전리품",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "4월 하순 6월 하순 10월 하순",
+          "segments": [
+            {
+              "type": "text",
+              "text": "4월 하순 6월 하순 10월 하순",
+              "fontSize": 12.8,
+              "weight": 700
+            }
+          ],
+          "region": "r1",
+          "tone": "neutral",
+          "fontSize": 12.8,
+          "weight": 700
+        },
+        {
+          "text": "잠재력 포인트 +10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r4",
+          "tone": "success",
           "fontSize": 13.6,
           "weight": 400
         }
@@ -38710,6 +39430,46 @@
       "kind": "events"
     },
     {
+      "key": "j16elucj",
+      "title": "의뢰 대성공",
+      "searchText": "의뢰 대성공 잠재력 포인트 +10",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "의뢰 대성공",
+          "segments": [
+            {
+              "type": "text",
+              "text": "의뢰 대성공",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "잠재력 포인트 +10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r1",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
       "key": "jaeo4yt",
       "title": "의뢰 실패",
       "searchText": "의뢰 실패 1. 돌아가자… 스태미나 -10 오래된 주화 +30 컨디션 -1 스태미나 -10 오래된 주화 +30 2. 활력 포션을 건넨다 활력 포션 소모 잠재력 포인트 +10 오래된 주화 +30 스태미나 -5 잠재력 포인트 +10 오래된 주화 +30",
@@ -38933,6 +39693,61 @@
           ],
           "region": "r5",
           "tone": "failure",
+          "fontSize": 13.6,
+          "weight": 400
+        }
+      ],
+      "categories": [],
+      "kind": "events"
+    },
+    {
+      "key": "j16elucj",
+      "title": "의뢰 성공",
+      "searchText": "의뢰 성공 스태미나 -10 잠재력 포인트 +5",
+      "difficulties": [],
+      "rows": [
+        {
+          "text": "의뢰 성공",
+          "segments": [
+            {
+              "type": "text",
+              "text": "의뢰 성공",
+              "fontSize": 16,
+              "weight": 700
+            }
+          ],
+          "region": "",
+          "tone": "plain",
+          "fontSize": 16,
+          "weight": 700
+        },
+        {
+          "text": "스태미나 -10",
+          "segments": [
+            {
+              "type": "text",
+              "text": "스태미나 -10",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r1",
+          "tone": "success",
+          "fontSize": 13.6,
+          "weight": 400
+        },
+        {
+          "text": "잠재력 포인트 +5",
+          "segments": [
+            {
+              "type": "text",
+              "text": "잠재력 포인트 +5",
+              "fontSize": 13.6,
+              "weight": 400
+            }
+          ],
+          "region": "r1",
+          "tone": "success",
           "fontSize": 13.6,
           "weight": 400
         }
