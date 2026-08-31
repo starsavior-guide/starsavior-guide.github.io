@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-08-30T17:08:32.343Z",
+  "capturedAt": "2026-08-31T14:00:58.195Z",
   "source": "https://star-savior-arcana-db.pages.dev/journey",
   "mode": "structured-local-json",
   "sourceRequiredAtRuntime": false,
@@ -8,28 +8,28 @@
     "en",
     "ja"
   ],
-  "localAssetCount": 228,
+  "localAssetCount": 244,
   "counts": {
     "ko": {
-      "arcana": 34,
-      "events": 69
+      "arcana": 79,
+      "events": 82
     },
     "en": {
-      "arcana": 34,
+      "arcana": 79,
       "events": 82
     },
     "ja": {
-      "arcana": 34,
-      "events": 65
+      "arcana": 79,
+      "events": 82
     }
   },
   "categories": {
     "ko": {
       "reset": 6,
-      "raid": 8,
-      "aganon": 7,
-      "flora": 4,
-      "kalaid": 4,
+      "raid": 10,
+      "aganon": 8,
+      "flora": 5,
+      "kalaid": 5,
       "weather": 8
     },
     "en": {
@@ -41,11 +41,11 @@
       "weather": 8
     },
     "ja": {
-      "reset": 5,
-      "raid": 7,
-      "aganon": 5,
-      "flora": 4,
-      "kalaid": 4,
+      "reset": 6,
+      "raid": 10,
+      "aganon": 8,
+      "flora": 5,
+      "kalaid": 5,
       "weather": 8
     }
   },
