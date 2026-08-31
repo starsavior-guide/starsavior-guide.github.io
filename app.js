@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v98-resonance-search-i18n";
+const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v99-hide-dummy-arcana";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -7883,7 +7883,8 @@ function updateJourneyArchiveLanguage() {
 
 const ARCANA_ARCHIVE_URL = "./data/arcanas/arcanas.json";
 const ARCANA_LEVELS = [35, 40, 45, 50];
-const ARCANA_MAIN_STAT_ORDER = ["힘", "체력", "인내", "집중", "보호", "구원자"];
+const ARCANA_MAIN_STAT_ORDER = ["힘", "체력", "인내", "집중", "보호"];
+const ARCANA_DUMMY_MAIN_STATS = new Set(["구원자"]);
 const ARCANA_RARITY_ORDER = { SSR: 0, SR: 1, R: 2 };
 let arcanaArchivePromise = null;
 let arcanaSearchIndex = new Map();
@@ -8039,6 +8040,14 @@ function getArcanaArchiveText(value, language = currentLanguage) {
   return value[language] ?? value.ko ?? "";
 }
 
+function isPublishedArcana(arcana) {
+  return !ARCANA_DUMMY_MAIN_STATS.has(getArcanaArchiveText(arcana?.mainStat, "ko"));
+}
+
+function getPublishedArcanas(archive = arcanaDatabaseState.data) {
+  return (archive?.arcanas || []).filter(isPublishedArcana);
+}
+
 function renderArcanaRichText(value) {
   return renderSaviorSourceRichText(value || "");
 }
@@ -8058,7 +8067,7 @@ async function loadArcanaArchive() {
       if (!archive.localOnly || !Array.isArray(archive.potentials) || !Array.isArray(archive.journeyBuffs)) {
         throw new Error("Incomplete Arcana archive");
       }
-      arcanaSearchIndex = new Map(archive.arcanas.map((arcana) => [
+      arcanaSearchIndex = new Map(getPublishedArcanas(archive).map((arcana) => [
         Number(arcana.id),
         normalizeGuideSearch(getArcanaSearchText(arcana, archive))
       ]));
@@ -8082,7 +8091,7 @@ function createArcanaDatabaseMarkup() {
         </div>
         <div class="arcana-db-count">
           <span>${escapeHtml(arcanaUi("registered"))}</span>
-          <strong id="arcana-total-count">${arcanaDatabaseState.data?.arcanas?.length || 0}</strong>
+          <strong id="arcana-total-count">${getPublishedArcanas().length}</strong>
         </div>
       </header>
 
@@ -8126,12 +8135,13 @@ function renderArcanaMainStatFilters() {
   const container = document.querySelector("#arcana-main-stat-filters");
   const archive = arcanaDatabaseState.data;
   if (!container || !archive) return;
-  const found = new Set(archive.arcanas.map((arcana) => getArcanaArchiveText(arcana.mainStat, "ko")));
+  const publishedArcanas = getPublishedArcanas(archive);
+  const found = new Set(publishedArcanas.map((arcana) => getArcanaArchiveText(arcana.mainStat, "ko")));
   const stats = ARCANA_MAIN_STAT_ORDER.filter((stat) => found.has(stat));
   container.innerHTML = ["all", ...stats].map((stat) => {
     const label = stat === "all"
       ? arcanaUi("all")
-      : getArcanaArchiveText(archive.arcanas.find((arcana) => getArcanaArchiveText(arcana.mainStat, "ko") === stat)?.mainStat);
+      : getArcanaArchiveText(publishedArcanas.find((arcana) => getArcanaArchiveText(arcana.mainStat, "ko") === stat)?.mainStat);
     return `
       <button type="button" class="arcana-filter-chip${arcanaDatabaseState.mainStat === stat ? " is-active" : ""}"
         data-arcana-main-stat="${escapeHtml(stat)}">${escapeHtml(label)}</button>
@@ -8186,7 +8196,7 @@ function getFilteredArcanas() {
   const archive = arcanaDatabaseState.data;
   if (!archive) return [];
   const query = normalizeGuideSearch(arcanaDatabaseState.query);
-  return archive.arcanas.filter((arcana) => {
+  return getPublishedArcanas(archive).filter((arcana) => {
     if (arcanaDatabaseState.rarity !== "all" && arcana.rarity !== arcanaDatabaseState.rarity) return false;
     if (arcanaDatabaseState.mainStat !== "all" && getArcanaArchiveText(arcana.mainStat, "ko") !== arcanaDatabaseState.mainStat) return false;
     if (!query) return true;
@@ -8230,7 +8240,7 @@ function renderArcanaDatabase() {
   const filtered = getFilteredArcanas();
   const total = document.querySelector("#arcana-total-count");
   const visible = document.querySelector("#arcana-visible-count");
-  if (total) total.textContent = String(arcanaDatabaseState.data.arcanas.length);
+  if (total) total.textContent = String(getPublishedArcanas().length);
   if (visible) visible.textContent = String(filtered.length);
   if (!filtered.length) {
     results.innerHTML = `
@@ -8523,7 +8533,7 @@ function createArcanaDetailMarkup(arcana) {
 }
 
 function renderArcanaDetail() {
-  const arcana = arcanaDatabaseState.data?.arcanas?.find((item) => Number(item.id) === Number(arcanaDatabaseState.selectedId));
+  const arcana = getPublishedArcanas().find((item) => Number(item.id) === Number(arcanaDatabaseState.selectedId));
   if (!arcana) return false;
   simpleContent.innerHTML = createArcanaDetailMarkup(arcana);
   return true;
