@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v95-auto-cache";
+const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v96-local-arcana-db";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -414,6 +414,7 @@ function setLanguage(language, options = {}) {
   applyLanguageToDOM(document.body);
   refreshLoadedSaviorSourcePanels();
   updateJourneyArchiveLanguage();
+  updateArcanaDatabaseLanguage();
   // 테마 버튼의 현재 상태에 맞는 접근성 라벨을 선택 언어로 갱신합니다.
   if (typeof applyTheme === "function") {
     applyTheme(document.documentElement.dataset.theme || "dark", { skipSave: true });
@@ -422,11 +423,13 @@ function setLanguage(language, options = {}) {
 
 // 여정 로컬 아카이브 UI 다국어
 Object.assign(I18N_DATA.ui.en, {
+  "아르카나": "Arcana",
   "여정": "Journey",
   "여정 데이터는 우리 저장소에 백업된 로컬 사본만 사용합니다.": "Journey data uses only the local archive stored in this repository.",
   "원본 사이트에 연결하지 않습니다.": "No connection to the original site is required."
 });
 Object.assign(I18N_DATA.ui.ja, {
+  "아르카나": "アルカナ",
   "여정": "旅程",
   "여정 데이터는 우리 저장소에 백업된 로컬 사본만 사용합니다.": "旅程データは、このリポジトリに保存したローカルアーカイブのみを使用します。",
   "원본 사이트에 연결하지 않습니다.": "元サイトへの接続は不要です。"
@@ -7825,8 +7828,710 @@ function updateJourneyArchiveLanguage() {
   loadJourneyDatabase();
 }
 
+const ARCANA_ARCHIVE_URL = "./data/arcanas/arcanas.json";
+const ARCANA_LEVELS = [35, 40, 45, 50];
+const ARCANA_MAIN_STAT_ORDER = ["힘", "체력", "인내", "집중", "보호", "구원자"];
+const ARCANA_RARITY_ORDER = { SSR: 0, SR: 1, R: 2 };
+let arcanaArchivePromise = null;
+const arcanaDatabaseState = {
+  data: null,
+  query: "",
+  rarity: "all",
+  mainStat: "all",
+  level: 50,
+  selectedId: null,
+  requestToken: 0
+};
+
+const ARCANA_UI_TEXT = {
+  ko: {
+    title: "아르카나",
+    description: "아르카나 정보와 이미지는 저장소에 백업된 로컬 데이터만 사용합니다.",
+    registered: "등록된 아르카나",
+    searchLabel: "아르카나 검색",
+    searchPlaceholder: "아르카나 명, 캐릭터 명, 능력치 검색",
+    rarity: "등급",
+    mainStat: "주 능력치",
+    all: "전체",
+    reset: "필터 초기화",
+    resultUnit: "장의 아르카나",
+    emptyTitle: "조건에 맞는 아르카나가 없습니다.",
+    emptyDescription: "검색어나 필터를 변경해 주세요.",
+    loading: "아르카나 로컬 데이터를 불러오는 중입니다.",
+    loadError: "아르카나 로컬 데이터를 불러오지 못했습니다.",
+    character: "캐릭터",
+    assist: "보조 분류",
+    level: "표시 레벨",
+    specialPotential: "특수 잠재력",
+    potentialLevels: "잠재력 레벨 정보",
+    requiredPoints: "필요 잠재력 포인트",
+    bondRequired: "인연 조건",
+    uniqueEffect: "고유 효과",
+    unlockLevel: "해금 레벨",
+    effects: "레벨별 효과",
+    journeyStart: "여정 시작 효과",
+    training: "훈련 효과",
+    telepathy: "감응 훈련 효과",
+    supportQuest: "지원 퀘스트 효과",
+    events: "아르카나 이벤트",
+    eventCount: "개 이벤트",
+    choice: "선택지",
+    automatic: "자동 선택",
+    success: "성공",
+    failure: "실패",
+    potentialPoints: "잠재력 포인트",
+    stamina: "스태미나",
+    condition: "컨디션",
+    turns: "턴",
+    noEvents: "등록된 아르카나 이벤트가 없습니다.",
+    noEffects: "등록된 레벨 효과가 없습니다.",
+    localArchive: "LOCAL ARCHIVE"
+  },
+  en: {
+    title: "Arcana",
+    description: "Arcana information and images use only the local archive stored in this repository.",
+    registered: "Registered Arcana",
+    searchLabel: "Search Arcana",
+    searchPlaceholder: "Search Arcana, character, or stat",
+    rarity: "Rarity",
+    mainStat: "Main Stat",
+    all: "All",
+    reset: "Reset filters",
+    resultUnit: " Arcana",
+    emptyTitle: "No Arcana match the current filters.",
+    emptyDescription: "Try changing the search term or filters.",
+    loading: "Loading the local Arcana archive.",
+    loadError: "Could not load the local Arcana archive.",
+    character: "Character",
+    assist: "Assist Types",
+    level: "Display Level",
+    specialPotential: "Special Potential",
+    potentialLevels: "Potential Level Information",
+    requiredPoints: "Required Potential Points",
+    bondRequired: "Bond requirement",
+    uniqueEffect: "Unique Effect",
+    unlockLevel: "Unlock Level",
+    effects: "Effects by Level",
+    journeyStart: "Journey Start Effects",
+    training: "Training Effects",
+    telepathy: "Sensory Training Effects",
+    supportQuest: "Support Quest Effects",
+    events: "Arcana Events",
+    eventCount: " Events",
+    choice: "Choice",
+    automatic: "Automatic",
+    success: "Success",
+    failure: "Failure",
+    potentialPoints: "Potential Points",
+    stamina: "Stamina",
+    condition: "Condition",
+    turns: " turns",
+    noEvents: "No Arcana events are registered.",
+    noEffects: "No level effects are registered.",
+    localArchive: "LOCAL ARCHIVE"
+  },
+  ja: {
+    title: "アルカナ",
+    description: "アルカナ情報と画像は、このリポジトリに保存したローカルアーカイブのみを使用します。",
+    registered: "登録済みアルカナ",
+    searchLabel: "アルカナ検索",
+    searchPlaceholder: "アルカナ名・キャラクター名・能力値で検索",
+    rarity: "レアリティ",
+    mainStat: "メイン能力値",
+    all: "すべて",
+    reset: "フィルターをリセット",
+    resultUnit: "枚のアルカナ",
+    emptyTitle: "条件に一致するアルカナはありません。",
+    emptyDescription: "検索語やフィルターを変更してください。",
+    loading: "アルカナのローカルデータを読み込んでいます。",
+    loadError: "アルカナのローカルデータを読み込めませんでした。",
+    character: "キャラクター",
+    assist: "補助分類",
+    level: "表示レベル",
+    specialPotential: "特殊潜在力",
+    potentialLevels: "潜在力レベル情報",
+    requiredPoints: "必要潜在力ポイント",
+    bondRequired: "絆条件",
+    uniqueEffect: "固有効果",
+    unlockLevel: "解放レベル",
+    effects: "レベル別効果",
+    journeyStart: "旅程開始効果",
+    training: "トレーニング効果",
+    telepathy: "感応トレーニング効果",
+    supportQuest: "支援クエスト効果",
+    events: "アルカナイベント",
+    eventCount: "件のイベント",
+    choice: "選択肢",
+    automatic: "自動選択",
+    success: "成功",
+    failure: "失敗",
+    potentialPoints: "潜在力ポイント",
+    stamina: "スタミナ",
+    condition: "コンディション",
+    turns: "ターン",
+    noEvents: "登録されたアルカナイベントはありません。",
+    noEffects: "登録されたレベル効果はありません。",
+    localArchive: "LOCAL ARCHIVE"
+  }
+};
+
+function arcanaUi(key) {
+  return ARCANA_UI_TEXT[currentLanguage]?.[key] || ARCANA_UI_TEXT.ko[key] || key;
+}
+
+function getArcanaArchiveText(value, language = currentLanguage) {
+  if (value == null) return "";
+  if (typeof value === "string") return value;
+  return value[language] ?? value.ko ?? "";
+}
+
+function renderArcanaRichText(value) {
+  return renderSaviorSourceRichText(value || "");
+}
+
+async function loadArcanaArchive() {
+  if (!arcanaArchivePromise) {
+    const url = `${ARCANA_ARCHIVE_URL}?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
+    arcanaArchivePromise = fetch(url, { cache: "no-store" }).then(async (response) => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const archive = await response.json();
+      if (!Array.isArray(archive?.arcanas) || archive.arcanas.length < 79) {
+        throw new Error("Invalid Arcana archive");
+      }
+      if (JSON.stringify(archive.languages) !== JSON.stringify(["ko", "en", "ja"])) {
+        throw new Error("Invalid Arcana archive languages");
+      }
+      if (!archive.localOnly || !Array.isArray(archive.potentials) || !Array.isArray(archive.journeyBuffs)) {
+        throw new Error("Incomplete Arcana archive");
+      }
+      return archive;
+    }).catch((error) => {
+      arcanaArchivePromise = null;
+      throw error;
+    });
+  }
+  return arcanaArchivePromise;
+}
+
+function createArcanaDatabaseMarkup() {
+  return `
+    <section class="arcana-db-page" data-arcana-view="list">
+      <header class="arcana-db-heading">
+        <div>
+          <p class="eyebrow">ARCANA DATABASE</p>
+          <h1>${escapeHtml(arcanaUi("title"))}</h1>
+          <p>${escapeHtml(arcanaUi("description"))}</p>
+        </div>
+        <div class="arcana-db-count">
+          <span>${escapeHtml(arcanaUi("registered"))}</span>
+          <strong id="arcana-total-count">${arcanaDatabaseState.data?.arcanas?.length || 0}</strong>
+        </div>
+      </header>
+
+      <section class="arcana-db-controls" aria-label="${escapeHtml(arcanaUi("searchLabel"))}">
+        <label class="arcana-search-field">
+          <span aria-hidden="true">⌕</span>
+          <span class="sr-only">${escapeHtml(arcanaUi("searchLabel"))}</span>
+          <input id="arcana-search-input" type="search"
+            value="${escapeHtml(arcanaDatabaseState.query)}"
+            placeholder="${escapeHtml(arcanaUi("searchPlaceholder"))}" autocomplete="off">
+        </label>
+        <div class="arcana-filter-row">
+          <strong>${escapeHtml(arcanaUi("rarity"))}</strong>
+          <div class="arcana-filter-chips" id="arcana-rarity-filters">
+            ${["all", "SSR", "SR", "R"].map((rarity) => `
+              <button type="button" class="arcana-filter-chip${arcanaDatabaseState.rarity === rarity ? " is-active" : ""}"
+                data-arcana-rarity="${rarity}">${escapeHtml(rarity === "all" ? arcanaUi("all") : rarity)}</button>
+            `).join("")}
+          </div>
+        </div>
+        <div class="arcana-filter-row">
+          <strong>${escapeHtml(arcanaUi("mainStat"))}</strong>
+          <div class="arcana-filter-chips" id="arcana-main-stat-filters">
+            <button type="button" class="arcana-filter-chip is-active" data-arcana-main-stat="all">${escapeHtml(arcanaUi("all"))}</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="arcana-result-line">
+        <span><strong id="arcana-visible-count">0</strong>${escapeHtml(arcanaUi("resultUnit"))}</span>
+        <button type="button" id="arcana-reset-filters">${escapeHtml(arcanaUi("reset"))}</button>
+      </div>
+      <div id="arcana-db-results" aria-live="polite">
+        <div class="arcana-db-message"><span class="arcana-loading-mark" aria-hidden="true">✦</span>${escapeHtml(arcanaUi("loading"))}</div>
+      </div>
+    </section>
+  `;
+}
+
+function renderArcanaMainStatFilters() {
+  const container = document.querySelector("#arcana-main-stat-filters");
+  const archive = arcanaDatabaseState.data;
+  if (!container || !archive) return;
+  const found = new Set(archive.arcanas.map((arcana) => getArcanaArchiveText(arcana.mainStat, "ko")));
+  const stats = ARCANA_MAIN_STAT_ORDER.filter((stat) => found.has(stat));
+  container.innerHTML = ["all", ...stats].map((stat) => {
+    const label = stat === "all"
+      ? arcanaUi("all")
+      : getArcanaArchiveText(archive.arcanas.find((arcana) => getArcanaArchiveText(arcana.mainStat, "ko") === stat)?.mainStat);
+    return `
+      <button type="button" class="arcana-filter-chip${arcanaDatabaseState.mainStat === stat ? " is-active" : ""}"
+        data-arcana-main-stat="${escapeHtml(stat)}">${escapeHtml(label)}</button>
+    `;
+  }).join("");
+}
+
+function getFilteredArcanas() {
+  const archive = arcanaDatabaseState.data;
+  if (!archive) return [];
+  const query = arcanaDatabaseState.query.trim().toLocaleLowerCase(LANGUAGE_HTML_CODES[currentLanguage] || "ko-KR");
+  return archive.arcanas.filter((arcana) => {
+    if (arcanaDatabaseState.rarity !== "all" && arcana.rarity !== arcanaDatabaseState.rarity) return false;
+    if (arcanaDatabaseState.mainStat !== "all" && getArcanaArchiveText(arcana.mainStat, "ko") !== arcanaDatabaseState.mainStat) return false;
+    if (!query) return true;
+    const haystack = [
+      ...SUPPORTED_LANGUAGES.map((language) => getArcanaArchiveText(arcana.name, language)),
+      ...SUPPORTED_LANGUAGES.map((language) => getArcanaArchiveText(arcana.character, language)),
+      ...SUPPORTED_LANGUAGES.map((language) => getArcanaArchiveText(arcana.mainStat, language)),
+      ...arcana.assists.flatMap((assist) => SUPPORTED_LANGUAGES.map((language) => getArcanaArchiveText(assist, language))),
+      arcana.rarity
+    ].join(" ").toLocaleLowerCase(LANGUAGE_HTML_CODES[currentLanguage] || "ko-KR");
+    return haystack.includes(query);
+  }).sort((a, b) => {
+    const rarity = (ARCANA_RARITY_ORDER[a.rarity] ?? 9) - (ARCANA_RARITY_ORDER[b.rarity] ?? 9);
+    if (rarity) return rarity;
+    return getArcanaArchiveText(a.name).localeCompare(getArcanaArchiveText(b.name), LANGUAGE_HTML_CODES[currentLanguage] || "ko-KR");
+  });
+}
+
+function createArcanaListCard(arcana) {
+  const name = getArcanaArchiveText(arcana.name);
+  const character = getArcanaArchiveText(arcana.character);
+  const mainStat = getArcanaArchiveText(arcana.mainStat);
+  return `
+    <button type="button" class="arcana-index-card rarity-${escapeHtml(arcana.rarity.toLowerCase())}"
+      data-open-arcana="${escapeHtml(arcana.id)}" aria-label="${escapeHtml(name)}">
+      <span class="arcana-index-image">
+        <img src="${escapeHtml(arcana.image)}" alt="${escapeHtml(name)}" loading="lazy"
+          onerror="this.style.display='none';this.parentElement.classList.add('is-missing')">
+        <span class="arcana-index-rarity">${escapeHtml(arcana.rarity)}</span>
+      </span>
+      <span class="arcana-index-copy">
+        <strong>${escapeHtml(name)}</strong>
+        <span>${escapeHtml(character)}</span>
+        <small>
+          ${arcana.mainStatIcon ? `<img src="${escapeHtml(arcana.mainStatIcon)}" alt="" loading="lazy">` : ""}
+          ${escapeHtml(mainStat)}
+        </small>
+      </span>
+    </button>
+  `;
+}
+
+function renderArcanaDatabase() {
+  const results = document.querySelector("#arcana-db-results");
+  if (!results || !arcanaDatabaseState.data) return;
+  const filtered = getFilteredArcanas();
+  const total = document.querySelector("#arcana-total-count");
+  const visible = document.querySelector("#arcana-visible-count");
+  if (total) total.textContent = String(arcanaDatabaseState.data.arcanas.length);
+  if (visible) visible.textContent = String(filtered.length);
+  if (!filtered.length) {
+    results.innerHTML = `
+      <div class="arcana-db-empty">
+        <span aria-hidden="true">◇</span>
+        <strong>${escapeHtml(arcanaUi("emptyTitle"))}</strong>
+        <p>${escapeHtml(arcanaUi("emptyDescription"))}</p>
+      </div>
+    `;
+    return;
+  }
+  results.innerHTML = `<div class="arcana-index-grid">${filtered.map(createArcanaListCard).join("")}</div>`;
+}
+
+function setArcanaLoadError(error) {
+  console.warn("Arcana archive load failed:", error);
+  const results = document.querySelector("#arcana-db-results");
+  if (results) results.innerHTML = `<div class="arcana-db-message is-error">${escapeHtml(arcanaUi("loadError"))}</div>`;
+}
+
+function initializeArcanaDatabase() {
+  arcanaDatabaseState.requestToken += 1;
+  const token = arcanaDatabaseState.requestToken;
+  arcanaDatabaseState.selectedId = null;
+  if (arcanaDatabaseState.data) {
+    renderArcanaMainStatFilters();
+    renderArcanaDatabase();
+    return;
+  }
+  loadArcanaArchive().then((archive) => {
+    if (token !== arcanaDatabaseState.requestToken || !document.querySelector('.arcana-db-page[data-arcana-view="list"]')) return;
+    arcanaDatabaseState.data = archive;
+    renderArcanaMainStatFilters();
+    renderArcanaDatabase();
+  }).catch(setArcanaLoadError);
+}
+
+function getArcanaPotential(id) {
+  return arcanaDatabaseState.data?.potentials?.find((potential) => Number(potential.id) === Number(id)) || null;
+}
+
+function getArcanaJourneyBuff(id) {
+  return arcanaDatabaseState.data?.journeyBuffs?.find((buff) => Number(buff.id) === Number(id)) || null;
+}
+
+function createArcanaPotentialIcon(potential) {
+  if (!potential) return "";
+  return `
+    <span class="arcana-potential-icon" aria-hidden="true">
+      <img class="arcana-potential-bg" src="${escapeHtml(potential.background)}" alt="">
+      <img class="arcana-potential-symbol" src="${escapeHtml(potential.icon)}" alt="">
+    </span>
+  `;
+}
+
+function createArcanaPotentialMarkup(potential) {
+  if (!potential) return "";
+  const levels = Array.isArray(potential.levels) ? potential.levels : [];
+  return `
+    <section class="arcana-detail-section arcana-potential-section">
+      <div class="arcana-section-heading">
+        <span>${createArcanaPotentialIcon(potential)}</span>
+        <div>
+          <small>${escapeHtml(arcanaUi("specialPotential"))}</small>
+          <h2>${escapeHtml(getArcanaArchiveText(potential.name))}</h2>
+        </div>
+      </div>
+      <p class="arcana-rich-description">${renderArcanaRichText(getArcanaArchiveText(potential.description))}</p>
+      ${levels.length ? `
+        <div class="arcana-potential-levels">
+          <h3>${escapeHtml(arcanaUi("potentialLevels"))}</h3>
+          ${levels.map((level) => `
+            <div class="arcana-potential-level-row">
+              <strong>Lv.${escapeHtml(level.level)}</strong>
+              <p>${renderArcanaRichText(getArcanaArchiveText(level.description))}</p>
+              <div>
+                ${level.requiredPotentialPoints != null ? `<span>${escapeHtml(arcanaUi("requiredPoints"))} ${escapeHtml(level.requiredPotentialPoints)}</span>` : ""}
+                ${level.bondPointCheck ? `<span>${escapeHtml(arcanaUi("bondRequired"))}</span>` : ""}
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      ` : ""}
+    </section>
+  `;
+}
+
+function createArcanaUniqueEffectMarkup(effect) {
+  if (!effect) return "";
+  return `
+    <section class="arcana-detail-section arcana-unique-section">
+      <div class="arcana-section-title-row">
+        <div>
+          <small>${escapeHtml(arcanaUi("uniqueEffect"))}</small>
+          <h2>${escapeHtml(getArcanaArchiveText(effect.name))}</h2>
+        </div>
+        <span>${escapeHtml(arcanaUi("unlockLevel"))} ${escapeHtml(effect.unlockLevel)}</span>
+      </div>
+      <p class="arcana-rich-description">${renderArcanaRichText(getArcanaArchiveText(effect.description))}</p>
+    </section>
+  `;
+}
+
+function createArcanaEffectsMarkup(arcana) {
+  const categories = [
+    ["journeyStart", arcanaUi("journeyStart")],
+    ["training", arcanaUi("training")],
+    ["telepathy", arcanaUi("telepathy")],
+    ["supportQuest", arcanaUi("supportQuest")]
+  ].filter(([key]) => arcana.effects?.[key]?.length);
+  if (!categories.length) {
+    return `<section class="arcana-detail-section"><h2>${escapeHtml(arcanaUi("effects"))}</h2><p>${escapeHtml(arcanaUi("noEffects"))}</p></section>`;
+  }
+  return `
+    <section class="arcana-detail-section arcana-effects-section">
+      <h2>${escapeHtml(arcanaUi("effects"))}</h2>
+      <div class="arcana-effect-groups">
+        ${categories.map(([key, label]) => `
+          <div class="arcana-effect-group">
+            <h3>${escapeHtml(label)}</h3>
+            <div class="arcana-effect-rows">
+              ${arcana.effects[key].map((effect) => `
+                <div class="arcana-effect-row">
+                  <span>${escapeHtml(getArcanaArchiveText(effect.valueType))}</span>
+                  <strong>${escapeHtml(effect.values?.[String(arcanaDatabaseState.level)]?.display ?? "-")}</strong>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function formatArcanaRewardAmount(reward) {
+  const min = Number(reward.min);
+  const max = Number(reward.max);
+  if (!Number.isFinite(min) && !Number.isFinite(max)) return "";
+  const signed = (value) => value > 0 ? `+${value}` : String(value);
+  if (!Number.isFinite(max) || min === max) return signed(min);
+  return `${signed(min)} ~ ${signed(max)}`;
+}
+
+function createArcanaRewardMarkup(reward) {
+  const amount = formatArcanaRewardAmount(reward);
+  if (reward.type === "RT_STAT") {
+    return `
+      <div class="arcana-reward-item">
+        ${reward.icon ? `<img src="${escapeHtml(reward.icon)}" alt="" loading="lazy">` : ""}
+        <span>${escapeHtml(getArcanaArchiveText(reward.statName))}</span>
+        <strong class="${Number(reward.min) < 0 ? "is-negative" : ""}">${escapeHtml(amount)}</strong>
+      </div>
+    `;
+  }
+  if (reward.type === "RT_SE_POTEN") {
+    const potential = getArcanaPotential(reward.rewardId);
+    if (!potential) return "";
+    return `
+      <div class="arcana-reward-item is-rich">
+        ${createArcanaPotentialIcon(potential)}
+        <div>
+          <span>${escapeHtml(getArcanaArchiveText(potential.name))}</span>
+          <p>${renderArcanaRichText(getArcanaArchiveText(potential.description))}</p>
+        </div>
+      </div>
+    `;
+  }
+  if (reward.type === "RT_JOURNEY_BUFF") {
+    const buff = getArcanaJourneyBuff(reward.rewardId);
+    if (!buff) return "";
+    return `
+      <div class="arcana-reward-item is-rich">
+        <img src="${escapeHtml(buff.icon)}" alt="" loading="lazy">
+        <div>
+          <span>${escapeHtml(getArcanaArchiveText(buff.name))}</span>
+          <p>${renderArcanaRichText(getArcanaArchiveText(buff.description))}</p>
+        </div>
+        ${amount ? `<strong>${escapeHtml(amount.replace(/^\+/, ""))}${escapeHtml(arcanaUi("turns"))}</strong>` : ""}
+      </div>
+    `;
+  }
+  const simpleLabels = {
+    RT_POTEN_POINT: arcanaUi("potentialPoints"),
+    RT_STAMINA: arcanaUi("stamina"),
+    RT_CONDITION: arcanaUi("condition")
+  };
+  return `
+    <div class="arcana-reward-item">
+      <span>${escapeHtml(simpleLabels[reward.type] || reward.type)}</span>
+      <strong class="${Number(reward.min) < 0 ? "is-negative" : ""}">${escapeHtml(amount)}</strong>
+    </div>
+  `;
+}
+
+function createArcanaRewardGroups(groups) {
+  return (groups || []).map((alternatives) => `
+    <div class="arcana-reward-group">
+      ${(alternatives || []).map((reward, index) => `${index ? '<span class="arcana-reward-or">/</span>' : ""}${createArcanaRewardMarkup(reward)}`).join("")}
+    </div>
+  `).join("");
+}
+
+function createArcanaChoiceResultMarkup(labelKey, groups) {
+  if (!groups?.length) return "";
+  return `
+    <div class="arcana-choice-result is-${labelKey}">
+      <strong>${escapeHtml(arcanaUi(labelKey))}</strong>
+      <div>${createArcanaRewardGroups(groups)}</div>
+    </div>
+  `;
+}
+
+function createArcanaEventsMarkup(arcana) {
+  if (!arcana.events?.length) {
+    return `
+      <section class="arcana-detail-section arcana-events-section">
+        <h2>${escapeHtml(arcanaUi("events"))}</h2>
+        <p>${escapeHtml(arcanaUi("noEvents"))}</p>
+      </section>
+    `;
+  }
+  return `
+    <section class="arcana-detail-section arcana-events-section">
+      <div class="arcana-section-title-row">
+        <h2>${escapeHtml(arcanaUi("events"))}</h2>
+        <span>${escapeHtml(arcana.events.length)}${escapeHtml(arcanaUi("eventCount"))}</span>
+      </div>
+      <div class="arcana-event-list">
+        ${arcana.events.map((event, eventIndex) => `
+          <article class="arcana-event">
+            <h3><span>${eventIndex + 1}</span>${escapeHtml(getArcanaArchiveText(event.name))}</h3>
+            <div class="arcana-choice-list">
+              ${event.choices.map((choice, choiceIndex) => {
+                const choiceName = getArcanaArchiveText(choice.name).trim();
+                return `
+                  <div class="arcana-choice">
+                    <h4><span>${choiceIndex + 1}</span>${escapeHtml(choiceName || arcanaUi("automatic"))}</h4>
+                    ${createArcanaChoiceResultMarkup("success", choice.successRewards)}
+                    ${createArcanaChoiceResultMarkup("failure", choice.failureRewards)}
+                  </div>
+                `;
+              }).join("")}
+            </div>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function createArcanaDetailMarkup(arcana) {
+  const name = getArcanaArchiveText(arcana.name);
+  const character = getArcanaArchiveText(arcana.character);
+  const mainStat = getArcanaArchiveText(arcana.mainStat);
+  const specialPotential = getArcanaPotential(arcana.specialPotentialId);
+  return `
+    <section class="arcana-db-page arcana-detail-page" data-arcana-view="detail" data-arcana-id="${escapeHtml(arcana.id)}">
+      <header class="arcana-detail-hero">
+        <div class="arcana-detail-image">
+          <img src="${escapeHtml(arcana.image)}" alt="${escapeHtml(name)}">
+        </div>
+        <div class="arcana-detail-intro">
+          <p class="eyebrow">ARCANA DATABASE · ${escapeHtml(arcanaUi("localArchive"))}</p>
+          <div class="arcana-detail-badges"><span>${escapeHtml(arcana.rarity)}</span><span>${escapeHtml(mainStat)}</span></div>
+          <h1>${escapeHtml(name)}</h1>
+          <dl>
+            <div><dt>${escapeHtml(arcanaUi("character"))}</dt><dd>${escapeHtml(character)}</dd></div>
+            <div><dt>${escapeHtml(arcanaUi("mainStat"))}</dt><dd>${arcana.mainStatIcon ? `<img src="${escapeHtml(arcana.mainStatIcon)}" alt="">` : ""}${escapeHtml(mainStat)}</dd></div>
+            ${arcana.assists?.length ? `<div><dt>${escapeHtml(arcanaUi("assist"))}</dt><dd>${arcana.assists.map((assist) => escapeHtml(getArcanaArchiveText(assist))).join(" · ")}</dd></div>` : ""}
+          </dl>
+        </div>
+      </header>
+
+      <nav class="arcana-level-picker" aria-label="${escapeHtml(arcanaUi("level"))}">
+        <strong>${escapeHtml(arcanaUi("level"))}</strong>
+        <div>${ARCANA_LEVELS.map((level) => `
+          <button type="button" class="${arcanaDatabaseState.level === level ? "is-active" : ""}" data-arcana-level="${level}">Lv.${level}</button>
+        `).join("")}</div>
+      </nav>
+
+      <div class="arcana-detail-content">
+        ${createArcanaPotentialMarkup(specialPotential)}
+        ${createArcanaUniqueEffectMarkup(arcana.uniqueEffect)}
+        ${createArcanaEffectsMarkup(arcana)}
+        ${createArcanaEventsMarkup(arcana)}
+      </div>
+    </section>
+  `;
+}
+
+function renderArcanaDetail() {
+  const arcana = arcanaDatabaseState.data?.arcanas?.find((item) => Number(item.id) === Number(arcanaDatabaseState.selectedId));
+  if (!arcana) return false;
+  simpleContent.innerHTML = createArcanaDetailMarkup(arcana);
+  return true;
+}
+
+function openArcanaDetail(id, options = {}) {
+  const numericId = Number(id);
+  if (!Number.isFinite(numericId)) {
+    openSimple("arcana", options);
+    return;
+  }
+  arcanaDatabaseState.requestToken += 1;
+  const token = arcanaDatabaseState.requestToken;
+  arcanaDatabaseState.selectedId = numericId;
+  simpleContent.innerHTML = `
+    <section class="arcana-db-page" data-arcana-view="detail">
+      <div class="arcana-db-message"><span class="arcana-loading-mark" aria-hidden="true">✦</span>${escapeHtml(arcanaUi("loading"))}</div>
+    </section>
+  `;
+  showOnly("simple");
+  setActiveNav("arcana");
+  if (!options.skipHash) history.pushState({ view: "arcana-detail", id: numericId }, "", `#arcana/${numericId}`);
+  if (!options.keepScroll) window.scrollTo({ top: 0, behavior: "smooth" });
+
+  const finish = (archive) => {
+    if (token !== arcanaDatabaseState.requestToken || !document.querySelector('.arcana-db-page[data-arcana-view="detail"]')) return;
+    arcanaDatabaseState.data = archive;
+    if (!renderArcanaDetail()) {
+      history.replaceState({ view: "simple", section: "arcana" }, "", "#arcana");
+      openSimple("arcana", { skipHash: true, keepScroll: true });
+    }
+  };
+  if (arcanaDatabaseState.data) finish(arcanaDatabaseState.data);
+  else loadArcanaArchive().then(finish).catch((error) => {
+    console.warn("Arcana detail load failed:", error);
+    const page = document.querySelector('.arcana-db-page[data-arcana-view="detail"]');
+    if (page) page.innerHTML = `<div class="arcana-db-message is-error">${escapeHtml(arcanaUi("loadError"))}</div>`;
+  });
+}
+
+function updateArcanaDatabaseLanguage() {
+  const page = simpleContent?.querySelector(".arcana-db-page");
+  if (!page) return;
+  if (arcanaDatabaseState.selectedId != null && page.dataset.arcanaView === "detail") {
+    if (arcanaDatabaseState.data) renderArcanaDetail();
+    return;
+  }
+  simpleContent.innerHTML = createArcanaDatabaseMarkup();
+  if (arcanaDatabaseState.data) {
+    renderArcanaMainStatFilters();
+    renderArcanaDatabase();
+  } else {
+    initializeArcanaDatabase();
+  }
+}
+
+function handleArcanaDatabaseInput(event) {
+  if (event.target?.id !== "arcana-search-input") return;
+  arcanaDatabaseState.query = event.target.value;
+  renderArcanaDatabase();
+}
+
+function handleArcanaDatabaseClick(event) {
+  const openButton = event.target.closest("[data-open-arcana]");
+  if (openButton) {
+    openArcanaDetail(openButton.dataset.openArcana);
+    return;
+  }
+  const rarityButton = event.target.closest("[data-arcana-rarity]");
+  if (rarityButton) {
+    arcanaDatabaseState.rarity = rarityButton.dataset.arcanaRarity;
+    document.querySelectorAll("[data-arcana-rarity]").forEach((button) => button.classList.toggle("is-active", button === rarityButton));
+    renderArcanaDatabase();
+    return;
+  }
+  const statButton = event.target.closest("[data-arcana-main-stat]");
+  if (statButton) {
+    arcanaDatabaseState.mainStat = statButton.dataset.arcanaMainStat;
+    document.querySelectorAll("[data-arcana-main-stat]").forEach((button) => button.classList.toggle("is-active", button === statButton));
+    renderArcanaDatabase();
+    return;
+  }
+  if (event.target.closest("#arcana-reset-filters")) {
+    arcanaDatabaseState.query = "";
+    arcanaDatabaseState.rarity = "all";
+    arcanaDatabaseState.mainStat = "all";
+    const input = document.querySelector("#arcana-search-input");
+    if (input) input.value = "";
+    document.querySelectorAll("[data-arcana-rarity]").forEach((button) => button.classList.toggle("is-active", button.dataset.arcanaRarity === "all"));
+    document.querySelectorAll("[data-arcana-main-stat]").forEach((button) => button.classList.toggle("is-active", button.dataset.arcanaMainStat === "all"));
+    renderArcanaDatabase();
+    return;
+  }
+  const levelButton = event.target.closest("[data-arcana-level]");
+  if (levelButton) {
+    arcanaDatabaseState.level = Number(levelButton.dataset.arcanaLevel);
+    renderArcanaDetail();
+  }
+}
+
 function openSimple(section, options = {}) {
-  if (section === "journey") {
+  if (section === "arcana") {
+    simpleContent.innerHTML = createArcanaDatabaseMarkup();
+  } else if (section === "journey") {
     simpleContent.innerHTML = createJourneyDatabaseMarkup();
   } else if (section === "equipment") {
     simpleContent.innerHTML = createEquipmentDatabaseMarkup();
@@ -7859,6 +8564,7 @@ function openSimple(section, options = {}) {
   }
 
   applyLanguageToDOM(simpleView);
+  if (section === "arcana") initializeArcanaDatabase();
   if (section === "journey") initializeJourneyDatabase();
   showOnly("simple");
   setActiveNav(section);
@@ -7917,7 +8623,12 @@ function syncFromHash() {
     return;
   }
 
-  if (["journey", "equipment", "cosmo"].includes(hash)) {
+  if (hash.startsWith("arcana/")) {
+    openArcanaDetail(hash.slice("arcana/".length), { skipHash: true, keepScroll: true });
+    return;
+  }
+
+  if (["arcana", "journey", "equipment", "cosmo"].includes(hash)) {
     openSimple(hash, { skipHash: true, keepScroll: true });
     return;
   }
@@ -7980,10 +8691,6 @@ navItems.forEach((button) => {
 });
 
 function applyRequestedLayoutFixes() {
-  document
-    .querySelectorAll('[data-section="arcana"]')
-    .forEach((item) => item.remove());
-
   const style = document.createElement("style");
   style.id = "requested-layout-fixes";
   style.textContent = `
@@ -8149,6 +8856,9 @@ if (languageSelect) {
     setLanguage(event.currentTarget.value);
   });
 }
+
+simpleContent.addEventListener("input", handleArcanaDatabaseInput);
+simpleContent.addEventListener("click", handleArcanaDatabaseClick);
 
 window.addEventListener("popstate", syncFromHash);
 window.addEventListener("hashchange", syncFromHash);
