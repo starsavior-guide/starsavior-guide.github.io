@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v99-hide-dummy-arcana";
+const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v100-final-db-sync";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -6,7 +6,7 @@ const LANGUAGE_HTML_CODES = {
   en: "en",
   ja: "ja"
 };
-const I18N_DATA = {"saviorNames":{"en":{"아세라":"Asherah","스마일":"Smile","루나":"Luna","카넬리아":"Carnelia","벨 리스":"Bell","에밀리":"Emily","샤를":"Charlotte","카르멘":"Carmen","프레이":"Frey","세이라":"Seira","트리쉬":"Trish","린":"Lyn","에데":"Haydee","세르팡":"Serpang","다나":"Dana","뮤리엘":"Muriel","엘리사":"Elisa","티리아":"Tyria","로베르타":"Roberta","루그":"Lugh","페이":"Fei","에핀델":"Epindel","오메가":"Omega","세레스":"Ceres","리디아":"Lydia","할리":"Harley","페트라":"Petra","스칼렛":"Scarlet","클레어":"Claire","레이시":"Lacy","타냐":"Tanya","릴리":"Lily","키라":"Kyra","베스타":"Besta","안나":"Annah","마르실":"Marcille","베라":"Vera","나루":"Naru","클라리사":"Clarissa","힐데":"Hilde","유미나":"Yoo Mina","로자리아":"Rosaria"},"ja":{"아세라":"アセラ","스마일":"スマイル","루나":"ルナ","카넬리아":"カーネリア","벨 리스":"ベル・リース","에밀리":"エミリー","샤를":"シャル","카르멘":"カルメン","프레이":"フレイ","세이라":"セイラ","트리쉬":"トリッシュ","린":"リン","에데":"エデ","세르팡":"セルパン","다나":"ダナ","뮤리엘":"ミュリエル","엘리사":"エリサ","티리아":"ティリア","로베르타":"ロベルタ","루그":"ルグ","페이":"フェイ","에핀델":"エピンデル","오메가":"オメガ","세레스":"セレス","리디아":"リディア","할리":"ハーレー","페트라":"ペトラ","스칼렛":"スカーレット","클레어":"クレア","레이시":"レイシー","타냐":"ターニャ","릴리":"リリー","키라":"キラ","베스타":"ベスタ","안나":"アンナ","마르실":"マルシル","베라":"ベラ","나루":"ナル","클라리사":"クラリッサ","힐데":"ヒルデ","유미나":"ユ・ミナ","로자리아":"ロザリア"}},"subtitles":{"en":{"보이저 구원단":"Voyager Savior Party","방랑자":"Wanderer","캔들 스퀘어":"Candle Square","모나스티르 기사단":"Monastir Knights","나이트메어":"Nightmare","아셀루스 협회":"Aselus Association","풍월문":"Wind Moon Sect","모렐 해양상단":"Morrel Ocean Traders","카노푸스 레인저":"Canopus Rangers","모노리스 교단":"Monolith Order","집행자":"Executor","궤도 수색대":"Orbital Search Team","오를랑 가문":"House Orlang","하트 오브 모나스티르":"Heart of Monastir","서부 해방군":"Western Liberators","헬 세이비어":"Hell Savior","페트라 조합":"Petra Construction","리틀 타이런트":"Little Tyrant","플로리스 블루 로즈":"Flawless Blue Rose","람파디스":"Lampadis","키라는 친구 같은 거 없어":"Kyra Doesn't Have Friends","왈츠 오브 스타라이트":"Waltz of Starlight","이터널 프로미스":"Eternal Promise","블레싱 인 블룸":"Blessing in Bloom","노블 프린세스":"Noble Princess","노아 마을 경비대":"NOA Town Guard","운송 길드":"Courier Guild","펜릴 소대":"Fenrir Squad","폴른 호크":"Fallen Hawk","화이트 펄 트랩":"White Pearl Trap","선샤인 캣":"Sunshine Cat"},"ja":{"보이저 구원단":"ボイジャー救援団","방랑자":"放浪者","캔들 스퀘어":"キャンドルスクエア","모나스티르 기사단":"モナスティール騎士団","나이트메어":"ナイトメア","아셀루스 협회":"アセルス協会","풍월문":"風月門","모렐 해양상단":"モレル海洋商団","카노푸스 레인저":"カノープス・レンジャー","모노리스 교단":"モノリス教団","집행자":"執行者","궤도 수색대":"軌道捜索隊","오를랑 가문":"オルラン家","하트 오브 모나스티르":"ハート・オブ・モナスティール","서부 해방군":"西部解放軍","헬 세이비어":"ヘル・セイバー","페트라 조합":"ペトラ組合","리틀 타이런트":"リトル・タイラント","플로리스 블루 로즈":"フローレス・ブルーローズ","람파디스":"ランパディス","키라는 친구 같은 거 없어":"キラに友達なんていない","왈츠 오브 스타라이트":"ワルツ・オブ・スターライト","이터널 프로미스":"エターナル・プロミス","블레싱 인 블룸":"ブレッシング・イン・ブルーム","노블 프린세스":"ノーブル・プリンセス","노아 마을 경비대":"NOA村警備隊","운송 길드":"運送ギルド","펜릴 소대":"フェンリル小隊","폴른 호크":"フォールン・ホーク","화이트 펄 트랩":"ホワイト・パール・トラップ","선샤인 캣":"サンシャイン・キャット"}},"arcana":{"en":{"단점 보완 맞춤 훈련":"Customized Training to Cover Weaknesses","꽃들에게 죽음을":"Death for the Flowers","하늘의 심판":"Divine Judgement","죽음이 둘을 갈라놓을 때까지":"Till Death Do Us Part","불굴의 역작":"The Indomitable Masterpiece","하얀 달의 온기는 햇빛처럼":"A White Moon Shines With the Sun's Warmth","누각 위, 유리달 맞이":"Under the Glass Moon, Over the Pavilion","조용한 휴식 시간":"A Quiet Moment of Rest","스트라니스의 영애":"Young Lady of Stranis","완벽한 바니걸":"The Perfect Bunny Girl","키라만큼 귀여워!":"As Cute as Kyra!","오늘의 한 걸음":"Today's Step Forward","나른한 오후의 틈새":"A Drowsy Afternoon Interlude","공녀, 왕좌에 오르다":"The Princess Ascends the Throne","본 투 비 와일드":"Born to Be Wild","허수의 개척자":"The Imaginary Pioneer","종말은 소녀의 얼굴을 하고 있다.":"The End Wears the Face of a Girl","깊은 애도":"Deep Mourning","노스텔지어의 역습":"Nostalgia Strikes Back","하늘의 시련":"Divine Trial","금단의 기록물 Vol. 1":"Forbidden Archive Vol. 1","금단의 기록물":"Forbidden Archive Vol. 1","만족스러운 식사":"A Satisfying Meal","어느 한 기사의 맹세":"A Knight's Oath","서투른 욕망 해소법":"A Clumsy Way to Relieve Desire","노 페인, 노 게인":"No Pain, No Gain","메이드 바이 페트라♡":"Made by Petra♡","별을 보며 꿈을":"Dreams Under the Stars","음독의 각오":"Even If It's Poison","누구보다 프로페셔널":"More Than Professional","서류 더미 위의 책임감":"Responsibility Atop a Pile of Paperwork","언더커버 캅":"Undercover Cop","빛을 쫓아라!":"Follow the Light!","빛을 쫓아라":"Follow the Light!","휴가 준비는 쇼핑에서부터!":"Vacation Prep Starts with Shopping!"},"ja":{"단점 보완 맞춤 훈련":"弱点補完カスタムトレーニング","꽃들에게 죽음을":"花々に死を","하늘의 심판":"天の審判","죽음이 둘을 갈라놓을 때까지":"死が二人を分かつまで","불굴의 역작":"不屈の傑作","하얀 달의 온기는 햇빛처럼":"白い月のぬくもりは陽光のように","누각 위, 유리달 맞이":"楼閣の上、硝子の月を迎えて","조용한 휴식 시간":"静かな休息のひととき","스트라니스의 영애":"ストラニスの令嬢","완벽한 바니걸":"完璧なバニーガール","키라만큼 귀여워!":"キラくらいかわいい！","오늘의 한 걸음":"今日の一歩","나른한 오후의 틈새":"けだるい午後のひととき","공녀, 왕좌에 오르다":"公女、王座に就く","본 투 비 와일드":"ボーン・トゥ・ビー・ワイルド","허수의 개척자":"虚数の開拓者","종말은 소녀의 얼굴을 하고 있다.":"終末は少女の顔をしている","깊은 애도":"深い哀悼","노스텔지어의 역습":"ノスタルジアの逆襲","하늘의 시련":"天の試練","금단의 기록물 Vol. 1":"禁断の記録物 Vol. 1","금단의 기록물":"禁断の記録物 Vol. 1","만족스러운 식사":"満足な食事","어느 한 기사의 맹세":"ある騎士の誓い","서투른 욕망 해소법":"不器用な欲望解消法","노 페인, 노 게인":"ノーペイン・ノーゲイン","메이드 바이 페트라♡":"メイド・バイ・ペトラ♡","별을 보며 꿈을":"星を見ながら夢を","음독의 각오":"毒でも覚悟のうえ","누구보다 프로페셔널":"誰よりもプロフェッショナル","서류 더미 위의 책임감":"書類の山の上の責任感","언더커버 캅":"アンダーカバー・コップ","빛을 쫓아라!":"光を追え！","빛을 쫓아라":"光を追え！","휴가 준비는 쇼핑에서부터!":"休暇の準備はショッピングから！"}},"ui":{"en":{"본문으로 바로가기":"Skip to content","구원자 목록으로 이동":"Go to Savior list","주요 메뉴":"Main navigation","구원자":"Saviors","장비":"Equipment","코스모 게이트":"Cosmo Gate","밝은 테마로 변경":"Switch to light theme","어두운 테마로 변경":"Switch to dark theme","등록된 구원자":"Registered Saviors","구원자 검색 및 필터":"Savior search and filters","구원자 검색":"Search Saviors","이름, 소속, 역할 검색":"Search name, affiliation, or role","속성":"Element","전체":"All","클래스":"Class","명의 구원자":" Saviors","필터 초기화":"Reset filters","조건에 맞는 구원자가 없습니다.":"No Saviors match the current filters.","검색어나 필터를 변경해 주세요.":"Try changing the search term or filters.","구원자 목록":"Savior List","스킬설명 및 상세정보":"Skills & Details","육성 우선순위":"Growth Priority","PVE 기준":"PVE Standard","주 사용 콘텐츠":"Main Content","장비 세팅":"Equipment Setup","아르카나 세팅":"Arcana Setup","PVE 추천 아르카나":"Recommended PVE Arcana","대체 아르카나":"Alternative Arcana","주요 PVE 콘텐츠":"Main PVE Content","보유 상황에 따라 교체":"Swap based on availability","목걸이":"Necklace","반지":"Ring","추천 세트":"Recommended Sets","잠재력":"Potential","미정":"TBD","미등록":"Not Registered","대체 아르카나가 등록되지 않았습니다.":"No alternative Arcana registered.","원본 시트 표기":"Source sheet notation","선택":"Choose","주옵션 (Tier 2)":"Main Stats (Tier 2)","부옵션 (Tier 2)":"Substats (Tier 2)","장비 개요":"Equipment Overview","구원자 장비 주옵션 및 부옵션 정보입니다.":"Main-stat and substat information for Savior equipment.","부위":"Slot","주 능력치":"Main Stat","기본 주능력치 (+0)":"Base Main Stat (+0)","기본 주능력치 (+15)":"Base Main Stat (+15)","옵션":"Option","세트별 권장 능력치":"Recommended stats by set","장비 티어 판정 기준":"Equipment tier criteria","작전":"Operations","회랑":"Cloister","플래시 포인트":"Flash Point","인자작":"Trait Farming","없음":"None","기본기":"Basic Skill","특수기":"Special Skill","궁극기":"Ultimate","한정":"Limited","개화 필수":"Bloom required","1돌파 이상 필수":"Resonance 1+ required","1돌파 이상 권장":"Resonance 1+ recommended","PVE 추천 세팅":"Recommended PVE Setup","장비 가이드 바로가기":"Open Equipment Guide","필터":"Filter","구원자 정보는 ":"Savior information follows "," 기준입니다.":" as the source.","스타세이비어 DB":"Star Savior DB","아카라이브 스타세이비어 채널 원샷 세팅표":"Arca.live Star Savior one-shot setup sheet","PVE장비 및 아르카나는 ":"PVE equipment and Arcana follow ","를 기준으로 합니다.":" as the source.","작전 · 회랑 · 코스모 게이트":"Operations · Cloister · Cosmo Gate","적중(2)는 투지(2)로 대체가능.":"Accuracy(2) can be replaced with Fighting Spirit(2).","* 적중(2)는 투지(2)로 대체가능.":"* Accuracy(2) can be replaced with Fighting Spirit(2).","※ 딜러 기준으로 공격력% 수치가 높을 시 0.5티어 상승.":"※ For DPS units, high ATK% can raise the equipment rating by 0.5 tier.","* 속도 수치가 높을 시 0.5티어 상승.":"* High SPD can raise the equipment rating by 0.5 tier.","딜러 서브딜러 딜탱은 공격력, 공격력% 또는 생명력, 생명력%, 치명타 확률, 치명타 피해, 속도를 유효 옵션으로 사용합니다.":"DPS, sub-DPS, and bruisers use ATK/ATK%, HP/HP%, CRIT Rate, CRIT DMG, and SPD as useful stats.","일부 구원자는 효과 적중, 방어력, 방어력% 도 유효 옵션으로 활용합니다.":"Some Saviors also make effective use of Effect Hit, DEF, and DEF%.","장비 부족 시 치명타 확률 + 추가 유효 옵션 1줄 조합도 사용할 수 있습니다.":"When gear is limited, CRIT Rate plus one additional useful substat is acceptable.","장비 세팅이 충분히 갖춰진 이후에는 유효 옵션 3 이상 장비 사용을 권장합니다.":"Once your gear pool is established, equipment with at least three useful substats is recommended.","착용 시 권장 치확 90% 이상, 치피 90% 이상":"Recommended: CRIT Rate 90%+ and CRIT DMG 90%+.","착용 시 권장 치확 80% 이상, 치피 140% 이상":"Recommended: CRIT Rate 80%+ and CRIT DMG 140%+.","착용 시 권장 효적 140% 이상":"Recommended: Effect Hit 140%+.","치확 + 치피의 합이 ":"If CRIT Rate + CRIT DMG totals ","일 경우 0티어 장비.":", the item is Tier 0.","일 경우 1티어 장비.":", the item is Tier 1.","일 경우 2티어 장비.":", the item is Tier 2.","일 경우 3티어 장비.":", the item is Tier 3.","이 페이지는 게임 '스타 세이비어'의 비영리 팬 프로젝트입니다.":"This page is a non-profit fan project for Star Savior.","프로젝트에 사용된 모든 자산, 데이터, 이미지 및 텍스트의 소유권은 STUDIOBSIDE 에 있습니다.":"All assets, data, images, and text used in this project belong to STUDIOBSIDE.","검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.":"Please enable JavaScript to use search and detail views.","상세 세팅 보기":"View detailed setup"},"ja":{"본문으로 바로가기":"本文へスキップ","구원자 목록으로 이동":"救援者一覧へ","주요 메뉴":"メインメニュー","구원자":"救援者","장비":"装備","코스모 게이트":"コスモゲート","밝은 테마로 변경":"ライトテーマに変更","어두운 테마로 변경":"ダークテーマに変更","등록된 구원자":"登録済み救援者","구원자 검색 및 필터":"救援者の検索とフィルター","구원자 검색":"救援者を検索","이름, 소속, 역할 검색":"名前・所属・役割で検索","속성":"属性","전체":"すべて","클래스":"クラス","명의 구원자":"人の救援者","필터 초기화":"フィルターをリセット","조건에 맞는 구원자가 없습니다.":"条件に一致する救援者はいません。","검색어나 필터를 변경해 주세요.":"検索語やフィルターを変更してください。","구원자 목록":"救援者一覧","스킬설명 및 상세정보":"スキル説明・詳細情報","육성 우선순위":"育成優先度","PVE 기준":"PVE基準","주 사용 콘텐츠":"主な使用コンテンツ","장비 세팅":"装備セッティング","아르카나 세팅":"アルカナセッティング","PVE 추천 아르카나":"PVEおすすめアルカナ","대체 아르카나":"代替アルカナ","주요 PVE 콘텐츠":"主要PVEコンテンツ","보유 상황에 따라 교체":"所持状況に応じて交換","목걸이":"ネックレス","반지":"リング","추천 세트":"おすすめセット","잠재력":"潜在力","미정":"未定","미등록":"未登録","대체 아르카나가 등록되지 않았습니다.":"代替アルカナは登録されていません。","원본 시트 표기":"元シート表記","선택":"選択","주옵션 (Tier 2)":"メインオプション (Tier 2)","부옵션 (Tier 2)":"サブオプション (Tier 2)","장비 개요":"装備概要","구원자 장비 주옵션 및 부옵션 정보입니다.":"救援者装備のメイン・サブオプション情報です。","부위":"部位","주 능력치":"メイン能力値","기본 주능력치 (+0)":"基本メイン能力値 (+0)","기본 주능력치 (+15)":"基本メイン能力値 (+15)","옵션":"オプション","세트별 권장 능력치":"セット別推奨能力値","장비 티어 판정 기준":"装備Tier判定基準","작전":"作戦","회랑":"回廊","플래시 포인트":"フラッシュポイント","인자작":"因子厳選","없음":"なし","기본기":"基本技","특수기":"特殊技","궁극기":"究極技","한정":"限定","개화 필수":"開花必須","1돌파 이상 필수":"1凸以上必須","1돌파 이상 권장":"1凸以上推奨","PVE 추천 세팅":"PVEおすすめセッティング","장비 가이드 바로가기":"装備ガイドを開く","구원자 정보는 ":"救援者情報は "," 기준입니다.":" を基準としています。","스타세이비어 DB":"Star Savior DB","아카라이브 스타세이비어 채널 원샷 세팅표":"Arca.live Star Savior ワンショットセッティング表","PVE장비 및 아르카나는 ":"PVE装備・アルカナは ","를 기준으로 합니다.":" を基準としています。","작전 · 회랑 · 코스모 게이트":"作戦 · 回廊 · コスモゲート","적중(2)는 투지(2)로 대체가능.":"的中セット(2)は闘志セット(2)で代用可能です。","* 적중(2)는 투지(2)로 대체가능.":"* 的中セット(2)は闘志セット(2)で代用可能です。","※ 딜러 기준으로 공격력% 수치가 높을 시 0.5티어 상승.":"※ アタッカー基準で攻撃力(%)が高い場合、0.5 Tier上昇。","* 속도 수치가 높을 시 0.5티어 상승.":"* 速度が高い場合、0.5 Tier上昇。","딜러 서브딜러 딜탱은 공격력, 공격력% 또는 생명력, 생명력%, 치명타 확률, 치명타 피해, 속도를 유효 옵션으로 사용합니다.":"アタッカー、サブアタッカー、ブルーザーは攻撃力、攻撃力(%)またはHP、HP(%)、会心率、会心ダメージ、速度を有効オプションとして使用します。","일부 구원자는 효과 적중, 방어력, 방어력% 도 유효 옵션으로 활용합니다.":"一部の救援者は効果命中、防御力、防御力(%)も有効オプションとして使用します。","장비 부족 시 치명타 확률 + 추가 유효 옵션 1줄 조합도 사용할 수 있습니다.":"装備が不足している場合、会心率＋追加の有効オプション1枠の組み合わせも使用できます。","장비 세팅이 충분히 갖춰진 이후에는 유효 옵션 3 이상 장비 사용을 권장합니다.":"装備が揃った後は、有効オプション3つ以上の装備を推奨します。","이 페이지는 게임 '스타 세이비어'의 비영리 팬 프로젝트입니다.":"このページはゲーム『Star Savior』の非営利ファンプロジェクトです。","프로젝트에 사용된 모든 자산, 데이터, 이미지 및 텍스트의 소유권은 STUDIOBSIDE 에 있습니다.":"本プロジェクトで使用するすべてのアセット、データ、画像、テキストの権利はSTUDIOBSIDEに帰属します。","검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.":"検索と詳細画面を利用するにはJavaScriptを有効にしてください。","상세 세팅 보기":"詳細セッティングを見る","통찰 4세트":"洞察セット(4)","파괴 4세트":"破壊セット(4)","적중 2세트":"的中セット(2)"}},"terms":{"en":{"태양":"Sun","달":"Moon","별":"Star","질서":"Order","혼돈":"Chaos","스트라이커":"Striker","어쌔신":"Assassin","레인저":"Ranger","캐스터":"Caster","디펜더":"Defender","서포터":"Supporter","딜러":"DPS","서브딜러":"Sub-DPS","딜탱":"Bruiser","참격":"Slash","타격":"Impact","마법":"Element","정신":"Spirit","속도":"SPD","공격력%":"ATK%","공격력":"ATK","생명력%":"HP%","생명력":"HP","방어력%":"DEF%","방어력":"DEF","치명타 확률":"CRIT Rate","치명타 피해":"CRIT DMG","효과 적중":"Effect Hit","효과 저항":"Effect RES","치확":"CRIT Rate","치피":"CRIT DMG","효적":"Effect Hit","통찰(4)":"Insight(4)","파괴(4)":"Destruction(4)","적중(2)":"Accuracy(2)","투지(2)":"Fighting Spirit(2)","정밀(4)":"Precision(4)","대체":" substitute","공용 아르카나":"Universal Arcana","원본 자료 미등록":"TBD","해당 엑셀에 없음":"Not listed in source sheet","1티어":"Tier 1","2티어":"Tier 2","3티어":"Tier 3","4티어":"Tier 4","0티어":"Tier 0","0.5티어":"Tier 0.5"},"ja":{"태양":"太陽","달":"月","별":"星","질서":"秩序","혼돈":"混沌","스트라이커":"ストライカー","어쌔신":"アサシン","레인저":"レンジャー","캐스터":"キャスター","디펜더":"ディフェンダー","서포터":"サポーター","딜러":"アタッカー","서브딜러":"サブアタッカー","딜탱":"ブルーザー","참격":"斬撃","타격":"打撃","마법":"元素","정신":"精神","속도":"速度","공격력%":"攻撃力(%)","공격력":"攻撃力","생명력%":"HP(%)","생명력":"HP","방어력%":"防御力(%)","방어력":"防御力","치명타 확률":"会心率","치명타 피해":"会心ダメージ","효과 적중":"効果命中","효과 저항":"効果耐性","치확":"会心率","치피":"会心ダメージ","효적":"効果命中","통찰(4)":"洞察セット(4)","파괴(4)":"破壊セット(4)","적중(2)":"的中セット(2)","투지(2)":"闘志セット(2)","정밀(4)":"精密セット(4)","대체":" の代替","공용 아르카나":"共通アルカナ","원본 자료 미등록":"未定","해당 엑셀에 없음":"元シートに記載なし","1티어":"Tier 1","2티어":"Tier 2","3티어":"Tier 3","4티어":"Tier 4","0티어":"Tier 0","0.5티어":"Tier 0.5","공격력 증가율(%)":"攻撃力(%)","생명력 증가율(%)":"HP(%)","방어력 증가율(%)":"防御力(%)","효과적중":"効果命中","공생방%":"攻撃力/HP/防御力(%)","적중&저항":"効果命中＆効果耐性","속도 세트":"速度セット","방어 세트":"防御セット","적중 세트":"的中セット","저항 세트":"抵抗セット","공격 세트":"攻撃セット","통찰 세트":"洞察セット","투지 세트":"闘志セット","정밀 세트":"精密セット","생명 세트":"体力セット","파괴 세트":"破壊セット","장벽 세트":"防壁セット","섬멸 세트":"殲滅セット","속도(4)":"速度セット(4)","방어(2)":"防御セット(2)","방어(4)":"防御セット(4)","저항(2)":"抵抗セット(2)","공격(4)":"攻撃セット(4)","생명(4)":"体力セット(4)","장벽(2)":"防壁セット(2)","섬멸(2)":"殲滅セット(2)","방퍼":"防御力(%)"}}};
+const I18N_DATA = {"saviorNames":{"en":{"아세라":"Asherah","스마일":"Smile","루나":"Luna","카넬리아":"Carnelia","벨 리스":"Bell","에밀리":"Emily","샤를":"Charlotte","카르멘":"Carmen","프레이":"Frey","세이라":"Seira","트리쉬":"Trish","린":"Lyn","크리스텔":"Cristelle","에데":"Haydee","세르팡":"Serpang","다나":"Dana","뮤리엘":"Muriel","엘리사":"Elisa","티리아":"Tyria","로베르타":"Roberta","루그":"Lugh","페이":"Fei","에핀델":"Epindel","오메가":"Omega","세레스":"Ceres","리디아":"Lydia","할리":"Harley","페트라":"Petra","스칼렛":"Scarlet","클레어":"Claire","레이시":"Lacy","타냐":"Tanya","릴리":"Lily","키라":"Kyra","베스타":"Besta","안나":"Annah","마르실":"Marcille","베라":"Vera","나루":"Naru","클라리사":"Clarissa","힐데":"Hilde","유미나":"Yoo Mina","로자리아":"Rosaria"},"ja":{"아세라":"アセラ","스마일":"スマイル","루나":"ルナ","카넬리아":"カネリア","벨 리스":"ベル・リース","에밀리":"エミリー","샤를":"シャルル","카르멘":"カルメン","프레이":"フレイ","세이라":"セイラ","트리쉬":"トリッシュ","린":"リン","크리스텔":"クリステル","에데":"エデ","세르팡":"セルパン","다나":"ダーナ","뮤리엘":"ミュリエル","엘리사":"エリサ","티리아":"ティリア","로베르타":"ロベルタ","루그":"ルー","페이":"フェイ","에핀델":"エピンデル","오메가":"オメガ","세레스":"セレス","리디아":"リディア","할리":"ハーレー","페트라":"ペトラ","스칼렛":"スカーレット","클레어":"クレア","레이시":"レイシー","타냐":"ターニャ","릴리":"リリー","키라":"キラ","베스타":"ベスタ","안나":"アンナ","마르실":"マルシル","베라":"ベラ","나루":"ナル","클라리사":"クラリッサ","힐데":"ヒルデ","유미나":"ヤナギ・ミナ","로자리아":"ロザリア"}},"subtitles":{"en":{"보이저 구원단":"Voyager Savior Party","방랑자":"Wanderer","캔들 스퀘어":"Candle Square","모나스티르 기사단":"Monastir Knights","나이트메어":"Nightmare","아셀루스 협회":"Aselus Association","풍월당":"Wind Moon Sect","모렐 해운상회":"Morrel Ocean Traders","카노푸스 경비대":"Canopus Rangers","모노리스 교단":"Monolith Order","집행자":"Executor","궤도 수색대":"Orbital Search Team","오를랑 가문":"House Orlan","하트 오브 모나스티르":"Heart of Monastir","서부 탈환대":"Western Liberators","헬 세이비어":"Hell Saviors","페트라 조합":"Petra Construction","리틀 타이런트":"Little Tyrant","플로리스 블루 로즈":"Flawless Blue Rose","화이트 펄 트랩":"White Pearl Trap","선샤인 캣":"Sunshine Cat","람파디스":"Lampadis","키라는 친구같은 거 없어":"Kyra Doesn't Have Friends","왈츠 오브 스타라이트":"Waltz of Starlight","이터널 프로미스":"Eternal Promise","블레싱 인 블룸":"Blessing in Bloom","노블 프린세스":"Noble Princess","NOA 타운가드":"NOA Town Guard","배달부 협회":"Courier Guild","펜릴 소대":"Fenrir Squad","폴른 호크":"Fallen Hawk"},"ja":{"보이저 구원단":"ボイジャー救援団","방랑자":"放浪者","캔들 스퀘어":"キャンドル・スクエア","모나스티르 기사단":"モナスティル騎士団","나이트메어":"ナイトメア","아셀루스 협회":"アセルス協会","풍월당":"風月堂","모렐 해운상회":"モレル海運商会","카노푸스 경비대":"カノプス警備隊","모노리스 교단":"モノリス教団","집행자":"執行者","궤도 수색대":"軌道捜索隊","오를랑 가문":"オルラン家","하트 오브 모나스티르":"ハート・オブ・モナスティル","서부 탈환대":"西部奪還隊","헬 세이비어":"ヘルセイヴァー","페트라 조합":"ペトラ組合","리틀 타이런트":"リトル・タイラント","플로리스 블루 로즈":"フローレス・ブルーローズ","화이트 펄 트랩":"ホワイトパール・トラップ","선샤인 캣":"サンシャイン・キャット","람파디스":"ランパディス","키라는 친구같은 거 없어":"キラには友達なんていないの","왈츠 오브 스타라이트":"ワルツ・オブ・スターライト","이터널 프로미스":"エターナル・プロミス","블레싱 인 블룸":"ブレッシング in ブルーム","노블 프린세스":"ノーブル・プリンセス","NOA 타운가드":"NOAのタウンガード","배달부 협회":"配達屋協会","펜릴 소대":"フェンリル小隊","폴른 호크":"フォーレン・ホーク"}},"arcana":{"en":{"단점 보완 맞춤 훈련":"Customized Training to Cover Weaknesses","꽃들에게 죽음을":"Death for the Flowers","하늘의 심판":"Divine Judgement","죽음이 둘을 갈라놓을 때까지":"Till Death Do Us Part","불굴의 역작":"The Indomitable Masterpiece","하얀 달의 온기는 햇빛처럼":"A White Moon Shines With the Sun's Warmth","누각 위, 유리달 맞이":"Under the Glass Moon, Over the Pavilion","조용한 휴식 시간":"A Quiet Moment of Rest","스트라니스의 영애":"Young Lady of Stranis","완벽한 바니걸":"The Perfect Bunny Girl","키라만큼 귀여워!":"As Cute as Kyra!","오늘의 한 걸음":"Today's Step Forward","나른한 오후의 틈새":"A Drowsy Afternoon Interlude","공녀, 왕좌에 오르다":"The Princess Ascends the Throne","본 투 비 와일드":"Born to Be Wild","허수의 개척자":"The Imaginary Pioneer","종말은 소녀의 얼굴을 하고 있다.":"The End Wears the Face of a Girl","깊은 애도":"Deep Mourning","노스텔지어의 역습":"Nostalgia Strikes Back","하늘의 시련":"Divine Trial","금단의 기록물 Vol. 1":"Forbidden Archive Vol. 1","금단의 기록물":"Forbidden Archive Vol. 1","만족스러운 식사":"A Satisfying Meal","어느 한 기사의 맹세":"A Knight's Oath","서투른 욕망 해소법":"A Clumsy Way to Relieve Desire","노 페인, 노 게인":"No Pain, No Gain","메이드 바이 페트라♡":"Made by Petra♡","별을 보며 꿈을":"Dreams Under the Stars","음독의 각오":"Even If It's Poison","누구보다 프로페셔널":"More Than Professional","서류 더미 위의 책임감":"Responsibility Atop a Pile of Paperwork","언더커버 캅":"Undercover Cop","빛을 쫓아라!":"Follow the Light!","빛을 쫓아라":"Follow the Light!","휴가 준비는 쇼핑에서부터!":"Vacation Prep Starts with Shopping!"},"ja":{"단점 보완 맞춤 훈련":"弱点補完カスタムトレーニング","꽃들에게 죽음을":"花々に死を","하늘의 심판":"天の審判","죽음이 둘을 갈라놓을 때까지":"死が二人を分かつまで","불굴의 역작":"不屈の傑作","하얀 달의 온기는 햇빛처럼":"白い月のぬくもりは陽光のように","누각 위, 유리달 맞이":"楼閣の上、硝子の月を迎えて","조용한 휴식 시간":"静かな休息のひととき","스트라니스의 영애":"ストラニスの令嬢","완벽한 바니걸":"完璧なバニーガール","키라만큼 귀여워!":"キラくらいかわいい！","오늘의 한 걸음":"今日の一歩","나른한 오후의 틈새":"けだるい午後のひととき","공녀, 왕좌에 오르다":"公女、王座に就く","본 투 비 와일드":"ボーン・トゥ・ビー・ワイルド","허수의 개척자":"虚数の開拓者","종말은 소녀의 얼굴을 하고 있다.":"終末は少女の顔をしている","깊은 애도":"深い哀悼","노스텔지어의 역습":"ノスタルジアの逆襲","하늘의 시련":"天の試練","금단의 기록물 Vol. 1":"禁断の記録物 Vol. 1","금단의 기록물":"禁断の記録物 Vol. 1","만족스러운 식사":"満足な食事","어느 한 기사의 맹세":"ある騎士の誓い","서투른 욕망 해소법":"不器用な欲望解消法","노 페인, 노 게인":"ノーペイン・ノーゲイン","메이드 바이 페트라♡":"メイド・バイ・ペトラ♡","별을 보며 꿈을":"星を見ながら夢を","음독의 각오":"毒でも覚悟のうえ","누구보다 프로페셔널":"誰よりもプロフェッショナル","서류 더미 위의 책임감":"書類の山の上の責任感","언더커버 캅":"アンダーカバー・コップ","빛을 쫓아라!":"光を追え！","빛을 쫓아라":"光を追え！","휴가 준비는 쇼핑에서부터!":"休暇の準備はショッピングから！"}},"ui":{"en":{"본문으로 바로가기":"Skip to content","구원자 목록으로 이동":"Go to Savior list","주요 메뉴":"Main navigation","구원자":"Saviors","장비":"Equipment","코스모 게이트":"Cosmo Gate","밝은 테마로 변경":"Switch to light theme","어두운 테마로 변경":"Switch to dark theme","등록된 구원자":"Registered Saviors","구원자 검색 및 필터":"Savior search and filters","구원자 검색":"Search Saviors","이름, 소속, 역할 검색":"Search name, affiliation, or role","속성":"Element","전체":"All","클래스":"Class","명의 구원자":" Saviors","필터 초기화":"Reset filters","조건에 맞는 구원자가 없습니다.":"No Saviors match the current filters.","검색어나 필터를 변경해 주세요.":"Try changing the search term or filters.","구원자 목록":"Savior List","스킬설명 및 상세정보":"Skills & Details","육성 우선순위":"Growth Priority","PVE 기준":"PVE Standard","주 사용 콘텐츠":"Main Content","장비 세팅":"Equipment Setup","아르카나 세팅":"Arcana Setup","PVE 추천 아르카나":"Recommended PVE Arcana","대체 아르카나":"Alternative Arcana","주요 PVE 콘텐츠":"Main PVE Content","보유 상황에 따라 교체":"Swap based on availability","목걸이":"Necklace","반지":"Ring","추천 세트":"Recommended Sets","잠재력":"Potential","미정":"TBD","미등록":"Not Registered","대체 아르카나가 등록되지 않았습니다.":"No alternative Arcana registered.","원본 시트 표기":"Source sheet notation","선택":"Choose","주옵션 (Tier 2)":"Main Stats (Tier 2)","부옵션 (Tier 2)":"Substats (Tier 2)","장비 개요":"Equipment Overview","구원자 장비 주옵션 및 부옵션 정보입니다.":"Main-stat and substat information for Savior equipment.","부위":"Slot","주 능력치":"Main Stat","기본 주능력치 (+0)":"Base Main Stat (+0)","기본 주능력치 (+15)":"Base Main Stat (+15)","옵션":"Option","세트별 권장 능력치":"Recommended stats by set","장비 티어 판정 기준":"Equipment tier criteria","작전":"Operations","회랑":"Cloister","플래시 포인트":"Flash Point","인자작":"Trait Farming","없음":"None","기본기":"Basic Skill","특수기":"Special Skill","궁극기":"Ultimate","한정":"Limited","개화 필수":"Bloom required","1돌파 이상 필수":"Resonance 1+ required","1돌파 이상 권장":"Resonance 1+ recommended","PVE 추천 세팅":"Recommended PVE Setup","장비 가이드 바로가기":"Open Equipment Guide","필터":"Filter","구원자 정보는 ":"Savior information follows "," 기준입니다.":" as the source.","스타세이비어 DB":"Star Savior DB","아카라이브 스타세이비어 채널 원샷 세팅표":"Arca.live Star Savior one-shot setup sheet","PVE장비 및 아르카나는 ":"PVE equipment and Arcana follow ","를 기준으로 합니다.":" as the source.","작전 · 회랑 · 코스모 게이트":"Operations · Cloister · Cosmo Gate","적중(2)는 투지(2)로 대체가능.":"Accuracy(2) can be replaced with Fighting Spirit(2).","* 적중(2)는 투지(2)로 대체가능.":"* Accuracy(2) can be replaced with Fighting Spirit(2).","※ 딜러 기준으로 공격력% 수치가 높을 시 0.5티어 상승.":"※ For DPS units, high ATK% can raise the equipment rating by 0.5 tier.","* 속도 수치가 높을 시 0.5티어 상승.":"* High SPD can raise the equipment rating by 0.5 tier.","딜러 서브딜러 딜탱은 공격력, 공격력% 또는 생명력, 생명력%, 치명타 확률, 치명타 피해, 속도를 유효 옵션으로 사용합니다.":"DPS, sub-DPS, and bruisers use ATK/ATK%, HP/HP%, CRIT Rate, CRIT DMG, and SPD as useful stats.","일부 구원자는 효과 적중, 방어력, 방어력% 도 유효 옵션으로 활용합니다.":"Some Saviors also make effective use of Effect Hit, DEF, and DEF%.","장비 부족 시 치명타 확률 + 추가 유효 옵션 1줄 조합도 사용할 수 있습니다.":"When gear is limited, CRIT Rate plus one additional useful substat is acceptable.","장비 세팅이 충분히 갖춰진 이후에는 유효 옵션 3 이상 장비 사용을 권장합니다.":"Once your gear pool is established, equipment with at least three useful substats is recommended.","착용 시 권장 치확 90% 이상, 치피 90% 이상":"Recommended: CRIT Rate 90%+ and CRIT DMG 90%+.","착용 시 권장 치확 80% 이상, 치피 140% 이상":"Recommended: CRIT Rate 80%+ and CRIT DMG 140%+.","착용 시 권장 효적 140% 이상":"Recommended: Effect Hit 140%+.","치확 + 치피의 합이 ":"If CRIT Rate + CRIT DMG totals ","일 경우 0티어 장비.":", the item is Tier 0.","일 경우 1티어 장비.":", the item is Tier 1.","일 경우 2티어 장비.":", the item is Tier 2.","일 경우 3티어 장비.":", the item is Tier 3.","이 페이지는 게임 '스타 세이비어'의 비영리 팬 프로젝트입니다.":"This page is a non-profit fan project for Star Savior.","프로젝트에 사용된 모든 자산, 데이터, 이미지 및 텍스트의 소유권은 STUDIOBSIDE 에 있습니다.":"All assets, data, images, and text used in this project belong to STUDIOBSIDE.","검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.":"Please enable JavaScript to use search and detail views.","상세 세팅 보기":"View detailed setup"},"ja":{"본문으로 바로가기":"本文へスキップ","구원자 목록으로 이동":"救援者一覧へ","주요 메뉴":"メインメニュー","구원자":"救援者","장비":"装備","코스모 게이트":"コスモゲート","밝은 테마로 변경":"ライトテーマに変更","어두운 테마로 변경":"ダークテーマに変更","등록된 구원자":"登録済み救援者","구원자 검색 및 필터":"救援者の検索とフィルター","구원자 검색":"救援者を検索","이름, 소속, 역할 검색":"名前・所属・役割で検索","속성":"属性","전체":"すべて","클래스":"クラス","명의 구원자":"人の救援者","필터 초기화":"フィルターをリセット","조건에 맞는 구원자가 없습니다.":"条件に一致する救援者はいません。","검색어나 필터를 변경해 주세요.":"検索語やフィルターを変更してください。","구원자 목록":"救援者一覧","스킬설명 및 상세정보":"スキル説明・詳細情報","육성 우선순위":"育成優先度","PVE 기준":"PVE基準","주 사용 콘텐츠":"主な使用コンテンツ","장비 세팅":"装備セッティング","아르카나 세팅":"アルカナセッティング","PVE 추천 아르카나":"PVEおすすめアルカナ","대체 아르카나":"代替アルカナ","주요 PVE 콘텐츠":"主要PVEコンテンツ","보유 상황에 따라 교체":"所持状況に応じて交換","목걸이":"ネックレス","반지":"リング","추천 세트":"おすすめセット","잠재력":"潜在力","미정":"未定","미등록":"未登録","대체 아르카나가 등록되지 않았습니다.":"代替アルカナは登録されていません。","원본 시트 표기":"元シート表記","선택":"選択","주옵션 (Tier 2)":"メインオプション (Tier 2)","부옵션 (Tier 2)":"サブオプション (Tier 2)","장비 개요":"装備概要","구원자 장비 주옵션 및 부옵션 정보입니다.":"救援者装備のメイン・サブオプション情報です。","부위":"部位","주 능력치":"メイン能力値","기본 주능력치 (+0)":"基本メイン能力値 (+0)","기본 주능력치 (+15)":"基本メイン能力値 (+15)","옵션":"オプション","세트별 권장 능력치":"セット別推奨能力値","장비 티어 판정 기준":"装備Tier判定基準","작전":"作戦","회랑":"回廊","플래시 포인트":"フラッシュポイント","인자작":"因子厳選","없음":"なし","기본기":"基本技","특수기":"特殊技","궁극기":"究極技","한정":"限定","개화 필수":"開花必須","1돌파 이상 필수":"1凸以上必須","1돌파 이상 권장":"1凸以上推奨","PVE 추천 세팅":"PVEおすすめセッティング","장비 가이드 바로가기":"装備ガイドを開く","구원자 정보는 ":"救援者情報は "," 기준입니다.":" を基準としています。","스타세이비어 DB":"Star Savior DB","아카라이브 스타세이비어 채널 원샷 세팅표":"Arca.live Star Savior ワンショットセッティング表","PVE장비 및 아르카나는 ":"PVE装備・アルカナは ","를 기준으로 합니다.":" を基準としています。","작전 · 회랑 · 코스모 게이트":"作戦 · 回廊 · コスモゲート","적중(2)는 투지(2)로 대체가능.":"的中セット(2)は闘志セット(2)で代用可能です。","* 적중(2)는 투지(2)로 대체가능.":"* 的中セット(2)は闘志セット(2)で代用可能です。","※ 딜러 기준으로 공격력% 수치가 높을 시 0.5티어 상승.":"※ アタッカー基準で攻撃力(%)が高い場合、0.5 Tier上昇。","* 속도 수치가 높을 시 0.5티어 상승.":"* 速度が高い場合、0.5 Tier上昇。","딜러 서브딜러 딜탱은 공격력, 공격력% 또는 생명력, 생명력%, 치명타 확률, 치명타 피해, 속도를 유효 옵션으로 사용합니다.":"アタッカー、サブアタッカー、ブルーザーは攻撃力、攻撃力(%)またはHP、HP(%)、会心率、会心ダメージ、速度を有効オプションとして使用します。","일부 구원자는 효과 적중, 방어력, 방어력% 도 유효 옵션으로 활용합니다.":"一部の救援者は効果命中、防御力、防御力(%)も有効オプションとして使用します。","장비 부족 시 치명타 확률 + 추가 유효 옵션 1줄 조합도 사용할 수 있습니다.":"装備が不足している場合、会心率＋追加の有効オプション1枠の組み合わせも使用できます。","장비 세팅이 충분히 갖춰진 이후에는 유효 옵션 3 이상 장비 사용을 권장합니다.":"装備が揃った後は、有効オプション3つ以上の装備を推奨します。","이 페이지는 게임 '스타 세이비어'의 비영리 팬 프로젝트입니다.":"このページはゲーム『Star Savior』の非営利ファンプロジェクトです。","프로젝트에 사용된 모든 자산, 데이터, 이미지 및 텍스트의 소유권은 STUDIOBSIDE 에 있습니다.":"本プロジェクトで使用するすべてのアセット、データ、画像、テキストの権利はSTUDIOBSIDEに帰属します。","검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.":"検索と詳細画面を利用するにはJavaScriptを有効にしてください。","상세 세팅 보기":"詳細セッティングを見る","통찰 4세트":"洞察セット(4)","파괴 4세트":"破壊セット(4)","적중 2세트":"的中セット(2)"}},"terms":{"en":{"태양":"Sun","달":"Moon","별":"Star","질서":"Order","혼돈":"Chaos","스트라이커":"Striker","어쌔신":"Assassin","레인저":"Ranger","캐스터":"Caster","디펜더":"Defender","서포터":"Supporter","딜러":"DPS","서브딜러":"Sub-DPS","딜탱":"Bruiser","참격":"Slash","타격":"Impact","마법":"Element","정신":"Spirit","속도":"SPD","공격력%":"ATK%","공격력":"ATK","생명력%":"HP%","생명력":"HP","방어력%":"DEF%","방어력":"DEF","치명타 확률":"CRIT Rate","치명타 피해":"CRIT DMG","효과 적중":"Effect Hit","효과 저항":"Effect RES","치확":"CRIT Rate","치피":"CRIT DMG","효적":"Effect Hit","통찰(4)":"Insight(4)","파괴(4)":"Destruction(4)","적중(2)":"Accuracy(2)","투지(2)":"Fighting Spirit(2)","정밀(4)":"Precision(4)","대체":" substitute","공용 아르카나":"Universal Arcana","원본 자료 미등록":"TBD","해당 엑셀에 없음":"Not listed in source sheet","1티어":"Tier 1","2티어":"Tier 2","3티어":"Tier 3","4티어":"Tier 4","0티어":"Tier 0","0.5티어":"Tier 0.5"},"ja":{"태양":"太陽","달":"月","별":"星","질서":"秩序","혼돈":"混沌","스트라이커":"ストライカー","어쌔신":"アサシン","레인저":"レンジャー","캐스터":"キャスター","디펜더":"ディフェンダー","서포터":"サポーター","딜러":"アタッカー","서브딜러":"サブアタッカー","딜탱":"ブルーザー","참격":"斬撃","타격":"打撃","마법":"元素","정신":"精神","속도":"速度","공격력%":"攻撃力(%)","공격력":"攻撃力","생명력%":"HP(%)","생명력":"HP","방어력%":"防御力(%)","방어력":"防御力","치명타 확률":"会心率","치명타 피해":"会心ダメージ","효과 적중":"効果命中","효과 저항":"効果耐性","치확":"会心率","치피":"会心ダメージ","효적":"効果命中","통찰(4)":"洞察セット(4)","파괴(4)":"破壊セット(4)","적중(2)":"的中セット(2)","투지(2)":"闘志セット(2)","정밀(4)":"精密セット(4)","대체":" の代替","공용 아르카나":"共通アルカナ","원본 자료 미등록":"未定","해당 엑셀에 없음":"元シートに記載なし","1티어":"Tier 1","2티어":"Tier 2","3티어":"Tier 3","4티어":"Tier 4","0티어":"Tier 0","0.5티어":"Tier 0.5","공격력 증가율(%)":"攻撃力(%)","생명력 증가율(%)":"HP(%)","방어력 증가율(%)":"防御力(%)","효과적중":"効果命中","공생방%":"攻撃力/HP/防御力(%)","적중&저항":"効果命中＆効果耐性","속도 세트":"速度セット","방어 세트":"防御セット","적중 세트":"的中セット","저항 세트":"抵抗セット","공격 세트":"攻撃セット","통찰 세트":"洞察セット","투지 세트":"闘志セット","정밀 세트":"精密セット","생명 세트":"体力セット","파괴 세트":"破壊セット","장벽 세트":"防壁セット","섬멸 세트":"殲滅セット","속도(4)":"速度セット(4)","방어(2)":"防御セット(2)","방어(4)":"防御セット(4)","저항(2)":"抵抗セット(2)","공격(4)":"攻撃セット(4)","생명(4)":"体力セット(4)","장벽(2)":"防壁セット(2)","섬멸(2)":"殲滅セット(2)","방퍼":"防御力(%)"}}};
 // 이름 렌더링에 사용하는 접근성 문구
 Object.assign(I18N_DATA.ui.en, {
   "스킬설명 및 상세정보": "Skills & Details",
@@ -1690,8 +1690,8 @@ const SAVIORS = [
   {
     "id": "lyn",
     "name": "린",
-    "subtitle": "풍월문",
-    "affiliation": "풍월문",
+    "subtitle": "풍월당",
+    "affiliation": "풍월당",
     "grade": "SSR",
     "element": "star",
     "className": "스트라이커",
@@ -1753,8 +1753,8 @@ const SAVIORS = [
   {
     "id": "cristelle",
     "name": "크리스텔",
-    "subtitle": "모렐해운상회",
-    "affiliation": "모렐해운상회",
+    "subtitle": "모렐 해운상회",
+    "affiliation": "모렐 해운상회",
     "grade": "SSR",
     "element": "sun",
     "className": "레인저",
@@ -1843,8 +1843,8 @@ const SAVIORS = [
   {
     "id": "haydee",
     "name": "에데",
-    "subtitle": "모렐 해양상단",
-    "affiliation": "모렐 해양상단",
+    "subtitle": "모렐 해운상회",
+    "affiliation": "모렐 해운상회",
     "grade": "SSR",
     "element": "star",
     "className": "디펜더",
@@ -1917,8 +1917,8 @@ const SAVIORS = [
   {
     "id": "serpang",
     "name": "세르팡",
-    "subtitle": "풍월문",
-    "affiliation": "풍월문",
+    "subtitle": "풍월당",
+    "affiliation": "풍월당",
     "grade": "SSR",
     "element": "sun",
     "className": "서포터",
@@ -1991,8 +1991,8 @@ const SAVIORS = [
   {
     "id": "dana",
     "name": "다나",
-    "subtitle": "카노푸스 레인저",
-    "affiliation": "카노푸스 레인저",
+    "subtitle": "카노푸스 경비대",
+    "affiliation": "카노푸스 경비대",
     "grade": "SSR",
     "element": "star",
     "className": "캐스터",
@@ -2738,8 +2738,8 @@ const SAVIORS = [
   {
     "id": "ceres",
     "name": "세레스",
-    "subtitle": "서부 해방군",
-    "affiliation": "서부 해방군",
+    "subtitle": "서부 탈환대",
+    "affiliation": "서부 탈환대",
     "grade": "SSR",
     "element": "moon",
     "className": "스트라이커",
@@ -2813,8 +2813,8 @@ const SAVIORS = [
   {
     "id": "lydia",
     "name": "리디아",
-    "subtitle": "서부 해방군",
-    "affiliation": "서부 해방군",
+    "subtitle": "서부 탈환대",
+    "affiliation": "서부 탈환대",
     "grade": "SSR",
     "element": "chaos",
     "className": "레인저",
@@ -3392,8 +3392,8 @@ const SAVIORS = [
   {
     "id": "kyra",
     "name": "키라",
-    "subtitle": "키라는 친구 같은 거 없어",
-    "affiliation": "키라는 친구 같은 거 없어",
+    "subtitle": "키라는 친구같은 거 없어",
+    "affiliation": "키라는 친구같은 거 없어",
     "grade": "SSR",
     "element": "sun",
     "className": "어쌔신",
@@ -3770,9 +3770,9 @@ const SAVIORS = [
   {
     "id": "besta",
     "name": "베스타",
-    "subtitle": "서부 해방군",
-    "affiliation": "서부 해방군",
-    "grade": "SSR",
+    "subtitle": "서부 탈환대",
+    "affiliation": "서부 탈환대",
+    "grade": "SR",
     "element": "star",
     "className": "디펜더",
     "role": "디펜더",
@@ -3844,9 +3844,9 @@ const SAVIORS = [
   {
     "id": "annah",
     "name": "안나",
-    "subtitle": "노아 마을 경비대",
-    "affiliation": "노아 마을 경비대",
-    "grade": "SSR",
+    "subtitle": "NOA 타운가드",
+    "affiliation": "NOA 타운가드",
+    "grade": "SR",
     "element": "sun",
     "className": "디펜더",
     "role": "디펜더",
@@ -3921,7 +3921,7 @@ const SAVIORS = [
     "name": "마르실",
     "subtitle": "페트라 조합",
     "affiliation": "페트라 조합",
-    "grade": "SSR",
+    "grade": "SR",
     "element": "sun",
     "className": "어쌔신",
     "role": "어쌔신",
@@ -3997,9 +3997,9 @@ const SAVIORS = [
   {
     "id": "vera",
     "name": "베라",
-    "subtitle": "운송 길드",
-    "affiliation": "운송 길드",
-    "grade": "SSR",
+    "subtitle": "배달부 협회",
+    "affiliation": "배달부 협회",
+    "grade": "SR",
     "element": "moon",
     "className": "서포터",
     "role": "서포터",
@@ -4073,7 +4073,7 @@ const SAVIORS = [
     "name": "나루",
     "subtitle": "궤도 수색대",
     "affiliation": "궤도 수색대",
-    "grade": "SSR",
+    "grade": "SR",
     "element": "star",
     "className": "레인저",
     "role": "레인저",
@@ -4148,7 +4148,7 @@ const SAVIORS = [
     "name": "클레어",
     "subtitle": "캔들 스퀘어",
     "affiliation": "캔들 스퀘어",
-    "grade": "SSR",
+    "grade": "SR",
     "element": "moon",
     "className": "어쌔신",
     "role": "어쌔신",
@@ -4226,7 +4226,7 @@ const SAVIORS = [
     "name": "스칼렛",
     "subtitle": "캔들 스퀘어",
     "affiliation": "캔들 스퀘어",
-    "grade": "SSR",
+    "grade": "SR",
     "element": "sun",
     "className": "스트라이커",
     "role": "스트라이커",
@@ -4299,9 +4299,9 @@ const SAVIORS = [
   {
     "id": "clarissa",
     "name": "클라리사",
-    "subtitle": "카노푸스 레인저",
-    "affiliation": "카노푸스 레인저",
-    "grade": "SSR",
+    "subtitle": "카노푸스 경비대",
+    "affiliation": "카노푸스 경비대",
+    "grade": "SR",
     "element": "star",
     "className": "레인저",
     "role": "레인저",
