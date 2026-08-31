@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v96-local-arcana-db";
+const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v97-internal-arcana-links";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -444,8 +444,8 @@ const ELEMENT_LABELS = {
 
 
 const SAVIOR_DETAIL_ROOT = "https://star-savior-arcana-db.pages.dev/savior";
-const ARCANA_DETAIL_ROOT = "https://star-savior-arcana-db.pages.dev/arcana";
 const ARCANA_IMAGE_ROOT = "./images/arcana";
+const LOCAL_ARCANA_CARD_ROOT = "./data/arcana-assets/cards";
 
 const SAVIOR_DETAIL_IDS = {
   "asherah-voyager": 1001,
@@ -684,6 +684,14 @@ const ARCANA_LIBRARY = {
     { name: "영원 속박의 굴레", image: "./images/arcana/영원속박의굴레.webp" }
   ]
 };
+
+// 구원자 세팅 카드도 독립 아르카나 탭과 같은 로컬 백업 이미지를 사용합니다.
+// 기존 이미지 표기는 아래에서 전부 ID 기반 로컬 경로로 덮어씁니다.
+Object.values(ARCANA_LIBRARY).flat().forEach((card) => {
+  const detailId = ARCANA_DETAIL_IDS[card.name];
+  card.detailId = detailId || null;
+  card.image = detailId ? `${LOCAL_ARCANA_CARD_ROOT}/${detailId}.webp` : "";
+});
 
 ARCANA_LIBRARY["웨핀델"] = ARCANA_LIBRARY["웨딩 에핀델"];
 
@@ -6701,7 +6709,7 @@ function resolveArcanaChoices(rawName) {
   }
 
   const aliases = normalized
-    .split(/\s+or\s+/i)
+    .split(/\s*or\s*/i)
     .map((value) => normalizeArcanaAlias(value))
     .filter(Boolean);
 
@@ -6710,7 +6718,7 @@ function resolveArcanaChoices(rawName) {
 
 function getArcanaDetailUrl(name) {
   const detailId = ARCANA_DETAIL_IDS[name];
-  return detailId ? `${ARCANA_DETAIL_ROOT}/${detailId}` : "";
+  return detailId ? `#arcana/${detailId}` : "";
 }
 
 function createArcanaImages(choices) {
@@ -6727,10 +6735,9 @@ function createArcanaImages(choices) {
         return detailUrl
           ? `
             <a class="arcana-card-link" href="${escapeHtml(detailUrl)}"
-              target="_blank" rel="noopener noreferrer"
               aria-label="${escapeHtml(`${localizedName} ${detailLabel}`)}">
               <img src="${escapeHtml(choice.image)}" alt="${escapeHtml(localizedName)}"
-                loading="lazy" referrerpolicy="no-referrer"
+                loading="lazy"
                 onerror="this.style.display='none'">
             </a>
           `
@@ -6757,7 +6764,6 @@ function createArcanaNameLinks(choices) {
     const sourceAttr = escapeHtml(choice.name);
     const nameMarkup = detailUrl
       ? `<a class="arcana-card-name-link" href="${escapeHtml(detailUrl)}"
-          target="_blank" rel="noopener noreferrer"
           data-i18n-kind="arcana" data-i18n-source="${sourceAttr}">${escapeHtml(localizedName)}</a>`
       : `<span data-i18n-kind="arcana" data-i18n-source="${sourceAttr}">${escapeHtml(localizedName)}</span>`;
 
@@ -8752,11 +8758,28 @@ function installArcanaCardStyles() {
       pointer-events: none;
     }
 
+    .arcana-card-link {
+      display: block;
+      min-width: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
     .arcana-card-images img {
       width: 100%;
       height: 100%;
       min-width: 0;
       object-fit: cover;
+      object-position: center 24%;
+    }
+
+    .arcana-card-name-link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .arcana-card-name-link:hover {
+      color: var(--accent);
     }
 
     .arcana-card-copy {
