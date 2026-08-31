@@ -1,0 +1,72 @@
+name: Backup Savior skills
+
+on:
+  workflow_dispatch:
+    inputs:
+      refresh_all:
+        description: 'Download every skill/effect icon again'
+        required: false
+        default: false
+        type: boolean
+  push:
+    paths:
+      - '.github/workflows/backup-savior-skills.yml'
+      - 'scripts/backup-savior-skills.mjs'
+
+permissions:
+  contents: write
+
+jobs:
+  backup-savior-skills:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Validate backup script
+        run: node --check scripts/backup-savior-skills.mjs
+
+      - name: Refresh localized Savior skills
+        env:
+          REFRESH_ALL: ${{ github.event.inputs.refresh_all || 'false' }}
+        run: node scripts/backup-savior-skills.mjs
+
+      - name: Validate local backup
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+
+          const manifest = JSON.parse(fs.readFileSync('data/savior-skills/manifest.json', 'utf8'));
+          const archive = JSON.parse(fs.readFileSync('data/savior-skills/saviors.json', 'utf8'));
+
+          if (manifest.saviorCount !== 52 || archive.saviors?.length !== 52) {
+            throw new Error('The Savior backup must contain exactly 52 Saviors.');
+          }
+          if (manifest.skillCount !== 208 || manifest.blossomSkillCount !== 32) {
+            throw new Error('The Savior skill counts do not match the source database.');
+          }
+          if (JSON.stringify(manifest.languages) !== JSON.stringify(['ko', 'en', 'ja'])) {
+            throw new Error('Only Korean, English, and Japanese are allowed.');
+          }
+          NODE
+
+      - name: Commit local Savior skill backup
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- data/savior-skills data/savior-skill-assets)" ]; then
+            echo 'No Savior skill changes to commit.'
+            exit 0
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/savior-skills data/savior-skill-assets
+          git commit -m 'Refresh localized Savior skill backup'
+          git push
