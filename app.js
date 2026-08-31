@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = "v92-arcana-clean-layout-search-fix";
+const SITE_BUILD_VERSION = "v94-remove-list-buttons";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -4829,7 +4829,6 @@ const simpleView = document.querySelector("#simple-view");
 const saviorGrid = document.querySelector("#savior-grid");
 const detailContent = document.querySelector("#detail-content");
 const simpleContent = document.querySelector("#simple-content");
-const simpleBackButton = simpleView.querySelector(".back-button");
 const searchInput = document.querySelector("#search-input");
 const visibleCount = document.querySelector("#visible-count");
 const totalCount = document.querySelector("#total-count");
@@ -7829,10 +7828,8 @@ function updateJourneyArchiveLanguage() {
 function openSimple(section, options = {}) {
   if (section === "journey") {
     simpleContent.innerHTML = createJourneyDatabaseMarkup();
-    simpleBackButton.hidden = true;
   } else if (section === "equipment") {
     simpleContent.innerHTML = createEquipmentDatabaseMarkup();
-    simpleBackButton.hidden = true;
   } else {
     const data = getSimpleSection(section);
     if (!data) {
@@ -7840,7 +7837,6 @@ function openSimple(section, options = {}) {
       return;
     }
 
-    simpleBackButton.hidden = false;
     simpleContent.innerHTML = `
       <section class="simple-panel">
         <header class="simple-panel-header">

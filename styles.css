@@ -255,10 +255,14 @@ main {
   min-height: calc(100vh - 180px);
 }
 
-.list-view,
+.list-view {
+  padding: 54px 0 80px;
+  animation: view-in 180ms ease;
+}
+
 .detail-view,
 .simple-view {
-  padding: 54px 0 80px;
+  padding: 24px 0 80px;
   animation: view-in 180ms ease;
 }
 
@@ -668,26 +672,6 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 .empty-state p {
   margin: 3px 0 0;
   font-size: 13px;
-}
-
-.back-button {
-  display: inline-flex;
-  min-height: 38px;
-  align-items: center;
-  gap: 7px;
-  margin-bottom: 18px;
-  padding: 8px 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 850;
-  cursor: pointer;
-}
-
-.back-button:hover {
-  color: var(--text);
 }
 
 .detail-hero {
@@ -1289,21 +1273,6 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
   text-decoration: none;
 }
 
-.footer-hits {
-  margin-top: 10px;
-}
-
-.footer-hits a {
-  display: inline-flex;
-  align-items: center;
-}
-
-.footer-hits img {
-  display: block;
-  width: auto;
-  height: 20px;
-}
-
 .noscript {
   position: fixed;
   z-index: 999;
@@ -1383,10 +1352,13 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
     height: 35px;
   }
 
-  .list-view,
+  .list-view {
+    padding: 35px 0 58px;
+  }
+
   .detail-view,
   .simple-view {
-    padding: 35px 0 58px;
+    padding: 16px 0 58px;
   }
 
   .page-heading {
