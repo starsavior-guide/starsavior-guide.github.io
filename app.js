@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v97-internal-arcana-links";
+const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v98-resonance-search-i18n";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -4885,6 +4885,14 @@ function getInitial(name) {
   return [...String(name || "✦")][0] || "✦";
 }
 
+function normalizeGuideSearch(value) {
+  return String(value || "")
+    .normalize("NFKC")
+    .replace(/\s+/g, "")
+    .trim()
+    .toLocaleLowerCase();
+}
+
 function imageMarkup(savior, large = false) {
   const localizedName = getLocalizedSaviorName(savior.name);
   const fallback = `<span class="character-fallback">${escapeHtml(getInitial(localizedName))}</span>`;
@@ -4897,7 +4905,7 @@ function imageMarkup(savior, large = false) {
 }
 
 function renderList() {
-  const q = state.query.trim().toLocaleLowerCase("ko-KR");
+  const q = normalizeGuideSearch(state.query);
 
   const filtered = SAVIORS.filter((savior) => {
     const haystack = [
@@ -4914,10 +4922,11 @@ function renderList() {
       savior.attackType,
       translateString(savior.attackType),
       ELEMENT_LABELS[savior.element],
-      translateString(ELEMENT_LABELS[savior.element])
-    ].join(" ").toLocaleLowerCase(LANGUAGE_HTML_CODES[currentLanguage] || "ko-KR");
+      translateString(ELEMENT_LABELS[savior.element]),
+      getSaviorResonanceSearchText(savior)
+    ].join(" ");
 
-    const queryMatch = !q || haystack.includes(q);
+    const queryMatch = !q || normalizeGuideSearch(haystack).includes(q);
     const elementMatch = state.element === "all" || savior.element === state.element;
     const classMatch = state.className === "all" || savior.className === state.className;
 
@@ -5040,6 +5049,7 @@ const SAVIOR_SKILL_META_LABELS = {
   ja: { turn: "ターン", nova: "ノヴァ獲得" }
 };
 let saviorSkillArchivePromise = null;
+let saviorSkillArchiveById = new Map();
 
 function getSaviorSkillLanguage(language = currentLanguage) {
   return SUPPORTED_LANGUAGES.includes(language) ? language : "ko";
@@ -5059,6 +5069,7 @@ async function loadSaviorSkillArchive() {
       if (!Array.isArray(archive?.saviors) || archive.saviors.length !== 52) {
         throw new Error("Invalid Savior skill archive");
       }
+      saviorSkillArchiveById = new Map(archive.saviors.map((savior) => [Number(savior.id), savior]));
       return archive;
     }).catch((error) => {
       saviorSkillArchivePromise = null;
@@ -5066,6 +5077,29 @@ async function loadSaviorSkillArchive() {
     });
   }
   return saviorSkillArchivePromise;
+}
+
+function getArchivedSavior(savior) {
+  const detailId = SAVIOR_DETAIL_IDS[savior?.id];
+  return saviorSkillArchiveById.get(Number(detailId)) || null;
+}
+
+function getSaviorResonanceSearchText(savior) {
+  const archivedSavior = getArchivedSavior(savior);
+  return (archivedSavior?.resonancePotentials || []).flatMap((potential) =>
+    SUPPORTED_LANGUAGES.flatMap((language) => [
+      getArchivedLanguageText(potential.name, language),
+      getArchivedLanguageText(potential.description, language)
+    ])
+  ).join(" ");
+}
+
+function createArchivedSaviorResonanceRows(archivedSavior, language = currentLanguage) {
+  return (archivedSavior?.resonancePotentials || []).map((potential) => ({
+    level: potential.step,
+    title: getArchivedLanguageText(potential.name, language),
+    description: getArchivedLanguageText(potential.description, language)
+  })).filter((row) => row.title || row.description);
 }
 
 function renderSaviorSourceRichText(value) {
@@ -5800,9 +5834,15 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options =
   const baseStats = SAVIOR_SOURCE_BASE_STATS.map(([label, percent]) => [label, extractSourceStat(baseTokens, label, percent)]);
   const journeyStats = SAVIOR_SOURCE_JOURNEY_STATS.map((label) => [label, extractSourceStat(journeyTokens, label, false)]);
   const profile = parseSaviorSourceProfile(tokens, baseIndex, savior);
-  const resonanceRows = extractSaviorResonanceRows(tokens, resonanceIndex, resonanceStopIndex);
   const parsedSkills = parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl);
   const archivedSavior = options.archivedSavior || null;
+  const archivedResonanceRows = createArchivedSaviorResonanceRows(
+    archivedSavior,
+    options.language || currentLanguage
+  );
+  const resonanceRows = archivedResonanceRows.length
+    ? archivedResonanceRows
+    : extractSaviorResonanceRows(tokens, resonanceIndex, resonanceStopIndex);
   const archivedSkills = archivedSavior
     ? createArchivedSaviorSkills(archivedSavior, {
         language: options.language || currentLanguage,
@@ -6980,7 +7020,7 @@ function getJourneyJsonPath(language = currentLanguage, archiveVersion = SITE_BU
 function normalizeJourneySearch(value) {
   // Journey search ignores whitespace so queries such as "누각위유리달맞이"
   // match "누각 위, 유리달 맞이" without changing the displayed text.
-  return String(value || "").normalize("NFKC").replace(/\s+/g, "").trim().toLocaleLowerCase();
+  return normalizeGuideSearch(value);
 }
 
 const JOURNEY_ARCANA_FOOTER_MARKERS = [
@@ -7004,7 +7044,10 @@ function isJourneyArcanaMetadataRow(row, entry) {
   const title = String(entry?.title || "").trim();
   const arcanaName = String(entry?.arcanaName || "").trim();
   const grade = String(entry?.grade || "").trim();
-  if (text === title || text === arcanaName || text === `[아르카나]${arcanaName}`) return true;
+  if (text === title || text === arcanaName) return true;
+  if (arcanaName && /^\[(?:아르카나|Arcana|アルカナ)\]/i.test(text)) {
+    return text.replace(/^\[(?:아르카나|Arcana|アルカナ)\]/i, "") === arcanaName;
+  }
   if (grade && text === grade) return true;
   return /^(구원자|Savior|救援者)\s*[:：]/i.test(text);
 }
@@ -7079,7 +7122,7 @@ function getJourneyEntrySearchText(entry) {
       .filter(Boolean)
       .join(" ");
     return normalizeJourneySearch(
-      `${entry?.arcanaName || ""} ${entry?.title || ""} ${entry?.savior || ""} ${eventTitles}`
+      `${entry?.arcanaName || ""} ${entry?.title || ""} ${entry?.savior || ""} ${eventTitles} ${entry?.searchText || ""}`
     );
   }
 
@@ -7606,7 +7649,11 @@ function renderJourneyArcanaEventBody(group) {
 function renderJourneyArcanaEntry(entry) {
   const labels = getJourneyLabels();
   const groups = getJourneyArcanaEventGroups(entry);
-  const title = entry?.title || (entry?.arcanaName ? `[아르카나]${entry.arcanaName}` : "");
+  const sourceTitle = String(entry?.title || "").trim();
+  const arcanaName = String(entry?.arcanaName || "").trim();
+  const title = arcanaName
+    ? `[${labels.arcana}]${arcanaName}`
+    : sourceTitle.replace(/^\[(?:아르카나|Arcana|アルカナ)\]/i, `[${labels.arcana}]`);
   const grade = String(entry?.grade || "").trim();
   const savior = String(entry?.savior || "").trim();
 
@@ -7839,6 +7886,7 @@ const ARCANA_LEVELS = [35, 40, 45, 50];
 const ARCANA_MAIN_STAT_ORDER = ["힘", "체력", "인내", "집중", "보호", "구원자"];
 const ARCANA_RARITY_ORDER = { SSR: 0, SR: 1, R: 2 };
 let arcanaArchivePromise = null;
+let arcanaSearchIndex = new Map();
 const arcanaDatabaseState = {
   data: null,
   query: "",
@@ -8010,6 +8058,10 @@ async function loadArcanaArchive() {
       if (!archive.localOnly || !Array.isArray(archive.potentials) || !Array.isArray(archive.journeyBuffs)) {
         throw new Error("Incomplete Arcana archive");
       }
+      arcanaSearchIndex = new Map(archive.arcanas.map((arcana) => [
+        Number(arcana.id),
+        normalizeGuideSearch(getArcanaSearchText(arcana, archive))
+      ]));
       return archive;
     }).catch((error) => {
       arcanaArchivePromise = null;
@@ -8087,22 +8139,60 @@ function renderArcanaMainStatFilters() {
   }).join("");
 }
 
+function collectArcanaSearchStrings(value, output = [], key = "") {
+  if (value == null) return output;
+  if (typeof value === "string") {
+    if (!["image", "icon", "background", "mainStatIcon", "source"].includes(key)) {
+      output.push(value.replace(/<[^>]*>/g, " "));
+    }
+    return output;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item) => collectArcanaSearchStrings(item, output, key));
+    return output;
+  }
+  if (typeof value === "object") {
+    Object.entries(value).forEach(([childKey, childValue]) => {
+      if (childKey !== "iconAssets") collectArcanaSearchStrings(childValue, output, childKey);
+    });
+  }
+  return output;
+}
+
+function getArcanaSearchText(arcana, archive) {
+  const potentialIds = new Set();
+  const journeyBuffIds = new Set();
+  if (arcana.specialPotentialId != null) potentialIds.add(Number(arcana.specialPotentialId));
+
+  const collectRewardReferences = (value) => {
+    if (!value) return;
+    if (Array.isArray(value)) {
+      value.forEach(collectRewardReferences);
+      return;
+    }
+    if (typeof value !== "object") return;
+    if (value.type === "RT_SE_POTEN" && value.rewardId != null) potentialIds.add(Number(value.rewardId));
+    if (value.type === "RT_JOURNEY_BUFF" && value.rewardId != null) journeyBuffIds.add(Number(value.rewardId));
+    Object.values(value).forEach(collectRewardReferences);
+  };
+  collectRewardReferences(arcana.events);
+
+  const referencedPotentials = (archive.potentials || []).filter((potential) => potentialIds.has(Number(potential.id)));
+  const referencedBuffs = (archive.journeyBuffs || []).filter((buff) => journeyBuffIds.has(Number(buff.id)));
+  return collectArcanaSearchStrings([arcana, referencedPotentials, referencedBuffs]).join(" ");
+}
+
 function getFilteredArcanas() {
   const archive = arcanaDatabaseState.data;
   if (!archive) return [];
-  const query = arcanaDatabaseState.query.trim().toLocaleLowerCase(LANGUAGE_HTML_CODES[currentLanguage] || "ko-KR");
+  const query = normalizeGuideSearch(arcanaDatabaseState.query);
   return archive.arcanas.filter((arcana) => {
     if (arcanaDatabaseState.rarity !== "all" && arcana.rarity !== arcanaDatabaseState.rarity) return false;
     if (arcanaDatabaseState.mainStat !== "all" && getArcanaArchiveText(arcana.mainStat, "ko") !== arcanaDatabaseState.mainStat) return false;
     if (!query) return true;
-    const haystack = [
-      ...SUPPORTED_LANGUAGES.map((language) => getArcanaArchiveText(arcana.name, language)),
-      ...SUPPORTED_LANGUAGES.map((language) => getArcanaArchiveText(arcana.character, language)),
-      ...SUPPORTED_LANGUAGES.map((language) => getArcanaArchiveText(arcana.mainStat, language)),
-      ...arcana.assists.flatMap((assist) => SUPPORTED_LANGUAGES.map((language) => getArcanaArchiveText(assist, language))),
-      arcana.rarity
-    ].join(" ").toLocaleLowerCase(LANGUAGE_HTML_CODES[currentLanguage] || "ko-KR");
-    return haystack.includes(query);
+    const searchText = arcanaSearchIndex.get(Number(arcana.id))
+      || normalizeGuideSearch(getArcanaSearchText(arcana, archive));
+    return searchText.includes(query);
   }).sort((a, b) => {
     const rarity = (ARCANA_RARITY_ORDER[a.rarity] ?? 9) - (ARCANA_RARITY_ORDER[b.rarity] ?? 9);
     if (rarity) return rarity;
@@ -8889,6 +8979,11 @@ window.addEventListener("hashchange", syncFromHash);
 applyRequestedLayoutFixes();
 installArcanaCardStyles();
 renderList();
+loadSaviorSkillArchive().then(() => {
+  if (!listView.hidden) renderList();
+}).catch((error) => {
+  console.warn("Savior resonance search archive load failed:", error);
+});
 refreshLanguageChrome();
 applyTheme(readSavedTheme() || "dark", { skipSave: true });
 syncFromHash();
