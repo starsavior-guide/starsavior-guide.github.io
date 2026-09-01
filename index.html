@@ -1069,8 +1069,8 @@
     .journey-status.error { color:#ff9da6; }
     .journey-status small { display:block; margin-top:8px; opacity:.75; }
     .journey-entry-card { min-width:0; padding:14px; border:1px solid var(--line); border-radius:15px; background:color-mix(in srgb,var(--surface-2) 72%,#020817); }
-    .journey-data-row { display:flex; min-width:0; align-items:center; flex-wrap:wrap; gap:6px; padding:3px 0; color:var(--text); font-size:14px; font-weight:680; line-height:1.55; overflow-wrap:anywhere; }
-    .journey-data-row.is-title { padding:0 0 5px; color:color-mix(in srgb,var(--accent) 62%,var(--text)); font-size:18px; font-weight:950; line-height:1.3; }
+    .journey-data-row { display:flex; min-width:0; align-items:center; flex-wrap:wrap; gap:5px; padding:4px 0; color:var(--text); font-size:15px; font-weight:700; line-height:1.58; overflow-wrap:anywhere; }
+    .journey-data-row.is-title { padding:0 0 6px; color:color-mix(in srgb,var(--accent) 62%,var(--text)); font-size:19px; font-weight:950; line-height:1.3; }
     .journey-data-row.is-difficulty { display:inline-flex; width:fit-content; margin:4px 0; padding:3px 8px; border:1px solid var(--line-strong); border-radius:7px; background:var(--surface); font-size:12px; font-weight:900; }
     .journey-result-block { margin:5px 0; padding:7px 9px; border:1px solid var(--line); border-radius:9px; }
     .journey-result-block.tone-success { border-color:rgba(30,125,79,.30); background:rgba(0,67,42,.25); }
@@ -1078,9 +1078,9 @@
     .journey-result-block.tone-highlight { border-color:rgba(190,146,54,.34); background:rgba(99,67,12,.20); }
     .journey-result-block.tone-neutral { background:color-mix(in srgb,var(--surface) 65%,transparent); }
     .journey-arcana-event-group { margin-top:14px; padding:13px; border:1px solid color-mix(in srgb,var(--line) 62%,transparent); border-radius:13px; background:transparent; }
-    .journey-arcana-event-title { margin:0 0 10px; color:var(--text); font-size:15px; font-weight:950; line-height:1.4; }
+    .journey-arcana-event-title { margin:0 0 10px; color:var(--text); font-size:17px; font-weight:950; line-height:1.4; }
     .journey-arcana-result-block { margin:7px 0; padding:10px 12px; }
-    .journey-arcana-detail-line { display:flex; width:100%; min-width:0; align-items:center; flex-wrap:wrap; gap:7px; padding:3px 0; color:var(--text); font-size:14px; font-weight:720; line-height:1.55; overflow-wrap:anywhere; }
+    .journey-arcana-detail-line { display:flex; width:100%; min-width:0; align-items:center; flex-wrap:wrap; gap:6px; padding:4px 0; color:var(--text); font-size:15px; font-weight:720; line-height:1.58; overflow-wrap:anywhere; }
     .journey-arcana-detail-line.is-effect-title { font-weight:900; }
     .journey-arcana-detail-line.is-effect-desc { color:color-mix(in srgb,var(--text) 88%,var(--muted)); font-weight:680; }
     .journey-arcana-detail-line.is-buff-label { margin-top:2px; color:rgba(91,188,142,.98); font-weight:900; }
@@ -1101,7 +1101,7 @@
     .journey-arcana-structured-choices.is-automatic { gap:0; }
     .journey-arcana-automatic-choice { min-width:0; }
     .journey-arcana-automatic-choice .journey-arcana-result-block { margin:0; }
-    .journey-arcana-choice-title { display:flex; align-items:center; gap:8px; margin:0 0 9px; font-size:14px; font-weight:950; line-height:1.45; }
+    .journey-arcana-choice-title { display:flex; align-items:center; gap:8px; margin:0 0 9px; font-size:15px; font-weight:950; line-height:1.45; }
     .journey-arcana-choice-title span { display:inline-flex; flex:0 0 23px; width:23px; height:23px; align-items:center; justify-content:center; border:1px solid currentColor; border-radius:50%; font-size:11px; }
     .journey-arcana-choice-stack.tone-success .journey-arcana-choice-title,
     .journey-arcana-choice-stack.tone-failure .journey-arcana-choice-title { color:var(--text); }
@@ -1119,18 +1119,18 @@
     .journey-arcana-reward-group:last-child { padding-bottom:0; }
     .journey-arcana-reward-group + .journey-arcana-reward-group { border-top:1px solid color-mix(in srgb,var(--line) 58%,transparent); }
     .journey-arcana-reward-alternative { flex:1 1 210px; min-width:0; padding:0; border:0; border-radius:0; background:transparent; }
-    .journey-arcana-reward-main { display:flex; min-width:0; align-items:center; gap:7px; flex-wrap:wrap; }
-    .journey-arcana-reward-icon { position:relative; display:inline-flex; flex:0 0 32px; width:32px; height:32px; vertical-align:middle; }
-    .journey-arcana-reward-icon img { position:absolute; inset:0; display:block; width:32px; height:32px; max-width:32px; max-height:32px; object-fit:contain; }
-    .journey-arcana-reward-label { min-width:0; color:var(--text); font-size:13px; font-weight:900; line-height:1.45; overflow-wrap:anywhere; }
-    .journey-arcana-reward-value { margin-left:auto; color:var(--text); font-size:13px; font-weight:950; white-space:nowrap; }
+    .journey-arcana-reward-main { display:flex; width:fit-content; max-width:100%; min-width:0; align-items:center; gap:6px; flex-wrap:wrap; }
+    .journey-arcana-reward-icon { position:relative; display:inline-flex; flex:0 0 34px; width:34px; height:34px; vertical-align:middle; }
+    .journey-arcana-reward-icon img { position:absolute; inset:0; display:block; width:34px; height:34px; max-width:34px; max-height:34px; object-fit:contain; }
+    .journey-arcana-reward-label { min-width:0; color:var(--text); font-size:14px; font-weight:900; line-height:1.45; overflow-wrap:anywhere; }
+    .journey-arcana-reward-value { margin-left:0; color:var(--text); font-size:14px; font-weight:950; white-space:nowrap; }
     .journey-arcana-reward-alternative.polarity-positive .journey-arcana-reward-value { color:rgba(104,213,158,.98); }
     .journey-arcana-reward-alternative.polarity-negative .journey-arcana-reward-value { color:rgba(238,139,150,.98); }
     .journey-arcana-reward-alternative.effect-positive .journey-arcana-reward-label,
     .journey-arcana-reward-alternative.effect-negative .journey-arcana-reward-label { color:var(--text); }
     .journey-arcana-reward-alternative.effect-special .journey-arcana-reward-label { color:#e2bd67; }
     .journey-arcana-reward-alternative.reward-type-rt-journey-buff .journey-arcana-reward-value { color:var(--text) !important; }
-    .journey-arcana-reward-description { margin-top:5px; padding-top:0; border-top:0; color:var(--text); font-size:12px; font-weight:680; line-height:1.55; }
+    .journey-arcana-reward-description { max-width:760px; margin-top:5px; padding-top:0; border-top:0; color:var(--text); font-size:13px; font-weight:680; line-height:1.6; }
     .journey-arcana-reward-alternative.effect-positive .journey-arcana-reward-description,
     .journey-arcana-reward-alternative.effect-negative .journey-arcana-reward-description { color:var(--text); }
     .journey-arcana-reward-or { display:inline-flex; align-items:center; justify-content:center; color:var(--muted); font-size:11px; font-weight:900; text-transform:uppercase; }
@@ -1154,16 +1154,16 @@
       .journey-category-row { gap:6px; margin-top:9px; }
       .journey-category-button { min-height:38px; padding:0 11px; font-size:12px; }
       .journey-results { gap:12px; padding:10px; }
-      .journey-entry-card { padding:12px; border-radius:13px; }
-      .journey-data-row { font-size:13px; }
-      .journey-data-row.is-title { font-size:17px; }
+      .journey-entry-card { padding:13px; border-radius:13px; }
+      .journey-data-row { font-size:14px; line-height:1.6; }
+      .journey-data-row.is-title { font-size:18px; }
       .journey-inline-icon-stack,.journey-inline-icon-stack img { width:28px; height:28px; max-width:28px; max-height:28px; flex-basis:28px; }
-      .journey-arcana-choice-title { font-size:13px; }
+      .journey-arcana-choice-title { font-size:14px; }
       .journey-arcana-reward-group { display:grid; grid-template-columns:minmax(0,1fr); }
       .journey-arcana-reward-alternative { width:100%; padding:0; }
       .journey-arcana-reward-or { min-height:17px; }
-      .journey-arcana-reward-label,.journey-arcana-reward-value { font-size:12px; }
-      .journey-arcana-reward-description { font-size:11px; }
+      .journey-arcana-reward-label,.journey-arcana-reward-value { font-size:13.5px; }
+      .journey-arcana-reward-description { font-size:12.5px; }
     }
     @media (max-width:390px) {
       .journey-top-row { grid-template-columns:112px minmax(0,1fr); }

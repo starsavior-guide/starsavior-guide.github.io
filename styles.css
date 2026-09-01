@@ -1305,13 +1305,20 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
   padding: 10px 2px 4px;
 }
 
-.arcana-db-heading h1,
-.arcana-detail-intro h1 {
+.arcana-db-heading h1 {
   margin: 0;
   font-size: clamp(38px, 6vw, 58px);
   font-weight: 950;
   letter-spacing: -0.055em;
   line-height: 1.06;
+}
+
+.arcana-detail-intro h1 {
+  margin: 0;
+  font-size: clamp(44px, 5.5vw, 72px);
+  font-weight: 950;
+  letter-spacing: -0.055em;
+  line-height: 1.04;
 }
 
 .arcana-db-heading > div:first-child > p:last-child {
@@ -1451,8 +1458,8 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 
 .arcana-index-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .arcana-index-card {
@@ -1538,25 +1545,28 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 
 .arcana-index-copy {
   display: grid;
-  min-height: 112px;
+  min-height: 110px;
   align-content: start;
-  gap: 3px;
-  padding: 13px 14px 14px;
+  gap: 4px;
+  padding: 13px;
 }
 
 .arcana-index-copy > strong {
+  display: -webkit-box;
   overflow: hidden;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 950;
   line-height: 1.35;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .arcana-index-copy > span {
   overflow: hidden;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 750;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1568,7 +1578,7 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
   gap: 6px;
   margin-top: 7px;
   color: var(--text);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 850;
 }
 
@@ -1650,7 +1660,7 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(28px, 5vw, 56px);
+  padding: clamp(26px, 4vw, 48px);
 }
 
 .arcana-detail-badges {
@@ -1661,32 +1671,32 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 }
 
 .arcana-detail-badges span {
-  padding: 5px 9px;
+  padding: 6px 10px;
   border: 1px solid var(--line);
   border-radius: 7px;
   background: var(--surface-2);
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 900;
 }
 
 .arcana-detail-intro dl {
   display: grid;
   gap: 0;
-  margin: 28px 0 0;
+  margin: 26px 0 0;
 }
 
 .arcana-detail-intro dl > div {
   display: grid;
-  grid-template-columns: 110px minmax(0, 1fr);
-  gap: 16px;
-  padding: 11px 0;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 14px;
+  padding: 13px 0;
   border-top: 1px solid var(--line);
 }
 
 .arcana-detail-intro dt {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 850;
 }
 
@@ -1696,7 +1706,7 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
   gap: 7px;
   margin: 0;
   color: var(--text);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 850;
 }
 
@@ -1904,9 +1914,10 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 .arcana-effect-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 9px 0;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 0;
 }
 
 .arcana-effect-row + .arcana-effect-row {
@@ -1915,14 +1926,14 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 
 .arcana-effect-row span {
   color: var(--text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 750;
 }
 
 .arcana-effect-row strong {
   flex: 0 0 auto;
   color: var(--accent);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 950;
 }
 
@@ -1982,7 +1993,7 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 }
 
 .arcana-choice > h4 {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .arcana-choice > h4 > span {
@@ -1993,7 +2004,7 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 
 .arcana-choice-result {
   display: grid;
-  grid-template-columns: 68px minmax(0, 1fr);
+  grid-template-columns: 72px minmax(0, 760px);
   gap: 12px;
   margin-top: 12px;
   padding: 12px 0 0 12px;
@@ -2007,7 +2018,7 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 
 .arcana-choice-result > strong {
   color: var(--success);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 950;
 }
 
@@ -2035,19 +2046,43 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 }
 
 .arcana-reward-item > span,
-.arcana-reward-item.is-rich > div > span {
+.arcana-reward-title > span {
   min-width: 0;
   flex: 1;
   color: var(--text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 850;
 }
 
 .arcana-reward-item > strong {
-  margin-left: auto;
+  margin-left: 0;
   color: var(--success);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 950;
+}
+
+.arcana-reward-title {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.arcana-reward-title > span {
+  flex: 0 1 auto;
+}
+
+.arcana-reward-title > strong {
+  flex: 0 0 auto;
+  color: var(--success);
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.arcana-reward-item:not(.is-rich) > span {
+  flex: 0 1 auto;
 }
 
 .arcana-reward-item > strong.is-negative {
@@ -2074,7 +2109,7 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 .arcana-reward-item.is-rich p {
   margin: 3px 0 0;
   color: var(--text);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   line-height: 1.6;
 }
@@ -2088,7 +2123,7 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 
 @media (max-width: 1000px) {
   .arcana-index-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .savior-grid {
@@ -2110,6 +2145,10 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
   }
 
   .savior-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .arcana-index-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
@@ -2269,12 +2308,20 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
   }
 
   .arcana-index-copy {
-    min-height: 104px;
-    padding: 11px;
+    min-height: 106px;
+    padding: 12px;
   }
 
   .arcana-index-copy > strong {
-    font-size: 13px;
+    font-size: 14px;
+  }
+
+  .arcana-index-copy > span {
+    font-size: 12.5px;
+  }
+
+  .arcana-index-copy > small {
+    font-size: 12px;
   }
 
   .arcana-detail-hero {
@@ -2291,6 +2338,35 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 
   .arcana-detail-intro {
     padding: 24px 18px 28px;
+  }
+
+  .arcana-detail-intro h1 {
+    font-size: clamp(42px, 13vw, 56px);
+  }
+
+  .arcana-detail-intro dt {
+    font-size: 12.5px;
+  }
+
+  .arcana-detail-intro dd {
+    font-size: 15px;
+  }
+
+  .arcana-choice-result {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding-left: 10px;
+  }
+
+  .arcana-reward-item > span,
+  .arcana-reward-title > span,
+  .arcana-reward-item > strong,
+  .arcana-reward-title > strong {
+    font-size: 13.5px;
+  }
+
+  .arcana-reward-item.is-rich p {
+    font-size: 12.5px;
   }
 
   .arcana-level-picker {

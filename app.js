@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v100-final-db-sync";
+const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v101-layout-readability";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -8403,7 +8403,7 @@ function createArcanaRewardMarkup(reward) {
       <div class="arcana-reward-item is-rich">
         ${createArcanaPotentialIcon(potential)}
         <div>
-          <span>${escapeHtml(getArcanaArchiveText(potential.name))}</span>
+          <div class="arcana-reward-title"><span>${escapeHtml(getArcanaArchiveText(potential.name))}</span></div>
           <p>${renderArcanaRichText(getArcanaArchiveText(potential.description))}</p>
         </div>
       </div>
@@ -8416,10 +8416,12 @@ function createArcanaRewardMarkup(reward) {
       <div class="arcana-reward-item is-rich">
         <img src="${escapeHtml(buff.icon)}" alt="" loading="lazy">
         <div>
-          <span>${escapeHtml(getArcanaArchiveText(buff.name))}</span>
+          <div class="arcana-reward-title">
+            <span>${escapeHtml(getArcanaArchiveText(buff.name))}</span>
+            ${amount ? `<strong>${escapeHtml(amount.replace(/^\+/, ""))}${escapeHtml(arcanaUi("turns"))}</strong>` : ""}
+          </div>
           <p>${renderArcanaRichText(getArcanaArchiveText(buff.description))}</p>
         </div>
-        ${amount ? `<strong>${escapeHtml(amount.replace(/^\+/, ""))}${escapeHtml(arcanaUi("turns"))}</strong>` : ""}
       </div>
     `;
   }
@@ -8504,7 +8506,7 @@ function createArcanaDetailMarkup(arcana) {
           <img src="${escapeHtml(arcana.image)}" alt="${escapeHtml(name)}">
         </div>
         <div class="arcana-detail-intro">
-          <p class="eyebrow">ARCANA DATABASE · ${escapeHtml(arcanaUi("localArchive"))}</p>
+          <p class="eyebrow">ARCANA DATABASE</p>
           <div class="arcana-detail-badges"><span>${escapeHtml(arcana.rarity)}</span><span>${escapeHtml(mainStat)}</span></div>
           <h1>${escapeHtml(name)}</h1>
           <dl>
