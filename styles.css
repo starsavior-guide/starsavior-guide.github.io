@@ -927,22 +927,22 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 .build-heading {
   display: flex;
   align-items: center;
-  gap: 11px;
-  padding: 14px;
+  gap: 15px;
+  padding: 18px;
   border-bottom: 1px solid color-mix(in srgb, var(--build-color) 52%, var(--line));
   background: var(--build-soft);
 }
 
 .mode-badge {
   display: grid;
-  width: 45px;
-  height: 45px;
+  width: 58px;
+  height: 58px;
   flex: 0 0 auto;
   place-items: center;
-  border-radius: 9px;
+  border-radius: 11px;
   background: var(--build-color);
   color: white;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 950;
 }
 
@@ -953,26 +953,28 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 
 .build-heading small {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 800;
+  line-height: 1.35;
 }
 
 .build-heading strong {
-  margin-top: 1px;
-  font-size: 18px;
+  margin-top: 3px;
+  font-size: clamp(21px, 2.2vw, 27px);
   font-weight: 950;
+  line-height: 1.18;
 }
 
 .build-rows {
-  padding: 5px 14px 10px;
+  padding: 6px 18px 12px;
 }
 
 .build-row {
   display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 13px;
-  align-items: start;
-  padding: 11px 0;
+  grid-template-columns: minmax(100px, 140px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  padding: 16px 0;
 }
 
 .build-row + .build-row {
@@ -981,23 +983,92 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 
 .build-row dt {
   color: var(--muted);
-  font-size: 11px;
+  font-size: clamp(14px, 1.35vw, 16px);
   font-weight: 850;
+  line-height: 1.4;
 }
 
 .build-row dd {
   margin: 0;
-  font-size: 13px;
+  min-width: 0;
+  font-size: clamp(15px, 1.45vw, 18px);
   font-weight: 800;
-  text-align: right;
+  line-height: 1.45;
+  text-align: left;
 }
 
-.build-row dd span {
+.equipment-set-list {
+  display: grid;
+  gap: 10px;
+}
+
+.equipment-set-combination {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.equipment-set-combination + .equipment-set-combination {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.equipment-set-part {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.equipment-set-joined {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.equipment-set-icon {
+  width: clamp(46px, 5vw, 58px);
+  height: clamp(46px, 5vw, 58px);
+  flex: 0 0 auto;
+  object-fit: contain;
+  border: 1px solid color-mix(in srgb, var(--build-color) 46%, var(--line));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--build-color) 10%, var(--surface));
+}
+
+.equipment-set-label {
+  color: var(--text);
+  font-size: clamp(15px, 1.55vw, 19px);
+  font-weight: 950;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.equipment-set-suffix {
+  color: var(--muted);
+  font-size: 0.82em;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.equipment-set-plus {
+  color: var(--faint);
+  font-size: clamp(17px, 1.8vw, 22px);
+  font-weight: 950;
+  line-height: 1;
+}
+
+.equipment-set-plain {
   display: block;
 }
 
-.build-row dd span + span {
-  margin-top: 3px;
+.build-row .build-set-note {
+  margin-top: 2px;
+  font-size: clamp(13px, 1.25vw, 15px);
+  line-height: 1.5;
 }
 
 .arcana-mode + .arcana-mode {
@@ -2274,6 +2345,77 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
   .skill-grid,
   .build-grid {
     grid-template-columns: 1fr;
+  }
+
+  .build-heading {
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .mode-badge {
+    width: 52px;
+    height: 52px;
+    font-size: 14px;
+  }
+
+  .build-heading small {
+    font-size: 12px;
+  }
+
+  .build-heading strong {
+    font-size: 22px;
+  }
+
+  .build-rows {
+    padding: 5px 14px 10px;
+  }
+
+  .build-row {
+    grid-template-columns: 86px minmax(0, 1fr);
+    gap: 12px;
+    padding: 14px 0;
+  }
+
+  .build-row dt {
+    font-size: 14px;
+  }
+
+  .build-row dd {
+    font-size: 16px;
+  }
+
+  .equipment-set-list {
+    gap: 9px;
+  }
+
+  .equipment-set-combination {
+    gap: 6px;
+  }
+
+  .equipment-set-part {
+    max-width: 100%;
+    gap: 6px;
+  }
+
+  .equipment-set-joined {
+    max-width: 100%;
+    gap: 6px;
+  }
+
+  .equipment-set-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+  }
+
+  .equipment-set-label {
+    font-size: 15px;
+    white-space: normal;
+    word-break: keep-all;
+  }
+
+  .equipment-set-plus {
+    font-size: 18px;
   }
 
   .arcana-slots {

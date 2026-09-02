@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v102-savior-profile-illustration";
+const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v101-layout-readability";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -42,28 +42,6 @@ Object.assign(I18N_DATA.ui.ja, {
   "구원자 상세정보":"救援者詳細情報","구원자 설명":"救援者説明","이름":"名前","등급":"レアリティ","유형":"タイプ",
   "기본 스테이터스":"基本ステータス","LV.200 기준":"Lv.200基準","여정 스테이터스":"旅程ステータス","공명 잠재력":"共鳴潜在力",
   "레벨":"レベル","스킬 정보":"スキル情報","스킬 레벨 정보":"スキルレベル情報","스킬 레벨 설명":"スキルレベル説明","노바 버스트":"ノヴァバースト"
-});
-Object.assign(I18N_DATA.ui.en, {
-  "일러스트": "Illustration",
-  "일러스트를 불러오는 중입니다.": "Loading the saved illustration.",
-  "일러스트 백업 데이터를 불러올 수 없습니다.": "The saved illustration could not be loaded.",
-  "일러스트 펼치기": "Expand illustration",
-  "일러스트 접기": "Collapse illustration",
-  "생일": "Birthday",
-  "신장": "Height",
-  "출신": "Origin",
-  "소속": "Affiliation"
-});
-Object.assign(I18N_DATA.ui.ja, {
-  "일러스트": "イラスト",
-  "일러스트를 불러오는 중입니다.": "保存済みのイラストを読み込んでいます。",
-  "일러스트 백업 데이터를 불러올 수 없습니다.": "保存済みのイラストを読み込めませんでした。",
-  "일러스트 펼치기": "イラストを開く",
-  "일러스트 접기": "イラストを閉じる",
-  "생일": "誕生日",
-  "신장": "身長",
-  "출신": "出身",
-  "소속": "所属"
 });
 // 상세 백업 원문에서 사용하는 공격 유형 표기 보정
 Object.assign(I18N_DATA.terms.en, { "충격": "Impact", "원소": "Element" });
@@ -468,6 +446,21 @@ const ELEMENT_LABELS = {
 const SAVIOR_DETAIL_ROOT = "https://star-savior-arcana-db.pages.dev/savior";
 const ARCANA_IMAGE_ROOT = "./images/arcana";
 const LOCAL_ARCANA_CARD_ROOT = "./data/arcana-assets/cards";
+const EQUIPMENT_SET_IMAGE_ROOT = "./data/EQUIPMENT";
+const EQUIPMENT_SET_IMAGE_NAMES = new Set([
+  "공격",
+  "방어",
+  "생명",
+  "섬멸",
+  "속도",
+  "장벽",
+  "저항",
+  "적중",
+  "정밀",
+  "통찰",
+  "투지",
+  "파괴"
+]);
 
 const SAVIOR_DETAIL_IDS = {
   "asherah-voyager": 1001,
@@ -5028,12 +5021,6 @@ function openSavior(id, options = {}) {
 
   detailContent.innerHTML = createDetailMarkup(savior);
   applyLanguageToDOM(detailView);
-  loadSaviorProfileIndex().then(() => {
-    const activeHero = detailContent.querySelector("[data-savior-id]");
-    if (activeHero?.dataset.saviorId === savior.id) refreshSaviorHeroSourceMeta(activeHero, savior);
-  }).catch((error) => {
-    console.warn("Savior profile index load failed:", error);
-  });
   showOnly("detail");
   setActiveNav("savior");
 
@@ -5048,74 +5035,6 @@ function openSavior(id, options = {}) {
 
 function getSaviorBackupUrl(detailId) {
   return `./data/saviors/${encodeURIComponent(detailId)}.html?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
-}
-
-const SAVIOR_PROFILE_INDEX_URL = "./data/saviors/index.json";
-let saviorProfileIndexPromise = null;
-const saviorBackupHtmlPromises = new Map();
-
-function getSaviorSourceProfile(savior) {
-  return savior?.sourceProfile && typeof savior.sourceProfile === "object"
-    ? savior.sourceProfile
-    : {};
-}
-
-function getSaviorAttackType(savior) {
-  return normalizeSaviorSourceText(savior?.attackType || getSaviorSourceProfile(savior).attackType);
-}
-
-function applySaviorProfileIndex(index) {
-  if (!index || typeof index !== "object") return;
-  SAVIORS.forEach((savior) => {
-    const detailId = SAVIOR_DETAIL_IDS[savior.id];
-    const profile = index[String(detailId)]?.profile;
-    if (!profile || typeof profile !== "object") return;
-    savior.sourceProfile = profile;
-    if (!savior.attackType && profile.attackType) savior.attackType = profile.attackType;
-  });
-}
-
-async function loadSaviorProfileIndex() {
-  if (!saviorProfileIndexPromise) {
-    const url = `${SAVIOR_PROFILE_INDEX_URL}?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
-    saviorProfileIndexPromise = fetch(url, { cache: "no-store" }).then(async (response) => {
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const index = await response.json();
-      applySaviorProfileIndex(index);
-      return index;
-    }).catch((error) => {
-      saviorProfileIndexPromise = null;
-      throw error;
-    });
-  }
-  return saviorProfileIndexPromise;
-}
-
-async function loadSaviorBackupHtml(detailId) {
-  const numericId = Number(detailId);
-  if (!Number.isFinite(numericId)) throw new Error("Invalid Savior detail ID");
-  if (!saviorBackupHtmlPromises.has(numericId)) {
-    const url = getSaviorBackupUrl(numericId);
-    const promise = fetch(url, { cache: "no-store" }).then(async (response) => {
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return { sourceHtml: await response.text(), url };
-    }).catch((error) => {
-      saviorBackupHtmlPromises.delete(numericId);
-      throw error;
-    });
-    saviorBackupHtmlPromises.set(numericId, promise);
-  }
-  return saviorBackupHtmlPromises.get(numericId);
-}
-
-function refreshSaviorHeroSourceMeta(hero, savior) {
-  const badge = hero?.querySelector("[data-savior-attack-type]");
-  if (!badge) return;
-  const attackType = getSaviorAttackType(savior);
-  badge.hidden = !attackType;
-  badge.dataset.i18nSource = attackType;
-  badge.textContent = attackType;
-  if (attackType) applyLanguageToDOM(badge);
 }
 
 const SAVIOR_SKILL_ARCHIVE_URL = "./data/savior-skills/saviors.json";
@@ -5437,69 +5356,6 @@ function parseSaviorSourceProfile(tokens, baseIndex, savior) {
     attackType: attackType || savior.attackType || "-",
     description
   };
-}
-
-const SAVIOR_SOURCE_BIO_FIELDS = [
-  ["birthday", "생일"],
-  ["height", "신장"],
-  ["origin", "출신"],
-  ["affiliation", "소속"],
-  ["cvKr", "CV (KR)"],
-  ["cvJp", "CV (JP)"]
-];
-
-function parseSaviorSourceBiography(root) {
-  const biography = {};
-  const labelNodes = [...root.querySelectorAll("strong,dt,th")];
-
-  SAVIOR_SOURCE_BIO_FIELDS.forEach(([key, label]) => {
-    const labelNode = labelNodes.find((node) => normalizeSaviorSourceText(node.textContent) === label);
-    if (!labelNode) return;
-    const row = labelNode.closest("div,li,tr,dl") || labelNode.parentElement;
-    if (!row) return;
-    const valueNode = [...row.querySelectorAll("span,dd,td,p")]
-      .find((node) => node !== labelNode && normalizeSaviorSourceText(node.textContent) !== label);
-    const value = normalizeSaviorSourceText(valueNode?.textContent);
-    if (value) biography[key] = value;
-  });
-
-  return biography;
-}
-
-function getSaviorIllustrationFromSource(root, backupUrl, savior) {
-  const indexedSource = getSaviorSourceProfile(savior).illustration;
-  const image = [...root.querySelectorAll("img")].find((node) => {
-    const alt = normalizeSaviorSourceText(node.getAttribute("alt"));
-    const src = normalizeSaviorSourceText(node.getAttribute("src"));
-    return alt === "Savior Illustration" || /일러스트/i.test(src);
-  });
-  const src = indexedSource || image?.getAttribute("src") || "";
-  return src ? resolveSaviorSourceAsset(src, backupUrl) : "";
-}
-
-function mergeSaviorSourceBiography(savior, parsedBiography) {
-  const indexed = getSaviorSourceProfile(savior);
-  return Object.fromEntries(SAVIOR_SOURCE_BIO_FIELDS.map(([key]) => [
-    key,
-    normalizeSaviorSourceText(indexed[key] || parsedBiography?.[key] || "-")
-  ]));
-}
-
-function localizeSaviorProfileValue(key, value, language = currentLanguage) {
-  const source = normalizeSaviorSourceText(value) || "-";
-  if (key === "affiliation") return getLocalizedSubtitle(source, language);
-  if (key !== "birthday" || language === "ko") return source;
-
-  const match = source.match(/^(\d{1,2})월\s*(\d{1,2})일$/);
-  if (!match) return source;
-  const month = Number(match[1]);
-  const day = Number(match[2]);
-  if (language === "ja") return `${month}月${day}日`;
-  const monthNames = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  return monthNames[month - 1] ? `${monthNames[month - 1]} ${day}` : source;
 }
 
 function getSourceElementStartIndex(tokens, element) {
@@ -5847,23 +5703,23 @@ function parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl) {
   return blocks;
 }
 
-function renderSaviorProfileDetails(profile, biography) {
-  const facts = SAVIOR_SOURCE_BIO_FIELDS.map(([key, label]) => ({
-    key,
-    label,
-    value: localizeSaviorProfileValue(key, biography[key])
-  }));
+function renderSaviorInfoTable(savior, profile) {
+  const rows = [
+    { label: "이름", value: profile.localizedName || getLocalizedSaviorName(profile.name || savior.name) },
+    { label: "등급", value: profile.grade || savior.grade || "-", key: "grade" },
+    { label: "속성", value: translateString(profile.element || ELEMENT_LABELS[savior.element] || "-") },
+    { label: "클래스", value: translateString(profile.className || savior.className || "-") },
+    { label: "유형", value: translateString(profile.attackType || "-") }
+  ];
   return `
     <section class="source-detail-block source-profile-block">
-      ${profile.description ? `<div class="source-character-description"><strong>${escapeHtml(translateString("구원자 설명"))}</strong><p>${escapeHtml(profile.description)}</p></div>` : ""}
-      <div class="source-profile-facts">
-        ${facts.map((fact) => `
-          <div class="source-profile-fact">
-            <span>${escapeHtml(translateString(fact.label))}</span>
-            <strong>${escapeHtml(fact.value)}</strong>
-          </div>
-        `).join("")}
+      <div class="source-detail-heading"><h3>${escapeHtml(translateString("구원자 상세정보"))}</h3></div>
+      <div class="source-kv-table-wrap">
+        <table class="source-kv-table">
+          <tbody>${rows.map((row) => `<tr><th>${escapeHtml(translateString(row.label))}</th><td${row.key === "grade" ? ` data-source-profile-grade data-normal-grade="${escapeHtml(row.value)}"` : ""}>${escapeHtml(row.value)}</td></tr>`).join("")}</tbody>
+        </table>
       </div>
+      ${profile.description ? `<div class="source-character-description"><strong>${escapeHtml(translateString("구원자 설명"))}</strong><p>${escapeHtml(profile.description)}</p></div>` : ""}
     </section>
   `;
 }
@@ -5993,7 +5849,6 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options =
   const baseStats = SAVIOR_SOURCE_BASE_STATS.map(([label, percent]) => [label, extractSourceStat(baseTokens, label, percent)]);
   const journeyStats = SAVIOR_SOURCE_JOURNEY_STATS.map((label) => [label, extractSourceStat(journeyTokens, label, false)]);
   const profile = parseSaviorSourceProfile(tokens, baseIndex, savior);
-  const biography = mergeSaviorSourceBiography(savior, parseSaviorSourceBiography(root));
   const parsedSkills = parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl);
   const archivedSavior = options.archivedSavior || null;
   const archivedResonanceRows = createArchivedSaviorResonanceRows(
@@ -6015,9 +5870,6 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options =
     profile.localizedName = getArchivedLanguageText(archivedSavior.name, options.language || currentLanguage);
     profile.description = getArchivedLanguageText(archivedSavior.description, options.language || currentLanguage);
   }
-  if (!savior.attackType && profile.attackType && profile.attackType !== "-") {
-    savior.attackType = profile.attackType;
-  }
 
   const detailId = SAVIOR_DETAIL_IDS[savior.id];
   const bloomAvailable = (archivedSavior?.blossomSkills?.length || 0) > 0
@@ -6033,7 +5885,7 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options =
           </button>
         </div>
       ` : ""}
-      ${renderSaviorProfileDetails(profile, biography)}
+      ${renderSaviorInfoTable(savior, profile)}
       ${renderSourceStatTable("기본 스테이터스", "LV.200 기준", baseStats)}
       ${renderSourceStatTable("여정 스테이터스", "", journeyStats)}
       ${renderSourceResonanceTable(resonanceRows)}
@@ -6058,10 +5910,12 @@ async function loadSaviorSourcePanel(button, panel) {
   setSaviorSourcePanelStatus(panel, "상세정보를 불러오는 중입니다.", "loading");
 
   try {
-    const [{ sourceHtml }, archive] = await Promise.all([
-      loadSaviorBackupHtml(detailId),
+    const [response, archive] = await Promise.all([
+      fetch(url, { cache: "no-store" }),
       loadSaviorSkillArchive()
     ]);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const sourceHtml = await response.text();
     if (!savior) throw new Error("Savior mapping not found");
     const archivedSavior = archive.saviors.find((item) => Number(item.id) === Number(detailId));
     if (!archivedSavior) throw new Error("Savior skill archive mapping not found");
@@ -6079,46 +5933,6 @@ async function loadSaviorSourcePanel(button, panel) {
   } catch (error) {
     console.warn("Savior detail backup load failed:", detailId, error);
     setSaviorSourcePanelStatus(panel, "상세정보 백업 데이터를 불러올 수 없습니다.", "error");
-  } finally {
-    button.disabled = false;
-  }
-}
-
-async function loadSaviorIllustrationPanel(button, panel) {
-  if (panel.dataset.loaded === "true") return;
-  const detailId = button.dataset.detailId;
-  if (!detailId) return;
-
-  const savior = SAVIORS.find((item) => SAVIOR_DETAIL_IDS[item.id] === Number(detailId));
-  button.disabled = true;
-  setSaviorSourcePanelStatus(panel, "일러스트를 불러오는 중입니다.", "loading");
-
-  try {
-    const [{ sourceHtml, url }] = await Promise.all([
-      loadSaviorBackupHtml(detailId),
-      loadSaviorProfileIndex().catch(() => null)
-    ]);
-    if (!savior) throw new Error("Savior mapping not found");
-    const { root } = getSaviorSourceRoot(sourceHtml);
-    const illustration = getSaviorIllustrationFromSource(root, url, savior);
-    if (!illustration) throw new Error("Savior illustration not found");
-
-    panel.innerHTML = `
-      <figure class="savior-illustration-frame">
-        <img src="${escapeHtml(illustration)}" alt="${escapeHtml(savior.name)} 일러스트" loading="lazy">
-      </figure>
-    `;
-    panel.dataset.loaded = "true";
-    panel.dataset.state = "ready";
-    const image = panel.querySelector("img");
-    image?.addEventListener("error", () => {
-      panel.dataset.loaded = "false";
-      setSaviorSourcePanelStatus(panel, "일러스트 백업 데이터를 불러올 수 없습니다.", "error");
-    }, { once: true });
-    applyLanguageToDOM(panel);
-  } catch (error) {
-    console.warn("Savior illustration backup load failed:", detailId, error);
-    setSaviorSourcePanelStatus(panel, "일러스트 백업 데이터를 불러올 수 없습니다.", "error");
   } finally {
     button.disabled = false;
   }
@@ -6561,20 +6375,6 @@ detailContent.addEventListener("click", async (event) => {
     return;
   }
 
-  const illustrationButton = event.target.closest("[data-savior-illustration-toggle]");
-  if (illustrationButton && detailContent.contains(illustrationButton)) {
-    const wrapper = illustrationButton.closest("[data-savior-illustration-detail]");
-    const panel = wrapper?.querySelector("[data-savior-illustration-panel]");
-    if (!panel) return;
-
-    const nextOpen = illustrationButton.getAttribute("aria-expanded") !== "true";
-    illustrationButton.setAttribute("aria-expanded", String(nextOpen));
-    illustrationButton.setAttribute("aria-label", translateString(nextOpen ? "일러스트 접기" : "일러스트 펼치기"));
-    panel.hidden = !nextOpen;
-    if (nextOpen) await loadSaviorIllustrationPanel(illustrationButton, panel);
-    return;
-  }
-
   const button = event.target.closest("[data-savior-source-toggle]");
   if (!button || !detailContent.contains(button)) return;
 
@@ -6781,19 +6581,6 @@ function createDetailMarkup(savior) {
   );
 
   const saviorDetailId = SAVIOR_DETAIL_IDS[savior.id];
-  const illustrationButton = saviorDetailId
-    ? `
-      <div class="savior-source-detail savior-illustration-detail" data-savior-illustration-detail>
-        <button class="external-guide savior-detail-toggle" type="button"
-          data-savior-illustration-toggle data-detail-id="${escapeHtml(saviorDetailId)}"
-          aria-expanded="false" aria-label="일러스트 펼치기">
-          <span>일러스트</span>
-          <span class="savior-detail-chevron" aria-hidden="true">⌄</span>
-        </button>
-        <div class="savior-source-panel savior-illustration-panel" data-savior-illustration-panel hidden></div>
-      </div>
-    `
-    : "";
   const guideButton = saviorDetailId
     ? `
       <div class="savior-source-detail" data-savior-source-detail>
@@ -6819,14 +6606,15 @@ function createDetailMarkup(savior) {
       ? `<span class="detail-badge">${escapeHtml(savior.role)}</span>`
       : "";
 
-  const attackType = getSaviorAttackType(savior);
-  const attackTypeBadge = `<span class="detail-badge" data-savior-attack-type data-i18n-source="${escapeHtml(attackType)}"${attackType ? "" : " hidden"}>${escapeHtml(attackType)}</span>`;
+  const attackTypeBadge = savior.attackType
+    ? `<span class="detail-badge">${escapeHtml(savior.attackType)}</span>`
+    : "";
 
   const pveArcanaTitle = "PVE 추천 아르카나";
   const alternativeArcanaTitle = "대체 아르카나";
 
   return `
-    <header class="detail-hero" data-element="${escapeHtml(savior.element)}" data-savior-id="${escapeHtml(savior.id)}">
+    <header class="detail-hero" data-element="${escapeHtml(savior.element)}">
       <div class="detail-portrait">
         ${imageMarkup(savior, true)}
       </div>
@@ -6846,7 +6634,7 @@ function createDetailMarkup(savior) {
       </div>
     </header>
 
-    ${guideButton ? `<section class="content-section savior-source-section">${illustrationButton}${guideButton}</section>` : ""}
+    ${guideButton ? `<section class="content-section savior-source-section">${guideButton}</section>` : ""}
 
     <section class="content-section growth-priority-section" id="growth-priority">
       <div class="section-titlebar">
@@ -6908,6 +6696,63 @@ function createDetailMarkup(savior) {
   `;
 }
 
+function parseEquipmentSetPart(value) {
+  const match = String(value || "")
+    .trim()
+    .match(/^([가-힣]+)\s*\(\s*(\d+)\s*\)(.*)$/);
+
+  if (!match) return null;
+
+  return {
+    name: match[1],
+    count: match[2],
+    suffix: match[3].trim().replace(/^x\s*(\d+)$/i, "× $1")
+  };
+}
+
+function createEquipmentSetPart(part) {
+  const parsed = parseEquipmentSetPart(part);
+  if (!parsed) return "";
+
+  const label = `${parsed.name}(${parsed.count})`;
+  const image = EQUIPMENT_SET_IMAGE_NAMES.has(parsed.name)
+    ? `
+      <img class="equipment-set-icon"
+        src="${escapeHtml(`${EQUIPMENT_SET_IMAGE_ROOT}/${encodeURIComponent(parsed.name)}.webp`)}"
+        alt="" loading="lazy" decoding="async" aria-hidden="true"
+        onerror="this.parentElement.classList.add('is-image-missing'); this.remove()">
+    `
+    : "";
+
+  return `
+    <span class="equipment-set-part">
+      ${image}
+      <strong class="equipment-set-label">${escapeHtml(label)}</strong>
+      ${parsed.suffix ? `<small class="equipment-set-suffix">${escapeHtml(parsed.suffix)}</small>` : ""}
+    </span>
+  `;
+}
+
+function createEquipmentSetMarkup(value) {
+  const source = String(value || "").trim();
+  const parts = source.split(/\s*\+\s*/).filter(Boolean);
+
+  if (!parts.length || parts.some((part) => !parseEquipmentSetPart(part))) {
+    return `<span class="equipment-set-plain">${escapeHtml(source)}</span>`;
+  }
+
+  return `
+    <span class="equipment-set-combination">
+      ${parts.map((part, index) => `
+        <span class="equipment-set-joined">
+          ${index ? `<span class="equipment-set-plus" aria-hidden="true">+</span>` : ""}
+          ${createEquipmentSetPart(part)}
+        </span>
+      `).join("")}
+    </span>
+  `;
+}
+
 function createEquipmentCard(mode, data, className, subtitle) {
   const sets = Array.isArray(data.sets) ? data.sets : [data.sets];
 
@@ -6934,8 +6779,8 @@ function createEquipmentCard(mode, data, className, subtitle) {
         </div>
         <div class="build-row">
           <dt>추천 세트</dt>
-          <dd>
-            ${sets.map((set) => `<span>${escapeHtml(set)}</span>`).join("")}
+          <dd class="equipment-set-list">
+            ${sets.map(createEquipmentSetMarkup).join("")}
             ${Array.isArray(data.setNotes)
               ? data.setNotes.map((note) => `<small class="build-set-note">${escapeHtml(note)}</small>`).join("")
               : data.setNote
@@ -9218,16 +9063,6 @@ window.addEventListener("hashchange", syncFromHash);
 applyRequestedLayoutFixes();
 installArcanaCardStyles();
 renderList();
-loadSaviorProfileIndex().then(() => {
-  renderList();
-  const activeHero = detailContent.querySelector("[data-savior-id]");
-  const activeSavior = activeHero
-    ? SAVIORS.find((savior) => savior.id === activeHero.dataset.saviorId)
-    : null;
-  if (activeHero && activeSavior) refreshSaviorHeroSourceMeta(activeHero, activeSavior);
-}).catch((error) => {
-  console.warn("Savior profile index preload failed:", error);
-});
 loadSaviorSkillArchive().then(() => {
   if (!listView.hidden) renderList();
 }).catch((error) => {
