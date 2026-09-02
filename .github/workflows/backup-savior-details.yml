@@ -16,6 +16,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: savior-backup-write
+  cancel-in-progress: false
+
 jobs:
   backup-savior-details:
     if: github.actor != 'github-actions[bot]'
@@ -180,16 +184,7 @@ jobs:
 
           for (const [position, savior] of saviors.entries()) {
             const outputPath = path.join(OUT_DIR, `${savior.id}.html`);
-            const existingProfile = newIndex[String(savior.id)]?.profile;
-            const hasCompleteProfile = existingProfile?.attackType
-              && existingProfile?.birthday
-              && existingProfile?.height
-              && existingProfile?.origin
-              && existingProfile?.affiliation
-              && existingProfile?.cvKr
-              && existingProfile?.cvJp
-              && existingProfile?.illustration;
-            if (!refreshAll && hasCompleteProfile && fs.existsSync(outputPath) && fs.statSync(outputPath).size > 500) {
+            if (!refreshAll && fs.existsSync(outputPath) && fs.statSync(outputPath).size > 500) {
               console.log(`[${position + 1}/${saviors.length}] keep ${savior.key} (${savior.id})`);
               newIndex[String(savior.id)] = {
                 ...(newIndex[String(savior.id)] || {}),
@@ -254,10 +249,47 @@ jobs:
                   const body = document.body;
 
                   const normalize = (value) => String(value || '').replace(/\s+/g, ' ').trim();
+                  const badges = [...body.querySelectorAll('[class*="savior-detail_badges"] span')]
+                    .map((el) => normalize(el.textContent))
+                    .filter(Boolean);
+                  const pickBadge = (values) => badges.find((badge) => values.includes(badge)) || '';
+                  const grade = pickBadge(['SSR', 'SR', 'R']);
+                  const element = pickBadge(['태양', '달', '별', '질서', '혼돈']);
+                  const className = pickBadge(['스트라이커', '어쌔신', '레인저', '캐스터', '디펜더', '서포터']);
+                  const attackType = badges.find((badge) => ![grade, element, className].includes(badge)) || '';
+                  const factValues = {};
+                  body.querySelectorAll('strong').forEach((label) => {
+                    const key = normalize(label.textContent);
+                    if (!['생일', '신장', '출신', '소속', 'CV (KR)', 'CV (JP)'].includes(key)) return;
+                    const value = label.nextElementSibling || label.parentElement?.querySelector('span:last-child');
+                    factValues[key] = normalize(value?.textContent);
+                  });
+                  const illustration = [...body.querySelectorAll('img')].find((img) => {
+                    const alt = normalize(img.getAttribute('alt'));
+                    const src = img.getAttribute('src') || img.src || '';
+                    return alt === 'Savior Illustration' || /(?:%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8|일러스트)/i.test(src);
+                  });
+                  const illustrationUrl = illustration
+                    ? new URL(illustration.getAttribute('src') || illustration.src, document.baseURI).href
+                    : '';
+                  const profile = {
+                    name: normalize(body.querySelector('[class*="savior-detail_name-row"] h2, [class*="savior-detail_savior-info"] h2')?.textContent),
+                    grade,
+                    element,
+                    className,
+                    attackType,
+                    description: normalize(body.querySelector('[class*="savior-detail_savior-desc"]')?.textContent),
+                    birthday: factValues['생일'] || '',
+                    height: factValues['신장'] || '',
+                    origin: factValues['출신'] || '',
+                    affiliation: factValues['소속'] || '',
+                    cvKr: factValues['CV (KR)'] || '',
+                    cvJp: factValues['CV (JP)'] || ''
+                  };
                   const markerCandidates = [...body.querySelectorAll('h1,h2,h3,h4,h5,h6,[role="heading"],p,span,strong')];
                   const marker = markerCandidates.find((el) => {
                     const text = normalize(el.textContent);
-                    return /^아크\s*포인트(?:\s|$|\()/.test(text);
+                    return text === '일러스트' || /^아크\s*포인트(?:\s|$|\()/.test(text);
                   });
 
                   const range = document.createRange();
@@ -327,31 +359,6 @@ jobs:
                     a.setAttribute('rel', 'noopener noreferrer');
                   });
 
-                  const summary = wrapper.querySelector('[class*="savior-summary"]') || wrapper;
-                  const summaryTokens = [...summary.querySelectorAll('span')].map((el) => normalize(el.textContent));
-                  const attackTypes = ['참격', '충격', '원소', '정신', '타격', '마법'];
-                  const profile = {
-                    attackType: attackTypes.find((value) => summaryTokens.includes(value)) || ''
-                  };
-                  const profileFields = {
-                    '생일': 'birthday',
-                    '신장': 'height',
-                    '출신': 'origin',
-                    '소속': 'affiliation',
-                    'CV (KR)': 'cvKr',
-                    'CV (JP)': 'cvJp'
-                  };
-                  [...wrapper.querySelectorAll('strong,dt,th')].forEach((labelNode) => {
-                    const key = profileFields[normalize(labelNode.textContent)];
-                    if (!key || profile[key]) return;
-                    const row = labelNode.closest('div,li,tr,dl') || labelNode.parentElement;
-                    const valueNode = row && [...row.querySelectorAll('span,dd,td,p')]
-                      .find((node) => node !== labelNode && normalize(node.textContent) !== normalize(labelNode.textContent));
-                    const value = normalize(valueNode?.textContent);
-                    if (value) profile[key] = value;
-                  });
-                  profile.illustration = wrapper.querySelector('img[alt="Savior Illustration"]')?.getAttribute('src') || '';
-
                   const cleanedTextLength = normalize(wrapper.innerText || wrapper.textContent).length;
                   return {
                     title: document.title,
@@ -360,7 +367,8 @@ jobs:
                     cleanedTextLength,
                     markerText: marker ? normalize(marker.textContent) : '',
                     markerFound: Boolean(marker),
-                    profile
+                    profile,
+                    illustrationUrl
                   };
                 });
                 const plainLength = (snapshot.html || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().length;
@@ -371,27 +379,27 @@ jobs:
                 }
 
                 let html = snapshot.html;
-                const localAssets = new Map();
                 for (const assetUrl of snapshot.assets) {
                   const localUrl = await downloadAsset(context.request, assetUrl);
-                  localAssets.set(assetUrl, localUrl);
                   if (localUrl && localUrl !== assetUrl) {
                     html = html.split(assetUrl).join(localUrl);
                   }
                 }
 
+                const previousEntry = oldIndex[String(savior.id)] || {};
+                const previousProfile = previousEntry.profile || {};
+                let illustration = previousProfile.illustration || '';
+                if (snapshot.illustrationUrl) {
+                  const localIllustration = await downloadAsset(context.request, snapshot.illustrationUrl);
+                  if (localIllustration && localIllustration !== snapshot.illustrationUrl) {
+                    illustration = `./data/${localIllustration.replace(/^\.\.\//, '')}`;
+                  }
+                }
                 const profile = {
-                  ...snapshot.profile,
-                  illustration: localAssets.get(snapshot.profile?.illustration) || snapshot.profile?.illustration || ''
+                  ...previousProfile,
+                  ...Object.fromEntries(Object.entries(snapshot.profile || {}).filter(([, value]) => value)),
+                  illustration
                 };
-                const missingProfileFields = ['attackType', 'birthday', 'height', 'origin', 'affiliation', 'cvKr', 'cvJp', 'illustration']
-                  .filter((key) => !profile[key]);
-                if (profile.illustration && !profile.illustration.startsWith('../savior-detail-assets/')) {
-                  missingProfileFields.push('illustration (local backup)');
-                }
-                if (missingProfileFields.length) {
-                  throw new Error(`Missing Savior profile fields: ${missingProfileFields.join(', ')}`);
-                }
 
                 const capturedAt = new Date().toISOString();
                 fs.writeFileSync(outputPath, snapshotShell(snapshot.title, html, sourceUrl, capturedAt), 'utf8');
@@ -420,7 +428,11 @@ jobs:
             sourceRoot: SOURCE_ROOT,
             generatedAt: new Date().toISOString(),
             count: saviors.length,
-            excludedSections: ['아크 포인트']
+            profileCount: saviors.filter((savior) => newIndex[String(savior.id)]?.profile).length,
+            illustrationCount: saviors.filter((savior) => newIndex[String(savior.id)]?.profile?.illustration).length,
+            profileFields: ['name', 'grade', 'element', 'className', 'attackType', 'description', 'birthday', 'height', 'origin', 'affiliation', 'cvKr', 'cvJp', 'illustration'],
+            assetsRoot: './data/savior-detail-assets',
+            excludedSnapshotSections: ['일러스트', '아크 포인트']
           };
           fs.writeFileSync(INDEX_PATH, JSON.stringify(newIndex, null, 2) + '\n', 'utf8');
 
@@ -443,5 +455,16 @@ jobs:
             echo "No Savior backup changes to commit."
           else
             git commit -m "Backup Savior details"
-            git push
+            for attempt in 1 2 3; do
+              if git pull --rebase origin main && git push origin HEAD:main; then
+                exit 0
+              fi
+              git rebase --abort 2>/dev/null || true
+              if [ "$attempt" -lt 3 ]; then
+                echo "Push attempt $attempt failed; retrying after remote refresh."
+                sleep $((attempt * 2))
+              fi
+            done
+            echo "Failed to push Savior backups after 3 attempts."
+            exit 1
           fi
