@@ -885,9 +885,28 @@
   },
   "_meta": {
     "sourceRoot": "https://star-savior-arcana-db.pages.dev/savior",
-    "generatedAt": "2026-09-02T16:18:59.258Z",
+    "generatedAt": "2026-09-02T16:51:04.955Z",
     "count": 52,
-    "excludedSections": [
+    "profileCount": 52,
+    "illustrationCount": 52,
+    "profileFields": [
+      "name",
+      "grade",
+      "element",
+      "className",
+      "attackType",
+      "description",
+      "birthday",
+      "height",
+      "origin",
+      "affiliation",
+      "cvKr",
+      "cvJp",
+      "illustration"
+    ],
+    "assetsRoot": "./data/savior-detail-assets",
+    "excludedSnapshotSections": [
+      "일러스트",
       "아크 포인트"
     ]
   }
