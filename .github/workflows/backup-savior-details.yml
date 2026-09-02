@@ -424,6 +424,18 @@ jobs:
 
           await browser.close();
 
+          // Older workflow versions stored illustration paths relative to the snapshot HTML.
+          // Normalize every retained entry for use from the site's root page as well.
+          for (const savior of saviors) {
+            const entry = newIndex[String(savior.id)];
+            const illustration = entry?.profile?.illustration;
+            if (!illustration) continue;
+            entry.profile.illustration = String(illustration)
+              .replace(/^\.\.\/savior-detail-assets\//, './data/savior-detail-assets/')
+              .replace(/^\.\/savior-detail-assets\//, './data/savior-detail-assets/')
+              .replace(/^savior-detail-assets\//, './data/savior-detail-assets/');
+          }
+
           newIndex._meta = {
             sourceRoot: SOURCE_ROOT,
             generatedAt: new Date().toISOString(),
