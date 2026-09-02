@@ -16,10 +16,6 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: savior-backup-write
-  cancel-in-progress: false
-
 jobs:
   backup-savior-details:
     if: github.actor != 'github-actions[bot]'
@@ -40,7 +36,7 @@ jobs:
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Backup Savior detail pages in KO EN JA
+      - name: Backup Savior detail pages
         shell: bash
         env:
           REFRESH_ALL: ${{ github.event.inputs.refresh_all || 'false' }}
@@ -58,41 +54,37 @@ jobs:
           const INDEX_PATH = path.join(OUT_DIR, 'index.json');
           const SOURCE_ROOT = 'https://star-savior-arcana-db.pages.dev/savior';
           const refreshAll = String(process.env.REFRESH_ALL || 'false').toLowerCase() === 'true';
-          const LANGUAGES = [
-            { code: 'ko', label: '한국어', html: 'ko', locale: 'ko-KR' },
-            { code: 'en', label: 'English', html: 'en', locale: 'en-US' },
-            { code: 'ja', label: '日本語', html: 'ja', locale: 'ja-JP' }
-          ];
-          const ALL_LANGUAGE_LABELS = /^(한국어|English|日本語)$/;
 
-          if (!fs.existsSync(APP_PATH)) throw new Error('app.js was not found in the repository root.');
+          if (!fs.existsSync(APP_PATH)) {
+            throw new Error('app.js was not found in the repository root.');
+          }
+
           fs.mkdirSync(OUT_DIR, { recursive: true });
           fs.mkdirSync(ASSET_DIR, { recursive: true });
-          for (const language of LANGUAGES.filter((item) => item.code !== 'ko')) {
-            fs.mkdirSync(path.join(OUT_DIR, language.code), { recursive: true });
-          }
 
           const appText = fs.readFileSync(APP_PATH, 'utf8');
           const idBlock = appText.match(/const\s+SAVIOR_DETAIL_IDS\s*=\s*\{([\s\S]*?)\n\};/);
-          if (!idBlock) throw new Error('Could not find SAVIOR_DETAIL_IDS in app.js.');
+          if (!idBlock) {
+            throw new Error('Could not find SAVIOR_DETAIL_IDS in app.js.');
+          }
+
           const entries = [...idBlock[1].matchAll(/["']([^"']+)["']\s*:\s*(\d+)/g)]
             .map((m) => ({ key: m[1], id: Number(m[2]) }));
-          if (!entries.length) throw new Error('No Savior detail IDs were found in app.js.');
-          const saviors = [...new Map(entries.map((entry) => [entry.id, entry])).values()].sort((a, b) => a.id - b.id);
+
+          if (!entries.length) {
+            throw new Error('No Savior detail IDs were found in app.js.');
+          }
 
           let oldIndex = {};
           if (fs.existsSync(INDEX_PATH)) {
-            try { oldIndex = JSON.parse(fs.readFileSync(INDEX_PATH, 'utf8')); } catch (_) {}
+            try {
+              oldIndex = JSON.parse(fs.readFileSync(INDEX_PATH, 'utf8'));
+            } catch (_) {}
           }
-          const newIndex = { ...oldIndex };
 
-          const outputPathFor = (id, language) => language === 'ko'
-            ? path.join(OUT_DIR, `${id}.html`)
-            : path.join(OUT_DIR, language, `${id}.html`);
-          const indexFileFor = (id, language) => language === 'ko'
-            ? `./${id}.html`
-            : `./${language}/${id}.html`;
-          const assetPrefixFor = (language) => language === 'ko' ? '../savior-detail-assets/' : '../../savior-detail-assets/';
+          const uniqueById = new Map();
+          for (const entry of entries) uniqueById.set(entry.id, entry);
+          const saviors = [...uniqueById.values()].sort((a, b) => a.id - b.id);
 
           function safeExt(url, contentType = '') {
             try {
@@ -108,7 +100,7 @@ jobs:
             return '.bin';
           }
 
-          async function downloadAsset(request, url, language) {
+          async function downloadAsset(request, url) {
             if (!url || !/^https?:\/\//i.test(url)) return url;
             const hash = crypto.createHash('sha256').update(url).digest('hex').slice(0, 24);
             let response;
@@ -123,237 +115,322 @@ jobs:
             const ext = safeExt(url, contentType);
             const filename = `${hash}${ext}`;
             const dest = path.join(ASSET_DIR, filename);
-            if (!fs.existsSync(dest) || fs.statSync(dest).size < 20) fs.writeFileSync(dest, await response.body());
-            return `${assetPrefixFor(language)}${filename}`;
+            if (!fs.existsSync(dest) || fs.statSync(dest).size < 20) {
+              fs.writeFileSync(dest, await response.body());
+            }
+            return `../savior-detail-assets/${filename}`;
           }
 
-          function snapshotShell(title, content, capturedAt, language) {
+          function snapshotShell(title, content, sourceUrl, capturedAt) {
             const escapedTitle = String(title || 'Savior details')
-              .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
+              .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+              .replaceAll('"', '&quot;');
             return `<!doctype html>
-          <html lang="${language.html}">
+          <html lang="ko">
           <head>
-            <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="color-scheme" content="dark light">
             <title>${escapedTitle}</title>
+            <style>
+              :root{color-scheme:dark;--bg:#020817;--panel:#07101f;--panel2:#0a1426;--line:#28354a;--text:#f4f7ff;--muted:#a8b2c7;--accent:#6f8dff}
+              *{box-sizing:border-box}
+              html,body{margin:0;padding:0;background:transparent;color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+              body{padding:2px 2px 18px;line-height:1.65;overflow-wrap:anywhere}
+              main,.snapshot-root{display:block}
+              h1,h2,h3,h4,h5,h6{color:var(--text);line-height:1.3;margin:22px 0 12px;letter-spacing:-.03em}
+              h1{font-size:26px}h2{font-size:22px}h3{font-size:18px}h4,h5,h6{font-size:16px}
+              p{margin:10px 0;color:var(--text)}
+              small,.muted,[class*="muted"],[class*="desc"],[class*="sub"]{color:var(--muted)}
+              section,article,[class*="card"],[class*="panel"],[class*="skill"],[class*="stat"]{max-width:100%}
+              section+section{margin-top:16px}
+              img,svg,video,canvas{max-width:100%;height:auto}
+              img{border-radius:12px}
+              table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+              th,td{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+              th{background:var(--panel2)}
+              ul,ol{padding-left:1.35rem}
+              li+li{margin-top:5px}
+              a{color:#9db0ff;text-decoration:none}
+              button,input,select,textarea{font:inherit}
+              details{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0;background:var(--panel)}
+              details>summary{font-weight:800;cursor:default}
+              .snapshot-meta{margin:0 0 14px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:12px;background:rgba(8,16,31,.75)}
+              .snapshot-root>*:first-child{margin-top:0}
+              [hidden]{display:block!important}
+            </style>
           </head>
           <body>
-            <div class="snapshot-meta" data-language="${language.code}" data-captured-at="${capturedAt}"></div>
+            <div class="snapshot-meta">백업 기준: ${capturedAt}</div>
             <main class="snapshot-root">${content}</main>
           </body>
           </html>`;
           }
 
-          async function selectNativeLanguage(page, targetLabel) {
-            const selects = page.locator('select');
-            for (let i = 0; i < await selects.count(); i++) {
-              const select = selects.nth(i);
-              const options = await select.locator('option').allTextContents().catch(() => []);
-              if (!options.some((text) => text.replace(/\s+/g, ' ').trim() === targetLabel)) continue;
-              await select.selectOption({ label: targetLabel });
-              return true;
-            }
-            return false;
-          }
-
-          async function selectCustomLanguage(page, targetLabel) {
-            const triggers = page.locator('button,[role="button"]').filter({ hasText: /한국어|English|日本語/ });
-            let trigger = null;
-            for (let i = 0; i < await triggers.count(); i++) {
-              const candidate = triggers.nth(i);
-              if (!await candidate.isVisible().catch(() => false)) continue;
-              const text = ((await candidate.innerText().catch(() => '')) || '').replace(/\s+/g, ' ').trim();
-              if (ALL_LANGUAGE_LABELS.test(text)) { trigger = candidate; break; }
-            }
-            if (!trigger) return false;
-            await trigger.click({ timeout: 3000 });
-            await page.waitForTimeout(150);
-
-            const exactCandidates = page.getByText(targetLabel, { exact: true });
-            for (let i = (await exactCandidates.count()) - 1; i >= 0; i--) {
-              const candidate = exactCandidates.nth(i);
-              if (!await candidate.isVisible().catch(() => false)) continue;
-              const clickable = candidate.locator('xpath=ancestor-or-self::*[self::button or @role="option" or @role="menuitem" or self::li][1]');
-              if (await clickable.count()) await clickable.first().click({ timeout: 3000 }).catch(() => candidate.click({ timeout: 3000 }));
-              else await candidate.click({ timeout: 3000 });
-              return true;
-            }
-            return false;
-          }
-
-          async function setSourceLanguage(page, language) {
-            let changed = await selectNativeLanguage(page, language.label).catch(() => false);
-            if (!changed) changed = await selectCustomLanguage(page, language.label).catch(() => false);
-            if (!changed) throw new Error(`Language control not found for ${language.code} (${language.label})`);
-            await page.waitForTimeout(650);
-          }
-
-          async function expandContent(page) {
-            const expandable = page.locator('button[aria-expanded="false"]');
-            const count = await expandable.count();
-            for (let i = 0; i < count; i++) {
-              const control = expandable.nth(i);
-              const label = ((await control.innerText().catch(() => '')) || '').replace(/\s+/g, ' ').trim();
-              if (ALL_LANGUAGE_LABELS.test(label) || /^(뒤로|Back|戻る)$/.test(label)) continue;
-              await control.click({ timeout: 1500 }).catch(() => {});
-            }
-          }
-
-          async function captureSnapshot(page) {
-            await page.evaluate(async () => {
-              const total = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-              const step = Math.max(500, Math.floor(window.innerHeight * 0.8));
-              for (let y = 0; y < total; y += step) {
-                window.scrollTo(0, y);
-                await new Promise((resolve) => setTimeout(resolve, 30));
-              }
-              window.scrollTo(0, 0);
-            });
-            await page.waitForTimeout(350);
-
-            return page.evaluate(() => {
-              const body = document.body;
-              const normalize = (value) => String(value || '').replace(/\s+/g, ' ').trim();
-              const markerCandidates = [...body.querySelectorAll('h1,h2,h3,h4,h5,h6,[role="heading"],p,span,strong')];
-              const marker = markerCandidates.find((el) => {
-                const text = normalize(el.textContent);
-                return /^(일러스트|Illustration|イラスト)$/.test(text)
-                  || /^(아크\s*포인트|Arc\s*Point|アーク\s*ポイント)(?:\s|$|\()/.test(text);
-              });
-              const range = document.createRange();
-              range.setStart(body, 0);
-              if (marker) range.setEndBefore(marker); else range.setEnd(body, body.childNodes.length);
-              const wrapper = document.createElement('div');
-              wrapper.className = 'captured-savior-detail';
-              wrapper.appendChild(range.cloneContents());
-
-              wrapper.querySelectorAll('script,noscript,style,link,nav,footer,form,dialog,header').forEach((el) => el.remove());
-              wrapper.querySelectorAll('details').forEach((el) => el.setAttribute('open', ''));
-              wrapper.querySelectorAll('[hidden]').forEach((el) => el.removeAttribute('hidden'));
-              wrapper.querySelectorAll('[aria-hidden="true"]').forEach((el) => el.removeAttribute('aria-hidden'));
-              wrapper.querySelectorAll('[inert]').forEach((el) => el.removeAttribute('inert'));
-              wrapper.querySelectorAll('button,select,input,textarea').forEach((el) => {
-                const text = normalize(el.textContent || el.getAttribute('aria-label') || el.getAttribute('title'));
-                if (!text || /^(뒤로|Back|戻る|한국어|English|日本語|터치하여 확인)$/.test(text)) el.remove();
-              });
-
-              const assetUrls = new Set();
-              wrapper.querySelectorAll('img').forEach((img) => {
-                const raw = img.getAttribute('src') || img.src || '';
-                if (!raw) return;
-                const abs = new URL(raw, document.baseURI).href;
-                img.setAttribute('src', abs); img.removeAttribute('srcset'); assetUrls.add(abs);
-              });
-              wrapper.querySelectorAll('source').forEach((sourceEl) => {
-                const raw = sourceEl.getAttribute('src') || '';
-                if (raw) { const abs = new URL(raw, document.baseURI).href; sourceEl.setAttribute('src', abs); assetUrls.add(abs); }
-                sourceEl.removeAttribute('srcset');
-              });
-              wrapper.querySelectorAll('a[href]').forEach((a) => a.removeAttribute('href'));
-
-              return {
-                title: document.title,
-                html: wrapper.innerHTML,
-                assets: [...assetUrls],
-                text: normalize(wrapper.innerText || wrapper.textContent),
-                markerFound: Boolean(marker)
-              };
-            });
-          }
-
           const browser = await chromium.launch({ headless: true });
-          const context = await browser.newContext({ locale: 'ko-KR', viewport: { width: 1280, height: 1600 } });
+          const context = await browser.newContext({
+            locale: 'ko-KR',
+            viewport: { width: 1280, height: 1600 }
+          });
           const page = await context.newPage();
           page.setDefaultTimeout(60000);
+
+          const newIndex = { ...oldIndex };
           const failures = [];
 
           for (const [position, savior] of saviors.entries()) {
-            const sourceUrl = `${SOURCE_ROOT}/${savior.id}`;
-            const files = {};
-            const capturedAt = {};
-            for (const language of LANGUAGES) {
-              const outputPath = outputPathFor(savior.id, language.code);
-              files[language.code] = indexFileFor(savior.id, language.code);
-              if (!refreshAll && fs.existsSync(outputPath) && fs.statSync(outputPath).size > 500) {
-                console.log(`[${position + 1}/${saviors.length}] keep ${language.code} ${savior.key} (${savior.id})`);
-                continue;
-              }
-
-              console.log(`[${position + 1}/${saviors.length}] capture ${language.code} ${savior.key} (${savior.id})`);
-              let success = false;
-              let lastError;
-              for (let attempt = 1; attempt <= 3 && !success; attempt++) {
-                try {
-                  await page.goto(sourceUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
-                  try { await page.waitForLoadState('networkidle', { timeout: 20000 }); } catch (_) {}
-                  await page.waitForFunction(() => (document.body?.innerText || '').trim().length > 300, null, { timeout: 30000 });
-                  await page.waitForTimeout(500);
-                  await setSourceLanguage(page, language);
-                  await expandContent(page);
-                  await page.waitForTimeout(350);
-
-                  const snapshot = await captureSnapshot(page);
-                  if (!snapshot.html || snapshot.text.length < 300) throw new Error(`Snapshot too small (${snapshot.text.length})`);
-                  let html = snapshot.html;
-                  for (const assetUrl of snapshot.assets) {
-                    const localUrl = await downloadAsset(context.request, assetUrl, language.code);
-                    if (localUrl && localUrl !== assetUrl) html = html.split(assetUrl).join(localUrl);
-                  }
-                  const at = new Date().toISOString();
-                  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-                  fs.writeFileSync(outputPath, snapshotShell(snapshot.title, html, at, language), 'utf8');
-                  capturedAt[language.code] = at;
-                  success = true;
-                } catch (error) {
-                  lastError = error;
-                  console.warn(`attempt ${attempt} failed (${language.code}/${savior.id}): ${error.message}`);
-                  if (attempt < 3) await page.waitForTimeout(attempt * 1800);
-                }
-              }
-              if (!success) failures.push(`${language.code} ${savior.key} (${savior.id}): ${lastError?.message || 'unknown error'}`);
+            const outputPath = path.join(OUT_DIR, `${savior.id}.html`);
+            const existingProfile = newIndex[String(savior.id)]?.profile;
+            const hasCompleteProfile = existingProfile?.attackType
+              && existingProfile?.birthday
+              && existingProfile?.height
+              && existingProfile?.origin
+              && existingProfile?.affiliation
+              && existingProfile?.cvKr
+              && existingProfile?.cvJp
+              && existingProfile?.illustration;
+            if (!refreshAll && hasCompleteProfile && fs.existsSync(outputPath) && fs.statSync(outputPath).size > 500) {
+              console.log(`[${position + 1}/${saviors.length}] keep ${savior.key} (${savior.id})`);
+              newIndex[String(savior.id)] = {
+                ...(newIndex[String(savior.id)] || {}),
+                key: savior.key,
+                id: savior.id,
+                file: `./${savior.id}.html`,
+                source: `${SOURCE_ROOT}/${savior.id}`
+              };
+              continue;
             }
 
-            newIndex[String(savior.id)] = {
-              key: savior.key,
-              id: savior.id,
-              file: files.ko,
-              files,
-              source: sourceUrl,
-              capturedAt: { ...((newIndex[String(savior.id)]?.capturedAt && typeof newIndex[String(savior.id)].capturedAt === 'object') ? newIndex[String(savior.id)].capturedAt : {}), ...capturedAt }
-            };
+            const sourceUrl = `${SOURCE_ROOT}/${savior.id}`;
+            console.log(`[${position + 1}/${saviors.length}] capture ${savior.key} (${savior.id})`);
+
+            let success = false;
+            let lastError;
+            for (let attempt = 1; attempt <= 3 && !success; attempt++) {
+              try {
+                await page.goto(sourceUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
+                try { await page.waitForLoadState('networkidle', { timeout: 20000 }); } catch (_) {}
+                await page.waitForFunction(() => (document.body?.innerText || '').trim().length > 300, null, { timeout: 30000 });
+                await page.waitForTimeout(1500);
+
+                const debugInfo = await page.evaluate(() => ({
+                  title: document.title,
+                  url: location.href,
+                  bodyText: (document.body?.innerText || '').trim().length,
+                  mainText: (document.querySelector('main')?.innerText || '').trim().length,
+                  rootText: (document.querySelector('#root')?.innerText || '').trim().length,
+                  nextText: (document.querySelector('#__next')?.innerText || '').trim().length
+                }));
+                console.log(`loaded ${debugInfo.url} body=${debugInfo.bodyText} main=${debugInfo.mainText} root=${debugInfo.rootText} next=${debugInfo.nextText}`);
+
+                // Expand ordinary accordion controls so their hidden skill/detail text is present in the snapshot.
+                try {
+                  const expandable = page.locator('button[aria-expanded=\"false\"]');
+                  const count = await expandable.count();
+                  for (let i = 0; i < count; i++) {
+                    const control = expandable.nth(i);
+                    const label = ((await control.innerText().catch(() => '')) || '').replace(/\s+/g, ' ').trim();
+                    if (/한국어|English|日本語|뒤로/.test(label)) continue;
+                    await control.click({ timeout: 1500 }).catch(() => {});
+                  }
+                } catch (_) {}
+
+                // Trigger lazy-loaded assets before cloning.
+                await page.evaluate(async () => {
+                  const total = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+                  const step = Math.max(500, Math.floor(window.innerHeight * 0.8));
+                  for (let y = 0; y < total; y += step) {
+                    window.scrollTo(0, y);
+                    await new Promise((resolve) => setTimeout(resolve, 35));
+                  }
+                  window.scrollTo(0, 0);
+                });
+                await page.waitForTimeout(500);
+
+                const snapshot = await page.evaluate(() => {
+                  // Build the backup from a DOM Range instead of deleting structural wrappers.
+                  // This avoids wiping the whole page when Illustration/Arc Point or footer text
+                  // lives inside a large application container.
+                  const body = document.body;
+
+                  const normalize = (value) => String(value || '').replace(/\s+/g, ' ').trim();
+                  const markerCandidates = [...body.querySelectorAll('h1,h2,h3,h4,h5,h6,[role="heading"],p,span,strong')];
+                  const marker = markerCandidates.find((el) => {
+                    const text = normalize(el.textContent);
+                    return /^아크\s*포인트(?:\s|$|\()/.test(text);
+                  });
+
+                  const range = document.createRange();
+                  range.setStart(body, 0);
+                  if (marker) {
+                    range.setEndBefore(marker);
+                  } else {
+                    range.setEnd(body, body.childNodes.length);
+                  }
+
+                  const wrapper = document.createElement('div');
+                  wrapper.className = 'captured-savior-detail';
+                  wrapper.appendChild(range.cloneContents());
+
+                  // Remove executable/source-site chrome only. Do not remove ancestor wrappers by text.
+                  wrapper.querySelectorAll('script,noscript,style,link,nav,footer,form,dialog').forEach((el) => el.remove());
+                  wrapper.querySelectorAll('header').forEach((el) => el.remove());
+                  wrapper.querySelectorAll('details').forEach((el) => el.setAttribute('open', ''));
+                  wrapper.querySelectorAll('[hidden]').forEach((el) => el.removeAttribute('hidden'));
+                  wrapper.querySelectorAll('[aria-hidden="true"]').forEach((el) => el.removeAttribute('aria-hidden'));
+                  wrapper.querySelectorAll('[inert]').forEach((el) => el.removeAttribute('inert'));
+
+                  // Remove only obvious navigation controls. Skill/detail content has already been expanded above.
+                  wrapper.querySelectorAll('button,select,input,textarea').forEach((el) => {
+                    const text = normalize(el.textContent || el.getAttribute('aria-label') || el.getAttribute('title'));
+                    if (!text || /^(뒤로|한국어|English|日本語|터치하여 확인)$/.test(text)) {
+                      el.remove();
+                    }
+                  });
+
+                  // A source-site top bar may be a plain div rather than <header>. Only remove very small
+                  // containers whose direct text is clearly the language/back navigation itself.
+                  [...wrapper.querySelectorAll('div')].forEach((el) => {
+                    if (el.children.length > 8) return;
+                    const own = normalize([...el.childNodes]
+                      .filter((n) => n.nodeType === Node.TEXT_NODE)
+                      .map((n) => n.textContent)
+                      .join(' '));
+                    if (own && own.length < 80 && /^(구원자\s*)?(한국어|English|日本語)/.test(own)) {
+                      el.remove();
+                    }
+                  });
+
+                  const assetUrls = new Set();
+                  wrapper.querySelectorAll('img').forEach((img) => {
+                    const raw = img.getAttribute('src') || img.src || '';
+                    if (!raw) return;
+                    const abs = new URL(raw, document.baseURI).href;
+                    img.setAttribute('src', abs);
+                    img.removeAttribute('srcset');
+                    assetUrls.add(abs);
+                  });
+                  wrapper.querySelectorAll('source').forEach((sourceEl) => {
+                    const raw = sourceEl.getAttribute('src') || '';
+                    if (raw) {
+                      const abs = new URL(raw, document.baseURI).href;
+                      sourceEl.setAttribute('src', abs);
+                      assetUrls.add(abs);
+                    }
+                    sourceEl.removeAttribute('srcset');
+                  });
+                  wrapper.querySelectorAll('a[href]').forEach((a) => {
+                    try {
+                      a.setAttribute('href', new URL(a.getAttribute('href'), document.baseURI).href);
+                    } catch (_) {}
+                    a.setAttribute('target', '_blank');
+                    a.setAttribute('rel', 'noopener noreferrer');
+                  });
+
+                  const summary = wrapper.querySelector('[class*="savior-summary"]') || wrapper;
+                  const summaryTokens = [...summary.querySelectorAll('span')].map((el) => normalize(el.textContent));
+                  const attackTypes = ['참격', '충격', '원소', '정신', '타격', '마법'];
+                  const profile = {
+                    attackType: attackTypes.find((value) => summaryTokens.includes(value)) || ''
+                  };
+                  const profileFields = {
+                    '생일': 'birthday',
+                    '신장': 'height',
+                    '출신': 'origin',
+                    '소속': 'affiliation',
+                    'CV (KR)': 'cvKr',
+                    'CV (JP)': 'cvJp'
+                  };
+                  [...wrapper.querySelectorAll('strong,dt,th')].forEach((labelNode) => {
+                    const key = profileFields[normalize(labelNode.textContent)];
+                    if (!key || profile[key]) return;
+                    const row = labelNode.closest('div,li,tr,dl') || labelNode.parentElement;
+                    const valueNode = row && [...row.querySelectorAll('span,dd,td,p')]
+                      .find((node) => node !== labelNode && normalize(node.textContent) !== normalize(labelNode.textContent));
+                    const value = normalize(valueNode?.textContent);
+                    if (value) profile[key] = value;
+                  });
+                  profile.illustration = wrapper.querySelector('img[alt="Savior Illustration"]')?.getAttribute('src') || '';
+
+                  const cleanedTextLength = normalize(wrapper.innerText || wrapper.textContent).length;
+                  return {
+                    title: document.title,
+                    html: wrapper.innerHTML,
+                    assets: [...assetUrls],
+                    cleanedTextLength,
+                    markerText: marker ? normalize(marker.textContent) : '',
+                    markerFound: Boolean(marker),
+                    profile
+                  };
+                });
+                const plainLength = (snapshot.html || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().length;
+                console.log(`snapshot cleaned=${snapshot.cleanedTextLength || 0} plain=${plainLength} assets=${snapshot.assets.length} marker=${snapshot.markerFound ? snapshot.markerText : "none"}`);
+                if (!snapshot.html || plainLength < 300) {
+                  const bodyPreview = await page.evaluate(() => (document.body?.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 220));
+                  throw new Error(`Captured Savior content was unexpectedly empty (snapshot=${plainLength}). body preview: ${bodyPreview}`);
+                }
+
+                let html = snapshot.html;
+                const localAssets = new Map();
+                for (const assetUrl of snapshot.assets) {
+                  const localUrl = await downloadAsset(context.request, assetUrl);
+                  localAssets.set(assetUrl, localUrl);
+                  if (localUrl && localUrl !== assetUrl) {
+                    html = html.split(assetUrl).join(localUrl);
+                  }
+                }
+
+                const profile = {
+                  ...snapshot.profile,
+                  illustration: localAssets.get(snapshot.profile?.illustration) || snapshot.profile?.illustration || ''
+                };
+                const missingProfileFields = ['attackType', 'birthday', 'height', 'origin', 'affiliation', 'cvKr', 'cvJp', 'illustration']
+                  .filter((key) => !profile[key]);
+                if (profile.illustration && !profile.illustration.startsWith('../savior-detail-assets/')) {
+                  missingProfileFields.push('illustration (local backup)');
+                }
+                if (missingProfileFields.length) {
+                  throw new Error(`Missing Savior profile fields: ${missingProfileFields.join(', ')}`);
+                }
+
+                const capturedAt = new Date().toISOString();
+                fs.writeFileSync(outputPath, snapshotShell(snapshot.title, html, sourceUrl, capturedAt), 'utf8');
+                newIndex[String(savior.id)] = {
+                  key: savior.key,
+                  id: savior.id,
+                  file: `./${savior.id}.html`,
+                  source: sourceUrl,
+                  capturedAt,
+                  profile
+                };
+                success = true;
+              } catch (error) {
+                lastError = error;
+                console.warn(`attempt ${attempt} failed: ${error.message}`);
+                if (attempt < 3) await page.waitForTimeout(attempt * 2000);
+              }
+            }
+
+            if (!success) failures.push(`${savior.key} (${savior.id}): ${lastError?.message || 'unknown error'}`);
           }
 
           await browser.close();
-
-          // Fail loudly if a language switch silently captured Korean again.
-          for (const savior of saviors) {
-            const koPath = outputPathFor(savior.id, 'ko');
-            const enPath = outputPathFor(savior.id, 'en');
-            const jaPath = outputPathFor(savior.id, 'ja');
-            if (![koPath, enPath, jaPath].every(fs.existsSync)) {
-              failures.push(`missing localized backup files for ${savior.key} (${savior.id})`);
-              continue;
-            }
-            const strip = (file) => fs.readFileSync(file, 'utf8').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-            const ko = strip(koPath), en = strip(enPath), ja = strip(jaPath);
-            if (en === ko || !/[A-Za-z]{4,}/.test(en)) failures.push(`English backup did not localize: ${savior.key} (${savior.id})`);
-            if (ja === ko || !/[\u3040-\u30ff]/.test(ja)) failures.push(`Japanese backup did not localize: ${savior.key} (${savior.id})`);
-          }
 
           newIndex._meta = {
             sourceRoot: SOURCE_ROOT,
             generatedAt: new Date().toISOString(),
             count: saviors.length,
-            languages: LANGUAGES.map((item) => item.code),
-            excludedSections: ['Illustration', 'Arc Point']
+            excludedSections: ['아크 포인트']
           };
           fs.writeFileSync(INDEX_PATH, JSON.stringify(newIndex, null, 2) + '\n', 'utf8');
 
           if (failures.length) {
-            console.error('\nFailed Savior backups:');
+            console.error('\nFailed Savior pages:');
             failures.forEach((failure) => console.error(`- ${failure}`));
             process.exit(2);
           }
-          console.log(`Backed up ${saviors.length} Savior detail entries in ko/en/ja.`);
+
+          console.log(`Backed up ${saviors.length} Savior detail entries.`);
           NODE
 
       - name: Commit Savior backups
@@ -365,7 +442,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No Savior backup changes to commit."
           else
-            git commit -m "Backup Savior details in ko en ja"
-            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git commit -m "Backup Savior details"
             git push
+
           fi
