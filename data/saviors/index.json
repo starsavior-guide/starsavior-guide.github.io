@@ -1145,12 +1145,8 @@
   },
   "_meta": {
     "sourceRoot": "https://star-savior-arcana-db.pages.dev/savior",
-    "generatedAt": "2026-08-30T10:20:56.976Z",
+    "generatedAt": "2026-09-02T17:04:01.475Z",
     "count": 52,
-    "excludedSnapshotSections": [
-      "일러스트",
-      "아크 포인트"
-    ],
     "profileCount": 52,
     "illustrationCount": 52,
     "profileFields": [
@@ -1168,6 +1164,10 @@
       "cvJp",
       "illustration"
     ],
-    "assetsRoot": "./data/savior-detail-assets"
+    "assetsRoot": "./data/savior-detail-assets",
+    "excludedSnapshotSections": [
+      "일러스트",
+      "아크 포인트"
+    ]
   }
 }
