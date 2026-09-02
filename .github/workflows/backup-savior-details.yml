@@ -444,5 +444,4 @@ jobs:
           else
             git commit -m "Backup Savior details"
             git push
-
           fi
