@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v101-layout-readability";
+const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v104-profile-illustration-equipment";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -35,11 +35,15 @@ Object.assign(I18N_DATA.ui.ja, {
 Object.assign(I18N_DATA.ui.en, { "아르카나 상세정보": "Arcana details" });
 Object.assign(I18N_DATA.ui.en, {
   "구원자 상세정보":"Savior Details","구원자 설명":"Savior Description","이름":"Name","등급":"Grade","유형":"Type",
+  "생일":"Birthday","신장":"Height","출신":"Origin","소속":"Affiliation","CV (KR)":"CV (KR)","CV (JP)":"CV (JP)",
+  "일러스트":"Illustration","일러스트 펼치기":"Expand illustration","일러스트 접기":"Collapse illustration",
   "기본 스테이터스":"Base Stats","LV.200 기준":"Lv.200","여정 스테이터스":"Journey Stats","공명 잠재력":"Resonance Potential",
   "레벨":"Level","스킬 정보":"Skill Information","스킬 레벨 정보":"Skill Level Information","스킬 레벨 설명":"Skill Level Description","노바 버스트":"Nova Burst"
 });
 Object.assign(I18N_DATA.ui.ja, {
   "구원자 상세정보":"救援者詳細情報","구원자 설명":"救援者説明","이름":"名前","등급":"レアリティ","유형":"タイプ",
+  "생일":"誕生日","신장":"身長","출신":"出身","소속":"所属","CV (KR)":"CV（韓国語）","CV (JP)":"CV（日本語）",
+  "일러스트":"イラスト","일러스트 펼치기":"イラストを開く","일러스트 접기":"イラストを閉じる",
   "기본 스테이터스":"基本ステータス","LV.200 기준":"Lv.200基準","여정 스테이터스":"旅程ステータス","공명 잠재력":"共鳴潜在力",
   "레벨":"レベル","스킬 정보":"スキル情報","스킬 레벨 정보":"スキルレベル情報","스킬 레벨 설명":"スキルレベル説明","노바 버스트":"ノヴァバースト"
 });
@@ -914,7 +918,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "스트라이커",
     "role": "스트라이커",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_VOYAGER_STRANIS.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -977,7 +981,7 @@ const SAVIORS = [
     "element": "star",
     "className": "레인저",
     "role": "레인저",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_VOYAGER_SMILE.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -1058,7 +1062,7 @@ const SAVIORS = [
     "element": "order",
     "className": "캐스터",
     "role": "캐스터",
-    "attackType": "",
+    "attackType": "원소",
     "image": "./images/savior/UFS_NKM_UNIT_S_VOYAGER_ORACLE.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -1136,7 +1140,7 @@ const SAVIORS = [
     "element": "chaos",
     "className": "캐스터",
     "role": "캐스터",
-    "attackType": "",
+    "attackType": "정신",
     "image": "./images/savior/UFS_NKM_UNIT_S_MAID_LANTERN.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1005",
@@ -1210,7 +1214,7 @@ const SAVIORS = [
     "element": "star",
     "className": "레인저",
     "role": "레인저",
-    "attackType": "",
+    "attackType": "정신",
     "image": "./images/savior/UFS_NKM_UNIT_S_MAID_BELL.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -1285,7 +1289,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "디펜더",
     "role": "디펜더",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_MAID_TWOHANDER.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -1359,7 +1363,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "스트라이커",
     "role": "스트라이커",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_KINGDOM_KNIGHT.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -1422,7 +1426,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "디펜더",
     "role": "디펜더",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_KINGDOM_SHIELDER.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -1496,7 +1500,7 @@ const SAVIORS = [
     "element": "star",
     "className": "서포터",
     "role": "서포터",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_KINGDOM_PRAY.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -1570,7 +1574,7 @@ const SAVIORS = [
     "element": "order",
     "className": "스트라이커",
     "role": "스트라이커",
-    "attackType": "",
+    "attackType": "정신",
     "image": "./images/savior/UFS_NKM_UNIT_S_NIGHTMARE_REAPER.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -1633,7 +1637,7 @@ const SAVIORS = [
     "element": "star",
     "className": "어쌔신",
     "role": "어쌔신",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_STELLAR_THIEF.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -1711,7 +1715,7 @@ const SAVIORS = [
     "element": "star",
     "className": "스트라이커",
     "role": "스트라이커",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_EASTERN_SWORDMASTER.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -1774,7 +1778,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "레인저",
     "role": "레인저",
-    "attackType": "",
+    "attackType": "원소",
     "image": "./images/savior/크리스텔(모렐 해운상회).webp",
     "summary": "PVE 장비·아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1017",
@@ -1864,7 +1868,7 @@ const SAVIORS = [
     "element": "star",
     "className": "디펜더",
     "role": "디펜더",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_INCOGNITA_FLOWER.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -1938,7 +1942,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "서포터",
     "role": "서포터",
-    "attackType": "",
+    "attackType": "정신",
     "image": "./images/savior/UFS_NKM_UNIT_S_EASTERN_OWL.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2012,7 +2016,7 @@ const SAVIORS = [
     "element": "star",
     "className": "캐스터",
     "role": "캐스터",
-    "attackType": "",
+    "attackType": "원소",
     "image": "./images/savior/UFS_NKM_UNIT_S_MAGICIAN_DRUID.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2087,7 +2091,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "캐스터",
     "role": "캐스터",
-    "attackType": "",
+    "attackType": "원소",
     "image": "./images/savior/UFS_NKM_UNIT_S_SAINTESS_DEMON.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2162,7 +2166,7 @@ const SAVIORS = [
     "element": "chaos",
     "className": "서포터",
     "role": "서포터",
-    "attackType": "",
+    "attackType": "정신",
     "image": "./images/savior/UFS_NKM_UNIT_S_SAINTESS_ELF.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2236,7 +2240,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "스트라이커",
     "role": "스트라이커",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_APOSTLE_TYRIA.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2311,7 +2315,7 @@ const SAVIORS = [
     "element": "star",
     "className": "스트라이커",
     "role": "스트라이커",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_RECON_KNUCKLE.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2389,7 +2393,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "레인저",
     "role": "레인저",
-    "attackType": "",
+    "attackType": "정신",
     "image": "./images/savior/UFS_NKM_UNIT_S_RECON_AMULET.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2452,7 +2456,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "어쌔신",
     "role": "어쌔신",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_INDEPENDENT_VAGABOND.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2528,7 +2532,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "어쌔신",
     "role": "어쌔신",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_GRACE_DUALSWORD.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2606,7 +2610,7 @@ const SAVIORS = [
     "element": "star",
     "className": "캐스터",
     "role": "캐스터",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_STARPIERCER_OMEGA.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2681,7 +2685,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "어쌔신",
     "role": "어쌔신",
-    "attackType": "",
+    "attackType": "정신",
     "image": "./images/savior/UFS_NKM_UNIT_S_BUNNY_KNIGHT.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2759,7 +2763,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "스트라이커",
     "role": "스트라이커",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_WEST_BEAMSWORD.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2834,7 +2838,7 @@ const SAVIORS = [
     "element": "chaos",
     "className": "레인저",
     "role": "레인저",
-    "attackType": "",
+    "attackType": "정신",
     "image": "./images/savior/UFS_NKM_UNIT_S_WEST_ROD.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2909,7 +2913,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "디펜더",
     "role": "디펜더",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_WILD_HOG.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -2983,7 +2987,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "레인저",
     "role": "레인저",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_CONSTRUCT_BOMB.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3046,7 +3050,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "레인저",
     "role": "레인저",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_BUNNY_SCISSORS.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3121,7 +3125,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "스트라이커",
     "role": "스트라이커",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_BUNNY_SPEAR.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3197,7 +3201,7 @@ const SAVIORS = [
     "element": "chaos",
     "className": "레인저",
     "role": "레인저",
-    "attackType": "",
+    "attackType": "원소",
     "image": "./images/savior/UFS_NKM_UNIT_S_INDEPENDENT_DRAGON.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3275,7 +3279,7 @@ const SAVIORS = [
     "element": "star",
     "className": "스트라이커",
     "role": "스트라이커",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_CONSTRUCT_GADGET.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3338,7 +3342,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "캐스터",
     "role": "캐스터",
-    "attackType": "",
+    "attackType": "정신",
     "image": "./images/savior/UFS_NKM_UNIT_S_DETECTIVE_WATSON.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3413,7 +3417,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "어쌔신",
     "role": "어쌔신",
-    "attackType": "",
+    "attackType": "정신",
     "image": "./images/savior/UFS_NKM_UNIT_S_MUTANT_MASK.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3488,7 +3492,7 @@ const SAVIORS = [
     "element": "order",
     "className": "서포터",
     "role": "서포터",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_DRESS_STRANIS.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3566,7 +3570,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "서포터",
     "role": "서포터",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_WEDDING_SHIELDER.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3640,7 +3644,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "캐스터",
     "role": "캐스터",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_WEDDING_DUALSWORD.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3715,7 +3719,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "캐스터",
     "role": "캐스터",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_BUNNY_PRAY.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3791,7 +3795,7 @@ const SAVIORS = [
     "element": "star",
     "className": "디펜더",
     "role": "디펜더",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_WEST_LANCER.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3865,7 +3869,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "디펜더",
     "role": "디펜더",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_OFFICER_POLICE.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -3940,7 +3944,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "어쌔신",
     "role": "어쌔신",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_CONSTRUCT_WRENCH.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1506",
@@ -4018,7 +4022,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "서포터",
     "role": "서포터",
-    "attackType": "",
+    "attackType": "원소",
     "image": "./images/savior/UFS_NKM_UNIT_S_LPU_POST.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -4092,7 +4096,7 @@ const SAVIORS = [
     "element": "star",
     "className": "레인저",
     "role": "레인저",
-    "attackType": "",
+    "attackType": "원소",
     "image": "./images/savior/UFS_NKM_UNIT_S_NOA_OBSERVER.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1508",
@@ -4167,7 +4171,7 @@ const SAVIORS = [
     "element": "moon",
     "className": "어쌔신",
     "role": "어쌔신",
-    "attackType": "",
+    "attackType": "참격",
     "image": "./images/savior/UFS_NKM_UNIT_S_MAID_SPEAR.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1509",
@@ -4245,7 +4249,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "스트라이커",
     "role": "스트라이커",
-    "attackType": "",
+    "attackType": "원소",
     "image": "./images/savior/UFS_NKM_UNIT_S_MAID_SCISSORS.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1510",
@@ -4320,7 +4324,7 @@ const SAVIORS = [
     "element": "star",
     "className": "레인저",
     "role": "레인저",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_MAGICIAN_SNIPER.webp",
     "summary": "PVE 장비 및 아르카나 세팅 반영.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1511",
@@ -4396,7 +4400,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "디펜더",
     "role": "디펜더",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_COUNTERSIDE_HILDE.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -4470,7 +4474,7 @@ const SAVIORS = [
     "element": "star",
     "className": "레인저",
     "role": "레인저",
-    "attackType": "",
+    "attackType": "충격",
     "image": "./images/savior/UFS_NKM_UNIT_S_COUNTERSIDE_MINA.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -4545,7 +4549,7 @@ const SAVIORS = [
     "element": "chaos",
     "className": "레인저",
     "role": "레인저",
-    "attackType": "",
+    "attackType": "원소",
     "image": "./images/savior/UFS_NKM_UNIT_S_COUNTERSIDE_ROSARIA.webp",
     "summary": "업로드한 엑셀의 PVE 장비·여정 아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
@@ -4621,7 +4625,7 @@ const SAVIORS = [
     "element": "sun",
     "className": "디펜더",
     "role": "디펜더",
-    "attackType": "",
+    "attackType": "원소",
     "image": "./images/savior/UFS_NKM_UNIT_S_SUMMER_ORACLE.webp",
     "summary": "원본 자료 기준 PVE 장비·아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1045",
@@ -4710,7 +4714,7 @@ const SAVIORS = [
     "element": "star",
     "className": "어쌔신",
     "role": "어쌔신",
-    "attackType": "",
+    "attackType": "원소",
     "image": "./images/savior/UFS_NKM_UNIT_S_SUMMER_SMILE.webp",
     "summary": "PVE 장비·아르카나 세팅을 반영했습니다.",
     "guideUrl": "https://star-savior-arcana-db.pages.dev/savior/1046",
@@ -5038,6 +5042,7 @@ function getSaviorBackupUrl(detailId) {
 }
 
 const SAVIOR_SKILL_ARCHIVE_URL = "./data/savior-skills/saviors.json";
+const SAVIOR_PROFILE_INDEX_URL = "./data/saviors/index.json";
 const SAVIOR_SKILL_TYPE_KEYS = ["패시브", "기본기", "특수기", "궁극기"];
 const SAVIOR_SKILL_TYPE_LABELS = {
   ko: ["패시브", "기본기", "특수기", "궁극기"],
@@ -5065,6 +5070,36 @@ const SAVIOR_SKILL_META_LABELS = {
 };
 let saviorSkillArchivePromise = null;
 let saviorSkillArchiveById = new Map();
+let saviorProfileIndexPromise = null;
+let saviorProfileIndex = {};
+
+function getLocalSaviorProfile(savior) {
+  const detailId = SAVIOR_DETAIL_IDS[savior?.id];
+  return saviorProfileIndex?.[String(detailId)]?.profile || null;
+}
+
+async function loadSaviorProfileIndex() {
+  if (!saviorProfileIndexPromise) {
+    const url = `${SAVIOR_PROFILE_INDEX_URL}?v=${encodeURIComponent(SITE_BUILD_VERSION)}`;
+    saviorProfileIndexPromise = fetch(url, { cache: "no-store" }).then(async (response) => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const index = await response.json();
+      const profiles = Object.values(index || {}).filter((entry) => entry?.profile);
+      if (profiles.length !== 52) throw new Error(`Invalid Savior profile index (${profiles.length}/52)`);
+
+      saviorProfileIndex = index;
+      SAVIORS.forEach((savior) => {
+        const profile = getLocalSaviorProfile(savior);
+        if (profile?.attackType) savior.attackType = profile.attackType;
+      });
+      return index;
+    }).catch((error) => {
+      saviorProfileIndexPromise = null;
+      throw error;
+    });
+  }
+  return saviorProfileIndexPromise;
+}
 
 function getSaviorSkillLanguage(language = currentLanguage) {
   return SUPPORTED_LANGUAGES.includes(language) ? language : "ko";
@@ -5356,6 +5391,43 @@ function parseSaviorSourceProfile(tokens, baseIndex, savior) {
     attackType: attackType || savior.attackType || "-",
     description
   };
+}
+
+const SAVIOR_PROFILE_FACTS = [
+  ["생일", "birthday"],
+  ["신장", "height"],
+  ["출신", "origin"],
+  ["소속", "affiliation"],
+  ["CV (KR)", "cvKr"],
+  ["CV (JP)", "cvJp"]
+];
+
+function parseSaviorSourceProfileExtras(root, backupUrl) {
+  const profile = {};
+  const factKeys = new Map(SAVIOR_PROFILE_FACTS.map(([label, key]) => [label, key]));
+
+  root.querySelectorAll("strong").forEach((labelNode) => {
+    const label = normalizeSaviorSourceText(labelNode.textContent);
+    const key = factKeys.get(label);
+    if (!key || profile[key]) return;
+    const valueNode = labelNode.parentElement?.querySelector("span");
+    const value = normalizeSaviorSourceText(valueNode?.textContent);
+    if (value) profile[key] = value;
+  });
+
+  const illustration = [...root.querySelectorAll("img")].find((image) => {
+    const alt = normalizeSaviorSourceText(image.getAttribute("alt"));
+    const src = image.getAttribute("src") || image.getAttribute("data-src") || "";
+    return alt === "Savior Illustration" || /일러스트/.test(src);
+  });
+  if (illustration) {
+    profile.illustration = resolveSaviorSourceAsset(
+      illustration.getAttribute("src") || illustration.getAttribute("data-src") || "",
+      backupUrl
+    );
+  }
+
+  return profile;
 }
 
 function getSourceElementStartIndex(tokens, element) {
@@ -5704,22 +5776,25 @@ function parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl) {
 }
 
 function renderSaviorInfoTable(savior, profile) {
-  const rows = [
-    { label: "이름", value: profile.localizedName || getLocalizedSaviorName(profile.name || savior.name) },
-    { label: "등급", value: profile.grade || savior.grade || "-", key: "grade" },
-    { label: "속성", value: translateString(profile.element || ELEMENT_LABELS[savior.element] || "-") },
-    { label: "클래스", value: translateString(profile.className || savior.className || "-") },
-    { label: "유형", value: translateString(profile.attackType || "-") }
-  ];
+  const facts = SAVIOR_PROFILE_FACTS
+    .map(([label, key]) => ({ label, value: normalizeSaviorSourceText(profile[key]) }))
+    .filter((fact) => fact.value);
+
+  if (!profile.description && !facts.length) return "";
+
   return `
     <section class="source-detail-block source-profile-block">
-      <div class="source-detail-heading"><h3>${escapeHtml(translateString("구원자 상세정보"))}</h3></div>
-      <div class="source-kv-table-wrap">
-        <table class="source-kv-table">
-          <tbody>${rows.map((row) => `<tr><th>${escapeHtml(translateString(row.label))}</th><td${row.key === "grade" ? ` data-source-profile-grade data-normal-grade="${escapeHtml(row.value)}"` : ""}>${escapeHtml(row.value)}</td></tr>`).join("")}</tbody>
-        </table>
-      </div>
       ${profile.description ? `<div class="source-character-description"><strong>${escapeHtml(translateString("구원자 설명"))}</strong><p>${escapeHtml(profile.description)}</p></div>` : ""}
+      ${facts.length ? `
+        <dl class="source-profile-facts">
+          ${facts.map((fact) => `
+            <div class="source-profile-fact">
+              <dt>${escapeHtml(translateString(fact.label))}</dt>
+              <dd>${escapeHtml(fact.value)}</dd>
+            </div>
+          `).join("")}
+        </dl>
+      ` : ""}
     </section>
   `;
 }
@@ -5849,6 +5924,9 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options =
   const baseStats = SAVIOR_SOURCE_BASE_STATS.map(([label, percent]) => [label, extractSourceStat(baseTokens, label, percent)]);
   const journeyStats = SAVIOR_SOURCE_JOURNEY_STATS.map((label) => [label, extractSourceStat(journeyTokens, label, false)]);
   const profile = parseSaviorSourceProfile(tokens, baseIndex, savior);
+  const parsedProfileExtras = parseSaviorSourceProfileExtras(root, backupUrl);
+  const localProfile = getLocalSaviorProfile(savior) || {};
+  Object.assign(profile, parsedProfileExtras, localProfile);
   const parsedSkills = parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl);
   const archivedSavior = options.archivedSavior || null;
   const archivedResonanceRows = createArchivedSaviorResonanceRows(
@@ -6581,6 +6659,7 @@ function createDetailMarkup(savior) {
   );
 
   const saviorDetailId = SAVIOR_DETAIL_IDS[savior.id];
+  const localProfile = getLocalSaviorProfile(savior);
   const guideButton = saviorDetailId
     ? `
       <div class="savior-source-detail" data-savior-source-detail>
@@ -6592,6 +6671,25 @@ function createDetailMarkup(savior) {
         </button>
         <div class="savior-source-panel" data-savior-source-panel hidden></div>
       </div>
+    `
+    : "";
+
+  const illustrationSection = localProfile?.illustration
+    ? `
+      <section class="content-section savior-illustration-section">
+        <details class="savior-illustration-details">
+          <summary aria-label="${escapeHtml(translateString("일러스트"))}">
+            <span>${escapeHtml(translateString("일러스트"))}</span>
+            <span class="savior-illustration-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="savior-illustration-body">
+            <img src="${escapeHtml(localProfile.illustration)}"
+              alt="${escapeHtml(`${getLocalizedSaviorName(savior.name)} 일러스트`)}"
+              loading="lazy" decoding="async"
+              onerror="this.closest('.savior-illustration-section').remove()">
+          </div>
+        </details>
+      </section>
     `
     : "";
 
@@ -6634,6 +6732,7 @@ function createDetailMarkup(savior) {
       </div>
     </header>
 
+    ${illustrationSection}
     ${guideButton ? `<section class="content-section savior-source-section">${guideButton}</section>` : ""}
 
     <section class="content-section growth-priority-section" id="growth-priority">
@@ -9063,6 +9162,15 @@ window.addEventListener("hashchange", syncFromHash);
 applyRequestedLayoutFixes();
 installArcanaCardStyles();
 renderList();
+loadSaviorProfileIndex().then(() => {
+  renderList();
+  const hash = decodeURIComponent(location.hash.replace(/^#/, ""));
+  if (hash.startsWith("savior/")) {
+    openSavior(hash.slice("savior/".length), { skipHash: true, keepScroll: true });
+  }
+}).catch((error) => {
+  console.warn("Savior profile index load failed:", error);
+});
 loadSaviorSkillArchive().then(() => {
   if (!listView.hidden) renderList();
 }).catch((error) => {
