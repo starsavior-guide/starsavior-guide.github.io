@@ -648,6 +648,10 @@
       width: 100%;
     }
 
+    .savior-source-detail + .savior-source-detail {
+      margin-top: 12px;
+    }
+
     .savior-detail-toggle {
       display: inline-flex;
       align-items: center;
@@ -680,6 +684,28 @@
 
     .savior-source-panel[hidden] {
       display: none !important;
+    }
+
+    .savior-illustration-frame {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin: 0;
+      padding: clamp(14px, 2.5vw, 28px);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--surface) 88%, #000 12%);
+    }
+
+    .savior-illustration-frame img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: min(1100px, 82vh);
+      object-fit: contain;
+      border-radius: 12px;
     }
 
     .savior-source-status {
@@ -837,6 +863,10 @@
       border-top: 1px solid var(--line);
     }
 
+    .source-profile-block .source-character-description {
+      border-top: 0;
+    }
+
     .source-character-description strong {
       display: block;
       margin-bottom: 7px;
@@ -850,6 +880,41 @@
     .source-nova-burst p {
       margin: 0;
       line-height: 1.75;
+    }
+
+    .source-profile-facts {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+    }
+
+    .source-profile-fact {
+      min-width: 0;
+      padding: 15px 16px 17px;
+    }
+
+    .source-profile-fact + .source-profile-fact {
+      border-left: 1px solid var(--line);
+    }
+
+    .source-profile-fact span,
+    .source-profile-fact strong {
+      display: block;
+      overflow-wrap: anywhere;
+    }
+
+    .source-profile-fact span {
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .source-profile-fact strong {
+      color: var(--text);
+      font-size: clamp(14px, 1.25vw, 17px);
+      font-weight: 900;
+      line-height: 1.45;
     }
 
     .source-resonance-table th:first-child {
@@ -1005,6 +1070,12 @@
       font-weight: 950;
     }
 
+    @media (max-width: 900px) {
+      .source-profile-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .source-profile-fact:nth-child(4) { border-left: 0; }
+      .source-profile-fact:nth-child(n+4) { border-top: 1px solid var(--line); }
+    }
+
     @media (max-width: 640px) {
       .savior-source-section { padding: 14px; }
       .savior-source-detail,
@@ -1017,6 +1088,16 @@
       .source-wide-table th,
       .source-wide-table td { padding: 10px 11px; }
       .source-kv-table th { width: 34%; }
+      .savior-illustration-frame { padding: 10px; border-radius: 13px; }
+      .savior-illustration-frame img { max-height: none; border-radius: 9px; }
+      .source-character-description { padding: 14px; }
+      .source-profile-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .source-profile-fact { padding: 13px 12px 15px; }
+      .source-profile-fact:nth-child(3),
+      .source-profile-fact:nth-child(5) { border-left: 0; }
+      .source-profile-fact:nth-child(4) { border-left: 1px solid var(--line); }
+      .source-profile-fact:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .source-profile-fact strong { font-size: 14px; }
       .source-skill-list { gap: 11px; padding: 12px; }
       .source-skill-header { gap: 10px; padding: 12px; }
       .source-skill-icon { width: 54px; height: 54px; border-radius: 10px; }
