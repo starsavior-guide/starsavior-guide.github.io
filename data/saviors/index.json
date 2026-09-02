@@ -13,7 +13,7 @@
       "affiliation": "보이저 구원단",
       "cvKr": "김채린",
       "cvJp": "타카모리 나츠미",
-      "illustration": "../savior-detail-assets/(보이저 구원단) 아세라 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(보이저 구원단) 아세라 일러스트.webp"
     }
   },
   "1002": {
@@ -30,7 +30,7 @@
       "affiliation": "보이저 구원단",
       "cvKr": "곽규미",
       "cvJp": "타무카이 유즈키",
-      "illustration": "../savior-detail-assets/(보이저 구원단) 스마일 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(보이저 구원단) 스마일 일러스트.webp"
     }
   },
   "1003": {
@@ -47,7 +47,7 @@
       "affiliation": "보이저 구원단",
       "cvKr": "방시우",
       "cvJp": "미나토 미야",
-      "illustration": "../savior-detail-assets/(보이저 구원단) 루나 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(보이저 구원단) 루나 일러스트.webp"
     }
   },
   "1005": {
@@ -64,7 +64,7 @@
       "affiliation": "방랑자",
       "cvKr": "장예나",
       "cvJp": "시모지 시노",
-      "illustration": "../savior-detail-assets/(방랑자) 카넬리아 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(방랑자) 카넬리아 일러스트.webp"
     }
   },
   "1008": {
@@ -81,7 +81,7 @@
       "affiliation": "캔들 스퀘어",
       "cvKr": "이지현",
       "cvJp": "스가누마 치사",
-      "illustration": "../savior-detail-assets/(캔들 스퀘어) 벨 리스 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(캔들 스퀘어) 벨 리스 일러스트.webp"
     }
   },
   "1009": {
@@ -98,7 +98,7 @@
       "affiliation": "캔들 스퀘어",
       "cvKr": "김도희",
       "cvJp": "스기우라 시오리",
-      "illustration": "../savior-detail-assets/(캔들 스퀘어) 에밀리 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(캔들 스퀘어) 에밀리 일러스트.webp"
     }
   },
   "1010": {
@@ -115,7 +115,7 @@
       "affiliation": "모나스티르 기사단",
       "cvKr": "채림",
       "cvJp": "오오키 사에코",
-      "illustration": "../savior-detail-assets/(모나스티르 기사단) 샤를 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(모나스티르 기사단) 샤를 일러스트.webp"
     }
   },
   "1011": {
@@ -132,7 +132,7 @@
       "affiliation": "모나스티르 기사단",
       "cvKr": "손정민",
       "cvJp": "Lynn",
-      "illustration": "../savior-detail-assets/(모나스티르 기사단) 카르멘 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(모나스티르 기사단) 카르멘 일러스트.webp"
     }
   },
   "1013": {
@@ -149,7 +149,7 @@
       "affiliation": "모나스티르 기사단",
       "cvKr": "이이로",
       "cvJp": "시부야 아야노",
-      "illustration": "../savior-detail-assets/(모나스티르 기사단) 프레이 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(모나스티르 기사단) 프레이 일러스트.webp"
     }
   },
   "1014": {
@@ -166,7 +166,7 @@
       "affiliation": "환상종",
       "cvKr": "윤은서",
       "cvJp": "아이다 리카코",
-      "illustration": "../savior-detail-assets/(나이트메어) 세이라 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(나이트메어) 세이라 일러스트.webp"
     }
   },
   "1015": {
@@ -183,7 +183,7 @@
       "affiliation": "아셀루스 협회",
       "cvKr": "김예림",
       "cvJp": "츠키시로 히카",
-      "illustration": "../savior-detail-assets/(아셀루스 협회) 트리쉬 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(아셀루스 협회) 트리쉬 일러스트.webp"
     }
   },
   "1016": {
@@ -200,7 +200,7 @@
       "affiliation": "풍월당",
       "cvKr": "민아",
       "cvJp": "우스이 유리",
-      "illustration": "../savior-detail-assets/(풍월문) 린 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(풍월문) 린 일러스트.webp"
     }
   },
   "1017": {
@@ -217,7 +217,7 @@
       "affiliation": "모렐 해운상회",
       "cvKr": "조현정",
       "cvJp": "아사미 카즈키",
-      "illustration": "../savior-detail-assets/(모렐해운상회) 크리스텔 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(모렐해운상회) 크리스텔 일러스트.webp"
     }
   },
   "1018": {
@@ -234,7 +234,7 @@
       "affiliation": "모렐 해운상회",
       "cvKr": "방연지",
       "cvJp": "츠치야 리오",
-      "illustration": "../savior-detail-assets/(모렐 해양상단) 에데 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(모렐 해양상단) 에데 일러스트.webp"
     }
   },
   "1019": {
@@ -251,7 +251,7 @@
       "affiliation": "풍월당",
       "cvKr": "유혜지",
       "cvJp": "히라츠카 사에",
-      "illustration": "../savior-detail-assets/(풍월문) 세르팡 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(풍월문) 세르팡 일러스트.webp"
     }
   },
   "1021": {
@@ -268,7 +268,7 @@
       "affiliation": "카노푸스 경비대",
       "cvKr": "이보희",
       "cvJp": "미카와 하루나",
-      "illustration": "../savior-detail-assets/(카노푸스 레인저) 다나 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(카노푸스 레인저) 다나 일러스트.webp"
     }
   },
   "1023": {
@@ -285,7 +285,7 @@
       "affiliation": "모노리스 교단",
       "cvKr": "박신희",
       "cvJp": "키토 아카리",
-      "illustration": "../savior-detail-assets/(모노리스 교단) 뮤리엘 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(모노리스 교단) 뮤리엘 일러스트.webp"
     }
   },
   "1024": {
@@ -302,7 +302,7 @@
       "affiliation": "모노리스 교단",
       "cvKr": "김서현",
       "cvJp": "미즈키 린",
-      "illustration": "../savior-detail-assets/(모노리스 교단) 엘리사 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(모노리스 교단) 엘리사 일러스트.webp"
     }
   },
   "1025": {
@@ -319,7 +319,7 @@
       "affiliation": "집행자",
       "cvKr": "강새봄",
       "cvJp": "아베 리카",
-      "illustration": "../savior-detail-assets/(집행자) 티리아 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(집행자) 티리아 일러스트.webp"
     }
   },
   "1026": {
@@ -336,7 +336,7 @@
       "affiliation": "궤도 수색대",
       "cvKr": "권다예",
       "cvJp": "와타나베 케이코",
-      "illustration": "../savior-detail-assets/(궤도 수색대) 로베르타 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(궤도 수색대) 로베르타 일러스트.webp"
     }
   },
   "1027": {
@@ -353,7 +353,7 @@
       "affiliation": "궤도 수색대",
       "cvKr": "장채연",
       "cvJp": "와타나베 유리나",
-      "illustration": "../savior-detail-assets/(궤도 수색대) 루그 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(궤도 수색대) 루그 일러스트.webp"
     }
   },
   "1029": {
@@ -370,7 +370,7 @@
       "affiliation": "방랑자",
       "cvKr": "신나리",
       "cvJp": "스구타 히나",
-      "illustration": "../savior-detail-assets/(방랑자) 페이 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(방랑자) 페이 일러스트.webp"
     }
   },
   "1030": {
@@ -387,7 +387,7 @@
       "affiliation": "오를랑 가문",
       "cvKr": "윤아영",
       "cvJp": "미야시타 사키",
-      "illustration": "../savior-detail-assets/(오를랑 가문) 에핀델 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(오를랑 가문) 에핀델 일러스트.webp"
     }
   },
   "1031": {
@@ -404,7 +404,7 @@
       "affiliation": "보이저 구원단",
       "cvKr": "미소",
       "cvJp": "나가나와 마리아",
-      "illustration": "../savior-detail-assets/(보이저 구원단) 오메가 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(보이저 구원단) 오메가 일러스트.webp"
     }
   },
   "1032": {
@@ -421,7 +421,7 @@
       "affiliation": "모나스티르 기사단",
       "cvKr": "채림",
       "cvJp": "오오키 사에코",
-      "illustration": "../savior-detail-assets/(하트 오브 모나스티르) 샤를 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(하트 오브 모나스티르) 샤를 일러스트.webp"
     }
   },
   "1033": {
@@ -438,7 +438,7 @@
       "affiliation": "서부 탈환대",
       "cvKr": "이은조",
       "cvJp": "나츠요시 유우코",
-      "illustration": "../savior-detail-assets/(서부 해방군) 세레스 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(서부 해방군) 세레스 일러스트.webp"
     }
   },
   "1034": {
@@ -455,7 +455,7 @@
       "affiliation": "서부 탈환대",
       "cvKr": "장미",
       "cvJp": "아이자와 사야",
-      "illustration": "../savior-detail-assets/(서부 해방군) 리디아 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(서부 해방군) 리디아 일러스트.webp"
     }
   },
   "1041": {
@@ -472,7 +472,7 @@
       "affiliation": "헬 세이비어",
       "cvKr": "정유정",
       "cvJp": "야하기 사유리",
-      "illustration": "../savior-detail-assets/(헬 세이비어) 할리 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(헬 세이비어) 할리 일러스트.webp"
     }
   },
   "1042": {
@@ -489,7 +489,7 @@
       "affiliation": "페트라 조합",
       "cvKr": "김선주",
       "cvJp": "미네다 마유",
-      "illustration": "../savior-detail-assets/(페트라 조합) 페트라 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(페트라 조합) 페트라 일러스트.webp"
     }
   },
   "1043": {
@@ -506,7 +506,7 @@
       "affiliation": "캔들 스퀘어",
       "cvKr": "서다혜",
       "cvJp": "아키야마 미사키",
-      "illustration": "../savior-detail-assets/(리틀 타이런트) 스칼렛 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(리틀 타이런트) 스칼렛 일러스트.webp"
     }
   },
   "1044": {
@@ -523,7 +523,7 @@
       "affiliation": "캔들 스퀘어",
       "cvKr": "오로아",
       "cvJp": "소노야마 히카리",
-      "illustration": "../savior-detail-assets/(플로리스 블루 로즈) 클레어 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(플로리스 블루 로즈) 클레어 일러스트.webp"
     }
   },
   "1045": {
@@ -540,7 +540,7 @@
       "affiliation": "보이저 구원단",
       "cvKr": "방시우",
       "cvJp": "미나토 미야",
-      "illustration": "../savior-detail-assets/(화이트 펄 트랩) 루나 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(화이트 펄 트랩) 루나 일러스트.webp"
     }
   },
   "1046": {
@@ -557,7 +557,7 @@
       "affiliation": "보이저 구원단",
       "cvKr": "곽규미",
       "cvJp": "타무카이 유즈키",
-      "illustration": "../savior-detail-assets/(선샤인 캣) 스마일 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(선샤인 캣) 스마일 일러스트.webp"
     }
   },
   "1049": {
@@ -574,7 +574,7 @@
       "affiliation": "방랑자",
       "cvKr": "허예은",
       "cvJp": "마에다 카오리",
-      "illustration": "../savior-detail-assets/(방랑자) 레이시 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(방랑자) 레이시 일러스트.webp"
     }
   },
   "1051": {
@@ -591,7 +591,7 @@
       "affiliation": "페트라 조합",
       "cvKr": "최하리",
       "cvJp": "나카자와 미나",
-      "illustration": "../savior-detail-assets/(페트라 조합) 타냐 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(페트라 조합) 타냐 일러스트.webp"
     }
   },
   "1052": {
@@ -608,7 +608,7 @@
       "affiliation": "람파디스",
       "cvKr": "김윤채",
       "cvJp": "이이다 히카루",
-      "illustration": "../savior-detail-assets/(람파디스) 릴리 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(람파디스) 릴리 일러스트.webp"
     }
   },
   "1053": {
@@ -625,7 +625,7 @@
       "affiliation": "키라는 친구같은 거 없어",
       "cvKr": "성예원",
       "cvJp": "아오노 리코",
-      "illustration": "../savior-detail-assets/(키라는 친구 같은 거 없어) 키라 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(키라는 친구 같은 거 없어) 키라 일러스트.webp"
     }
   },
   "1054": {
@@ -642,7 +642,7 @@
       "affiliation": "보이저 구원단",
       "cvKr": "김채린",
       "cvJp": "타카모리 나츠미",
-      "illustration": "../savior-detail-assets/(왈츠 오브 스타라이트) 아세라 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(왈츠 오브 스타라이트) 아세라 일러스트.webp"
     }
   },
   "1055": {
@@ -659,7 +659,7 @@
       "affiliation": "모나스티르 기사단",
       "cvKr": "손정민",
       "cvJp": "Lynn",
-      "illustration": "../savior-detail-assets/(이터널 프로미스) 카르멘 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(이터널 프로미스) 카르멘 일러스트.webp"
     }
   },
   "1056": {
@@ -676,7 +676,7 @@
       "affiliation": "오를랑 가문",
       "cvKr": "윤아영",
       "cvJp": "미야시타 사키",
-      "illustration": "../savior-detail-assets/(블레싱 인 블룸) 에핀델 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(블레싱 인 블룸) 에핀델 일러스트.webp"
     }
   },
   "1057": {
@@ -693,7 +693,7 @@
       "affiliation": "모나스티르 기사단",
       "cvKr": "이이로",
       "cvJp": "시부야 아야노",
-      "illustration": "../savior-detail-assets/(노블 프린세스) 프레이 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(노블 프린세스) 프레이 일러스트.webp"
     }
   },
   "1501": {
@@ -710,7 +710,7 @@
       "affiliation": "서부 탈환대",
       "cvKr": "박하진",
       "cvJp": "츠카다 유이",
-      "illustration": "../savior-detail-assets/(서부 해방군) 베스타 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(서부 해방군) 베스타 일러스트.webp"
     }
   },
   "1502": {
@@ -727,7 +727,7 @@
       "affiliation": "NOA 타운가드",
       "cvKr": "여윤미",
       "cvJp": "하나사키 미유",
-      "illustration": "../savior-detail-assets/(노아 마을 경비대) 안나 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(노아 마을 경비대) 안나 일러스트.webp"
     }
   },
   "1506": {
@@ -744,7 +744,7 @@
       "affiliation": "페트라 조합",
       "cvKr": "박시윤",
       "cvJp": "안도 나나코",
-      "illustration": "../savior-detail-assets/(페트라 조합) 마르실 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(페트라 조합) 마르실 일러스트.webp"
     }
   },
   "1507": {
@@ -761,7 +761,7 @@
       "affiliation": "배달부 협회",
       "cvKr": "김가령",
       "cvJp": "슈토 유키나",
-      "illustration": "../savior-detail-assets/(운송 길드) 베라 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(운송 길드) 베라 일러스트.webp"
     }
   },
   "1508": {
@@ -778,7 +778,7 @@
       "affiliation": "궤도 수색대",
       "cvKr": "이주은",
       "cvJp": "후쿠시마 하루나",
-      "illustration": "../savior-detail-assets/(궤도 수색대) 나루 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(궤도 수색대) 나루 일러스트.webp"
     }
   },
   "1509": {
@@ -795,7 +795,7 @@
       "affiliation": "캔들 스퀘어",
       "cvKr": "오로아",
       "cvJp": "소노야마 히카리",
-      "illustration": "../savior-detail-assets/(캔들 스퀘어) 클레어 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(캔들 스퀘어) 클레어 일러스트.webp"
     }
   },
   "1510": {
@@ -812,7 +812,7 @@
       "affiliation": "캔들 스퀘어",
       "cvKr": "서다혜",
       "cvJp": "아키야마 미사키",
-      "illustration": "../savior-detail-assets/(캔들 스퀘어) 스칼렛 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(캔들 스퀘어) 스칼렛 일러스트.webp"
     }
   },
   "1511": {
@@ -829,7 +829,7 @@
       "affiliation": "카노푸스 경비대",
       "cvKr": "원에스더",
       "cvJp": "카와세 마키",
-      "illustration": "../savior-detail-assets/(카노푸스 레인저) 클라리사 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(카노푸스 레인저) 클라리사 일러스트.webp"
     }
   },
   "3001": {
@@ -846,7 +846,7 @@
       "affiliation": "펜릴 소대",
       "cvKr": "문선희",
       "cvJp": "히카사 요코",
-      "illustration": "../savior-detail-assets/(펜릴 소대) 힐데 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(펜릴 소대) 힐데 일러스트.webp"
     }
   },
   "3002": {
@@ -863,7 +863,7 @@
       "affiliation": "펜릴 소대",
       "cvKr": "정유정",
       "cvJp": "미즈키 나나",
-      "illustration": "../savior-detail-assets/(펜릴 소대) 유미나 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(펜릴 소대) 유미나 일러스트.webp"
     }
   },
   "3003": {
@@ -880,12 +880,12 @@
       "affiliation": "폴른 호크",
       "cvKr": "이새아",
       "cvJp": "쿠기미야 리에",
-      "illustration": "../savior-detail-assets/(폴른 호크) 로자리아 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/(폴른 호크) 로자리아 일러스트.webp"
     }
   },
   "_meta": {
     "sourceRoot": "https://star-savior-arcana-db.pages.dev/savior",
-    "generatedAt": "2026-09-02T16:51:04.955Z",
+    "generatedAt": "2026-09-02T17:02:32.597Z",
     "count": 52,
     "profileCount": 52,
     "illustrationCount": 52,
