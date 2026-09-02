@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v104-profile-illustration-equipment";
+const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v105-illustration-path-fix";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -5075,7 +5075,17 @@ let saviorProfileIndex = {};
 
 function getLocalSaviorProfile(savior) {
   const detailId = SAVIOR_DETAIL_IDS[savior?.id];
-  return saviorProfileIndex?.[String(detailId)]?.profile || null;
+  const profile = saviorProfileIndex?.[String(detailId)]?.profile;
+  if (!profile) return null;
+
+  const illustration = String(profile.illustration || "")
+    .replace(/^\.\.\/savior-detail-assets\//, "./data/savior-detail-assets/")
+    .replace(/^\.\/savior-detail-assets\//, "./data/savior-detail-assets/")
+    .replace(/^savior-detail-assets\//, "./data/savior-detail-assets/");
+
+  return illustration === profile.illustration
+    ? profile
+    : { ...profile, illustration };
 }
 
 async function loadSaviorProfileIndex() {
@@ -6685,8 +6695,7 @@ function createDetailMarkup(savior) {
           <div class="savior-illustration-body">
             <img src="${escapeHtml(localProfile.illustration)}"
               alt="${escapeHtml(`${getLocalizedSaviorName(savior.name)} 일러스트`)}"
-              loading="lazy" decoding="async"
-              onerror="this.closest('.savior-illustration-section').remove()">
+              loading="lazy" decoding="async">
           </div>
         </details>
       </section>
