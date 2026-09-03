@@ -901,6 +901,28 @@
       "illustration": "./data/savior-detail-assets/(노블 프린세스) 프레이 일러스트.webp"
     }
   },
+  "1058": {
+    "key": "source-1058",
+    "id": 1058,
+    "file": "./1058.html",
+    "source": "https://star-savior-arcana-db.pages.dev/savior/1058",
+    "capturedAt": "2026-09-03T07:55:29.791Z",
+    "profile": {
+      "name": "아모라",
+      "grade": "SSR",
+      "element": "질서",
+      "className": "어쌔신",
+      "attackType": "참격",
+      "description": "스트라니스 백작가의 현 가주이자, 대마녀 알리시아를 따르는 집행자. 여유로운 성격으로 짓궂은 장난을 즐긴다. 술통을 손에서 놓지 않는 애주가지만, 실력 하나만큼은 확실한 편.",
+      "birthday": "03월 16일",
+      "height": "171cm",
+      "origin": "스트라니스 백작령",
+      "affiliation": "스트라니스 백작가",
+      "cvKr": "김도영",
+      "cvJp": "코마가타 유리",
+      "illustration": "./data/savior-detail-assets/8500523b272a250963276f06.webp"
+    }
+  },
   "1501": {
     "key": "besta",
     "id": 1501,
@@ -1145,10 +1167,10 @@
   },
   "_meta": {
     "sourceRoot": "https://star-savior-arcana-db.pages.dev/savior",
-    "generatedAt": "2026-09-02T17:04:01.475Z",
-    "count": 52,
-    "profileCount": 52,
-    "illustrationCount": 52,
+    "generatedAt": "2026-09-03T07:55:29.824Z",
+    "count": 53,
+    "profileCount": 53,
+    "illustrationCount": 53,
     "profileFields": [
       "name",
       "grade",
