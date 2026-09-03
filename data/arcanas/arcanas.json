@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "sourceOrigin": "https://star-savior-arcana-db.pages.dev",
   "sourcePage": "https://star-savior-arcana-db.pages.dev/arcana",
-  "capturedAt": "2026-08-31T08:41:35.591Z",
+  "capturedAt": "2026-09-03T07:51:58.442Z",
   "languages": [
     "ko",
     "en",
@@ -2411,6 +2411,38 @@
             "ko": "기본기 타격 시 대상의 강인도가 격파된 상태이면 대상에게 100% 확률로 자신의 공격력에 비례한 연쇄 피해를 발생시킵니다.",
             "en": "Deals Chain DMG to the target proportional to self ATK with a 100% chance on attack with a Basic Skill if the target's Toughness is broken.",
             "ja": "基本スキルで攻撃時、対象の強靭度がブレイク状態であれば、対象に100%の確率で自身の攻撃力に比例した連鎖ダメージを与える。"
+          },
+          "requiredPotentialPoints": 200,
+          "bondPointCheck": true,
+          "stats": []
+        }
+      ]
+    },
+    {
+      "id": 34005,
+      "strId": "POTEN_PASSIVE_34005",
+      "type": "특수 잠재력",
+      "unitId": 0,
+      "class": "어쌔신",
+      "name": {
+        "ko": "맑게 빚은 향기",
+        "en": "Distilled Fragrance",
+        "ja": "清らに醸す香り"
+      },
+      "description": {
+        "ko": "단일 공격으로 타격 시 피해량이 10% 증가하고 자신이 약화 효과 상태가 아니라면 피해량이 추가로 15% 증가합니다.",
+        "en": "Increases damage dealt by 10% when attacking with a single-target attack. If self has no debuffs, increases damage dealt by an additional 15%.",
+        "ja": "単体攻撃で攻撃時、ダメージが10％上がる。自身が弱体化状態でない場合、ダメージがさらに15％上がる。"
+      },
+      "icon": "./data/arcana-assets/potentials/34005.webp",
+      "background": "./data/arcana-assets/potential-backgrounds/blue.webp",
+      "levels": [
+        {
+          "level": 1,
+          "description": {
+            "ko": "단일 공격으로 타격 시 피해량이 10% 증가하고 자신이 약화 효과 상태가 아니라면 피해량이 추가로 15% 증가합니다.",
+            "en": "Increases damage dealt by 10% when attacking with a single-target attack. If self has no debuffs, increases damage dealt by an additional 15%.",
+            "ja": "単体攻撃で攻撃時、ダメージが10％上がる。自身が弱体化状態でない場合、ダメージがさらに15％上がる。"
           },
           "requiredPotentialPoints": 200,
           "bondPointCheck": true,
@@ -18577,6 +18609,478 @@
                     "type": "RT_POTEN_POINT",
                     "min": 10,
                     "max": 10
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7105801,
+      "name": {
+        "ko": "귀로 없는 여정",
+        "en": "Journey of No Return",
+        "ja": "帰路なき旅程"
+      },
+      "character": {
+        "ko": "아모라",
+        "en": "Amora",
+        "ja": "アモラ"
+      },
+      "rarity": "SSR",
+      "mainStat": {
+        "ko": "체력",
+        "en": "Vitality",
+        "ja": "体力"
+      },
+      "assists": [
+        {
+          "ko": "특수 효과",
+          "en": "Special Effect",
+          "ja": "特殊効果"
+        },
+        {
+          "ko": "어쌔신",
+          "en": "Assassin",
+          "ja": "アサシン"
+        }
+      ],
+      "image": "./data/arcana-assets/cards/7105801.webp",
+      "mainStatIcon": "./data/arcana-assets/status/health.webp",
+      "specialPotentialId": 34005,
+      "uniqueEffect": {
+        "name": {
+          "ko": "시범 집행",
+          "en": "Exemplary Execution",
+          "ja": "試し執行"
+        },
+        "description": {
+          "ko": "인연 포인트 <color=#2A80D8>30</color> 이상일 때 추가 체력 능력치 획득 +2",
+          "en": "When Bond Points are at <color=#2A80D8>30</color> or higher Additional Vitality Stat Gain +2",
+          "ja": "絆ポイントが<color=#2A80D8>30</color>以上の場合 追加体力ステータス獲得 +2"
+        },
+        "unlockLevel": 35,
+        "promotePerLevel": 1,
+        "uniqueType": "UPAT_ARCANA_POINT",
+        "uniqueConditionValue": 30,
+        "activeType": "PT_TRAINNING",
+        "valueType": {
+          "ko": "추가 체력 능력치 획득",
+          "en": "Additional Vitality Stat Gain",
+          "ja": "追加体力ステータス獲得"
+        },
+        "valueInt": 2,
+        "valueRate": 0,
+        "valueIntPerPromote": 0,
+        "valueRatePerPromote": 0
+      },
+      "effects": {
+        "journeyStart": [
+          {
+            "unlockLevel": 20,
+            "promotePerLevel": 5,
+            "activeType": "PT_JOURNEY_START",
+            "valueType": {
+              "ko": "인연 포인트 증가",
+              "en": "Bond Points Gain",
+              "ja": "絆ポイント増加"
+            },
+            "isRate": false,
+            "valueInt": 9,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 12,
+                "display": "12"
+              },
+              "40": {
+                "value": 13,
+                "display": "13"
+              },
+              "45": {
+                "value": 14,
+                "display": "14"
+              },
+              "50": {
+                "value": 15,
+                "display": "15"
+              }
+            }
+          }
+        ],
+        "training": [
+          {
+            "unlockLevel": 15,
+            "promotePerLevel": 1,
+            "activeType": "PT_TRAINNING",
+            "valueType": {
+              "ko": "컨디션 효과 상승",
+              "en": "Condition Effect Increase",
+              "ja": "コンディション効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 400,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 18,
+            "values": {
+              "35": {
+                "value": 760,
+                "display": "7.60%"
+              },
+              "40": {
+                "value": 850,
+                "display": "8.50%"
+              },
+              "45": {
+                "value": 940,
+                "display": "9.40%"
+              },
+              "50": {
+                "value": 1030,
+                "display": "10.30%"
+              }
+            }
+          },
+          {
+            "unlockLevel": 20,
+            "promotePerLevel": 20,
+            "activeType": "PT_TRAINNING",
+            "valueType": {
+              "ko": "추가 체력 능력치 획득",
+              "en": "Additional Vitality Stat Gain",
+              "ja": "追加体力ステータス獲得"
+            },
+            "isRate": false,
+            "valueInt": 1,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 1,
+                "display": "1"
+              },
+              "40": {
+                "value": 2,
+                "display": "2"
+              },
+              "45": {
+                "value": 2,
+                "display": "2"
+              },
+              "50": {
+                "value": 2,
+                "display": "2"
+              }
+            }
+          },
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "activeType": "PT_TRAINNING",
+            "valueType": {
+              "ko": "훈련 효과 상승",
+              "en": "Training Effectiveness",
+              "ja": "トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 800,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 12,
+            "values": {
+              "35": {
+                "value": 1208,
+                "display": "12.08%"
+              },
+              "40": {
+                "value": 1268,
+                "display": "12.68%"
+              },
+              "45": {
+                "value": 1328,
+                "display": "13.28%"
+              },
+              "50": {
+                "value": 1388,
+                "display": "13.88%"
+              }
+            }
+          }
+        ],
+        "telepathy": [
+          {
+            "unlockLevel": 35,
+            "promotePerLevel": 5,
+            "activeType": "PT_TRAINNING_TAG",
+            "valueType": {
+              "ko": "감응 훈련 발생 확률 상승",
+              "en": "Sensory Training Chance",
+              "ja": "感応トレーニングの発生率の上昇"
+            },
+            "isRate": false,
+            "valueInt": 105,
+            "valueRate": 0,
+            "valueIntPerPromote": 105,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 105,
+                "display": "105"
+              },
+              "40": {
+                "value": 210,
+                "display": "210"
+              },
+              "45": {
+                "value": 315,
+                "display": "315"
+              },
+              "50": {
+                "value": 420,
+                "display": "420"
+              }
+            }
+          },
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "activeType": "PT_TRAINNING_TAG",
+            "valueType": {
+              "ko": "초감응 훈련 효과 상승",
+              "en": "Super Sensory Training Effectiveness",
+              "ja": "超感応トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 1400,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 24,
+            "values": {
+              "35": {
+                "value": 2216,
+                "display": "22.16%"
+              },
+              "40": {
+                "value": 2336,
+                "display": "23.36%"
+              },
+              "45": {
+                "value": 2456,
+                "display": "24.56%"
+              },
+              "50": {
+                "value": 2576,
+                "display": "25.76%"
+              }
+            }
+          }
+        ],
+        "supportQuest": []
+      },
+      "events": [
+        {
+          "id": 710580101,
+          "name": {
+            "ko": "마스터 셰프 라비스타",
+            "en": "Master Chef Lavistar",
+            "ja": "マスターシェフ・ラビスター"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "향을 음미하며 마신다.",
+                "en": "Savor the aroma while drinking.",
+                "ja": "香りを味わいながら飲む。"
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_CONDITION",
+                    "min": 1,
+                    "max": 1
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Health",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ]
+              ],
+              "failureRewards": []
+            },
+            {
+              "name": {
+                "ko": "벌컥벌컥 마신다.",
+                "en": "Gulp it down.",
+                "ja": "一気に飲み干す。"
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "min": 1,
+                    "max": 1,
+                    "rewardId": 21006
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Health",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_POTEN_POINT",
+                    "min": 15,
+                    "max": 15
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710580102,
+          "name": {
+            "ko": "어떤 오후의 평화",
+            "en": "One Peaceful Afternoon",
+            "ja": "とある午後の平穏"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "",
+                "en": "",
+                "ja": ""
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAMINA",
+                    "min": 5,
+                    "max": 5
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 15,
+                    "max": 15,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Health",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710580103,
+          "name": {
+            "ko": "백작님의 고뇌",
+            "en": "The Countess' Troubles",
+            "ja": "伯爵の悩み"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "",
+                "en": "",
+                "ja": ""
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 34005
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 15,
+                    "max": 15,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Health",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "rewardStat": "JST_FOCUS",
+                    "statName": {
+                      "ko": "집중",
+                      "en": "Focus",
+                      "ja": "集中"
+                    },
+                    "icon": "./data/arcana-assets/status/focus.webp"
                   }
                 ]
               ],
