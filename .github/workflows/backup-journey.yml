@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: starsavior-source-backup-write
+  cancel-in-progress: false
+
 jobs:
   backup-arcana-events:
     if: github.actor != 'github-actions[bot]'
@@ -43,4 +47,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: refresh Arcana events from source DB"
-          git push
+          git pull --rebase origin main
+          git push origin HEAD:main
