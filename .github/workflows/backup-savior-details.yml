@@ -17,7 +17,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: savior-backup-write
+  group: starsavior-source-backup-write
   cancel-in-progress: false
 
 jobs:
@@ -56,7 +56,9 @@ jobs:
           const OUT_DIR = path.join(ROOT, 'data', 'saviors');
           const ASSET_DIR = path.join(ROOT, 'data', 'savior-detail-assets');
           const INDEX_PATH = path.join(OUT_DIR, 'index.json');
-          const SOURCE_ROOT = 'https://star-savior-arcana-db.pages.dev/savior';
+          const SOURCE_ORIGIN = 'https://star-savior-arcana-db.pages.dev';
+          const SOURCE_ROOT = `${SOURCE_ORIGIN}/savior`;
+          const SOURCE_SAVIORS_URL = `${SOURCE_ORIGIN}/data/saviors.json`;
           const refreshAll = String(process.env.REFRESH_ALL || 'false').toLowerCase() === 'true';
 
           if (!fs.existsSync(APP_PATH)) {
@@ -86,8 +88,23 @@ jobs:
             } catch (_) {}
           }
 
+          const staticById = new Map(entries.map((entry) => [entry.id, entry]));
+          const sourceResponse = await fetch(SOURCE_SAVIORS_URL, { headers: { accept: 'application/json' } });
+          if (!sourceResponse.ok) throw new Error(`Could not load source Savior list (HTTP ${sourceResponse.status}).`);
+          const sourceSaviors = await sourceResponse.json();
+          if (!Array.isArray(sourceSaviors) || sourceSaviors.length < 52) {
+            throw new Error(`Source Savior list is incomplete (${sourceSaviors?.length ?? 'invalid'}).`);
+          }
+
           const uniqueById = new Map();
-          for (const entry of entries) uniqueById.set(entry.id, entry);
+          for (const sourceSavior of sourceSaviors) {
+            const id = Number(sourceSavior?.id);
+            if (!id) continue;
+            uniqueById.set(id, staticById.get(id) || { key: `source-${id}`, id });
+          }
+          for (const entry of entries) {
+            if (!uniqueById.has(entry.id)) uniqueById.set(entry.id, entry);
+          }
           const saviors = [...uniqueById.values()].sort((a, b) => a.id - b.id);
 
           function safeExt(url, contentType = '') {
