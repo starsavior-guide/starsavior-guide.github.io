@@ -231,8 +231,8 @@ Object.assign(I18N_DATA.ui.ja, {
 // v55: 아모라 신규 구원자 표시
 Object.assign(I18N_DATA.saviorNames.en, { "아모라": "Amora" });
 Object.assign(I18N_DATA.saviorNames.ja, { "아모라": "アモラ" });
-Object.assign(I18N_DATA.subtitles.en, { "스트라니스가": "House Stranis" });
-Object.assign(I18N_DATA.subtitles.ja, { "스트라니스가": "ストラニス家" });
+Object.assign(I18N_DATA.subtitles.en, { "스트라니스 백작가": "House Stranis" });
+Object.assign(I18N_DATA.subtitles.ja, { "스트라니스 백작가": "ストラニス伯爵家" });
 Object.assign(I18N_DATA.arcana.en, { "귀로 없는 여정": "Journey of No Return" });
 Object.assign(I18N_DATA.arcana.ja, { "귀로 없는 여정": "帰路なき旅程" });
 
@@ -4807,8 +4807,8 @@ const SAVIORS = [
   {
     "id": "amora",
     "name": "아모라",
-    "subtitle": "스트라니스가",
-    "affiliation": "스트라니스가",
+    "subtitle": "스트라니스 백작가",
+    "affiliation": "스트라니스 백작가",
     "grade": "SSR",
     "element": "order",
     "className": "어쌔신",
