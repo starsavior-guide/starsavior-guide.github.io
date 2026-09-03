@@ -16,6 +16,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: starsavior-source-backup-write
+  cancel-in-progress: false
+
 jobs:
   backup-savior-skills:
     if: github.actor != 'github-actions[bot]'
@@ -46,10 +50,12 @@ jobs:
           const manifest = JSON.parse(fs.readFileSync('data/savior-skills/manifest.json', 'utf8'));
           const archive = JSON.parse(fs.readFileSync('data/savior-skills/saviors.json', 'utf8'));
 
-          if (manifest.saviorCount !== 52 || archive.saviors?.length !== 52) {
-            throw new Error('The Savior backup must contain exactly 52 Saviors.');
+          if (!Array.isArray(archive.saviors) || archive.saviors.length < 52 || manifest.saviorCount !== archive.saviors.length) {
+            throw new Error('The Savior backup must contain at least 52 Saviors and match its manifest.');
           }
-          if (manifest.skillCount !== 208 || manifest.blossomSkillCount !== 32) {
+          const skillCount = archive.saviors.reduce((sum, savior) => sum + (savior.skills?.length || 0), 0);
+          const blossomSkillCount = archive.saviors.reduce((sum, savior) => sum + (savior.blossomSkills?.length || 0), 0);
+          if (skillCount < 208 || blossomSkillCount < 32 || manifest.skillCount !== skillCount || manifest.blossomSkillCount !== blossomSkillCount) {
             throw new Error('The Savior skill counts do not match the source database.');
           }
           if (JSON.stringify(manifest.languages) !== JSON.stringify(['ko', 'en', 'ja'])) {
@@ -69,4 +75,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/savior-skills data/savior-skill-assets
           git commit -m 'Refresh localized Savior skill backup'
-          git push
+          git pull --rebase origin main
+          git push origin HEAD:main
