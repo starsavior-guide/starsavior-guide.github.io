@@ -641,7 +641,8 @@
 
   <style id="savior-source-detail-styles">
     .savior-source-section {
-      padding: 18px 20px;
+      padding: 0;
+      overflow: hidden;
     }
 
     .savior-source-detail {
@@ -649,12 +650,27 @@
     }
 
     .savior-detail-toggle {
-      display: inline-flex;
+      display: flex;
+      width: 100%;
+      min-height: 58px;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      min-height: 46px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 0;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--surface-3) 90%, white 5%), var(--surface-2));
+      color: var(--text);
+      font-family: inherit;
+      font-size: clamp(17px, 2vw, 21px);
+      font-weight: 950;
       cursor: pointer;
+      user-select: none;
+    }
+
+    .savior-detail-toggle:hover {
+      border-color: transparent;
+      color: var(--text);
     }
 
     .savior-detail-toggle:disabled {
@@ -675,7 +691,9 @@
 
     .savior-source-panel {
       width: 100%;
-      margin-top: 16px;
+      margin-top: 0;
+      padding: 16px 20px 20px;
+      border-top: 1px solid var(--line);
     }
 
     .savior-source-panel[hidden] {
@@ -1095,10 +1113,12 @@
     }
 
     @media (max-width: 640px) {
-      .savior-source-section { padding: 14px; }
+      .savior-source-section { padding: 0; }
       .savior-source-detail,
       .savior-detail-toggle { width: 100%; }
+      .savior-detail-toggle,
       .savior-illustration-details > summary { min-height: 54px; padding: 12px 14px; }
+      .savior-source-panel { padding: 14px; }
       .savior-illustration-body { min-height: 120px; padding: 12px; }
       .parsed-savior-source { gap: 12px; }
       .source-detail-block { border-radius: 13px; }

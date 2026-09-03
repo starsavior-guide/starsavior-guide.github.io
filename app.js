@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v105-illustration-path-fix";
+const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v106-amora-source-refresh";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -228,6 +228,14 @@ Object.assign(I18N_DATA.ui.en, {
 Object.assign(I18N_DATA.ui.ja, {
   "본인 조합과 세팅에 따라 다르나 속도 권장.": "編成やセッティングによって異なりますが、速度を推奨します。"
 });
+// v55: 아모라 신규 구원자 표시
+Object.assign(I18N_DATA.saviorNames.en, { "아모라": "Amora" });
+Object.assign(I18N_DATA.saviorNames.ja, { "아모라": "アモラ" });
+Object.assign(I18N_DATA.subtitles.en, { "스트라니스가": "House Stranis" });
+Object.assign(I18N_DATA.subtitles.ja, { "스트라니스가": "ストラニス家" });
+Object.assign(I18N_DATA.arcana.en, { "귀로 없는 여정": "Journey of No Return" });
+Object.assign(I18N_DATA.arcana.ja, { "귀로 없는 여정": "帰路なき旅程" });
+
 const ORIGINAL_TEXT_NODES = new WeakMap();
 const ORIGINAL_ATTRIBUTES = new WeakMap();
 
@@ -803,7 +811,7 @@ const GROWTH_PRIORITY = {
   "carmen": { tier: "4티어", level: "tier-4" },
   "frey": { tier: "2티어", level: "tier-2" },
   "seira": { tier: "2티어", level: "tier-2" },
-  "trish": { tier: "3티어", level: "tier-3" },
+  "trish": { tier: "2티어", level: "tier-2" },
   "lyn": { tier: "2티어", level: "tier-2" },
   "cristelle": { tier: "1티어", level: "tier-1" },
   "haydee": { tier: "0.5티어", level: "tier-05", note: "1돌파 이상 필수" },
@@ -813,15 +821,15 @@ const GROWTH_PRIORITY = {
   "elisa": { tier: "2티어", level: "tier-2", note: "1돌파 이상 권장" },
   "tyria": { tier: "1티어", level: "tier-1" },
   "roberta": { tier: "1티어", level: "tier-1" },
-  "lugh": { tier: "3티어", level: "tier-3" },
+  "lugh": { tier: "2티어", level: "tier-2" },
   "fei": { tier: "0.5티어", level: "tier-05" },
   "epindel": { tier: "3티어", level: "tier-3" },
-  "omega": { tier: "2티어", level: "tier-2" },
+  "omega": { tier: "3티어", level: "tier-3" },
   "bunny-charlotte": { tier: "0.5티어", level: "tier-05" },
   "ceres": { tier: "1티어", level: "tier-1", note: "1돌파 이상 권장" },
   "lydia": { tier: "2티어", level: "tier-2" },
   "harley": { tier: "2티어", level: "tier-2" },
-  "petra": { tier: "3티어", level: "tier-3" },
+  "petra": { tier: "2티어", level: "tier-2" },
   "scarlet": { tier: "3티어", level: "tier-3" },
   "claire": { tier: "1티어", level: "tier-1" },
   "lacy": { tier: "2티어", level: "tier-2" },
@@ -832,19 +840,20 @@ const GROWTH_PRIORITY = {
   "wedding-carmen": { tier: "0티어", level: "tier-0", note: "한정" },
   "wedding-epindel": { tier: "1티어", level: "tier-1" },
   "bunny-frey": { tier: "1티어", level: "tier-1", note: "1돌파 이상 권장" },
-  "besta": { tier: "2티어", level: "tier-2", note: "개화 필수" },
+  "besta": { tier: "3티어", level: "tier-3", note: "개화 필수" },
   "annah": { tier: "1티어", level: "tier-1", note: "개화 필수" },
   "marcille": { tier: "2티어", level: "tier-2", note: "개화 필수" },
   "vera": { tier: "2티어", level: "tier-2", note: "개화 필수" },
   "naru": { tier: "2티어", level: "tier-2", note: "개화 필수" },
   "bunny-claire": { tier: "2티어", level: "tier-2", note: "개화 필수" },
-  "bunny-scarlet": { tier: "3티어", level: "tier-3" },
+  "bunny-scarlet": { tier: "2티어", level: "tier-2", note: "개화 필수" },
   "clarissa": { tier: "0.5티어", level: "tier-05", note: "개화 필수" },
   "hilde": { tier: "3티어", level: "tier-3" },
   "yoo-mina": { tier: "3티어", level: "tier-3" },
   "rosaria": { tier: "1티어", level: "tier-1" },
   "white-pearl-luna": { tier: "1티어", level: "tier-1" },
-  "sunshine-cat-smile": { tier: "0.5티어", level: "tier-05" }
+  "sunshine-cat-smile": { tier: "0.5티어", level: "tier-05" },
+  "amora": { tier: "미정", level: "tier-unrated" }
 };
 
 
@@ -859,9 +868,9 @@ const MAIN_CONTENTS = {
   "roberta": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "ceres": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "tanya": ["없음"],
-  "bunny-scarlet": ["없음"],
+  "bunny-scarlet": ["작전", "회랑", "코스모 게이트"],
 
-  "trish": ["PVP"],
+  "trish": ["PVP", "작전", "회랑", "코스모 게이트"],
   "fei": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "epindel": ["없음"],
   "marcille": ["없음"],
@@ -887,7 +896,7 @@ const MAIN_CONTENTS = {
   "wedding-epindel": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "muriel": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "bunny-frey": ["작전", "코스모 게이트", "회랑", "플래시 포인트"],
-  "omega": ["코스모 게이트"],
+  "omega": ["작전", "회랑", "코스모 게이트"],
   "lily": ["없음"],
 
   "emily": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
@@ -905,7 +914,8 @@ const MAIN_CONTENTS = {
   "waltz-asherah": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "wedding-carmen": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "white-pearl-luna": ["작전", "코스모 게이트", "회랑", "PVP"],
-  "sunshine-cat-smile": ["작전", "회랑", "코스모 게이트", "플래시 포인트"]
+  "sunshine-cat-smile": ["작전", "회랑", "코스모 게이트", "플래시 포인트"],
+  "amora": ["미정"]
 };
 
 const SAVIORS = [
@@ -4793,6 +4803,20 @@ const SAVIORS = [
         ]
       }
     }
+  },
+  {
+    "id": "amora",
+    "name": "아모라",
+    "subtitle": "스트라니스가",
+    "affiliation": "스트라니스가",
+    "grade": "SSR",
+    "element": "order",
+    "className": "어쌔신",
+    "role": "어쌔신",
+    "attackType": "참격",
+    "image": "",
+    "summary": "신규 구원자 데이터 반영.",
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
   }
 ];
 
@@ -4915,10 +4939,11 @@ function normalizeGuideSearch(value) {
 function imageMarkup(savior, large = false) {
   const localizedName = getLocalizedSaviorName(savior.name);
   const fallback = `<span class="character-fallback">${escapeHtml(getInitial(localizedName))}</span>`;
-  if (!savior.image) return fallback;
+  const imageSource = savior.image || getLocalSaviorProfile(savior)?.illustration || "";
+  if (!imageSource) return fallback;
 
   return `
-    <img class="character-image" src="${escapeHtml(savior.image)}" alt="${escapeHtml(localizedName)}"
+    <img class="character-image" src="${escapeHtml(imageSource)}" alt="${escapeHtml(localizedName)}"
       onerror="this.remove(); this.parentElement.insertAdjacentHTML('beforeend', '${fallback.replaceAll("'", "&#039;")}')">
   `;
 }
@@ -4942,7 +4967,7 @@ function renderList() {
       translateString(savior.attackType),
       ELEMENT_LABELS[savior.element],
       translateString(ELEMENT_LABELS[savior.element]),
-      getSaviorResonanceSearchText(savior)
+      getSaviorArchiveSearchText(savior)
     ].join(" ");
 
     const queryMatch = !q || normalizeGuideSearch(haystack).includes(q);
@@ -5073,8 +5098,28 @@ let saviorSkillArchiveById = new Map();
 let saviorProfileIndexPromise = null;
 let saviorProfileIndex = {};
 
+function resolveSaviorDetailId(savior) {
+  const staticId = Number(SAVIOR_DETAIL_IDS[savior?.id] || 0);
+  if (staticId) return staticId;
+
+  const targetName = String(savior?.name || "").trim();
+  if (!targetName) return null;
+
+  for (const [id, entry] of Object.entries(saviorProfileIndex || {})) {
+    if (id === "_meta" || !entry?.profile) continue;
+    if (String(entry.profile.name || "").trim() === targetName) return Number(entry.id || id) || null;
+  }
+
+  for (const archived of saviorSkillArchiveById.values()) {
+    if (getArchivedLanguageText(archived?.name, "ko").trim() === targetName) {
+      return Number(archived.id) || null;
+    }
+  }
+  return null;
+}
+
 function getLocalSaviorProfile(savior) {
-  const detailId = SAVIOR_DETAIL_IDS[savior?.id];
+  const detailId = resolveSaviorDetailId(savior);
   const profile = saviorProfileIndex?.[String(detailId)]?.profile;
   if (!profile) return null;
 
@@ -5095,7 +5140,7 @@ async function loadSaviorProfileIndex() {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const index = await response.json();
       const profiles = Object.values(index || {}).filter((entry) => entry?.profile);
-      if (profiles.length !== 52) throw new Error(`Invalid Savior profile index (${profiles.length}/52)`);
+      if (profiles.length < 52) throw new Error(`Invalid Savior profile index (${profiles.length}; expected at least 52)`);
 
       saviorProfileIndex = index;
       SAVIORS.forEach((savior) => {
@@ -5126,7 +5171,7 @@ async function loadSaviorSkillArchive() {
     saviorSkillArchivePromise = fetch(url, { cache: "no-store" }).then(async (response) => {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const archive = await response.json();
-      if (!Array.isArray(archive?.saviors) || archive.saviors.length !== 52) {
+      if (!Array.isArray(archive?.saviors) || archive.saviors.length < 52) {
         throw new Error("Invalid Savior skill archive");
       }
       saviorSkillArchiveById = new Map(archive.saviors.map((savior) => [Number(savior.id), savior]));
@@ -5140,18 +5185,28 @@ async function loadSaviorSkillArchive() {
 }
 
 function getArchivedSavior(savior) {
-  const detailId = SAVIOR_DETAIL_IDS[savior?.id];
+  const detailId = resolveSaviorDetailId(savior);
   return saviorSkillArchiveById.get(Number(detailId)) || null;
 }
 
-function getSaviorResonanceSearchText(savior) {
+function collectSaviorArchiveSearchStrings(value, output = []) {
+  if (typeof value === "string") {
+    output.push(value);
+    return output;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item) => collectSaviorArchiveSearchStrings(item, output));
+    return output;
+  }
+  if (value && typeof value === "object") {
+    Object.values(value).forEach((item) => collectSaviorArchiveSearchStrings(item, output));
+  }
+  return output;
+}
+
+function getSaviorArchiveSearchText(savior) {
   const archivedSavior = getArchivedSavior(savior);
-  return (archivedSavior?.resonancePotentials || []).flatMap((potential) =>
-    SUPPORTED_LANGUAGES.flatMap((language) => [
-      getArchivedLanguageText(potential.name, language),
-      getArchivedLanguageText(potential.description, language)
-    ])
-  ).join(" ");
+  return archivedSavior ? collectSaviorArchiveSearchStrings(archivedSavior).join(" ") : "";
 }
 
 function createArchivedSaviorResonanceRows(archivedSavior, language = currentLanguage) {
@@ -5959,7 +6014,7 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options =
     profile.description = getArchivedLanguageText(archivedSavior.description, options.language || currentLanguage);
   }
 
-  const detailId = SAVIOR_DETAIL_IDS[savior.id];
+  const detailId = resolveSaviorDetailId(savior);
   const bloomAvailable = (archivedSavior?.blossomSkills?.length || 0) > 0
     || SAVIOR_BLOOM_DETAIL_ID_SET.has(Number(detailId));
 
@@ -5989,23 +6044,26 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options =
 
 async function loadSaviorSourcePanel(button, panel) {
   if (panel.dataset.loaded === "true") return;
-  const detailId = button.dataset.detailId;
-  if (!detailId) return;
+  const savior = SAVIORS.find((item) => item.id === button.dataset.saviorKey)
+    || SAVIORS.find((item) => SAVIOR_DETAIL_IDS[item.id] === Number(button.dataset.detailId));
+  if (!savior) return;
 
-  const url = getSaviorBackupUrl(detailId);
-  const savior = SAVIORS.find((item) => SAVIOR_DETAIL_IDS[item.id] === Number(detailId));
   button.disabled = true;
   setSaviorSourcePanelStatus(panel, "상세정보를 불러오는 중입니다.", "loading");
 
+  let detailId = Number(button.dataset.detailId || 0);
   try {
-    const [response, archive] = await Promise.all([
-      fetch(url, { cache: "no-store" }),
-      loadSaviorSkillArchive()
-    ]);
+    const archive = await loadSaviorSkillArchive();
+    await loadSaviorProfileIndex().catch(() => null);
+    detailId = detailId || Number(resolveSaviorDetailId(savior) || 0);
+    if (!detailId) throw new Error("Savior detail ID could not be resolved");
+    button.dataset.detailId = String(detailId);
+
+    const url = getSaviorBackupUrl(detailId);
+    const response = await fetch(url, { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const sourceHtml = await response.text();
-    if (!savior) throw new Error("Savior mapping not found");
-    const archivedSavior = archive.saviors.find((item) => Number(item.id) === Number(detailId));
+    const archivedSavior = archive.saviors.find((item) => Number(item.id) === detailId);
     if (!archivedSavior) throw new Error("Savior skill archive mapping not found");
     panel.innerHTML = createParsedSaviorSourceMarkup(sourceHtml, url, savior, {
       archivedSavior,
@@ -6015,11 +6073,12 @@ async function loadSaviorSourcePanel(button, panel) {
     panel._normalSaviorSourceUrl = url;
     panel._archivedSaviorSkills = archivedSavior;
     panel._saviorSourceId = savior.id;
+    panel._resolvedDetailId = detailId;
     panel.dataset.loaded = "true";
     panel.dataset.state = "ready";
     applyLanguageToDOM(panel);
   } catch (error) {
-    console.warn("Savior detail backup load failed:", detailId, error);
+    console.warn("Savior detail backup load failed:", detailId || savior.id, error);
     setSaviorSourcePanelStatus(panel, "상세정보 백업 데이터를 불러올 수 없습니다.", "error");
   } finally {
     button.disabled = false;
@@ -6033,7 +6092,7 @@ function refreshLoadedSaviorSourcePanels() {
     const blossomed = panel.querySelector("[data-savior-bloom-toggle]")?.getAttribute("aria-pressed") === "true";
     panel.innerHTML = createParsedSaviorSourceMarkup(
       panel._normalSaviorSourceHtml,
-      panel._normalSaviorSourceUrl || getSaviorBackupUrl(SAVIOR_DETAIL_IDS[savior.id]),
+      panel._normalSaviorSourceUrl || getSaviorBackupUrl(panel._resolvedDetailId || resolveSaviorDetailId(savior)),
       savior,
       {
         archivedSavior: panel._archivedSaviorSkills,
@@ -6668,21 +6727,19 @@ function createDetailMarkup(savior) {
     baseAlternativeArcana
   );
 
-  const saviorDetailId = SAVIOR_DETAIL_IDS[savior.id];
+  const saviorDetailId = resolveSaviorDetailId(savior);
   const localProfile = getLocalSaviorProfile(savior);
-  const guideButton = saviorDetailId
-    ? `
+  const guideButton = `
       <div class="savior-source-detail" data-savior-source-detail>
         <button class="external-guide savior-detail-toggle" type="button"
-          data-savior-source-toggle data-detail-id="${escapeHtml(saviorDetailId)}"
+          data-savior-source-toggle data-detail-id="${escapeHtml(saviorDetailId || "")}" data-savior-key="${escapeHtml(savior.id)}"
           aria-expanded="false">
           <span>스킬설명 및 상세정보</span>
           <span class="savior-detail-chevron" aria-hidden="true">⌄</span>
         </button>
         <div class="savior-source-panel" data-savior-source-panel hidden></div>
       </div>
-    `
-    : "";
+    `;
 
   const illustrationSection = localProfile?.illustration
     ? `
