@@ -1,4 +1,4 @@
-const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v106-amora-source-refresh";
+const SITE_BUILD_VERSION = window.__SITE_CACHE_KEY__ || "v107-amora-portrait-fix";
 const LANGUAGE_STORAGE_KEY = "starsavior-guide-language";
 const SUPPORTED_LANGUAGES = ["ko", "en", "ja"];
 const LANGUAGE_HTML_CODES = {
@@ -4939,7 +4939,9 @@ function normalizeGuideSearch(value) {
 function imageMarkup(savior, large = false) {
   const localizedName = getLocalizedSaviorName(savior.name);
   const fallback = `<span class="character-fallback">${escapeHtml(getInitial(localizedName))}</span>`;
-  const imageSource = savior.image || getLocalSaviorProfile(savior)?.illustration || "";
+  const localProfile = getLocalSaviorProfile(savior);
+  // 구원자 대표 이미지는 DB의 초상화만 사용한다. 전신 일러스트는 일러스트 섹션 전용.
+  const imageSource = localProfile?.portrait || savior.image || "";
   if (!imageSource) return fallback;
 
   return `
@@ -5123,14 +5125,17 @@ function getLocalSaviorProfile(savior) {
   const profile = saviorProfileIndex?.[String(detailId)]?.profile;
   if (!profile) return null;
 
-  const illustration = String(profile.illustration || "")
+  const normalizeLocalAsset = (value) => String(value || "")
     .replace(/^\.\.\/savior-detail-assets\//, "./data/savior-detail-assets/")
     .replace(/^\.\/savior-detail-assets\//, "./data/savior-detail-assets/")
     .replace(/^savior-detail-assets\//, "./data/savior-detail-assets/");
 
-  return illustration === profile.illustration
+  const portrait = normalizeLocalAsset(profile.portrait);
+  const illustration = normalizeLocalAsset(profile.illustration);
+
+  return portrait === profile.portrait && illustration === profile.illustration
     ? profile
-    : { ...profile, illustration };
+    : { ...profile, portrait, illustration };
 }
 
 async function loadSaviorProfileIndex() {
