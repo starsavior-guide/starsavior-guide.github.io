@@ -4,7 +4,7 @@
     "id": 1001,
     "file": "./1001.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1001",
-    "capturedAt": "2026-08-30T08:13:02.985Z",
+    "capturedAt": "2026-09-03T08:40:16.121Z",
     "profile": {
       "name": "아세라",
       "grade": "SSR",
@@ -18,7 +18,8 @@
       "affiliation": "보이저 구원단",
       "cvKr": "김채린",
       "cvJp": "타카모리 나츠미",
-      "illustration": "./data/savior-detail-assets/(보이저 구원단) 아세라 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/a44f7230b39b982550cd38d5.webp",
+      "portrait": "./data/savior-detail-assets/101c55304ff27df50d32cb94.webp"
     }
   },
   "1002": {
@@ -26,7 +27,7 @@
     "id": 1002,
     "file": "./1002.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1002",
-    "capturedAt": "2026-08-30T08:13:06.096Z",
+    "capturedAt": "2026-09-03T08:40:20.063Z",
     "profile": {
       "name": "스마일",
       "grade": "SSR",
@@ -40,7 +41,8 @@
       "affiliation": "보이저 구원단",
       "cvKr": "곽규미",
       "cvJp": "타무카이 유즈키",
-      "illustration": "./data/savior-detail-assets/(보이저 구원단) 스마일 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/18a1952ba5ec3a15fb5037eb.webp",
+      "portrait": "./data/savior-detail-assets/b175a0a29213ca51e122bfdd.webp"
     }
   },
   "1003": {
@@ -48,7 +50,7 @@
     "id": 1003,
     "file": "./1003.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1003",
-    "capturedAt": "2026-08-30T08:13:09.191Z",
+    "capturedAt": "2026-09-03T08:40:23.796Z",
     "profile": {
       "name": "루나",
       "grade": "SSR",
@@ -62,7 +64,8 @@
       "affiliation": "보이저 구원단",
       "cvKr": "방시우",
       "cvJp": "미나토 미야",
-      "illustration": "./data/savior-detail-assets/(보이저 구원단) 루나 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/8d298fa9f704edb1bc8f745e.webp",
+      "portrait": "./data/savior-detail-assets/7198dcb18dc0dec5e3a25417.webp"
     }
   },
   "1005": {
@@ -70,7 +73,7 @@
     "id": 1005,
     "file": "./1005.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1005",
-    "capturedAt": "2026-08-30T08:13:12.316Z",
+    "capturedAt": "2026-09-03T08:40:27.761Z",
     "profile": {
       "name": "카넬리아",
       "grade": "SSR",
@@ -84,7 +87,8 @@
       "affiliation": "방랑자",
       "cvKr": "장예나",
       "cvJp": "시모지 시노",
-      "illustration": "./data/savior-detail-assets/(방랑자) 카넬리아 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/508741154a81f4d364717806.webp",
+      "portrait": "./data/savior-detail-assets/34191d673f8dfcd0371307eb.webp"
     }
   },
   "1008": {
@@ -92,7 +96,7 @@
     "id": 1008,
     "file": "./1008.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1008",
-    "capturedAt": "2026-08-30T08:13:15.402Z",
+    "capturedAt": "2026-09-03T08:40:31.354Z",
     "profile": {
       "name": "벨 리스",
       "grade": "SSR",
@@ -106,7 +110,8 @@
       "affiliation": "캔들 스퀘어",
       "cvKr": "이지현",
       "cvJp": "스가누마 치사",
-      "illustration": "./data/savior-detail-assets/(캔들 스퀘어) 벨 리스 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/c64c10ccc24c9caa8f5a0b82.webp",
+      "portrait": "./data/savior-detail-assets/1e0f28d12de6285823e136ff.webp"
     }
   },
   "1009": {
@@ -114,7 +119,7 @@
     "id": 1009,
     "file": "./1009.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1009",
-    "capturedAt": "2026-08-30T08:13:18.456Z",
+    "capturedAt": "2026-09-03T08:40:35.035Z",
     "profile": {
       "name": "에밀리",
       "grade": "SSR",
@@ -128,7 +133,8 @@
       "affiliation": "캔들 스퀘어",
       "cvKr": "김도희",
       "cvJp": "스기우라 시오리",
-      "illustration": "./data/savior-detail-assets/(캔들 스퀘어) 에밀리 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/1cb4b5a545098284b97bb76f.webp",
+      "portrait": "./data/savior-detail-assets/71fa81107cc70e6e5516eb96.webp"
     }
   },
   "1010": {
@@ -136,7 +142,7 @@
     "id": 1010,
     "file": "./1010.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1010",
-    "capturedAt": "2026-08-30T08:13:21.549Z",
+    "capturedAt": "2026-09-03T08:40:38.641Z",
     "profile": {
       "name": "샤를",
       "grade": "SSR",
@@ -150,7 +156,8 @@
       "affiliation": "모나스티르 기사단",
       "cvKr": "채림",
       "cvJp": "오오키 사에코",
-      "illustration": "./data/savior-detail-assets/(모나스티르 기사단) 샤를 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/be5768dda2c95ae6a785c291.webp",
+      "portrait": "./data/savior-detail-assets/cf0e430174480efb842c8679.webp"
     }
   },
   "1011": {
@@ -158,7 +165,7 @@
     "id": 1011,
     "file": "./1011.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1011",
-    "capturedAt": "2026-08-30T08:13:24.628Z",
+    "capturedAt": "2026-09-03T08:40:42.208Z",
     "profile": {
       "name": "카르멘",
       "grade": "SSR",
@@ -172,7 +179,8 @@
       "affiliation": "모나스티르 기사단",
       "cvKr": "손정민",
       "cvJp": "Lynn",
-      "illustration": "./data/savior-detail-assets/(모나스티르 기사단) 카르멘 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/89dfb24511073fa40bb28485.webp",
+      "portrait": "./data/savior-detail-assets/67b583356ef42bea7fe07317.webp"
     }
   },
   "1013": {
@@ -180,7 +188,7 @@
     "id": 1013,
     "file": "./1013.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1013",
-    "capturedAt": "2026-08-30T08:13:27.630Z",
+    "capturedAt": "2026-09-03T08:40:45.733Z",
     "profile": {
       "name": "프레이",
       "grade": "SSR",
@@ -194,7 +202,8 @@
       "affiliation": "모나스티르 기사단",
       "cvKr": "이이로",
       "cvJp": "시부야 아야노",
-      "illustration": "./data/savior-detail-assets/(모나스티르 기사단) 프레이 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/06d3b31bdacb2ec83dc1f2fd.webp",
+      "portrait": "./data/savior-detail-assets/e9e167a2022167c7c8975b18.webp"
     }
   },
   "1014": {
@@ -202,7 +211,7 @@
     "id": 1014,
     "file": "./1014.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1014",
-    "capturedAt": "2026-08-30T08:13:30.738Z",
+    "capturedAt": "2026-09-03T08:40:49.291Z",
     "profile": {
       "name": "세이라",
       "grade": "SSR",
@@ -216,7 +225,8 @@
       "affiliation": "환상종",
       "cvKr": "윤은서",
       "cvJp": "아이다 리카코",
-      "illustration": "./data/savior-detail-assets/(나이트메어) 세이라 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/1253040607d911520e5a2cd9.webp",
+      "portrait": "./data/savior-detail-assets/ea76bcb21e21b35936ef8947.webp"
     }
   },
   "1015": {
@@ -224,7 +234,7 @@
     "id": 1015,
     "file": "./1015.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1015",
-    "capturedAt": "2026-08-30T08:13:33.768Z",
+    "capturedAt": "2026-09-03T08:40:52.681Z",
     "profile": {
       "name": "트리쉬",
       "grade": "SSR",
@@ -238,7 +248,8 @@
       "affiliation": "아셀루스 협회",
       "cvKr": "김예림",
       "cvJp": "츠키시로 히카",
-      "illustration": "./data/savior-detail-assets/(아셀루스 협회) 트리쉬 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/b69a8033a7f6e72cf78bd38d.webp",
+      "portrait": "./data/savior-detail-assets/92bb01f54d3a8c8b1589245b.webp"
     }
   },
   "1016": {
@@ -246,7 +257,7 @@
     "id": 1016,
     "file": "./1016.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1016",
-    "capturedAt": "2026-08-30T08:13:36.827Z",
+    "capturedAt": "2026-09-03T08:40:56.124Z",
     "profile": {
       "name": "린",
       "grade": "SSR",
@@ -260,7 +271,8 @@
       "affiliation": "풍월당",
       "cvKr": "민아",
       "cvJp": "우스이 유리",
-      "illustration": "./data/savior-detail-assets/(풍월문) 린 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/f491f14db5683fd5d950170d.webp",
+      "portrait": "./data/savior-detail-assets/485cf085b453f574e84585d6.webp"
     }
   },
   "1017": {
@@ -268,7 +280,7 @@
     "id": 1017,
     "file": "./1017.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1017",
-    "capturedAt": "2026-08-30T08:13:39.904Z",
+    "capturedAt": "2026-09-03T08:40:59.476Z",
     "profile": {
       "name": "크리스텔",
       "grade": "SSR",
@@ -282,7 +294,8 @@
       "affiliation": "모렐 해운상회",
       "cvKr": "조현정",
       "cvJp": "아사미 카즈키",
-      "illustration": "./data/savior-detail-assets/(모렐해운상회) 크리스텔 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/d1097261dd1d62c5c77a17af.webp",
+      "portrait": "./data/savior-detail-assets/1c938d95251c9e72478db1c5.webp"
     }
   },
   "1018": {
@@ -290,7 +303,7 @@
     "id": 1018,
     "file": "./1018.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1018",
-    "capturedAt": "2026-08-30T08:13:42.979Z",
+    "capturedAt": "2026-09-03T08:41:02.984Z",
     "profile": {
       "name": "에데",
       "grade": "SSR",
@@ -304,7 +317,8 @@
       "affiliation": "모렐 해운상회",
       "cvKr": "방연지",
       "cvJp": "츠치야 리오",
-      "illustration": "./data/savior-detail-assets/(모렐 해양상단) 에데 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/fbf18dc99c5e095fe5df568c.webp",
+      "portrait": "./data/savior-detail-assets/4b00c64f46460b725721cb6a.webp"
     }
   },
   "1019": {
@@ -312,7 +326,7 @@
     "id": 1019,
     "file": "./1019.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1019",
-    "capturedAt": "2026-08-30T08:13:46.095Z",
+    "capturedAt": "2026-09-03T08:41:06.474Z",
     "profile": {
       "name": "세르팡",
       "grade": "SSR",
@@ -326,7 +340,8 @@
       "affiliation": "풍월당",
       "cvKr": "유혜지",
       "cvJp": "히라츠카 사에",
-      "illustration": "./data/savior-detail-assets/(풍월문) 세르팡 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/ff6abd4cf926465016882e91.webp",
+      "portrait": "./data/savior-detail-assets/be09a8ef3b907d63657ec01c.webp"
     }
   },
   "1021": {
@@ -334,7 +349,7 @@
     "id": 1021,
     "file": "./1021.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1021",
-    "capturedAt": "2026-08-30T08:13:49.170Z",
+    "capturedAt": "2026-09-03T08:41:09.836Z",
     "profile": {
       "name": "다나",
       "grade": "SSR",
@@ -348,7 +363,8 @@
       "affiliation": "카노푸스 경비대",
       "cvKr": "이보희",
       "cvJp": "미카와 하루나",
-      "illustration": "./data/savior-detail-assets/(카노푸스 레인저) 다나 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/36888cceddc11fb20c9153a9.webp",
+      "portrait": "./data/savior-detail-assets/ec7e2a21b3b1651f8a50d877.webp"
     }
   },
   "1023": {
@@ -356,7 +372,7 @@
     "id": 1023,
     "file": "./1023.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1023",
-    "capturedAt": "2026-08-30T08:13:52.200Z",
+    "capturedAt": "2026-09-03T08:41:13.261Z",
     "profile": {
       "name": "뮤리엘",
       "grade": "SSR",
@@ -370,7 +386,8 @@
       "affiliation": "모노리스 교단",
       "cvKr": "박신희",
       "cvJp": "키토 아카리",
-      "illustration": "./data/savior-detail-assets/(모노리스 교단) 뮤리엘 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/a18d95bec33ea53543018816.webp",
+      "portrait": "./data/savior-detail-assets/5068d6d92056e8c8a256b908.webp"
     }
   },
   "1024": {
@@ -378,7 +395,7 @@
     "id": 1024,
     "file": "./1024.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1024",
-    "capturedAt": "2026-08-30T08:13:55.261Z",
+    "capturedAt": "2026-09-03T08:41:16.829Z",
     "profile": {
       "name": "엘리사",
       "grade": "SSR",
@@ -392,7 +409,8 @@
       "affiliation": "모노리스 교단",
       "cvKr": "김서현",
       "cvJp": "미즈키 린",
-      "illustration": "./data/savior-detail-assets/(모노리스 교단) 엘리사 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/283709dbcbfec31b4cf12d1c.webp",
+      "portrait": "./data/savior-detail-assets/b5ca71d6fac0949025d287b6.webp"
     }
   },
   "1025": {
@@ -400,7 +418,7 @@
     "id": 1025,
     "file": "./1025.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1025",
-    "capturedAt": "2026-08-30T08:13:58.316Z",
+    "capturedAt": "2026-09-03T08:41:20.231Z",
     "profile": {
       "name": "티리아",
       "grade": "SSR",
@@ -414,7 +432,8 @@
       "affiliation": "집행자",
       "cvKr": "강새봄",
       "cvJp": "아베 리카",
-      "illustration": "./data/savior-detail-assets/(집행자) 티리아 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/97258edcd6bf18119abaf17b.webp",
+      "portrait": "./data/savior-detail-assets/b18b7b69e0e068a24e0049c2.webp"
     }
   },
   "1026": {
@@ -422,7 +441,7 @@
     "id": 1026,
     "file": "./1026.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1026",
-    "capturedAt": "2026-08-30T08:14:01.340Z",
+    "capturedAt": "2026-09-03T08:41:23.565Z",
     "profile": {
       "name": "로베르타",
       "grade": "SSR",
@@ -436,7 +455,8 @@
       "affiliation": "궤도 수색대",
       "cvKr": "권다예",
       "cvJp": "와타나베 케이코",
-      "illustration": "./data/savior-detail-assets/(궤도 수색대) 로베르타 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/5b91df1487eed27ef25a3080.webp",
+      "portrait": "./data/savior-detail-assets/06fe552d22d9dbafcf28c323.webp"
     }
   },
   "1027": {
@@ -444,7 +464,7 @@
     "id": 1027,
     "file": "./1027.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1027",
-    "capturedAt": "2026-08-30T08:14:04.935Z",
+    "capturedAt": "2026-09-03T08:41:27.086Z",
     "profile": {
       "name": "루그",
       "grade": "SSR",
@@ -458,7 +478,8 @@
       "affiliation": "궤도 수색대",
       "cvKr": "장채연",
       "cvJp": "와타나베 유리나",
-      "illustration": "./data/savior-detail-assets/(궤도 수색대) 루그 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/554a49c45978079f14910133.webp",
+      "portrait": "./data/savior-detail-assets/48128f3cee9f4c5ce32b5c01.webp"
     }
   },
   "1029": {
@@ -466,7 +487,7 @@
     "id": 1029,
     "file": "./1029.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1029",
-    "capturedAt": "2026-08-30T08:14:08.046Z",
+    "capturedAt": "2026-09-03T08:41:30.516Z",
     "profile": {
       "name": "페이",
       "grade": "SSR",
@@ -480,7 +501,8 @@
       "affiliation": "방랑자",
       "cvKr": "신나리",
       "cvJp": "스구타 히나",
-      "illustration": "./data/savior-detail-assets/(방랑자) 페이 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/7d80c88486b906ea6c33bd2f.webp",
+      "portrait": "./data/savior-detail-assets/63fce94ad7036181723e24de.webp"
     }
   },
   "1030": {
@@ -488,7 +510,7 @@
     "id": 1030,
     "file": "./1030.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1030",
-    "capturedAt": "2026-08-30T08:14:11.141Z",
+    "capturedAt": "2026-09-03T08:41:33.974Z",
     "profile": {
       "name": "에핀델",
       "grade": "SSR",
@@ -502,7 +524,8 @@
       "affiliation": "오를랑 가문",
       "cvKr": "윤아영",
       "cvJp": "미야시타 사키",
-      "illustration": "./data/savior-detail-assets/(오를랑 가문) 에핀델 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/fa6e97cafa29a7bcba73044f.webp",
+      "portrait": "./data/savior-detail-assets/1bd319d04ae98e1b91e137b9.webp"
     }
   },
   "1031": {
@@ -510,7 +533,7 @@
     "id": 1031,
     "file": "./1031.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1031",
-    "capturedAt": "2026-08-30T08:14:14.385Z",
+    "capturedAt": "2026-09-03T08:41:37.411Z",
     "profile": {
       "name": "오메가",
       "grade": "SSR",
@@ -524,7 +547,8 @@
       "affiliation": "보이저 구원단",
       "cvKr": "미소",
       "cvJp": "나가나와 마리아",
-      "illustration": "./data/savior-detail-assets/(보이저 구원단) 오메가 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/7c082f40e55fd6f05b592924.webp",
+      "portrait": "./data/savior-detail-assets/79430768eed1f15b6846afc9.webp"
     }
   },
   "1032": {
@@ -532,7 +556,7 @@
     "id": 1032,
     "file": "./1032.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1032",
-    "capturedAt": "2026-08-30T08:14:17.408Z",
+    "capturedAt": "2026-09-03T08:41:40.705Z",
     "profile": {
       "name": "샤를",
       "grade": "SSR",
@@ -546,7 +570,8 @@
       "affiliation": "모나스티르 기사단",
       "cvKr": "채림",
       "cvJp": "오오키 사에코",
-      "illustration": "./data/savior-detail-assets/(하트 오브 모나스티르) 샤를 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/c61a0c7db4e02158c670495b.webp",
+      "portrait": "./data/savior-detail-assets/16ecc1420b70b466da4f8e32.webp"
     }
   },
   "1033": {
@@ -554,7 +579,7 @@
     "id": 1033,
     "file": "./1033.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1033",
-    "capturedAt": "2026-08-30T08:14:20.458Z",
+    "capturedAt": "2026-09-03T08:41:44.171Z",
     "profile": {
       "name": "세레스",
       "grade": "SSR",
@@ -568,7 +593,8 @@
       "affiliation": "서부 탈환대",
       "cvKr": "이은조",
       "cvJp": "나츠요시 유우코",
-      "illustration": "./data/savior-detail-assets/(서부 해방군) 세레스 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/4426b095a52349351a5af610.webp",
+      "portrait": "./data/savior-detail-assets/5d0bd23eb7ec31b7c9d55c17.webp"
     }
   },
   "1034": {
@@ -576,7 +602,7 @@
     "id": 1034,
     "file": "./1034.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1034",
-    "capturedAt": "2026-08-30T08:14:23.505Z",
+    "capturedAt": "2026-09-03T08:41:47.521Z",
     "profile": {
       "name": "리디아",
       "grade": "SSR",
@@ -590,7 +616,8 @@
       "affiliation": "서부 탈환대",
       "cvKr": "장미",
       "cvJp": "아이자와 사야",
-      "illustration": "./data/savior-detail-assets/(서부 해방군) 리디아 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/36c708a64cef1ced32859261.webp",
+      "portrait": "./data/savior-detail-assets/97aeb7bf8a03f110319479d1.webp"
     }
   },
   "1041": {
@@ -598,7 +625,7 @@
     "id": 1041,
     "file": "./1041.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1041",
-    "capturedAt": "2026-08-30T08:14:26.580Z",
+    "capturedAt": "2026-09-03T08:41:50.964Z",
     "profile": {
       "name": "할리",
       "grade": "SSR",
@@ -612,7 +639,8 @@
       "affiliation": "헬 세이비어",
       "cvKr": "정유정",
       "cvJp": "야하기 사유리",
-      "illustration": "./data/savior-detail-assets/(헬 세이비어) 할리 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/cbdeccbd41bdfb08bf2f56aa.webp",
+      "portrait": "./data/savior-detail-assets/149389a07d51a017f8f3399a.webp"
     }
   },
   "1042": {
@@ -620,7 +648,7 @@
     "id": 1042,
     "file": "./1042.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1042",
-    "capturedAt": "2026-08-30T08:14:29.619Z",
+    "capturedAt": "2026-09-03T08:41:54.440Z",
     "profile": {
       "name": "페트라",
       "grade": "SSR",
@@ -634,7 +662,8 @@
       "affiliation": "페트라 조합",
       "cvKr": "김선주",
       "cvJp": "미네다 마유",
-      "illustration": "./data/savior-detail-assets/(페트라 조합) 페트라 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/5735078b97f88d56fa847e99.webp",
+      "portrait": "./data/savior-detail-assets/5bf4997bfec6f9b38b4cf171.webp"
     }
   },
   "1043": {
@@ -642,7 +671,7 @@
     "id": 1043,
     "file": "./1043.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1043",
-    "capturedAt": "2026-08-30T08:14:32.680Z",
+    "capturedAt": "2026-09-03T08:41:57.989Z",
     "profile": {
       "name": "스칼렛",
       "grade": "SSR",
@@ -656,7 +685,8 @@
       "affiliation": "캔들 스퀘어",
       "cvKr": "서다혜",
       "cvJp": "아키야마 미사키",
-      "illustration": "./data/savior-detail-assets/(리틀 타이런트) 스칼렛 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/bc9c6ea4b34df07b65600691.webp",
+      "portrait": "./data/savior-detail-assets/15728a572c6ef42fb1213cb7.webp"
     }
   },
   "1044": {
@@ -664,7 +694,7 @@
     "id": 1044,
     "file": "./1044.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1044",
-    "capturedAt": "2026-08-30T08:14:35.714Z",
+    "capturedAt": "2026-09-03T08:42:01.470Z",
     "profile": {
       "name": "클레어",
       "grade": "SSR",
@@ -678,7 +708,8 @@
       "affiliation": "캔들 스퀘어",
       "cvKr": "오로아",
       "cvJp": "소노야마 히카리",
-      "illustration": "./data/savior-detail-assets/(플로리스 블루 로즈) 클레어 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/6c4a58e5d20ffceeda78132a.webp",
+      "portrait": "./data/savior-detail-assets/17d3e11f55b9cbb71da8494e.webp"
     }
   },
   "1045": {
@@ -686,7 +717,7 @@
     "id": 1045,
     "file": "./1045.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1045",
-    "capturedAt": "2026-08-30T08:14:38.804Z",
+    "capturedAt": "2026-09-03T08:42:04.978Z",
     "profile": {
       "name": "루나",
       "grade": "SSR",
@@ -700,7 +731,8 @@
       "affiliation": "보이저 구원단",
       "cvKr": "방시우",
       "cvJp": "미나토 미야",
-      "illustration": "./data/savior-detail-assets/(화이트 펄 트랩) 루나 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/2a3aa9eb5ff1ab74ddd465f9.webp",
+      "portrait": "./data/savior-detail-assets/8400561d40fa293a39aa43b0.webp"
     }
   },
   "1046": {
@@ -708,7 +740,7 @@
     "id": 1046,
     "file": "./1046.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1046",
-    "capturedAt": "2026-08-30T08:14:41.896Z",
+    "capturedAt": "2026-09-03T08:42:08.383Z",
     "profile": {
       "name": "스마일",
       "grade": "SSR",
@@ -722,7 +754,8 @@
       "affiliation": "보이저 구원단",
       "cvKr": "곽규미",
       "cvJp": "타무카이 유즈키",
-      "illustration": "./data/savior-detail-assets/(선샤인 캣) 스마일 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/12feb8a1758318dc2c3ba8a1.webp",
+      "portrait": "./data/savior-detail-assets/4dd0e86c9df0298978452290.webp"
     }
   },
   "1049": {
@@ -730,7 +763,7 @@
     "id": 1049,
     "file": "./1049.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1049",
-    "capturedAt": "2026-08-30T08:14:44.965Z",
+    "capturedAt": "2026-09-03T08:42:11.886Z",
     "profile": {
       "name": "레이시",
       "grade": "SSR",
@@ -744,7 +777,8 @@
       "affiliation": "방랑자",
       "cvKr": "허예은",
       "cvJp": "마에다 카오리",
-      "illustration": "./data/savior-detail-assets/(방랑자) 레이시 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/36db79a2f50ea051b310219f.webp",
+      "portrait": "./data/savior-detail-assets/4d3a821cc766c9c1510f3ded.webp"
     }
   },
   "1051": {
@@ -752,7 +786,7 @@
     "id": 1051,
     "file": "./1051.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1051",
-    "capturedAt": "2026-08-30T08:14:48.102Z",
+    "capturedAt": "2026-09-03T08:42:15.410Z",
     "profile": {
       "name": "타냐",
       "grade": "SSR",
@@ -766,7 +800,8 @@
       "affiliation": "페트라 조합",
       "cvKr": "최하리",
       "cvJp": "나카자와 미나",
-      "illustration": "./data/savior-detail-assets/(페트라 조합) 타냐 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/a196ae2403e897d3fff98b3b.webp",
+      "portrait": "./data/savior-detail-assets/1a6c8d2cd96ff6560b03b09b.webp"
     }
   },
   "1052": {
@@ -774,7 +809,7 @@
     "id": 1052,
     "file": "./1052.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1052",
-    "capturedAt": "2026-08-30T08:14:51.335Z",
+    "capturedAt": "2026-09-03T08:42:19.119Z",
     "profile": {
       "name": "릴리",
       "grade": "SSR",
@@ -788,7 +823,8 @@
       "affiliation": "람파디스",
       "cvKr": "김윤채",
       "cvJp": "이이다 히카루",
-      "illustration": "./data/savior-detail-assets/(람파디스) 릴리 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/5bf35ee52351c1ab6978b106.webp",
+      "portrait": "./data/savior-detail-assets/ec8fec7d8ebd7a620c977e41.webp"
     }
   },
   "1053": {
@@ -796,7 +832,7 @@
     "id": 1053,
     "file": "./1053.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1053",
-    "capturedAt": "2026-08-30T08:14:54.489Z",
+    "capturedAt": "2026-09-03T08:42:22.637Z",
     "profile": {
       "name": "키라",
       "grade": "SSR",
@@ -810,7 +846,8 @@
       "affiliation": "키라는 친구같은 거 없어",
       "cvKr": "성예원",
       "cvJp": "아오노 리코",
-      "illustration": "./data/savior-detail-assets/(키라는 친구 같은 거 없어) 키라 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/cc44a3f360e2f9f55a100ff8.webp",
+      "portrait": "./data/savior-detail-assets/69de8c54b64f4ff7b61e1b87.webp"
     }
   },
   "1054": {
@@ -818,7 +855,7 @@
     "id": 1054,
     "file": "./1054.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1054",
-    "capturedAt": "2026-08-30T08:14:57.613Z",
+    "capturedAt": "2026-09-03T08:42:25.925Z",
     "profile": {
       "name": "아세라",
       "grade": "SSR",
@@ -832,7 +869,8 @@
       "affiliation": "보이저 구원단",
       "cvKr": "김채린",
       "cvJp": "타카모리 나츠미",
-      "illustration": "./data/savior-detail-assets/(왈츠 오브 스타라이트) 아세라 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/96679578a2cf89e93716d8c4.webp",
+      "portrait": "./data/savior-detail-assets/aa3a30078b35438caf5e6cbd.webp"
     }
   },
   "1055": {
@@ -840,7 +878,7 @@
     "id": 1055,
     "file": "./1055.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1055",
-    "capturedAt": "2026-08-30T08:15:00.773Z",
+    "capturedAt": "2026-09-03T08:42:29.338Z",
     "profile": {
       "name": "카르멘",
       "grade": "SSR",
@@ -854,7 +892,8 @@
       "affiliation": "모나스티르 기사단",
       "cvKr": "손정민",
       "cvJp": "Lynn",
-      "illustration": "./data/savior-detail-assets/(이터널 프로미스) 카르멘 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/d1b5f48ee2ff3f59402714de.webp",
+      "portrait": "./data/savior-detail-assets/56859b70c67b00ee3ad76393.webp"
     }
   },
   "1056": {
@@ -862,7 +901,7 @@
     "id": 1056,
     "file": "./1056.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1056",
-    "capturedAt": "2026-08-30T08:15:03.865Z",
+    "capturedAt": "2026-09-03T08:42:32.750Z",
     "profile": {
       "name": "에핀델",
       "grade": "SSR",
@@ -876,7 +915,8 @@
       "affiliation": "오를랑 가문",
       "cvKr": "윤아영",
       "cvJp": "미야시타 사키",
-      "illustration": "./data/savior-detail-assets/(블레싱 인 블룸) 에핀델 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/bb91244307490bf3dfb3c5e7.webp",
+      "portrait": "./data/savior-detail-assets/9c210d4b5dd4ce5a81c921da.webp"
     }
   },
   "1057": {
@@ -884,7 +924,7 @@
     "id": 1057,
     "file": "./1057.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1057",
-    "capturedAt": "2026-08-30T08:15:07.207Z",
+    "capturedAt": "2026-09-03T08:42:36.008Z",
     "profile": {
       "name": "프레이",
       "grade": "SSR",
@@ -898,7 +938,8 @@
       "affiliation": "모나스티르 기사단",
       "cvKr": "이이로",
       "cvJp": "시부야 아야노",
-      "illustration": "./data/savior-detail-assets/(노블 프린세스) 프레이 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/99a63c5c8bcdabb5f5f3ecdf.webp",
+      "portrait": "./data/savior-detail-assets/04effd5bf2e4a9055157c823.webp"
     }
   },
   "1058": {
@@ -906,7 +947,7 @@
     "id": 1058,
     "file": "./1058.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1058",
-    "capturedAt": "2026-09-03T07:55:29.791Z",
+    "capturedAt": "2026-09-03T08:42:39.411Z",
     "profile": {
       "name": "아모라",
       "grade": "SSR",
@@ -920,7 +961,8 @@
       "affiliation": "스트라니스 백작가",
       "cvKr": "김도영",
       "cvJp": "코마가타 유리",
-      "illustration": "./data/savior-detail-assets/8500523b272a250963276f06.webp"
+      "illustration": "./data/savior-detail-assets/8500523b272a250963276f06.webp",
+      "portrait": "./data/savior-detail-assets/992e1469ab25043bbf447a8a.webp"
     }
   },
   "1501": {
@@ -928,7 +970,7 @@
     "id": 1501,
     "file": "./1501.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1501",
-    "capturedAt": "2026-08-30T08:15:10.244Z",
+    "capturedAt": "2026-09-03T08:42:42.851Z",
     "profile": {
       "name": "베스타",
       "grade": "SR",
@@ -942,7 +984,8 @@
       "affiliation": "서부 탈환대",
       "cvKr": "박하진",
       "cvJp": "츠카다 유이",
-      "illustration": "./data/savior-detail-assets/(서부 해방군) 베스타 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/5bac5f77f4de5c791aace704.webp",
+      "portrait": "./data/savior-detail-assets/7b1729121929cb440b54c4e6.webp"
     }
   },
   "1502": {
@@ -950,7 +993,7 @@
     "id": 1502,
     "file": "./1502.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1502",
-    "capturedAt": "2026-08-30T08:15:13.353Z",
+    "capturedAt": "2026-09-03T08:42:46.363Z",
     "profile": {
       "name": "안나",
       "grade": "SR",
@@ -964,7 +1007,8 @@
       "affiliation": "NOA 타운가드",
       "cvKr": "여윤미",
       "cvJp": "하나사키 미유",
-      "illustration": "./data/savior-detail-assets/(노아 마을 경비대) 안나 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/7ac1e99f206cefff72c2ae2a.webp",
+      "portrait": "./data/savior-detail-assets/b4a461e47c6863e99abfaf59.webp"
     }
   },
   "1506": {
@@ -972,7 +1016,7 @@
     "id": 1506,
     "file": "./1506.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1506",
-    "capturedAt": "2026-08-30T08:15:16.644Z",
+    "capturedAt": "2026-09-03T08:42:49.811Z",
     "profile": {
       "name": "마르실",
       "grade": "SR",
@@ -986,7 +1030,8 @@
       "affiliation": "페트라 조합",
       "cvKr": "박시윤",
       "cvJp": "안도 나나코",
-      "illustration": "./data/savior-detail-assets/(페트라 조합) 마르실 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/d049d3d4f9cc2d2b6b570b01.webp",
+      "portrait": "./data/savior-detail-assets/0a42d986f16d8dbae5fca57e.webp"
     }
   },
   "1507": {
@@ -994,7 +1039,7 @@
     "id": 1507,
     "file": "./1507.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1507",
-    "capturedAt": "2026-08-30T08:15:19.741Z",
+    "capturedAt": "2026-09-03T08:42:53.182Z",
     "profile": {
       "name": "베라",
       "grade": "SR",
@@ -1008,7 +1053,8 @@
       "affiliation": "배달부 협회",
       "cvKr": "김가령",
       "cvJp": "슈토 유키나",
-      "illustration": "./data/savior-detail-assets/(운송 길드) 베라 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/014298260d6a584d3583420a.webp",
+      "portrait": "./data/savior-detail-assets/b02ff2aaf031565ac48f33a5.webp"
     }
   },
   "1508": {
@@ -1016,7 +1062,7 @@
     "id": 1508,
     "file": "./1508.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1508",
-    "capturedAt": "2026-08-30T08:15:22.870Z",
+    "capturedAt": "2026-09-03T08:42:56.593Z",
     "profile": {
       "name": "나루",
       "grade": "SR",
@@ -1030,7 +1076,8 @@
       "affiliation": "궤도 수색대",
       "cvKr": "이주은",
       "cvJp": "후쿠시마 하루나",
-      "illustration": "./data/savior-detail-assets/(궤도 수색대) 나루 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/532f902f797021b2d564c546.webp",
+      "portrait": "./data/savior-detail-assets/6676da4bbd51dd3d19dd7665.webp"
     }
   },
   "1509": {
@@ -1038,7 +1085,7 @@
     "id": 1509,
     "file": "./1509.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1509",
-    "capturedAt": "2026-08-30T08:15:26.022Z",
+    "capturedAt": "2026-09-03T08:43:00.006Z",
     "profile": {
       "name": "클레어",
       "grade": "SR",
@@ -1052,7 +1099,8 @@
       "affiliation": "캔들 스퀘어",
       "cvKr": "오로아",
       "cvJp": "소노야마 히카리",
-      "illustration": "./data/savior-detail-assets/(캔들 스퀘어) 클레어 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/86f59a40f7ffb79888eb5233.webp",
+      "portrait": "./data/savior-detail-assets/d1daccda9d84a9ab8e8ba438.webp"
     }
   },
   "1510": {
@@ -1060,7 +1108,7 @@
     "id": 1510,
     "file": "./1510.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1510",
-    "capturedAt": "2026-08-30T08:15:29.182Z",
+    "capturedAt": "2026-09-03T08:43:03.480Z",
     "profile": {
       "name": "스칼렛",
       "grade": "SR",
@@ -1074,7 +1122,8 @@
       "affiliation": "캔들 스퀘어",
       "cvKr": "서다혜",
       "cvJp": "아키야마 미사키",
-      "illustration": "./data/savior-detail-assets/(캔들 스퀘어) 스칼렛 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/9146871ba35c6d19023d2c5b.webp",
+      "portrait": "./data/savior-detail-assets/135bffc102aaa919b8ba6ec7.webp"
     }
   },
   "1511": {
@@ -1082,7 +1131,7 @@
     "id": 1511,
     "file": "./1511.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/1511",
-    "capturedAt": "2026-08-30T08:15:32.342Z",
+    "capturedAt": "2026-09-03T08:43:06.873Z",
     "profile": {
       "name": "클라리사",
       "grade": "SR",
@@ -1096,7 +1145,8 @@
       "affiliation": "카노푸스 경비대",
       "cvKr": "원에스더",
       "cvJp": "카와세 마키",
-      "illustration": "./data/savior-detail-assets/(카노푸스 레인저) 클라리사 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/020ecf944a8b3937aca68b67.webp",
+      "portrait": "./data/savior-detail-assets/1af2d494d3f68d23a90bac27.webp"
     }
   },
   "3001": {
@@ -1104,7 +1154,7 @@
     "id": 3001,
     "file": "./3001.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/3001",
-    "capturedAt": "2026-08-30T08:15:35.522Z",
+    "capturedAt": "2026-09-03T08:43:10.286Z",
     "profile": {
       "name": "힐데",
       "grade": "SSR",
@@ -1118,7 +1168,8 @@
       "affiliation": "펜릴 소대",
       "cvKr": "문선희",
       "cvJp": "히카사 요코",
-      "illustration": "./data/savior-detail-assets/(펜릴 소대) 힐데 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/f4a9eddc956b39955fcfa94f.webp",
+      "portrait": "./data/savior-detail-assets/2cf296915b5df4802f63c7e3.webp"
     }
   },
   "3002": {
@@ -1126,7 +1177,7 @@
     "id": 3002,
     "file": "./3002.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/3002",
-    "capturedAt": "2026-08-30T08:15:38.709Z",
+    "capturedAt": "2026-09-03T08:43:13.779Z",
     "profile": {
       "name": "유미나",
       "grade": "SSR",
@@ -1140,7 +1191,8 @@
       "affiliation": "펜릴 소대",
       "cvKr": "정유정",
       "cvJp": "미즈키 나나",
-      "illustration": "./data/savior-detail-assets/(펜릴 소대) 유미나 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/9e08d7d042f6dae5dd78489f.webp",
+      "portrait": "./data/savior-detail-assets/1bad9de8b1119ec005b40f46.webp"
     }
   },
   "3003": {
@@ -1148,7 +1200,7 @@
     "id": 3003,
     "file": "./3003.html",
     "source": "https://star-savior-arcana-db.pages.dev/savior/3003",
-    "capturedAt": "2026-08-30T08:15:41.842Z",
+    "capturedAt": "2026-09-03T08:43:17.180Z",
     "profile": {
       "name": "로자리아",
       "grade": "SSR",
@@ -1162,14 +1214,16 @@
       "affiliation": "폴른 호크",
       "cvKr": "이새아",
       "cvJp": "쿠기미야 리에",
-      "illustration": "./data/savior-detail-assets/(폴른 호크) 로자리아 일러스트.webp"
+      "illustration": "./data/savior-detail-assets/580087a8e20d5ad33243bc57.webp",
+      "portrait": "./data/savior-detail-assets/715cedb33c594df198cda104.webp"
     }
   },
   "_meta": {
     "sourceRoot": "https://star-savior-arcana-db.pages.dev/savior",
-    "generatedAt": "2026-09-03T07:59:09.969Z",
+    "generatedAt": "2026-09-03T08:43:17.246Z",
     "count": 53,
     "profileCount": 53,
+    "portraitCount": 53,
     "illustrationCount": 53,
     "profileFields": [
       "name",
@@ -1184,6 +1238,7 @@
       "affiliation",
       "cvKr",
       "cvJp",
+      "portrait",
       "illustration"
     ],
     "assetsRoot": "./data/savior-detail-assets",
