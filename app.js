@@ -8933,11 +8933,17 @@ function handleArcanaDatabaseClick(event) {
   }
 }
 
+const JOURNEY_EXTERNAL_URL = "https://starsavior-journey-choice.pages.dev/journey-choice";
+
 function openSimple(section, options = {}) {
+  // 여정 데이터/백업 로직은 유지하되, 사이트 내부 여정 화면은 공개하지 않는다.
+  // 여정 탭 또는 #journey 접근 시 외부 여정 선택 사이트로 이동한다.
+  if (section === "journey") {
+    window.location.href = JOURNEY_EXTERNAL_URL;
+    return;
+  }
   if (section === "arcana") {
     simpleContent.innerHTML = createArcanaDatabaseMarkup();
-  } else if (section === "journey") {
-    simpleContent.innerHTML = createJourneyDatabaseMarkup();
   } else if (section === "equipment") {
     simpleContent.innerHTML = createEquipmentDatabaseMarkup();
   } else {
@@ -8970,7 +8976,6 @@ function openSimple(section, options = {}) {
 
   applyLanguageToDOM(simpleView);
   if (section === "arcana") initializeArcanaDatabase();
-  if (section === "journey") initializeJourneyDatabase();
   showOnly("simple");
   setActiveNav(section);
 
