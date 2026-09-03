@@ -17,7 +17,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: backup-arcanas-${{ github.ref }}
+  group: starsavior-source-backup-write
   cancel-in-progress: false
 
 jobs:
@@ -127,4 +127,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/arcanas data/arcana-assets
           git commit -m 'Refresh local Arcana database'
-          git push
+          git pull --rebase origin main
+          git push origin HEAD:main
