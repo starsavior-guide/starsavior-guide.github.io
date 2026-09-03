@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "https://star-savior-arcana-db.pages.dev/data/saviors.json",
-  "capturedAt": "2026-08-31T12:26:38.381Z",
+  "capturedAt": "2026-09-03T07:56:49.120Z",
   "languages": [
     "ko",
     "en",
@@ -29238,6 +29238,747 @@
       "blossomSkills": []
     },
     {
+      "id": 1058,
+      "rank": "SSR",
+      "name": {
+        "ko": "아모라",
+        "en": "Amora",
+        "ja": "アモラ"
+      },
+      "title": {
+        "ko": "스트라니스 백작가",
+        "en": "House Stranis",
+        "ja": "ストラニス伯爵家"
+      },
+      "description": {
+        "ko": "스트라니스 백작가의 현 가주이자, 대마녀 알리시아를 따르는 집행자. 여유로운 성격으로 짓궂은 장난을 즐긴다. 술통을 손에서 놓지 않는 애주가지만, 실력 하나만큼은 확실한 편.",
+        "en": "The current head of House Stranis and an Executor who serves the Great Witch Alicia. Easygoing by nature, she has a mischievous streak and loves teasing others. An avid drinker rarely seen without her flask, she nevertheless possesses undeniable skill.",
+        "ja": "ストラニス伯爵家の現当主であり、大魔女アリシアに従う執行者。余裕のある性格で、相手をからかうことを楽しむ。いつもスキットルを携えている酒好きだが、腕は確かだ。"
+      },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20005,
+          "strId": "POTEN_PASSIVE_0005",
+          "name": {
+            "ko": "통찰의 감각",
+            "en": "Sense of Insight",
+            "ja": "洞察の感覚"
+          },
+          "description": {
+            "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self CRIT Rate by a certain percentage.",
+            "ja": "会心率が一定割合だけわずかに上がる。"
+          }
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          }
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21005,
+          "strId": "POTEN_PASSIVE_1005",
+          "name": {
+            "ko": "통찰의 솜씨",
+            "en": "Skill of Insight",
+            "ja": "洞察の腕前"
+          },
+          "description": {
+            "ko": "치명타 확률이 3% 증가합니다.",
+            "en": "Increases CRIT Rate by 3%.",
+            "ja": "会心率が3%上がる。"
+          }
+        }
+      ],
+      "skills": [
+        {
+          "id": 10584,
+          "type": 0,
+          "target": "NSTT_INVALID",
+          "cooltime": 0,
+          "break": 0,
+          "nova": 0,
+          "name": {
+            "ko": "스트라니스의 주인",
+            "en": "Master of Stranis",
+            "ja": "ストラニスの主"
+          },
+          "novaDescription": {
+            "ko": "구원자",
+            "en": "Savior",
+            "ja": "救援者"
+          },
+          "icon": "./data/savior-skill-assets/skills/10584.webp",
+          "buffs": [
+            {
+              "id": 1001,
+              "strId": "BI_ATTACK_INCREASE",
+              "name": {
+                "ko": "공격력 증가",
+                "en": "ATK Up",
+                "ja": "攻撃力アップ"
+              },
+              "description": {
+                "ko": "공격력이 30% 증가합니다.",
+                "en": "Increases ATK by 30%.",
+                "ja": "攻撃力が30%上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_ATTACK_INCREASE.webp"
+            },
+            {
+              "id": 10005,
+              "strId": "BI_ADJUSTTYPE_RESOURCE_ORDER",
+              "name": {
+                "ko": "통찰",
+                "en": "Insight",
+                "ja": "洞察"
+              },
+              "description": {
+                "ko": "혼돈 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.",
+                "en": "Damage dealt to Chaos Attribute units increases by 1%. Applies up to 5 stacks. This boost applies independently of buffs and debuffs.",
+                "ja": "混沌属性ユニットへの与ダメージが1%アップ。最大5スタックまで適用される。ブースト効果は強化/弱体化に関係なく、独立して適用される。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_ADJUSTTYPE_RESOURCE_ORDER.webp"
+            },
+            {
+              "id": 10581,
+              "strId": "BI_STRANISEARL_ROSEBLADE_1",
+              "name": {
+                "ko": "밤에 피는 꽃(해제불가)",
+                "en": "Nocturnal Bloom (Undispellable)",
+                "ja": "夜に咲く花(解除不可)"
+              },
+              "description": {
+                "ko": "속도가 10% 증가하고 방어력을 20% 관통합니다.",
+                "en": "Increases SPD by 10%. Penetrates 20% of DEF.",
+                "ja": "速度が10％上がり、防御力を20%貫通する。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_STRANISEARL_ROSEBLADE_1.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "아모라가 타격 시 자신이 약화 효과 상태가 아니라면 피해량이 <b><color=#2A80D8>10%</color></b> 증가합니다. 적이 자신을 타격 후 자신이 약화 효과 상태라면 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 3개 부여합니다. 턴 시작 시 자신의 <b><color=#DD982C>통찰</color></b>이 최대 스택이면 모두 소거하고 자신의 약화 효과를 모두 해제한 후 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>와 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시킵니다.",
+                "en": "Increases damage dealt by <b><color=#2A80D8>10%</color></b> if self has no debuffs on attack. After being attacked by an enemy, if self has a debuff, grants self 3 stacks of <b><color=#DD982C>Insight</color></b>. At the start of the turn, if self <b><color=#DD982C>Insight</color></b> is at max stacks, consumes all stacks and removes all debuffs from self, then grants self <b><color=#DD982C>ATK Up</color></b> and <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 2 turns.",
+                "ja": "攻撃時、自身が弱体化状態でないの場合、ダメージが<b><color=#2A80D8>10％</color></b>上がる。攻撃を受けた後、自身が弱体化状態の場合、自身に<b><color=#DD982C>洞察</color></b>スタックを3つ付与する。ターン開始時、自身の<b><color=#DD982C>洞察</color></b>が最大スタックの場合、スタックをすべて消費して、自身の弱体効果をすべて解除する。さらに、自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を付与する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              }
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "아모라의 공격력이 <b><color=#2A80D8>5%</color></b> 증가합니다. 아모라가 타격 시 자신이 약화 효과 상태가 아니라면 피해량이 <b><color=#2A80D8>10%</color></b> 증가합니다. 적이 자신을 타격 후 자신이 약화 효과 상태라면 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 3개 부여합니다. 턴 시작 시 자신의 <b><color=#DD982C>통찰</color></b>이 최대 스택이면 모두 소거하고 자신의 약화 효과를 모두 해제한 후 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>와 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시킵니다.",
+                "en": "Increases self ATK by <b><color=#2A80D8>5%</color></b>. Increases damage dealt by <b><color=#2A80D8>10%</color></b> if self has no debuffs on attack. After being attacked by an enemy, if self has a debuff, grants self 3 stacks of <b><color=#DD982C>Insight</color></b>. At the start of the turn, if self <b><color=#DD982C>Insight</color></b> is at max stacks, consumes all stacks and removes all debuffs from self, then grants self <b><color=#DD982C>ATK Up</color></b> and <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 2 turns.",
+                "ja": "アモラの攻撃力が<b><color=#2A80D8>5％</color></b>上がる。攻撃時、自身が弱体化状態でないの場合、ダメージが<b><color=#2A80D8>10％</color></b>上がる。攻撃を受けた後、自身が弱体化状態の場合、自身に<b><color=#DD982C>洞察</color></b>スタックを3つ付与する。ターン開始時、自身の<b><color=#DD982C>洞察</color></b>が最大スタックの場合、スタックをすべて消費して、自身の弱体効果をすべて解除する。さらに、自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を付与する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              }
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "아모라의 공격력이 <b><color=#2A80D8>10%</color></b> 증가합니다. 아모라가 타격 시 자신이 약화 효과 상태가 아니라면 피해량이 <b><color=#2A80D8>20%</color></b> 증가합니다. 적이 자신을 타격 후 자신이 약화 효과 상태라면 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 3개 부여합니다. 턴 시작 시 자신의 <b><color=#DD982C>통찰</color></b>이 최대 스택이면 모두 소거하고 자신의 약화 효과를 모두 해제한 후 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>와 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시킵니다.",
+                "en": "Increases self ATK by <b><color=#2A80D8>10%</color></b>. Increases damage dealt by <b><color=#2A80D8>20%</color></b> if self has no debuffs on attack. After being attacked by an enemy, if self has a debuff, grants self 3 stacks of <b><color=#DD982C>Insight</color></b>. At the start of the turn, if self <b><color=#DD982C>Insight</color></b> is at max stacks, consumes all stacks and removes all debuffs from self, then grants self <b><color=#DD982C>ATK Up</color></b> and <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 2 turns.",
+                "ja": "アモラの攻撃力が<b><color=#2A80D8>10％</color></b>上がる。攻撃時、自身が弱体化状態でないの場合、ダメージが<b><color=#2A80D8>20％</color></b>上がる。攻撃を受けた後、自身が弱体化状態の場合、自身に<b><color=#DD982C>洞察</color></b>スタックを3つ付与する。ターン開始時、自身の<b><color=#DD982C>洞察</color></b>が最大スタックの場合、スタックをすべて消費して、自身の弱体効果をすべて解除する。さらに、自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を付与する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              }
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "아모라의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 아모라가 타격 시 자신이 약화 효과 상태가 아니라면 피해량이 <b><color=#2A80D8>30%</color></b> 증가합니다. 적이 자신을 타격 후 자신이 약화 효과 상태라면 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 3개 부여합니다. 턴 시작 시 자신의 <b><color=#DD982C>통찰</color></b>이 최대 스택이면 모두 소거하고 자신의 약화 효과를 모두 해제한 후 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>와 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시킵니다.",
+                "en": "Increases self ATK by <b><color=#2A80D8>15%</color></b>. Increases damage dealt by <b><color=#2A80D8>30%</color></b> if self has no debuffs on attack. After being attacked by an enemy, if self has a debuff, grants self 3 stacks of <b><color=#DD982C>Insight</color></b>. At the start of the turn, if self <b><color=#DD982C>Insight</color></b> is at max stacks, consumes all stacks and removes all debuffs from self, then grants self <b><color=#DD982C>ATK Up</color></b> and <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 2 turns.",
+                "ja": "アモラの攻撃力が<b><color=#2A80D8>15％</color></b>上がる。攻撃時、自身が弱体化状態でないの場合、ダメージが<b><color=#2A80D8>30％</color></b>上がる。攻撃を受けた後、自身が弱体化状態の場合、自身に<b><color=#DD982C>洞察</color></b>スタックを3つ付与する。ターン開始時、自身の<b><color=#DD982C>洞察</color></b>が最大スタックの場合、スタックをすべて消費して、自身の弱体効果をすべて解除する。さらに、自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を付与する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              }
+            }
+          ]
+        },
+        {
+          "id": 10581,
+          "type": 1,
+          "target": "NSTT_ENEMY_ONE",
+          "cooltime": 0,
+          "break": 0,
+          "nova": 0,
+          "name": {
+            "ko": "취하지 않는 창",
+            "en": "The Ever-Sober Spear",
+            "ja": "酔わない槍"
+          },
+          "novaDescription": {
+            "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다.",
+            "en": "Self Toughness Fixed DMG temporarily increases by 1 on attack.",
+            "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がる。"
+          },
+          "icon": "./data/savior-skill-assets/skills/10581.webp",
+          "buffs": [
+            {
+              "id": 10005,
+              "strId": "BI_ADJUSTTYPE_RESOURCE_ORDER",
+              "name": {
+                "ko": "통찰",
+                "en": "Insight",
+                "ja": "洞察"
+              },
+              "description": {
+                "ko": "혼돈 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.",
+                "en": "Damage dealt to Chaos Attribute units increases by 1%. Applies up to 5 stacks. This boost applies independently of buffs and debuffs.",
+                "ja": "混沌属性ユニットへの与ダメージが1%アップ。最大5スタックまで適用される。ブースト効果は強化/弱体化に関係なく、独立して適用される。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_ADJUSTTYPE_RESOURCE_ORDER.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "눈에 보이지 않을 정도로 빠르게 연격하여 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with a rapid series of strikes invisible to the naked eye. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "目にも留まらぬ速さで連撃を繰り出し、敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              }
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "눈에 보이지 않을 정도로 빠르게 연격하여 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with a rapid series of strikes invisible to the naked eye. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "目にも留まらぬ速さで連撃を繰り出し、敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "눈에 보이지 않을 정도로 빠르게 연격하여 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with a rapid series of strikes invisible to the naked eye. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "目にも留まらぬ速さで連撃を繰り出し、敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "눈에 보이지 않을 정도로 빠르게 연격하여 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with a rapid series of strikes invisible to the naked eye. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "目にも留まらぬ速さで連撃を繰り出し、敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 5,
+              "skillDescription": {
+                "ko": "눈에 보이지 않을 정도로 빠르게 연격하여 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with a rapid series of strikes invisible to the naked eye. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "目にも留まらぬ速さで連撃を繰り出し、敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 6,
+              "skillDescription": {
+                "ko": "눈에 보이지 않을 정도로 빠르게 연격하여 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with a rapid series of strikes invisible to the naked eye. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "目にも留まらぬ速さで連撃を繰り出し、敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 7,
+              "skillDescription": {
+                "ko": "눈에 보이지 않을 정도로 빠르게 연격하여 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with a rapid series of strikes invisible to the naked eye. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "目にも留まらぬ速さで連撃を繰り出し、敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 8,
+              "skillDescription": {
+                "ko": "눈에 보이지 않을 정도로 빠르게 연격하여 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with a rapid series of strikes invisible to the naked eye. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "目にも留まらぬ速さで連撃を繰り出し、敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 9,
+              "skillDescription": {
+                "ko": "눈에 보이지 않을 정도로 빠르게 연격하여 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with a rapid series of strikes invisible to the naked eye. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "目にも留まらぬ速さで連撃を繰り出し、敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 10,
+              "skillDescription": {
+                "ko": "눈에 보이지 않을 정도로 빠르게 연격하여 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with a rapid series of strikes invisible to the naked eye. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "目にも留まらぬ速さで連撃を繰り出し、敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              }
+            }
+          ]
+        },
+        {
+          "id": 10582,
+          "type": 2,
+          "target": "NSTT_ENEMY_ONE",
+          "cooltime": 3,
+          "break": 1,
+          "nova": 1,
+          "name": {
+            "ko": "꿰어내는 별",
+            "en": "Piercing Star",
+            "ja": "貫く星"
+          },
+          "novaDescription": {
+            "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가하고 타격 후 자신의 행동 게이지를 20% 증가시킵니다.",
+            "en": "Temporarily deals 1 more Toughness Fixed DMG on attack and increases self Action Gauge by 20% after attacking.",
+            "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がり、攻撃後、自身の行動ゲージを20%増やす。"
+          },
+          "icon": "./data/savior-skill-assets/skills/10582.webp",
+          "buffs": [
+            {
+              "id": 1508,
+              "strId": "BI_RATE_HIT_DECREASE",
+              "name": {
+                "ko": "명중률 감소",
+                "en": "ACC Down",
+                "ja": "命中率ダウン"
+              },
+              "description": {
+                "ko": "명중률이 30% 감소합니다.",
+                "en": "Decreases ACC by 30%.",
+                "ja": "命中率が30%低下します。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_RATE_HIT_DECREASE.webp"
+            },
+            {
+              "id": 10005,
+              "strId": "BI_ADJUSTTYPE_RESOURCE_ORDER",
+              "name": {
+                "ko": "통찰",
+                "en": "Insight",
+                "ja": "洞察"
+              },
+              "description": {
+                "ko": "혼돈 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.",
+                "en": "Damage dealt to Chaos Attribute units increases by 1%. Applies up to 5 stacks. This boost applies independently of buffs and debuffs.",
+                "ja": "混沌属性ユニットへの与ダメージが1%アップ。最大5スタックまで適用される。ブースト効果は強化/弱体化に関係なく、独立して適用される。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_ADJUSTTYPE_RESOURCE_ORDER.webp"
+            },
+            {
+              "id": 10581,
+              "strId": "BI_STRANISEARL_ROSEBLADE_1",
+              "name": {
+                "ko": "밤에 피는 꽃(해제불가)",
+                "en": "Nocturnal Bloom (Undispellable)",
+                "ja": "夜に咲く花(解除不可)"
+              },
+              "description": {
+                "ko": "속도가 10% 증가하고 방어력을 20% 관통합니다.",
+                "en": "Increases SPD by 10%. Penetrates 20% of DEF.",
+                "ja": "速度が10％上がり、防御力を20%貫通する。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_STRANISEARL_ROSEBLADE_1.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "높이 뛰어오른 뒤 강하게 힘을 내리꽂아 적을 공격합니다. 적에게 100% 확률로 1턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>15%</color></b> 증가시킨 후 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 타격 후 자신이 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b> 상태이면 해당 스킬 쿨타임을 1턴 감소시킵니다.",
+                "en": "Attacks the enemy by leaping high into the air, then slamming down with tremendous force. 100% chance to inflict <b><color=#DD982C>ACC Down</color></b> on the enemy for 1 turn. Fills self action gauge by <b><color=#2A80D8>15%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. Reduces the cooldown of this skill by 1 turn if self has <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> after attacking.",
+                "ja": "高く跳び上がった後、強烈な一撃を叩き込み、敵を攻撃する。敵に100％の確率で<b><color=#DD982C>命中率ダウン</color></b>を1ターン付与する。さらに、自身の行動ゲージを<b><color=#2A80D8>15％</color></b>増やし、自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。攻撃後、自身が<b><color=#DD982C>夜に咲く花(解除不可)</color></b>状態の場合、該当スキルのクールタイムを1ターン短縮する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              }
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "높이 뛰어오른 뒤 강하게 힘을 내리꽂아 적을 공격합니다. 적에게 100% 확률로 1턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>15%</color></b> 증가시킨 후 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 타격 후 자신이 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b> 상태이면 해당 스킬 쿨타임을 1턴 감소시킵니다.",
+                "en": "Attacks the enemy by leaping high into the air, then slamming down with tremendous force. 100% chance to inflict <b><color=#DD982C>ACC Down</color></b> on the enemy for 1 turn. Fills self action gauge by <b><color=#2A80D8>15%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. Reduces the cooldown of this skill by 1 turn if self has <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> after attacking.",
+                "ja": "高く跳び上がった後、強烈な一撃を叩き込み、敵を攻撃する。敵に100％の確率で<b><color=#DD982C>命中率ダウン</color></b>を1ターン付与する。さらに、自身の行動ゲージを<b><color=#2A80D8>15％</color></b>増やし、自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。攻撃後、自身が<b><color=#DD982C>夜に咲く花(解除不可)</color></b>状態の場合、該当スキルのクールタイムを1ターン短縮する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "높이 뛰어오른 뒤 강하게 힘을 내리꽂아 적을 공격합니다. 적에게 100% 확률로 1턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>15%</color></b> 증가시킨 후 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 타격 후 자신이 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b> 상태이면 해당 스킬 쿨타임을 1턴 감소시킵니다.",
+                "en": "Attacks the enemy by leaping high into the air, then slamming down with tremendous force. 100% chance to inflict <b><color=#DD982C>ACC Down</color></b> on the enemy for 1 turn. Fills self action gauge by <b><color=#2A80D8>15%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. Reduces the cooldown of this skill by 1 turn if self has <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> after attacking.",
+                "ja": "高く跳び上がった後、強烈な一撃を叩き込み、敵を攻撃する。敵に100％の確率で<b><color=#DD982C>命中率ダウン</color></b>を1ターン付与する。さらに、自身の行動ゲージを<b><color=#2A80D8>15％</color></b>増やし、自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。攻撃後、自身が<b><color=#DD982C>夜に咲く花(解除不可)</color></b>状態の場合、該当スキルのクールタイムを1ターン短縮する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "높이 뛰어오른 뒤 강하게 힘을 내리꽂아 적을 공격합니다. 적에게 100% 확률로 1턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>20%</color></b> 증가시킨 후 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 타격 후 자신이 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b> 상태이면 해당 스킬 쿨타임을 1턴 감소시킵니다.",
+                "en": "Attacks the enemy by leaping high into the air, then slamming down with tremendous force. 100% chance to inflict <b><color=#DD982C>ACC Down</color></b> on the enemy for 1 turn. Fills self action gauge by <b><color=#2A80D8>20%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. Reduces the cooldown of this skill by 1 turn if self has <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> after attacking.",
+                "ja": "高く跳び上がった後、強烈な一撃を叩き込み、敵を攻撃する。敵に100％の確率で<b><color=#DD982C>命中率ダウン</color></b>を1ターン付与する。さらに、自身の行動ゲージを<b><color=#2A80D8>20％</color></b>増やし、自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。攻撃後、自身が<b><color=#DD982C>夜に咲く花(解除不可)</color></b>状態の場合、該当スキルのクールタイムを1ターン短縮する。"
+              },
+              "levelDescription": {
+                "ko": "행동 게이지 증가량 5% 증가",
+                "en": "Action Gauge Gain +5%",
+                "ja": "行動ゲージ増加量5%増加"
+              }
+            },
+            {
+              "level": 5,
+              "skillDescription": {
+                "ko": "높이 뛰어오른 뒤 강하게 힘을 내리꽂아 적을 공격합니다. 적에게 100% 확률로 1턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>20%</color></b> 증가시킨 후 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 타격 후 자신이 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b> 상태이면 해당 스킬 쿨타임을 1턴 감소시킵니다.",
+                "en": "Attacks the enemy by leaping high into the air, then slamming down with tremendous force. 100% chance to inflict <b><color=#DD982C>ACC Down</color></b> on the enemy for 1 turn. Fills self action gauge by <b><color=#2A80D8>20%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. Reduces the cooldown of this skill by 1 turn if self has <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> after attacking.",
+                "ja": "高く跳び上がった後、強烈な一撃を叩き込み、敵を攻撃する。敵に100％の確率で<b><color=#DD982C>命中率ダウン</color></b>を1ターン付与する。さらに、自身の行動ゲージを<b><color=#2A80D8>20％</color></b>増やし、自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。攻撃後、自身が<b><color=#DD982C>夜に咲く花(解除不可)</color></b>状態の場合、該当スキルのクールタイムを1ターン短縮する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 6,
+              "skillDescription": {
+                "ko": "높이 뛰어오른 뒤 강하게 힘을 내리꽂아 적을 공격합니다. 적에게 100% 확률로 1턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>20%</color></b> 증가시킨 후 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 타격 후 자신이 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b> 상태이면 해당 스킬 쿨타임을 1턴 감소시킵니다.",
+                "en": "Attacks the enemy by leaping high into the air, then slamming down with tremendous force. 100% chance to inflict <b><color=#DD982C>ACC Down</color></b> on the enemy for 1 turn. Fills self action gauge by <b><color=#2A80D8>20%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. Reduces the cooldown of this skill by 1 turn if self has <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> after attacking.",
+                "ja": "高く跳び上がった後、強烈な一撃を叩き込み、敵を攻撃する。敵に100％の確率で<b><color=#DD982C>命中率ダウン</color></b>を1ターン付与する。さらに、自身の行動ゲージを<b><color=#2A80D8>20％</color></b>増やし、自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。攻撃後、自身が<b><color=#DD982C>夜に咲く花(解除不可)</color></b>状態の場合、該当スキルのクールタイムを1ターン短縮する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 7,
+              "skillDescription": {
+                "ko": "높이 뛰어오른 뒤 강하게 힘을 내리꽂아 적을 공격합니다. 적에게 100% 확률로 1턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>20%</color></b> 증가시킨 후 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 타격 후 자신이 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b> 상태이면 해당 스킬 쿨타임을 1턴 감소시킵니다.",
+                "en": "Attacks the enemy by leaping high into the air, then slamming down with tremendous force. 100% chance to inflict <b><color=#DD982C>ACC Down</color></b> on the enemy for 1 turn. Fills self action gauge by <b><color=#2A80D8>20%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. Reduces the cooldown of this skill by 1 turn if self has <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> after attacking.",
+                "ja": "高く跳び上がった後、強烈な一撃を叩き込み、敵を攻撃する。敵に100％の確率で<b><color=#DD982C>命中率ダウン</color></b>を1ターン付与する。さらに、自身の行動ゲージを<b><color=#2A80D8>20％</color></b>増やし、自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。攻撃後、自身が<b><color=#DD982C>夜に咲く花(解除不可)</color></b>状態の場合、該当スキルのクールタイムを1ターン短縮する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 8,
+              "skillDescription": {
+                "ko": "높이 뛰어오른 뒤 강하게 힘을 내리꽂아 적을 공격합니다. 적에게 100% 확률로 1턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>30%</color></b> 증가시킨 후 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 타격 후 자신이 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b> 상태이면 해당 스킬 쿨타임을 1턴 감소시킵니다.",
+                "en": "Attacks the enemy by leaping high into the air, then slamming down with tremendous force. 100% chance to inflict <b><color=#DD982C>ACC Down</color></b> on the enemy for 1 turn. Fills self action gauge by <b><color=#2A80D8>30%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. Reduces the cooldown of this skill by 1 turn if self has <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> after attacking.",
+                "ja": "高く跳び上がった後、強烈な一撃を叩き込み、敵を攻撃する。敵に100％の確率で<b><color=#DD982C>命中率ダウン</color></b>を1ターン付与する。さらに、自身の行動ゲージを<b><color=#2A80D8>30％</color></b>増やし、自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。攻撃後、自身が<b><color=#DD982C>夜に咲く花(解除不可)</color></b>状態の場合、該当スキルのクールタイムを1ターン短縮する。"
+              },
+              "levelDescription": {
+                "ko": "행동 게이지 증가량 10% 증가",
+                "en": "Action Gauge Gain +10%",
+                "ja": "行動ゲージ増加量10%増加"
+              }
+            },
+            {
+              "level": 9,
+              "skillDescription": {
+                "ko": "높이 뛰어오른 뒤 강하게 힘을 내리꽂아 적을 공격합니다. 적에게 100% 확률로 1턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>30%</color></b> 증가시킨 후 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 타격 후 자신이 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b> 상태이면 해당 스킬 쿨타임을 1턴 감소시킵니다.",
+                "en": "Attacks the enemy by leaping high into the air, then slamming down with tremendous force. 100% chance to inflict <b><color=#DD982C>ACC Down</color></b> on the enemy for 1 turn. Fills self action gauge by <b><color=#2A80D8>30%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. Reduces the cooldown of this skill by 1 turn if self has <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> after attacking.",
+                "ja": "高く跳び上がった後、強烈な一撃を叩き込み、敵を攻撃する。敵に100％の確率で<b><color=#DD982C>命中率ダウン</color></b>を1ターン付与する。さらに、自身の行動ゲージを<b><color=#2A80D8>30％</color></b>増やし、自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。攻撃後、自身が<b><color=#DD982C>夜に咲く花(解除不可)</color></b>状態の場合、該当スキルのクールタイムを1ターン短縮する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              }
+            },
+            {
+              "level": 10,
+              "skillDescription": {
+                "ko": "높이 뛰어오른 뒤 강하게 힘을 내리꽂아 적을 공격합니다. 적에게 100% 확률로 1턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>30%</color></b> 증가시킨 후 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 타격 후 자신이 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b> 상태이면 해당 스킬 쿨타임을 1턴 감소시킵니다.",
+                "en": "Attacks the enemy by leaping high into the air, then slamming down with tremendous force. 100% chance to inflict <b><color=#DD982C>ACC Down</color></b> on the enemy for 1 turn. Fills self action gauge by <b><color=#2A80D8>30%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. Reduces the cooldown of this skill by 1 turn if self has <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> after attacking.",
+                "ja": "高く跳び上がった後、強烈な一撃を叩き込み、敵を攻撃する。敵に100％の確率で<b><color=#DD982C>命中率ダウン</color></b>を1ターン付与する。さらに、自身の行動ゲージを<b><color=#2A80D8>30％</color></b>増やし、自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。攻撃後、自身が<b><color=#DD982C>夜に咲く花(解除不可)</color></b>状態の場合、該当スキルのクールタイムを1ターン短縮する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 5% 증가",
+                "en": "DMG +5%",
+                "ja": "与ダメージ5%上昇"
+              }
+            }
+          ]
+        },
+        {
+          "id": 10583,
+          "type": 3,
+          "target": "NSTT_ENEMY_ALL",
+          "cooltime": 6,
+          "break": 1,
+          "nova": 1,
+          "name": {
+            "ko": "빛을 벼려낸 집행",
+            "en": "Light-Forged Execution",
+            "ja": "光を研ぎ上げた執行"
+          },
+          "novaDescription": {
+            "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다.",
+            "en": "Self Toughness Fixed DMG temporarily increases by 1 on attack.",
+            "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がる。"
+          },
+          "icon": "./data/savior-skill-assets/skills/10583.webp",
+          "buffs": [
+            {
+              "id": 1508,
+              "strId": "BI_RATE_HIT_DECREASE",
+              "name": {
+                "ko": "명중률 감소",
+                "en": "ACC Down",
+                "ja": "命中率ダウン"
+              },
+              "description": {
+                "ko": "명중률이 30% 감소합니다.",
+                "en": "Decreases ACC by 30%.",
+                "ja": "命中率が30%低下します。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_RATE_HIT_DECREASE.webp"
+            },
+            {
+              "id": 10581,
+              "strId": "BI_STRANISEARL_ROSEBLADE_1",
+              "name": {
+                "ko": "밤에 피는 꽃(해제불가)",
+                "en": "Nocturnal Bloom (Undispellable)",
+                "ja": "夜に咲く花(解除不可)"
+              },
+              "description": {
+                "ko": "속도가 10% 증가하고 방어력을 20% 관통합니다.",
+                "en": "Increases SPD by 10%. Penetrates 20% of DEF.",
+                "ja": "速度が10％上がり、防御力を20%貫通する。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_STRANISEARL_ROSEBLADE_1.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "집행을 선고하여 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시키고 적 전체에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시킵니다. 자신에게 추가 턴을 발생시킵니다.",
+                "en": "Attacks all enemies by delivering a sentence of execution. Grants self <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 3 turns. <b><color=#2A80D8>75%</color></b> chance to inflict <b><color=#DD982C>ACC Down</color></b> on all enemies for 2 turns. Grants self an extra turn.",
+                "ja": "執行を宣告して敵全体を攻撃する。自身に<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を3ターン付与し、敵全体に<b><color=#2A80D8>75％</color></b>の確率で<b><color=#DD982C>命中率ダウン</color></b>を2ターン付与する。自身に追加ターンを発生させる。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              }
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "집행을 선고하여 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시키고 적 전체에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시킵니다. 자신에게 추가 턴을 발생시킵니다.",
+                "en": "Attacks all enemies by delivering a sentence of execution. Grants self <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 3 turns. <b><color=#2A80D8>75%</color></b> chance to inflict <b><color=#DD982C>ACC Down</color></b> on all enemies for 2 turns. Grants self an extra turn.",
+                "ja": "執行を宣告して敵全体を攻撃する。自身に<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を3ターン付与し、敵全体に<b><color=#2A80D8>75％</color></b>の確率で<b><color=#DD982C>命中率ダウン</color></b>を2ターン付与する。自身に追加ターンを発生させる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "집행을 선고하여 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시키고 적 전체에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시킵니다. 자신에게 추가 턴을 발생시킵니다.",
+                "en": "Attacks all enemies by delivering a sentence of execution. Grants self <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 3 turns. <b><color=#2A80D8>75%</color></b> chance to inflict <b><color=#DD982C>ACC Down</color></b> on all enemies for 2 turns. Grants self an extra turn.",
+                "ja": "執行を宣告して敵全体を攻撃する。自身に<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を3ターン付与し、敵全体に<b><color=#2A80D8>75％</color></b>の確率で<b><color=#DD982C>命中率ダウン</color></b>を2ターン付与する。自身に追加ターンを発生させる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "집행을 선고하여 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시키고 적 전체에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시킵니다. 자신에게 추가 턴을 발생시킵니다.",
+                "en": "Attacks all enemies by delivering a sentence of execution. Grants self <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 3 turns. <b><color=#2A80D8>85%</color></b> chance to inflict <b><color=#DD982C>ACC Down</color></b> on all enemies for 2 turns. Grants self an extra turn.",
+                "ja": "執行を宣告して敵全体を攻撃する。自身に<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を3ターン付与し、敵全体に<b><color=#2A80D8>85％</color></b>の確率で<b><color=#DD982C>命中率ダウン</color></b>を2ターン付与する。自身に追加ターンを発生させる。"
+              },
+              "levelDescription": {
+                "ko": "명중률 감소 발생 확률 10% 증가",
+                "en": "ACC Down chance +10%",
+                "ja": "命中率低下の発生率10%上昇"
+              }
+            },
+            {
+              "level": 5,
+              "skillDescription": {
+                "ko": "집행을 선고하여 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시키고 적 전체에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시킵니다. 자신에게 추가 턴을 발생시킵니다.",
+                "en": "Attacks all enemies by delivering a sentence of execution. Grants self <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 3 turns. <b><color=#2A80D8>85%</color></b> chance to inflict <b><color=#DD982C>ACC Down</color></b> on all enemies for 2 turns. Grants self an extra turn.",
+                "ja": "執行を宣告して敵全体を攻撃する。自身に<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を3ターン付与し、敵全体に<b><color=#2A80D8>85％</color></b>の確率で<b><color=#DD982C>命中率ダウン</color></b>を2ターン付与する。自身に追加ターンを発生させる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 6,
+              "skillDescription": {
+                "ko": "집행을 선고하여 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시키고 적 전체에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시킵니다. 자신에게 추가 턴을 발생시킵니다.",
+                "en": "Attacks all enemies by delivering a sentence of execution. Grants self <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 3 turns. <b><color=#2A80D8>85%</color></b> chance to inflict <b><color=#DD982C>ACC Down</color></b> on all enemies for 2 turns. Grants self an extra turn.",
+                "ja": "執行を宣告して敵全体を攻撃する。自身に<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を3ターン付与し、敵全体に<b><color=#2A80D8>85％</color></b>の確率で<b><color=#DD982C>命中率ダウン</color></b>を2ターン付与する。自身に追加ターンを発生させる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              }
+            },
+            {
+              "level": 7,
+              "skillDescription": {
+                "ko": "집행을 선고하여 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시키고 적 전체에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시킵니다. 자신에게 추가 턴을 발생시킵니다.",
+                "en": "Attacks all enemies by delivering a sentence of execution. Grants self <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 3 turns. <b><color=#2A80D8>85%</color></b> chance to inflict <b><color=#DD982C>ACC Down</color></b> on all enemies for 2 turns. Grants self an extra turn.",
+                "ja": "執行を宣告して敵全体を攻撃する。自身に<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を3ターン付与し、敵全体に<b><color=#2A80D8>85％</color></b>の確率で<b><color=#DD982C>命中率ダウン</color></b>を2ターン付与する。自身に追加ターンを発生させる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              }
+            },
+            {
+              "level": 8,
+              "skillDescription": {
+                "ko": "집행을 선고하여 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시키고 적 전체에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시킵니다. 자신에게 추가 턴을 발생시킵니다.",
+                "en": "Attacks all enemies by delivering a sentence of execution. Grants self <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 3 turns. <b><color=#2A80D8>100%</color></b> chance to inflict <b><color=#DD982C>ACC Down</color></b> on all enemies for 2 turns. Grants self an extra turn.",
+                "ja": "執行を宣告して敵全体を攻撃する。自身に<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を3ターン付与し、敵全体に<b><color=#2A80D8>100％</color></b>の確率で<b><color=#DD982C>命中率ダウン</color></b>を2ターン付与する。自身に追加ターンを発生させる。"
+              },
+              "levelDescription": {
+                "ko": "명중률 감소 발생 확률 15% 증가",
+                "en": "ACC Down chance +15%",
+                "ja": "命中率低下の発生率15%上昇"
+              }
+            },
+            {
+              "level": 9,
+              "skillDescription": {
+                "ko": "집행을 선고하여 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시키고 적 전체에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시킵니다. 자신에게 추가 턴을 발생시킵니다.",
+                "en": "Attacks all enemies by delivering a sentence of execution. Grants self <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 3 turns. <b><color=#2A80D8>100%</color></b> chance to inflict <b><color=#DD982C>ACC Down</color></b> on all enemies for 2 turns. Grants self an extra turn.",
+                "ja": "執行を宣告して敵全体を攻撃する。自身に<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を3ターン付与し、敵全体に<b><color=#2A80D8>100％</color></b>の確率で<b><color=#DD982C>命中率ダウン</color></b>を2ターン付与する。自身に追加ターンを発生させる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              }
+            },
+            {
+              "level": 10,
+              "skillDescription": {
+                "ko": "집행을 선고하여 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>밤에 피는 꽃(해제불가)</color></b>을 발생시키고 적 전체에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>명중률 감소</color></b>를 발생시킵니다. 자신에게 추가 턴을 발생시킵니다.",
+                "en": "Attacks all enemies by delivering a sentence of execution. Grants self <b><color=#DD982C>Nocturnal Bloom (Undispellable)</color></b> for 3 turns. <b><color=#2A80D8>100%</color></b> chance to inflict <b><color=#DD982C>ACC Down</color></b> on all enemies for 2 turns. Grants self an extra turn.",
+                "ja": "執行を宣告して敵全体を攻撃する。自身に<b><color=#DD982C>夜に咲く花(解除不可)</color></b>を3ターン付与し、敵全体に<b><color=#2A80D8>100％</color></b>の確率で<b><color=#DD982C>命中率ダウン</color></b>を2ターン付与する。自身に追加ターンを発生させる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 5% 증가",
+                "en": "DMG +5%",
+                "ja": "与ダメージ5%上昇"
+              }
+            }
+          ]
+        }
+      ],
+      "blossomSkills": []
+    },
+    {
       "id": 1501,
       "rank": "SR",
       "name": {
@@ -39085,7 +39826,7 @@
               "skillDescription": {
                 "ko": "클라리사의 치명타 확률이 <b><color=#2A80D8>10%</color></b> 증가합니다. 클라리사가 턴 시작 시 <b><color=#2A80D8>80%</color></b> 확률로 자신에게 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다. 자신의 <b><color=#DD982C>도약</color></b> 스택의 중첩 횟수에 따라 적용 효과가 추가됩니다. 피격 후 자신의 <b><color=#DD982C>도약</color></b> 스택을 모두 제거합니다.\n도약 2중첩 : 타격 시 피해량이 15% 증가합니다.\n도약 3중첩 : 타격 시 명중률이 50% 증가합니다.\n도약 4중첩 : 타격 후 자신의 행동 게이지를 15% 증가시킵니다.\n도약 5중첩 : 타격 후 100% 확률로 적의 행동 게이지를 15% 감소시킵니다.",
                 "en": "Increases Clarissa's CRIT Rate by <b><color=#2A80D8>10%</color></b>. Grants Clarissa 1 stack of <b><color=#DD982C>Leap</color></b> with a <b><color=#2A80D8>80%</color></b> chance at the start of the turn. Removes all stacks of <b><color=#DD982C>Leap</color></b> after being attacked. Triggers the following effects based on the number of stacks of <b><color=#DD982C>Leap</color></b> on self.\n\n2 stacks: Deals 15% additional DMG on attack.\n3 stacks: Increases ACC by 50% on attack.\n4 stacks: Increases self Action Gauge by 15% on attack.\n5 stacks: Reduces the enemy's Action Gauge by 15% with a 100% chance on attack.",
-                "ja": "クラリッサの会心率が<b><color=#2A80D8>10％</color></b>上がる。クラリッサのターン開始時、<b><color=#2A80D8>80％</color></b>で自身に<b><color=#DD982C>跳躍</color></b>スタックを1個付与する。自身の<b><color=#DD982C>跳躍</color></b>スタック回数によって適用効果が追加される。攻撃を受けた後、自身の<b><color=#DD982C>跳躍</color></b>スタックをすべて消去する。\n跳躍2スタック：攻撃時、ダメージが15％上がる。\n跳躍3スタック：攻撃時、命中率が50％上がる。\n跳躍4スタック：攻撃後、自身の行動ゲージを15％増やす。\n跳躍10スタック：攻撃後、100％で敵の行動ゲージを15％減らす。"
+                "ja": "クラリッサの会心率が<b><color=#2A80D8>10％</color></b>上がる。クラリッサのターン開始時、<b><color=#2A80D8>80％</color></b>で自身に<b><color=#DD982C>跳躍</color></b>スタックを1個付与する。自身の<b><color=#DD982C>跳躍</color></b>スタック回数によって適用効果が追加される。攻撃を受けた後、自身の<b><color=#DD982C>跳躍</color></b>スタックをすべて消去する。\n跳躍2スタック：攻撃時、ダメージが15％上がる。\n跳躍3スタック：攻撃時、命中率が50％上がる。\n跳躍4スタック：攻撃後、自身の行動ゲージを15％増やす。\n跳躍5スタック：攻撃後、100％で敵の行動ゲージを15％減らす。"
               },
               "levelDescription": {
                 "ko": "기본 효과",
@@ -39098,7 +39839,7 @@
               "skillDescription": {
                 "ko": "클라리사의 치명타 확률이 <b><color=#2A80D8>15%</color></b> 증가합니다. 클라리사가 턴 시작 시 <b><color=#2A80D8>100%</color></b> 확률로 자신에게 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다. 자신의 <b><color=#DD982C>도약</color></b> 스택의 중첩 횟수에 따라 적용 효과가 추가됩니다. 피격 후 자신의 <b><color=#DD982C>도약</color></b> 스택을 모두 제거합니다.\n도약 2중첩 : 타격 시 피해량이 15% 증가합니다.\n도약 3중첩 : 타격 시 명중률이 50% 증가합니다.\n도약 4중첩 : 타격 후 자신의 행동 게이지를 15% 증가시킵니다.\n도약 5중첩 : 타격 후 100% 확률로 적의 행동 게이지를 15% 감소시킵니다.",
                 "en": "Increases Clarissa's CRIT Rate by <b><color=#2A80D8>15%</color></b>. Grants Clarissa 1 stack of <b><color=#DD982C>Leap</color></b> with a <b><color=#2A80D8>100%</color></b> chance at the start of the turn. Removes all stacks of <b><color=#DD982C>Leap</color></b> after being attacked. Triggers the following effects based on the number of stacks of <b><color=#DD982C>Leap</color></b> on self.\n\n2 stacks: Deals 15% additional DMG on attack.\n3 stacks: Increases ACC by 50% on attack.\n4 stacks: Increases self Action Gauge by 15% on attack.\n5 stacks: Reduces the enemy's Action Gauge by 15% with a 100% chance on attack.",
-                "ja": "クラリッサの会心率が<b><color=#2A80D8>15％</color></b>上がる。クラリッサのターン開始時、<b><color=#2A80D8>100％</color></b>で自身に<b><color=#DD982C>跳躍</color></b>スタックを1個付与する。自身の<b><color=#DD982C>跳躍</color></b>スタック回数によって適用効果が追加される。攻撃を受けた後、自身の<b><color=#DD982C>跳躍</color></b>スタックをすべて消去する。\n跳躍2スタック：攻撃時、ダメージが15％上がる。\n跳躍3スタック：攻撃時、命中率が50％上がる。\n跳躍4スタック：攻撃後、自身の行動ゲージを15％増やす。\n跳躍15スタック：攻撃後、100％で敵の行動ゲージを15％減らす。"
+                "ja": "クラリッサの会心率が<b><color=#2A80D8>15％</color></b>上がる。クラリッサのターン開始時、<b><color=#2A80D8>100％</color></b>で自身に<b><color=#DD982C>跳躍</color></b>スタックを1個付与する。自身の<b><color=#DD982C>跳躍</color></b>スタック回数によって適用効果が追加される。攻撃を受けた後、自身の<b><color=#DD982C>跳躍</color></b>スタックをすべて消去する。\n跳躍2スタック：攻撃時、ダメージが15％上がる。\n跳躍3スタック：攻撃時、命中率が50％上がる。\n跳躍4スタック：攻撃後、自身の行動ゲージを15％増やす。\n跳躍5スタック：攻撃後、100％で敵の行動ゲージを15％減らす。"
               },
               "levelDescription": {
                 "ko": "기본 효과",
