@@ -201,7 +201,8 @@ jobs:
 
           for (const [position, savior] of saviors.entries()) {
             const outputPath = path.join(OUT_DIR, `${savior.id}.html`);
-            if (!refreshAll && fs.existsSync(outputPath) && fs.statSync(outputPath).size > 500) {
+            const previousPortrait = oldIndex[String(savior.id)]?.profile?.portrait || '';
+            if (!refreshAll && previousPortrait && fs.existsSync(outputPath) && fs.statSync(outputPath).size > 500) {
               console.log(`[${position + 1}/${saviors.length}] keep ${savior.key} (${savior.id})`);
               newIndex[String(savior.id)] = {
                 ...(newIndex[String(savior.id)] || {}),
@@ -281,6 +282,15 @@ jobs:
                     const value = label.nextElementSibling || label.parentElement?.querySelector('span:last-child');
                     factValues[key] = normalize(value?.textContent);
                   });
+                  const profileName = normalize(body.querySelector('[class*="savior-detail_name-row"] h2, [class*="savior-detail_savior-info"] h2')?.textContent);
+                  const portrait = [...body.querySelectorAll('img')].find((img) => {
+                    const alt = normalize(img.getAttribute('alt'));
+                    const src = img.getAttribute('src') || img.src || '';
+                    return /\/images\/icon\/portrait\//i.test(src) || (profileName && alt === profileName);
+                  });
+                  const portraitUrl = portrait
+                    ? new URL(portrait.getAttribute('src') || portrait.src, document.baseURI).href
+                    : '';
                   const illustration = [...body.querySelectorAll('img')].find((img) => {
                     const alt = normalize(img.getAttribute('alt'));
                     const src = img.getAttribute('src') || img.src || '';
@@ -290,7 +300,7 @@ jobs:
                     ? new URL(illustration.getAttribute('src') || illustration.src, document.baseURI).href
                     : '';
                   const profile = {
-                    name: normalize(body.querySelector('[class*="savior-detail_name-row"] h2, [class*="savior-detail_savior-info"] h2')?.textContent),
+                    name: profileName,
                     grade,
                     element,
                     className,
@@ -385,6 +395,7 @@ jobs:
                     markerText: marker ? normalize(marker.textContent) : '',
                     markerFound: Boolean(marker),
                     profile,
+                    portraitUrl,
                     illustrationUrl
                   };
                 });
@@ -405,6 +416,13 @@ jobs:
 
                 const previousEntry = oldIndex[String(savior.id)] || {};
                 const previousProfile = previousEntry.profile || {};
+                let portrait = previousProfile.portrait || '';
+                if (snapshot.portraitUrl) {
+                  const localPortrait = await downloadAsset(context.request, snapshot.portraitUrl);
+                  if (localPortrait && localPortrait !== snapshot.portraitUrl) {
+                    portrait = `./data/${localPortrait.replace(/^\.\.\//, '')}`;
+                  }
+                }
                 let illustration = previousProfile.illustration || '';
                 if (snapshot.illustrationUrl) {
                   const localIllustration = await downloadAsset(context.request, snapshot.illustrationUrl);
@@ -415,6 +433,7 @@ jobs:
                 const profile = {
                   ...previousProfile,
                   ...Object.fromEntries(Object.entries(snapshot.profile || {}).filter(([, value]) => value)),
+                  portrait,
                   illustration
                 };
 
@@ -441,16 +460,19 @@ jobs:
 
           await browser.close();
 
-          // Older workflow versions stored illustration paths relative to the snapshot HTML.
-          // Normalize every retained entry for use from the site's root page as well.
+          // Older workflow versions stored asset paths relative to the snapshot HTML.
+          // Normalize portrait/illustration paths for use from the site's root page as well.
           for (const savior of saviors) {
             const entry = newIndex[String(savior.id)];
-            const illustration = entry?.profile?.illustration;
-            if (!illustration) continue;
-            entry.profile.illustration = String(illustration)
-              .replace(/^\.\.\/savior-detail-assets\//, './data/savior-detail-assets/')
-              .replace(/^\.\/savior-detail-assets\//, './data/savior-detail-assets/')
-              .replace(/^savior-detail-assets\//, './data/savior-detail-assets/');
+            if (!entry?.profile) continue;
+            for (const field of ['portrait', 'illustration']) {
+              const value = entry.profile[field];
+              if (!value) continue;
+              entry.profile[field] = String(value)
+                .replace(/^\.\.\/savior-detail-assets\//, './data/savior-detail-assets/')
+                .replace(/^\.\/savior-detail-assets\//, './data/savior-detail-assets/')
+                .replace(/^savior-detail-assets\//, './data/savior-detail-assets/');
+            }
           }
 
           newIndex._meta = {
@@ -458,8 +480,9 @@ jobs:
             generatedAt: new Date().toISOString(),
             count: saviors.length,
             profileCount: saviors.filter((savior) => newIndex[String(savior.id)]?.profile).length,
+            portraitCount: saviors.filter((savior) => newIndex[String(savior.id)]?.profile?.portrait).length,
             illustrationCount: saviors.filter((savior) => newIndex[String(savior.id)]?.profile?.illustration).length,
-            profileFields: ['name', 'grade', 'element', 'className', 'attackType', 'description', 'birthday', 'height', 'origin', 'affiliation', 'cvKr', 'cvJp', 'illustration'],
+            profileFields: ['name', 'grade', 'element', 'className', 'attackType', 'description', 'birthday', 'height', 'origin', 'affiliation', 'cvKr', 'cvJp', 'portrait', 'illustration'],
             assetsRoot: './data/savior-detail-assets',
             excludedSnapshotSections: ['일러스트', '아크 포인트']
           };
