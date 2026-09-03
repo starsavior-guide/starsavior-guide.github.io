@@ -211,8 +211,8 @@ const [sourceSaviors, sourceBuffs, sourcePotentials] = await Promise.all([
   fetchJson("potentials.json")
 ]);
 
-if (!Array.isArray(sourceSaviors) || sourceSaviors.length !== 52) {
-  throw new Error(`Expected 52 Saviors, received ${sourceSaviors?.length ?? "invalid data"}`);
+if (!Array.isArray(sourceSaviors) || sourceSaviors.length < 52) {
+  throw new Error(`Expected at least 52 Saviors, received ${sourceSaviors?.length ?? "invalid data"}`);
 }
 if (!Array.isArray(sourceBuffs) || sourceBuffs.length < 1) {
   throw new Error("Buff data is missing");

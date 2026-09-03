@@ -15,6 +15,7 @@ const OUTPUT_PATH = path.join(OUTPUT_DIR, "arcanas.json");
 const MANIFEST_PATH = path.join(OUTPUT_DIR, "manifest.json");
 const REFRESH_ALL = String(process.env.REFRESH_ALL || "false").toLowerCase() === "true";
 const DISPLAY_LEVELS = [35, 40, 45, 50];
+// Keep source-driven additions (including newly released Arcana) in the local archive.
 
 const LANGUAGES = {
   ko: "ko-KR",

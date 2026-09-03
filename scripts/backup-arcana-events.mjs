@@ -10,6 +10,7 @@ const ASSET_DIR = path.join(ROOT, "data", "journey-assets");
 const META_PATH = path.join(OUT_DIR, "backup-meta.json");
 const AUDIT_PATH = path.join(OUT_DIR, "arcana-source-audit.json");
 const ASSET_MANIFEST_PATH = path.join(OUT_DIR, "arcana-assets.json");
+// Arcana events are refreshed from the live source while general Journey events remain frozen.
 
 const LANGUAGES = [
   { key: "ko", locale: "ko-KR" },
