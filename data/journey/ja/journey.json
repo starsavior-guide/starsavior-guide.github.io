@@ -8371,6 +8371,258 @@
     },
     {
       "kind": "arcana",
+      "source": "https://star-savior-arcana-db.pages.dev/arcana/7105801",
+      "arcanaId": 7105801,
+      "arcanaName": "帰路なき旅程",
+      "title": "[아르카나]帰路なき旅程",
+      "grade": "SSR",
+      "savior": "アモラ",
+      "mainStat": "体力",
+      "eventGroups": [
+        {
+          "id": 710580101,
+          "reqClearId": null,
+          "title": "マスターシェフ・ラビスター",
+          "choices": [
+            {
+              "name": "香りを味わいながら飲む。",
+              "automatic": false,
+              "recommended": true,
+              "successRewards": [
+                [
+                  {
+                    "sourceType": "RT_CONDITION",
+                    "sourceId": null,
+                    "sourceStat": null,
+                    "sourceMin": 1,
+                    "sourceMax": 1,
+                    "label": "Condition",
+                    "value": "+1",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_HEALTH",
+                    "sourceMin": 8,
+                    "sourceMax": 8,
+                    "label": "Vitality",
+                    "value": "+8",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ]
+              ],
+              "failureRewards": []
+            },
+            {
+              "name": "一気に飲み干す。",
+              "automatic": false,
+              "recommended": false,
+              "successRewards": [
+                [
+                  {
+                    "sourceType": "RT_SE_POTEN",
+                    "sourceId": 21006,
+                    "sourceStat": null,
+                    "sourceMin": 1,
+                    "sourceMax": 1,
+                    "label": "破壊の腕前",
+                    "value": "",
+                    "description": "会心ダメージが4%上がる。",
+                    "polarity": "neutral",
+                    "effectTone": "special",
+                    "iconAssets": [
+                      "arcana-potential-bg_yellow.webp",
+                      "arcana-potential-파괴의솜씨.webp"
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_HEALTH",
+                    "sourceMin": 10,
+                    "sourceMax": 10,
+                    "label": "Vitality",
+                    "value": "+10",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_POTEN_POINT",
+                    "sourceId": null,
+                    "sourceStat": null,
+                    "sourceMin": 15,
+                    "sourceMax": 15,
+                    "label": "Potential Point",
+                    "value": "+15",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710580102,
+          "reqClearId": 710580101,
+          "title": "とある午後の平穏",
+          "choices": [
+            {
+              "name": "",
+              "automatic": true,
+              "recommended": true,
+              "successRewards": [
+                [
+                  {
+                    "sourceType": "RT_STAMINA",
+                    "sourceId": null,
+                    "sourceStat": null,
+                    "sourceMin": 5,
+                    "sourceMax": 5,
+                    "label": "Stamina",
+                    "value": "+5",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_POWER",
+                    "sourceMin": 8,
+                    "sourceMax": 8,
+                    "label": "Strength",
+                    "value": "+8",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_HEALTH",
+                    "sourceMin": 15,
+                    "sourceMax": 15,
+                    "label": "Vitality",
+                    "value": "+15",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710580103,
+          "reqClearId": 710580102,
+          "title": "伯爵の悩み",
+          "choices": [
+            {
+              "name": "",
+              "automatic": true,
+              "recommended": true,
+              "successRewards": [
+                [
+                  {
+                    "sourceType": "RT_SE_POTEN",
+                    "sourceId": 34005,
+                    "sourceStat": null,
+                    "sourceMin": null,
+                    "sourceMax": null,
+                    "label": "清らに醸す香り",
+                    "value": "",
+                    "description": "単体攻撃で攻撃時、ダメージが10％上がる。自身が弱体化状態でない場合、ダメージがさらに15％上がる。",
+                    "polarity": "neutral",
+                    "effectTone": "special",
+                    "iconAssets": [
+                      "arcana-potential-bg_blue.webp",
+                      "arcana-potential-맑게빚은향기.webp"
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_POWER",
+                    "sourceMin": 8,
+                    "sourceMax": 8,
+                    "label": "Strength",
+                    "value": "+8",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_HEALTH",
+                    "sourceMin": 15,
+                    "sourceMax": 15,
+                    "label": "Vitality",
+                    "value": "+15",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_FOCUS",
+                    "sourceMin": 10,
+                    "sourceMax": 10,
+                    "label": "Focus",
+                    "value": "+10",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        }
+      ],
+      "searchText": "帰路なき旅程 アモラ マスターシェフ・ラビスター 香りを味わいながら飲む。 Condition +1 Vitality +8 一気に飲み干す。 破壊の腕前 会心ダメージが4%上がる。 Vitality +10 Potential Point +15 とある午後の平穏 Stamina +5 Strength +8 Vitality +15 伯爵の悩み 清らに醸す香り 単体攻撃で攻撃時、ダメージが10％上がる。自身が弱体化状態でない場合、ダメージがさらに15％上がる。 Strength +8 Vitality +15 Focus +10"
+    },
+    {
+      "kind": "arcana",
       "source": "https://star-savior-arcana-db.pages.dev/arcana/7150101",
       "arcanaId": 7150101,
       "arcanaName": "満足のいく食事",
@@ -40933,5 +41185,5 @@
   ],
   "source": "https://star-savior-arcana-db.pages.dev/arcana",
   "arcanaSource": "https://star-savior-arcana-db.pages.dev/arcana",
-  "arcanaCapturedAt": "2026-08-30T17:08:32.343Z"
+  "arcanaCapturedAt": "2026-09-03T07:49:52.662Z"
 }

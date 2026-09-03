@@ -1,6 +1,6 @@
 {
   "source": "https://star-savior-arcana-db.pages.dev/arcana",
-  "capturedAt": "2026-08-30T17:08:32.343Z",
+  "capturedAt": "2026-09-03T07:49:52.662Z",
   "assets": {
     "arcana-buff-공감능력.webp": {
       "source": "https://star-savior-arcana-db.pages.dev/images/icon/journey_buff/%EA%B3%B5%EA%B0%90%EB%8A%A5%EB%A0%A5.webp",
@@ -136,6 +136,11 @@
       "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EB%91%90%EB%B2%88%EC%A7%B8%EC%8B%AC%EC%9E%A5.webp",
       "size": 4572,
       "sha256": "154085fc25ca178bf6fdbd6fa76f147a8f109eb213fffb7c5199d74c96218567"
+    },
+    "arcana-potential-맑게빚은향기.webp": {
+      "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EB%A7%91%EA%B2%8C%EB%B9%9A%EC%9D%80%ED%96%A5%EA%B8%B0.webp",
+      "size": 5570,
+      "sha256": "ff63787245bbfb542537ed5eaf7877a154a9e7a3b186713b8b4c4451b438bb14"
     },
     "arcana-potential-방어의감각.webp": {
       "source": "https://star-savior-arcana-db.pages.dev/images/icon/potential/%EB%B0%A9%EC%96%B4%EC%9D%98%EA%B0%90%EA%B0%81.webp",

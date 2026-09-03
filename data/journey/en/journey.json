@@ -8371,6 +8371,258 @@
     },
     {
       "kind": "arcana",
+      "source": "https://star-savior-arcana-db.pages.dev/arcana/7105801",
+      "arcanaId": 7105801,
+      "arcanaName": "Journey of No Return",
+      "title": "[아르카나]Journey of No Return",
+      "grade": "SSR",
+      "savior": "Amora",
+      "mainStat": "Vitality",
+      "eventGroups": [
+        {
+          "id": 710580101,
+          "reqClearId": null,
+          "title": "Master Chef Lavistar",
+          "choices": [
+            {
+              "name": "Savor the aroma while drinking.",
+              "automatic": false,
+              "recommended": true,
+              "successRewards": [
+                [
+                  {
+                    "sourceType": "RT_CONDITION",
+                    "sourceId": null,
+                    "sourceStat": null,
+                    "sourceMin": 1,
+                    "sourceMax": 1,
+                    "label": "Condition",
+                    "value": "+1",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_HEALTH",
+                    "sourceMin": 8,
+                    "sourceMax": 8,
+                    "label": "Vitality",
+                    "value": "+8",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ]
+              ],
+              "failureRewards": []
+            },
+            {
+              "name": "Gulp it down.",
+              "automatic": false,
+              "recommended": false,
+              "successRewards": [
+                [
+                  {
+                    "sourceType": "RT_SE_POTEN",
+                    "sourceId": 21006,
+                    "sourceStat": null,
+                    "sourceMin": 1,
+                    "sourceMax": 1,
+                    "label": "Skill of Destruction",
+                    "value": "",
+                    "description": "Increases CRIT DMG by 4%.",
+                    "polarity": "neutral",
+                    "effectTone": "special",
+                    "iconAssets": [
+                      "arcana-potential-bg_yellow.webp",
+                      "arcana-potential-파괴의솜씨.webp"
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_HEALTH",
+                    "sourceMin": 10,
+                    "sourceMax": 10,
+                    "label": "Vitality",
+                    "value": "+10",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_POTEN_POINT",
+                    "sourceId": null,
+                    "sourceStat": null,
+                    "sourceMin": 15,
+                    "sourceMax": 15,
+                    "label": "Potential Point",
+                    "value": "+15",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710580102,
+          "reqClearId": 710580101,
+          "title": "One Peaceful Afternoon",
+          "choices": [
+            {
+              "name": "",
+              "automatic": true,
+              "recommended": true,
+              "successRewards": [
+                [
+                  {
+                    "sourceType": "RT_STAMINA",
+                    "sourceId": null,
+                    "sourceStat": null,
+                    "sourceMin": 5,
+                    "sourceMax": 5,
+                    "label": "Stamina",
+                    "value": "+5",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_POWER",
+                    "sourceMin": 8,
+                    "sourceMax": 8,
+                    "label": "Strength",
+                    "value": "+8",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_HEALTH",
+                    "sourceMin": 15,
+                    "sourceMax": 15,
+                    "label": "Vitality",
+                    "value": "+15",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710580103,
+          "reqClearId": 710580102,
+          "title": "The Countess' Troubles",
+          "choices": [
+            {
+              "name": "",
+              "automatic": true,
+              "recommended": true,
+              "successRewards": [
+                [
+                  {
+                    "sourceType": "RT_SE_POTEN",
+                    "sourceId": 34005,
+                    "sourceStat": null,
+                    "sourceMin": null,
+                    "sourceMax": null,
+                    "label": "Distilled Fragrance",
+                    "value": "",
+                    "description": "Increases damage dealt by 10% when attacking with a single-target attack. If self has no debuffs, increases damage dealt by an additional 15%.",
+                    "polarity": "neutral",
+                    "effectTone": "special",
+                    "iconAssets": [
+                      "arcana-potential-bg_blue.webp",
+                      "arcana-potential-맑게빚은향기.webp"
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_POWER",
+                    "sourceMin": 8,
+                    "sourceMax": 8,
+                    "label": "Strength",
+                    "value": "+8",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_HEALTH",
+                    "sourceMin": 15,
+                    "sourceMax": 15,
+                    "label": "Vitality",
+                    "value": "+15",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_FOCUS",
+                    "sourceMin": 10,
+                    "sourceMax": 10,
+                    "label": "Focus",
+                    "value": "+10",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        }
+      ],
+      "searchText": "Journey of No Return Amora Master Chef Lavistar Savor the aroma while drinking. Condition +1 Vitality +8 Gulp it down. Skill of Destruction Increases CRIT DMG by 4%. Vitality +10 Potential Point +15 One Peaceful Afternoon Stamina +5 Strength +8 Vitality +15 The Countess' Troubles Distilled Fragrance Increases damage dealt by 10% when attacking with a single-target attack. If self has no debuffs, increases damage dealt by an additional 15%. Strength +8 Vitality +15 Focus +10"
+    },
+    {
+      "kind": "arcana",
       "source": "https://star-savior-arcana-db.pages.dev/arcana/7150101",
       "arcanaId": 7150101,
       "arcanaName": "A Satisfying Meal",
@@ -41098,5 +41350,5 @@
   ],
   "source": "https://star-savior-arcana-db.pages.dev/arcana",
   "arcanaSource": "https://star-savior-arcana-db.pages.dev/arcana",
-  "arcanaCapturedAt": "2026-08-30T17:08:32.343Z"
+  "arcanaCapturedAt": "2026-09-03T07:49:52.662Z"
 }

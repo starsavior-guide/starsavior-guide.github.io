@@ -5,19 +5,19 @@
     "https://star-savior-arcana-db.pages.dev/data/potentials.json",
     "https://star-savior-arcana-db.pages.dev/data/journey_buffs.json"
   ],
-  "capturedAt": "2026-08-30T17:08:32.343Z",
-  "sourceDataSha256": "de22aab98f6500995bc2182ce76d3186c1647ae18888147bd4ba30615fd2d09c",
+  "capturedAt": "2026-09-03T07:49:52.662Z",
+  "sourceDataSha256": "aec0f5553a79a11c22949c4e2ebc140a96921b57d060900be06001c0ad422936",
   "counts": {
-    "cards": 79,
-    "events": 191,
-    "choices": 236,
-    "automaticChoices": 146,
-    "branchEvents": 45,
+    "cards": 80,
+    "events": 194,
+    "choices": 240,
+    "automaticChoices": 148,
+    "branchEvents": 46,
     "choicesWithFailure": 13,
-    "successRewardGroups": 586,
+    "successRewardGroups": 598,
     "failureRewardGroups": 42,
-    "rewardItems": 628,
-    "assets": 71
+    "rewardItems": 640,
+    "assets": 72
   },
   "languages": [
     "ko",
@@ -26,13 +26,13 @@
   ],
   "generalJourneyFrozen": true,
   "generalJourneyHashes": {
-    "ko": "ff78bd70c6e667686ca5800e3496bb038c37e82a5782f2fd2f04a325ffee1275",
+    "ko": "66d01e81be1de3e1c405ac79f5df52d265d315b154b3fa4bf3549c901bbeff8d",
     "en": "af2c5db81844b97b2d4b8a7fce5cea818a22b27c9fa8de943dc8907e17cb811b",
-    "ja": "ad2a6b46d64d9a5a2cd0c0f6d1490cd58c9931e663af58e58300954620b0d71d"
+    "ja": "6589ee3d504da8a64a1ed4b1aa33da686e468c951bc0bd62e24d588141378eb5"
   },
   "arcanaOutputHashes": {
-    "ko": "48ee28f95533fb69ae9694077eb5e3578bad72b2743dd48771655969b8c87427",
-    "en": "fd28107716833ff32686b2dfc39d40b6db87099e67e15a6e496cdbe3a7aa7ad2",
-    "ja": "9d817d5925dcac72976e71728f5928ed42ee0d16087aeb08d98c70446af17e7e"
+    "ko": "891079ee135eacd17e6e6865d9a0c8a2f2438b5cc2034e9abf1b5b969278e406",
+    "en": "f48f9d1588fda453bb6fc3fb4ce20aec5e240545659b2c4dcc83f3325f428513",
+    "ja": "50ee3fede822fbb47bb88413cc5b0b62e5888eb534bc4c0c1f2df729f5587baf"
   }
 }

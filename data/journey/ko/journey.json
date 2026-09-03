@@ -8371,6 +8371,258 @@
     },
     {
       "kind": "arcana",
+      "source": "https://star-savior-arcana-db.pages.dev/arcana/7105801",
+      "arcanaId": 7105801,
+      "arcanaName": "귀로 없는 여정",
+      "title": "[아르카나]귀로 없는 여정",
+      "grade": "SSR",
+      "savior": "아모라",
+      "mainStat": "체력",
+      "eventGroups": [
+        {
+          "id": 710580101,
+          "reqClearId": null,
+          "title": "마스터 셰프 라비스타",
+          "choices": [
+            {
+              "name": "향을 음미하며 마신다.",
+              "automatic": false,
+              "recommended": true,
+              "successRewards": [
+                [
+                  {
+                    "sourceType": "RT_CONDITION",
+                    "sourceId": null,
+                    "sourceStat": null,
+                    "sourceMin": 1,
+                    "sourceMax": 1,
+                    "label": "컨디션",
+                    "value": "+1",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_HEALTH",
+                    "sourceMin": 8,
+                    "sourceMax": 8,
+                    "label": "체력",
+                    "value": "+8",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ]
+              ],
+              "failureRewards": []
+            },
+            {
+              "name": "벌컥벌컥 마신다.",
+              "automatic": false,
+              "recommended": false,
+              "successRewards": [
+                [
+                  {
+                    "sourceType": "RT_SE_POTEN",
+                    "sourceId": 21006,
+                    "sourceStat": null,
+                    "sourceMin": 1,
+                    "sourceMax": 1,
+                    "label": "파괴의 솜씨",
+                    "value": "",
+                    "description": "치명타 피해가 4% 증가합니다.",
+                    "polarity": "neutral",
+                    "effectTone": "special",
+                    "iconAssets": [
+                      "arcana-potential-bg_yellow.webp",
+                      "arcana-potential-파괴의솜씨.webp"
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_HEALTH",
+                    "sourceMin": 10,
+                    "sourceMax": 10,
+                    "label": "체력",
+                    "value": "+10",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_POTEN_POINT",
+                    "sourceId": null,
+                    "sourceStat": null,
+                    "sourceMin": 15,
+                    "sourceMax": 15,
+                    "label": "잠재력 포인트",
+                    "value": "+15",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710580102,
+          "reqClearId": 710580101,
+          "title": "어떤 오후의 평화",
+          "choices": [
+            {
+              "name": "",
+              "automatic": true,
+              "recommended": true,
+              "successRewards": [
+                [
+                  {
+                    "sourceType": "RT_STAMINA",
+                    "sourceId": null,
+                    "sourceStat": null,
+                    "sourceMin": 5,
+                    "sourceMax": 5,
+                    "label": "스태미나",
+                    "value": "+5",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_POWER",
+                    "sourceMin": 8,
+                    "sourceMax": 8,
+                    "label": "힘",
+                    "value": "+8",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_HEALTH",
+                    "sourceMin": 15,
+                    "sourceMax": 15,
+                    "label": "체력",
+                    "value": "+15",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710580103,
+          "reqClearId": 710580102,
+          "title": "백작님의 고뇌",
+          "choices": [
+            {
+              "name": "",
+              "automatic": true,
+              "recommended": true,
+              "successRewards": [
+                [
+                  {
+                    "sourceType": "RT_SE_POTEN",
+                    "sourceId": 34005,
+                    "sourceStat": null,
+                    "sourceMin": null,
+                    "sourceMax": null,
+                    "label": "맑게 빚은 향기",
+                    "value": "",
+                    "description": "단일 공격으로 타격 시 피해량이 10% 증가하고 자신이 약화 효과 상태가 아니라면 피해량이 추가로 15% 증가합니다.",
+                    "polarity": "neutral",
+                    "effectTone": "special",
+                    "iconAssets": [
+                      "arcana-potential-bg_blue.webp",
+                      "arcana-potential-맑게빚은향기.webp"
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_POWER",
+                    "sourceMin": 8,
+                    "sourceMax": 8,
+                    "label": "힘",
+                    "value": "+8",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_HEALTH",
+                    "sourceMin": 15,
+                    "sourceMax": 15,
+                    "label": "체력",
+                    "value": "+15",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ],
+                [
+                  {
+                    "sourceType": "RT_STAT",
+                    "sourceId": null,
+                    "sourceStat": "JST_FOCUS",
+                    "sourceMin": 10,
+                    "sourceMax": 10,
+                    "label": "집중",
+                    "value": "+10",
+                    "description": "",
+                    "polarity": "positive",
+                    "effectTone": "positive",
+                    "iconAssets": []
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        }
+      ],
+      "searchText": "귀로 없는 여정 아모라 마스터 셰프 라비스타 향을 음미하며 마신다. 컨디션 +1 체력 +8 벌컥벌컥 마신다. 파괴의 솜씨 치명타 피해가 4% 증가합니다. 체력 +10 잠재력 포인트 +15 어떤 오후의 평화 스태미나 +5 힘 +8 체력 +15 백작님의 고뇌 맑게 빚은 향기 단일 공격으로 타격 시 피해량이 10% 증가하고 자신이 약화 효과 상태가 아니라면 피해량이 추가로 15% 증가합니다. 힘 +8 체력 +15 집중 +10"
+    },
+    {
+      "kind": "arcana",
       "source": "https://star-savior-arcana-db.pages.dev/arcana/7150101",
       "arcanaId": 7150101,
       "arcanaName": "만족스러운 식사",
@@ -40939,5 +41191,5 @@
   ],
   "source": "https://star-savior-arcana-db.pages.dev/arcana",
   "arcanaSource": "https://star-savior-arcana-db.pages.dev/arcana",
-  "arcanaCapturedAt": "2026-08-30T17:08:32.343Z"
+  "arcanaCapturedAt": "2026-09-03T07:49:52.662Z"
 }
