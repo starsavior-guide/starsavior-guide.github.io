@@ -4871,6 +4871,61 @@ const EQUIPMENT_SUB_OPTIONS = [
   }
 ];
 
+
+const SAVIOR_RELEASE_DATE = Object.freeze({
+  "amora": 20260903,
+  "cristelle": 20260820,
+  "sunshine-cat-smile": 20260806,
+  "white-pearl-luna": 20260723,
+  "ceres": 20260709,
+  "carnelia": 20260625,
+  "wedding-epindel": 20260611,
+  "wedding-carmen": 20260528,
+  "tyria": 20260514,
+  "fei": 20260430,
+  "lyn": 20260416,
+  "rosaria": 20260402,
+  "hilde": 20260319,
+  "yoo-mina": 20260319,
+  "roberta": 20260305,
+  "bunny-frey": 20260220,
+  "bunny-charlotte": 20260205,
+  "emily": 20260122,
+  "bell": 20260108,
+  "petra": 20251230,
+  "waltz-asherah": 20251223,
+  "omega": 20251211,
+  "scarlet": 20251127,
+  "claire": 20251127
+});
+
+// 위 목록에 없는 기존 구원자는 정식 런칭(2025-11-20) 시점 출시.
+// 이후 새 구원자가 매핑보다 먼저 추가된 경우에는 배열 뒤쪽에 추가되는 기존 작업 흐름을 이용해
+// 최신 항목으로 우선 노출되도록 처리한다.
+const SAVIOR_LAUNCH_DATE = 20251120;
+const SAVIOR_SOURCE_INDEX = new Map(SAVIORS.map((savior, index) => [savior.id, index]));
+
+function getSaviorReleaseSortValue(savior) {
+  if (Object.prototype.hasOwnProperty.call(SAVIOR_RELEASE_DATE, savior.id)) {
+    return SAVIOR_RELEASE_DATE[savior.id];
+  }
+
+  const sourceIndex = SAVIOR_SOURCE_INDEX.get(savior.id) ?? -1;
+  // 현재 53명 안의 미매핑 구원자는 런칭 멤버다.
+  // 향후 SAVIORS 배열 끝에 신규 항목이 추가되어 현재 기준 최대 인덱스를 넘는 경우를 위한 안전장치.
+  return SAVIOR_LAUNCH_DATE + Math.max(0, sourceIndex - 52) * 100000000;
+}
+
+function sortSaviorsByReleaseNewestFirst(saviors) {
+  return [...saviors].sort((a, b) => {
+    const releaseDiff = getSaviorReleaseSortValue(b) - getSaviorReleaseSortValue(a);
+    if (releaseDiff !== 0) return releaseDiff;
+
+    // 같은 날 출시된 구원자는 기존 등록 순서를 유지한다.
+    return (SAVIOR_SOURCE_INDEX.get(a.id) ?? 0) - (SAVIOR_SOURCE_INDEX.get(b.id) ?? 0);
+  });
+}
+
 const state = {
   query: "",
   element: "all",
@@ -4953,7 +5008,7 @@ function imageMarkup(savior, large = false) {
 function renderList() {
   const q = normalizeGuideSearch(state.query);
 
-  const filtered = SAVIORS.filter((savior) => {
+  const filtered = sortSaviorsByReleaseNewestFirst(SAVIORS.filter((savior) => {
     const haystack = [
       savior.name,
       getLocalizedSaviorName(savior.name),
@@ -4977,7 +5032,7 @@ function renderList() {
     const classMatch = state.className === "all" || savior.className === state.className;
 
     return queryMatch && elementMatch && classMatch;
-  });
+  }));
 
   saviorGrid.replaceChildren(...filtered.map(createSaviorCard));
   visibleCount.textContent = String(filtered.length);
