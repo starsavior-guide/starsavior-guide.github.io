@@ -737,7 +737,11 @@ ARCANA_LIBRARY["빛을 쫓아라"] = ARCANA_LIBRARY["빛을 쫓아라!"];
 // 로컬 아르카나 백업이 갱신되면 아래 hydrate 함수가 실제 ID/카드 이미지로 자동 연결합니다.
 if (!ARCANA_LIBRARY["귀로 없는 여정"]) {
   ARCANA_LIBRARY["귀로 없는 여정"] = [
-    { name: "귀로 없는 여정", image: "", detailId: null }
+    {
+      name: "귀로 없는 여정",
+      image: "",
+      detailId: null
+    }
   ];
 }
 
@@ -5228,6 +5232,26 @@ function openSavior(id, options = {}) {
   if (!options.keepScroll) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
+
+  // 신규 아르카나는 구원자 상세에서도 즉시 로컬 백업과 연결한다.
+  // 아르카나 탭을 먼저 방문하지 않아도 이미지/상세 링크가 활성화된다.
+  if (!arcanaDatabaseState.data) {
+    loadArcanaArchive().then((archive) => {
+      arcanaDatabaseState.data = archive;
+
+      const currentHash = decodeURIComponent(location.hash || "");
+      const expectedHash = `#savior/${id}`;
+      if (currentHash !== expectedHash || detailView.hidden) return;
+
+      const activeSavior = SAVIORS.find((item) => item.id === id);
+      if (!activeSavior) return;
+
+      detailContent.innerHTML = createDetailMarkup(activeSavior);
+      applyLanguageToDOM(detailView);
+    }).catch((error) => {
+      console.warn("Arcana recommendation archive load failed:", error);
+    });
+  }
 }
 
 function getSaviorBackupUrl(detailId) {
@@ -7192,7 +7216,7 @@ function createArcanaImages(choices) {
           : `
             <span class="arcana-card-link is-disabled">
               <img src="${escapeHtml(choice.image)}" alt="${escapeHtml(localizedName)}"
-                loading="lazy" referrerpolicy="no-referrer"
+                loading="lazy"
                 onerror="this.style.display='none'">
             </span>
           `;
@@ -9405,6 +9429,25 @@ window.addEventListener("hashchange", syncFromHash);
 applyRequestedLayoutFixes();
 installArcanaCardStyles();
 renderList();
+
+// 추천 아르카나 이미지/상세 링크도 오직 로컬 아카이브에서 미리 연결한다.
+// ./data/arcanas/arcanas.json 및 ./data/arcana-assets/cards/{id}.webp만 사용한다.
+loadArcanaArchive().then((archive) => {
+  arcanaDatabaseState.data = archive;
+
+  const hash = decodeURIComponent(location.hash.replace(/^#/, ""));
+  if (hash.startsWith("savior/") && !detailView.hidden) {
+    const id = hash.slice("savior/".length);
+    const activeSavior = SAVIORS.find((item) => item.id === id);
+    if (activeSavior) {
+      detailContent.innerHTML = createDetailMarkup(activeSavior);
+      applyLanguageToDOM(detailView);
+    }
+  }
+}).catch((error) => {
+  console.warn("Local Arcana archive preload failed:", error);
+});
+
 loadSaviorProfileIndex().then(() => {
   renderList();
   const hash = decodeURIComponent(location.hash.replace(/^#/, ""));
