@@ -893,7 +893,7 @@ const GROWTH_PRIORITY = {
   "rosaria": { tier: "1티어", level: "tier-1" },
   "white-pearl-luna": { tier: "1티어", level: "tier-1" },
   "sunshine-cat-smile": { tier: "0.5티어", level: "tier-05" },
-  "amora": { tier: "미정", level: "tier-unrated" }
+  "amora": { tier: "0티어", level: "tier-0" }
 };
 
 
@@ -955,7 +955,7 @@ const MAIN_CONTENTS = {
   "wedding-carmen": ["PVP", "작전", "코스모 게이트", "회랑", "플래시 포인트"],
   "white-pearl-luna": ["작전", "코스모 게이트", "회랑", "PVP"],
   "sunshine-cat-smile": ["작전", "회랑", "코스모 게이트", "플래시 포인트"],
-  "amora": ["미정"]
+  "amora": ["작전", "회랑", "코스모 게이트", "인자작"]
 };
 
 const SAVIORS = [
@@ -4946,6 +4946,31 @@ const SAVIORS = [
             "note": "귀로 없는 여정 대체"
           }
         ]
+      },
+      "equipment": {
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 적중(2)",
+            "파괴(4) + 적중(2)",
+            "정밀(4) + 적중(2)"
+          ],
+          "setNotes": [
+            "적중(2)는 투지(2)로 대체가능."
+          ],
+          "potential": "AX",
+          "note": ""
+        },
+        "pvp": {
+          "necklace": "미정",
+          "ring": "미정",
+          "sets": [
+            "미정"
+          ],
+          "potential": "미정",
+          "note": "미정"
+        }
       }
     }
   }
