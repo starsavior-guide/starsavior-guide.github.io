@@ -733,6 +733,42 @@ Object.values(ARCANA_LIBRARY).flat().forEach((card) => {
 ARCANA_LIBRARY["금단의 기록물"] = ARCANA_LIBRARY["금단의 기록물 Vol. 1"];
 ARCANA_LIBRARY["빛을 쫓아라"] = ARCANA_LIBRARY["빛을 쫓아라!"];
 
+// 신규 아르카나는 상세 ID가 아직 app.js에 하드코딩되지 않았더라도 이름부터 정상 표시합니다.
+// 로컬 아르카나 백업이 갱신되면 아래 hydrate 함수가 실제 ID/카드 이미지로 자동 연결합니다.
+if (!ARCANA_LIBRARY["귀로 없는 여정"]) {
+  ARCANA_LIBRARY["귀로 없는 여정"] = [
+    { name: "귀로 없는 여정", image: "", detailId: null }
+  ];
+}
+
+function hydrateArcanaRecommendationLibrary(archive) {
+  const arcanas = Array.isArray(archive?.arcanas) ? archive.arcanas : [];
+
+  arcanas.forEach((arcana) => {
+    const name = typeof arcana?.name === "string"
+      ? arcana.name
+      : (arcana?.name?.ko || "");
+    const id = Number(arcana?.id);
+
+    if (!name || !Number.isFinite(id)) return;
+
+    ARCANA_DETAIL_IDS[name] = id;
+    const card = {
+      name,
+      detailId: id,
+      image: `${LOCAL_ARCANA_CARD_ROOT}/${id}.webp`
+    };
+
+    if (ARCANA_LIBRARY[name]?.length) {
+      ARCANA_LIBRARY[name] = ARCANA_LIBRARY[name].map((existing) =>
+        existing?.name === name ? { ...existing, ...card } : existing
+      );
+    } else {
+      ARCANA_LIBRARY[name] = [card];
+    }
+  });
+}
+
 const COMMON_ARCANA_SLOTS = [
   { name: "단점 보완 맞춤 훈련", note: "" },
   { name: "불굴의 역작", note: "" },
@@ -1676,24 +1712,24 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
+            "name": "단점 보완 맞춤 훈련",
             "note": ""
           },
           {
-            "name": "키라",
+            "name": "키라만큼 귀여워!",
             "note": ""
           },
           {
-            "name": "린(인내)",
+            "name": "불굴의 역작",
             "note": ""
           },
           {
-            "name": "카넬리아",
+            "name": "귀로 없는 여정",
             "note": ""
           },
           {
-            "name": "바니걸 프레이",
-            "note": "통찰(4) 사용 시"
+            "name": "꽃들에게 죽음을",
+            "note": ""
           }
         ],
         "pvp": [
@@ -1705,13 +1741,17 @@ const SAVIORS = [
         ],
         "alternatives": [
           {
-            "name": "바니걸 클레어 or 린(힘)",
-            "note": "파괴(4) 사용 시"
+            "name": "노 페인, 노 게인",
+            "note": "단점 보완 맞춤 훈련 대체"
           },
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸",
+            "note": "불굴의 역작 대체"
+          },
+          {
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
+            "note": "꽃들에게 죽음을 대체"
+          }
         ]
       }
     }
@@ -2496,23 +2536,23 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
+            "name": "단점 보완 맞춤 훈련",
             "note": ""
           },
           {
-            "name": "바니걸 프레이",
+            "name": "키라만큼 귀여워!",
             "note": ""
           },
           {
-            "name": "키라",
+            "name": "오늘의 한 걸음",
             "note": ""
           },
           {
-            "name": "카넬리아",
+            "name": "귀로 없는 여정",
             "note": ""
           },
           {
-            "name": "페이",
+            "name": "꽃들에게 죽음을",
             "note": ""
           }
         ],
@@ -2524,11 +2564,18 @@ const SAVIORS = [
           null
         ],
         "alternatives": [
-          null,
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "노 페인, 노 게인",
+            "note": "단점 보완 맞춤 훈련 대체"
+          },
+          {
+            "name": "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸",
+            "note": "불굴의 역작 대체"
+          },
+          {
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을 or 허수의 개척자",
+            "note": "꽃들에게 죽음을 대체"
+          }
         ]
       }
     }
@@ -2571,24 +2618,24 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
+            "name": "단점 보완 맞춤 훈련",
             "note": ""
           },
           {
-            "name": "키라",
+            "name": "키라만큼 귀여워!",
             "note": ""
           },
           {
-            "name": "린(인내)",
+            "name": "불굴의 역작",
             "note": ""
           },
           {
-            "name": "카넬리아",
+            "name": "귀로 없는 여정",
             "note": ""
           },
           {
-            "name": "바니걸 프레이",
-            "note": "통찰(4) 사용 시"
+            "name": "꽃들에게 죽음을",
+            "note": ""
           }
         ],
         "pvp": [
@@ -2600,13 +2647,17 @@ const SAVIORS = [
         ],
         "alternatives": [
           {
-            "name": "바니걸 클레어 or 린(힘)",
-            "note": "파괴(4) 사용 시"
+            "name": "노 페인, 노 게인",
+            "note": "단점 보완 맞춤 훈련 대체"
           },
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸",
+            "note": "불굴의 역작 대체"
+          },
+          {
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
+            "note": "꽃들에게 죽음을 대체"
+          }
         ]
       }
     }
@@ -2724,24 +2775,24 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
+            "name": "단점 보완 맞춤 훈련",
             "note": ""
           },
           {
-            "name": "키라",
+            "name": "키라만큼 귀여워!",
             "note": ""
           },
           {
-            "name": "린(인내)",
+            "name": "불굴의 역작",
             "note": ""
           },
           {
-            "name": "카넬리아",
+            "name": "귀로 없는 여정",
             "note": ""
           },
           {
-            "name": "바니걸 프레이",
-            "note": "통찰(4) 사용 시"
+            "name": "꽃들에게 죽음을",
+            "note": ""
           }
         ],
         "pvp": [
@@ -2753,13 +2804,17 @@ const SAVIORS = [
         ],
         "alternatives": [
           {
-            "name": "바니걸 클레어 or 린(힘)",
-            "note": "파괴(4) 사용 시"
+            "name": "노 페인, 노 게인",
+            "note": "단점 보완 맞춤 훈련 대체"
           },
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸",
+            "note": "불굴의 역작 대체"
+          },
+          {
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
+            "note": "꽃들에게 죽음을 대체"
+          }
         ]
       }
     }
@@ -3456,23 +3511,23 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
+            "name": "단점 보완 맞춤 훈련",
             "note": ""
           },
           {
-            "name": "키라",
+            "name": "키라만큼 귀여워!",
             "note": ""
           },
           {
-            "name": "린(인내)",
+            "name": "불굴의 역작",
             "note": ""
           },
           {
-            "name": "카넬리아",
+            "name": "귀로 없는 여정",
             "note": ""
           },
           {
-            "name": "바니걸 프레이",
+            "name": "꽃들에게 죽음을",
             "note": ""
           }
         ],
@@ -3484,11 +3539,18 @@ const SAVIORS = [
           null
         ],
         "alternatives": [
-          null,
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "노 페인, 노 게인",
+            "note": "단점 보완 맞춤 훈련 대체"
+          },
+          {
+            "name": "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸",
+            "note": "불굴의 역작 대체"
+          },
+          {
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
+            "note": "꽃들에게 죽음을 대체"
+          }
         ]
       }
     }
@@ -3983,24 +4045,24 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
+            "name": "단점 보완 맞춤 훈련",
             "note": ""
           },
           {
-            "name": "키라",
+            "name": "키라만큼 귀여워!",
             "note": ""
           },
           {
-            "name": "린(인내)",
+            "name": "불굴의 역작",
             "note": ""
           },
           {
-            "name": "카넬리아",
+            "name": "귀로 없는 여정",
             "note": ""
           },
           {
-            "name": "바니걸 프레이",
-            "note": "통찰(4) 사용 시"
+            "name": "꽃들에게 죽음을",
+            "note": ""
           }
         ],
         "pvp": [
@@ -4012,13 +4074,17 @@ const SAVIORS = [
         ],
         "alternatives": [
           {
-            "name": "바니걸 클레어 or 린(힘)",
-            "note": "파괴(4) 사용 시"
+            "name": "노 페인, 노 게인",
+            "note": "단점 보완 맞춤 훈련 대체"
           },
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸",
+            "note": "불굴의 역작 대체"
+          },
+          {
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
+            "note": "꽃들에게 죽음을 대체"
+          }
         ]
       }
     }
@@ -4210,24 +4276,24 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
+            "name": "단점 보완 맞춤 훈련",
             "note": ""
           },
           {
-            "name": "샤를",
+            "name": "키라만큼 귀여워!",
             "note": ""
           },
           {
-            "name": "카넬리아",
+            "name": "불굴의 역작",
             "note": ""
           },
           {
-            "name": "바니걸 프레이",
+            "name": "귀로 없는 여정",
             "note": ""
           },
           {
-            "name": "바니걸 클레어 or 린(힘)",
-            "note": "엑셀 선택 추천"
+            "name": "꽃들에게 죽음을",
+            "note": ""
           }
         ],
         "pvp": [
@@ -4239,13 +4305,17 @@ const SAVIORS = [
         ],
         "alternatives": [
           {
-            "name": "린(인내)",
-            "note": "바니걸 클레어 사용 시 샤를 대신 채용"
+            "name": "노 페인, 노 게인",
+            "note": "단점 보완 맞춤 훈련 대체"
           },
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸",
+            "note": "불굴의 역작 대체"
+          },
+          {
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
+            "note": "꽃들에게 죽음을 대체"
+          }
         ]
       }
     }
@@ -4762,15 +4832,15 @@ const SAVIORS = [
             "note": ""
           },
           {
-            "name": "휴가 준비는 쇼핑에서부터!",
-            "note": ""
-          },
-          {
             "name": "키라만큼 귀여워!",
             "note": ""
           },
           {
-            "name": "허수의 개척자 or 불굴의 역작",
+            "name": "휴가 준비는 쇼핑에서부터!",
+            "note": ""
+          },
+          {
+            "name": "귀로 없는 여정",
             "note": ""
           },
           {
@@ -4787,14 +4857,8 @@ const SAVIORS = [
         ],
         "alternatives": [
           {
-            "name": "노 페인, 노 게인",
+            "name": "노 페인, 노 게인 or 불굴의 역작 or 허수의 개척자",
             "note": "단점 보완 맞춤 훈련 대체"
-          },
-          null,
-          null,
-          {
-            "name": "어느 한 기사의 맹세 or 하얀 달의 온기는 햇빛처럼 or 완벽한 바니걸",
-            "note": "허수의 개척자/불굴의 역작 대체"
           },
           {
             "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
@@ -4816,7 +4880,54 @@ const SAVIORS = [
     "attackType": "참격",
     "image": "",
     "summary": "신규 구원자 데이터 반영.",
-    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior"
+    "guideUrl": "https://star-savior-arcana-db.pages.dev/savior",
+    "detail": {
+      "arcana": {
+        "pvp": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "pve": [
+          {
+            "name": "단점 보완 맞춤 훈련",
+            "note": ""
+          },
+          {
+            "name": "키라만큼 귀여워!",
+            "note": ""
+          },
+          {
+            "name": "불굴의 역작",
+            "note": ""
+          },
+          {
+            "name": "귀로 없는 여정",
+            "note": ""
+          },
+          {
+            "name": "꽃들에게 죽음을",
+            "note": ""
+          }
+        ],
+        "alternatives": [
+          {
+            "name": "노 페인, 노 게인",
+            "note": "단점 보완 맞춤 훈련 대체"
+          },
+          {
+            "name": "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸",
+            "note": "불굴의 역작 대체"
+          },
+          {
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
+            "note": "꽃들에게 죽음을 대체"
+          }
+        ]
+      }
+    }
   }
 ];
 
@@ -8364,6 +8475,7 @@ async function loadArcanaArchive() {
       if (!archive.localOnly || !Array.isArray(archive.potentials) || !Array.isArray(archive.journeyBuffs)) {
         throw new Error("Incomplete Arcana archive");
       }
+      hydrateArcanaRecommendationLibrary(archive);
       arcanaSearchIndex = new Map(getPublishedArcanas(archive).map((arcana) => [
         Number(arcana.id),
         normalizeGuideSearch(getArcanaSearchText(arcana, archive))
