@@ -6898,20 +6898,9 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
   }
 
   if (savior.id === "luna") {
-    return [
-      names.has("단점 보완 맞춤 훈련")
-        ? { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" }
-        : null,
-      names.has("꽃들에게 죽음을")
-        ? { name: "메이드 바이 페트라♡ or 별을 보며 꿈을", note: "꽃들에게 죽음을 대체" }
-        : null,
-      {
-        name: "불굴의 역작 or 하얀 달의 온기는 햇빛처럼",
-        note: "빛을 쫓아라! 대체"
-      },
-      null,
-      null
-    ];
+    // 보이저 구원단 루나는 SAVIORS에 입력된 대체 아르카나 구성을 그대로 사용한다.
+    // 별도의 하드코딩으로 덮어쓰지 않는다.
+    return result;
   }
 
   if (savior.id === "roberta") {
@@ -7285,8 +7274,8 @@ function createArcanaImages(choices) {
   if (!imageChoices.length) return "";
 
   return `
-    <div class="arcana-card-images" style="--arcana-count:${Math.min(imageChoices.length, 3)}">
-      ${imageChoices.slice(0, 3).map((choice) => {
+    <div class="arcana-card-images" style="--arcana-count:${Math.min(imageChoices.length, 4)}">
+      ${imageChoices.slice(0, 4).map((choice) => {
         const detailUrl = getArcanaDetailUrl(choice.name);
         const localizedName = getLocalizedArcanaName(choice.name);
         const detailLabel = translateString("아르카나 상세정보");
