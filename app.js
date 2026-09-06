@@ -187,6 +187,16 @@ Object.assign(I18N_DATA.terms.en, {
 
 
 
+
+// 보이저 구원단 루나 PVE 세팅 다국어 보정
+Object.assign(I18N_DATA.ui.en, {
+  "속도 or 공격력%": "Speed or ATK%"
+});
+
+Object.assign(I18N_DATA.ui.ja, {
+  "속도 or 공격력%": "速度 または 攻撃力(%)"
+});
+
 // 왈츠 오브 스타라이트 아세라 PVE 세팅 다국어 보정
 Object.assign(I18N_DATA.ui.en, {
   "공격력% or 생명력%": "ATK% or HP%",
@@ -1139,11 +1149,12 @@ const SAVIORS = [
     "detail": {
       "equipment": {
         "pve": {
-          "necklace": "속도",
+          "necklace": "속도 or 공격력%",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 투지(2)",
-            "파괴(4) + 투지(2)"
+            "공격(4) + 투지(2)",
+            "파괴(4) + 투지(2)",
+            "통찰(4) + 투지(2)"
           ],
           "potential": "AX",
           "note": "자체 치확증 30%"
@@ -1161,23 +1172,23 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "티리아",
-            "note": ""
-          },
-          {
-            "name": "카넬리아",
-            "note": ""
-          },
-          {
-            "name": "뮤리엘",
-            "note": ""
-          },
-          {
-            "name": "웨핀델",
+            "name": "단점 보완 맞춤 훈련",
             "note": ""
           },
           {
             "name": "빛을 쫓아라!",
+            "note": ""
+          },
+          {
+            "name": "죽음이 둘을 갈라놓을 때까지",
+            "note": ""
+          },
+          {
+            "name": "하얀 달의 온기는 햇빛처럼",
+            "note": ""
+          },
+          {
+            "name": "꽃들에게 죽음을",
             "note": ""
           }
         ],
@@ -1189,14 +1200,18 @@ const SAVIORS = [
           null
         ],
         "alternatives": [
-          null,
-          null,
           {
-            "name": "불굴의 역작 or 하얀 달의 온기는 햇빛처럼",
-            "note": "빛을 쫓아라! 대체"
+            "name": "노 페인, 노 게인",
+            "note": "단점 보완 맞춤 훈련 대체"
           },
-          null,
-          null
+          {
+            "name": "하늘의 심판 or 불굴의 역작 or 누각 위, 유리달 맞이 or 영원 속박의 굴레",
+            "note": "하얀 달의 온기는 햇빛처럼 대체"
+          },
+          {
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
+            "note": "꽃들에게 죽음을 대체"
+          }
         ]
       }
     }
