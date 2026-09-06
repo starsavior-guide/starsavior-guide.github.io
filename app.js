@@ -188,6 +188,28 @@ Object.assign(I18N_DATA.terms.en, {
 
 
 
+// 여정 스탯 우선순위 다국어 표시
+Object.assign(I18N_DATA.ui.en, {
+  "여정 스탯 우선순위": "Journey Stat Priority"
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "여정 스탯 우선순위": "旅程ステータス優先順位"
+});
+Object.assign(I18N_DATA.terms.en, {
+  "힘": "Strength",
+  "체력": "Vitality",
+  "인내": "Endurance",
+  "집중": "Focus",
+  "보호": "Protection"
+});
+Object.assign(I18N_DATA.terms.ja, {
+  "힘": "力",
+  "체력": "体力",
+  "인내": "忍耐",
+  "집중": "集中",
+  "보호": "保護"
+});
+
 // 보이저 구원단 루나 PVE 세팅 다국어 보정
 Object.assign(I18N_DATA.ui.en, {
   "속도 or 공격력%": "Speed or ATK%"
@@ -926,6 +948,111 @@ const GROWTH_PRIORITY = {
   "amora": { tier: "0티어", level: "tier-0" }
 };
 
+
+const JOURNEY_STAT_ICON_FILES = Object.freeze({
+  "힘": "#Uc2a4#Ud0ef #Uc778#Uc790 #Ud798 #Uc99d#Ud3ed#U2160 - #Ud798 25.webp",
+  "체력": "#Uc2a4#Ud0ef #Uc778#Uc790 #Uccb4#Ub825 #Uc99d#Ud3ed#U2160 - #Uccb4#Ub825 25.webp",
+  "인내": "#Uc2a4#Ud0ef #Uc778#Uc790 #Uc778#Ub0b4 #Uc99d#Ud3ed#U2160 - #Uc778#Ub0b4 25.webp",
+  "집중": "#Uc2a4#Ud0ef #Uc778#Uc790 #Uc9d1#Uc911 #Uc99d#Ud3ed#U2160 - #Uc9d1#Uc911 40.webp",
+  "보호": "#Uc2a4#Ud0ef #Uc778#Uc790 #Ubcf4#Ud638 #Uc99d#Ud3ed#U2160 - #Ubcf4#Ud638 40.webp"
+});
+
+// 같은 내부 배열에 든 스탯끼리는 '='이며, 배열 사이에는 '>'가 들어간다.
+const JOURNEY_STAT_PRIORITY_PATTERNS = Object.freeze({
+  offenseCommon: [["힘"], ["체력", "인내"], ["집중", "보호"]],
+  focusOffense: [["힘"], ["집중"], ["체력", "인내"], ["보호"]],
+  defenderPure: [["체력", "인내"], ["집중", "보호"], ["힘"]],
+  defenderAttack: [["힘"], ["체력"], ["인내"], ["집중", "보호"]],
+  defenderHaydee: [["인내"], ["체력"], ["집중"], ["보호"], ["힘"]],
+  supporterCommon: [["체력"], ["인내"], ["집중", "보호"], ["힘"]],
+  supporterAsherah: [["힘", "체력"], ["인내"], ["집중", "보호"]]
+});
+
+const JOURNEY_STAT_PRIORITY_EXCEPTIONS = Object.freeze({
+  // 스트라이커 예외
+  "ceres": JOURNEY_STAT_PRIORITY_PATTERNS.focusOffense,
+  "bunny-scarlet": JOURNEY_STAT_PRIORITY_PATTERNS.focusOffense,
+
+  // 어쌔신 예외
+  "amora": JOURNEY_STAT_PRIORITY_PATTERNS.focusOffense,
+  "sunshine-cat-smile": JOURNEY_STAT_PRIORITY_PATTERNS.focusOffense,
+
+  // 캐스터 예외
+  "wedding-epindel": JOURNEY_STAT_PRIORITY_PATTERNS.focusOffense,
+  "muriel": JOURNEY_STAT_PRIORITY_PATTERNS.focusOffense,
+
+  // 디펜더 개별 예외
+  "white-pearl-luna": JOURNEY_STAT_PRIORITY_PATTERNS.focusOffense,
+  "haydee": JOURNEY_STAT_PRIORITY_PATTERNS.defenderHaydee,
+
+  // 서포터 예외
+  "waltz-asherah": JOURNEY_STAT_PRIORITY_PATTERNS.supporterAsherah
+});
+
+function isAttackDefender(savior) {
+  const pve = savior?.detail?.equipment?.pve || {};
+  const values = [pve.ring, ...(Array.isArray(pve.sets) ? pve.sets : [pve.sets])]
+    .filter(Boolean)
+    .join(" ");
+  return values.includes("공격력") || /(?:^|\s)공격\s*\(/.test(values);
+}
+
+function getJourneyStatPriority(savior) {
+  if (JOURNEY_STAT_PRIORITY_EXCEPTIONS[savior.id]) {
+    return JOURNEY_STAT_PRIORITY_EXCEPTIONS[savior.id];
+  }
+
+  switch (savior.className) {
+    case "스트라이커":
+    case "어쌔신":
+    case "캐스터":
+      return JOURNEY_STAT_PRIORITY_PATTERNS.offenseCommon;
+    case "레인저":
+      return JOURNEY_STAT_PRIORITY_PATTERNS.focusOffense;
+    case "디펜더":
+      return isAttackDefender(savior)
+        ? JOURNEY_STAT_PRIORITY_PATTERNS.defenderAttack
+        : JOURNEY_STAT_PRIORITY_PATTERNS.defenderPure;
+    case "서포터":
+      return JOURNEY_STAT_PRIORITY_PATTERNS.supporterCommon;
+    default:
+      return JOURNEY_STAT_PRIORITY_PATTERNS.offenseCommon;
+  }
+}
+
+function createJourneyStatPriorityMarkup(savior) {
+  const groups = getJourneyStatPriority(savior);
+  const parts = [];
+
+  groups.forEach((group, groupIndex) => {
+    if (groupIndex) {
+      parts.push(`<span class="journey-stat-priority-operator" aria-hidden="true">&gt;</span>`);
+    }
+
+    group.forEach((stat, statIndex) => {
+      if (statIndex) {
+        parts.push(`<span class="journey-stat-priority-operator is-equal" aria-hidden="true">=</span>`);
+      }
+
+      const iconFile = JOURNEY_STAT_ICON_FILES[stat] || "";
+      parts.push(`
+        <span class="journey-stat-priority-item">
+          <img src="${escapeHtml(getJourneyAssetUrl(iconFile))}" alt="" loading="lazy" decoding="async" aria-hidden="true"
+            onerror="this.style.display='none'">
+          <strong>${escapeHtml(stat)}</strong>
+        </span>
+      `);
+    });
+  });
+
+  const readable = groups.map((group) => group.join(" = ")).join(" > ");
+  return `
+    <div class="journey-stat-priority-row" aria-label="${escapeHtml(readable)}"
+      style="display:flex;align-items:center;gap:10px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;padding:3px 1px 7px;scrollbar-width:thin;-webkit-overflow-scrolling:touch;">
+      ${parts.join("")}
+    </div>
+  `;
+}
 
 const MAIN_CONTENTS = {
   "asherah-voyager": ["인자작"],
@@ -7109,6 +7236,18 @@ function createDetailMarkup(savior) {
       </div>
     </section>
 
+    <section class="content-section journey-stat-priority-section" id="journey-stat-priority">
+      <div class="section-titlebar">
+        <div>
+          <p>JOURNEY STAT PRIORITY</p>
+          <h2>여정 스탯 우선순위</h2>
+        </div>
+      </div>
+      <div class="section-body">
+        ${createJourneyStatPriorityMarkup(savior)}
+      </div>
+    </section>
+
     <section class="content-section" id="equipment">
       <div class="section-titlebar">
         <div>
@@ -9150,6 +9289,51 @@ function handleArcanaDatabaseClick(event) {
     renderArcanaDetail();
   }
 }
+
+function ensureJourneyStatPriorityStyle() {
+  if (document.getElementById("journey-stat-priority-style")) return;
+  const style = document.createElement("style");
+  style.id = "journey-stat-priority-style";
+  style.textContent = `
+    .journey-stat-priority-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      flex: 0 0 auto;
+      color: var(--text);
+      font-size: clamp(.9rem, 1.4vw, 1.02rem);
+    }
+    .journey-stat-priority-item img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      flex: 0 0 34px;
+    }
+    .journey-stat-priority-operator {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      min-width: 16px;
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 1.15rem;
+    }
+    .journey-stat-priority-operator.is-equal {
+      color: var(--text);
+      opacity: .78;
+    }
+    @media (max-width: 640px) {
+      .journey-stat-priority-row { gap: 7px !important; }
+      .journey-stat-priority-item { gap: 5px; font-size: .88rem; }
+      .journey-stat-priority-item img { width: 29px; height: 29px; flex-basis: 29px; }
+      .journey-stat-priority-operator { min-width: 12px; font-size: 1rem; }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+ensureJourneyStatPriorityStyle();
 
 const JOURNEY_EXTERNAL_URL = "https://starsavior-journey-choice.pages.dev/journey-choice";
 
