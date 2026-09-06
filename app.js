@@ -219,6 +219,29 @@ Object.assign(I18N_DATA.ui.ja, {
   "속도 or 공격력%": "速度 または 攻撃力(%)"
 });
 
+
+// 여정 스탯 우선순위 다국어 표시
+Object.assign(I18N_DATA.ui.en, {
+  "여정 스탯 우선순위": "Journey Stat Priority"
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "여정 스탯 우선순위": "旅程ステータス優先順位"
+});
+Object.assign(I18N_DATA.terms.en, {
+  "힘": "Strength",
+  "체력": "HP",
+  "인내": "Endurance",
+  "집중": "Focus",
+  "보호": "Protection"
+});
+Object.assign(I18N_DATA.terms.ja, {
+  "힘": "力",
+  "체력": "体力",
+  "인내": "忍耐",
+  "집중": "集中",
+  "보호": "保護"
+});
+
 // 왈츠 오브 스타라이트 아세라 PVE 세팅 다국어 보정
 Object.assign(I18N_DATA.ui.en, {
   "공격력% or 생명력%": "ATK% or HP%",
@@ -949,12 +972,12 @@ const GROWTH_PRIORITY = {
 };
 
 
-const JOURNEY_STAT_ICON_FILES = Object.freeze({
-  "힘": "#Uc2a4#Ud0ef #Uc778#Uc790 #Ud798 #Uc99d#Ud3ed#U2160 - #Ud798 25.webp",
-  "체력": "#Uc2a4#Ud0ef #Uc778#Uc790 #Uccb4#Ub825 #Uc99d#Ud3ed#U2160 - #Uccb4#Ub825 25.webp",
-  "인내": "#Uc2a4#Ud0ef #Uc778#Uc790 #Uc778#Ub0b4 #Uc99d#Ud3ed#U2160 - #Uc778#Ub0b4 25.webp",
-  "집중": "#Uc2a4#Ud0ef #Uc778#Uc790 #Uc9d1#Uc911 #Uc99d#Ud3ed#U2160 - #Uc9d1#Uc911 40.webp",
-  "보호": "#Uc2a4#Ud0ef #Uc778#Uc790 #Ubcf4#Ud638 #Uc99d#Ud3ed#U2160 - #Ubcf4#Ud638 40.webp"
+const JOURNEY_STAT_ICON_URLS = Object.freeze({
+  "힘": "./data/journey-assets/stat-force.webp",
+  "체력": "./data/journey-assets/stat-hp.webp",
+  "인내": "./data/journey-assets/stat-endurance.webp",
+  "집중": "./data/journey-assets/stat-focus.webp",
+  "보호": "./data/journey-assets/stat-protection.webp"
 });
 
 // 같은 내부 배열에 든 스탯끼리는 '='이며, 배열 사이에는 '>'가 들어간다.
@@ -989,12 +1012,20 @@ const JOURNEY_STAT_PRIORITY_EXCEPTIONS = Object.freeze({
   "waltz-asherah": JOURNEY_STAT_PRIORITY_PATTERNS.supporterAsherah
 });
 
-function isAttackDefender(savior) {
+function getDefenderJourneyType(savior) {
+  // 디펜더 공통은 특정 캐릭터(예: 안나)에 고정하지 않는다.
+  // 각 디펜더의 현재 PVE 장비 세팅이 공격력 기반이면 공격력 탱커,
+  // 생명/방어/장벽 중심이면 순수탱커 공통 우선순위를 적용한다.
   const pve = savior?.detail?.equipment?.pve || {};
-  const values = [pve.ring, ...(Array.isArray(pve.sets) ? pve.sets : [pve.sets])]
+  const setValues = Array.isArray(pve.sets) ? pve.sets : [pve.sets];
+  const values = [pve.necklace, pve.ring, ...setValues]
     .filter(Boolean)
     .join(" ");
-  return values.includes("공격력") || /(?:^|\s)공격\s*\(/.test(values);
+
+  const hasAttackMainStat = /공격력%?|ATK%?/i.test(values);
+  const hasAttackSet = /(?:^|[\s+])공격\s*\(4\)/.test(values);
+
+  return (hasAttackMainStat || hasAttackSet) ? "attack" : "pure";
 }
 
 function getJourneyStatPriority(savior) {
@@ -1010,7 +1041,7 @@ function getJourneyStatPriority(savior) {
     case "레인저":
       return JOURNEY_STAT_PRIORITY_PATTERNS.focusOffense;
     case "디펜더":
-      return isAttackDefender(savior)
+      return getDefenderJourneyType(savior) === "attack"
         ? JOURNEY_STAT_PRIORITY_PATTERNS.defenderAttack
         : JOURNEY_STAT_PRIORITY_PATTERNS.defenderPure;
     case "서포터":
@@ -1034,12 +1065,11 @@ function createJourneyStatPriorityMarkup(savior) {
         parts.push(`<span class="journey-stat-priority-operator is-equal" aria-hidden="true">=</span>`);
       }
 
-      const iconFile = JOURNEY_STAT_ICON_FILES[stat] || "";
+      const iconUrl = JOURNEY_STAT_ICON_URLS[stat] || "";
       parts.push(`
         <span class="journey-stat-priority-item">
-          <img src="${escapeHtml(getJourneyAssetUrl(iconFile))}" alt="" loading="lazy" decoding="async" aria-hidden="true"
-            onerror="this.style.display='none'">
-          <strong>${escapeHtml(stat)}</strong>
+          <img src="${escapeHtml(iconUrl)}" alt="" loading="lazy" decoding="async" aria-hidden="true">
+          <strong>${escapeHtml(translateString(stat))}</strong>
         </span>
       `);
     });
