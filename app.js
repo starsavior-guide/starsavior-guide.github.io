@@ -186,6 +186,26 @@ Object.assign(I18N_DATA.terms.en, {
 
 
 
+
+// 왈츠 오브 스타라이트 아세라 PVE 세팅 다국어 보정
+Object.assign(I18N_DATA.ui.en, {
+  "공격력% or 생명력%": "ATK% or HP%",
+  "장벽(2)는 투지(2)로 대체가능.": "Barrier Set (2) can be replaced with Valor Set (2).",
+  "단점 보완 맞춤 훈련 대체": "Substitute for Customized Training to Cover Weaknesses",
+  "완벽한 바니걸 대체": "Substitute for The Perfect Bunny Girl",
+  "하얀 달의 온기는 햇빛처럼 대체": "Substitute for A White Moon Shines With the Sun's Warmth",
+  "꽃들에게 죽음을 대체": "Substitute for Death for the Flowers"
+});
+
+Object.assign(I18N_DATA.ui.ja, {
+  "공격력% or 생명력%": "攻撃力(%) または HP(%)",
+  "장벽(2)는 투지(2)로 대체가능.": "防壁セット(2)は闘志セット(2)で代用可能です。",
+  "단점 보완 맞춤 훈련 대체": "弱点補完カスタムトレーニングの代替",
+  "완벽한 바니걸 대체": "完璧なバニーガールの代替",
+  "하얀 달의 온기는 햇빛처럼 대체": "白い月のぬくもりは陽光のようにの代替",
+  "꽃들에게 죽음을 대체": "花々に死をの代替"
+});
+
 // v51: 크리스텔 / 영원 속박의 굴레 다국어 표시
 Object.assign(I18N_DATA.saviorNames.en, {
   "크리스텔": "Cristelle"
@@ -3580,13 +3600,16 @@ const SAVIORS = [
       "equipment": {
         "pve": {
           "necklace": "속도",
-          "ring": "생명력% 또는 공격력%",
+          "ring": "공격력% or 생명력%",
           "sets": [
-            "생명(4) + 장벽(2)",
-            "통찰(4) + 장벽(2) (서브 딜 운용시)"
+            "통찰(4) + 장벽(2)",
+            "파괴(4) + 장벽(2)"
           ],
-          "potential": "BX / AX",
-          "note": "반지 주옵 생퍼 / 반지 주옵 생퍼 or 공퍼"
+          "potential": "AX",
+          "note": "",
+          "setNotes": [
+            "장벽(2)는 투지(2)로 대체가능."
+          ]
         },
         "pvp": {
           "necklace": "해당 엑셀에 없음",
@@ -3601,24 +3624,24 @@ const SAVIORS = [
       "arcana": {
         "pve": [
           {
-            "name": "왈세라",
+            "name": "단점 보완 맞춤 훈련",
             "note": ""
           },
           {
-            "name": "카넬리아",
+            "name": "불굴의 역작",
             "note": ""
           },
           {
-            "name": "린(인내)",
+            "name": "완벽한 바니걸",
             "note": ""
           },
           {
-            "name": "바니걸 프레이",
+            "name": "하얀 달의 온기는 햇빛처럼",
             "note": ""
           },
           {
-            "name": "티리아 or 바니걸 클레어",
-            "note": "엑셀 선택 추천"
+            "name": "꽃들에게 죽음을",
+            "note": ""
           }
         ],
         "pvp": [
@@ -3630,13 +3653,21 @@ const SAVIORS = [
         ],
         "alternatives": [
           {
-            "name": "공용 아르카나",
-            "note": "서브 딜 운용 시"
+            "name": "노 페인, 노 게인",
+            "note": "단점 보완 맞춤 훈련 대체"
           },
-          null,
-          null,
-          null,
-          null
+          {
+            "name": "스트라니스의 영애 or 본 투 비 와일드 or 언더커버 캅",
+            "note": "완벽한 바니걸 대체"
+          },
+          {
+            "name": "어느 한 기사의 맹세",
+            "note": "하얀 달의 온기는 햇빛처럼 대체"
+          },
+          {
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
+            "note": "꽃들에게 죽음을 대체"
+          }
         ]
       }
     }
