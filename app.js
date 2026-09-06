@@ -6903,6 +6903,12 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
     return result;
   }
 
+  if (savior.id === "waltz-asherah") {
+    // 왈츠 오브 스타라이트 아세라도 입력된 대체 아르카나 구성만 그대로 사용한다.
+    // 서포터 공통 자동 대체 아르카나를 추가하지 않는다.
+    return result;
+  }
+
   if (savior.id === "roberta") {
     if (names.has("단점 보완 맞춤 훈련")) {
       add("노 페인, 노 게인", "단점 보완 맞춤 훈련 대체");
