@@ -190,10 +190,14 @@ Object.assign(I18N_DATA.terms.en, {
 
 // 여정 스탯 우선순위 다국어 표시
 Object.assign(I18N_DATA.ui.en, {
-  "여정 스탯 우선순위": "Journey Stat Priority"
+  "여정 스탯 우선순위": "Journey Stat Priority",
+  "※ 퓨어탱커": "※ Pure Tank",
+  "※ 공격력 탱커": "※ ATK Tank"
 });
 Object.assign(I18N_DATA.ui.ja, {
-  "여정 스탯 우선순위": "旅程ステータス優先順位"
+  "여정 스탯 우선순위": "旅程ステータス優先順位",
+  "※ 퓨어탱커": "※ 純粋タンク",
+  "※ 공격력 탱커": "※ 攻撃型タンク"
 });
 Object.assign(I18N_DATA.terms.en, {
   "힘": "Strength",
@@ -984,7 +988,7 @@ const JOURNEY_STAT_ICON_URLS = Object.freeze({
 const JOURNEY_STAT_PRIORITY_PATTERNS = Object.freeze({
   offenseCommon: [["힘"], ["체력", "인내"], ["집중", "보호"]],
   focusOffense: [["힘"], ["집중"], ["체력", "인내"], ["보호"]],
-  defenderPure: [["체력", "인내"], ["집중", "보호"], ["힘"]],
+  defenderPure: [["체력", "인내"], ["힘"], ["집중", "보호"]],
   defenderAttack: [["힘"], ["체력"], ["인내"], ["집중", "보호"]],
   defenderHaydee: [["인내"], ["체력"], ["집중"], ["보호"], ["힘"]],
   supporterCommon: [["체력"], ["인내"], ["집중", "보호"], ["힘"]],
@@ -1012,47 +1016,38 @@ const JOURNEY_STAT_PRIORITY_EXCEPTIONS = Object.freeze({
   "waltz-asherah": JOURNEY_STAT_PRIORITY_PATTERNS.supporterAsherah
 });
 
-function getDefenderJourneyType(savior) {
-  // 디펜더 공통은 특정 캐릭터(예: 안나)에 고정하지 않는다.
-  // 각 디펜더의 현재 PVE 장비 세팅이 공격력 기반이면 공격력 탱커,
-  // 생명/방어/장벽 중심이면 순수탱커 공통 우선순위를 적용한다.
-  const pve = savior?.detail?.equipment?.pve || {};
-  const setValues = Array.isArray(pve.sets) ? pve.sets : [pve.sets];
-  const values = [pve.necklace, pve.ring, ...setValues]
-    .filter(Boolean)
-    .join(" ");
-
-  const hasAttackMainStat = /공격력%?|ATK%?/i.test(values);
-  const hasAttackSet = /(?:^|[\s+])공격\s*\(4\)/.test(values);
-
-  return (hasAttackMainStat || hasAttackSet) ? "attack" : "pure";
-}
-
-function getJourneyStatPriority(savior) {
-  if (JOURNEY_STAT_PRIORITY_EXCEPTIONS[savior.id]) {
-    return JOURNEY_STAT_PRIORITY_EXCEPTIONS[savior.id];
+function getJourneyStatPriorityRows(savior) {
+  const exception = JOURNEY_STAT_PRIORITY_EXCEPTIONS[savior.id];
+  if (exception) {
+    return [{ label: "", groups: exception }];
   }
 
   switch (savior.className) {
     case "스트라이커":
     case "어쌔신":
     case "캐스터":
-      return JOURNEY_STAT_PRIORITY_PATTERNS.offenseCommon;
+      return [{ label: "", groups: JOURNEY_STAT_PRIORITY_PATTERNS.offenseCommon }];
+
     case "레인저":
-      return JOURNEY_STAT_PRIORITY_PATTERNS.focusOffense;
+      return [{ label: "", groups: JOURNEY_STAT_PRIORITY_PATTERNS.focusOffense }];
+
     case "디펜더":
-      return getDefenderJourneyType(savior) === "attack"
-        ? JOURNEY_STAT_PRIORITY_PATTERNS.defenderAttack
-        : JOURNEY_STAT_PRIORITY_PATTERNS.defenderPure;
+      // 일반 디펜더는 둘 중 하나를 자동 선택하지 않는다.
+      // 퓨어탱커 / 공격력 탱커 두 기준을 모두 2줄로 동시에 보여준다.
+      return [
+        { label: "※ 퓨어탱커", groups: JOURNEY_STAT_PRIORITY_PATTERNS.defenderPure },
+        { label: "※ 공격력 탱커", groups: JOURNEY_STAT_PRIORITY_PATTERNS.defenderAttack }
+      ];
+
     case "서포터":
-      return JOURNEY_STAT_PRIORITY_PATTERNS.supporterCommon;
+      return [{ label: "", groups: JOURNEY_STAT_PRIORITY_PATTERNS.supporterCommon }];
+
     default:
-      return JOURNEY_STAT_PRIORITY_PATTERNS.offenseCommon;
+      return [{ label: "", groups: JOURNEY_STAT_PRIORITY_PATTERNS.offenseCommon }];
   }
 }
 
-function createJourneyStatPriorityMarkup(savior) {
-  const groups = getJourneyStatPriority(savior);
+function createJourneyStatPriorityRowMarkup(groups, label = "") {
   const parts = [];
 
   groups.forEach((group, groupIndex) => {
@@ -1076,10 +1071,23 @@ function createJourneyStatPriorityMarkup(savior) {
   });
 
   const readable = groups.map((group) => group.join(" = ")).join(" > ");
+
   return `
-    <div class="journey-stat-priority-row" aria-label="${escapeHtml(readable)}"
-      style="display:flex;align-items:center;gap:10px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;padding:3px 1px 7px;scrollbar-width:thin;-webkit-overflow-scrolling:touch;">
-      ${parts.join("")}
+    <div class="journey-stat-priority-line">
+      ${label ? `<div class="journey-stat-priority-label">${escapeHtml(translateString(label))}</div>` : ""}
+      <div class="journey-stat-priority-row" aria-label="${escapeHtml(readable)}"
+        style="display:flex;align-items:center;gap:10px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;padding:3px 1px 7px;scrollbar-width:thin;-webkit-overflow-scrolling:touch;">
+        ${parts.join("")}
+      </div>
+    </div>
+  `;
+}
+
+function createJourneyStatPriorityMarkup(savior) {
+  const rows = getJourneyStatPriorityRows(savior);
+  return `
+    <div class="journey-stat-priority-lines">
+      ${rows.map((row) => createJourneyStatPriorityRowMarkup(row.groups, row.label)).join("")}
     </div>
   `;
 }
@@ -9325,6 +9333,21 @@ function ensureJourneyStatPriorityStyle() {
   const style = document.createElement("style");
   style.id = "journey-stat-priority-style";
   style.textContent = `
+    .journey-stat-priority-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .journey-stat-priority-line {
+      min-width: 0;
+    }
+    .journey-stat-priority-label {
+      margin: 0 0 7px;
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 800;
+      letter-spacing: .01em;
+    }
     .journey-stat-priority-item {
       display: inline-flex;
       align-items: center;
@@ -9354,6 +9377,8 @@ function ensureJourneyStatPriorityStyle() {
       opacity: .78;
     }
     @media (max-width: 640px) {
+      .journey-stat-priority-lines { gap: 12px; }
+      .journey-stat-priority-label { margin-bottom: 5px; font-size: .8rem; }
       .journey-stat-priority-row { gap: 7px !important; }
       .journey-stat-priority-item { gap: 5px; font-size: .88rem; }
       .journey-stat-priority-item img { width: 29px; height: 29px; flex-basis: 29px; }
