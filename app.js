@@ -261,6 +261,10 @@ Object.assign(I18N_DATA.ui.en, {
   "※ EX": "※ EX",
   "※ EX 전용": "※ EX only",
   "※ 공격력 탱커는 단점 보완 맞춤 훈련 대체불가": "※ ATK Tanks cannot replace Customized Training to Cover Weaknesses",
+  "하얀 달의 온기는 햇빛처럼 대체": "Substitute for A White Moon Shines With the Sun's Warmth",
+  "누각 위, 유리달 맞이 대체": "Substitute for Welcoming the Glass Moon Above the Pavilion",
+  "공격의 재능 용도로 사용하나 인자 만드는걸 추천": "Can be used for Attack Talent, but creating an inheritance factor is recommended",
+  "단점 보완 맞춤 훈련은 절대 대체불가합니다": "Customized Training to Cover Weaknesses must never be replaced",
   "하얀 달의 온기는 햇빛처럼/불굴의 역작 대체": "Substitute for A White Moon Shines With the Sun's Warmth / The Indomitable Masterpiece",
   "완벽한 바니걸/하늘의 시련/노스텔지어의 역습 대체": "Substitute for The Perfect Bunny Girl / Trial of the Sky / Nostalgia Strikes Back"
 });
@@ -275,6 +279,10 @@ Object.assign(I18N_DATA.ui.ja, {
   "※ EX": "※ EX",
   "※ EX 전용": "※ EX専用",
   "※ 공격력 탱커는 단점 보완 맞춤 훈련 대체불가": "※ 攻撃型タンクは弱点補完カスタムトレーニングを代替不可",
+  "하얀 달의 온기는 햇빛처럼 대체": "「白い月のぬくもりは陽光のように」の代替",
+  "누각 위, 유리달 맞이 대체": "「楼閣の上、硝子月を迎えて」の代替",
+  "공격의 재능 용도로 사용하나 인자 만드는걸 추천": "攻撃の才能用途でも使用できますが、因子作成を推奨します",
+  "단점 보완 맞춤 훈련은 절대 대체불가합니다": "弱点補完カスタムトレーニングは絶対に代替不可です",
   "하얀 달의 온기는 햇빛처럼/불굴의 역작 대체": "「白い月のぬくもりは陽光のように／不屈の傑作」の代替",
   "완벽한 바니걸/하늘의 시련/노스텔지어의 역습 대체": "「完璧なバニーガール／空の試練／ノスタルジアの逆襲」の代替",
   "꽃들에게 죽음을 대체": "「花々に死を」の代替"
@@ -930,11 +938,15 @@ const DEFENDER_ATTACK_TANK_ARCANA = Object.freeze({
     { name: "단점 보완 맞춤 훈련", note: "" },
     { name: "누각 위, 유리달 맞이", note: "" },
     { name: "조용한 휴식 시간", note: "" },
-    { name: "완벽한 바니걸", note: "" },
+    { name: "하얀 달의 온기는 햇빛처럼", note: "" },
     { name: "꽃들에게 죽음을", note: "" }
   ],
-  alternatives: [],
-  alternativeNote: "※ 공격력 탱커는 단점 보완 맞춤 훈련 대체불가"
+  alternatives: [
+    { name: "완벽한 바니걸", note: "하얀 달의 온기는 햇빛처럼 대체" },
+    { name: "영원 속박의 굴레", note: "누각 위, 유리달 맞이 대체" },
+    { name: "대단하고 엄청난 바니걸", note: "공격의 재능 용도로 사용하나 인자 만드는걸 추천" },
+    { name: "", note: "단점 보완 맞춤 훈련은 절대 대체불가합니다" }
+  ]
 });
 
 // 로베르타를 제외하고, 승인된 스트라이커 9명에게만 아르카나 교체 규칙을 적용합니다.
@@ -7982,6 +7994,7 @@ function createSaviorArcanaSettingMarkup(savior, pveArcana, alternativeArcana) {
     return `
       <div class="defender-arcana-collapse-list" style="display:grid;gap:12px;">
         ${createDefenderArcanaCollapse("퓨어탱커", DEFENDER_PURE_TANK_ARCANA)}
+        ${createDefenderArcanaCollapse("공격탱커", DEFENDER_ATTACK_TANK_ARCANA)}
       </div>
     `;
   }
