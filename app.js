@@ -261,7 +261,8 @@ Object.assign(I18N_DATA.ui.en, {
   "※ EX": "※ EX",
   "※ EX 전용": "※ EX only",
   "※ 공격력 탱커는 단점 보완 맞춤 훈련 대체불가": "※ ATK Tanks cannot replace Customized Training to Cover Weaknesses",
-  "하얀 달의 온기는 햇빛처럼/불굴의 역작 대체": "Substitute for A White Moon Shines With the Sun's Warmth / The Indomitable Masterpiece"
+  "하얀 달의 온기는 햇빛처럼/불굴의 역작 대체": "Substitute for A White Moon Shines With the Sun's Warmth / The Indomitable Masterpiece",
+  "완벽한 바니걸/하늘의 시련/노스텔지어의 역습 대체": "Substitute for The Perfect Bunny Girl / Trial of the Sky / Nostalgia Strikes Back"
 });
 Object.assign(I18N_DATA.ui.ja, {
   "퓨어탱커": "純粋タンク",
@@ -274,7 +275,8 @@ Object.assign(I18N_DATA.ui.ja, {
   "※ EX": "※ EX",
   "※ EX 전용": "※ EX専用",
   "※ 공격력 탱커는 단점 보완 맞춤 훈련 대체불가": "※ 攻撃型タンクは弱点補完カスタムトレーニングを代替不可",
-  "하얀 달의 온기는 햇빛처럼/불굴의 역작 대체": "「白い月のぬくもりは陽光のように／不屈の傑作」の代替"
+  "하얀 달의 온기는 햇빛처럼/불굴의 역작 대체": "「白い月のぬくもりは陽光のように／不屈の傑作」の代替",
+  "완벽한 바니걸/하늘의 시련/노스텔지어의 역습 대체": "「完璧なバニーガール／空の試練／ノスタルジアの逆襲」の代替"
 });
 Object.assign(I18N_DATA.terms.en, {
   "효과적중%": "Effect Hit%",
@@ -917,7 +919,8 @@ const DEFENDER_PURE_TANK_ARCANA = Object.freeze({
     { name: "하얀 달의 온기는 햇빛처럼", note: "" }
   ],
   alternatives: [
-    { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼 대체" }
+    { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼 대체" },
+    { name: "꽃들에게 죽음을", note: "완벽한 바니걸/하늘의 시련/노스텔지어의 역습 대체" }
   ]
 });
 
