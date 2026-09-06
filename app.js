@@ -915,13 +915,13 @@ const DEFENDER_PURE_TANK_ARCANA = Object.freeze({
   recommended: [
     { name: "조용한 휴식 시간", note: "" },
     { name: "꽃들에게 죽음을", note: "" },
-    { name: "완벽한 바니걸 or 하늘의 시련 or 노스텔지어의 역습", note: "" },
+    { name: "완벽한 바니걸", note: "" },
     { name: "본 투 비 와일드 or 언더커버 캅 or 만족스러운 식사", note: "" },
     { name: "하얀 달의 온기는 햇빛처럼", note: "" }
   ],
   alternatives: [
     { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼 대체" },
-    { name: "스트라니스의 영애", note: "꽃들에게 죽음을 대체" }
+    { name: "스트라니스의 영애 or 하늘의 시련", note: "꽃들에게 죽음을 대체" }
   ]
 });
 
