@@ -248,6 +248,43 @@ Object.assign(I18N_DATA.terms.ja, {
   "보호": "保護"
 });
 
+
+// 디펜더 공통/전용 세팅 다국어 보정
+Object.assign(I18N_DATA.ui.en, {
+  "퓨어탱커": "Pure Tank",
+  "공격탱커": "ATK Tank",
+  "※ 퓨어탱커, EX": "※ Pure Tank, EX",
+  "※ 공격탱커(AX)": "※ ATK Tank (AX)",
+  "※ 퓨어탱커(BX)": "※ Pure Tank (BX)",
+  "※ 퓨어탱커(CX)": "※ Pure Tank (CX)",
+  "※ 퓨어탱커": "※ Pure Tank",
+  "※ EX": "※ EX",
+  "※ EX 전용": "※ EX only",
+  "※ 공격력 탱커는 단점 보완 맞춤 훈련 대체불가": "※ ATK Tanks cannot replace Customized Training to Cover Weaknesses",
+  "하얀 달의 온기는 햇빛처럼/불굴의 역작 대체": "Substitute for A White Moon Shines With the Sun's Warmth / The Indomitable Masterpiece"
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "퓨어탱커": "純粋タンク",
+  "공격탱커": "攻撃型タンク",
+  "※ 퓨어탱커, EX": "※ 純粋タンク、EX",
+  "※ 공격탱커(AX)": "※ 攻撃型タンク(AX)",
+  "※ 퓨어탱커(BX)": "※ 純粋タンク(BX)",
+  "※ 퓨어탱커(CX)": "※ 純粋タンク(CX)",
+  "※ 퓨어탱커": "※ 純粋タンク",
+  "※ EX": "※ EX",
+  "※ EX 전용": "※ EX専用",
+  "※ 공격력 탱커는 단점 보완 맞춤 훈련 대체불가": "※ 攻撃型タンクは弱点補完カスタムトレーニングを代替不可",
+  "하얀 달의 온기는 햇빛처럼/불굴의 역작 대체": "「白い月のぬくもりは陽光のように／不屈の傑作」の代替"
+});
+Object.assign(I18N_DATA.terms.en, {
+  "효과적중%": "Effect Hit%",
+  "방어(6)": "Defense(6)"
+});
+Object.assign(I18N_DATA.terms.ja, {
+  "효과적중%": "効果命中%",
+  "방어(6)": "防御セット(6)"
+});
+
 // 왈츠 오브 스타라이트 아세라 PVE 세팅 다국어 보정
 Object.assign(I18N_DATA.ui.en, {
   "공격력% or 생명력%": "ATK% or HP%",
@@ -869,6 +906,32 @@ const COMMON_ALTERNATIVE_ARCANA_SLOTS = [
   { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼 대체" },
   null
 ];
+
+
+const DEFENDER_PURE_TANK_ARCANA = Object.freeze({
+  recommended: [
+    { name: "조용한 휴식 시간", note: "" },
+    { name: "스트라니스의 영애", note: "" },
+    { name: "완벽한 바니걸 or 하늘의 시련 or 노스텔지어의 역습", note: "" },
+    { name: "본 투 비 와일드 or 언더커버 캅 or 만족스러운 식사", note: "" },
+    { name: "하얀 달의 온기는 햇빛처럼", note: "" }
+  ],
+  alternatives: [
+    { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼 대체" }
+  ]
+});
+
+const DEFENDER_ATTACK_TANK_ARCANA = Object.freeze({
+  recommended: [
+    { name: "단점 보완 맞춤 훈련", note: "" },
+    { name: "누각 위, 유리달 맞이", note: "" },
+    { name: "조용한 휴식 시간", note: "" },
+    { name: "완벽한 바니걸", note: "" },
+    { name: "꽃들에게 죽음을", note: "" }
+  ],
+  alternatives: [],
+  alternativeNote: "※ 공격력 탱커는 단점 보완 맞춤 훈련 대체불가"
+});
 
 // 로베르타를 제외하고, 승인된 스트라이커 9명에게만 아르카나 교체 규칙을 적용합니다.
 const STRIKER_ARCANA_SWAP_IDS = new Set([
@@ -1553,13 +1616,49 @@ const SAVIORS = [
     "detail": {
       "equipment": {
         "pve": {
-          "necklace": "속도",
-          "ring": "생명력%",
+          "necklace": "속도 / 공격력%",
+          "ring": "생명력% / 공격력%",
           "sets": [
-            "생명(4) + 장벽(2)"
+            "공격(4) + 투지(2)",
+            "생명(4) + 장벽(2)",
+            "통찰(4) + 장벽(2)"
           ],
-          "potential": "BX / AX",
-          "note": "반지 주옵 생퍼"
+          "potential": "BX / AX / EX",
+          "note": "반지 주옵 생퍼",
+          "necklaceOptions": [
+            {
+              "value": "속도",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "ringOptions": [
+            {
+              "value": "생명력%",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "setOptions": [
+            {
+              "value": "공격(4) + 투지(2)",
+              "note": "※ 공격탱커(AX)"
+            },
+            {
+              "value": "생명(4) + 장벽(2)",
+              "note": "※ 퓨어탱커(BX)"
+            },
+            {
+              "value": "통찰(4) + 장벽(2)",
+              "note": "※ EX 전용"
+            }
+          ]
         },
         "pvp": {
           "necklace": "해당 엑셀에 없음",
@@ -1690,13 +1789,49 @@ const SAVIORS = [
     "detail": {
       "equipment": {
         "pve": {
-          "necklace": "속도",
-          "ring": "생명력%",
+          "necklace": "속도 / 공격력%",
+          "ring": "생명력% / 공격력%",
           "sets": [
-            "생명(4) + 장벽(2)"
+            "공격(4) + 투지(2)",
+            "생명(4) + 장벽(2)",
+            "통찰(4) + 장벽(2)"
           ],
-          "potential": "BX",
-          "note": ""
+          "potential": "BX / AX / EX",
+          "note": "",
+          "necklaceOptions": [
+            {
+              "value": "속도",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "ringOptions": [
+            {
+              "value": "생명력%",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "setOptions": [
+            {
+              "value": "공격(4) + 투지(2)",
+              "note": "※ 공격탱커(AX)"
+            },
+            {
+              "value": "생명(4) + 장벽(2)",
+              "note": "※ 퓨어탱커(BX)"
+            },
+            {
+              "value": "통찰(4) + 장벽(2)",
+              "note": "※ EX 전용"
+            }
+          ]
         },
         "pvp": {
           "necklace": "해당 자료에 없음",
@@ -2140,13 +2275,53 @@ const SAVIORS = [
     "detail": {
       "equipment": {
         "pve": {
-          "necklace": "속도",
-          "ring": "효과적중",
+          "necklace": "속도 / 공격력%",
+          "ring": "효과적중% / 효과적중%, 방어력% / 공격력%",
           "sets": [
-            "방어(2) x 3"
+            "공격(4) + 투지(2)",
+            "방어(6)",
+            "통찰(4) + 적중(2)"
           ],
-          "potential": "CX",
-          "note": "반지 주옵 방퍼 생명(4) 사용 가능"
+          "potential": "CX / AX / EX",
+          "note": "반지 주옵 방퍼 생명(4) 사용 가능",
+          "necklaceOptions": [
+            {
+              "value": "속도",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "ringOptions": [
+            {
+              "value": "효과적중%",
+              "note": "※ 퓨어탱커"
+            },
+            {
+              "value": "효과적중% / 방어력%",
+              "note": "※ EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "setOptions": [
+            {
+              "value": "공격(4) + 투지(2)",
+              "note": "※ 공격탱커(AX)"
+            },
+            {
+              "value": "방어(6)",
+              "note": "※ 퓨어탱커(CX)"
+            },
+            {
+              "value": "통찰(4) + 적중(2)",
+              "note": "※ EX 전용"
+            }
+          ]
         },
         "pvp": {
           "necklace": "해당 엑셀에 없음",
@@ -3200,13 +3375,49 @@ const SAVIORS = [
     "detail": {
       "equipment": {
         "pve": {
-          "necklace": "속도",
-          "ring": "생명력%",
+          "necklace": "속도 / 공격력%",
+          "ring": "생명력% / 공격력%",
           "sets": [
-            "생명(4) + 장벽(2)"
+            "공격(4) + 투지(2)",
+            "생명(4) + 장벽(2)",
+            "통찰(4) + 장벽(2)"
           ],
-          "potential": "BX",
-          "note": ""
+          "potential": "BX / AX / EX",
+          "note": "",
+          "necklaceOptions": [
+            {
+              "value": "속도",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "ringOptions": [
+            {
+              "value": "생명력%",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "setOptions": [
+            {
+              "value": "공격(4) + 투지(2)",
+              "note": "※ 공격탱커(AX)"
+            },
+            {
+              "value": "생명(4) + 장벽(2)",
+              "note": "※ 퓨어탱커(BX)"
+            },
+            {
+              "value": "통찰(4) + 장벽(2)",
+              "note": "※ EX 전용"
+            }
+          ]
         },
         "pvp": {
           "necklace": "해당 자료에 없음",
@@ -4100,13 +4311,49 @@ const SAVIORS = [
     "detail": {
       "equipment": {
         "pve": {
-          "necklace": "속도",
-          "ring": "생명력%",
+          "necklace": "속도 / 공격력%",
+          "ring": "생명력% / 공격력%",
           "sets": [
-            "생명(4) + 장벽(2)"
+            "공격(4) + 투지(2)",
+            "생명(4) + 장벽(2)",
+            "통찰(4) + 장벽(2)"
           ],
-          "potential": "BX",
-          "note": ""
+          "potential": "BX / AX / EX",
+          "note": "",
+          "necklaceOptions": [
+            {
+              "value": "속도",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "ringOptions": [
+            {
+              "value": "생명력%",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "setOptions": [
+            {
+              "value": "공격(4) + 투지(2)",
+              "note": "※ 공격탱커(AX)"
+            },
+            {
+              "value": "생명(4) + 장벽(2)",
+              "note": "※ 퓨어탱커(BX)"
+            },
+            {
+              "value": "통찰(4) + 장벽(2)",
+              "note": "※ EX 전용"
+            }
+          ]
         },
         "pvp": {
           "necklace": "해당 자료에 없음",
@@ -4174,14 +4421,49 @@ const SAVIORS = [
     "detail": {
       "equipment": {
         "pve": {
-          "necklace": "속도",
-          "ring": "공격력%",
+          "necklace": "속도 / 공격력%",
+          "ring": "생명력% / 공격력%",
           "sets": [
             "공격(4) + 투지(2)",
-            "생명(4) + 장벽(2)"
+            "생명(4) + 장벽(2)",
+            "통찰(4) + 장벽(2)"
           ],
-          "potential": "AX / BX",
-          "note": ""
+          "potential": "BX / AX / EX",
+          "note": "",
+          "necklaceOptions": [
+            {
+              "value": "속도",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "ringOptions": [
+            {
+              "value": "생명력%",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "setOptions": [
+            {
+              "value": "공격(4) + 투지(2)",
+              "note": "※ 공격탱커(AX)"
+            },
+            {
+              "value": "생명(4) + 장벽(2)",
+              "note": "※ 퓨어탱커(BX)"
+            },
+            {
+              "value": "통찰(4) + 장벽(2)",
+              "note": "※ EX 전용"
+            }
+          ]
         },
         "pvp": {
           "necklace": "해당 자료에 없음",
@@ -4721,13 +5003,49 @@ const SAVIORS = [
     "detail": {
       "equipment": {
         "pve": {
-          "necklace": "속도",
-          "ring": "생명력%",
+          "necklace": "속도 / 공격력%",
+          "ring": "생명력% / 공격력%",
           "sets": [
-            "생명(4) + 장벽(2)"
+            "공격(4) + 투지(2)",
+            "생명(4) + 장벽(2)",
+            "통찰(4) + 장벽(2)"
           ],
-          "potential": "BX",
-          "note": "반지 주옵 생퍼"
+          "potential": "BX / AX / EX",
+          "note": "반지 주옵 생퍼",
+          "necklaceOptions": [
+            {
+              "value": "속도",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "ringOptions": [
+            {
+              "value": "생명력%",
+              "note": "※ 퓨어탱커, EX"
+            },
+            {
+              "value": "공격력%",
+              "note": "※ 공격탱커(AX)"
+            }
+          ],
+          "setOptions": [
+            {
+              "value": "공격(4) + 투지(2)",
+              "note": "※ 공격탱커(AX)"
+            },
+            {
+              "value": "생명(4) + 장벽(2)",
+              "note": "※ 퓨어탱커(BX)"
+            },
+            {
+              "value": "통찰(4) + 장벽(2)",
+              "note": "※ EX 전용"
+            }
+          ]
         },
         "pvp": {
           "necklace": "해당 엑셀에 없음",
@@ -4949,12 +5267,12 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "통찰(4) + 적중(2) (후열사용)",
-            "공격(4) + 적중(2) (후열사용)",
+            "통찰(4) + 적중(2)",
+            "공격(4) + 적중(2)",
             "정밀(4) + 적중(2)"
           ],
           "setNote": "* 적중(2)는 투지(2)로 대체가능.",
-          "potential": "AX",
+          "potential": "AX / EX",
           "note": ""
         },
         "pvp": {
@@ -4978,15 +5296,15 @@ const SAVIORS = [
             "note": ""
           },
           {
+            "name": "조용한 휴식 시간 or 본 투 비 와일드 or 만족스러운 식사 or 언더커버 캅",
+            "note": ""
+          },
+          {
+            "name": "하얀 달의 온기는 햇빛처럼 or 영원 속박의 굴레",
+            "note": ""
+          },
+          {
             "name": "꽃들에게 죽음을",
-            "note": ""
-          },
-          {
-            "name": "조용한 휴식 시간 or 본 투 비 와일드 or 만족스러운 식사",
-            "note": ""
-          },
-          {
-            "name": "하얀 달의 온기는 햇빛처럼 or 불굴의 역작",
             "note": ""
           }
         ],
@@ -5003,18 +5321,13 @@ const SAVIORS = [
             "note": "단점 보완 맞춤 훈련 대체"
           },
           {
-            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
-            "note": "꽃들에게 죽음을 대체"
-          },
-          {
             "name": "어느 한 기사의 맹세 or 누각 위, 유리달 맞이",
             "note": "하얀 달의 온기는 햇빛처럼/불굴의 역작 대체"
           },
           {
-            "name": "언더커버 캅",
-            "note": "조용한 휴식 시간/본 투 비 와일드/만족스러운 식사 대체"
-          },
-          null
+            "name": "메이드 바이 페트라♡ or 별을 보며 꿈을",
+            "note": "꽃들에게 죽음을 대체"
+          }
         ]
       }
     }
@@ -7040,13 +7353,8 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
   }
 
   if (savior.id === "white-pearl-luna") {
-    return [
-      { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" },
-      { name: "메이드 바이 페트라♡ or 별을 보며 꿈을", note: "꽃들에게 죽음을 대체" },
-      { name: "어느 한 기사의 맹세 or 누각 위, 유리달 맞이", note: "하얀 달의 온기는 햇빛처럼/불굴의 역작 대체" },
-      { name: "언더커버 캅", note: "조용한 휴식 시간/본 투 비 와일드/만족스러운 식사 대체" },
-      null
-    ];
+    // 화이트 펄 트랩 루나는 SAVIORS에 입력된 전용 대체 아르카나를 그대로 사용한다.
+    return result;
   }
 
   if (savior.id === "smile") {
@@ -7315,8 +7623,7 @@ function createDetailMarkup(savior) {
         </div>
       </div>
       <div class="section-body">
-        ${createArcanaMode(pveArcanaTitle, "주요 PVE 콘텐츠", pveArcana, "var(--pve)")}
-        ${createArcanaMode(alternativeArcanaTitle, "보유 상황에 따라 교체", alternativeArcana, "var(--accent)")}
+        ${createSaviorArcanaSettingMarkup(savior, pveArcana, alternativeArcana)}
       </div>
     </section>
   `;
@@ -7379,9 +7686,50 @@ function createEquipmentSetMarkup(value) {
   `;
 }
 
-function createEquipmentCard(mode, data, className, subtitle) {
-  const sets = Array.isArray(data.sets) ? data.sets : [data.sets];
 
+function createEquipmentOptionListMarkup(options, fallbackValue) {
+  if (!Array.isArray(options) || !options.length) {
+    return escapeHtml(fallbackValue || "");
+  }
+
+  return `
+    <div class="build-option-list" style="display:grid;gap:9px;">
+      ${options.map((option) => `
+        <div class="build-option-entry" style="min-width:0;">
+          <strong style="display:block;color:var(--text);font-weight:900;">${escapeHtml(option?.value || "")}</strong>
+          ${option?.note ? `<small class="build-set-note" style="margin-top:3px;">${escapeHtml(option.note)}</small>` : ""}
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function createEquipmentSetOptionsMarkup(data) {
+  if (Array.isArray(data.setOptions) && data.setOptions.length) {
+    return `
+      <div class="equipment-set-option-list" style="display:grid;gap:10px;">
+        ${data.setOptions.map((option) => `
+          <div class="equipment-set-option-entry" style="min-width:0;">
+            ${createEquipmentSetMarkup(option?.value || "")}
+            ${option?.note ? `<small class="build-set-note" style="margin-top:4px;">${escapeHtml(option.note)}</small>` : ""}
+          </div>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  const sets = Array.isArray(data.sets) ? data.sets : [data.sets];
+  return `
+    ${sets.map(createEquipmentSetMarkup).join("")}
+    ${Array.isArray(data.setNotes)
+      ? data.setNotes.map((note) => `<small class="build-set-note">${escapeHtml(note)}</small>`).join("")
+      : data.setNote
+        ? `<small class="build-set-note">${escapeHtml(data.setNote)}</small>`
+        : ""}
+  `;
+}
+
+function createEquipmentCard(mode, data, className, subtitle) {
   return `
     <article class="build-card ${className}">
       <div class="build-heading">
@@ -7395,23 +7743,20 @@ function createEquipmentCard(mode, data, className, subtitle) {
         <div class="build-row">
           <dt>목걸이</dt>
           <dd>
-            ${escapeHtml(data.necklace)}
-            ${data.necklaceNote ? `<small class="build-set-note">${escapeHtml(data.necklaceNote)}</small>` : ""}
+            ${createEquipmentOptionListMarkup(data.necklaceOptions, data.necklace)}
+            ${!Array.isArray(data.necklaceOptions) && data.necklaceNote
+              ? `<small class="build-set-note">${escapeHtml(data.necklaceNote)}</small>`
+              : ""}
           </dd>
         </div>
         <div class="build-row">
           <dt>반지</dt>
-          <dd>${escapeHtml(data.ring)}</dd>
+          <dd>${createEquipmentOptionListMarkup(data.ringOptions, data.ring)}</dd>
         </div>
         <div class="build-row">
           <dt>추천 세트</dt>
           <dd class="equipment-set-list">
-            ${sets.map(createEquipmentSetMarkup).join("")}
-            ${Array.isArray(data.setNotes)
-              ? data.setNotes.map((note) => `<small class="build-set-note">${escapeHtml(note)}</small>`).join("")
-              : data.setNote
-                ? `<small class="build-set-note">${escapeHtml(data.setNote)}</small>`
-                : ""}
+            ${createEquipmentSetOptionsMarkup(data)}
           </dd>
         </div>
         <div class="build-row">
@@ -7509,9 +7854,9 @@ function createArcanaNameLinks(choices) {
   }).join("");
 }
 
-function createArcanaMode(title, description, slots, color) {
+function createArcanaMode(title, description, slots, color, minSlots = 5) {
   const normalized = Array.from(
-    { length: Math.max(5, slots?.length || 0) },
+    { length: Math.max(minSlots, slots?.length || 0) },
     (_, index) => slots?.[index] || null
   );
 
@@ -7560,6 +7905,87 @@ function createArcanaMode(title, description, slots, color) {
           `;
         }).join("")}
       </div>
+    </div>
+  `;
+}
+
+
+function createArcanaNoticeMode(title, description, note, color) {
+  return `
+    <div class="arcana-mode">
+      <div class="arcana-mode-title">
+        <strong>${escapeHtml(title)}</strong>
+        <span>${escapeHtml(description)}</span>
+      </div>
+      <div class="arcana-slots">
+        <div class="arcana-slot empty" style="--slot-color:${color}">
+          <small>${escapeHtml(translateString("대체 아르카나"))}</small>
+          <strong>${escapeHtml(translateString("없음"))}</strong>
+          <em>${escapeHtml(note)}</em>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function createDefenderArcanaCollapse(title, preset) {
+  const hasAlternatives = Array.isArray(preset.alternatives) && preset.alternatives.length > 0;
+
+  return `
+    <details class="savior-illustration-details defender-arcana-details"
+      style="overflow:hidden;border:1px solid var(--line);border-radius:14px;">
+      <summary aria-label="${escapeHtml(translateString(title))}">
+        <span>${escapeHtml(translateString(title))}</span>
+        <span class="savior-illustration-chevron" aria-hidden="true">⌄</span>
+      </summary>
+      <div class="defender-arcana-collapse-body"
+        style="display:grid;gap:18px;padding:16px 20px 20px;border-top:1px solid var(--line);">
+        ${createArcanaMode(
+          "PVE 추천 아르카나",
+          "주요 PVE 콘텐츠",
+          preset.recommended,
+          "var(--pve)",
+          5
+        )}
+        ${hasAlternatives
+          ? createArcanaMode(
+              "대체 아르카나",
+              "보유 상황에 따라 교체",
+              preset.alternatives,
+              "var(--accent)",
+              preset.alternatives.length
+            )
+          : createArcanaNoticeMode(
+              "대체 아르카나",
+              "보유 상황에 따라 교체",
+              preset.alternativeNote || "",
+              "var(--accent)"
+            )}
+      </div>
+    </details>
+  `;
+}
+
+function createSaviorArcanaSettingMarkup(savior, pveArcana, alternativeArcana) {
+  if (savior.className !== "디펜더" || savior.id === "white-pearl-luna") {
+    return `
+      ${createArcanaMode("PVE 추천 아르카나", "주요 PVE 콘텐츠", pveArcana, "var(--pve)")}
+      ${createArcanaMode("대체 아르카나", "보유 상황에 따라 교체", alternativeArcana, "var(--accent)")}
+    `;
+  }
+
+  if (savior.id === "haydee") {
+    return `
+      <div class="defender-arcana-collapse-list" style="display:grid;gap:12px;">
+        ${createDefenderArcanaCollapse("퓨어탱커", DEFENDER_PURE_TANK_ARCANA)}
+      </div>
+    `;
+  }
+
+  return `
+    <div class="defender-arcana-collapse-list" style="display:grid;gap:12px;">
+      ${createDefenderArcanaCollapse("퓨어탱커", DEFENDER_PURE_TANK_ARCANA)}
+      ${createDefenderArcanaCollapse("공격탱커", DEFENDER_ATTACK_TANK_ARCANA)}
     </div>
   `;
 }
