@@ -5,34 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="스타세이비어 구원자별 PVE 장비와 아르카나 조합을 확인하는 비공식 가이드 데이터베이스">
   <meta name="theme-color" content="#0d111b">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link id="site-styles" rel="stylesheet">
-  <noscript><link rel="stylesheet" href="./styles.css"></noscript>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J8J9RQLWQN"></script>
   <script>
-    (() => {
-      const url = new URL(window.location.href);
-      const cacheKey = Math.floor(Date.now() / 60000).toString(36);
-
-      if (url.searchParams.get("_cache") !== cacheKey) {
-        url.searchParams.set("_cache", cacheKey);
-        window.location.replace(url.toString());
-        return;
-      }
-
-      window.__SITE_CACHE_KEY__ = cacheKey;
-      document.querySelector("#site-styles").href = `./styles.css?v=${encodeURIComponent(cacheKey)}`;
-      window.addEventListener("DOMContentLoaded", () => {
-        const script = document.createElement("script");
-        script.src = `./app.js?v=${encodeURIComponent(cacheKey)}`;
-        script.async = false;
-        document.body.appendChild(script);
-      }, { once: true });
-    })();
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J8J9RQLWQN');
   </script>
+
+  <!--
+    고정된 배포 버전만 사용합니다.
+    기존의 1분 단위 Date.now() 캐시 무효화/URL 강제 리로드를 제거하여
+    방문할 때마다 CSS/JS를 다시 내려받는 일을 막습니다.
+    사이트를 실제로 갱신할 때 이 값만 변경하면 관련 정적 데이터 캐시도 새 버전으로 전환됩니다.
+  -->
+  <script>window.__SITE_CACHE_KEY__ = "v108-ga4-cache";</script>
+  <link rel="stylesheet" href="./styles.css?v=v108-ga4-cache">
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -1409,6 +1401,8 @@
       </div>
     </div>
   </footer>
+
+  <script src="./app.js?v=v108-ga4-cache"></script>
 
   <noscript>
     <div class="noscript">검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.</div>
