@@ -1,17 +1,20 @@
-name: Backup Arcana database
+name: Backup Arcana database from ESPR
 
 on:
   workflow_dispatch:
     inputs:
       refresh_all:
-        description: 'Download every Arcana image again'
+        description: 'Download every Arcana/Potential image again'
         required: false
         default: false
         type: boolean
   push:
     paths:
       - '.github/workflows/backup-arcanas.yml'
+      - 'scripts/espr-common.mjs'
+      - 'scripts/backup-espr-arcanas.mjs'
       - 'scripts/backup-arcanas.mjs'
+      - 'scripts/backup-arcana-events.mjs'
 
 permissions:
   contents: write
@@ -24,6 +27,7 @@ jobs:
   backup-arcanas:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
       - name: Check out repository
@@ -34,98 +38,57 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Validate backup script
-        run: node --check scripts/backup-arcanas.mjs
+      - name: Install Chromium scraper
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
 
-      - name: Refresh local Arcana archive
+      - name: Validate ESPR Arcana scripts
+        run: |
+          node --check scripts/espr-common.mjs
+          node --check scripts/backup-espr-arcanas.mjs
+          node --check scripts/backup-arcana-events.mjs
+
+      - name: Refresh Arcana archive from ESPR
         env:
           REFRESH_ALL: ${{ github.event.inputs.refresh_all || 'false' }}
-        run: node scripts/backup-arcanas.mjs
+        run: node scripts/backup-espr-arcanas.mjs
+
+      - name: Refresh Journey Arcana mirror
+        run: node scripts/backup-arcana-events.mjs
 
       - name: Validate local Arcana archive
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
-
           const archive = JSON.parse(fs.readFileSync('data/arcanas/arcanas.json', 'utf8'));
           const manifest = JSON.parse(fs.readFileSync('data/arcanas/manifest.json', 'utf8'));
-          const expectedLanguages = JSON.stringify(['ko', 'en', 'ja']);
-
-          if (JSON.stringify(archive.languages) !== expectedLanguages || JSON.stringify(manifest.languages) !== expectedLanguages) {
-            throw new Error('Only Korean, English, and Japanese are allowed.');
-          }
-          if (!archive.localOnly || !manifest.localOnly) {
-            throw new Error('The Arcana archive must be local-only.');
-          }
-          if (!Array.isArray(archive.arcanas) || archive.arcanas.length < 79) {
-            throw new Error('The Arcana archive is incomplete.');
-          }
-
-          const eventCount = archive.arcanas.reduce((sum, arcana) => sum + (arcana.events?.length || 0), 0);
-          const choiceCount = archive.arcanas.reduce((sum, arcana) => (
-            sum + (arcana.events || []).reduce((inner, event) => inner + (event.choices?.length || 0), 0)
-          ), 0);
-          if (manifest.arcanaCount !== archive.arcanas.length || manifest.eventCount !== eventCount || manifest.choiceCount !== choiceCount) {
-            throw new Error('The Arcana manifest counts do not match the archive.');
-          }
-          if (eventCount < 191 || choiceCount < 236) {
-            throw new Error('The Arcana event archive is incomplete.');
-          }
-
-          const forbiddenLanguageKeys = new Set(['zh', 'zh-CN', 'zh-TW', 'cn', 'tw', 'zhs', 'zht']);
-          const assetPaths = new Set();
-          function inspect(value) {
-            if (Array.isArray(value)) {
-              value.forEach(inspect);
-              return;
-            }
-            if (!value || typeof value !== 'object') return;
-            const keys = Object.keys(value);
-            if (keys.some((key) => forbiddenLanguageKeys.has(key))) {
-              throw new Error('A disallowed language key exists in the Arcana archive.');
-            }
-            if (keys.some((key) => ['ko', 'en', 'ja'].includes(key))) {
-              const languageKeys = keys.filter((key) => ['ko', 'en', 'ja'].includes(key)).sort();
-              if (JSON.stringify(languageKeys) !== JSON.stringify(['en', 'ja', 'ko'])) {
-                throw new Error('A localized Arcana value is incomplete.');
-              }
-            }
-            for (const [key, child] of Object.entries(value)) {
-              if (['image', 'icon', 'background', 'mainStatIcon'].includes(key) && typeof child === 'string' && child) {
-                if (!child.startsWith('./data/arcana-assets/')) {
-                  throw new Error(`Non-local Arcana asset path: ${child}`);
-                }
-                assetPaths.add(child.replace(/^\.\//, ''));
-              }
-              inspect(child);
-            }
-          }
-          inspect(archive);
-
-          if (assetPaths.size !== manifest.assetCount) {
-            throw new Error(`Arcana asset count mismatch: ${assetPaths.size} != ${manifest.assetCount}`);
-          }
-          for (const filename of assetPaths) {
-            if (!fs.existsSync(filename) || fs.statSync(filename).size < 20) {
-              throw new Error(`Missing or empty Arcana asset: ${filename}`);
-            }
+          if (archive.sourceOrigin !== 'https://ss.espr.gg' || manifest.sourceOrigin !== 'https://ss.espr.gg') throw new Error('Arcana source is not ESPR.');
+          if (JSON.stringify(archive.languages) !== JSON.stringify(['ko','en','ja'])) throw new Error('Arcana languages must be ko/en/ja.');
+          if (!archive.localOnly || !manifest.localOnly) throw new Error('Arcana archive must remain local-only.');
+          if (!Array.isArray(archive.arcanas) || archive.arcanas.length < 80) throw new Error(`Arcana archive incomplete (${archive.arcanas?.length ?? 0}).`);
+          if (!Array.isArray(archive.potentials) || archive.potentials.length < 50) throw new Error('Potential archive incomplete.');
+          if (manifest.arcanaCount !== archive.arcanas.length || manifest.potentialCount !== archive.potentials.length) throw new Error('Arcana manifest mismatch.');
+          for (const arcana of archive.arcanas) {
+            if (!arcana.image?.startsWith('./data/arcana-assets/cards/')) throw new Error(`Non-local Arcana image: ${arcana.image}`);
+            const filename = arcana.image.replace(/^\.\//, '');
+            if (!fs.existsSync(filename) || fs.statSync(filename).size < 20) throw new Error(`Missing Arcana image: ${filename}`);
           }
           NODE
 
       - name: Validate generated changes
         run: git diff --check
 
-      - name: Commit local Arcana archive
+      - name: Commit ESPR Arcana archive
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- data/arcanas data/arcana-assets)" ]; then
-            echo 'No Arcana archive changes to commit.'
+          if [ -z "$(git status --porcelain -- data/arcanas data/arcana-assets data/journey data/journey-assets)" ]; then
+            echo 'No Arcana changes to commit.'
             exit 0
           fi
-
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/arcanas data/arcana-assets
-          git commit -m 'Refresh local Arcana database'
+          git add data/arcanas data/arcana-assets data/journey data/journey-assets
+          git commit -m 'Refresh Arcana database from ESPR'
           git pull --rebase origin main
           git push origin HEAD:main
