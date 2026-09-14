@@ -6047,52 +6047,26 @@ function collectSaviorArchiveSearchStrings(value, output = []) {
 }
 
 function getSaviorArchiveSearchText(savior) {
-  const id = String(savior?.detailId ?? "");
-  const profile = id ? saviorProfileIndex.get(id) : null;
-  const source = [
-    profile?.resonancePotential,
-    profile?.resonancePotentialName,
-    profile?.potential,
-    profile?.potentialName,
-    profile?.potentials
-  ];
+  const archivedSavior = getArchivedSavior(savior);
+  const resonancePotentials = Array.isArray(archivedSavior?.resonancePotentials)
+    ? archivedSavior.resonancePotentials
+    : [];
 
   const values = [];
 
-  function collectPotentialNames(value) {
-    if (value == null) return;
+  resonancePotentials.forEach((potential) => {
+    const koName = getArchivedLanguageText(potential?.name, "ko").trim();
 
-    if (Array.isArray(value)) {
-      value.forEach(collectPotentialNames);
-      return;
-    }
+    // 검색 보조 데이터에는 공명 잠재력 명칭만 넣는다.
+    // 장비 세트, 스킬/버프 설명의 일반 단어는 절대 포함하지 않는다.
+    if (!/의\s*(?:솜씨|감각|재능)\s*$/.test(koName)) return;
 
-    if (typeof value === "object") {
-      Object.entries(value).forEach(([key, nested]) => {
-        // 이름/명칭 계열 필드만 대상으로 하고, 설명/스킬/장비 등의 일반 문장은 제외한다.
-        if (/name|title|potential|resonance/i.test(key)) {
-          collectPotentialNames(nested);
-        } else if (typeof nested === "object" && nested !== null) {
-          collectPotentialNames(nested);
-        }
-      });
-      return;
-    }
-
-    if (typeof value !== "string") return;
-
-    // 공명 잠재력 검색은 '○○의 솜씨/감각/재능' 명칭만 허용한다.
-    // 장비 세트명, 스킬 설명의 '파괴' 같은 일반 단어는 검색 색인에 넣지 않는다.
-    const matches = value.match(/[가-힣A-Za-z0-9·\s]+의\s*(?:솜씨|감각|재능)/g);
-    if (!matches) return;
-
-    matches.forEach((match) => {
-      const cleaned = match.replace(/\s+/g, " ").trim();
-      if (cleaned) values.push(cleaned);
+    ["ko", "en", "ja"].forEach((language) => {
+      const localizedName = getArchivedLanguageText(potential?.name, language).trim();
+      if (localizedName) values.push(localizedName);
     });
-  }
+  });
 
-  source.forEach(collectPotentialNames);
   return [...new Set(values)].join(" ");
 }
 
