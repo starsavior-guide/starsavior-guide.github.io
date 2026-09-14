@@ -17,21 +17,6 @@ Object.assign(I18N_DATA.ui.ja, {
     "初心者のアタッカーには洞察セットを推奨します。（一部の救援者を除き、破壊セットの採用難易度は高めです。）"
 });
 
-
-// 구원자 메인 초보 단장 안내 다국어 보정
-Object.assign(I18N_DATA.ui.en, {
-  "초보 단장님 안내": "New Commander Guide",
-  "구원자 세팅을 참고하기 전, 장비 탭의 「장비 개요」를 먼저 읽어보시길 권합니다.":
-    "Before using the Savior setup recommendations, we recommend reading Equipment > Equipment Overview first.",
-  "장비 개요 바로가기": "Open Equipment Overview"
-});
-Object.assign(I18N_DATA.ui.ja, {
-  "초보 단장님 안내": "初心者団長へのご案内",
-  "구원자 세팅을 참고하기 전, 장비 탭의 「장비 개요」를 먼저 읽어보시길 권합니다.":
-    "救援者のセッティングを参考にする前に、装備タブの「装備概要」を先にお読みください。",
-  "장비 개요 바로가기": "装備概要へ"
-});
-
 // 이름 렌더링에 사용하는 접근성 문구
 Object.assign(I18N_DATA.ui.en, {
   "스킬설명 및 상세정보": "Skills & Details",
@@ -550,7 +535,6 @@ function applyLanguageToDOM(root = document.body) {
 function refreshLanguageChrome() {
   document.documentElement.lang = LANGUAGE_HTML_CODES[currentLanguage] || "ko-KR";
   const languageSelect = document.querySelector("#language-select");
-const newbieEquipmentNotice = document.querySelector("#newbie-equipment-notice");
   if (languageSelect) {
     languageSelect.value = currentLanguage;
     languageSelect.setAttribute("aria-label", currentLanguage === "ko" ? "언어 변경" :
@@ -8058,7 +8042,7 @@ function createEquipmentDatabaseMarkup() {
         <p>구원자 장비 주옵션 및 부옵션 정보입니다.</p>
       </header>
 
-      <section class="equipment-panel" id="equipment-overview">
+      <section class="equipment-panel">
         <div class="equipment-panel-inner">
           <h2 class="equipment-section-title">장비 개요</h2>
           <ul class="equipment-overview-list">
@@ -10041,22 +10025,6 @@ navItems.forEach((button) => {
     }
   });
 });
-
-if (newbieEquipmentNotice) {
-  newbieEquipmentNotice.addEventListener("click", () => {
-    openSimple("equipment", { keepScroll: true });
-
-    requestAnimationFrame(() => {
-      const overview = document.querySelector("#equipment-overview");
-      if (!overview) return;
-
-      overview.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    });
-  });
-}
 
 function applyRequestedLayoutFixes() {
   const style = document.createElement("style");
