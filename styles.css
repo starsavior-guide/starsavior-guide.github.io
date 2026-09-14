@@ -1422,6 +1422,15 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
   font-weight: 950;
 }
 
+.arcana-db-count.arcana-db-count-wide {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .arcana-db-controls {
   overflow: hidden;
   border: 1px solid var(--line);
@@ -2639,11 +2648,23 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
   line-height: 1.55;
 }
 
-.newbie-equipment-notice-action {
+.newbie-equipment-notice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 16px;
   margin-top: 4px;
+}
+
+.newbie-equipment-notice-action {
   color: #91b1ff;
   font-size: 12px;
   font-weight: 900;
+  text-decoration: none;
+}
+
+.newbie-equipment-notice-action:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 @media (max-width: 640px) {
