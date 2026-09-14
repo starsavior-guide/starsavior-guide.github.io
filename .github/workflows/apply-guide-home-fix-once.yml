@@ -1,5 +1,6 @@
 name: Apply guide card and home button fix
 
+# corrected retry 2026-09-15
 on:
   push:
     branches:
