@@ -1407,6 +1407,22 @@
     }
   </style>
 
+
+  <style id="home-button-fit-fix">
+    /* Keep the user-provided home image fully visible on mobile browsers. */
+    .brand-mark {
+      background-color: #fff !important;
+      background-image: url("./images/home-button.png") !important;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+      background-size: contain !important;
+    }
+
+    .brand-mark > img {
+      display: none !important;
+    }
+  </style>
+
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 바로가기</a>
