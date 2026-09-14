@@ -309,6 +309,76 @@ main {
   font-weight: 650;
 }
 
+
+.newbie-equipment-notice {
+  width: min(100%, 720px);
+  margin: 18px 0 0;
+  padding: 15px 17px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 62%, var(--line));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent-soft) 72%, var(--surface));
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+}
+
+.newbie-equipment-notice:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent-soft) 88%, var(--surface));
+  transform: translateY(-1px);
+}
+
+.newbie-equipment-notice:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.newbie-equipment-notice-icon {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--accent) 70%, var(--line));
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: #a9c3ff;
+  font-size: 16px;
+  font-weight: 950;
+  font-style: normal;
+}
+
+.newbie-equipment-notice-copy {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.newbie-equipment-notice-copy strong {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.newbie-equipment-notice-copy > span {
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
+.newbie-equipment-notice-action {
+  color: #a9c3ff;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
 .database-summary {
   display: flex;
   min-width: 126px;
@@ -2280,6 +2350,17 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
   .page-heading {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .newbie-equipment-notice {
+    width: 100%;
+    grid-template-columns: 32px minmax(0, 1fr);
+    padding: 14px;
+  }
+
+  .newbie-equipment-notice-action {
+    grid-column: 2;
+    margin-top: 1px;
   }
 
   .database-summary {

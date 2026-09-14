@@ -5,26 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="스타세이비어 구원자별 PVE 장비와 아르카나 조합을 확인하는 비공식 가이드 데이터베이스">
   <meta name="theme-color" content="#0d111b">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>스타세이비어 구원자 가이드 DB</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J8J9RQLWQN"></script>
+  <link id="site-styles" rel="stylesheet">
+  <noscript><link rel="stylesheet" href="./styles.css"></noscript>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-J8J9RQLWQN');
-  </script>
+    (() => {
+      const url = new URL(window.location.href);
+      const cacheKey = Math.floor(Date.now() / 60000).toString(36);
 
-  <!--
-    고정된 배포 버전만 사용합니다.
-    기존의 1분 단위 Date.now() 캐시 무효화/URL 강제 리로드를 제거하여
-    방문할 때마다 CSS/JS를 다시 내려받는 일을 막습니다.
-    사이트를 실제로 갱신할 때 이 값만 변경하면 관련 정적 데이터 캐시도 새 버전으로 전환됩니다.
-  -->
-  <script>window.__SITE_CACHE_KEY__ = "v108-ga4-cache";</script>
-  <link rel="stylesheet" href="./styles.css?v=v108-ga4-cache">
+      if (url.searchParams.get("_cache") !== cacheKey) {
+        url.searchParams.set("_cache", cacheKey);
+        window.location.replace(url.toString());
+        return;
+      }
+
+      window.__SITE_CACHE_KEY__ = cacheKey;
+      document.querySelector("#site-styles").href = `./styles.css?v=${encodeURIComponent(cacheKey)}`;
+      window.addEventListener("DOMContentLoaded", () => {
+        const script = document.createElement("script");
+        script.src = `./app.js?v=${encodeURIComponent(cacheKey)}`;
+        script.async = false;
+        document.body.appendChild(script);
+      }, { once: true });
+    })();
+  </script>
 
   <style id="equipment-database-styles">
     .equipment-page {
@@ -633,8 +641,7 @@
 
   <style id="savior-source-detail-styles">
     .savior-source-section {
-      padding: 0;
-      overflow: hidden;
+      padding: 18px 20px;
     }
 
     .savior-source-detail {
@@ -642,27 +649,12 @@
     }
 
     .savior-detail-toggle {
-      display: flex;
-      width: 100%;
-      min-height: 58px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 14px 18px;
-      border: 0;
-      border-radius: 0;
-      background: linear-gradient(180deg, color-mix(in srgb, var(--surface-3) 90%, white 5%), var(--surface-2));
-      color: var(--text);
-      font-family: inherit;
-      font-size: clamp(17px, 2vw, 21px);
-      font-weight: 950;
+      min-height: 46px;
       cursor: pointer;
-      user-select: none;
-    }
-
-    .savior-detail-toggle:hover {
-      border-color: transparent;
-      color: var(--text);
     }
 
     .savior-detail-toggle:disabled {
@@ -683,9 +675,7 @@
 
     .savior-source-panel {
       width: 100%;
-      margin-top: 0;
-      padding: 16px 20px 20px;
-      border-top: 1px solid var(--line);
+      margin-top: 16px;
     }
 
     .savior-source-panel[hidden] {
@@ -1105,12 +1095,10 @@
     }
 
     @media (max-width: 640px) {
-      .savior-source-section { padding: 0; }
+      .savior-source-section { padding: 14px; }
       .savior-source-detail,
       .savior-detail-toggle { width: 100%; }
-      .savior-detail-toggle,
       .savior-illustration-details > summary { min-height: 54px; padding: 12px 14px; }
-      .savior-source-panel { padding: 14px; }
       .savior-illustration-body { min-height: 120px; padding: 12px; }
       .parsed-savior-source { gap: 12px; }
       .source-detail-block { border-radius: 13px; }
@@ -1324,6 +1312,15 @@
             <p class="heading-description">
               구원자 정보는 <a href="https://star-savior-arcana-db.pages.dev/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">스타세이비어 DB</a>, PVE장비 및 아르카나는 <a href="https://arca.live/b/starsavior/165397313" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">아카라이브 스타세이비어 채널 원샷 세팅표</a>를 기준으로 합니다.
             </p>
+
+            <button class="newbie-equipment-notice" id="newbie-equipment-notice" type="button">
+              <span class="newbie-equipment-notice-icon" aria-hidden="true">i</span>
+              <span class="newbie-equipment-notice-copy">
+                <strong>초보 단장님 안내</strong>
+                <span>구원자 세팅을 참고하기 전, 장비 탭의 「장비 개요」를 먼저 읽어보시길 권합니다.</span>
+              </span>
+              <span class="newbie-equipment-notice-action">장비 개요 바로가기 <span aria-hidden="true">→</span></span>
+            </button>
           </div>
           <div class="database-summary">
             <span>등록된 구원자</span>
@@ -1401,8 +1398,6 @@
       </div>
     </div>
   </footer>
-
-  <script src="./app.js?v=v108-ga4-cache"></script>
 
   <noscript>
     <div class="noscript">검색과 상세 화면을 사용하려면 JavaScript를 활성화해 주세요.</div>
