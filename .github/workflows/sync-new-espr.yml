@@ -1,0 +1,142 @@
+name: Sync new Savior and Arcana from ESPR
+
+on:
+  schedule:
+    # 12:00 KST = 03:00 UTC. Run weekly, then gate to every 14 days from 2026-09-17.
+    - cron: '0 3 * * 4'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: starsavior-source-backup-write
+  cancel-in-progress: false
+
+jobs:
+  sync-new-espr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Check 14-day cadence
+        id: cadence
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+
+          const manual = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
+          const now = new Date();
+          const anchorDay = Date.UTC(2026, 8, 17); // 2026-09-17 KST/UTC calendar date
+          const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+          const daysFromAnchor = Math.floor((todayUtc - anchorDay) / 86400000);
+          const scheduledMatch = daysFromAnchor >= 0 && daysFromAnchor % 14 === 0;
+          const shouldRun = manual || scheduledMatch;
+
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `run=${shouldRun ? 'true' : 'false'}\n`);
+          console.log(JSON.stringify({
+            event: process.env.GITHUB_EVENT_NAME,
+            utcDate: now.toISOString(),
+            anchor: '2026-09-17 12:00 KST',
+            daysFromAnchor,
+            shouldRun
+          }, null, 2));
+          NODE
+
+      - name: Set up Node.js
+        if: steps.cadence.outputs.run == 'true'
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Install Chromium scraper
+        if: steps.cadence.outputs.run == 'true'
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Validate sync scripts
+        if: steps.cadence.outputs.run == 'true'
+        run: |
+          node --check scripts/espr-common.mjs
+          node --check scripts/backup-espr-characters.mjs
+          node --check scripts/backup-espr-arcanas.mjs
+          node --check scripts/sync-new-espr.mjs
+
+      - name: Build temporary ESPR snapshot
+        if: steps.cadence.outputs.run == 'true'
+        id: scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          SCAN_ROOT="$RUNNER_TEMP/espr-scan"
+          rm -rf "$SCAN_ROOT"
+          mkdir -p "$SCAN_ROOT"
+          cp -a "$GITHUB_WORKSPACE/scripts" "$GITHUB_WORKSPACE/data" "$SCAN_ROOT/"
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$SCAN_ROOT/node_modules"
+
+          (
+            cd "$SCAN_ROOT"
+            REFRESH_ALL=false node scripts/backup-espr-characters.mjs
+            REFRESH_ALL=false node scripts/backup-espr-arcanas.mjs
+          )
+
+          echo "root=$SCAN_ROOT" >> "$GITHUB_OUTPUT"
+
+      - name: Merge new IDs only
+        if: steps.cadence.outputs.run == 'true'
+        env:
+          SCAN_ROOT: ${{ steps.scan.outputs.root }}
+        run: node scripts/sync-new-espr.mjs "$SCAN_ROOT"
+
+      - name: Validate generated changes
+        if: steps.cadence.outputs.run == 'true'
+        shell: bash
+        run: |
+          node --check app.js
+          git diff --check
+
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+
+          const saviorIndex = JSON.parse(fs.readFileSync('data/saviors/index.json', 'utf8'));
+          const saviorSkills = JSON.parse(fs.readFileSync('data/savior-skills/saviors.json', 'utf8'));
+          const arcana = JSON.parse(fs.readFileSync('data/arcanas/arcanas.json', 'utf8'));
+
+          const saviorIds = Object.keys(saviorIndex).filter((key) => /^\d+$/.test(key)).map(Number);
+          if (new Set(saviorIds).size !== saviorIds.length) throw new Error('Duplicate Savior ID detected.');
+
+          const skillIds = (saviorSkills.saviors || []).map((item) => Number(item.id));
+          if (new Set(skillIds).size !== skillIds.length) throw new Error('Duplicate Savior skill archive ID detected.');
+
+          const arcanaIds = (arcana.arcanas || []).map((item) => Number(item.id));
+          if (new Set(arcanaIds).size !== arcanaIds.length) throw new Error('Duplicate Arcana ID detected.');
+          NODE
+
+      - name: Commit only newly discovered content
+        if: steps.cadence.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "$(git status --porcelain -- app.js data/saviors data/savior-detail-assets data/savior-skills data/savior-skill-assets data/savior-bloom data/arcanas data/arcana-assets)" ]; then
+            echo 'No new Savior or Arcana IDs were found.'
+            exit 0
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app.js \
+            data/saviors \
+            data/savior-detail-assets \
+            data/savior-skills \
+            data/savior-skill-assets \
+            data/savior-bloom \
+            data/arcanas \
+            data/arcana-assets
+          git commit -m 'Auto-add new ESPR Savior and Arcana'
+          git pull --rebase origin main
+          git push origin HEAD:main
