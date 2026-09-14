@@ -10,11 +10,9 @@ if (!html.includes(oldHome) && !html.includes(newHome)) {
 }
 html = html.replace(oldHome, newHome);
 
-const cssMarker = '</style>\n\n\n  <style id="journey-database-styles">';
 const cssFlag = '2026-09-15: clearer beginner guide card + direct home image element';
-const css = `
-
-    /* ${cssFlag} */
+const journeyStyle = '  <style id="journey-database-styles">';
+const css = `    /* ${cssFlag} */
     .brand-home-image {
       display: block;
       width: 38px;
@@ -134,13 +132,10 @@ const css = `
 `;
 
 if (!html.includes(cssFlag)) {
-  if (!html.includes(cssMarker)) {
-    throw new Error('CSS insertion marker was not found.');
-  }
-  html = html.replace(
-    cssMarker,
-    css + '\n  </style>\n\n\n  <style id="journey-database-styles">'
-  );
+  const insertAt = html.indexOf(journeyStyle);
+  if (insertAt < 0) throw new Error('Journey style marker was not found.');
+  const cssBlock = `  <style id="guide-home-fix-styles">\n${css}  </style>\n\n`;
+  html = html.slice(0, insertAt) + cssBlock + html.slice(insertAt);
 }
 
 fs.writeFileSync(file, html);
