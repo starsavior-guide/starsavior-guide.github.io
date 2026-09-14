@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 
 INDEX = Path('index.html')
 APP = Path('app.js')
@@ -17,25 +18,33 @@ INDEX.write_text(index, encoding='utf-8')
 app = APP.read_text(encoding='utf-8')
 image_line = f'<img class="overview-mascot" src="{IMG_SRC}" alt="" aria-hidden="true">'
 
-equipment_old = '''<div class="equipment-panel-inner">
-          <h2 class="equipment-section-title">장비 개요</h2>'''
-equipment_new = f'''<div class="equipment-panel-inner overview-mascot-layout">
-          {image_line}
-          <h2 class="equipment-section-title">장비 개요</h2>'''
-if equipment_old in app:
-    app = app.replace(equipment_old, equipment_new)
-elif 'overview-mascot-layout' not in app:
-    raise SystemExit('Equipment overview marker not found')
+if 'overview-mascot-layout' not in app:
+    equipment_pattern = re.compile(
+        r'<div class="equipment-panel-inner">(?P<gap>\s*)'
+        r'(?P<title><h2 class="equipment-section-title">장비 개요</h2>)'
+    )
+    app, equipment_count = equipment_pattern.subn(
+        lambda m: '<div class="equipment-panel-inner overview-mascot-layout">'
+        + m.group('gap') + image_line + m.group('gap') + m.group('title'),
+        app,
+    )
 
-arcana_old = '''<div class="equipment-panel-inner">
-          <h2 class="equipment-section-title">${{escapeHtml(arcanaUi("overviewTitle"))}}</h2>'''
-arcana_new = f'''<div class="equipment-panel-inner overview-mascot-layout">
-          {image_line}
-          <h2 class="equipment-section-title">${{escapeHtml(arcanaUi("overviewTitle"))}}</h2>'''
-if arcana_old in app:
-    app = app.replace(arcana_old, arcana_new)
-elif app.count('overview-mascot-layout') < 2:
-    raise SystemExit('Arcana overview marker not found')
+    arcana_pattern = re.compile(
+        r'<div class="equipment-panel-inner">(?P<gap>\s*)'
+        r'(?P<title><h2 class="equipment-section-title">[^<]*overviewTitle[^<]*</h2>)'
+    )
+    app, arcana_count = arcana_pattern.subn(
+        lambda m: '<div class="equipment-panel-inner overview-mascot-layout">'
+        + m.group('gap') + image_line + m.group('gap') + m.group('title'),
+        app,
+    )
+
+    if equipment_count < 1:
+        raise SystemExit('Equipment overview marker not found')
+    if arcana_count < 1:
+        raise SystemExit('Arcana overview marker not found')
+else:
+    print('overview blocks already patched')
 
 APP.write_text(app, encoding='utf-8')
 
