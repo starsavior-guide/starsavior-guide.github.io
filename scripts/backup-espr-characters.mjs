@@ -432,14 +432,23 @@ async function main() {
   const oldBloomIndex = await readJsonIfExists(BLOOM_INDEX_PATH, {});
 
   const browser = await chromium.launch({ headless: true });
-  const context = await browser.newContext({ locale: "ko-KR", viewport: { width: 1280, height: 1600 } });
+  const context = await browser.newContext({
+    locale: "ko-KR",
+    viewport: { width: 1280, height: 1600 },
+    userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    extraHTTPHeaders: {
+      "accept-language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
+      "cache-control": "no-cache",
+      pragma: "no-cache"
+    }
+  });
   const discoveryPage = await context.newPage();
   const slugs = await discoverSlugs(discoveryPage, "characters");
   await discoveryPage.close();
   console.log(`ESPR characters discovered: ${slugs.length}`);
 
   const failures = [];
-  const scraped = await mapLimit(slugs, 2, async (slug, index) => {
+  const scraped = await mapLimit(slugs, 1, async (slug, index) => {
     try {
       console.log(`[${index + 1}/${slugs.length}] ${slug}`);
       return await scrapeCharacter(context, slug, oldIndex, oldArchiveById);

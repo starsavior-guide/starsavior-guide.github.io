@@ -90,20 +90,82 @@ export async function readJsonIfExists(filename, fallback = null) {
   }
 }
 
+const ESPR_NAV_MIN_INTERVAL_MS = Math.max(1000, Number(process.env.ESPR_NAV_MIN_INTERVAL_MS || 2500));
+const ESPR_NAV_ATTEMPTS = Math.max(3, Number(process.env.ESPR_NAV_ATTEMPTS || 6));
+let esprNavigationChain = Promise.resolve();
+let esprLastNavigationAt = 0;
+
+function retryAfterMs(response) {
+  try {
+    const raw = response?.headers?.()["retry-after"];
+    if (!raw) return 0;
+    const seconds = Number(raw);
+    if (Number.isFinite(seconds)) return Math.max(0, seconds * 1000);
+    const date = Date.parse(raw);
+    if (Number.isFinite(date)) return Math.max(0, date - Date.now());
+  } catch {}
+  return 0;
+}
+
+async function waitForEsprNavigationSlot() {
+  let release;
+  const previous = esprNavigationChain;
+  esprNavigationChain = new Promise((resolve) => { release = resolve; });
+  await previous;
+  try {
+    const elapsed = Date.now() - esprLastNavigationAt;
+    const jitter = Math.floor(Math.random() * 650);
+    const waitMs = Math.max(0, ESPR_NAV_MIN_INTERVAL_MS + jitter - elapsed);
+    if (waitMs > 0) await sleep(waitMs);
+    esprLastNavigationAt = Date.now();
+  } finally {
+    release();
+  }
+}
+
 export async function gotoStable(page, url, options = {}) {
-  const attempts = Number(options.attempts || 3);
+  const attempts = Number(options.attempts || ESPR_NAV_ATTEMPTS);
   let lastError;
+
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    let response = null;
     try {
-      const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60_000 });
-      if (response && response.status() >= 400) throw new Error(`HTTP ${response.status()}`);
-      await page.waitForFunction(() => String(document.body?.innerText || "").replace(/\s+/g, " ").trim().length > 40, null, { timeout: 30_000 });
+      await waitForEsprNavigationSlot();
+      response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: 75_000 });
+      const status = response?.status?.() || 0;
+
+      if (status === 429 || status === 403) {
+        const serverDelay = retryAfterMs(response);
+        const fallbackDelay = status === 429
+          ? [20_000, 35_000, 55_000, 80_000, 120_000, 150_000][Math.min(attempt - 1, 5)]
+          : [15_000, 30_000, 45_000, 70_000, 100_000, 130_000][Math.min(attempt - 1, 5)];
+        const delay = Math.max(serverDelay, fallbackDelay);
+        throw Object.assign(new Error(`HTTP ${status}`), { esprRetryDelay: delay, status });
+      }
+
+      if (status >= 400) throw new Error(`HTTP ${status}`);
+
+      await page.waitForFunction(
+        () => String(document.body?.innerText || "").replace(/\s+/g, " ").trim().length > 40,
+        null,
+        { timeout: 35_000 }
+      );
       try { await page.waitForLoadState("networkidle", { timeout: 8_000 }); } catch {}
-      await page.waitForTimeout(options.settleMs ?? 250);
+      await page.waitForTimeout(options.settleMs ?? 400);
       return;
     } catch (error) {
       lastError = error;
-      if (attempt < attempts) await sleep(700 * attempt);
+      if (attempt >= attempts) break;
+
+      const status = Number(error?.status || 0);
+      const delay = Number(error?.esprRetryDelay || 0) || Math.min(15_000, 1200 * (2 ** (attempt - 1)));
+      if (status === 429 || status === 403) {
+        console.warn(`[ESPR] ${status} from ${url} — waiting ${Math.ceil(delay / 1000)}s before retry ${attempt + 1}/${attempts}`);
+      } else {
+        console.warn(`[ESPR] navigation retry ${attempt + 1}/${attempts} for ${url} in ${Math.ceil(delay / 1000)}s: ${error?.message || error}`);
+      }
+      try { await page.goto("about:blank", { waitUntil: "commit", timeout: 10_000 }); } catch {}
+      await sleep(delay);
     }
   }
   throw new Error(`${url}: ${lastError?.message || "navigation failed"}`);

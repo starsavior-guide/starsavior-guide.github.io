@@ -266,7 +266,7 @@ async function refreshPotentials(context, oldPotentials) {
   const slugs = await discoverSlugs(page, "potentials");
   await page.close();
   const oldById = new Map((oldPotentials || []).map((item) => [Number(item.id), item]));
-  const results = await mapLimit(slugs, 2, async (slug) => {
+  const results = await mapLimit(slugs, 1, async (slug) => {
     const workerPage = await context.newPage();
     try {
       const records = {};
@@ -327,14 +327,23 @@ async function main() {
   const oldByName = new Map((oldArchive.arcanas || []).map((item) => [normalizeText(item.name?.ko), item]));
 
   const browser = await chromium.launch({ headless: true });
-  const context = await browser.newContext({ locale: "ko-KR", viewport: { width: 1280, height: 1800 } });
+  const context = await browser.newContext({
+    locale: "ko-KR",
+    viewport: { width: 1280, height: 1800 },
+    userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    extraHTTPHeaders: {
+      "accept-language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
+      "cache-control": "no-cache",
+      pragma: "no-cache"
+    }
+  });
   const discovery = await context.newPage();
   const slugs = await discoverSlugs(discovery, "arcanas");
   await discovery.close();
   console.log(`ESPR Arcana discovered: ${slugs.length}`);
 
   const failures = [];
-  const scraped = await mapLimit(slugs, 2, async (slug, index) => {
+  const scraped = await mapLimit(slugs, 1, async (slug, index) => {
     try {
       console.log(`[${index + 1}/${slugs.length}] ${slug}`);
       return await scrapeOneArcana(context, slug, oldById, oldByName);
