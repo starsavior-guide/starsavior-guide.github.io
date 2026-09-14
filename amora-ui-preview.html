@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>아모라 상세 UI 미리보기</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090c13;--surface:#111722;--surface2:#161e2b;--surface3:#1b2534;--text:#f4f7fb;--muted:#9ba8ba;--faint:#738095;--line:#283344;--line2:#35445a;--accent:#73a1ff;--order:#d6a53b;--danger:#ff6678;--shadow:0 18px 50px rgba(0,0,0,.22)}
+    html[data-theme="light"]{color-scheme:light;--bg:#eef2f7;--surface:#fff;--surface2:#f6f8fb;--surface3:#edf1f6;--text:#172033;--muted:#4f5d73;--faint:#6f7c90;--line:#dbe1e9;--line2:#c9d1dc;--accent:#477ee7;--shadow:0 16px 40px rgba(50,72,105,.10)}
+    *{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:radial-gradient(circle at 50% -12rem,rgba(71,126,231,.10),transparent 36rem),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR",system-ui,sans-serif;word-break:keep-all}
+    button{font:inherit;color:inherit}img{display:block;max-width:100%}.wrap{width:min(760px,calc(100% - 24px));margin:0 auto;padding:18px 0 72px}
+    .preview-note{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--muted);font-size:12px;font-weight:800}.preview-note strong{color:var(--text)}
+    .theme{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;background:var(--surface2);cursor:pointer}
+    .hero{overflow:hidden;border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:var(--shadow)}
+    .portrait{position:relative;display:flex;min-height:280px;align-items:flex-end;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 30%,rgba(214,165,59,.24),transparent 38%),linear-gradient(180deg,var(--surface2),var(--surface))}
+    .portrait img{width:min(86%,480px);max-height:330px;object-fit:contain;object-position:center bottom}.portrait:after{position:absolute;inset:auto 0 0;height:30%;content:"";background:linear-gradient(transparent,var(--surface))}
+    .hero-copy{position:relative;z-index:2;margin-top:-18px;padding:0 18px 18px}.battle-tags,.profile-tags,.content-tags,.skill-meta{display:flex;flex-wrap:wrap;gap:7px}
+    .tag{display:inline-flex;min-height:29px;align-items:center;padding:5px 9px;border:1px solid var(--line);border-radius:8px;background:var(--surface2);color:var(--muted);font-size:12px;font-weight:900}.tag.order{border-color:color-mix(in srgb,var(--order) 58%,var(--line));background:color-mix(in srgb,var(--order) 14%,var(--surface2));color:#e8c978}.tag.grade{color:#ffd276}.tag.class{color:#b8caff}.tag.type{color:#d6dde8}
+    html[data-theme="light"] .tag.order{color:#8c6715}.name{margin:14px 0 0;font-size:36px;font-weight:950;letter-spacing:-.055em;line-height:1}.affiliation{margin:7px 0 0;color:var(--muted);font-size:14px;font-weight:850}.description{margin:16px 0 0;color:var(--text);font-size:14px;font-weight:680;line-height:1.75}
+    .profile-tags{margin-top:16px}.profile-tags .tag{background:var(--surface3);font-weight:780}.profile-tags b{margin-right:5px;color:var(--faint);font-size:10px;letter-spacing:.04em}
+    .illustration{margin-top:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface2)}.illustration summary{padding:12px 14px;cursor:pointer;font-size:13px;font-weight:900}.illustration img{width:100%;max-height:680px;object-fit:contain;border-top:1px solid var(--line);background:var(--surface)}
+    .priority{display:grid;grid-template-columns:94px 1fr;gap:12px;margin-top:12px}.tier-card,.content-card{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:15px}.tier-card{display:grid;place-items:center;background:linear-gradient(145deg,rgba(255,102,120,.14),transparent),var(--surface)}.tier-card strong{color:var(--danger);font-size:28px;font-weight:950}.tier-card small{color:var(--faint);font-weight:850}.content-card h3{margin:0 0 10px;font-size:13px}.content-tags .tag{font-size:11px;min-height:27px}
+    .tabs{position:sticky;z-index:5;top:0;display:grid;grid-template-columns:repeat(4,1fr);margin-top:14px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);overflow:hidden}.tab{position:relative;min-height:48px;border:0;background:transparent;color:var(--muted);font-size:12px;font-weight:900;cursor:pointer}.tab+ .tab{border-left:1px solid var(--line)}.tab.is-active{color:var(--text);background:var(--surface2)}.tab.is-active:after{position:absolute;right:18%;bottom:0;left:18%;height:3px;border-radius:3px 3px 0 0;background:var(--accent);content:""}
+    .panel{display:none;margin-top:12px}.panel.is-active{display:block}.section{margin-top:12px;border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}.section:first-child{margin-top:0}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 16px;border-bottom:1px solid var(--line)}.section-head h2{margin:0;font-size:18px;font-weight:950;letter-spacing:-.03em}.section-head small{color:var(--faint);font-size:11px;font-weight:850}.section-body{padding:16px}
+    .journey-priority{padding:15px;border:1px solid color-mix(in srgb,var(--accent) 32%,var(--line));border-radius:12px;background:color-mix(in srgb,var(--accent) 7%,var(--surface2));font-size:15px;font-weight:950;line-height:1.6}.journey-priority span{color:var(--accent)}
+    .gear-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.gear{padding:13px;border:1px solid var(--line);border-radius:11px;background:var(--surface2)}.gear small{display:block;color:var(--faint);font-size:10px;font-weight:900}.gear strong{display:block;margin-top:4px;font-size:15px}.set-list{display:grid;gap:8px;margin-top:12px}.set{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface2);font-size:13px;font-weight:850}.set b{color:var(--accent)}.note{margin:10px 0 0;color:var(--muted);font-size:12px;font-weight:750}.potential-recommend{display:inline-flex;margin-top:12px;padding:8px 12px;border:1px solid color-mix(in srgb,var(--accent) 45%,var(--line));border-radius:9px;background:color-mix(in srgb,var(--accent) 10%,var(--surface2));font-size:13px;font-weight:950}.potential-recommend b{margin-left:7px;color:var(--accent)}
+    .resonance{display:grid;gap:9px}.res-row{display:grid;grid-template-columns:58px minmax(0,1fr);gap:12px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface2)}.res-level{color:var(--accent);font-weight:950}.res-copy strong{display:block;font-size:14px}.res-copy p{margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.6}
+    .skills{display:grid;gap:10px}.skill{padding:15px;border:1px solid var(--line);border-radius:13px;background:var(--surface2)}.skill-top{display:grid;grid-template-columns:48px 1fr;gap:11px;align-items:center}.skill-icon{width:48px;height:48px;border:1px solid var(--line);border-radius:11px;object-fit:cover;background:var(--surface3)}.skill-title{display:flex;flex-wrap:wrap;gap:7px;align-items:center}.skill-title strong{font-size:15px}.skill-kind{padding:4px 7px;border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line));border-radius:7px;background:color-mix(in srgb,var(--accent) 9%,var(--surface));color:var(--accent);font-size:10px;font-weight:950}.skill-meta{margin-top:5px}.skill-meta span{color:var(--faint);font-size:10px;font-weight:850}.skill p{margin:12px 0 0;color:var(--text);font-size:13px;font-weight:680;line-height:1.7}.skill p b{color:var(--accent)}
+    .arcana-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.arcana{overflow:hidden;border:1px solid var(--line);border-radius:12px;background:var(--surface2)}.arcana img{width:100%;aspect-ratio:1.55/1;object-fit:cover}.arcana-copy{padding:10px}.arcana-copy strong{display:block;font-size:12px;line-height:1.4}.stat-chip{display:inline-flex;margin-top:7px;padding:4px 7px;border:1px solid var(--line);border-radius:7px;background:var(--surface3);color:var(--muted);font-size:10px;font-weight:900}.alt-list{display:grid;gap:8px}.alt{padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface2);font-size:12px;font-weight:800}.alt small{display:block;margin-top:4px;color:var(--faint)}
+    @media(max-width:520px){.wrap{width:min(100% - 16px,760px);padding-top:8px}.preview-note{font-size:11px}.portrait{min-height:220px}.portrait img{width:96%;max-height:270px}.hero-copy{padding:0 13px 14px}.name{font-size:31px}.description{font-size:13px}.tag{font-size:11px}.profile-tags{gap:6px}.profile-tags .tag{font-size:10.5px}.priority{grid-template-columns:82px 1fr}.tier-card,.content-card{padding:12px}.tier-card strong{font-size:24px}.tabs{top:0}.tab{min-height:45px;font-size:11px}.section-head,.section-body{padding:13px}.section-head h2{font-size:16px}.journey-priority{font-size:13px;padding:13px}.arcana-grid{gap:8px}.arcana-copy{padding:8px}.arcana-copy strong{font-size:11px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="preview-note"><span><strong>아모라 전용 UI 시험판</strong> · 기존 사이트에는 적용하지 않은 별도 미리보기</span><button class="theme" id="theme" type="button" aria-label="테마 변경">☀</button></div>
+
+    <section class="hero">
+      <div class="portrait"><img src="./data/savior-detail-assets/992e1469ab25043bbf447a8a.webp" alt="아모라"></div>
+      <div class="hero-copy">
+        <div class="battle-tags"><span class="tag order">질서</span><span class="tag grade">SSR</span><span class="tag class">어쌔신</span><span class="tag type">참격</span></div>
+        <h1 class="name">아모라</h1>
+        <p class="affiliation">스트라니스 백작가</p>
+        <p class="description">스트라니스 백작가의 현 가주이자, 대마녀 알리시아를 따르는 집행자. 여유로운 성격으로 짓궂은 장난을 즐긴다. 술통을 손에서 놓지 않는 애주가지만, 실력 하나만큼은 확실한 편.</p>
+        <div class="profile-tags">
+          <span class="tag"><b>생일</b>03월 16일</span><span class="tag"><b>신장</b>171cm</span>
+          <span class="tag"><b>출신</b>스트라니스 백작령</span><span class="tag"><b>소속</b>스트라니스 백작가</span>
+          <span class="tag"><b>CV KR</b>김도영</span><span class="tag"><b>CV JP</b>코마가타 유리</span>
+        </div>
+        <details class="illustration"><summary>일러스트 보기</summary><img src="./data/savior-detail-assets/8500523b272a250963276f06.webp" alt="아모라 일러스트"></details>
+      </div>
+    </section>
+
+    <section class="priority">
+      <div class="tier-card"><small>PVE</small><strong>0티어</strong></div>
+      <div class="content-card"><h3>주 사용 콘텐츠</h3><div class="content-tags"><span class="tag">작전</span><span class="tag">회랑</span><span class="tag">코스모 게이트</span><span class="tag">인자작</span></div></div>
+    </section>
+
+    <nav class="tabs" aria-label="아모라 상세 탭">
+      <button class="tab is-active" type="button" data-tab="growth">육성</button>
+      <button class="tab" type="button" data-tab="resonance">공명 잠재력</button>
+      <button class="tab" type="button" data-tab="skill">스킬</button>
+      <button class="tab" type="button" data-tab="arcana">아르카나</button>
+    </nav>
+
+    <div class="panel is-active" data-panel="growth">
+      <section class="section"><div class="section-head"><h2>여정 스탯 우선순위</h2></div><div class="section-body"><div class="journey-priority"><span>힘</span> &gt; <span>집중</span> &gt; 체력 = 인내 &gt; 보호</div></div></section>
+      <section class="section"><div class="section-head"><h2>장비 세팅</h2><small>PVE 기준</small></div><div class="section-body">
+        <div class="gear-grid"><div class="gear"><small>목걸이</small><strong>속도</strong></div><div class="gear"><small>반지</small><strong>공격력%</strong></div></div>
+        <div class="set-list"><div class="set"><span>통찰(4) + 적중(2)</span><b>추천</b></div><div class="set"><span>파괴(4) + 적중(2)</span></div><div class="set"><span>정밀(4) + 적중(2)</span></div></div>
+        <p class="note">※ 적중(2)는 투지(2)로 대체 가능.</p><span class="potential-recommend">추천 잠재력 <b>AX</b></span>
+      </div></section>
+    </div>
+
+    <div class="panel" data-panel="resonance">
+      <section class="section"><div class="section-head"><h2>공명 잠재력</h2><small>구원자 고유 정보</small></div><div class="section-body"><div class="resonance">
+        <div class="res-row"><div class="res-level">Lv.3</div><div class="res-copy"><strong>통찰의 감각</strong><p>치명타 확률이 일정 비율만큼 소폭 증가합니다.</p></div></div>
+        <div class="res-row"><div class="res-level">Lv.6</div><div class="res-copy"><strong>공격의 감각</strong><p>공격력이 일정 비율만큼 소폭 증가합니다.</p></div></div>
+        <div class="res-row"><div class="res-level">Lv.10</div><div class="res-copy"><strong>통찰의 솜씨</strong><p>치명타 확률이 3% 증가합니다.</p></div></div>
+      </div></div></section>
+    </div>
+
+    <div class="panel" data-panel="skill">
+      <section class="section"><div class="section-head"><h2>스킬</h2><small>패시브 → 기본기 → 특수기 → 궁극기</small></div><div class="section-body"><div class="skills">
+        <article class="skill"><div class="skill-top"><img class="skill-icon" src="./data/savior-detail-assets/7d725fb2ad6e85d45acc4551.webp" alt=""><div><div class="skill-title"><strong>스트라니스의 주인</strong><span class="skill-kind">패시브</span></div></div></div><p>아모라의 공격력이 <b>15%</b> 증가합니다. 약화 효과 상태가 아닐 때 타격 피해량이 증가하며, 통찰 최대 스택 도달 시 약화 효과를 해제하고 강화 효과를 얻습니다.</p></article>
+        <article class="skill"><div class="skill-top"><img class="skill-icon" src="./data/savior-detail-assets/5f20fb2ee4032d9da82e4c68.webp" alt=""><div><div class="skill-title"><strong>취하지 않는 창</strong><span class="skill-kind">기본기</span></div><div class="skill-meta"><span>적 단일</span></div></div></div><p>눈에 보이지 않을 정도로 빠르게 연격하여 적을 공격합니다. 자신에게 <b>통찰</b> 스택을 1개 부여합니다.</p></article>
+        <article class="skill"><div class="skill-top"><img class="skill-icon" src="./data/savior-detail-assets/06caa9a7f99b4f3cf060ba72.webp" alt=""><div><div class="skill-title"><strong>꿰어내는 별</strong><span class="skill-kind">특수기</span></div><div class="skill-meta"><span>3턴</span><span>적 단일</span><span>노바 획득 1</span></div></div></div><p>적에게 명중률 감소를 발생시키고 자신의 행동 게이지를 <b>30%</b> 증가시킨 뒤 통찰 스택을 1개 얻습니다.</p></article>
+        <article class="skill"><div class="skill-top"><img class="skill-icon" src="./data/savior-detail-assets/de19d2d1e0cabc17f4a3fe71.webp" alt=""><div><div class="skill-title"><strong>빛을 벼려낸 집행</strong><span class="skill-kind">궁극기</span></div><div class="skill-meta"><span>6턴</span><span>적 전체</span><span>노바 획득 1</span></div></div></div><p>적 전체를 공격하고 자신에게 <b>밤에 피는 꽃</b>을 부여하며, 적 전체에 명중률 감소를 발생시킨 뒤 추가 턴을 얻습니다.</p></article>
+      </div></div></section>
+    </div>
+
+    <div class="panel" data-panel="arcana">
+      <section class="section"><div class="section-head"><h2>PVE 추천 아르카나</h2><small>카드 + 여정 주 능력치</small></div><div class="section-body"><div class="arcana-grid">
+        <article class="arcana"><img src="./data/arcana-assets/cards/7102501.webp" alt="단점 보완 맞춤 훈련"><div class="arcana-copy"><strong>단점 보완 맞춤 훈련</strong><span class="stat-chip">힘</span></div></article>
+        <article class="arcana"><img src="./data/arcana-assets/cards/7105301.webp" alt="키라만큼 귀여워!"><div class="arcana-copy"><strong>키라만큼 귀여워!</strong><span class="stat-chip">힘</span></div></article>
+        <article class="arcana"><img src="./data/arcana-assets/cards/7105701.webp" alt="불굴의 역작"><div class="arcana-copy"><strong>불굴의 역작</strong><span class="stat-chip">힘</span></div></article>
+        <article class="arcana"><img src="./data/arcana-assets/cards/7105801.webp" alt="귀로 없는 여정"><div class="arcana-copy"><strong>귀로 없는 여정</strong><span class="stat-chip">체력</span></div></article>
+        <article class="arcana"><img src="./data/arcana-assets/cards/7100501.webp" alt="꽃들에게 죽음을"><div class="arcana-copy"><strong>꽃들에게 죽음을</strong><span class="stat-chip">인내</span></div></article>
+      </div></div></section>
+      <section class="section"><div class="section-head"><h2>대체 아르카나</h2></div><div class="section-body"><div class="alt-list">
+        <div class="alt">노 페인, 노 게인<small>단점 보완 맞춤 훈련 대체</small></div>
+        <div class="alt">하얀 달의 온기는 햇빛처럼 / 어느 한 기사의 맹세 / 완벽한 바니걸<small>불굴의 역작 대체</small></div>
+        <div class="alt">메이드 바이 페트라♡ / 별을 보며 꿈을<small>꽃들에게 죽음을 대체</small></div>
+        <div class="alt">허수의 개척자<small>귀로 없는 여정 대체</small></div>
+      </div></div></section>
+    </div>
+  </main>
+
+  <script>
+    document.querySelectorAll('.tab').forEach((button)=>button.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach((item)=>item.classList.toggle('is-active',item===button));
+      document.querySelectorAll('.panel').forEach((panel)=>panel.classList.toggle('is-active',panel.dataset.panel===button.dataset.tab));
+    }));
+    document.querySelector('#theme').addEventListener('click',()=>{
+      const light=document.documentElement.dataset.theme==='light';
+      document.documentElement.dataset.theme=light?'dark':'light';
+      document.querySelector('#theme').textContent=light?'☀':'☾';
+    });
+  </script>
+</body>
+</html>
