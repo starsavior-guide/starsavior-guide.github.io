@@ -8124,7 +8124,8 @@ function createEquipmentDatabaseMarkup() {
       </header>
 
       <section class="equipment-panel">
-        <div class="equipment-panel-inner">
+        <div class="equipment-panel-inner overview-mascot-layout">
+          <img class="overview-mascot" src="./images/guide-mascot.webp?v=20260915" alt="" aria-hidden="true">
           <h2 class="equipment-section-title">장비 개요</h2>
           <ul class="equipment-overview-list">
             <li>딜러 서브딜러 딜탱은 공격력, 공격력% 또는 생명력, 생명력%, 치명타 확률, 치명타 피해, 속도를 유효 옵션으로 사용합니다.</li>
@@ -9347,7 +9348,8 @@ function createArcanaDatabaseMarkup() {
       </header>
 
       <section class="equipment-panel arcana-overview-panel" id="arcana-overview">
-        <div class="equipment-panel-inner">
+        <div class="equipment-panel-inner overview-mascot-layout">
+          <img class="overview-mascot" src="./images/guide-mascot.webp?v=20260915" alt="" aria-hidden="true">
           <h2 class="equipment-section-title">${escapeHtml(arcanaUi("overviewTitle"))}</h2>
           <ul class="equipment-overview-list">
             <li>${escapeHtml(arcanaUi("overview1"))}</li>
