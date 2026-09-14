@@ -1,23 +1,10 @@
 {
   "source": "https://star-savior-arcana-db.pages.dev/arcana",
-  "sourceFiles": [
-    "https://star-savior-arcana-db.pages.dev/data/arcanas.json",
-    "https://star-savior-arcana-db.pages.dev/data/potentials.json",
-    "https://star-savior-arcana-db.pages.dev/data/journey_buffs.json"
-  ],
-  "capturedAt": "2026-09-03T07:53:10.562Z",
-  "sourceDataSha256": "aec0f5553a79a11c22949c4e2ebc140a96921b57d060900be06001c0ad422936",
+  "capturedAt": "2026-09-14T17:12:13.511Z",
+  "canonicalArcanaCapturedAt": "2026-09-03T07:51:58.442Z",
   "counts": {
-    "cards": 80,
-    "events": 194,
-    "choices": 240,
-    "automaticChoices": 148,
-    "branchEvents": 46,
-    "choicesWithFailure": 13,
-    "successRewardGroups": 598,
-    "failureRewardGroups": 42,
-    "rewardItems": 640,
-    "assets": 72
+    "arcanas": 80,
+    "events": 194
   },
   "languages": [
     "ko",
@@ -31,8 +18,8 @@
     "ja": "6589ee3d504da8a64a1ed4b1aa33da686e468c951bc0bd62e24d588141378eb5"
   },
   "arcanaOutputHashes": {
-    "ko": "891079ee135eacd17e6e6865d9a0c8a2f2438b5cc2034e9abf1b5b969278e406",
-    "en": "f48f9d1588fda453bb6fc3fb4ce20aec5e240545659b2c4dcc83f3325f428513",
-    "ja": "50ee3fede822fbb47bb88413cc5b0b62e5888eb534bc4c0c1f2df729f5587baf"
+    "ko": "c26f88d2aef62d0f2c1aa95fd5457e5553ba10c006b95d7a7c49dfbb10a0357b",
+    "en": "c9b592c22d9b1dcbfdd18dd3bcdb23eac9942ee7fff77647f131b96a6693246d",
+    "ja": "a7b47138dcca6f283389b0ad046622a176bdf18ed2d8c4b6d6fdab5892abb6c5"
   }
 }

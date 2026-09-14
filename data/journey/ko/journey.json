@@ -4,7 +4,7 @@
   "arcana": [
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7100301",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7100301,
       "arcanaName": "빛을 쫓아라!",
       "title": "[아르카나]빛을 쫓아라!",
@@ -190,7 +190,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7100501",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7100501,
       "arcanaName": "꽃들에게 죽음을",
       "title": "[아르카나]꽃들에게 죽음을",
@@ -441,7 +441,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7100801",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7100801,
       "arcanaName": "깊은 애도",
       "title": "[아르카나]깊은 애도",
@@ -783,7 +783,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7100901",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7100901,
       "arcanaName": "조용한 휴식 시간",
       "title": "[아르카나]조용한 휴식 시간",
@@ -985,7 +985,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7101001",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7101001,
       "arcanaName": "어느 한 기사의 맹세",
       "title": "[아르카나]어느 한 기사의 맹세",
@@ -1174,7 +1174,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7101101",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7101101,
       "arcanaName": "유리창 너머의 밤 풍경",
       "title": "[아르카나]유리창 너머의 밤 풍경",
@@ -1474,7 +1474,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7101301",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7101301,
       "arcanaName": "공녀, 왕좌에 오르다",
       "title": "[아르카나]공녀, 왕좌에 오르다",
@@ -1655,7 +1655,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7101601",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7101601,
       "arcanaName": "누각 위, 유리달 맞이",
       "title": "[아르카나]누각 위, 유리달 맞이",
@@ -1894,7 +1894,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7101602",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7101602,
       "arcanaName": "하얀 달의 온기는 햇빛처럼",
       "title": "[아르카나]하얀 달의 온기는 햇빛처럼",
@@ -2190,7 +2190,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7101701",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7101701,
       "arcanaName": "영원 속박의 굴레",
       "title": "[아르카나]영원 속박의 굴레",
@@ -2570,7 +2570,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7102101",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7102101,
       "arcanaName": "친구들과의 산책",
       "title": "[아르카나]친구들과의 산책",
@@ -2721,7 +2721,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7102301",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7102301,
       "arcanaName": "하늘의 심판",
       "title": "[아르카나]하늘의 심판",
@@ -2887,7 +2887,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7102401",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7102401,
       "arcanaName": "하늘의 시련",
       "title": "[아르카나]하늘의 시련",
@@ -3126,7 +3126,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7102501",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7102501,
       "arcanaName": "단점 보완 맞춤 훈련",
       "title": "[아르카나]단점 보완 맞춤 훈련",
@@ -3377,7 +3377,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7102601",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7102601,
       "arcanaName": "서류 더미 위의 책임감",
       "title": "[아르카나]서류 더미 위의 책임감",
@@ -3587,7 +3587,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7102901",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7102901,
       "arcanaName": "오늘의 한 걸음",
       "title": "[아르카나]오늘의 한 걸음",
@@ -3952,7 +3952,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7103101",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7103101,
       "arcanaName": "허수의 개척자",
       "title": "[아르카나]허수의 개척자",
@@ -4267,7 +4267,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7103201",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7103201,
       "arcanaName": "서투른 욕망 해소법",
       "title": "[아르카나]서투른 욕망 해소법",
@@ -4474,7 +4474,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7103301",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7103301,
       "arcanaName": "보이지 않는 곳",
       "title": "[아르카나]보이지 않는 곳",
@@ -4628,7 +4628,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7103302",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7103302,
       "arcanaName": "음독의 각오",
       "title": "[아르카나]음독의 각오",
@@ -4811,7 +4811,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7104101",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7104101,
       "arcanaName": "본 투 비 와일드",
       "title": "[아르카나]본 투 비 와일드",
@@ -4995,7 +4995,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7104201",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7104201,
       "arcanaName": "메이드 바이 페트라♡",
       "title": "[아르카나]메이드 바이 페트라♡",
@@ -5280,7 +5280,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7104301",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7104301,
       "arcanaName": "대단하고 엄청난 바니걸",
       "title": "[아르카나]대단하고 엄청난 바니걸",
@@ -5604,7 +5604,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7104401",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7104401,
       "arcanaName": "완벽한 바니걸",
       "title": "[아르카나]완벽한 바니걸",
@@ -5938,7 +5938,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7104501",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7104501,
       "arcanaName": "한여름밤의 하늘",
       "title": "[아르카나]한여름밤의 하늘",
@@ -6140,7 +6140,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7104601",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7104601,
       "arcanaName": "휴가 준비는 쇼핑에서부터!",
       "title": "[아르카나]휴가 준비는 쇼핑에서부터!",
@@ -6395,7 +6395,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7104901",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7104901,
       "arcanaName": "노 페인, 노 게인",
       "title": "[아르카나]노 페인, 노 게인",
@@ -6576,7 +6576,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7105101",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7105101,
       "arcanaName": "튀김 명인",
       "title": "[아르카나]튀김 명인",
@@ -6763,7 +6763,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7105201",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7105201,
       "arcanaName": "진실은 언제나 하나겠지요?",
       "title": "[아르카나]진실은 언제나 하나겠지요?",
@@ -6942,7 +6942,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7105301",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7105301,
       "arcanaName": "키라만큼 귀여워!",
       "title": "[아르카나]키라만큼 귀여워!",
@@ -7243,7 +7243,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7105401",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7105401,
       "arcanaName": "스트라니스의 영애",
       "title": "[아르카나]스트라니스의 영애",
@@ -7474,7 +7474,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7105501",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7105501,
       "arcanaName": "나른한 오후의 틈새",
       "title": "[아르카나]나른한 오후의 틈새",
@@ -7758,7 +7758,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7105601",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7105601,
       "arcanaName": "죽음이 둘을 갈라놓을 때까지",
       "title": "[아르카나]죽음이 둘을 갈라놓을 때까지",
@@ -7972,7 +7972,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7105701",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7105701,
       "arcanaName": "불굴의 역작",
       "title": "[아르카나]불굴의 역작",
@@ -8371,7 +8371,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7105801",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7105801,
       "arcanaName": "귀로 없는 여정",
       "title": "[아르카나]귀로 없는 여정",
@@ -8623,7 +8623,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7150101",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7150101,
       "arcanaName": "만족스러운 식사",
       "title": "[아르카나]만족스러운 식사",
@@ -9041,7 +9041,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7150201",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7150201,
       "arcanaName": "언더커버 캅",
       "title": "[아르카나]언더커버 캅",
@@ -9215,7 +9215,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7150701",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7150701,
       "arcanaName": "누구보다 프로페셔널",
       "title": "[아르카나]누구보다 프로페셔널",
@@ -9396,7 +9396,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7150801",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7150801,
       "arcanaName": "별을 보며 꿈을",
       "title": "[아르카나]별을 보며 꿈을",
@@ -9592,7 +9592,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7300101",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7300101,
       "arcanaName": "노스텔지어의 역습",
       "title": "[아르카나]노스텔지어의 역습",
@@ -9936,7 +9936,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7300201",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7300201,
       "arcanaName": "경력직 용병",
       "title": "[아르카나]경력직 용병",
@@ -10136,7 +10136,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7300301",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7300301,
       "arcanaName": "종말은 소녀의 얼굴을 하고 있다.",
       "title": "[아르카나]종말은 소녀의 얼굴을 하고 있다.",
@@ -10365,7 +10365,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/7040101",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 7040101,
       "arcanaName": "금단의 기록물 Vol. 1",
       "title": "[아르카나]금단의 기록물 Vol. 1",
@@ -10613,7 +10613,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6100101",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6100101,
       "arcanaName": "여정 시작",
       "title": "[아르카나]여정 시작",
@@ -10779,7 +10779,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6100201",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6100201,
       "arcanaName": "고양이는 웃지 않는다",
       "title": "[아르카나]고양이는 웃지 않는다",
@@ -10996,7 +10996,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6100301",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6100301,
       "arcanaName": "달 너머로",
       "title": "[아르카나]달 너머로",
@@ -11129,7 +11129,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6100601",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6100601,
       "arcanaName": "청소, 뜻밖의 손님",
       "title": "[아르카나]청소, 뜻밖의 손님",
@@ -11295,7 +11295,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6100701",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6100701,
       "arcanaName": "폭룡의 습격",
       "title": "[아르카나]폭룡의 습격",
@@ -11554,7 +11554,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6101401",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6101401,
       "arcanaName": "환몽의 나비",
       "title": "[아르카나]환몽의 나비",
@@ -11705,7 +11705,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6101501",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6101501,
       "arcanaName": "사냥감 고르기",
       "title": "[아르카나]사냥감 고르기",
@@ -11897,7 +11897,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6101801",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6101801,
       "arcanaName": "고요한 증오",
       "title": "[아르카나]고요한 증오",
@@ -12063,7 +12063,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6101901",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6101901,
       "arcanaName": "달콤, 푹신, 쿠울…",
       "title": "[아르카나]달콤, 푹신, 쿠울…",
@@ -12199,7 +12199,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6102201",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6102201,
       "arcanaName": "준비, 조준, 발사",
       "title": "[아르카나]준비, 조준, 발사",
@@ -12365,7 +12365,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6102601",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6102601,
       "arcanaName": "대화 종료",
       "title": "[아르카나]대화 종료",
@@ -12513,7 +12513,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6102701",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6102701,
       "arcanaName": "뒷 마무리",
       "title": "[아르카나]뒷 마무리",
@@ -12664,7 +12664,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6103001",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6103001,
       "arcanaName": "품위 재단",
       "title": "[아르카나]품위 재단",
@@ -12860,7 +12860,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6103401",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6103401,
       "arcanaName": "만족스러운 개화",
       "title": "[아르카나]만족스러운 개화",
@@ -13008,7 +13008,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/6150601",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 6150601,
       "arcanaName": "래빗 타운",
       "title": "[아르카나]래빗 타운",
@@ -13205,7 +13205,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999901",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999901,
       "arcanaName": "불나방 예언자",
       "title": "[아르카나]불나방 예언자",
@@ -13263,7 +13263,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999902",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999902,
       "arcanaName": "마스터 메이드",
       "title": "[아르카나]마스터 메이드",
@@ -13321,7 +13321,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999903",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999903,
       "arcanaName": "숲을 나온 드루이드",
       "title": "[아르카나]숲을 나온 드루이드",
@@ -13379,7 +13379,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999904",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999904,
       "arcanaName": "두 얼굴의 토끼",
       "title": "[아르카나]두 얼굴의 토끼",
@@ -13422,7 +13422,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999905",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999905,
       "arcanaName": "서부의 검",
       "title": "[아르카나]서부의 검",
@@ -13480,7 +13480,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999906",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999906,
       "arcanaName": "별을 쫓는 소녀",
       "title": "[아르카나]별을 쫓는 소녀",
@@ -13538,7 +13538,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999907",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999907,
       "arcanaName": "푸른 피의 기업가",
       "title": "[아르카나]푸른 피의 기업가",
@@ -13596,7 +13596,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999908",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999908,
       "arcanaName": "주문은 스마일 하나",
       "title": "[아르카나]주문은 스마일 하나",
@@ -13654,7 +13654,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999909",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999909,
       "arcanaName": "들장미 기사단장",
       "title": "[아르카나]들장미 기사단장",
@@ -13697,7 +13697,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999910",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999910,
       "arcanaName": "언령의 소녀",
       "title": "[아르카나]언령의 소녀",
@@ -13740,7 +13740,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999911",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999911,
       "arcanaName": "야망 있는 신입",
       "title": "[아르카나]야망 있는 신입",
@@ -13798,7 +13798,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999912",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999912,
       "arcanaName": "천리안의 사냥꾼",
       "title": "[아르카나]천리안의 사냥꾼",
@@ -13856,7 +13856,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999913",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999913,
       "arcanaName": "환상수의 동반자",
       "title": "[아르카나]환상수의 동반자",
@@ -13899,7 +13899,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999914",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999914,
       "arcanaName": "서부의 뱀",
       "title": "[아르카나]서부의 뱀",
@@ -13957,7 +13957,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999915",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999915,
       "arcanaName": "기사단의 방패",
       "title": "[아르카나]기사단의 방패",
@@ -14015,7 +14015,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999916",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999916,
       "arcanaName": "용감한 배달부",
       "title": "[아르카나]용감한 배달부",
@@ -14073,7 +14073,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999917",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999917,
       "arcanaName": "얼음으로 빚은 검",
       "title": "[아르카나]얼음으로 빚은 검",
@@ -14131,7 +14131,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999918",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999918,
       "arcanaName": "초원의 질주혼",
       "title": "[아르카나]초원의 질주혼",
@@ -14174,7 +14174,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999919",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999919,
       "arcanaName": "서부의 방패",
       "title": "[아르카나]서부의 방패",
@@ -14232,7 +14232,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/5999920",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 5999920,
       "arcanaName": "민중의 삼단봉",
       "title": "[아르카나]민중의 삼단봉",
@@ -14290,7 +14290,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/1010101",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 1010101,
       "arcanaName": "별빛의 인도자",
       "title": "[아르카나]별빛의 인도자",
@@ -14302,7 +14302,7 @@
     },
     {
       "kind": "arcana",
-      "source": "https://star-savior-arcana-db.pages.dev/arcana/1011701",
+      "source": "https://star-savior-arcana-db.pages.dev/ko/database/arcanas",
       "arcanaId": 1011701,
       "arcanaName": "별빛의 인도자",
       "title": "[아르카나]별빛의 인도자",
@@ -41191,5 +41191,5 @@
   ],
   "source": "https://star-savior-arcana-db.pages.dev/arcana",
   "arcanaSource": "https://star-savior-arcana-db.pages.dev/arcana",
-  "arcanaCapturedAt": "2026-09-03T07:53:10.562Z"
+  "arcanaCapturedAt": "2026-09-03T07:51:58.442Z"
 }
