@@ -1,0 +1,50 @@
+name: Fix home button image fitting
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-home-button-fit-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-home-button:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Apply home button fit fix
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+          marker = '<style id="home-button-fit-fix">'
+          if marker not in text:
+              block = '''\n  <style id="home-button-fit-fix">\n    /* Keep the user-provided home image fully visible on mobile browsers. */\n    .brand-mark {\n      background-color: #fff !important;\n      background-image: url("./images/home-button.png") !important;\n      background-repeat: no-repeat !important;\n      background-position: center !important;\n      background-size: contain !important;\n    }\n\n    .brand-mark > img {\n      display: none !important;\n    }\n  </style>\n'''
+              text = text.replace('</head>', block + '\n</head>', 1)
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate fix
+        shell: bash
+        run: |
+          grep -q 'background-size: contain !important' index.html
+          grep -q '.brand-mark > img' index.html
+
+      - name: Commit fix and remove one-shot workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/fix-home-button-fit-once.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/fix-home-button-fit-once.yml
+          git commit -m "Fix home button image cropping"
+          git push origin HEAD:main
