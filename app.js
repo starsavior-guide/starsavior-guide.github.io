@@ -6012,8 +6012,53 @@ function collectSaviorArchiveSearchStrings(value, output = []) {
 }
 
 function getSaviorArchiveSearchText(savior) {
-  const archivedSavior = getArchivedSavior(savior);
-  return archivedSavior ? collectSaviorArchiveSearchStrings(archivedSavior).join(" ") : "";
+  const id = String(savior?.detailId ?? "");
+  const profile = id ? saviorProfileIndex.get(id) : null;
+  const source = [
+    profile?.resonancePotential,
+    profile?.resonancePotentialName,
+    profile?.potential,
+    profile?.potentialName,
+    profile?.potentials
+  ];
+
+  const values = [];
+
+  function collectPotentialNames(value) {
+    if (value == null) return;
+
+    if (Array.isArray(value)) {
+      value.forEach(collectPotentialNames);
+      return;
+    }
+
+    if (typeof value === "object") {
+      Object.entries(value).forEach(([key, nested]) => {
+        // 이름/명칭 계열 필드만 대상으로 하고, 설명/스킬/장비 등의 일반 문장은 제외한다.
+        if (/name|title|potential|resonance/i.test(key)) {
+          collectPotentialNames(nested);
+        } else if (typeof nested === "object" && nested !== null) {
+          collectPotentialNames(nested);
+        }
+      });
+      return;
+    }
+
+    if (typeof value !== "string") return;
+
+    // 공명 잠재력 검색은 '○○의 솜씨/감각/재능' 명칭만 허용한다.
+    // 장비 세트명, 스킬 설명의 '파괴' 같은 일반 단어는 검색 색인에 넣지 않는다.
+    const matches = value.match(/[가-힣A-Za-z0-9·\s]+의\s*(?:솜씨|감각|재능)/g);
+    if (!matches) return;
+
+    matches.forEach((match) => {
+      const cleaned = match.replace(/\s+/g, " ").trim();
+      if (cleaned) values.push(cleaned);
+    });
+  }
+
+  source.forEach(collectPotentialNames);
+  return [...new Set(values)].join(" ");
 }
 
 function createArchivedSaviorResonanceRows(archivedSavior, language = currentLanguage) {
