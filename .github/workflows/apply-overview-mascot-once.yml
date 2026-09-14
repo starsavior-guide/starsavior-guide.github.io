@@ -1,5 +1,6 @@
 name: Apply overview mascot once
 
+# retry 2
 on:
   push:
     branches: [main]
