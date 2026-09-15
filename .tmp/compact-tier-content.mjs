@@ -7,27 +7,29 @@ const pattern = /    <section class="content-section growth-priority-section" id
 const matches = app.match(pattern) || [];
 if (!matches.length) throw new Error('Growth priority section marker not found.');
 
-const replacement = `    <section class="savior-quick-summary" id="growth-priority">
-      <div class="savior-tier-compact \${escapeHtml(growthPriority.level)}">
-        <span class="savior-tier-label">PVE</span>
-        <strong>\${escapeHtml(growthPriority.tier)}</strong>
-        \${growthPriority.note
-          ? `<span class="savior-tier-note">\${escapeHtml(growthPriority.note)}</span>`
-          : ""}
-      </div>
-      <div class="savior-content-compact">
-        <h2>주 사용 콘텐츠</h2>
-        <div class="main-content-chips">
-          \${mainContents.map((content) => `
-            <span class="main-content-chip \${content === "없음" ? "is-empty" : ""}">
-              \${escapeHtml(content)}
-            </span>
-          `).join("")}
-        </div>
-      </div>
-    </section>
-
-`;
+const replacement = [
+  '    <section class="savior-quick-summary" id="growth-priority">',
+  '      <div class="savior-tier-compact ${escapeHtml(growthPriority.level)}">',
+  '        <span class="savior-tier-label">PVE</span>',
+  '        <strong>${escapeHtml(growthPriority.tier)}</strong>',
+  '        ${growthPriority.note',
+  '          ? `<span class="savior-tier-note">${escapeHtml(growthPriority.note)}</span>`',
+  '          : ""}',
+  '      </div>',
+  '      <div class="savior-content-compact">',
+  '        <h2>주 사용 콘텐츠</h2>',
+  '        <div class="main-content-chips">',
+  '          ${mainContents.map((content) => `',
+  '            <span class="main-content-chip ${content === "없음" ? "is-empty" : ""}">',
+  '              ${escapeHtml(content)}',
+  '            </span>',
+  '          `).join("")}',
+  '        </div>',
+  '      </div>',
+  '    </section>',
+  '',
+  ''
+].join('\n');
 
 app = app.replace(pattern, replacement);
 writeFileSync(appPath, app, 'utf8');
