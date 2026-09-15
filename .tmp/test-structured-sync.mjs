@@ -79,9 +79,9 @@ assert((savior.skills || []).some((skill) => (skill.buffs || []).length > 0), 'S
 assert(arcana, 'Structured builder did not restore the Arcana.');
 assert((arcana.events || []).length > 0, 'Arcana events were not retained.');
 assert(arcana.specialPotentialId != null, 'Arcana special potential linkage is missing.');
-assert((await fs.stat(path.join(scan, scanIndex[String(SAVIOR_ID)].profile.portrait.replace(/^\.\//, ''))).size > 20, 'Portrait was not downloaded.');
-assert((await fs.stat(path.join(scan, scanIndex[String(SAVIOR_ID)].profile.illustration.replace(/^\.\//, ''))).size > 20, 'Illustration was not downloaded.');
-assert((await fs.stat(path.join(scan, arcana.image.replace(/^\.\//, ''))).size > 20, 'Arcana card image was not downloaded.');
+assert((await fs.stat(path.join(scan, scanIndex[String(SAVIOR_ID)].profile.portrait.replace(/^\.\//, ''))).then((stat) => stat.size)) > 20, 'Portrait was not downloaded.');
+assert((await fs.stat(path.join(scan, scanIndex[String(SAVIOR_ID)].profile.illustration.replace(/^\.\//, ''))).then((stat) => stat.size)) > 20, 'Illustration was not downloaded.');
+assert((await fs.stat(path.join(scan, arcana.image.replace(/^\.\//, ''))).then((stat) => stat.size)) > 20, 'Arcana card image was not downloaded.');
 
 const referencedJourneyBuffId = Number(allRewards(arcana).find((reward) => reward.type === 'RT_JOURNEY_BUFF')?.rewardId || 0);
 const referencedPotentialId = Number(allRewards(arcana).find((reward) => reward.type === 'RT_SE_POTEN')?.rewardId || arcana.specialPotentialId || 0);
