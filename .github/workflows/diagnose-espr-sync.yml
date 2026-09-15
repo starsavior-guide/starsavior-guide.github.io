@@ -1,0 +1,85 @@
+name: Diagnose ESPR sync DOM
+
+on:
+  push:
+    paths:
+      - '.tmp/espr-diagnose-trigger.txt'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Inspect current ESPR DOM
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({ headless: true });
+          const page = await browser.newPage({ locale: 'ko-KR', viewport: { width: 1280, height: 1800 } });
+          const stable = async (url) => {
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 75000 });
+            try { await page.waitForLoadState('networkidle', { timeout: 10000 }); } catch {}
+            await page.waitForTimeout(1000);
+          };
+          await stable('https://ss.espr.gg/ko/database/characters');
+          const amoraHref = await page.evaluate(() => {
+            const a = [...document.querySelectorAll('a[href*="/ko/database/characters/"]')].find((node) => (node.innerText || '').includes('아모라'));
+            return a ? new URL(a.getAttribute('href'), location.href).href : '';
+          });
+          console.log('AMORA_HREF', amoraHref);
+          if (amoraHref) {
+            await stable(amoraHref);
+            const skillDiag = await page.evaluate(() => {
+              const norm = (v) => String(v ?? '').replace(/\s+/g, ' ').trim();
+              const main = document.querySelector('main') || document.body;
+              const selects = [...main.querySelectorAll('select')].map((s, i) => ({
+                i,
+                value: s.value,
+                options: [...s.options].map(o => ({ value: o.value, text: norm(o.textContent) })),
+                parentText: norm(s.parentElement?.parentElement?.innerText || '').slice(0, 1200),
+                html: (s.parentElement?.parentElement?.outerHTML || '').slice(0, 4000)
+              }));
+              const status = [...main.querySelectorAll('a[href*="/database/status-effects/"]')].map(a => ({ text: norm(a.innerText), href: a.href }));
+              return { selects, status };
+            });
+            console.log('SKILL_DIAG', JSON.stringify(skillDiag, null, 2));
+          }
+          await stable('https://ss.espr.gg/ko/database/arcanas/experienced-mercenary');
+          const arcanaDiag = await page.evaluate(() => {
+            const norm = (v) => String(v ?? '').replace(/\s+/g, ' ').trim();
+            const main = document.querySelector('main') || document.body;
+            const heading = [...main.querySelectorAll('h2')].find(h => norm(h.textContent) === '이벤트');
+            const siblings = [];
+            let n = heading?.nextElementSibling;
+            while (n && n.tagName !== 'H2') {
+              siblings.push({ tag: n.tagName, text: norm(n.innerText || n.textContent), html: n.outerHTML.slice(0, 10000) });
+              n = n.nextElementSibling;
+            }
+            return siblings;
+          });
+          console.log('ARCANA_EVENT_DIAG', JSON.stringify(arcanaDiag, null, 2));
+          await stable('https://ss.espr.gg/ko/database/potentials/catalyst');
+          const potDiag = await page.evaluate(() => {
+            const norm = (v) => String(v ?? '').replace(/\s+/g, ' ').trim();
+            const main = document.querySelector('main') || document.body;
+            return {
+              text: norm(main.innerText).slice(0, 5000),
+              images: [...main.querySelectorAll('img')].map(img => ({ alt: norm(img.alt), src: img.currentSrc || img.src })).slice(0, 30),
+              links: [...main.querySelectorAll('a[href]')].map(a => ({ text: norm(a.innerText), href: a.href })).slice(0, 80)
+            };
+          });
+          console.log('POTENTIAL_DIAG', JSON.stringify(potDiag, null, 2));
+          await browser.close();
+          NODE
