@@ -6,32 +6,21 @@ on:
       - '.tmp/espr-diagnose-trigger.txt'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   diagnose:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
-      - name: Patch append-only merge validation
+      - name: Validate sync scripts
         run: |
-          node .tmp/patch-sync.mjs
+          node --check scripts/build-structured-sync-snapshot.mjs
           node --check scripts/sync-new-espr.mjs
-          git diff --check
-      - name: Commit patch
-        shell: bash
-        run: |
-          if git diff --quiet -- scripts/sync-new-espr.mjs; then
-            echo 'No merge patch needed.'
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add scripts/sync-new-espr.mjs
-          git commit -m 'Harden append-only ESPR sync merge'
-          git pull --rebase origin main
-          git push origin HEAD:main
+          node --check .tmp/test-structured-sync.mjs
+      - name: Run isolated integration test
+        run: node .tmp/test-structured-sync.mjs
