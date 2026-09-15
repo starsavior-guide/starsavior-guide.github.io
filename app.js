@@ -70,12 +70,12 @@ Object.assign(I18N_DATA.terms.ja, {
 // ESPR 출처 표기 다국어
 Object.assign(I18N_DATA.ui.en, {
   "구원자 정보는 ": "Savior information references ",
-  "에크하르트 초자연 연구회(ESPR)": "Eckhart’s Society for Preternatural Research (ESPR)",
+  "에크하르트 초월지식 학회(ESPR)": "Eckhart's Society for Preternatural Research (ESPR)",
   "를 참고합니다.": "."
 });
 Object.assign(I18N_DATA.ui.ja, {
   "구원자 정보는 ": "救援者情報は、",
-  "에크하르트 초자연 연구회(ESPR)": "エッカート超常研究協会（ESPR）",
+  "에크하르트 초월지식 학회(ESPR)": "エクハルト超越知識学会（ESPR）",
   "를 참고합니다.": "を参考にしています。"
 });
 
@@ -7655,7 +7655,7 @@ function createDetailMarkup(savior) {
 
         <h1 class="detail-title" data-i18n-kind="savior" data-i18n-source="${escapeHtml(savior.name)}">${escapeHtml(getLocalizedSaviorName(savior.name))}</h1>
         <p class="detail-subtitle" data-i18n-kind="subtitle" data-i18n-source="${escapeHtml(savior.subtitle)}">${escapeHtml(getLocalizedSubtitle(savior.subtitle))}</p>
-        <p class="detail-summary">${escapeHtml(translateString("구원자 정보는 "))}<a href="https://ss.espr.gg/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">${escapeHtml(translateString("에크하르트 초자연 연구회(ESPR)"))}</a>${escapeHtml(translateString("를 참고합니다."))}</p>
+        <p class="detail-summary">${escapeHtml(translateString("구원자 정보는 "))}<a href="https://ss.espr.gg/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">${escapeHtml(translateString("에크하르트 초월지식 학회(ESPR)"))}</a>${escapeHtml(translateString("를 참고합니다."))}</p>
 
       </div>
     </header>
@@ -9123,7 +9123,7 @@ const ARCANA_UI_TEXT = {
   ko: {
     title: "아르카나",
     descriptionPrefix: "아르카나 정보는 ",
-    descriptionOrg: "에크하르트 초자연 연구회(ESPR)",
+    descriptionOrg: "에크하르트 초월지식 학회(ESPR)",
     descriptionSuffix: "를 참고합니다.",
     overviewTitle: "아르카나 개요",
     overview1: "아르카나는 구원자의 성능을 보조하는 공용 장비이자, 일부 구원자에게는 전용 장비와 같은 역할을 합니다.",
@@ -9173,7 +9173,7 @@ const ARCANA_UI_TEXT = {
   en: {
     title: "Arcana",
     descriptionPrefix: "Arcana information references ",
-    descriptionOrg: "Eckhart’s Society for Preternatural Research (ESPR)",
+    descriptionOrg: "Eckhart's Society for Preternatural Research (ESPR)",
     descriptionSuffix: ".",
     overviewTitle: "Arcana Overview",
     overview1: "Arcana function as shared equipment that supports a Savior's performance, and some serve a role similar to exclusive equipment for specific Saviors.",
@@ -9223,7 +9223,7 @@ const ARCANA_UI_TEXT = {
   ja: {
     title: "アルカナ",
     descriptionPrefix: "アルカナ情報は、",
-    descriptionOrg: "エッカート超常研究協会（ESPR）",
+    descriptionOrg: "エクハルト超越知識学会（ESPR）",
     descriptionSuffix: "を参考にしています。",
     overviewTitle: "アルカナ概要",
     overview1: "アルカナは救援者の性能を補助する共用装備であり、一部の救援者にとっては専用装備のような役割も果たします。",
