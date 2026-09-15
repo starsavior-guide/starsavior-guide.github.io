@@ -7665,33 +7665,22 @@ function createDetailMarkup(savior) {
     ${illustrationSection}
     ${guideButton ? `<section class="content-section savior-source-section">${guideButton}</section>` : ""}
 
-    <section class="content-section growth-priority-section" id="growth-priority">
-      <div class="section-titlebar">
-        <div>
-          <p>GROWTH PRIORITY</p>
-          <h2>육성 우선순위</h2>
-        </div>
+    <section class="savior-quick-summary" id="growth-priority">
+      <div class="savior-tier-compact ${escapeHtml(growthPriority.level)}">
+        <span class="savior-tier-label">PVE</span>
+        <strong>${escapeHtml(growthPriority.tier)}</strong>
+        ${growthPriority.note
+          ? `<span class="savior-tier-note">${escapeHtml(growthPriority.note)}</span>`
+          : ""}
       </div>
-      <div class="section-body">
-        <div class="growth-priority-card ${escapeHtml(growthPriority.level)}">
-          <div class="growth-priority-main">
-            <span class="growth-priority-label">PVE 기준</span>
-            <strong>${escapeHtml(growthPriority.tier)}</strong>
-          </div>
-          ${growthPriority.note
-            ? `<span class="growth-priority-note">${escapeHtml(growthPriority.note)}</span>`
-            : ""}
-        </div>
-
-        <div class="main-content-area">
-          <h3>주 사용 콘텐츠</h3>
-          <div class="main-content-chips">
-            ${mainContents.map((content) => `
-              <span class="main-content-chip ${content === "없음" ? "is-empty" : ""}">
-                ${escapeHtml(content)}
-              </span>
-            `).join("")}
-          </div>
+      <div class="savior-content-compact">
+        <h2>주 사용 콘텐츠</h2>
+        <div class="main-content-chips">
+          ${mainContents.map((content) => `
+            <span class="main-content-chip ${content === "없음" ? "is-empty" : ""}">
+              ${escapeHtml(content)}
+            </span>
+          `).join("")}
         </div>
       </div>
     </section>
