@@ -6,7 +6,7 @@ on:
       - '.tmp/espr-diagnose-trigger.txt'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   diagnose:
@@ -17,10 +17,37 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
+      - name: Patch optional Arcana choice labels
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const file = 'scripts/build-structured-sync-snapshot.mjs';
+          let text = fs.readFileSync(file, 'utf8');
+          const from = "        name: localized(choice.name, `arcana ${arcana.id} event ${event.id} choice`),";
+          const to = "        name: choice.name ? localized(choice.name, `arcana ${arcana.id} event ${event.id} choice`) : { ko: '', en: '', ja: '' },";
+          if (text.includes(from)) text = text.replace(from, to);
+          else if (!text.includes(to)) throw new Error('Arcana choice patch marker missing.');
+          fs.writeFileSync(file, text, 'utf8');
+          NODE
       - name: Validate sync scripts
         run: |
           node --check scripts/build-structured-sync-snapshot.mjs
           node --check scripts/sync-new-espr.mjs
           node --check .tmp/test-structured-sync.mjs
+          git diff --check
       - name: Run isolated integration test
         run: node .tmp/test-structured-sync.mjs
+      - name: Commit validated builder patch
+        shell: bash
+        run: |
+          if git diff --quiet -- scripts/build-structured-sync-snapshot.mjs; then
+            echo 'Builder already contains the validated patch.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/build-structured-sync-snapshot.mjs
+          git commit -m 'Handle unnamed Arcana event choices in ESPR sync'
+          git pull --rebase origin main
+          git push origin HEAD:main
