@@ -5,6 +5,9 @@ on:
     # 12:00 KST = 03:00 UTC. Wake weekly, then gate to every 14 days from 2026-09-17.
     - cron: '0 3 * * 4'
   workflow_dispatch:
+  push:
+    paths:
+      - '.tmp/sync-new-espr-trigger.txt'
 
 permissions:
   contents: write
@@ -29,7 +32,7 @@ jobs:
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
 
-          const manual = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
+          const manual = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch' || process.env.GITHUB_EVENT_NAME === 'push';
           const now = new Date();
           const anchorDay = Date.UTC(2026, 8, 17); // 2026-09-17 KST/UTC calendar date
           const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
