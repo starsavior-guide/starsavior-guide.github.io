@@ -5715,7 +5715,6 @@ const detailContent = document.querySelector("#detail-content");
 const simpleContent = document.querySelector("#simple-content");
 const searchInput = document.querySelector("#search-input");
 const visibleCount = document.querySelector("#visible-count");
-const totalCount = document.querySelector("#total-count");
 const emptyState = document.querySelector("#empty-state");
 const resetFilter = document.querySelector("#reset-filter");
 const navItems = [...document.querySelectorAll("[data-section]")];
@@ -5811,11 +5810,6 @@ function renderList() {
 
   saviorGrid.replaceChildren(...filtered.map(createSaviorCard));
   visibleCount.textContent = String(filtered.length);
-  totalCount.textContent = String(SAVIORS.length);
-  const totalCountUnit = document.querySelector("#total-count-unit");
-  if (totalCountUnit) {
-    totalCountUnit.textContent = currentLanguage === "ko" ? "명" : currentLanguage === "ja" ? "人" : "";
-  }
   emptyState.hidden = filtered.length > 0;
   applyLanguageToDOM(listView);
 }
@@ -9330,18 +9324,12 @@ async function loadArcanaArchive() {
 }
 
 function createArcanaDatabaseMarkup() {
-  const totalUnit = currentLanguage === "ko" ? "장" : currentLanguage === "ja" ? "枚" : "";
   return `
     <section class="arcana-db-page" data-arcana-view="list">
       <header class="arcana-db-heading">
         <div>
           <p class="eyebrow">ARCANA DATABASE</p>
-          <div class="database-title-line">
-            <h1>${escapeHtml(arcanaUi("title"))}</h1>
-            <span class="database-count-badge" aria-label="${escapeHtml(arcanaUi("registered"))}">
-              <strong id="arcana-total-count">${getPublishedArcanas().length}</strong>${totalUnit ? `<span>${escapeHtml(totalUnit)}</span>` : ""}
-            </span>
-          </div>
+          <h1>${escapeHtml(arcanaUi("title"))}</h1>
           <p>${escapeHtml(arcanaUi("descriptionPrefix"))}<a href="https://ss.espr.gg/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">${escapeHtml(arcanaUi("descriptionOrg"))}</a>${escapeHtml(arcanaUi("descriptionSuffix"))}</p>
         </div>
       </header>
@@ -9502,9 +9490,7 @@ function renderArcanaDatabase() {
   const results = document.querySelector("#arcana-db-results");
   if (!results || !arcanaDatabaseState.data) return;
   const filtered = getFilteredArcanas();
-  const total = document.querySelector("#arcana-total-count");
   const visible = document.querySelector("#arcana-visible-count");
-  if (total) total.textContent = String(getPublishedArcanas().length);
   if (visible) visible.textContent = String(filtered.length);
   if (!filtered.length) {
     results.innerHTML = `
