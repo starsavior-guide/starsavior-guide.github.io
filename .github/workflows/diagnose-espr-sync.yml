@@ -17,29 +17,19 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
-      - name: Inspect structured source schema
+      - name: Test ESPR direct structured endpoints
         shell: bash
         run: |
           node --input-type=module <<'NODE'
-          const root = 'https://star-savior-arcana-db.pages.dev/data';
-          const get = async name => {
-            const r = await fetch(`${root}/${name}`, { headers: { 'user-agent':'starsavior-guide-sync-diagnostic/1.0' } });
-            if (!r.ok) throw new Error(`${name}: ${r.status}`);
-            return r.json();
-          };
-          const [saviors, arcanas, potentials, buffs, journeyBuffs] = await Promise.all([
-            get('saviors.json'), get('arcanas.json'), get('potentials.json'), get('buffs.json'), get('journey_buffs.json')
-          ]);
-          const liveIndex = JSON.parse(await (await import('node:fs/promises')).readFile('data/saviors/index.json','utf8'));
-          const liveArc = JSON.parse(await (await import('node:fs/promises')).readFile('data/arcanas/arcanas.json','utf8'));
-          const liveSaviorIds = new Set(Object.keys(liveIndex).filter(k=>/^\d+$/.test(k)).map(Number));
-          const liveArcIds = new Set((liveArc.arcanas||[]).map(x=>Number(x.id)));
-          console.log(JSON.stringify({
-            counts:{saviors:saviors.length,arcanas:arcanas.length,potentials:potentials.length,buffs:buffs.length,journeyBuffs:journeyBuffs.length},
-            saviorEnums:{attrs:[...new Set(saviors.map(x=>x.attr))],classes:[...new Set(saviors.map(x=>x.class))],attackTypes:[...new Set(saviors.map(x=>x.atk_type))]},
-            newSaviors:saviors.filter(x=>!liveSaviorIds.has(Number(x.id))).map(x=>({id:x.id,name:x.name?.['ko-KR'],title:x.title?.['ko-KR'],attr:x.attr,class:x.class,atk:x.atk_type,skillLevels:(x.skills||[]).map(s=>[s.id,(s.levels||[]).length]),blossom:(x.blossom?.skills||[]).map(s=>[s.id,(s.levels||[]).length])})),
-            newArcanas:arcanas.filter(x=>!liveArcIds.has(Number(x.id))).map(x=>({id:x.id,name:x.name?.['ko-KR'],main:x.main_stat?.['ko-KR'],assists:(x.assists||[]).map(a=>a?.['ko-KR']),events:(x.events||[]).length,sp:x.sp_potential?.['ko-KR']||''})),
-            tailSaviors:saviors.slice(-8).map(x=>({id:x.id,name:x.name?.['ko-KR'],title:x.title?.['ko-KR']})),
-            tailArcanas:arcanas.slice(-8).map(x=>({id:x.id,name:x.name?.['ko-KR']}))
-          }, null, 2));
+          const names = ['saviors.json','arcanas.json','potentials.json','buffs.json','journey_buffs.json','stat_potentials.json','journeys.json'];
+          for (const name of names) {
+            for (const root of ['https://ss.espr.gg/data','https://ss.esprcdn.dev/data']) {
+              const url = `${root}/${name}`;
+              try {
+                const r = await fetch(url, { headers: { 'user-agent':'starsavior-guide-sync-diagnostic/1.0', accept:'application/json' }, redirect:'follow' });
+                const text = await r.text();
+                console.log(JSON.stringify({url,status:r.status,type:r.headers.get('content-type')||'',length:text.length,head:text.slice(0,180)}));
+              } catch (e) { console.log(JSON.stringify({url,error:e?.message||String(e)})); }
+            }
+          }
           NODE
