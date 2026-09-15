@@ -16,6 +16,7 @@ const report = {
   saviorsAdded: [],
   arcanasAdded: [],
   potentialsAdded: [],
+  journeyBuffsAdded: [],
   filesCopied: []
 };
 
@@ -239,7 +240,16 @@ if (newSaviorIds.length) {
     copyReferencedData(indexEntry);
 
     const scannedSavior = scanSkillById.get(id);
-    if (scannedSavior && !liveSkillIds.has(id)) {
+    if (!scannedSavior) throw new Error(`Scanned Savior skill archive is missing ${id}.`);
+    if ((scannedSavior.resonancePotentials || []).length !== 3) {
+      throw new Error(`Scanned Savior ${id} does not have exactly 3 resonance potentials.`);
+    }
+    if (!(scannedSavior.skills || []).length) throw new Error(`Scanned Savior ${id} has no skills.`);
+    for (const skill of [...(scannedSavior.skills || []), ...(scannedSavior.blossomSkills || [])]) {
+      if (!(skill.levels || []).length) throw new Error(`Scanned Savior ${id} skill ${skill.id} has no level data.`);
+      if (!skill.icon?.startsWith('./data/')) throw new Error(`Scanned Savior ${id} skill ${skill.id} is not local-only.`);
+    }
+    if (!liveSkillIds.has(id)) {
       mergedSkills.saviors.push(deepClone(scannedSavior));
       copyReferencedData(scannedSavior);
     }
@@ -283,6 +293,7 @@ if (newArcanas.length) {
   const mergedArcana = deepClone(liveArcanaArchive);
   if (!Array.isArray(mergedArcana.arcanas)) mergedArcana.arcanas = [];
   if (!Array.isArray(mergedArcana.potentials)) mergedArcana.potentials = [];
+  if (!Array.isArray(mergedArcana.journeyBuffs)) mergedArcana.journeyBuffs = [];
 
   for (const arcana of newArcanas) {
     mergedArcana.arcanas.push(deepClone(arcana));
@@ -302,6 +313,18 @@ if (newArcanas.length) {
     report.potentialsAdded.push({ id: Number(potential.id), name: localizedText(potential.name, 'ko', '') });
   }
   mergedArcana.potentials.sort((a, b) => Number(a.id) - Number(b.id));
+
+  // Journey buffs referenced by newly added Arcana events are append-only too.
+  const liveJourneyBuffIds = new Set(mergedArcana.journeyBuffs.map((item) => Number(item.id)));
+  const newJourneyBuffs = (scanArcanaArchive.journeyBuffs || [])
+    .filter((item) => Number(item.id) && !liveJourneyBuffIds.has(Number(item.id)))
+    .sort((a, b) => Number(a.id) - Number(b.id));
+  for (const buff of newJourneyBuffs) {
+    mergedArcana.journeyBuffs.push(deepClone(buff));
+    copyReferencedData(buff);
+    report.journeyBuffsAdded.push({ id: Number(buff.id), name: localizedText(buff.name, 'ko', '') });
+  }
+  mergedArcana.journeyBuffs.sort((a, b) => Number(a.id) - Number(b.id));
   mergedArcana.lastNewSyncAt = now;
   writeJson('data/arcanas/arcanas.json', mergedArcana);
 
@@ -314,5 +337,6 @@ console.log(JSON.stringify({
   ...report,
   saviorCountAdded: report.saviorsAdded.length,
   arcanaCountAdded: report.arcanasAdded.length,
-  potentialCountAdded: report.potentialsAdded.length
+  potentialCountAdded: report.potentialsAdded.length,
+  journeyBuffCountAdded: report.journeyBuffsAdded.length
 }, null, 2));
