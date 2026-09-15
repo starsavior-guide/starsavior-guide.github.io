@@ -430,7 +430,7 @@ function archiveArcana(arcana, potentialByName, potentialById, buffById) {
       id: event.id,
       name: localized(event.name, `arcana ${arcana.id} event ${event.id} name`),
       choices: (event.choices || []).map((choice) => ({
-        name: localized(choice.name, `arcana ${arcana.id} event ${event.id} choice`),
+        name: choice.name ? localized(choice.name, `arcana ${arcana.id} event ${event.id} choice`) : { ko: '', en: '', ja: '' },
         successRewards: archiveRewardGroups(choice.success_rewards, potentialById, buffById, arcana.id),
         failureRewards: archiveRewardGroups(choice.failure_rewards, potentialById, buffById, arcana.id)
       }))
