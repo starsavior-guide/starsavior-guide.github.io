@@ -2,7 +2,7 @@ name: Sync new Savior and Arcana from ESPR
 
 on:
   schedule:
-    # 12:00 KST = 03:00 UTC. Run weekly, then gate to every 14 days from 2026-09-17.
+    # 12:00 KST = 03:00 UTC. Wake weekly, then gate to every 14 days from 2026-09-17.
     - cron: '0 3 * * 4'
   workflow_dispatch:
 
@@ -16,7 +16,7 @@ concurrency:
 jobs:
   sync-new-espr:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 45
 
     steps:
       - name: Check out repository
@@ -53,21 +53,13 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install Chromium scraper
-        if: steps.cadence.outputs.run == 'true'
-        run: |
-          npm install --no-save playwright@1.55.0
-          npx playwright install --with-deps chromium
-
       - name: Validate sync scripts
         if: steps.cadence.outputs.run == 'true'
         run: |
-          node --check scripts/espr-common.mjs
-          node --check scripts/backup-espr-characters.mjs
-          node --check scripts/backup-espr-arcanas.mjs
+          node --check scripts/build-structured-sync-snapshot.mjs
           node --check scripts/sync-new-espr.mjs
 
-      - name: Build temporary ESPR snapshot
+      - name: Build temporary source snapshot
         if: steps.cadence.outputs.run == 'true'
         id: scan
         shell: bash
@@ -77,12 +69,13 @@ jobs:
           rm -rf "$SCAN_ROOT"
           mkdir -p "$SCAN_ROOT"
           cp -a "$GITHUB_WORKSPACE/scripts" "$GITHUB_WORKSPACE/data" "$SCAN_ROOT/"
-          ln -s "$GITHUB_WORKSPACE/node_modules" "$SCAN_ROOT/node_modules"
 
+          # GitHub-hosted runners are currently blocked by ESPR's Vercel checkpoint.
+          # Use the structured mirror that this repository historically used; it keeps
+          # full skill levels, status effects, Arcana events/rewards and potential IDs.
           (
             cd "$SCAN_ROOT"
-            REFRESH_ALL=false node scripts/backup-espr-characters.mjs
-            REFRESH_ALL=false node scripts/backup-espr-arcanas.mjs
+            node scripts/build-structured-sync-snapshot.mjs
           )
 
           echo "root=$SCAN_ROOT" >> "$GITHUB_OUTPUT"
@@ -112,9 +105,30 @@ jobs:
 
           const skillIds = (saviorSkills.saviors || []).map((item) => Number(item.id));
           if (new Set(skillIds).size !== skillIds.length) throw new Error('Duplicate Savior skill archive ID detected.');
+          const skillIdSet = new Set(skillIds);
+          for (const id of saviorIds) {
+            if (!skillIdSet.has(id)) throw new Error(`Savior ${id} is missing its skill archive.`);
+          }
+          for (const savior of saviorSkills.saviors || []) {
+            if ((savior.resonancePotentials || []).length !== 3) throw new Error(`Savior ${savior.id} does not have 3 resonance potentials.`);
+            if (!(savior.skills || []).length) throw new Error(`Savior ${savior.id} has no skills.`);
+            for (const skill of [...(savior.skills || []), ...(savior.blossomSkills || [])]) {
+              if (!(skill.levels || []).length) throw new Error(`Skill ${skill.id} has no level data.`);
+              if (!skill.icon?.startsWith('./data/')) throw new Error(`Skill ${skill.id} is not using a local icon.`);
+            }
+          }
 
           const arcanaIds = (arcana.arcanas || []).map((item) => Number(item.id));
           if (new Set(arcanaIds).size !== arcanaIds.length) throw new Error('Duplicate Arcana ID detected.');
+          const potentialIds = (arcana.potentials || []).map((item) => Number(item.id));
+          if (new Set(potentialIds).size !== potentialIds.length) throw new Error('Duplicate Arcana potential ID detected.');
+          const journeyBuffIds = (arcana.journeyBuffs || []).map((item) => Number(item.id));
+          if (new Set(journeyBuffIds).size !== journeyBuffIds.length) throw new Error('Duplicate Journey buff ID detected.');
+          for (const card of arcana.arcanas || []) {
+            if (!card.image?.startsWith('./data/arcana-assets/cards/')) throw new Error(`Arcana ${card.id} is not using a local card image.`);
+            const local = card.image.replace(/^\.\//, '');
+            if (!fs.existsSync(local) || fs.statSync(local).size < 20) throw new Error(`Arcana ${card.id} local image is missing.`);
+          }
           NODE
 
       - name: Commit only newly discovered content
