@@ -17,28 +17,34 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
-      - name: Inspect ESPR fallback access
+      - name: Inspect structured fallback source
         shell: bash
         run: |
           node --input-type=module <<'NODE'
-          const checks = [
-            ['DIRECT_LIST', 'https://ss.espr.gg/ko/database/characters'],
-            ['JINA_LIST', 'https://r.jina.ai/https://ss.espr.gg/ko/database/characters'],
-            ['JINA_CHARACTER', 'https://r.jina.ai/https://ss.espr.gg/en/database/characters/annah'],
-            ['JINA_ARCANA', 'https://r.jina.ai/https://ss.espr.gg/ko/database/arcanas/experienced-mercenary'],
-            ['JINA_POTENTIAL', 'https://r.jina.ai/https://ss.espr.gg/ko/database/potentials/catalyst'],
-            ['CDN_CARD', 'https://ss.esprcdn.dev/images/arcanas/illustration/7104901.webp'],
+          const origin = 'https://star-savior-arcana-db.pages.dev';
+          const urls = [
+            '/', '/arcana', '/data', '/data/arcanas.json', '/data/arcana.json',
+            '/data/saviors.json', '/data/savior.json', '/data/journey.json',
+            '/data/arcana-data.json', '/data/savior-data.json'
           ];
-          for (const [name, url] of checks) {
+          for (const path of urls) {
             try {
-              const response = await fetch(url, { headers: { 'user-agent': 'starsavior-guide-sync-diagnostic/1.0' } });
-              const type = response.headers.get('content-type') || '';
-              const body = type.startsWith('image/') ? new Uint8Array(await response.arrayBuffer()) : await response.text();
-              console.log(`=== ${name} ===`);
-              console.log('status', response.status, 'type', type, 'length', typeof body === 'string' ? body.length : body.byteLength);
-              if (typeof body === 'string') console.log(body.slice(0, 12000));
-            } catch (error) {
-              console.log(`=== ${name} ERROR ===`, error?.stack || error);
-            }
+              const r = await fetch(origin + path, { headers: { 'user-agent': 'starsavior-guide-sync-diagnostic/1.0' }, redirect: 'follow' });
+              const t = await r.text();
+              console.log(`=== ${path} === status=${r.status} type=${r.headers.get('content-type') || ''} len=${t.length}`);
+              console.log(t.slice(0, 1500));
+              if (path === '/arcana' && r.ok) {
+                const scripts = [...t.matchAll(/<script[^>]+src=["']([^"']+)["']/gi)].map(m => m[1]);
+                console.log('SCRIPTS', JSON.stringify(scripts, null, 2));
+                for (const src of scripts.slice(-10)) {
+                  const u = new URL(src, origin).href;
+                  const sr = await fetch(u);
+                  const js = await sr.text();
+                  console.log('SCRIPT', u, sr.status, js.length);
+                  const hits = [...js.matchAll(/(?:fetch\(|axios|\/data\/|\.json)/g)].slice(0, 30).map(m => ({ at: m.index, text: js.slice(Math.max(0,m.index-180), m.index+450) }));
+                  if (hits.length) console.log(JSON.stringify(hits, null, 2));
+                }
+              }
+            } catch (e) { console.log('ERROR', path, e?.stack || e); }
           }
           NODE
