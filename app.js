@@ -5812,6 +5812,10 @@ function renderList() {
   saviorGrid.replaceChildren(...filtered.map(createSaviorCard));
   visibleCount.textContent = String(filtered.length);
   totalCount.textContent = String(SAVIORS.length);
+  const totalCountUnit = document.querySelector("#total-count-unit");
+  if (totalCountUnit) {
+    totalCountUnit.textContent = currentLanguage === "ko" ? "명" : currentLanguage === "ja" ? "人" : "";
+  }
   emptyState.hidden = filtered.length > 0;
   applyLanguageToDOM(listView);
 }
@@ -9326,12 +9330,18 @@ async function loadArcanaArchive() {
 }
 
 function createArcanaDatabaseMarkup() {
+  const totalUnit = currentLanguage === "ko" ? "장" : currentLanguage === "ja" ? "枚" : "";
   return `
     <section class="arcana-db-page" data-arcana-view="list">
       <header class="arcana-db-heading">
         <div>
           <p class="eyebrow">ARCANA DATABASE</p>
-          <h1>${escapeHtml(arcanaUi("title"))}</h1>
+          <div class="database-title-line">
+            <h1>${escapeHtml(arcanaUi("title"))}</h1>
+            <span class="database-count-badge" aria-label="${escapeHtml(arcanaUi("registered"))}">
+              <strong id="arcana-total-count">${getPublishedArcanas().length}</strong>${totalUnit ? `<span>${escapeHtml(totalUnit)}</span>` : ""}
+            </span>
+          </div>
           <p>${escapeHtml(arcanaUi("descriptionPrefix"))}<a href="https://ss.espr.gg/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">${escapeHtml(arcanaUi("descriptionOrg"))}</a>${escapeHtml(arcanaUi("descriptionSuffix"))}</p>
         </div>
       </header>
@@ -9348,11 +9358,6 @@ function createArcanaDatabaseMarkup() {
           </ul>
         </div>
       </section>
-
-      <div class="arcana-db-count arcana-db-count-wide">
-        <span>${escapeHtml(arcanaUi("registered"))}</span>
-        <strong id="arcana-total-count">${getPublishedArcanas().length}</strong>
-      </div>
 
       <section class="arcana-db-controls" aria-label="${escapeHtml(arcanaUi("searchLabel"))}">
         <label class="arcana-search-field">

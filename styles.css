@@ -2904,3 +2904,59 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
     font-size: 11px;
   }
 }
+
+
+/* title count badges + quick summary spacing 2026-09-15 */
+.database-title-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.database-count-badge {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  gap: 2px;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1;
+}
+
+.database-count-badge strong {
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.savior-quick-summary {
+  margin-top: 18px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 620px) {
+  .database-title-line {
+    gap: 9px;
+  }
+
+  .database-count-badge {
+    min-height: 30px;
+    padding: 4px 9px;
+    font-size: 11px;
+  }
+
+  .database-count-badge strong {
+    font-size: 14px;
+  }
+
+  .savior-quick-summary {
+    margin-top: 16px;
+    margin-bottom: 18px;
+  }
+}
