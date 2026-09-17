@@ -1,0 +1,21 @@
+{
+  "topType": "object",
+  "topKeys": [
+    "schemaVersion",
+    "sourceOrigin",
+    "sourcePage",
+    "capturedAt",
+    "languages",
+    "levels",
+    "localOnly",
+    "statusIcons",
+    "potentials",
+    "journeyBuffs",
+    "arcanas"
+  ],
+  "count": null,
+  "sample": {
+    "schemaVersion": 1,
+    "sourceOrigin": "https://star-savior-arcana-db.pages.dev"
+  }
+}
