@@ -6960,8 +6960,7 @@ async function loadSaviorSourcePanel(button, panel) {
     const response = await fetch(url, { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const sourceHtml = await response.text();
-    const archivedSavior = archive.saviors.find((item) => Number(item.id) === detailId);
-    if (!archivedSavior) throw new Error("Savior skill archive mapping not found");
+    const archivedSavior = archive.saviors.find((item) => Number(item.id) === detailId) || null;
     panel.innerHTML = createParsedSaviorSourceMarkup(sourceHtml, url, savior, {
       archivedSavior,
       language: currentLanguage

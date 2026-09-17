@@ -32526,28 +32526,84 @@
           },
           "choices": [
             {
-              "text": {
+              "name": {
                 "ko": "강의 주제의 문제가 아닐까?",
                 "en": "",
                 "ja": ""
               },
-              "result": {
-                "ko": "인내 +10, 집중 +10",
-                "en": "",
-                "ja": ""
-              }
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "statName": {
+                      "ko": "인내",
+                      "en": "Endurance",
+                      "ja": "忍耐"
+                    },
+                    "icon": "./data/arcana-assets/status/endurance.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "statName": {
+                      "ko": "집중",
+                      "en": "Focus",
+                      "ja": "集中"
+                    },
+                    "icon": "./data/arcana-assets/status/focus.webp"
+                  }
+                ]
+              ],
+              "failureRewards": []
             },
             {
-              "text": {
+              "name": {
                 "ko": "강의 방식의 문제가 아닐까?",
                 "en": "",
                 "ja": ""
               },
-              "result": {
-                "ko": "인내 +12, 체력 +8 [속도의 솜씨]",
-                "en": "",
-                "ja": ""
-              }
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 12,
+                    "max": 12,
+                    "statName": {
+                      "ko": "인내",
+                      "en": "Endurance",
+                      "ja": "忍耐"
+                    },
+                    "icon": "./data/arcana-assets/status/endurance.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Health",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 21004,
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              ],
+              "failureRewards": []
             }
           ]
         },
@@ -32559,28 +32615,92 @@
           },
           "choices": [
             {
-              "text": {
+              "name": {
                 "ko": "그웬에게 준다.",
                 "en": "",
                 "ja": ""
               },
-              "result": {
-                "ko": "인내 +12, 체력 +8 [속도의 솜씨]",
-                "en": "",
-                "ja": ""
-              }
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 12,
+                    "max": 12,
+                    "statName": {
+                      "ko": "인내",
+                      "en": "Endurance",
+                      "ja": "忍耐"
+                    },
+                    "icon": "./data/arcana-assets/status/endurance.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Health",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 21004,
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              ],
+              "failureRewards": []
             },
             {
-              "text": {
+              "name": {
                 "ko": "교수에게 준다.",
                 "en": "",
                 "ja": ""
               },
-              "result": {
-                "ko": "인내 +12, 체력 +8 [통찰의 솜씨]",
-                "en": "",
-                "ja": ""
-              }
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 12,
+                    "max": 12,
+                    "statName": {
+                      "ko": "인내",
+                      "en": "Endurance",
+                      "ja": "忍耐"
+                    },
+                    "icon": "./data/arcana-assets/status/endurance.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Health",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 21005,
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              ],
+              "failureRewards": []
             }
           ]
         },
@@ -32592,28 +32712,65 @@
           },
           "choices": [
             {
-              "text": {
+              "name": {
                 "ko": "미래를 아는 예언자",
                 "en": "",
                 "ja": ""
               },
-              "result": {
-                "ko": "인내 +15, 잠재력 포인트 +20 [날렵한 자세]",
-                "en": "",
-                "ja": ""
-              }
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 15,
+                    "max": 15,
+                    "statName": {
+                      "ko": "인내",
+                      "en": "Endurance",
+                      "ja": "忍耐"
+                    },
+                    "icon": "./data/arcana-assets/status/endurance.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_POTEN_POINT",
+                    "min": 20,
+                    "max": 20
+                  }
+                ]
+              ],
+              "failureRewards": []
             },
             {
-              "text": {
+              "name": {
                 "ko": "모노리스 교단의 성녀",
                 "en": "",
                 "ja": ""
               },
-              "result": {
-                "ko": "집중 +18 [집중의 재능], [날렵한 자세]",
-                "en": "",
-                "ja": ""
-              }
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 18,
+                    "max": 18,
+                    "statName": {
+                      "ko": "집중",
+                      "en": "Focus",
+                      "ja": "集中"
+                    },
+                    "icon": "./data/arcana-assets/status/focus.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 22007,
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              ],
+              "failureRewards": []
             }
           ]
         }
