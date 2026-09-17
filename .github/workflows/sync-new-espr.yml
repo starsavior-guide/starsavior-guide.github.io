@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: starsavior-source-backup-write
+  group: starsavior-static-new-id-sync
   cancel-in-progress: true
 
 jobs:
