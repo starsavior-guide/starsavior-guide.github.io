@@ -1,0 +1,97 @@
+name: Fix Professor M complete
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch corrected ESPR assets
+        run: |
+          set -eux
+          curl -fL --retry 5 'https://ss.esprcdn.dev/images/characters/illustration/1039.webp' -o 'data/savior-detail-assets/프로페서M 일러스트.webp'
+          curl -fL --retry 5 'https://ss.esprcdn.dev/images/potentials/icons/32003.webp' -o 'data/arcana-assets/potentials/32003.webp'
+      - name: Patch Professor M data/rendering
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import json,re
+          p=Path('data/arcanas/7103901.json')
+          d=json.loads(p.read_text())
+          # Ensure Agile Stance is a real detailed potential, not only a name reference.
+          d['potentialDetails']=d.get('potentialDetails',[])
+          agile={
+            'id':32003,
+            'name':{'ko':'날렵한 자세','en':'Agile Stance','ja':''},
+            'description':{'ko':'특수기 타격 후 자신의 행동 게이지를 20% 증가시킵니다. 해당 효과는 단일 공격 이외의 스킬로는 발생하지 않으며 1턴에 1번만 발생합니다.','en':'','ja':''},
+            'icon':'./data/arcana-assets/potentials/32003.webp'
+          }
+          d['potentialDetails']=[x for x in d['potentialDetails'] if x.get('id')!=32003 and x.get('name',{}).get('ko')!='날렵한 자세']+[agile]
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+
+          app=Path('app.js')
+          s=app.read_text()
+          # Correct illustration source stays on the existing local filename; asset above is replaced with ESPR illustration #3.
+          # Replace Professor M progression helper wholesale when present.
+          start=s.find('function applyProfessorMSkillProgression(')
+          if start!=-1:
+            brace=s.find('{',start); depth=0; end=None
+            for i in range(brace,len(s)):
+              if s[i]=='{': depth+=1
+              elif s[i]=='}':
+                depth-=1
+                if depth==0:
+                  end=i+1; break
+            fn=r'''function applyProfessorMSkillProgression(parsedSkills, savior){
+  if (!savior || savior.id !== "professor-m" || currentLanguage !== "ko" || !Array.isArray(parsedSkills)) return parsedSkills;
+  const progress = {
+    "탐구 대상": [
+      ["★0", "공격력 증가 없음 / 냉각 부여 확률 50%"],
+      ["★1", "공격력 5% 증가 / 냉각 부여 확률 50%"],
+      ["★2", "공격력 10% 증가 / 냉각 부여 확률 75%"],
+      ["★3", "공격력 15% 증가 / 냉각 부여 확률 100%"]
+    ],
+    "흑백논리": [["Lv.1","기본 효과"],["Lv.2","피해량 1% 증가"],["Lv.3","피해량 1% 증가"],["Lv.4","피해량 1% 증가"],["Lv.5","피해량 1% 증가"],["Lv.6","피해량 2% 증가"],["Lv.7","피해량 2% 증가"],["Lv.8","피해량 2% 증가"],["Lv.9","피해량 2% 증가"],["Lv.10","피해량 3% 증가"]],
+    "악에서 악으로": [["Lv.1","기본 효과"],["Lv.2","피해량 1% 증가"],["Lv.3","피해량 1% 증가"],["Lv.4","행동 게이지 증가량 5% 증가"],["Lv.5","피해량 1% 증가"],["Lv.6","피해량 2% 증가"],["Lv.7","피해량 2% 증가"],["Lv.8","행동 게이지 증가량 5% 증가"],["Lv.9","피해량 3% 증가"],["Lv.10","피해량 5% 증가"]],
+    "마탄의 사수": [["Lv.1","기본 효과"],["Lv.2","피해량 1% 증가"],["Lv.3","피해량 2% 증가"],["Lv.4","표적 각인 발생 확률 10% 증가"],["Lv.5","피해량 2% 증가"],["Lv.6","쿨타임 1턴 감소"],["Lv.7","피해량 2% 증가"],["Lv.8","표적 각인 발생 확률 15% 증가"],["Lv.9","피해량 3% 증가"],["Lv.10","피해량 5% 증가"]]
+  };
+  for (const skill of parsedSkills) {
+    const rows=progress[skill.name];
+    if (!rows) continue;
+    skill.levels=rows.map(([level,levelDescription])=>({level,levelDescription,skillDescription:""}));
+  }
+  return parsedSkills;
+}'''
+            if end: s=s[:start]+fn+s[end:]
+          app.write_text(s)
+          PY
+      - name: Merge standalone Arcana into canonical dataset
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import json
+          one=json.loads(Path('data/arcanas/7103901.json').read_text())
+          p=Path('data/arcanas/arcanas.json'); root=json.loads(p.read_text())
+          arr=root if isinstance(root,list) else root.get('arcanas',[])
+          for i,x in enumerate(arr):
+            if x.get('id')==7103901: arr[i]=one; break
+          else: arr.append(one)
+          p.write_text(json.dumps(root,ensure_ascii=False,indent=2)+'\n')
+          PY
+      - name: Validate
+        run: |
+          python3 -m json.tool data/arcanas/7103901.json >/dev/null
+          python3 -m json.tool data/arcanas/arcanas.json >/dev/null
+          test -s 'data/savior-detail-assets/프로페서M 일러스트.webp'
+          test -s 'data/arcana-assets/potentials/32003.webp'
+          grep -q '★0' app.js
+          grep -q '표적 각인 발생 확률 15% 증가' app.js
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app.js data/arcanas/7103901.json data/arcanas/arcanas.json 'data/savior-detail-assets/프로페서M 일러스트.webp' data/arcana-assets/potentials/32003.webp
+          git commit -m 'Complete Professor M data and assets' || exit 0
+          git push
