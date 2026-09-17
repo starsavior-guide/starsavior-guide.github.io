@@ -1,0 +1,94 @@
+name: Add Agile Stance
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-agile-stance.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  add-agile-stance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Add Agile Stance data and local icon
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/arcana-assets/potentials
+          curl --fail --location --retry 5 --retry-delay 3 -A 'Mozilla/5.0' -e 'https://ss.espr.gg/' \
+            'https://ss.esprcdn.dev/images/potentials/icons/32003.webp' \
+            -o 'data/arcana-assets/potentials/32003.webp'
+          test -s 'data/arcana-assets/potentials/32003.webp'
+
+          node <<'NODE'
+          const fs = require('fs');
+          const canonicalPath = 'data/arcanas/arcanas.json';
+          const standalonePath = 'data/arcanas/7103901.json';
+          const canonical = JSON.parse(fs.readFileSync(canonicalPath, 'utf8'));
+          const standalone = JSON.parse(fs.readFileSync(standalonePath, 'utf8'));
+
+          const agile = {
+            id: 32003,
+            strId: 'POTEN_PASSIVE_32003',
+            type: '특수 잠재력',
+            unitId: 0,
+            class: '레인저',
+            name: { ko: '날렵한 자세', en: 'Agile Stance', ja: '' },
+            description: {
+              ko: '특수기 타격 후 자신의 행동 게이지를 20% 증가시킵니다. 해당 효과는 단일 공격 이외의 스킬로는 발생하지 않으며 1턴에 1번만 발생합니다.',
+              en: '', ja: ''
+            },
+            icon: './data/arcana-assets/potentials/32003.webp',
+            background: './data/arcana-assets/potential-backgrounds/gold.webp',
+            levels: [{
+              level: 1,
+              description: {
+                ko: '특수기 타격 후 자신의 행동 게이지를 20% 증가시킵니다. 해당 효과는 단일 공격 이외의 스킬로는 발생하지 않으며 1턴에 1번만 발생합니다.',
+                en: '', ja: ''
+              },
+              requiredPotentialPoints: 0,
+              bondPointCheck: false,
+              stats: []
+            }]
+          };
+
+          canonical.potentials = Array.isArray(canonical.potentials) ? canonical.potentials : [];
+          const idx = canonical.potentials.findIndex(p => Number(p.id) === 32003 || p?.name?.ko === '날렵한 자세');
+          if (idx >= 0) canonical.potentials[idx] = {...canonical.potentials[idx], ...agile};
+          else canonical.potentials.push(agile);
+
+          // 분홍색 연구 > 미래를 아는 예언자에 날렵한 자세 보상을 연결한다.
+          for (const root of [standalone, ...(Array.isArray(canonical.arcanas) ? canonical.arcanas.filter(a => Number(a.id) === 7103901) : [])]) {
+            const event = root.events?.find(e => e?.name?.ko === '분홍색 연구');
+            const choice = event?.choices?.find(c => c?.name?.ko === '미래를 아는 예언자');
+            if (choice) {
+              choice.successRewards = Array.isArray(choice.successRewards) ? choice.successRewards : [];
+              const exists = choice.successRewards.flat().some(r => r?.type === 'RT_SE_POTEN' && Number(r?.rewardId) === 32003);
+              if (!exists) choice.successRewards.push([{type:'RT_SE_POTEN', rewardId:32003, min:1, max:1}]);
+            }
+          }
+
+          fs.writeFileSync(canonicalPath, JSON.stringify(canonical, null, 2) + '\n');
+          fs.writeFileSync(standalonePath, JSON.stringify(standalone, null, 2) + '\n');
+          NODE
+
+          node -e "JSON.parse(require('fs').readFileSync('data/arcanas/arcanas.json','utf8')); JSON.parse(require('fs').readFileSync('data/arcanas/7103901.json','utf8'))"
+          grep -q '날렵한 자세' data/arcanas/arcanas.json
+          grep -q '32003' data/arcanas/7103901.json
+
+      - name: Commit changes and remove one-time task
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/add-agile-stance.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Add Agile Stance potential data'
+          git push origin main
