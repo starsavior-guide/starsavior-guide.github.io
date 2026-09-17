@@ -1,17 +1,20 @@
 {
-  "schemaVersion": 2,
-  "sourceOrigin": "https://star-savior-arcana-db.pages.dev",
-  "capturedAt": "2026-09-03T07:56:49.120Z",
+  "schemaVersion": 3,
+  "sourceOrigin": "https://ss.espr.gg",
+  "capturedAt": "2026-09-17T06:54:32.362Z",
   "languages": [
     "ko",
     "en",
     "ja"
   ],
-  "saviorCount": 53,
-  "skillCount": 212,
+  "saviorCount": 54,
+  "skillCount": 216,
   "blossomSkillCount": 32,
-  "resonancePotentialCount": 159,
+  "resonancePotentialCount": 162,
   "buffCount": 79,
-  "assetCount": 323,
-  "localOnly": true
+  "assetCount": 6,
+  "assetBytes": 374766,
+  "localOnly": true,
+  "fallbackPolicy": "Existing numeric skill/buff metadata and lower skill levels are retained when ESPR renders only the current level.",
+  "failures": []
 }

@@ -676,6 +676,7 @@ const EQUIPMENT_SET_IMAGE_NAMES = new Set([
 ]);
 
 const SAVIOR_DETAIL_IDS = {
+  "professor-m": 1039,
   "asherah-voyager": 1001,
   "smile": 1002,
   "luna": 1003,
@@ -1311,7 +1312,27 @@ const MAIN_CONTENTS = {
   "amora": ["작전", "회랑", "코스모 게이트", "인자작"]
 };
 
+// AUTO_ESPR_I18N_1039
+I18N_DATA.saviorNames.en["프로페서M"] = "Professor M";
+I18N_DATA.saviorNames.ja["프로페서M"] = "プロフェッサーM";
+I18N_DATA.subtitles.en["람파디스"] = "Lampadis";
+I18N_DATA.subtitles.ja["람파디스"] = "ランパディス";
+
 const SAVIORS = [
+  {
+    "id": "professor-m",
+    "name": "프로페서M",
+    "subtitle": "람파디스",
+    "affiliation": "람파디스",
+    "grade": "SSR",
+    "element": "moon",
+    "className": "레인저",
+    "role": "레인저",
+    "attackType": "정신",
+    "image": "./data/savior-detail-assets/1039-illustration.webp",
+    "summary": "ESPR 신규 등록 구원자입니다. PVE 세팅 정보는 미정입니다.",
+    "guideUrl": "https://ss.espr.gg/ko/database/characters/professor-m"
+  },
   {
     "id": "asherah-voyager",
     "name": "아세라",

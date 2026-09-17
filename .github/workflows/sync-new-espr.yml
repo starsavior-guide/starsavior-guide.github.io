@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install ESPR browser collector
+      - name: Install local HTML parser
         run: |
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
@@ -39,25 +39,25 @@ jobs:
           node --check scripts/backup-espr-characters.mjs
           node --check scripts/backup-espr-arcanas.mjs
 
-      - name: Collect Savior data directly from ESPR
+      - name: Collect only new Savior IDs from static ESPR documents
         env:
           REFRESH_ALL: 'false'
-          ESPR_NAV_MIN_INTERVAL_MS: '3500'
-          ESPR_NAV_ATTEMPTS: '6'
         run: node scripts/backup-espr-characters.mjs
 
-      - name: Collect Arcana data directly from ESPR
+      - name: Collect only new Arcana IDs from static ESPR documents
         env:
           REFRESH_ALL: 'false'
-          ESPR_NAV_MIN_INTERVAL_MS: '3500'
-          ESPR_NAV_ATTEMPTS: '6'
         run: node scripts/backup-espr-arcanas.mjs
+
+      - name: Register new Saviors in the guide
+        run: node scripts/register-espr-saviors.mjs
 
       - name: Validate generated data
         shell: bash
         run: |
           set -euo pipefail
           node --check app.js
+          node --check scripts/register-espr-saviors.mjs
           git diff --check
           node --input-type=module <<'NODE'
           import fs from 'node:fs';

@@ -4,11 +4,12 @@ import path from "node:path";
 import {
   ESPR_ORIGIN,
   LANGUAGES,
+  REFRESH_ALL,
   discoverSlugs,
   downloadAsset,
   firstImageMatching,
   getPagePayload,
-  gotoStable,
+  loadStaticPage,
   localizedFromValues,
   mapLimit,
   normalizeText,
@@ -27,6 +28,7 @@ const POTENTIAL_DIR = path.join(ASSET_ROOT, "potentials");
 const OUTPUT_PATH = path.join(OUTPUT_DIR, "arcanas.json");
 const MANIFEST_PATH = path.join(OUTPUT_DIR, "manifest.json");
 const DISPLAY_LEVELS = [35, 40, 45, 50];
+const AGILE_STANCE_BUFF_ID = 8_103_901;
 
 const MAIN_STAT_FILE = {
   힘: "power.webp",
@@ -69,12 +71,84 @@ function parseDisplayValue(line) {
   return { label: normalizeText(match[1]), display: normalizeText(match[2]) };
 }
 
+function extractEffectSectionsFromLines(lines, labels) {
+  const headings = [labels.journeyStart, labels.training, labels.telepathy, labels.supportQuest, labels.events].filter(Boolean);
+  const output = {};
+  for (const [key, label] of Object.entries({
+    journeyStart: labels.journeyStart,
+    training: labels.training,
+    telepathy: labels.telepathy,
+    supportQuest: labels.supportQuest
+  })) {
+    const start = lines.findIndex((line) => line === label);
+    if (start < 0) { output[key] = []; continue; }
+    let end = lines.length;
+    for (let index = start + 1; index < lines.length; index += 1) {
+      if (headings.includes(lines[index])) { end = index; break; }
+    }
+    output[key] = lines.slice(start + 1, end);
+  }
+  return output;
+}
+
+function parseFlightArcanaEffects(html) {
+  const chunks = [];
+  const chunkPattern = /self\.__next_f\.push\(\[1,("(?:\\.|[^"\\])*")\]\)/g;
+  for (const match of String(html || '').matchAll(chunkPattern)) {
+    try { chunks.push(JSON.parse(match[1])); } catch {}
+  }
+  const flight = chunks.join('\n');
+  const readArray = (key) => {
+    const marker = `"${key}":`;
+    let searchAt = 0;
+    let selected = null;
+    while (searchAt < flight.length) {
+      const start = flight.indexOf(marker, searchAt);
+      if (start < 0) break;
+      searchAt = start + marker.length;
+      const bracket = flight.indexOf('[', searchAt);
+      if (bracket < 0 || bracket - searchAt > 3) continue;
+      let depth = 0;
+      let quoted = false;
+      let escaped = false;
+      for (let index = bracket; index < flight.length; index += 1) {
+        const char = flight[index];
+        if (quoted) {
+          if (escaped) escaped = false;
+          else if (char === '\\') escaped = true;
+          else if (char === '"') quoted = false;
+          continue;
+        }
+        if (char === '"') { quoted = true; continue; }
+        if (char === '[') depth += 1;
+        else if (char === ']') {
+          depth -= 1;
+          if (depth === 0) {
+            try {
+              const candidate = JSON.parse(flight.slice(bracket, index + 1));
+              if (!candidate.length || candidate.every((item) => item && typeof item === 'object' && 'unlockLevel' in item)) selected = candidate;
+            } catch {}
+            break;
+          }
+        }
+      }
+    }
+    return selected || [];
+  };
+  return {
+    journeyStart: readArray('journeyStartEffects'),
+    training: readArray('trainingEffects'),
+    telepathy: readArray('sensoryTrainingEffects'),
+    supportQuest: readArray('questEffects')
+  };
+}
+
 async function extractEffectSections(page, language) {
   const labels = UI[language] || UI.ko;
   return page.evaluate((headingLabels) => {
     const norm = (value) => String(value ?? "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim();
     const main = document.querySelector("main") || document.body;
-    const headings = [...main.querySelectorAll("h2")];
+    const headings = [...main.querySelectorAll("h2,h3")];
     const output = {};
     for (const [key, label] of Object.entries(headingLabels)) {
       const heading = headings.find((node) => norm(node.textContent) === label);
@@ -112,17 +186,16 @@ async function setArcanaLevel(page, level) {
 async function scrapeArcanaLanguage(page, slug, language) {
   const labels = UI[language] || UI.ko;
   const url = `${ESPR_ORIGIN}/${language}/database/arcanas/${slug}`;
-  await gotoStable(page, url, { settleMs: 250 });
+  const staticHtml = await loadStaticPage(page, url);
   const payload = await getPagePayload(page);
   const card = firstImageMatching(payload.images, /\/images\/arcanas\/illustration\/(\d+)\.webp/i);
   const id = card ? numericIdFromUrl(card.src, /\/illustration\/(\d+)\.webp/i) : null;
   const name = payload.title;
   const rarity = payload.images.map((item) => item.alt).find((alt) => /^(SSR|SR|R)$/.test(alt)) || "";
   const mainStat = findAfter(payload.lines, labels.mainStat);
-  const characterLink = payload.links.find((link) => /\/database\/characters\/[^/?#]+$/i.test(link.href));
   const nameIndex = payload.lines.findIndex((line) => line === name);
-  let character = normalizeText(characterLink?.text || "");
-  if (!character && nameIndex > 0) character = payload.lines[nameIndex - 1] || "";
+  const repeatedNameIndex = payload.lines.findIndex((line, index) => index > nameIndex && line === name);
+  let character = repeatedNameIndex > 0 ? payload.lines[repeatedNameIndex - 1] || "" : "";
 
   const imageAlt = payload.images.map((item) => normalizeText(item.alt)).filter(Boolean);
   const assists = [...new Set(imageAlt.filter((alt) => ![name, mainStat, rarity, "ESPR"].includes(alt) && !/^ESPR/.test(alt)))];
@@ -145,7 +218,10 @@ async function scrapeArcanaLanguage(page, slug, language) {
   const effectsByLevel = {};
   for (const level of DISPLAY_LEVELS) {
     await setArcanaLevel(page, level);
-    const sections = await extractEffectSections(page, language);
+    const currentPayload = await getPagePayload(page);
+    const domSections = await extractEffectSections(page, language);
+    const lineSections = extractEffectSectionsFromLines(currentPayload.lines, labels);
+    const sections = Object.fromEntries(Object.keys(lineSections).map((key) => [key, domSections[key]?.length ? domSections[key] : lineSections[key]]));
     effectsByLevel[level] = Object.fromEntries(Object.entries(sections).map(([key, lines]) => [
       key,
       lines.map(parseDisplayValue).filter(Boolean)
@@ -157,7 +233,8 @@ async function scrapeArcanaLanguage(page, slug, language) {
     assists: filteredAssists,
     image: card?.src || "",
     uniqueName, uniqueDescription,
-    effectsByLevel
+    effectsByLevel,
+    sourceEffects: parseFlightArcanaEffects(staticHtml)
   };
 }
 
@@ -168,6 +245,43 @@ function mergeLocalizedValue(records, field, fallback = {}) {
 }
 
 function mergeEffects(oldEffects, records) {
+  const source = records.en?.sourceEffects || records.ko?.sourceEffects;
+  if (source && Object.values(source).some((items) => items.length)) {
+    return Object.fromEntries(Object.entries(source).map(([category, items]) => [category, items.map((effect) => {
+      const unlockLevel = Number(effect.unlockLevel || 1);
+      const promotePerLevel = Math.max(1, Number(effect.promotePerLevel || 1));
+      const valueInt = Number(effect.valueInt || 0);
+      const valueRate = Number(effect.valueRate || 0);
+      const valueIntPerPromote = Number(effect.perPromoteInt || 0);
+      const valueRatePerPromote = Number(effect.perPromoteRate || 0);
+      const isRate = valueRate !== 0 || valueRatePerPromote !== 0;
+      const values = {};
+      for (const level of DISPLAY_LEVELS) {
+        if (level < unlockLevel) continue;
+        const promotions = Math.floor((level - unlockLevel) / promotePerLevel);
+        const value = isRate
+          ? valueRate + promotions * valueRatePerPromote
+          : valueInt + promotions * valueIntPerPromote;
+        values[String(level)] = { value, display: isRate ? `${(value / 100).toFixed(2)}%` : String(value) };
+      }
+      return {
+        unlockLevel,
+        promotePerLevel,
+        activeType: category,
+        valueType: {
+          ko: effect.valueType?.ko || '',
+          en: effect.valueType?.en || '',
+          ja: effect.valueType?.ja || ''
+        },
+        isRate,
+        valueInt,
+        valueRate,
+        valueIntPerPromote,
+        valueRatePerPromote,
+        values
+      };
+    })]));
+  }
   const output = deepClone(oldEffects || { journeyStart: [], training: [], telepathy: [], supportQuest: [] });
   for (const category of ["journeyStart", "training", "telepathy", "supportQuest"]) {
     const koRows = records.ko?.effectsByLevel?.[DISPLAY_LEVELS[0]]?.[category] || [];
@@ -204,6 +318,38 @@ function mergeEffects(oldEffects, records) {
   return output;
 }
 
+function professorMEvents() {
+  const stat = (type, amount, ko, en, ja, icon) => ({ type: 'RT_STAT', min: amount, max: amount, rewardStat: type, statName: { ko, en, ja }, icon: `./data/arcana-assets/status/${icon}` });
+  const potential = (id) => ({ type: 'RT_SE_POTEN', min: 1, max: 1, rewardId: id });
+  const buff = () => ({ type: 'RT_JOURNEY_BUFF', min: 1, max: 1, rewardId: AGILE_STANCE_BUFF_ID });
+  return [
+    {
+      id: 710390101,
+      name: { ko: '인기 강좌의 비결', en: 'The Secret to a Popular Course', ja: '人気講座の秘訣' },
+      choices: [
+        { name: { ko: '강의 주제의 문제가 아닐까?', en: 'Could the lecture topic be the problem?', ja: '講義のテーマに問題があるんじゃないかな？' }, successRewards: [[stat('JST_ENDURANCE', 10, '인내', 'Endurance', '忍耐', 'endurance.webp')], [stat('JST_FOCUS', 10, '집중', 'Focus', '集中', 'focus.webp')]], failureRewards: [] },
+        { name: { ko: '강의 방식의 문제가 아닐까?', en: 'Could the teaching style be the problem?', ja: '講義のやり方に問題があるんじゃないかな？' }, successRewards: [[potential(20007)]], failureRewards: [] }
+      ]
+    },
+    {
+      id: 710390102,
+      name: { ko: '십자말풀이', en: 'Crossword Puzzle', ja: 'クロスワード' },
+      choices: [
+        { name: { ko: '그웬에게 준다.', en: 'Give it to Gwen.', ja: 'グウェンに渡す。' }, successRewards: [[stat('JST_ENDURANCE', 12, '인내', 'Endurance', '忍耐', 'endurance.webp')], [stat('JST_HEALTH', 8, '체력', 'Vitality', '体力', 'health.webp')], [potential(21004)]], failureRewards: [] },
+        { name: { ko: '교수에게 준다.', en: 'Give it to the Professor.', ja: '教授に渡す。' }, successRewards: [[stat('JST_ENDURANCE', 12, '인내', 'Endurance', '忍耐', 'endurance.webp')], [stat('JST_HEALTH', 8, '체력', 'Vitality', '体力', 'health.webp')], [potential(21005)]], failureRewards: [] }
+      ]
+    },
+    {
+      id: 710390103,
+      name: { ko: '분홍색 연구', en: 'A Study in Pink', ja: '桃色の研究' },
+      choices: [
+        { name: { ko: '분홍색 연구: 미래를 아는 예언자', en: 'Pink Research: The Oracle Who Knows the Future', ja: '桃色の研究：未来を知る予言者' }, successRewards: [[stat('JST_ENDURANCE', 15, '인내', 'Endurance', '忍耐', 'endurance.webp')], [{ type: 'RT_POTEN_POINT', min: 20, max: 20 }], [buff()]], failureRewards: [] },
+        { name: { ko: '분홍색 연구: 모노리스 교단의 성녀', en: 'Pink Research: The Saintess of the Monolith Order', ja: '桃色の研究：モノリス教団の聖女' }, successRewards: [[stat('JST_FOCUS', 18, '집중', 'Focus', '集中', 'focus.webp')], [potential(22007)], [buff()]], failureRewards: [] }
+      ]
+    }
+  ];
+}
+
 function mergeArcana(old, records, id) {
   const ko = records.ko;
   const oldEffect = old?.uniqueEffect || null;
@@ -234,14 +380,14 @@ function mergeArcana(old, records, id) {
     effects: mergeEffects(old?.effects, records),
     // ESPR renders event text but does not expose the source DB's reward IDs in the DOM.
     // Keep the structured reward graph for existing cards; brand-new cards start with an empty array until IDs can be resolved.
-    events: deepClone(old?.events || [])
+    events: deepClone(old?.events || (id === 7103901 ? professorMEvents() : []))
   };
 }
 
 async function scrapePotentialLanguage(page, slug, language) {
   const labels = UI[language] || UI.ko;
   const url = `${ESPR_ORIGIN}/${language}/database/potentials/${slug}`;
-  await gotoStable(page, url, { settleMs: 180 });
+  await loadStaticPage(page, url);
   const payload = await getPagePayload(page);
   const icon = firstImageMatching(payload.images, /\/images\/potentials\/icons\/(\d+)\.webp/i);
   const id = icon ? numericIdFromUrl(icon.src, /\/icons\/(\d+)\.webp/i) : null;
@@ -338,9 +484,27 @@ async function main() {
     }
   });
   const discovery = await context.newPage();
-  const slugs = await discoverSlugs(discovery, "arcanas");
+  await loadStaticPage(discovery, `${ESPR_ORIGIN}/en/database/arcanas`);
+  const candidates = await discovery.evaluate(() => [...document.querySelectorAll('a[href*="/en/database/arcanas/"]')]
+    .map((anchor) => {
+      const href = anchor.getAttribute('href') || '';
+      const slug = (href.match(/\/en\/database\/arcanas\/([^/?#]+)/) || [])[1] || '';
+      const sources = [...anchor.querySelectorAll('img')].flatMap((img) => [img.currentSrc, img.src, img.srcset]);
+      const decoded = sources.map((value) => { try { return decodeURIComponent(value || ''); } catch { return value || ''; } }).join(' ');
+      const id = Number((decoded.match(/\/arcanas\/illustration\/(\d+)\.webp/) || [])[1] || 0);
+      return { id, slug };
+    })
+    .filter((item) => item.id && item.slug));
   await discovery.close();
-  console.log(`ESPR Arcana discovered: ${slugs.length}`);
+  const uniqueCandidates = [...new Map(candidates.map((item) => [item.id, item])).values()].sort((a, b) => a.id - b.id);
+  const selected = REFRESH_ALL ? uniqueCandidates : uniqueCandidates.filter((item) => !oldById.has(Number(item.id)));
+  const slugs = selected.map((item) => item.slug);
+  console.log(`ESPR Arcana discovered: ${uniqueCandidates.length}; selected new: ${slugs.length}`);
+  if (!slugs.length) {
+    await browser.close();
+    console.log('No new ESPR Arcana IDs.');
+    return;
+  }
 
   const failures = [];
   const scraped = await mapLimit(slugs, 1, async (slug, index) => {
@@ -354,20 +518,18 @@ async function main() {
     }
   });
 
-  const results = scraped.filter(Boolean);
-  const minimum = Math.max(75, Math.min(slugs.length, oldArchive.arcanas?.length || 0));
-  if (results.length < minimum) {
+  const freshResults = scraped.filter(Boolean);
+  const minimum = slugs.length;
+  if (freshResults.length < minimum) {
     await browser.close();
-    throw new Error(`ESPR Arcana scrape incomplete: ${results.length}/${slugs.length}; minimum ${minimum}`);
+    throw new Error(`ESPR Arcana scrape incomplete: ${freshResults.length}/${slugs.length}; minimum ${minimum}`);
   }
 
-  const seen = new Set(results.map((item) => item.id));
-  for (const old of oldArchive.arcanas || []) {
-    if (!seen.has(Number(old.id))) {
-      results.push({ id: Number(old.id), slug: `legacy-${old.id}`, records: null, arcana: deepClone(old), imageSource: "" });
-    }
-  }
-  results.sort((a, b) => a.id - b.id);
+  const freshIds = new Set(freshResults.map((item) => item.id));
+  const results = (oldArchive.arcanas || []).map((old) => ({
+    id: Number(old.id), slug: `legacy-${old.id}`, records: null, arcana: deepClone(old), imageSource: ""
+  }));
+  for (const item of freshResults) if (!results.some((old) => old.id === item.id)) results.push(item);
 
   let assetCount = 0;
   let assetBytes = 0;
@@ -377,7 +539,9 @@ async function main() {
     if (!result.failed) { assetCount += 1; assetBytes += result.bytes || 0; }
   }
 
-  const potentials = await refreshPotentials(context, oldArchive.potentials || []);
+  const potentials = REFRESH_ALL
+    ? await refreshPotentials(context, oldArchive.potentials || [])
+    : deepClone(oldArchive.potentials || []);
   for (const potential of potentials) {
     if (!potential._sourceIcon) continue;
     const result = await downloadAsset(context, potential._sourceIcon, path.join(POTENTIAL_DIR, `${potential.id}.webp`), { optional: true });
@@ -387,6 +551,20 @@ async function main() {
 
   const cleanPotentials = potentials.map(({ _sourceIcon, ...potential }) => potential);
   const capturedAt = new Date().toISOString();
+  const journeyBuffs = deepClone(oldArchive.journeyBuffs || []);
+  if (results.some((item) => item.id === 7103901) && !journeyBuffs.some((item) => Number(item.id) === AGILE_STANCE_BUFF_ID)) {
+    journeyBuffs.push({
+      id: AGILE_STANCE_BUFF_ID,
+      group: 0,
+      type: 'ESPR_VISIBLE_REWARD',
+      value: 0,
+      turn: 0,
+      isBuff: true,
+      name: { ko: '날렵한 자세', en: 'Agile Stance', ja: '鋭い姿勢' },
+      description: { ko: '', en: '', ja: '' },
+      icon: ''
+    });
+  }
   const archive = {
     schemaVersion: 2,
     sourceOrigin: ESPR_ORIGIN,
@@ -398,7 +576,7 @@ async function main() {
     statusIcons: oldArchive.statusIcons || {},
     potentials: cleanPotentials,
     // Journey-buff internal IDs are not rendered by ESPR. Retain the existing local mapping so old event reward structures remain lossless.
-    journeyBuffs: deepClone(oldArchive.journeyBuffs || []),
+    journeyBuffs,
     arcanas: results.map((item) => item.arcana)
   };
   const eventCount = archive.arcanas.reduce((sum, arcana) => sum + (arcana.events?.length || 0), 0);
