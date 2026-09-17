@@ -14,13 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect current skill and arcana render paths
-        shell: bash
-        run: |
-          set -euo pipefail
-          grep -n -C 20 'skill.levels' app.js || true
-          grep -n -C 20 'potentialNames' app.js || true
-          grep -n -C 20 'applyProfessorMSkillProgression' app.js || true
       - name: Download Professor M and Arcana assets
         shell: bash
         run: |
@@ -39,13 +32,86 @@ jobs:
           fetch 'https://ss.esprcdn.dev/images/arcanas/illustration/7103901.webp' 'data/arcana-assets/cards/7103901.webp'
           cp 'data/arcana-assets/cards/7103901.webp' 'data/arcana-assets/cards/탐닉자의 유흥거리.webp'
           fetch 'https://ss.esprcdn.dev/images/potentials/icons/32003.webp' 'data/arcana-assets/potentials/32003.webp'
-      - name: Commit imported assets
+
+      - name: Fix Professor M rendering and source data
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 <<'PY'
+          from pathlib import Path
+          import json
+
+          app=Path('app.js')
+          s=app.read_text()
+          needle='  const skills = archivedSkills.length ? archivedSkills : parsedSkills;\n'
+          replacement=needle+'  applyProfessorMSkillProgression(skills, savior);\n'
+          if replacement not in s:
+              if needle not in s: raise SystemExit('skills selection anchor missing')
+              s=s.replace(needle,replacement,1)
+          app.write_text(s)
+
+          sp=Path('data/savior-skills/saviors.json')
+          root=json.loads(sp.read_text())
+          saviors=root.get('saviors',root if isinstance(root,list) else [])
+          prof=next((x for x in saviors if int(x.get('id',0))==1039),None)
+          if prof is None: raise SystemExit('Professor M skill archive missing')
+          rich={
+            '탐구 대상':'프로페서M의 공격력이 15% 증가합니다. 프로페서M이 <b><color=#DD982C>흑백논리</color></b> 사용 후 협공이 가능한 상태이고 공격력이 가장 높은 아군에게 1턴 간 <b><color=#DD982C>표본 행동 분석</color></b>을 발생시키고 협공을 발생시킵니다. 자신을 제외한 아군이 타격 시 자신의 행동 게이지를 4% 증가시키고 자신에게 100% 확률로 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여하며 아군 대상이 <b><color=#DD982C>표본 행동 분석</color></b> 상태이면 행동 게이지를 추가로 4% 증가시키고 <b><color=#DD982C>냉각</color></b> 스택을 추가로 1개 부여합니다. 신규 <b><color=#DD982C>표본 행동 분석</color></b> 발생 시 기존의 <b><color=#DD982C>표본 행동 분석</color></b>을 해제시킵니다.',
+            '흑백논리':'프로페서M이 가방을 휘둘러 적을 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다.',
+            '악에서 악으로':'아군이 타격 후 자신의 <b><color=#DD982C>냉각</color></b>이 최대 중첩 상태이면 적에게 <b><color=#DD982C>악에서 악으로</color></b>를 발동합니다. 타격 후 자신의 행동 게이지를 10% 증가시키고 <b><color=#DD982C>냉각</color></b> 스택을 모두 소거합니다. 타격 시 적이 <b><color=#DD982C>강인도 격파</color></b> 상태라면 자신의 피해량이 30% 증가합니다. 자신이 가장 최근에 타격한 적을 우선 공격합니다.',
+            '마탄의 사수':'뒤틀린 악의를 담은 탄환으로 적을 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 3개 부여하고 자신의 행동 게이지를 50% 증가시킵니다. 적에게 85% 확률로 2턴 간 <b><color=#DD982C>표적 각인</color></b>을 발생시킵니다.'
+          }
+          for skill in prof.get('skills',[]):
+              ko=(skill.get('name') or {}).get('ko','')
+              if ko in rich:
+                  for lv in skill.get('levels',[]):
+                      sd=lv.setdefault('skillDescription',{})
+                      sd['ko']=rich[ko]
+          sp.write_text(json.dumps(root,ensure_ascii=False,indent=2)+'\n')
+
+          ap=Path('data/arcanas/arcanas.json')
+          arc=json.loads(ap.read_text())
+          pots=arc.setdefault('potentials',[])
+          agile={
+            'id':32003,'strId':'POTEN_PASSIVE_32003','type':'특수 잠재력','unitId':0,'class':'레인저',
+            'name':{'ko':'날렵한 자세','en':'Agile Stance','ja':''},
+            'description':{'ko':'특수기 타격 후 자신의 행동 게이지를 20% 증가시킵니다. 해당 효과는 단일 공격 이외의 스킬로는 발생하지 않으며 1턴에 1번만 발생합니다.','en':'','ja':''},
+            'icon':'./data/arcana-assets/potentials/32003.webp','background':'./data/arcana-assets/potential-backgrounds/special.webp',
+            'levels':[{'level':1,'description':{'ko':'특수기 타격 후 자신의 행동 게이지를 20% 증가시킵니다. 해당 효과는 단일 공격 이외의 스킬로는 발생하지 않으며 1턴에 1번만 발생합니다.','en':'','ja':''},'requiredPotentialPoints':0,'bondPointCheck':False,'stats':[]}]
+          }
+          pots[:]=[x for x in pots if int(x.get('id',0))!=32003]
+          pots.append(agile)
+          onep=Path('data/arcanas/7103901.json'); one=json.loads(onep.read_text())
+          one['potentialDetails']=[agile]
+          onep.write_text(json.dumps(one,ensure_ascii=False,indent=2)+'\n')
+          arr=arc.get('arcanas',[])
+          for i,x in enumerate(arr):
+              if int(x.get('id',0))==7103901:
+                  arr[i]=one
+                  break
+          ap.write_text(json.dumps(arc,ensure_ascii=False,indent=2)+'\n')
+          PY
+
+      - name: Validate Professor M integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m json.tool data/savior-skills/saviors.json >/dev/null
+          python3 -m json.tool data/arcanas/arcanas.json >/dev/null
+          python3 -m json.tool data/arcanas/7103901.json >/dev/null
+          test -s 'data/savior-detail-assets/프로페서M 일러스트.webp'
+          test -s data/arcana-assets/potentials/32003.webp
+          grep -q 'applyProfessorMSkillProgression(skills, savior)' app.js
+          grep -q 'POTEN_PASSIVE_32003' data/arcanas/arcanas.json
+          grep -q '<color=#DD982C>표적 각인</color>' data/savior-skills/saviors.json
+
+      - name: Commit corrected Professor M package
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/savior-detail-assets data/arcana-assets/cards data/arcana-assets/potentials
+          git add app.js data/savior-skills/saviors.json data/arcanas/arcanas.json data/arcanas/7103901.json data/savior-detail-assets data/arcana-assets/cards data/arcana-assets/potentials
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Correct Professor M and Arcana source assets'
+          git commit -m 'Finalize Professor M skills and Arcana potential'
           git push
