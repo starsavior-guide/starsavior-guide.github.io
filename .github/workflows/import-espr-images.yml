@@ -1,29 +1,58 @@
-name: Professor M hotfix
+name: Import ESPR images
 
 on:
-  push:
-    paths:
-      - '.github/workflows/import-espr-images.yml'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  hotfix:
+  import-images:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Apply data fixes
+
+      - name: Download Professor M and Arcana assets
+        shell: bash
         run: |
-          echo 'ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCmltcG9ydCBqc29uCnA9UGF0aCgiYXBwLmpzIik7IHM9cC5yZWFkX3RleHQoZW5jb2Rpbmc9InV0Zi04IikKb2xkPScnJyAgICBjb25zdCBhcmNoaXZlZFNhdmlvciA9IGFyY2hpdmUuc2F2aW9ycy5maW5kKChpdGVtKSA9PiBOdW1iZXIoaXRlbS5pZCkgPT09IGRldGFpbElkKTsKICAgIGlmICghYXJjaGl2ZWRTYXZpb3IpIHRocm93IG5ldyBFcnJvcigiU2F2aW9yIHNraWxsIGFyY2hpdmUgbWFwcGluZyBub3QgZm91bmQiKTsKICAgIHBhbmVsLmlubmVySFRNTCA9IGNyZWF0ZVBhcnNlZFNhdmlvclNvdXJjZU1hcmt1cChzb3VyY2VIdG1sLCB1cmwsIHNhdmlvciwgewogICAgICBhcmNoaXZlZFNhdmlvciwKICAgICAgbGFuZ3VhZ2U6IGN1cnJlbnRMYW5ndWFnZQogICAgfSk7JycnCm5ldz0nJycgICAgY29uc3QgYXJjaGl2ZWRTYXZpb3IgPSBhcmNoaXZlLnNhdmlvcnMuZmluZCgoaXRlbSkgPT4gTnVtYmVyKGl0ZW0uaWQpID09PSBkZXRhaWxJZCkgfHwgbnVsbDsKICAgIHBhbmVsLmlubmVySFRNTCA9IGNyZWF0ZVBhcnNlZFNhdmlvclNvdXJjZU1hcmt1cChzb3VyY2VIdG1sLCB1cmwsIHNhdmlvciwgewogICAgICBhcmNoaXZlZFNhdmlvciwKICAgICAgbGFuZ3VhZ2U6IGN1cnJlbnRMYW5ndWFnZQogICAgfSk7JycnCmFzc2VydCBvbGQgaW4gcwpwLndyaXRlX3RleHQocy5yZXBsYWNlKG9sZCxuZXcsMSksZW5jb2Rpbmc9InV0Zi04IikKcD1QYXRoKCJkYXRhL2FyY2FuYXMvYXJjYW5hcy5qc29uIik7IGE9anNvbi5sb2FkcyhwLnJlYWRfdGV4dChlbmNvZGluZz0idXRmLTgiKSk7IGFyYz1uZXh0KHggZm9yIHggaW4gYVsiYXJjYW5hcyJdIGlmIGludCh4LmdldCgiaWQiLDApKT09NzEwMzkwMSkKcG90aWRzPXsoeC5nZXQoIm5hbWUiKSBvciB7fSkuZ2V0KCJrbyIsIiIpOnguZ2V0KCJpZCIpIGZvciB4IGluIGEuZ2V0KCJwb3RlbnRpYWxzIixbXSl9CmtleXM9eyLtnpgiOiJKU1RfUE9XRVIiLCLssrTroKUiOiJKU1RfSEVBTFRIIiwi7J2464K0IjoiSlNUX0VORFVSQU5DRSIsIuynkeykkSI6IkpTVF9GT0NVUyIsIuuztO2YuCI6IkpTVF9QUk9URUNUIn0KZW49eyLtnpgiOiJQb3dlciIsIuyytOugpSI6IkhlYWx0aCIsIuyduOuCtCI6IkVuZHVyYW5jZSIsIuynkeykkSI6IkZvY3VzIiwi67O07Zi4IjoiUHJvdGVjdGlvbiJ9OyBqYT17Iu2emCI6IuWKmyIsIuyytOugpSI6IuS9k+WKmyIsIuyduOuCtCI6IuW/jeiAkCIsIuynkeykkSI6IumbhuS4rSIsIuuztO2YuCI6IuS/neittyJ9CmRlZiBzdGF0KG4sdik6IHJldHVybiB7InR5cGUiOiJSVF9TVEFUIiwibWluIjp2LCJtYXgiOnYsInN0YXROYW1lIjp7ImtvIjpuLCJlbiI6ZW5bbl0sImphIjpqYVtuXX0sImljb24iOmEuZ2V0KCJzdGF0dXNJY29ucyIse30pLmdldChrZXlzW25dLCIiKX0KZGVmIHBwKHYpOiByZXR1cm4geyJ0eXBlIjoiUlRfUE9URU5fUE9JTlQiLCJtaW4iOnYsIm1heCI6dn0KZGVmIHBvdChuKToKIGk9cG90aWRzLmdldChuKTsgcmV0dXJuIHsidHlwZSI6IlJUX1NFX1BPVEVOIiwicmV3YXJkSWQiOmksIm1pbiI6MSwibWF4IjoxfSBpZiBpIGlzIG5vdCBOb25lIGVsc2UgTm9uZQpkZWYgY2gobiwqeHMpOiByZXR1cm4geyJuYW1lIjp7ImtvIjpuLCJlbiI6IiIsImphIjoiIn0sInN1Y2Nlc3NSZXdhcmRzIjpbW3hdIGZvciB4IGluIHhzIGlmIHhdLCJmYWlsdXJlUmV3YXJkcyI6W119CmFyY1siZXZlbnRzIl09Wwp7Im5hbWUiOnsia28iOiLsnbjquLAg6rCV7KKM7J2YIOu5hOqysCIsImVuIjoiIiwiamEiOiIifSwiY2hvaWNlcyI6W2NoKCLqsJXsnZgg7KO87KCc7J2YIOusuOygnOqwgCDslYTri5DquYw/IixzdGF0KCLsnbjrgrQiLDEwKSxzdGF0KCLsp5HspJEiLDEwKSksY2goIuqwleydmCDrsKnsi53snZgg66y47KCc6rCAIOyVhOuLkOq5jD8iLHN0YXQoIuyduOuCtCIsMTIpLHN0YXQoIuyytOugpSIsOCkscG90KCLsho3rj4TsnZgg7Iac7JSoIikpXX0sCnsibmFtZSI6eyJrbyI6IuyLreyekOunkO2SgOydtCIsImVuIjoiIiwiamEiOiIifSwiY2hvaWNlcyI6W2NoKCLqt7jsm6zsl5Dqsowg7KSA64ukLiIsc3RhdCgi7J2464K0IiwxMiksc3RhdCgi7LK066ClIiw4KSxwb3QoIuyGjeuPhOydmCDshpzslKgiKSksY2goIuq1kOyImOyXkOqyjCDspIDri6QuIixzdGF0KCLsnbjrgrQiLDEyKSxzdGF0KCLssrTroKUiLDgpLHBvdCgi7Ya17LCw7J2YIOyGnOyUqCIpKV19LAp7Im5hbWUiOnsia28iOiLrtoTtmY3sg4kg7Jew6rWsIiwiZW4iOiIiLCJqYSI6IiJ9LCJjaG9pY2VzIjpbY2goIuuvuOuemOulvCDslYTripQg7JiI7Ja47J6QIixzdGF0KCLsnbjrgrQiLDE1KSxwcCgyMCkscG90KCLrgqDroLXtlZwg7J6Q7IS4IikpLGNoKCLrqqjrhbjrpqzsiqQg6rWQ64uo7J2YIOyEseuFgCIsc3RhdCgi7KeR7KSRIiwxOCkscG90KCLsp5HspJHsnZgg7J6s64qlIikscG90KCLrgqDroLXtlZwg7J6Q7IS4IikpXX1dCnAud3JpdGVfdGV4dChqc29uLmR1bXBzKGEsZW5zdXJlX2FzY2lpPUZhbHNlLGluZGVudD0yKSsiXG4iLGVuY29kaW5nPSJ1dGYtOCIpClBhdGgoImRhdGEvYXJjYW5hcy83MTAzOTAxLmpzb24iKS53cml0ZV90ZXh0KGpzb24uZHVtcHMoYXJjLGVuc3VyZV9hc2NpaT1GYWxzZSxpbmRlbnQ9MikrIlxuIixlbmNvZGluZz0idXRmLTgiKQo=' | base64 -d > /tmp/hotfix.py
-          python3 /tmp/hotfix.py
-          python3 -m json.tool data/arcanas/arcanas.json >/dev/null
-          python3 -m json.tool data/arcanas/7103901.json >/dev/null
-      - name: Commit fixes
+          set -euo pipefail
+          mkdir -p data/savior-detail-assets data/arcana-assets/cards
+
+          fetch() {
+            url="$1"
+            out="$2"
+            echo "Downloading $url -> $out"
+            curl --fail --location --retry 5 --retry-delay 3 \
+              --connect-timeout 20 --max-time 120 \
+              -A 'Mozilla/5.0' \
+              -e 'https://ss.espr.gg/' \
+              "$url" -o "$out"
+            test -s "$out"
+          }
+
+          fetch 'https://ss.esprcdn.dev/images/characters/portrait/1039.webp' 'data/savior-detail-assets/프로페서M.webp'
+          fetch 'https://ss.esprcdn.dev/images/characters/illustration/1039.ui.webp' 'data/savior-detail-assets/프로페서M 일러스트.webp'
+          fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_0.webp' 'data/savior-detail-assets/프로페서M 패시브.webp'
+          fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_1.webp' 'data/savior-detail-assets/프로페서M 기본기.webp'
+          fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_2.webp' 'data/savior-detail-assets/프로페서M 특수기.webp'
+          fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_3.webp' 'data/savior-detail-assets/프로페서M 궁극기.webp'
+          fetch 'https://ss.esprcdn.dev/images/general/status/buff_detective_professor_1.webp' 'data/savior-detail-assets/표본 행동 분석.webp'
+          fetch 'https://ss.esprcdn.dev/images/general/status/buff_adjusttype_resource_moon.webp' 'data/savior-detail-assets/냉각.webp'
+          fetch 'https://ss.esprcdn.dev/images/general/status/debuff_detective_professor_2.webp' 'data/savior-detail-assets/표적 각인.webp'
+          fetch 'https://ss.esprcdn.dev/images/arcanas/illustration/7103901.webp' 'data/arcana-assets/cards/탐닉자의 유흥거리.webp'
+
+          file data/savior-detail-assets/*.webp data/arcana-assets/cards/'탐닉자의 유흥거리.webp'
+
+      - name: Commit imported assets
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add app.js data/arcanas/arcanas.json data/arcanas/7103901.json
-          git commit -m 'Fix Professor M skills and Hedonist event choices'
+          git add data/savior-detail-assets data/arcana-assets/cards
+          if git diff --cached --quiet; then
+            echo 'No asset changes.'
+            exit 0
+          fi
+          git commit -m 'Import Professor M and Hedonist Diversion assets'
           git push
