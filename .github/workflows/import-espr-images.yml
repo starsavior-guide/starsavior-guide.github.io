@@ -14,25 +14,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
+      - name: Inspect current skill and arcana render paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -n -C 20 'skill.levels' app.js || true
+          grep -n -C 20 'potentialNames' app.js || true
+          grep -n -C 20 'applyProfessorMSkillProgression' app.js || true
       - name: Download Professor M and Arcana assets
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p data/savior-detail-assets data/arcana-assets/cards data/arcana-assets/potentials
-
-          fetch() {
-            url="$1"
-            out="$2"
-            echo "Downloading $url -> $out"
-            curl --fail --location --retry 5 --retry-delay 3 \
-              --connect-timeout 20 --max-time 120 \
-              -A 'Mozilla/5.0' \
-              -e 'https://ss.espr.gg/' \
-              "$url" -o "$out"
-            test -s "$out"
-          }
-
+          fetch() { url="$1"; out="$2"; curl --fail --location --retry 5 --retry-delay 3 --connect-timeout 20 --max-time 120 -A 'Mozilla/5.0' -e 'https://ss.espr.gg/' "$url" -o "$out"; test -s "$out"; }
           fetch 'https://ss.esprcdn.dev/images/characters/portrait/1039.webp' 'data/savior-detail-assets/프로페서M.webp'
           fetch 'https://ss.esprcdn.dev/images/characters/illustration/1039.webp' 'data/savior-detail-assets/프로페서M 일러스트.webp'
           fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_0.webp' 'data/savior-detail-assets/프로페서M 패시브.webp'
@@ -45,9 +39,6 @@ jobs:
           fetch 'https://ss.esprcdn.dev/images/arcanas/illustration/7103901.webp' 'data/arcana-assets/cards/7103901.webp'
           cp 'data/arcana-assets/cards/7103901.webp' 'data/arcana-assets/cards/탐닉자의 유흥거리.webp'
           fetch 'https://ss.esprcdn.dev/images/potentials/icons/32003.webp' 'data/arcana-assets/potentials/32003.webp'
-
-          file 'data/savior-detail-assets/프로페서M 일러스트.webp' data/arcana-assets/cards/7103901.webp data/arcana-assets/potentials/32003.webp
-
       - name: Commit imported assets
         shell: bash
         run: |
@@ -55,9 +46,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/savior-detail-assets data/arcana-assets/cards data/arcana-assets/potentials
-          if git diff --cached --quiet; then
-            echo 'No asset changes.'
-            exit 0
-          fi
+          if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Correct Professor M and Arcana source assets'
           git push
