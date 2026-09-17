@@ -7,12 +7,12 @@
     "en",
     "ja"
   ],
-  "arcanaCount": 80,
-  "eventCount": 194,
-  "choiceCount": 240,
+  "arcanaCount": 81,
+  "eventCount": 197,
+  "choiceCount": 246,
   "potentialCount": 55,
   "journeyBuffCount": 13,
-  "assetCount": 157,
+  "assetCount": 158,
   "assetBytes": 8646100,
   "localOnly": true
 }
