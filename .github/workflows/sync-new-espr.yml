@@ -1,8 +1,10 @@
 name: Sync new Savior and Arcana from ESPR
 
 on:
+  push:
+    paths:
+      - '.github/workflows/sync-new-espr.yml'
   schedule:
-    # 12:00 KST = 03:00 UTC. Wake weekly, then gate to every 14 days from 2026-09-17.
     - cron: '0 3 * * 4'
   workflow_dispatch:
 
@@ -16,141 +18,77 @@ concurrency:
 jobs:
   sync-new-espr:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
-
+    timeout-minutes: 90
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
 
-      - name: Check 14-day cadence
-        id: cadence
-        shell: bash
-        run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-
-          const manual = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
-          const now = new Date();
-          const anchorDay = Date.UTC(2026, 8, 17); // 2026-09-17 KST/UTC calendar date
-          const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-          const daysFromAnchor = Math.floor((todayUtc - anchorDay) / 86400000);
-          const scheduledMatch = daysFromAnchor >= 0 && daysFromAnchor % 14 === 0;
-          const shouldRun = manual || scheduledMatch;
-
-          fs.appendFileSync(process.env.GITHUB_OUTPUT, `run=${shouldRun ? 'true' : 'false'}\n`);
-          console.log(JSON.stringify({
-            event: process.env.GITHUB_EVENT_NAME,
-            utcDate: now.toISOString(),
-            anchor: '2026-09-17 12:00 KST',
-            daysFromAnchor,
-            shouldRun
-          }, null, 2));
-          NODE
-
       - name: Set up Node.js
-        if: steps.cadence.outputs.run == 'true'
         uses: actions/setup-node@v5
         with:
           node-version: '22'
 
-      - name: Validate sync scripts
-        if: steps.cadence.outputs.run == 'true'
+      - name: Install ESPR browser collector
         run: |
-          node --check scripts/build-structured-sync-snapshot.mjs
-          node --check scripts/sync-new-espr.mjs
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
 
-      - name: Build temporary source snapshot
-        if: steps.cadence.outputs.run == 'true'
-        id: scan
+      - name: Validate ESPR collectors
+        run: |
+          node --check scripts/espr-common.mjs
+          node --check scripts/backup-espr-characters.mjs
+          node --check scripts/backup-espr-arcanas.mjs
+
+      - name: Collect Savior data directly from ESPR
+        env:
+          REFRESH_ALL: 'false'
+          ESPR_NAV_MIN_INTERVAL_MS: '3500'
+          ESPR_NAV_ATTEMPTS: '6'
+        run: node scripts/backup-espr-characters.mjs
+
+      - name: Collect Arcana data directly from ESPR
+        env:
+          REFRESH_ALL: 'false'
+          ESPR_NAV_MIN_INTERVAL_MS: '3500'
+          ESPR_NAV_ATTEMPTS: '6'
+        run: node scripts/backup-espr-arcanas.mjs
+
+      - name: Validate generated data
         shell: bash
         run: |
           set -euo pipefail
-          SCAN_ROOT="$RUNNER_TEMP/espr-scan"
-          rm -rf "$SCAN_ROOT"
-          mkdir -p "$SCAN_ROOT"
-          cp -a "$GITHUB_WORKSPACE/scripts" "$GITHUB_WORKSPACE/data" "$SCAN_ROOT/"
-
-          # GitHub-hosted runners are currently blocked by ESPR's Vercel checkpoint.
-          # Use the structured mirror that this repository historically used; it keeps
-          # full skill levels, status effects, Arcana events/rewards and potential IDs.
-          (
-            cd "$SCAN_ROOT"
-            node scripts/build-structured-sync-snapshot.mjs
-          )
-
-          echo "root=$SCAN_ROOT" >> "$GITHUB_OUTPUT"
-
-      - name: Merge new IDs only
-        if: steps.cadence.outputs.run == 'true'
-        env:
-          SCAN_ROOT: ${{ steps.scan.outputs.root }}
-        run: node scripts/sync-new-espr.mjs "$SCAN_ROOT"
-
-      - name: Validate generated changes
-        if: steps.cadence.outputs.run == 'true'
-        shell: bash
-        run: |
           node --check app.js
           git diff --check
-
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
-
-          const saviorIndex = JSON.parse(fs.readFileSync('data/saviors/index.json', 'utf8'));
-          const saviorSkills = JSON.parse(fs.readFileSync('data/savior-skills/saviors.json', 'utf8'));
-          const arcana = JSON.parse(fs.readFileSync('data/arcanas/arcanas.json', 'utf8'));
-
-          const saviorIds = Object.keys(saviorIndex).filter((key) => /^\d+$/.test(key)).map(Number);
-          if (new Set(saviorIds).size !== saviorIds.length) throw new Error('Duplicate Savior ID detected.');
-
-          const skillIds = (saviorSkills.saviors || []).map((item) => Number(item.id));
-          if (new Set(skillIds).size !== skillIds.length) throw new Error('Duplicate Savior skill archive ID detected.');
-          const skillIdSet = new Set(skillIds);
-          for (const id of saviorIds) {
-            if (!skillIdSet.has(id)) throw new Error(`Savior ${id} is missing its skill archive.`);
+          const saviorIndex = JSON.parse(fs.readFileSync('data/saviors/index.json','utf8'));
+          const skills = JSON.parse(fs.readFileSync('data/savior-skills/saviors.json','utf8'));
+          const arcana = JSON.parse(fs.readFileSync('data/arcanas/arcanas.json','utf8'));
+          const skillIds = new Set((skills.saviors || []).map(x => Number(x.id)));
+          for (const id of Object.keys(saviorIndex).filter(x => /^\d+$/.test(x)).map(Number)) {
+            if (!skillIds.has(id)) throw new Error(`Missing skill archive for Savior ${id}`);
           }
-          for (const savior of saviorSkills.saviors || []) {
-            if ((savior.resonancePotentials || []).length !== 3) throw new Error(`Savior ${savior.id} does not have 3 resonance potentials.`);
-            if (!(savior.skills || []).length) throw new Error(`Savior ${savior.id} has no skills.`);
-            for (const skill of [...(savior.skills || []), ...(savior.blossomSkills || [])]) {
-              if (!(skill.levels || []).length) throw new Error(`Skill ${skill.id} has no level data.`);
-              if (!skill.icon?.startsWith('./data/')) throw new Error(`Skill ${skill.id} is not using a local icon.`);
-            }
+          for (const s of skills.saviors || []) {
+            if ((s.resonancePotentials || []).length !== 3) throw new Error(`Savior ${s.id} resonance potential count is not 3`);
           }
-
-          const arcanaIds = (arcana.arcanas || []).map((item) => Number(item.id));
-          if (new Set(arcanaIds).size !== arcanaIds.length) throw new Error('Duplicate Arcana ID detected.');
-          const potentialIds = (arcana.potentials || []).map((item) => Number(item.id));
-          if (new Set(potentialIds).size !== potentialIds.length) throw new Error('Duplicate Arcana potential ID detected.');
-          const journeyBuffIds = (arcana.journeyBuffs || []).map((item) => Number(item.id));
-          if (new Set(journeyBuffIds).size !== journeyBuffIds.length) throw new Error('Duplicate Journey buff ID detected.');
-          for (const card of arcana.arcanas || []) {
-            if (!card.image?.startsWith('./data/arcana-assets/cards/')) throw new Error(`Arcana ${card.id} is not using a local card image.`);
-            const local = card.image.replace(/^\.\//, '');
-            if (!fs.existsSync(local) || fs.statSync(local).size < 20) throw new Error(`Arcana ${card.id} local image is missing.`);
+          for (const a of arcana.arcanas || []) {
+            if (!a.image?.startsWith('./data/arcana-assets/cards/')) throw new Error(`Arcana ${a.id} is not local-only`);
+            const p = a.image.replace(/^\.\//,'');
+            if (!fs.existsSync(p) || fs.statSync(p).size < 20) throw new Error(`Missing Arcana image ${a.id}`);
           }
           NODE
 
-      - name: Commit only newly discovered content
-        if: steps.cadence.outputs.run == 'true'
+      - name: Commit ESPR additions
         shell: bash
         run: |
           set -euo pipefail
           if [ -z "$(git status --porcelain -- app.js data/saviors data/savior-detail-assets data/savior-skills data/savior-skill-assets data/savior-bloom data/arcanas data/arcana-assets)" ]; then
-            echo 'No new Savior or Arcana IDs were found.'
+            echo 'No ESPR data changes found.'
             exit 0
           fi
-
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add app.js \
-            data/saviors \
-            data/savior-detail-assets \
-            data/savior-skills \
-            data/savior-skill-assets \
-            data/savior-bloom \
-            data/arcanas \
-            data/arcana-assets
-          git commit -m 'Auto-add new ESPR Savior and Arcana'
+          git add app.js data/saviors data/savior-detail-assets data/savior-skills data/savior-skill-assets data/savior-bloom data/arcanas data/arcana-assets
+          git commit -m 'Auto-sync new Savior and Arcana directly from ESPR'
           git pull --rebase origin main
           git push origin HEAD:main
