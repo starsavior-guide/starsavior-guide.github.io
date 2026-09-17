@@ -1,0 +1,79 @@
+name: Fix Professor M Arcana
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-professor-m-arcana.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Correct Hedonist Diversion potential and event rewards
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import json
+
+          standalone=Path('data/arcanas/7103901.json')
+          arc=json.loads(standalone.read_text())
+          agile={
+            'id':32003,
+            'strId':'POTEN_PASSIVE_32003',
+            'type':'특수 잠재력',
+            'unitId':0,
+            'class':'레인저',
+            'name':{'ko':'날렵한 자세','en':'Agile Stance','ja':''},
+            'description':{'ko':'특수기 타격 후 자신의 행동 게이지를 20% 증가시킵니다. 해당 효과는 단일 공격 이외의 스킬로는 발생하지 않으며 1턴에 1번만 발생합니다.','en':'','ja':''},
+            'icon':'./data/arcana-assets/potentials/32003.webp',
+            'background':'./data/arcana-assets/potential-backgrounds/blue.webp',
+            'levels':[{'level':1,'description':{'ko':'특수기 타격 후 자신의 행동 게이지를 20% 증가시킵니다. 해당 효과는 단일 공격 이외의 스킬로는 발생하지 않으며 1턴에 1번만 발생합니다.','en':'','ja':''},'requiredPotentialPoints':0,'bondPointCheck':False,'stats':[]}]
+          }
+          arc['potentialDetails']=[agile]
+          # Event 3: both choices grant Agile Stance. Keep each choice's existing rewards.
+          ev=next(e for e in arc['events'] if e['name']['ko']=='분홍색 연구')
+          for choice in ev['choices']:
+            flat=[r for group in choice.get('successRewards',[]) for r in group]
+            if not any(r.get('type')=='RT_SE_POTEN' and r.get('rewardId')==32003 for r in flat):
+              choice['successRewards'].append([{'type':'RT_SE_POTEN','rewardId':32003,'min':1,'max':1}])
+          standalone.write_text(json.dumps(arc,ensure_ascii=False,indent=2)+'\n')
+
+          canonical=Path('data/arcanas/arcanas.json')
+          root=json.loads(canonical.read_text())
+          pots=root.setdefault('potentials',[])
+          pots[:]=[p for p in pots if p.get('id')!=32003]
+          pots.append(agile)
+          arr=root.get('arcanas',[])
+          for i,a in enumerate(arr):
+            if a.get('id')==7103901:
+              arr[i]=arc
+              break
+          else:
+            arr.append(arc)
+          canonical.write_text(json.dumps(root,ensure_ascii=False,indent=2)+'\n')
+          PY
+      - name: Validate corrections
+        run: |
+          python3 - <<'PY'
+          import json
+          a=json.load(open('data/arcanas/7103901.json'))
+          p=a['potentialDetails'][0]
+          assert p['id']==32003 and p['background'].endswith('/blue.webp')
+          ev=next(e for e in a['events'] if e['name']['ko']=='분홍색 연구')
+          assert len(ev['choices'])==2
+          for c in ev['choices']:
+            ids=[r.get('rewardId') for g in c['successRewards'] for r in g if r.get('type')=='RT_SE_POTEN']
+            assert 32003 in ids, (c['name']['ko'],ids)
+          root=json.load(open('data/arcanas/arcanas.json'))
+          assert any(p.get('id')==32003 and p.get('background','').endswith('/blue.webp') for p in root['potentials'])
+          print('OK: blue Agile Stance + both event choices + canonical potential')
+          PY
+      - name: Commit corrections and remove workflow
+        run: |
+          rm -f .github/workflows/fix-professor-m-arcana.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Fix Professor M Arcana potential and rewards'
+          git push
