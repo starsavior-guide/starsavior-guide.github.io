@@ -6853,6 +6853,17 @@ function renderSourceSkillCard(skill) {
   `;
 }
 
+function applyProfessorMSkillProgression(skills, savior) {
+  if (!Array.isArray(skills) || !savior || savior.id !== "professor-m" || currentLanguage !== "ko") return;
+  const rows = [
+    [{level:"★0",description:"공격력 증가 없음 / 냉각 부여 확률 50%"},{level:"★1",description:"공격력 5% 증가 / 냉각 부여 확률 50%"},{level:"★2",description:"공격력 10% 증가 / 냉각 부여 확률 75%"},{level:"★3",description:"공격력 15% 증가 / 냉각 부여 확률 100%"}],
+    [{level:1,description:"기본 효과"},{level:2,description:"피해량 1% 증가"},{level:3,description:"피해량 1% 증가"},{level:4,description:"피해량 1% 증가"},{level:5,description:"피해량 1% 증가"},{level:6,description:"피해량 2% 증가"},{level:7,description:"피해량 2% 증가"},{level:8,description:"피해량 2% 증가"},{level:9,description:"피해량 2% 증가"},{level:10,description:"피해량 3% 증가"}],
+    [{level:1,description:"기본 효과"},{level:2,description:"피해량 1% 증가"},{level:3,description:"피해량 1% 증가"},{level:4,description:"행동 게이지 증가량 5% 증가"},{level:5,description:"피해량 1% 증가"},{level:6,description:"피해량 2% 증가"},{level:7,description:"피해량 2% 증가"},{level:8,description:"행동 게이지 증가량 5% 증가"},{level:9,description:"피해량 3% 증가"},{level:10,description:"피해량 5% 증가"}],
+    [{level:1,description:"기본 효과"},{level:2,description:"피해량 1% 증가"},{level:3,description:"피해량 2% 증가"},{level:4,description:"표적 각인 발생 확률 10% 증가"},{level:5,description:"피해량 2% 증가"},{level:6,description:"쿨타임 1턴 감소"},{level:7,description:"피해량 2% 증가"},{level:8,description:"표적 각인 발생 확률 15% 증가"},{level:9,description:"피해량 3% 증가"},{level:10,description:"피해량 5% 증가"}]
+  ];
+  rows.forEach((levels,index) => { if (skills[index]) skills[index].levels = levels; });
+}
+
 function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options = {}) {
   const { root } = getSaviorSourceRoot(sourceHtml);
   const tokens = getSaviorSourceTokens(root);
@@ -6890,6 +6901,7 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options =
   const localProfile = getLocalSaviorProfile(savior) || {};
   Object.assign(profile, parsedProfileExtras, localProfile);
   const parsedSkills = parseSaviorSourceSkills(root, tokens, firstSkillIndex, backupUrl);
+  applyProfessorMSkillProgression(parsedSkills, savior);
   const archivedSavior = options.archivedSavior || null;
   const archivedResonanceRows = createArchivedSaviorResonanceRows(
     archivedSavior,
