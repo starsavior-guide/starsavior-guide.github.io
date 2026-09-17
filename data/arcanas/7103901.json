@@ -479,5 +479,39 @@
         }
       ]
     }
+  ],
+  "potentialDetails": [
+    {
+      "id": 32003,
+      "strId": "POTEN_PASSIVE_32003",
+      "type": "특수 잠재력",
+      "unitId": 0,
+      "class": "레인저",
+      "name": {
+        "ko": "날렵한 자세",
+        "en": "Agile Stance",
+        "ja": ""
+      },
+      "description": {
+        "ko": "특수기 타격 후 자신의 행동 게이지를 20% 증가시킵니다. 해당 효과는 단일 공격 이외의 스킬로는 발생하지 않으며 1턴에 1번만 발생합니다.",
+        "en": "",
+        "ja": ""
+      },
+      "icon": "./data/arcana-assets/potentials/32003.webp",
+      "background": "./data/arcana-assets/potential-backgrounds/special.webp",
+      "levels": [
+        {
+          "level": 1,
+          "description": {
+            "ko": "특수기 타격 후 자신의 행동 게이지를 20% 증가시킵니다. 해당 효과는 단일 공격 이외의 스킬로는 발생하지 않으며 1턴에 1번만 발생합니다.",
+            "en": "",
+            "ja": ""
+          },
+          "requiredPotentialPoints": 0,
+          "bondPointCheck": false,
+          "stats": []
+        }
+      ]
+    }
   ]
 }

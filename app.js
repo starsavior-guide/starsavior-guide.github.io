@@ -6917,6 +6917,7 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options =
       })
     : [];
   const skills = archivedSkills.length ? archivedSkills : parsedSkills;
+  applyProfessorMSkillProgression(skills, savior);
 
   if (archivedSavior) {
     profile.localizedName = getArchivedLanguageText(archivedSavior.name, options.language || currentLanguage);
