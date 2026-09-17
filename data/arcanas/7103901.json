@@ -1,0 +1,46 @@
+{
+  "id": 7103901,
+  "name": {"ko":"탐닉자의 유흥거리","en":"A Hedonist's Diversion","ja":"探究者の遊興"},
+  "character": {"ko":"프로페서M","en":"Professor M","ja":"プロフェッサーM"},
+  "rarity": "SSR",
+  "mainStat": {"ko":"인내","en":"Endurance","ja":"忍耐"},
+  "assists": [
+    {"ko":"보조","en":"Support","ja":"補助"},
+    {"ko":"특수 효과","en":"Special Effect","ja":"特殊効果"},
+    {"ko":"레인저","en":"Ranger","ja":"レンジャー"}
+  ],
+  "image": "./data/arcana-assets/cards/7103901.webp",
+  "mainStatIcon": "./data/arcana-assets/status/endurance.webp",
+  "uniqueEffect": {
+    "name":{"ko":"차가운 이해","en":"Cold Understanding","ja":"冷たい理解"},
+    "description":{"ko":"인내 포인트 40 이상일 때 추가 인내치 획득 +1","en":"When Endurance Points are 40 or higher, gain +1 additional Endurance.","ja":"忍耐ポイントが40以上の場合、追加忍耐値獲得 +1"},
+    "unlockLevel":35
+  },
+  "effects": {
+    "journeyStart":[{"valueType":{"ko":"인연 포인트 증가","en":"Bond Points Gain","ja":"絆ポイント増加"},"values":{"35":{"value":15,"display":"15"},"40":{"value":15,"display":"15"},"45":{"value":15,"display":"15"},"50":{"value":15,"display":"15"}}}],
+    "training":[
+      {"valueType":{"ko":"추가 인내 능력치 획득","en":"Additional Endurance Stat Gain","ja":"追加忍耐ステータス獲得"},"values":{"35":{"value":3,"display":"3"},"40":{"value":3,"display":"3"},"45":{"value":3,"display":"3"},"50":{"value":3,"display":"3"}}},
+      {"valueType":{"ko":"훈련 효과 상승","en":"Training Effect Increase","ja":"トレーニング効果上昇"},"values":{"35":{"value":15.86,"display":"15.86%"},"40":{"value":15.86,"display":"15.86%"},"45":{"value":15.86,"display":"15.86%"},"50":{"value":15.86,"display":"15.86%"}}},
+      {"valueType":{"ko":"컨디션 효과 상승","en":"Condition Effect Increase","ja":"コンディション効果上昇"},"values":{"35":{"value":8.3,"display":"8.3%"},"40":{"value":8.3,"display":"8.3%"},"45":{"value":8.3,"display":"8.3%"},"50":{"value":8.3,"display":"8.3%"}}}
+    ],
+    "hyperTraining":[
+      {"valueType":{"ko":"감응 훈련 발생 확률 상승","en":"Resonance Training Chance Increase","ja":"感応トレーニング発生確率上昇"},"values":{"35":{"value":320,"display":"320"},"40":{"value":320,"display":"320"},"45":{"value":320,"display":"320"},"50":{"value":320,"display":"320"}}},
+      {"valueType":{"ko":"초감응 훈련 효과 상승","en":"Hyper Resonance Training Effect Increase","ja":"超感応トレーニング効果上昇"},"values":{"35":{"value":25.76,"display":"25.76%"},"40":{"value":25.76,"display":"25.76%"},"45":{"value":25.76,"display":"25.76%"},"50":{"value":25.76,"display":"25.76%"}}}
+    ]
+  },
+  "potentialNames":["차가운 이해","집중의 감각","속도의 솜씨","통찰의 솜씨","날렵한 자세","집중의 재능"],
+  "events":[
+    {"name":{"ko":"인기 강좌의 비결","en":"The Secret to a Popular Lecture","ja":"人気講座の秘訣"},"choices":[
+      {"text":{"ko":"강의 주제의 문제가 아닐까?","en":"Could the lecture topic be the problem?","ja":"講義テーマの問題では？"},"result":{"ko":"인내 +10, 집중 +10","en":"Endurance +10, Focus +10","ja":"忍耐 +10、集中 +10"}},
+      {"text":{"ko":"강의 방식의 문제가 아닐까?","en":"Could the teaching method be the problem?","ja":"講義方式の問題では？"},"result":{"ko":"인내 +12, 체력 +8 [속도의 솜씨]","en":"Endurance +12, Vitality +8 [Speed Technique]","ja":"忍耐 +12、体力 +8 [速度の腕前]"}}
+    ]},
+    {"name":{"ko":"십자말풀이","en":"Crossword Puzzle","ja":"クロスワード"},"choices":[
+      {"text":{"ko":"그웬에게 준다.","en":"Give it to Gwen.","ja":"グウェンに渡す。"},"result":{"ko":"인내 +12, 체력 +8 [속도의 솜씨]","en":"Endurance +12, Vitality +8 [Speed Technique]","ja":"忍耐 +12、体力 +8 [速度の腕前]"}},
+      {"text":{"ko":"교수에게 준다.","en":"Give it to the professor.","ja":"教授に渡す。"},"result":{"ko":"인내 +12, 체력 +8 [통찰의 솜씨]","en":"Endurance +12, Vitality +8 [Insight Technique]","ja":"忍耐 +12、体力 +8 [洞察の腕前]"}}
+    ]},
+    {"name":{"ko":"분홍색 연구","en":"Pink Research","ja":"ピンク色の研究"},"choices":[
+      {"text":{"ko":"미래를 아는 예언자","en":"A prophet who knows the future","ja":"未来を知る予言者"},"result":{"ko":"인내 +15, 잠재력 포인트 +20 [날렵한 자세]","en":"Endurance +15, Potential Points +20 [Agile Stance]","ja":"忍耐 +15、潜在力ポイント +20 [俊敏な姿勢]"}},
+      {"text":{"ko":"모노리스 교단의 성녀","en":"The saint of the Monolith Order","ja":"モノリス教団の聖女"},"result":{"ko":"집중 +18 [집중의 재능], [날렵한 자세]","en":"Focus +18 [Focus Talent], [Agile Stance]","ja":"集中 +18 [集中の才能]、[俊敏な姿勢]"}}
+    ]}
+  ]
+}
