@@ -620,6 +620,29 @@
       "portrait": "./data/savior-detail-assets/97aeb7bf8a03f110319479d1.webp"
     }
   },
+  "1039": {
+    "key": "professor-m",
+    "id": 1039,
+    "file": "./1039.html",
+    "source": "https://ss.espr.gg/ko/database/characters/professor-m",
+    "capturedAt": "2026-09-17T10:43:51.813Z",
+    "profile": {
+      "name": "프로페서M",
+      "grade": "SSR",
+      "element": "달",
+      "className": "레인저",
+      "attackType": "정신",
+      "description": "심리학과 범죄학을 연구하고 있는 사립탐정. 소시오패스적 성향 탓에 공감능력이 결여되어 있으며, 인간을 탐구하고 분석해 이해하려고 한다.",
+      "birthday": "5월 5일",
+      "height": "170cm",
+      "origin": "불명",
+      "affiliation": "람파디스",
+      "cvKr": "전해리",
+      "cvJp": "후지와라 나츠미",
+      "illustration": "./data/savior-detail-assets/프로페서M 일러스트.webp",
+      "portrait": "./data/savior-detail-assets/프로페서M.webp"
+    }
+  },
   "1041": {
     "key": "harley",
     "id": 1041,
