@@ -2508,7 +2508,7 @@
             "en": "",
             "ja": ""
           },
-          "requiredPotentialPoints": 0,
+          "requiredPotentialPoints": null,
           "bondPointCheck": false,
           "stats": []
         }
@@ -32850,13 +32850,14 @@
                 "en": "",
                 "ja": ""
               },
-              "requiredPotentialPoints": 0,
+              "requiredPotentialPoints": null,
               "bondPointCheck": false,
               "stats": []
             }
           ]
         }
-      ]
+      ],
+      "specialPotentialId": 32003
     }
   ]
 }

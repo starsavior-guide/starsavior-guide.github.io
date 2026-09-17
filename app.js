@@ -9785,7 +9785,7 @@ function createArcanaDetailMarkup(arcana) {
   const name = getArcanaArchiveText(arcana.name);
   const character = getArcanaArchiveText(arcana.character);
   const mainStat = getArcanaArchiveText(arcana.mainStat);
-  const specialPotential = getArcanaPotential(arcana.specialPotentialId);
+  const specialPotential = getArcanaPotential(arcana.specialPotentialId) || (Array.isArray(arcana.potentialDetails) ? arcana.potentialDetails.find((potential) => Number(potential.id) === Number(arcana.specialPotentialId)) : null);
   return `
     <section class="arcana-db-page arcana-detail-page" data-arcana-view="detail" data-arcana-id="${escapeHtml(arcana.id)}">
       <header class="arcana-detail-hero">
