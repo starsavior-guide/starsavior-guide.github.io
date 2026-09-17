@@ -1,86 +1,58 @@
-name: Professor M data hotfix
+name: Import ESPR images
 
 on:
-  push:
-    paths:
-      - '.github/workflows/import-espr-images.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  hotfix:
+  import-images:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: main
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-      - name: Patch Professor M skills and Hedonist events
+
+      - name: Download Professor M and Arcana assets
         shell: bash
         run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
+          set -euo pipefail
+          mkdir -p data/savior-detail-assets data/arcana-assets/cards
 
-          def t(ko,en='',ja=''):
-              return {'ko':ko,'en':en or ko,'ja':ja or ko}
-
-          skills_path=Path('data/savior-skills/saviors.json')
-          db=json.loads(skills_path.read_text(encoding='utf-8'))
-          db['saviors']=[x for x in db['saviors'] if int(x.get('id',0))!=1039]
-          chill={'id':10002,'strId':'BI_ADJUSTTYPE_RESOURCE_MOON','name':t('냉각','Chill','冷却'),'description':t('태양 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.'),'icon':'./data/savior-detail-assets/냉각.webp'}
-          sample={'id':103901,'strId':'BUFF_DETECTIVE_PROFESSOR_1','name':t('표본 행동 분석'),'description':t('주는 피해량이 10% 증가합니다.'),'icon':'./data/savior-detail-assets/표본 행동 분석.webp'}
-          mark={'id':103902,'strId':'DEBUFF_DETECTIVE_PROFESSOR_2','name':t('표적 각인'),'description':t('특수기로 받는 피해량이 20% 증가합니다.'),'icon':'./data/savior-detail-assets/표적 각인.webp'}
-          def levels(desc1,desc10=None):
-              a=[{'level':1,'skillDescription':t(desc1),'levelDescription':t('기본 효과','Base Effect','基本効果')}]
-              if desc10: a.append({'level':10,'skillDescription':t(desc10),'levelDescription':t(desc10)})
-              return a
-          prof={
-            'id':1039,'rank':'SSR','name':t('프로페서M','Professor M','プロフェッサーM'),'title':t('람파디스','Lampadis','ランパディス'),
-            'description':t('심리학과 범죄학을 연구하고 있는 사립탐정. 소시오패스적 성향 탓에 공감능력이 결여되어 있으며, 인간을 탐구하고 분석해 이해하려고 한다.'),
-            'resonancePotentials':[
-              {'step':3,'unlockLevel':60,'id':20001,'strId':'POTEN_PASSIVE_ATTACK_SENSE','name':t('공격의 감각','Sense of Attack','攻撃の感覚'),'description':t('공격력이 일정 비율만큼 소폭 증가합니다.')},
-              {'step':6,'unlockLevel':120,'id':20002,'strId':'POTEN_PASSIVE_SPEED_SENSE','name':t('속도의 감각','Sense of Speed','速度の感覚'),'description':t('속도가 일정 수치만큼 소폭 증가합니다.')},
-              {'step':10,'unlockLevel':200,'id':21001,'strId':'POTEN_PASSIVE_ATTACK_SKILL','name':t('공격의 솜씨','Skill of Attack','攻撃の腕前'),'description':t('공격력이 2% 증가합니다.')}
-            ],
-            'skills':[
-              {'id':10390,'type':0,'target':'NSTT_INVALID','cooltime':0,'break':0,'nova':0,'name':t('탐구 대상'),'novaDescription':t('구원자','Savior','救援者'),'icon':'./data/savior-detail-assets/프로페서M 패시브.webp','buffs':[sample,chill],'levels':levels('프로페서M의 공격력이 15% 증가합니다. 프로페서M이 흑백논리 사용 후 협공이 가능한 상태이고 공격력이 가장 높은 아군에게 1턴 간 표본 행동 분석을 발생시키고 협공을 발생시킵니다. 자신을 제외한 아군이 타격 시 자신의 행동 게이지를 4% 증가시키고 자신에게 100% 확률로 냉각 스택을 1개 부여하며 아군 대상이 표본 행동 분석 상태이면 행동 게이지를 추가로 4% 증가시키고 냉각 스택을 추가로 1개 부여합니다. 신규 표본 행동 분석 발생 시 기존의 표본 행동 분석을 해제시킵니다.')},
-              {'id':10391,'type':1,'target':'NSTT_ENEMY_ONE','cooltime':0,'break':0,'nova':0,'name':t('흑백논리'),'novaDescription':t('타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가하고 타격 후 자신의 행동 게이지를 20% 증가시킵니다.'),'icon':'./data/savior-detail-assets/프로페서M 기본기.webp','buffs':[chill],'levels':levels('프로페서M이 가방을 휘둘러 적을 공격합니다. 자신에게 냉각 스택을 1개 부여합니다. 공격력 65%.','프로페서M이 가방을 휘둘러 적을 공격합니다. 자신에게 냉각 스택을 1개 부여합니다. 공격력 73%.')},
-              {'id':10392,'type':2,'target':'NSTT_REACT_ENEMY_TARGET','cooltime':0,'break':1,'nova':0,'name':t('악에서 악으로'),'novaDescription':t('타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다.'),'icon':'./data/savior-detail-assets/프로페서M 특수기.webp','buffs':[chill],'levels':levels('아군이 타격 후 자신의 냉각이 최대 중첩 상태이면 적에게 악에서 악으로를 발동합니다. 타격 후 자신의 행동 게이지를 10% 증가시키고 냉각 스택을 모두 소거합니다. 타격 시 적이 강인도 격파 상태라면 자신의 피해량이 30% 증가합니다. 자신이 가장 최근에 타격한 적을 우선 공격합니다. 공격력 70%, 강인도 피해 1.','아군이 타격 후 자신의 냉각이 최대 중첩 상태이면 적에게 악에서 악으로를 발동합니다. 타격 후 자신의 행동 게이지를 10% 증가시키고 냉각 스택을 모두 소거합니다. 타격 시 적이 강인도 격파 상태라면 자신의 피해량이 30% 증가합니다. 자신이 가장 최근에 타격한 적을 우선 공격합니다. 공격력 77%, 강인도 피해 1.')},
-              {'id':10393,'type':3,'target':'NSTT_ENEMY_ONE','cooltime':5,'break':2,'nova':1,'name':t('마탄의 사수'),'novaDescription':t('타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다.'),'icon':'./data/savior-detail-assets/프로페서M 궁극기.webp','buffs':[chill,mark],'levels':levels('뒤틀린 악의를 담은 탄환으로 적을 공격합니다. 자신에게 냉각 스택을 3개 부여하고 자신의 행동 게이지를 50% 증가시킵니다. 적에게 85% 확률로 2턴 간 표적 각인을 발생시킵니다. 공격력 115%, 강인도 피해 2, 노바 1.','뒤틀린 악의를 담은 탄환으로 적을 공격합니다. 자신에게 냉각 스택을 3개 부여하고 자신의 행동 게이지를 50% 증가시킵니다. 적에게 85% 확률로 2턴 간 표적 각인을 발생시킵니다. 공격력 122%, 강인도 피해 2, 노바 1.')}
-            ]
+          fetch() {
+            url="$1"
+            out="$2"
+            echo "Downloading $url -> $out"
+            curl --fail --location --retry 5 --retry-delay 3 \
+              --connect-timeout 20 --max-time 120 \
+              -A 'Mozilla/5.0' \
+              -e 'https://ss.espr.gg/' \
+              "$url" -o "$out"
+            test -s "$out"
           }
-          db['saviors'].append(prof)
-          skills_path.write_text(json.dumps(db,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
-          ap=Path('data/arcanas/arcanas.json')
-          adb=json.loads(ap.read_text(encoding='utf-8'))
-          target=next((a for a in adb.get('arcanas',[]) if int(a.get('id',0))==7103901),None)
-          if not target: raise SystemExit('Arcana 7103901 missing')
-          def stat(name,val):
-              icons={'인내':'./data/arcana-assets/status/endurance.webp','집중':'./data/arcana-assets/status/focus.webp','체력':'./data/arcana-assets/status/health.webp'}
-              return {'type':'RT_STAT','statName':t(name),'min':val,'max':val,'icon':icons.get(name,'')}
-          def pp(val): return {'type':'RT_POTEN_POINT','min':val,'max':val}
-          target['events']=[
-            {'name':t('인기 강좌의 비결'),'choices':[
-              {'name':t('강의 주제의 문제가 아닐까?'),'successRewards':[[stat('인내',10)],[stat('집중',10)]],'failureRewards':[]},
-              {'name':t('강의 방식의 문제가 아닐까?'),'successRewards':[[stat('인내',12)],[stat('체력',8)]],'failureRewards':[]}]},
-            {'name':t('십자말풀이'),'choices':[
-              {'name':t('그웬에게 준다.'),'successRewards':[[stat('인내',12)],[stat('체력',8)]],'failureRewards':[]},
-              {'name':t('교수에게 준다.'),'successRewards':[[stat('인내',12)],[stat('체력',8)]],'failureRewards':[]}]},
-            {'name':t('분홍색 연구'),'choices':[
-              {'name':t('미래를 아는 예언자'),'successRewards':[[stat('인내',15)],[pp(20)]],'failureRewards':[]},
-              {'name':t('모노리스 교단의 성녀'),'successRewards':[[stat('집중',18)]],'failureRewards':[]}]}
-          ]
-          target['image']='./data/arcana-assets/cards/탐닉자의 유흥거리.webp'
-          ap.write_text(json.dumps(adb,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          PY
+          fetch 'https://ss.esprcdn.dev/images/characters/portrait/1039.webp' 'data/savior-detail-assets/프로페서M.webp'
+          fetch 'https://ss.esprcdn.dev/images/characters/illustration/1039.ui.webp' 'data/savior-detail-assets/프로페서M 일러스트.webp'
+          fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_0.webp' 'data/savior-detail-assets/프로페서M 패시브.webp'
+          fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_1.webp' 'data/savior-detail-assets/프로페서M 기본기.webp'
+          fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_2.webp' 'data/savior-detail-assets/프로페서M 특수기.webp'
+          fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_3.webp' 'data/savior-detail-assets/프로페서M 궁극기.webp'
+          fetch 'https://ss.esprcdn.dev/images/general/status/buff_detective_professor_1.webp' 'data/savior-detail-assets/표본 행동 분석.webp'
+          fetch 'https://ss.esprcdn.dev/images/general/status/buff_adjusttype_resource_moon.webp' 'data/savior-detail-assets/냉각.webp'
+          fetch 'https://ss.esprcdn.dev/images/general/status/debuff_detective_professor_2.webp' 'data/savior-detail-assets/표적 각인.webp'
+          fetch 'https://ss.esprcdn.dev/images/arcanas/illustration/7103901.webp' 'data/arcana-assets/cards/탐닉자의 유흥거리.webp'
 
+          file data/savior-detail-assets/*.webp data/arcana-assets/cards/'탐닉자의 유흥거리.webp'
+
+      - name: Commit imported assets
+        shell: bash
+        run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/savior-skills/saviors.json data/arcanas/arcanas.json
-          git commit -m 'Fix Professor M skills and Hedonist event choices'
-          git push origin main
+          git add data/savior-detail-assets data/arcana-assets/cards
+          if git diff --cached --quiet; then
+            echo 'No asset changes.'
+            exit 0
+          fi
+          git commit -m 'Import Professor M and Hedonist Diversion assets'
+          git push
