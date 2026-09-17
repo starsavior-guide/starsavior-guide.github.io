@@ -13,7 +13,7 @@ permissions:
 
 concurrency:
   group: starsavior-source-backup-write
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   sync-new-espr:

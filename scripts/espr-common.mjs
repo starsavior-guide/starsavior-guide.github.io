@@ -178,7 +178,8 @@ export async function loadStaticPage(page, url) {
       "accept-language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
       "user-agent": "starsavior-guide-static-sync/2.0"
     },
-    redirect: "follow"
+    redirect: "follow",
+    signal: AbortSignal.timeout(45_000)
   });
   if (!response.ok) {
     throw new Error(`${url}: HTTP ${response.status}; static ESPR fetch failed without retry`);
@@ -203,7 +204,8 @@ export async function discoverSlugsStatic(kind) {
       accept: "application/xml,text/xml;q=0.9,*/*;q=0.8",
       "user-agent": "starsavior-guide-static-sync/2.0"
     },
-    redirect: "follow"
+    redirect: "follow",
+    signal: AbortSignal.timeout(45_000)
   });
   if (!response.ok) throw new Error(`ESPR sitemap: HTTP ${response.status}`);
   const xml = await response.text();
@@ -306,6 +308,7 @@ export async function downloadAsset(context, sourceUrl, destination, options = {
           referer: `${ESPR_ORIGIN}/`,
           "user-agent": "starsavior-guide-espr-backup/2.0"
         },
+        signal: AbortSignal.timeout(45_000)
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const contentType = response.headers.get("content-type") || "";
