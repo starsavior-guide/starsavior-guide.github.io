@@ -1,0 +1,907 @@
+{
+  "arcanaCount": 80,
+  "arcanaSample": {
+    "id": 1011701,
+    "name": {
+      "ko": "별빛의 인도자",
+      "en": "Pathfinder of Starlight",
+      "ja": "星灯りの導き手"
+    },
+    "character": {
+      "ko": "리세트",
+      "en": "Lisette",
+      "ja": "リセット"
+    },
+    "rarity": "R",
+    "mainStat": {
+      "ko": "구원자",
+      "en": "Savior",
+      "ja": "救援者"
+    },
+    "assists": [],
+    "image": "./data/arcana-assets/cards/1011701.webp",
+    "mainStatIcon": "",
+    "specialPotentialId": null,
+    "uniqueEffect": null,
+    "effects": {
+      "journeyStart": [],
+      "training": [
+        {
+          "unlockLevel": 1,
+          "promotePerLevel": 1,
+          "activeType": "PT_TRAINNING",
+          "valueType": {
+            "ko": "훈련 효과 상승",
+            "en": "Training Effectiveness",
+            "ja": "トレーニングの効果上昇"
+          },
+          "isRate": true,
+          "valueInt": 0,
+          "valueRate": 200,
+          "valueIntPerPromote": 0,
+          "valueRatePerPromote": 10,
+          "values": {
+            "35": {
+              "value": 540,
+              "display": "5.40%"
+            },
+            "40": {
+              "value": 590,
+              "display": "5.90%"
+            },
+            "45": {
+              "value": 640,
+              "display": "6.40%"
+            },
+            "50": {
+              "value": 690,
+              "display": "6.90%"
+            }
+          }
+        },
+        {
+          "unlockLevel": 1,
+          "promotePerLevel": 1,
+          "activeType": "PT_TRAINNING",
+          "valueType": {
+            "ko": "훈련 출현 확률 상승",
+            "en": "Training Chance",
+            "ja": "トレーニング出現確率上昇"
+          },
+          "isRate": true,
+          "valueInt": 0,
+          "valueRate": 700,
+          "valueIntPerPromote": 0,
+          "valueRatePerPromote": 35,
+          "values": {
+            "35": {
+              "value": 1890,
+              "display": "18.90%"
+            },
+            "40": {
+              "value": 2065,
+              "display": "20.65%"
+            },
+            "45": {
+              "value": 2240,
+              "display": "22.40%"
+            },
+            "50": {
+              "value": 2415,
+              "display": "24.15%"
+            }
+          }
+        }
+      ],
+      "telepathy": [],
+      "supportQuest": []
+    },
+    "events": []
+  },
+  "journeyBuffSample": [
+    {
+      "id": 361,
+      "group": 36,
+      "type": "JBT_POWER_TRAINING_EXP_UP",
+      "value": 3000,
+      "turn": 3,
+      "isBuff": true,
+      "name": {
+        "ko": "생존왕",
+        "en": "King of Survival",
+        "ja": "生存王"
+      },
+      "description": {
+        "ko": "어떤 터프한 상황도 이겨내는 근성이 차오릅니다. 힘 훈련 경험치 획득량이 증가합니다.",
+        "en": "Your grit to endure any hardship grows stronger. Strength training EXP gained increases.",
+        "ja": "どんな厳しい状況も乗り越えられる根性が湧いてきます。力トレーニングの経験値獲得量が上がります。"
+      },
+      "icon": "./data/arcana-assets/journey-buffs/361.webp"
+    },
+    {
+      "id": 10301,
+      "group": 10301,
+      "type": "JBT_AP_BONUS",
+      "value": 2,
+      "isBuff": true,
+      "name": {
+        "ko": "공감 능력",
+        "en": "Empathy",
+        "ja": "共感能力"
+      },
+      "description": {
+        "ko": "다른 사람의 마음을 깊이 이해할 줄 아는 여정 단원. 훈련 중 획득하는 인연 포인트가 증가합니다.",
+        "en": "You deeply understand the hearts of others. Bond Points gained during training increase.",
+        "ja": "他人の感情を深く理解できる旅の団員。トレーニングで獲得する絆ポイントが上がります。"
+      },
+      "icon": "./data/arcana-assets/journey-buffs/10301.webp"
+    },
+    {
+      "id": 400011,
+      "group": 40001,
+      "type": "JBT_FOCUS_TRAINING_DOWN",
+      "value": 1000,
+      "turn": 1,
+      "isBuff": false,
+      "name": {
+        "ko": "메타 인지",
+        "en": "Metacognition",
+        "ja": "メタ認知"
+      },
+      "description": {
+        "ko": "이 세계가 게임이라는 믿을 수 없는 이야기를 들었습니다. 혼란스러워 집중이 잘 되지 않습니다… 훈련 중 획득하는 집중이 감소합니다.",
+        "en": "I've heard the unbelievable claim that this world is a game. It's confusing, and I can't focus… Focus gained during training decreases.",
+        "ja": "この世界がゲームの世界だという信じられない話を聞きました。混乱で集中できません…トレーニングで獲得する集中が下がります。"
+      },
+      "icon": "./data/arcana-assets/journey-buffs/400011.webp"
+    }
+  ],
+  "skillTop": [
+    "schemaVersion",
+    "source",
+    "capturedAt",
+    "languages",
+    "saviors"
+  ],
+  "skillSample": {
+    "id": 3003,
+    "rank": "SSR",
+    "name": {
+      "ko": "로자리아",
+      "en": "Rosaria",
+      "ja": "ロザリア"
+    },
+    "title": {
+      "ko": "폴른 호크",
+      "en": "Fallen Hawk",
+      "ja": "フォーレン・ホーク"
+    },
+    "description": {
+      "ko": "운명을 관장하는 클리포트의 마왕 중 한 명으로, 북의 폭군이라 불리우는 자. 단 한 자루의 검으로 수많은 별을 재로 만들었다.",
+      "en": "One of the Demon Lords of Qliphoth who govern fate, also known as the Tyrant of the North. Turned countless stars to ash with a single sword.",
+      "ja": "運命を司る「クリフォトの魔王」の一員で、北の暴君と呼ばれる者。たった一振りの剣で多くの星が灰に化した。"
+    },
+    "resonancePotentials": [
+      {
+        "step": 3,
+        "unlockLevel": 60,
+        "id": 20001,
+        "strId": "POTEN_PASSIVE_0001",
+        "name": {
+          "ko": "공격의 감각",
+          "en": "Sense of Attack",
+          "ja": "攻撃の感覚"
+        },
+        "description": {
+          "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+          "en": "Slightly increases self ATK by a certain percentage.",
+          "ja": "攻撃力が一定比率わずかに上がる。"
+        }
+      },
+      {
+        "step": 6,
+        "unlockLevel": 120,
+        "id": 20004,
+        "strId": "POTEN_PASSIVE_0004",
+        "name": {
+          "ko": "속도의 감각",
+          "en": "Sense of Speed",
+          "ja": "速度の感覚"
+        },
+        "description": {
+          "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
+          "en": "Slightly increases self SPD by a certain amount.",
+          "ja": "速度が一定値だけわずかに上がる。"
+        }
+      },
+      {
+        "step": 10,
+        "unlockLevel": 200,
+        "id": 21001,
+        "strId": "POTEN_PASSIVE_1001",
+        "name": {
+          "ko": "공격의 솜씨",
+          "en": "Skill of Attack",
+          "ja": "攻撃の腕前"
+        },
+        "description": {
+          "ko": "공격력이 2% 증가합니다.",
+          "en": "Increases ATK by 2%.",
+          "ja": "攻撃力が2%上がる。"
+        }
+      }
+    ],
+    "skills": [
+      {
+        "id": 30034,
+        "type": 0,
+        "target": "NSTT_INVALID",
+        "cooltime": 0,
+        "break": 0,
+        "nova": 0,
+        "name": {
+          "ko": "북의 폭군",
+          "en": "Tyrant of the North",
+          "ja": "北の暴君"
+        },
+        "novaDescription": {
+          "ko": "구원자",
+          "en": "Savior",
+          "ja": "救援者"
+        },
+        "icon": "./data/savior-skill-assets/skills/30034.webp",
+        "buffs": [
+          {
+            "id": 1001,
+            "strId": "BI_ATTACK_INCREASE",
+            "name": {
+              "ko": "공격력 증가",
+              "en": "ATK Up",
+              "ja": "攻撃力アップ"
+            },
+            "description": {
+              "ko": "공격력이 30% 증가합니다.",
+              "en": "Increases ATK by 30%.",
+              "ja": "攻撃力が30%上がる。"
+            },
+            "icon": "./data/savior-skill-assets/buffs/BI_ATTACK_INCREASE.webp"
+          },
+          {
+            "id": 10004,
+            "strId": "BI_ADJUSTTYPE_RESOURCE_CHAOS",
+            "name": {
+              "ko": "격동",
+              "en": "Agitation",
+              "ja": "激動"
+            },
+            "description": {
+              "ko": "질서 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.",
+              "en": "Damage dealt to Order Attribute units increases by 1%. Applies up to 5 stacks. This boost applies independently of buffs and debuffs.",
+              "ja": "秩序属性ユニットへの与ダメージが1%アップ。最大5スタックまで適用される。ブースト効果は強化/弱体化に関係なく、独立して適用される。"
+            },
+            "icon": "./data/savior-skill-assets/buffs/BI_ADJUSTTYPE_RESOURCE_CHAOS.webp"
+          },
+          {
+            "id": 30032,
+            "strId": "BI_HELLFIRE_1",
+            "name": {
+              "ko": "업화(해제불가)",
+              "en": "Inferno (Undispellable)",
+              "ja": "業火(解除不可)"
+            },
+            "description": {
+              "ko": "자신의 업화 중첩 수에 따라 왕의 심판이 강화됩니다. 최대 3회 중첩됩니다.",
+              "en": "Enhances Ruler's Judgement for each stack of Inferno. Stacks up to 3 times.",
+              "ja": "自身の業火スタック数に応じて王の審判が強化される。最大3回までスタック可能。"
+            },
+            "icon": "./data/savior-skill-assets/buffs/BI_HELLFIRE_1.webp"
+          }
+        ],
+        "levels": [
+          {
+            "level": 1,
+            "skillDescription": {
+              "ko": "로자리아가 <b><color=#DD982C>재의 불꽃</color></b> 사용 후 자신에게 부여된 <b><color=#DD982C>격동</color></b> 스택에 비례하여 <b><color=#DD982C>업화(해제불가)</color></b>의 발생 확률이 20%씩 증가하며 최대 5개까지 적용됩니다. 피해를 받을 시 현재 생명력이 40% 이하로 떨어지지 않습니다. 피격 후 자신의 생명력이 40% 이하이면 자신에게 <b><color=#2A80D8>1턴</color></b> 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시킵니다. 피해를 받을 시 효과와 피격 후 효과는 전투 중 1회만 발생합니다.",
+              "en": "Increases the chance to grant self <b><color=#DD982C>Inferno (Undispellable)</color></b> by 20% for every stack of <b><color=#DD982C>Agitation</color></b> on self after using <b><color=#DD982C>Ashen Inferno</color></b> (up to 5 stacks). Current HP does not drop below 40% upon receiving damage. Grants self <b><color=#DD982C>ATK Up</color></b> for <b><color=#2A80D8>1 turn</color></b> if self HP is 40% or below after being attacked. Effects triggered upon receiving damage or after being attacked can only occur once per battle.",
+              "ja": "ロザリアが<b><color=#DD982C>灰の炎</color></b>使用後、自身に付与されている<b><color=#DD982C>激動</color></b>スタック数に応じて<b><color=#DD982C>業火(解除不可)</color></b>の付与確率が20％ずつ上がる。この効果は最大5個まで適用される。ダメージを受ける時、現在のHPが40％以下にならない。攻撃を受けた後、自身のHPが40％以下の場合、自身の<b><color=#2A80D8>攻撃力アップ</color></b>を<b><color=#DD982C>1ターン</color></b>付与する。ダメージを受ける時の効果と、攻撃を受けた後の効果は戦闘中に1回のみ発生する。"
+            },
+            "levelDescription": {
+              "ko": "기본 효과",
+              "en": "Base Effect",
+              "ja": "基本効果"
+            }
+          },
+          {
+            "level": 2,
+            "skillDescription": {
+              "ko": "로자리아의 공격력이 <b><color=#2A80D8>5%</color></b> 증가합니다. 로자리아가 <b><color=#DD982C>재의 불꽃</color></b> 사용 후 자신에게 부여된 <b><color=#DD982C>격동</color></b> 스택에 비례하여 <b><color=#DD982C>업화(해제불가)</color></b>의 발생 확률이 20%씩 증가하며 최대 5개까지 적용됩니다. 피해를 받을 시 현재 생명력이 40% 이하로 떨어지지 않습니다. 피격 후 자신의 생명력이 40% 이하이면 자신에게 <b><color=#2A80D8>1턴</color></b> 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시킵니다. 피해를 받을 시 효과와 피격 후 효과는 전투 중 1회만 발생합니다.",
+              "en": "Increases self ATK by <b><color=#2A80D8>5%</color></b>. Increases the chance to grant self <b><color=#DD982C>Inferno (Undispellable)</color></b> by 20% for every stack of <b><color=#DD982C>Agitation</color></b> on self after using <b><color=#DD982C>Ashen Inferno</color></b> (up to 5 stacks). Current HP does not drop below 40% upon receiving damage. Grants self <b><color=#DD982C>ATK Up</color></b> for <b><color=#2A80D8>1 turn</color></b> if self HP is 40% or below after being attacked. Effects triggered upon receiving damage or after being attacked can only occur once per battle.",
+              "ja": "ロザリアの攻撃力が<b><color=#2A80D8>5％</color></b>上がる。ロザリアが<b><color=#DD982C>灰の炎</color></b>使用後、自身に付与されている<b><color=#DD982C>激動</color></b>スタック数に応じて<b><color=#DD982C>業火(解除不可)</color></b>の付与確率が20％ずつ上がる。この効果は最大5個まで適用される。ダメージを受ける時、現在のHPが40％以下にならない。攻撃を受けた後、自身のHPが40％以下の場合、自身の<b><color=#2A80D8>攻撃力アップ</color></b>を<b><color=#DD982C>1ターン</color></b>付与する。ダメージを受ける時の効果と、攻撃を受けた後の効果は戦闘中に1回のみ発生する。"
+            },
+            "levelDescription": {
+              "ko": "로자리아의 공격력이 <b><color=#2A80D8>5%</color></b> 증가합니다. 로자리아가 <b><color=#DD982C>재의 불꽃</color></b> 사용 후 자신에게 부여된 <b><color=#DD982C>격동</color></b> 스택에 비례하여 <b><color=#DD982C>업화(해제불가)</color></b>의 발생 확률이 20%씩 증가하며 최대 5개까지 적용됩니다. 피해를 받을 시 현재 생명력이 40% 이하로 떨어지지 않습니다. 피격 후 자신의 생명력이 40% 이하이면 자신에게 <b><color=#2A80D8>1턴</color></b> 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시킵니다. 피해를 받을 시 효과와 피격 후 효과는 전투 중 1회만 발생합니다.",
+              "en": "Increases self ATK by <b><color=#2A80D8>5%</color></b>. Increases the chance to grant self <b><color=#DD982C>Inferno (Undispellable)</color></b> by 20% for every stack of <b><color=#DD982C>Agitation</color></b> on self after using <b><color=#DD982C>Ashen Inferno</color></b> (up to 5 stacks). Current HP does not drop below 40% upon receiving damage. Grants self <b><color=#DD982C>ATK Up</color></b> for <b><color=#2A80D8>1 turn</color></b> if self HP is 40% or below after being attacked. Effects triggered upon receiving damage or after being attacked can only occur once per battle.",
+              "ja": "ロザリアの攻撃力が<b><color=#2A80D8>5％</color></b>上がる。ロザリアが<b><color=#DD982C>灰の炎</color></b>使用後、自身に付与されている<b><color=#DD982C>激動</color></b>スタック数に応じて<b><color=#DD982C>業火(解除不可)</color></b>の付与確率が20％ずつ上がる。この効果は最大5個まで適用される。ダメージを受ける時、現在のHPが40％以下にならない。攻撃を受けた後、自身のHPが40％以下の場合、自身の<b><color=#2A80D8>攻撃力アップ</color></b>を<b><color=#DD982C>1ターン</color></b>付与する。ダメージを受ける時の効果と、攻撃を受けた後の効果は戦闘中に1回のみ発生する。"
+            }
+          },
+          {
+            "level": 3,
+            "skillDescription": {
+              "ko": "로자리아의 공격력이 <b><color=#2A80D8>10%</color></b> 증가합니다. 로자리아가 <b><color=#DD982C>재의 불꽃</color></b> 사용 후 자신에게 부여된 <b><color=#DD982C>격동</color></b> 스택에 비례하여 <b><color=#DD982C>업화(해제불가)</color></b>의 발생 확률이 20%씩 증가하며 최대 5개까지 적용됩니다. 피해를 받을 시 현재 생명력이 40% 이하로 떨어지지 않습니다. 피격 후 자신의 생명력이 40% 이하이면 자신에게 <b><color=#2A80D8>2턴</color></b> 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시킵니다. 피해를 받을 시 효과와 피격 후 효과는 전투 중 1회만 발생합니다.",
+              "en": "Increases self ATK by <b><color=#2A80D8>10%</color></b>. Increases the chance to grant self <b><color=#DD982C>Inferno (Undispellable)</color></b> by 20% for every stack of <b><color=#DD982C>Agitation</color></b> on self after using <b><color=#DD982C>Ashen Inferno</color></b> (up to 5 stacks). Current HP does not drop below 40% upon receiving damage. Grants self <b><color=#DD982C>ATK Up</color></b> for <b><color=#2A80D8>2 turns</color></b> if self HP is 40% or below after being attacked. Effects triggered upon receiving damage or after being attacked can only occur once per battle.",
+              "ja": "ロザリアの攻撃力が<b><color=#2A80D8>10％</color></b>上がる。ロザリアが<b><color=#DD982C>灰の炎</color></b>使用後、自身に付与されている<b><color=#DD982C>激動</color></b>スタック数に応じて<b><color=#DD982C>業火(解除不可)</color></b>の付与確率が20％ずつ上がる。この効果は最大5個まで適用される。ダメージを受ける時、現在のHPが40％以下にならない。攻撃を受けた後、自身のHPが40％以下の場合、自身の<b><color=#2A80D8>攻撃力アップ</color></b>を<b><color=#DD982C>2ターン</color></b>付与する。ダメージを受ける時の効果と、攻撃を受けた後の効果は戦闘中に1回のみ発生する。"
+            },
+            "levelDescription": {
+              "ko": "로자리아의 공격력이 <b><color=#2A80D8>10%</color></b> 증가합니다. 로자리아가 <b><color=#DD982C>재의 불꽃</color></b> 사용 후 자신에게 부여된 <b><color=#DD982C>격동</color></b> 스택에 비례하여 <b><color=#DD982C>업화(해제불가)</color></b>의 발생 확률이 20%씩 증가하며 최대 5개까지 적용됩니다. 피해를 받을 시 현재 생명력이 40% 이하로 떨어지지 않습니다. 피격 후 자신의 생명력이 40% 이하이면 자신에게 <b><color=#2A80D8>2턴</color></b> 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시킵니다. 피해를 받을 시 효과와 피격 후 효과는 전투 중 1회만 발생합니다.",
+              "en": "Increases self ATK by <b><color=#2A80D8>10%</color></b>. Increases the chance to grant self <b><color=#DD982C>Inferno (Undispellable)</color></b> by 20% for every stack of <b><color=#DD982C>Agitation</color></b> on self after using <b><color=#DD982C>Ashen Inferno</color></b> (up to 5 stacks). Current HP does not drop below 40% upon receiving damage. Grants self <b><color=#DD982C>ATK Up</color></b> for <b><color=#2A80D8>2 turns</color></b> if self HP is 40% or below after being attacked. Effects triggered upon receiving damage or after being attacked can only occur once per battle.",
+              "ja": "ロザリアの攻撃力が<b><color=#2A80D8>10％</color></b>上がる。ロザリアが<b><color=#DD982C>灰の炎</color></b>使用後、自身に付与されている<b><color=#DD982C>激動</color></b>スタック数に応じて<b><color=#DD982C>業火(解除不可)</color></b>の付与確率が20％ずつ上がる。この効果は最大5個まで適用される。ダメージを受ける時、現在のHPが40％以下にならない。攻撃を受けた後、自身のHPが40％以下の場合、自身の<b><color=#2A80D8>攻撃力アップ</color></b>を<b><color=#DD982C>2ターン</color></b>付与する。ダメージを受ける時の効果と、攻撃を受けた後の効果は戦闘中に1回のみ発生する。"
+            }
+          },
+          {
+            "level": 4,
+            "skillDescription": {
+              "ko": "로자리아의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 로자리아가 <b><color=#DD982C>재의 불꽃</color></b> 사용 후 자신에게 부여된 <b><color=#DD982C>격동</color></b> 스택에 비례하여 <b><color=#DD982C>업화(해제불가)</color></b>의 발생 확률이 20%씩 증가하며 최대 5개까지 적용됩니다. 피해를 받을 시 현재 생명력이 40% 이하로 떨어지지 않습니다. 피격 후 자신의 생명력이 40% 이하이면 자신에게 <b><color=#2A80D8>3턴</color></b> 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시킵니다. 피해를 받을 시 효과와 피격 후 효과는 전투 중 1회만 발생합니다.",
+              "en": "Increases self ATK by <b><color=#2A80D8>15%</color></b>. Increases the chance to grant self <b><color=#DD982C>Inferno (Undispellable)</color></b> by 20% for every stack of <b><color=#DD982C>Agitation</color></b> on self after using <b><color=#DD982C>Ashen Inferno</color></b> (up to 5 stacks). Current HP does not drop below 40% upon receiving damage. Grants self <b><color=#DD982C>ATK Up</color></b> for <b><color=#2A80D8>3 turns</color></b> if self HP is 40% or below after being attacked. Effects triggered upon receiving damage or after being attacked can only occur once per battle.",
+              "ja": "ロザリアの攻撃力が<b><color=#2A80D8>15％</color></b>上がる。ロザリアが<b><color=#DD982C>灰の炎</color></b>使用後、自身に付与されている<b><color=#DD982C>激動</color></b>スタック数に応じて<b><color=#DD982C>業火(解除不可)</color></b>の付与確率が20％ずつ上がる。この効果は最大5個まで適用される。ダメージを受ける時、現在のHPが40％以下にならない。攻撃を受けた後、自身のHPが40％以下の場合、自身の<b><color=#2A80D8>攻撃力アップ</color></b>を<b><color=#DD982C>3ターン</color></b>付与する。ダメージを受ける時の効果と、攻撃を受けた後の効果は戦闘中に1回のみ発生する。"
+            },
+            "levelDescription": {
+              "ko": "로자리아의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 로자리아가 <b><color=#DD982C>재의 불꽃</color></b> 사용 후 자신에게 부여된 <b><color=#DD982C>격동</color></b> 스택에 비례하여 <b><color=#DD982C>업화(해제불가)</color></b>의 발생 확률이 20%씩 증가하며 최대 5개까지 적용됩니다. 피해를 받을 시 현재 생명력이 40% 이하로 떨어지지 않습니다. 피격 후 자신의 생명력이 40% 이하이면 자신에게 <b><color=#2A80D8>3턴</color></b> 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시킵니다. 피해를 받을 시 효과와 피격 후 효과는 전투 중 1회만 발생합니다.",
+              "en": "Increases self ATK by <b><color=#2A80D8>15%</color></b>. Increases the chance to grant self <b><color=#DD982C>Inferno (Undispellable)</color></b> by 20% for every stack of <b><color=#DD982C>Agitation</color></b> on self after using <b><color=#DD982C>Ashen Inferno</color></b> (up to 5 stacks). Current HP does not drop below 40% upon receiving damage. Grants self <b><color=#DD982C>ATK Up</color></b> for <b><color=#2A80D8>3 turns</color></b> if self HP is 40% or below after being attacked. Effects triggered upon receiving damage or after being attacked can only occur once per battle.",
+              "ja": "ロザリアの攻撃力が<b><color=#2A80D8>15％</color></b>上がる。ロザリアが<b><color=#DD982C>灰の炎</color></b>使用後、自身に付与されている<b><color=#DD982C>激動</color></b>スタック数に応じて<b><color=#DD982C>業火(解除不可)</color></b>の付与確率が20％ずつ上がる。この効果は最大5個まで適用される。ダメージを受ける時、現在のHPが40％以下にならない。攻撃を受けた後、自身のHPが40％以下の場合、自身の<b><color=#2A80D8>攻撃力アップ</color></b>を<b><color=#DD982C>3ターン</color></b>付与する。ダメージを受ける時の効果と、攻撃を受けた後の効果は戦闘中に1回のみ発生する。"
+            }
+          }
+        ]
+      },
+      {
+        "id": 30031,
+        "type": 1,
+        "target": "NSTT_ENEMY_ONE",
+        "cooltime": 0,
+        "break": 0,
+        "nova": 0,
+        "name": {
+          "ko": "재의 불꽃",
+          "en": "Ashen Inferno",
+          "ja": "灰の炎"
+        },
+        "novaDescription": {
+          "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다.",
+          "en": "Self Toughness Fixed DMG temporarily increases by 1 on attack.",
+          "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がる。"
+        },
+        "icon": "./data/savior-skill-assets/skills/30031.webp",
+        "buffs": [
+          {
+            "id": 10004,
+            "strId": "BI_ADJUSTTYPE_RESOURCE_CHAOS",
+            "name": {
+              "ko": "격동",
+              "en": "Agitation",
+              "ja": "激動"
+            },
+            "description": {
+              "ko": "질서 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.",
+              "en": "Damage dealt to Order Attribute units increases by 1%. Applies up to 5 stacks. This boost applies independently of buffs and debuffs.",
+              "ja": "秩序属性ユニットへの与ダメージが1%アップ。最大5スタックまで適用される。ブースト効果は強化/弱体化に関係なく、独立して適用される。"
+            },
+            "icon": "./data/savior-skill-assets/buffs/BI_ADJUSTTYPE_RESOURCE_CHAOS.webp"
+          }
+        ],
+        "levels": [
+          {
+            "level": 1,
+            "skillDescription": {
+              "ko": "재의 불꽃을 적에게 날려 공격합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다.",
+              "en": "Unleashes an ashen inferno at the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>.",
+              "ja": "灰の炎を敵に放って攻撃する。自身に<b><color=#DD982C>激動</color></b>スタック1つ付与する。"
+            },
+            "levelDescription": {
+              "ko": "기본 효과",
+              "en": "Base Effect",
+              "ja": "基本効果"
+            }
+          },
+          {
+            "level": 2,
+            "skillDescription": {
+              "ko": "재의 불꽃을 적에게 날려 공격합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다.",
+              "en": "Unleashes an ashen inferno at the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>.",
+              "ja": "灰の炎を敵に放って攻撃する。自身に<b><color=#DD982C>激動</color></b>スタック1つ付与する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 1% 증가",
+              "en": "DMG +1%",
+              "ja": "与ダメージ1%上昇"
+            }
+          },
+          {
+            "level": 3,
+            "skillDescription": {
+              "ko": "재의 불꽃을 적에게 날려 공격합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다.",
+              "en": "Unleashes an ashen inferno at the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>.",
+              "ja": "灰の炎を敵に放って攻撃する。自身に<b><color=#DD982C>激動</color></b>スタック1つ付与する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 1% 증가",
+              "en": "DMG +1%",
+              "ja": "与ダメージ1%上昇"
+            }
+          },
+          {
+            "level": 4,
+            "skillDescription": {
+              "ko": "재의 불꽃을 적에게 날려 공격합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다.",
+              "en": "Unleashes an ashen inferno at the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>.",
+              "ja": "灰の炎を敵に放って攻撃する。自身に<b><color=#DD982C>激動</color></b>スタック1つ付与する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 1% 증가",
+              "en": "DMG +1%",
+              "ja": "与ダメージ1%上昇"
+            }
+          },
+          {
+            "level": 5,
+            "skillDescription": {
+              "ko": "재의 불꽃을 적에게 날려 공격합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다.",
+              "en": "Unleashes an ashen inferno at the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>.",
+              "ja": "灰の炎を敵に放って攻撃する。自身に<b><color=#DD982C>激動</color></b>スタック1つ付与する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 1% 증가",
+              "en": "DMG +1%",
+              "ja": "与ダメージ1%上昇"
+            }
+          },
+          {
+            "level": 6,
+            "skillDescription": {
+              "ko": "재의 불꽃을 적에게 날려 공격합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다.",
+              "en": "Unleashes an ashen inferno at the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>.",
+              "ja": "灰の炎を敵に放って攻撃する。自身に<b><color=#DD982C>激動</color></b>スタック1つ付与する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 2% 증가",
+              "en": "DMG +2%",
+              "ja": "与ダメージ2%上昇"
+            }
+          },
+          {
+            "level": 7,
+            "skillDescription": {
+              "ko": "재의 불꽃을 적에게 날려 공격합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다.",
+              "en": "Unleashes an ashen inferno at the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>.",
+              "ja": "灰の炎を敵に放って攻撃する。自身に<b><color=#DD982C>激動</color></b>スタック1つ付与する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 2% 증가",
+              "en": "DMG +2%",
+              "ja": "与ダメージ2%上昇"
+            }
+          },
+          {
+            "level": 8,
+            "skillDescription": {
+              "ko": "재의 불꽃을 적에게 날려 공격합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다.",
+              "en": "Unleashes an ashen inferno at the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>.",
+              "ja": "灰の炎を敵に放って攻撃する。自身に<b><color=#DD982C>激動</color></b>スタック1つ付与する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 2% 증가",
+              "en": "DMG +2%",
+              "ja": "与ダメージ2%上昇"
+            }
+          },
+          {
+            "level": 9,
+            "skillDescription": {
+              "ko": "재의 불꽃을 적에게 날려 공격합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다.",
+              "en": "Unleashes an ashen inferno at the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>.",
+              "ja": "灰の炎を敵に放って攻撃する。自身に<b><color=#DD982C>激動</color></b>スタック1つ付与する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 2% 증가",
+              "en": "DMG +2%",
+              "ja": "与ダメージ2%上昇"
+            }
+          },
+          {
+            "level": 10,
+            "skillDescription": {
+              "ko": "재의 불꽃을 적에게 날려 공격합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다.",
+              "en": "Unleashes an ashen inferno at the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>.",
+              "ja": "灰の炎を敵に放って攻撃する。自身に<b><color=#DD982C>激動</color></b>スタック1つ付与する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 3% 증가",
+              "en": "DMG +3%",
+              "ja": "与ダメージ3%上昇"
+            }
+          }
+        ]
+      },
+      {
+        "id": 30032,
+        "type": 2,
+        "target": "NSTT_ENEMY_ONE",
+        "cooltime": 4,
+        "break": 1,
+        "nova": 1,
+        "name": {
+          "ko": "왕의 심판",
+          "en": "Ruler's Judgement",
+          "ja": "王の審判"
+        },
+        "novaDescription": {
+          "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다.",
+          "en": "Self Toughness Fixed DMG temporarily increases by 1 on attack.",
+          "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がる。"
+        },
+        "icon": "./data/savior-skill-assets/skills/30032.webp",
+        "buffs": [
+          {
+            "id": 10004,
+            "strId": "BI_ADJUSTTYPE_RESOURCE_CHAOS",
+            "name": {
+              "ko": "격동",
+              "en": "Agitation",
+              "ja": "激動"
+            },
+            "description": {
+              "ko": "질서 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.",
+              "en": "Damage dealt to Order Attribute units increases by 1%. Applies up to 5 stacks. This boost applies independently of buffs and debuffs.",
+              "ja": "秩序属性ユニットへの与ダメージが1%アップ。最大5スタックまで適用される。ブースト効果は強化/弱体化に関係なく、独立して適用される。"
+            },
+            "icon": "./data/savior-skill-assets/buffs/BI_ADJUSTTYPE_RESOURCE_CHAOS.webp"
+          },
+          {
+            "id": 30032,
+            "strId": "BI_HELLFIRE_1",
+            "name": {
+              "ko": "업화(해제불가)",
+              "en": "Inferno (Undispellable)",
+              "ja": "業火(解除不可)"
+            },
+            "description": {
+              "ko": "자신의 업화 중첩 수에 따라 왕의 심판이 강화됩니다. 최대 3회 중첩됩니다.",
+              "en": "Enhances Ruler's Judgement for each stack of Inferno. Stacks up to 3 times.",
+              "ja": "自身の業火スタック数に応じて王の審判が強化される。最大3回までスタック可能。"
+            },
+            "icon": "./data/savior-skill-assets/buffs/BI_HELLFIRE_1.webp"
+          }
+        ],
+        "levels": [
+          {
+            "level": 1,
+            "skillDescription": {
+              "ko": "단죄의 업화로 적을 유린합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다. 자신의 <b><color=#DD982C>업화(해제불가)</color></b>의 중첩 횟수에 따라 적용 효과가 변경되고 타격 후 자신의 <b><color=#DD982C>업화(해제불가)</color></b>를 모두 해제합니다.\n업화(해제불가) 1중첩 : 피해량이 10% 증가합니다.\n업화(해제불가) 2중첩 : 피해량이 20% 증가합니다.\n업화(해제불가) 3중첩 : 피해량이 20% 증가하고 <b><color=#DD982C>재의 불꽃</color></b>을 발동합니다.",
+              "en": "Unleashes an inferno of condemnation to ravage the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>. The applied effect changes based on the number of stacks of <b><color=#DD982C>Inferno (Undispellable)</color></b>. Removes all <b><color=#DD982C>Inferno (Undispellable)</color></b> stacks after attacking.\n1 stack of Inferno (Undispellable): Deals 10% increased damage.\n2 stacks of Inferno (Undispellable): Deals 20% increased damage.\n3 stacks of Inferno (Undispellable): Deals 20% increased damage and triggers <b><color=#DD982C>Ashen Inferno</color></b>.",
+              "ja": "断罪の業火で敵を蹂躙する。自身に<b><color=#DD982C>激動</color></b>スタックを1つ付与する。自身の<b><color=#DD982C>業火(解除不可)</color></b>のスタック回数によって効果が変更され、攻撃後、自身の<b><color=#DD982C>業火(解除不可)</color></b>をすべて解除する。\n業火(解除不可)1スタック目：ダメージが10％上がる。\n業火(解除不可)2スタック目：ダメージが20％上がる。\n業火(解除不可)3スタック目：ダメージが20％上がり、<b><color=#DD982C>灰の炎</color></b>を発動する。"
+            },
+            "levelDescription": {
+              "ko": "기본 효과",
+              "en": "Base Effect",
+              "ja": "基本効果"
+            }
+          },
+          {
+            "level": 2,
+            "skillDescription": {
+              "ko": "단죄의 업화로 적을 유린합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다. 자신의 <b><color=#DD982C>업화(해제불가)</color></b>의 중첩 횟수에 따라 적용 효과가 변경되고 타격 후 자신의 <b><color=#DD982C>업화(해제불가)</color></b>를 모두 해제합니다.\n업화(해제불가) 1중첩 : 피해량이 10% 증가합니다.\n업화(해제불가) 2중첩 : 피해량이 20% 증가합니다.\n업화(해제불가) 3중첩 : 피해량이 20% 증가하고 <b><color=#DD982C>재의 불꽃</color></b>을 발동합니다.",
+              "en": "Unleashes an inferno of condemnation to ravage the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>. The applied effect changes based on the number of stacks of <b><color=#DD982C>Inferno (Undispellable)</color></b>. Removes all <b><color=#DD982C>Inferno (Undispellable)</color></b> stacks after attacking.\n1 stack of Inferno (Undispellable): Deals 10% increased damage.\n2 stacks of Inferno (Undispellable): Deals 20% increased damage.\n3 stacks of Inferno (Undispellable): Deals 20% increased damage and triggers <b><color=#DD982C>Ashen Inferno</color></b>.",
+              "ja": "断罪の業火で敵を蹂躙する。自身に<b><color=#DD982C>激動</color></b>スタックを1つ付与する。自身の<b><color=#DD982C>業火(解除不可)</color></b>のスタック回数によって効果が変更され、攻撃後、自身の<b><color=#DD982C>業火(解除不可)</color></b>をすべて解除する。\n業火(解除不可)1スタック目：ダメージが10％上がる。\n業火(解除不可)2スタック目：ダメージが20％上がる。\n業火(解除不可)3スタック目：ダメージが20％上がり、<b><color=#DD982C>灰の炎</color></b>を発動する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 1% 증가",
+              "en": "DMG +1%",
+              "ja": "与ダメージ1%上昇"
+            }
+          },
+          {
+            "level": 3,
+            "skillDescription": {
+              "ko": "단죄의 업화로 적을 유린합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다. 자신의 <b><color=#DD982C>업화(해제불가)</color></b>의 중첩 횟수에 따라 적용 효과가 변경되고 타격 후 자신의 <b><color=#DD982C>업화(해제불가)</color></b>를 모두 해제합니다.\n업화(해제불가) 1중첩 : 피해량이 10% 증가합니다.\n업화(해제불가) 2중첩 : 피해량이 20% 증가합니다.\n업화(해제불가) 3중첩 : 피해량이 20% 증가하고 <b><color=#DD982C>재의 불꽃</color></b>을 발동합니다.",
+              "en": "Unleashes an inferno of condemnation to ravage the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>. The applied effect changes based on the number of stacks of <b><color=#DD982C>Inferno (Undispellable)</color></b>. Removes all <b><color=#DD982C>Inferno (Undispellable)</color></b> stacks after attacking.\n1 stack of Inferno (Undispellable): Deals 10% increased damage.\n2 stacks of Inferno (Undispellable): Deals 20% increased damage.\n3 stacks of Inferno (Undispellable): Deals 20% increased damage and triggers <b><color=#DD982C>Ashen Inferno</color></b>.",
+              "ja": "断罪の業火で敵を蹂躙する。自身に<b><color=#DD982C>激動</color></b>スタックを1つ付与する。自身の<b><color=#DD982C>業火(解除不可)</color></b>のスタック回数によって効果が変更され、攻撃後、自身の<b><color=#DD982C>業火(解除不可)</color></b>をすべて解除する。\n業火(解除不可)1スタック目：ダメージが10％上がる。\n業火(解除不可)2スタック目：ダメージが20％上がる。\n業火(解除不可)3スタック目：ダメージが20％上がり、<b><color=#DD982C>灰の炎</color></b>を発動する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 2% 증가",
+              "en": "DMG +2%",
+              "ja": "与ダメージ2%上昇"
+            }
+          },
+          {
+            "level": 4,
+            "skillDescription": {
+              "ko": "단죄의 업화로 적을 유린합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다. 자신의 <b><color=#DD982C>업화(해제불가)</color></b>의 중첩 횟수에 따라 적용 효과가 변경되고 타격 후 자신의 <b><color=#DD982C>업화(해제불가)</color></b>를 모두 해제합니다.\n업화(해제불가) 1중첩 : 피해량이 10% 증가합니다.\n업화(해제불가) 2중첩 : 피해량이 20% 증가합니다.\n업화(해제불가) 3중첩 : 피해량이 20% 증가하고 <b><color=#DD982C>재의 불꽃</color></b>을 발동합니다.",
+              "en": "Unleashes an inferno of condemnation to ravage the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>. The applied effect changes based on the number of stacks of <b><color=#DD982C>Inferno (Undispellable)</color></b>. Removes all <b><color=#DD982C>Inferno (Undispellable)</color></b> stacks after attacking.\n1 stack of Inferno (Undispellable): Deals 10% increased damage.\n2 stacks of Inferno (Undispellable): Deals 20% increased damage.\n3 stacks of Inferno (Undispellable): Deals 20% increased damage and triggers <b><color=#DD982C>Ashen Inferno</color></b>.",
+              "ja": "断罪の業火で敵を蹂躙する。自身に<b><color=#DD982C>激動</color></b>スタックを1つ付与する。自身の<b><color=#DD982C>業火(解除不可)</color></b>のスタック回数によって効果が変更され、攻撃後、自身の<b><color=#DD982C>業火(解除不可)</color></b>をすべて解除する。\n業火(解除不可)1スタック目：ダメージが10％上がる。\n業火(解除不可)2スタック目：ダメージが20％上がる。\n業火(解除不可)3スタック目：ダメージが20％上がり、<b><color=#DD982C>灰の炎</color></b>を発動する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 2% 증가",
+              "en": "DMG +2%",
+              "ja": "与ダメージ2%上昇"
+            }
+          },
+          {
+            "level": 5,
+            "skillDescription": {
+              "ko": "단죄의 업화로 적을 유린합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다. 자신의 <b><color=#DD982C>업화(해제불가)</color></b>의 중첩 횟수에 따라 적용 효과가 변경되고 타격 후 자신의 <b><color=#DD982C>업화(해제불가)</color></b>를 모두 해제합니다.\n업화(해제불가) 1중첩 : 피해량이 10% 증가합니다.\n업화(해제불가) 2중첩 : 피해량이 20% 증가합니다.\n업화(해제불가) 3중첩 : 피해량이 20% 증가하고 <b><color=#DD982C>재의 불꽃</color></b>을 발동합니다.",
+              "en": "Unleashes an inferno of condemnation to ravage the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>. The applied effect changes based on the number of stacks of <b><color=#DD982C>Inferno (Undispellable)</color></b>. Removes all <b><color=#DD982C>Inferno (Undispellable)</color></b> stacks after attacking.\n1 stack of Inferno (Undispellable): Deals 10% increased damage.\n2 stacks of Inferno (Undispellable): Deals 20% increased damage.\n3 stacks of Inferno (Undispellable): Deals 20% increased damage and triggers <b><color=#DD982C>Ashen Inferno</color></b>.",
+              "ja": "断罪の業火で敵を蹂躙する。自身に<b><color=#DD982C>激動</color></b>スタックを1つ付与する。自身の<b><color=#DD982C>業火(解除不可)</color></b>のスタック回数によって効果が変更され、攻撃後、自身の<b><color=#DD982C>業火(解除不可)</color></b>をすべて解除する。\n業火(解除不可)1スタック目：ダメージが10％上がる。\n業火(解除不可)2スタック目：ダメージが20％上がる。\n業火(解除不可)3スタック目：ダメージが20％上がり、<b><color=#DD982C>灰の炎</color></b>を発動する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 2% 증가",
+              "en": "DMG +2%",
+              "ja": "与ダメージ2%上昇"
+            }
+          },
+          {
+            "level": 6,
+            "skillDescription": {
+              "ko": "단죄의 업화로 적을 유린합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다. 자신의 <b><color=#DD982C>업화(해제불가)</color></b>의 중첩 횟수에 따라 적용 효과가 변경되고 타격 후 자신의 <b><color=#DD982C>업화(해제불가)</color></b>를 모두 해제합니다.\n업화(해제불가) 1중첩 : 피해량이 10% 증가합니다.\n업화(해제불가) 2중첩 : 피해량이 20% 증가합니다.\n업화(해제불가) 3중첩 : 피해량이 20% 증가하고 <b><color=#DD982C>재의 불꽃</color></b>을 발동합니다.",
+              "en": "Unleashes an inferno of condemnation to ravage the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>. The applied effect changes based on the number of stacks of <b><color=#DD982C>Inferno (Undispellable)</color></b>. Removes all <b><color=#DD982C>Inferno (Undispellable)</color></b> stacks after attacking.\n1 stack of Inferno (Undispellable): Deals 10% increased damage.\n2 stacks of Inferno (Undispellable): Deals 20% increased damage.\n3 stacks of Inferno (Undispellable): Deals 20% increased damage and triggers <b><color=#DD982C>Ashen Inferno</color></b>.",
+              "ja": "断罪の業火で敵を蹂躙する。自身に<b><color=#DD982C>激動</color></b>スタックを1つ付与する。自身の<b><color=#DD982C>業火(解除不可)</color></b>のスタック回数によって効果が変更され、攻撃後、自身の<b><color=#DD982C>業火(解除不可)</color></b>をすべて解除する。\n業火(解除不可)1スタック目：ダメージが10％上がる。\n業火(解除不可)2スタック目：ダメージが20％上がる。\n業火(解除不可)3スタック目：ダメージが20％上がり、<b><color=#DD982C>灰の炎</color></b>を発動する。"
+            },
+            "levelDescription": {
+              "ko": "쿨타임 1턴 감소",
+              "en": "Cooldown decreases by 1 turn(s)",
+              "ja": "クールタイム1ターン短縮"
+            }
+          },
+          {
+            "level": 7,
+            "skillDescription": {
+              "ko": "단죄의 업화로 적을 유린합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다. 자신의 <b><color=#DD982C>업화(해제불가)</color></b>의 중첩 횟수에 따라 적용 효과가 변경되고 타격 후 자신의 <b><color=#DD982C>업화(해제불가)</color></b>를 모두 해제합니다.\n업화(해제불가) 1중첩 : 피해량이 10% 증가합니다.\n업화(해제불가) 2중첩 : 피해량이 20% 증가합니다.\n업화(해제불가) 3중첩 : 피해량이 20% 증가하고 <b><color=#DD982C>재의 불꽃</color></b>을 발동합니다.",
+              "en": "Unleashes an inferno of condemnation to ravage the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>. The applied effect changes based on the number of stacks of <b><color=#DD982C>Inferno (Undispellable)</color></b>. Removes all <b><color=#DD982C>Inferno (Undispellable)</color></b> stacks after attacking.\n1 stack of Inferno (Undispellable): Deals 10% increased damage.\n2 stacks of Inferno (Undispellable): Deals 20% increased damage.\n3 stacks of Inferno (Undispellable): Deals 20% increased damage and triggers <b><color=#DD982C>Ashen Inferno</color></b>.",
+              "ja": "断罪の業火で敵を蹂躙する。自身に<b><color=#DD982C>激動</color></b>スタックを1つ付与する。自身の<b><color=#DD982C>業火(解除不可)</color></b>のスタック回数によって効果が変更され、攻撃後、自身の<b><color=#DD982C>業火(解除不可)</color></b>をすべて解除する。\n業火(解除不可)1スタック目：ダメージが10％上がる。\n業火(解除不可)2スタック目：ダメージが20％上がる。\n業火(解除不可)3スタック目：ダメージが20％上がり、<b><color=#DD982C>灰の炎</color></b>を発動する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 2% 증가",
+              "en": "DMG +2%",
+              "ja": "与ダメージ2%上昇"
+            }
+          },
+          {
+            "level": 8,
+            "skillDescription": {
+              "ko": "단죄의 업화로 적을 유린합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다. 자신의 <b><color=#DD982C>업화(해제불가)</color></b>의 중첩 횟수에 따라 적용 효과가 변경되고 타격 후 자신의 <b><color=#DD982C>업화(해제불가)</color></b>를 모두 해제합니다.\n업화(해제불가) 1중첩 : 피해량이 10% 증가합니다.\n업화(해제불가) 2중첩 : 피해량이 20% 증가합니다.\n업화(해제불가) 3중첩 : 피해량이 20% 증가하고 <b><color=#DD982C>재의 불꽃</color></b>을 발동합니다.",
+              "en": "Unleashes an inferno of condemnation to ravage the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>. The applied effect changes based on the number of stacks of <b><color=#DD982C>Inferno (Undispellable)</color></b>. Removes all <b><color=#DD982C>Inferno (Undispellable)</color></b> stacks after attacking.\n1 stack of Inferno (Undispellable): Deals 10% increased damage.\n2 stacks of Inferno (Undispellable): Deals 20% increased damage.\n3 stacks of Inferno (Undispellable): Deals 20% increased damage and triggers <b><color=#DD982C>Ashen Inferno</color></b>.",
+              "ja": "断罪の業火で敵を蹂躙する。自身に<b><color=#DD982C>激動</color></b>スタックを1つ付与する。自身の<b><color=#DD982C>業火(解除不可)</color></b>のスタック回数によって効果が変更され、攻撃後、自身の<b><color=#DD982C>業火(解除不可)</color></b>をすべて解除する。\n業火(解除不可)1スタック目：ダメージが10％上がる。\n業火(解除不可)2スタック目：ダメージが20％上がる。\n業火(解除不可)3スタック目：ダメージが20％上がり、<b><color=#DD982C>灰の炎</color></b>を発動する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 3% 증가",
+              "en": "DMG +3%",
+              "ja": "与ダメージ3%上昇"
+            }
+          },
+          {
+            "level": 9,
+            "skillDescription": {
+              "ko": "단죄의 업화로 적을 유린합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다. 자신의 <b><color=#DD982C>업화(해제불가)</color></b>의 중첩 횟수에 따라 적용 효과가 변경되고 타격 후 자신의 <b><color=#DD982C>업화(해제불가)</color></b>를 모두 해제합니다.\n업화(해제불가) 1중첩 : 피해량이 10% 증가합니다.\n업화(해제불가) 2중첩 : 피해량이 20% 증가합니다.\n업화(해제불가) 3중첩 : 피해량이 20% 증가하고 <b><color=#DD982C>재의 불꽃</color></b>을 발동합니다.",
+              "en": "Unleashes an inferno of condemnation to ravage the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>. The applied effect changes based on the number of stacks of <b><color=#DD982C>Inferno (Undispellable)</color></b>. Removes all <b><color=#DD982C>Inferno (Undispellable)</color></b> stacks after attacking.\n1 stack of Inferno (Undispellable): Deals 10% increased damage.\n2 stacks of Inferno (Undispellable): Deals 20% increased damage.\n3 stacks of Inferno (Undispellable): Deals 20% increased damage and triggers <b><color=#DD982C>Ashen Inferno</color></b>.",
+              "ja": "断罪の業火で敵を蹂躙する。自身に<b><color=#DD982C>激動</color></b>スタックを1つ付与する。自身の<b><color=#DD982C>業火(解除不可)</color></b>のスタック回数によって効果が変更され、攻撃後、自身の<b><color=#DD982C>業火(解除不可)</color></b>をすべて解除する。\n業火(解除不可)1スタック目：ダメージが10％上がる。\n業火(解除不可)2スタック目：ダメージが20％上がる。\n業火(解除不可)3スタック目：ダメージが20％上がり、<b><color=#DD982C>灰の炎</color></b>を発動する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 3% 증가",
+              "en": "DMG +3%",
+              "ja": "与ダメージ3%上昇"
+            }
+          },
+          {
+            "level": 10,
+            "skillDescription": {
+              "ko": "단죄의 업화로 적을 유린합니다. 자신에게 <b><color=#DD982C>격동</color></b> 스택을 1개 부여합니다. 자신의 <b><color=#DD982C>업화(해제불가)</color></b>의 중첩 횟수에 따라 적용 효과가 변경되고 타격 후 자신의 <b><color=#DD982C>업화(해제불가)</color></b>를 모두 해제합니다.\n업화(해제불가) 1중첩 : 피해량이 10% 증가합니다.\n업화(해제불가) 2중첩 : 피해량이 20% 증가합니다.\n업화(해제불가) 3중첩 : 피해량이 20% 증가하고 <b><color=#DD982C>재의 불꽃</color></b>을 발동합니다.",
+              "en": "Unleashes an inferno of condemnation to ravage the enemy. Grants self 1 stack of <b><color=#DD982C>Agitation</color></b>. The applied effect changes based on the number of stacks of <b><color=#DD982C>Inferno (Undispellable)</color></b>. Removes all <b><color=#DD982C>Inferno (Undispellable)</color></b> stacks after attacking.\n1 stack of Inferno (Undispellable): Deals 10% increased damage.\n2 stacks of Inferno (Undispellable): Deals 20% increased damage.\n3 stacks of Inferno (Undispellable): Deals 20% increased damage and triggers <b><color=#DD982C>Ashen Inferno</color></b>.",
+              "ja": "断罪の業火で敵を蹂躙する。自身に<b><color=#DD982C>激動</color></b>スタックを1つ付与する。自身の<b><color=#DD982C>業火(解除不可)</color></b>のスタック回数によって効果が変更され、攻撃後、自身の<b><color=#DD982C>業火(解除不可)</color></b>をすべて解除する。\n業火(解除不可)1スタック目：ダメージが10％上がる。\n業火(解除不可)2スタック目：ダメージが20％上がる。\n業火(解除不可)3スタック目：ダメージが20％上がり、<b><color=#DD982C>灰の炎</color></b>を発動する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 5% 증가",
+              "en": "DMG +5%",
+              "ja": "与ダメージ5%上昇"
+            }
+          }
+        ]
+      },
+      {
+        "id": 30033,
+        "type": 3,
+        "target": "NSTT_ENEMY_ALL",
+        "cooltime": 6,
+        "break": 1,
+        "nova": 1,
+        "name": {
+          "ko": "격의 차이",
+          "en": "Difference in Class",
+          "ja": "格の差"
+        },
+        "novaDescription": {
+          "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가하고 치명타 확률이 30% 증가합니다.",
+          "en": "Temporarily deals 1 more Toughness Fixed DMG and increases CRIT Rate by 30% on attack.",
+          "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がり、会心率が30%上がる。"
+        },
+        "icon": "./data/savior-skill-assets/skills/30033.webp",
+        "buffs": [
+          {
+            "id": 1503,
+            "strId": "BI_DEFENSE_DECREASE",
+            "name": {
+              "ko": "방어력 감소",
+              "en": "DEF Down",
+              "ja": "防御力ダウン"
+            },
+            "description": {
+              "ko": "방어력이 30% 감소합니다.",
+              "en": "Decreases DEF by 30%.",
+              "ja": "防御力が30%減少します。"
+            },
+            "icon": "./data/savior-skill-assets/buffs/BI_DEFENSE_DECREASE.webp"
+          },
+          {
+            "id": 30031,
+            "strId": "BI_ASHES_THRONE_1",
+            "name": {
+              "ko": "옥좌의 주인(해제불가)",
+              "en": "Owner of the Throne (Undispellable)",
+              "ja": "玉座の主(解除不可)"
+            },
+            "description": {
+              "ko": "기본기 피해량과 속도가 15% 증가합니다.",
+              "en": "Increases Basic Skill DMG and SPD by 15%.",
+              "ja": "基本スキルダメージ量と速度が15%増加します。"
+            },
+            "icon": "./data/savior-skill-assets/buffs/BI_ASHES_THRONE_1.webp"
+          },
+          {
+            "id": 30032,
+            "strId": "BI_HELLFIRE_1",
+            "name": {
+              "ko": "업화(해제불가)",
+              "en": "Inferno (Undispellable)",
+              "ja": "業火(解除不可)"
+            },
+            "description": {
+              "ko": "자신의 업화 중첩 수에 따라 왕의 심판이 강화됩니다. 최대 3회 중첩됩니다.",
+              "en": "Enhances Ruler's Judgement for each stack of Inferno. Stacks up to 3 times.",
+              "ja": "自身の業火スタック数に応じて王の審判が強化される。最大3回までスタック可能。"
+            },
+            "icon": "./data/savior-skill-assets/buffs/BI_HELLFIRE_1.webp"
+          }
+        ],
+        "levels": [
+          {
+            "level": 1,
+            "skillDescription": {
+              "ko": "검을 휘둘러 행성을 갈라 적 전체를 공격합니다. 적 전체에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시킵니다. 자신의 행동 게이지를 50% 증가시키고 3턴 간 <b><color=#DD982C>옥좌의 주인(해제불가)</color></b>을 발생시킵니다. 치명타가 발생한 대상의 수만큼 자신에게 <b><color=#DD982C>업화(해제불가)</color></b>를 발생시키며 최대 3회까지 발생합니다.",
+              "en": "Swings her sword to cleave a planet, attacking all enemies. Inflicts all enemies with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>75%</color></b> chance. Increases self Action Gauge by 50% and grants self <b><color=#DD982C>Owner of the Throne (Undispellable)</color></b> for 3 turns. Grants self a stack of <b><color=#DD982C>Inferno (Undispellable)</color></b> for each target hit by a Critical Hit. Stacks up to 3 times.",
+              "ja": "剣を振るい、惑星を裂いて敵全体を攻撃する。敵全体に<b><color=#2A80D8>75％</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させる。自身の行動ゲージを50％増やし、3ターン<b><color=#DD982C>玉座の主(解除不可)</color></b>を発生させる。会心が発生した対象の数に従って自身に<b><color=#DD982C>業火(解除不可)</color></b>を発生させ、最大3回まで発生する。"
+            },
+            "levelDescription": {
+              "ko": "기본 효과",
+              "en": "Base Effect",
+              "ja": "基本効果"
+            }
+          },
+          {
+            "level": 2,
+            "skillDescription": {
+              "ko": "검을 휘둘러 행성을 갈라 적 전체를 공격합니다. 적 전체에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시킵니다. 자신의 행동 게이지를 50% 증가시키고 3턴 간 <b><color=#DD982C>옥좌의 주인(해제불가)</color></b>을 발생시킵니다. 치명타가 발생한 대상의 수만큼 자신에게 <b><color=#DD982C>업화(해제불가)</color></b>를 발생시키며 최대 3회까지 발생합니다.",
+              "en": "Swings her sword to cleave a planet, attacking all enemies. Inflicts all enemies with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>75%</color></b> chance. Increases self Action Gauge by 50% and grants self <b><color=#DD982C>Owner of the Throne (Undispellable)</color></b> for 3 turns. Grants self a stack of <b><color=#DD982C>Inferno (Undispellable)</color></b> for each target hit by a Critical Hit. Stacks up to 3 times.",
+              "ja": "剣を振るい、惑星を裂いて敵全体を攻撃する。敵全体に<b><color=#2A80D8>75％</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させる。自身の行動ゲージを50％増やし、3ターン<b><color=#DD982C>玉座の主(解除不可)</color></b>を発生させる。会心が発生した対象の数に従って自身に<b><color=#DD982C>業火(解除不可)</color></b>を発生させ、最大3回まで発生する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 1% 증가",
+              "en": "DMG +1%",
+              "ja": "与ダメージ1%上昇"
+            }
+          },
+          {
+            "level": 3,
+            "skillDescription": {
+              "ko": "검을 휘둘러 행성을 갈라 적 전체를 공격합니다. 적 전체에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시킵니다. 자신의 행동 게이지를 50% 증가시키고 3턴 간 <b><color=#DD982C>옥좌의 주인(해제불가)</color></b>을 발생시킵니다. 치명타가 발생한 대상의 수만큼 자신에게 <b><color=#DD982C>업화(해제불가)</color></b>를 발생시키며 최대 3회까지 발생합니다.",
+              "en": "Swings her sword to cleave a planet, attacking all enemies. Inflicts all enemies with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>75%</color></b> chance. Increases self Action Gauge by 50% and grants self <b><color=#DD982C>Owner of the Throne (Undispellable)</color></b> for 3 turns. Grants self a stack of <b><color=#DD982C>Inferno (Undispellable)</color></b> for each target hit by a Critical Hit. Stacks up to 3 times.",
+              "ja": "剣を振るい、惑星を裂いて敵全体を攻撃する。敵全体に<b><color=#2A80D8>75％</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させる。自身の行動ゲージを50％増やし、3ターン<b><color=#DD982C>玉座の主(解除不可)</color></b>を発生させる。会心が発生した対象の数に従って自身に<b><color=#DD982C>業火(解除不可)</color></b>を発生させ、最大3回まで発生する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 2% 증가",
+              "en": "DMG +2%",
+              "ja": "与ダメージ2%上昇"
+            }
+          },
+          {
+            "level": 4,
+            "skillDescription": {
+              "ko": "검을 휘둘러 행성을 갈라 적 전체를 공격합니다. 적 전체에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시킵니다. 자신의 행동 게이지를 50% 증가시키고 3턴 간 <b><color=#DD982C>옥좌의 주인(해제불가)</color></b>을 발생시킵니다. 치명타가 발생한 대상의 수만큼 자신에게 <b><color=#DD982C>업화(해제불가)</color></b>를 발생시키며 최대 3회까지 발생합니다.",
+              "en": "Swings her sword to cleave a planet, attacking all enemies. Inflicts all enemies with <b><color=#DD982C>DEF Down</color></b> for 2 turns with an <b><color=#2A80D8>85%</color></b> chance. Increases self Action Gauge by 50% and grants self <b><color=#DD982C>Owner of the Throne (Undispellable)</color></b> for 3 turns. Grants self a stack of <b><color=#DD982C>Inferno (Undispellable)</color></b> for each target hit by a Critical Hit. Stacks up to 3 times.",
+              "ja": "剣を振るい、惑星を裂いて敵全体を攻撃する。敵全体に<b><color=#2A80D8>85％</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させる。自身の行動ゲージを50％増やし、3ターン<b><color=#DD982C>玉座の主(解除不可)</color></b>を発生させる。会心が発生した対象の数に従って自身に<b><color=#DD982C>業火(解除不可)</color></b>を発生させ、最大3回まで発生する。"
+            },
+            "levelDescription": {
+              "ko": "방어력 감소 발생 확률 10% 증가",
+              "en": "DEF Down chance +10%",
+              "ja": "防御力低下の発生率10%上昇"
+            }
+          },
+          {
+            "level": 5,
+            "skillDescription": {
+              "ko": "검을 휘둘러 행성을 갈라 적 전체를 공격합니다. 적 전체에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시킵니다. 자신의 행동 게이지를 50% 증가시키고 3턴 간 <b><color=#DD982C>옥좌의 주인(해제불가)</color></b>을 발생시킵니다. 치명타가 발생한 대상의 수만큼 자신에게 <b><color=#DD982C>업화(해제불가)</color></b>를 발생시키며 최대 3회까지 발생합니다.",
+              "en": "Swings her sword to cleave a planet, attacking all enemies. Inflicts all enemies with <b><color=#DD982C>DEF Down</color></b> for 2 turns with an <b><color=#2A80D8>85%</color></b> chance. Increases self Action Gauge by 50% and grants self <b><color=#DD982C>Owner of the Throne (Undispellable)</color></b> for 3 turns. Grants self a stack of <b><color=#DD982C>Inferno (Undispellable)</color></b> for each target hit by a Critical Hit. Stacks up to 3 times.",
+              "ja": "剣を振るい、惑星を裂いて敵全体を攻撃する。敵全体に<b><color=#2A80D8>85％</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させる。自身の行動ゲージを50％増やし、3ターン<b><color=#DD982C>玉座の主(解除不可)</color></b>を発生させる。会心が発生した対象の数に従って自身に<b><color=#DD982C>業火(解除不可)</color></b>を発生させ、最大3回まで発生する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 2% 증가",
+              "en": "DMG +2%",
+              "ja": "与ダメージ2%上昇"
+            }
+          },
+          {
+            "level": 6,
+            "skillDescription": {
+              "ko": "검을 휘둘러 행성을 갈라 적 전체를 공격합니다. 적 전체에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시킵니다. 자신의 행동 게이지를 50% 증가시키고 3턴 간 <b><color=#DD982C>옥좌의 주인(해제불가)</color></b>을 발생시킵니다. 치명타가 발생한 대상의 수만큼 자신에게 <b><color=#DD982C>업화(해제불가)</color></b>를 발생시키며 최대 3회까지 발생합니다.",
+              "en": "Swings her sword to cleave a planet, attacking all enemies. Inflicts all enemies with <b><color=#DD982C>DEF Down</color></b> for 2 turns with an <b><color=#2A80D8>85%</color></b> chance. Increases self Action Gauge by 50% and grants self <b><color=#DD982C>Owner of the Throne (Undispellable)</color></b> for 3 turns. Grants self a stack of <b><color=#DD982C>Inferno (Undispellable)</color></b> for each target hit by a Critical Hit. Stacks up to 3 times.",
+              "ja": "剣を振るい、惑星を裂いて敵全体を攻撃する。敵全体に<b><color=#2A80D8>85％</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させる。自身の行動ゲージを50％増やし、3ターン<b><color=#DD982C>玉座の主(解除不可)</color></b>を発生させる。会心が発生した対象の数に従って自身に<b><color=#DD982C>業火(解除不可)</color></b>を発生させ、最大3回まで発生する。"
+            },
+            "levelDescription": {
+              "ko": "쿨타임 1턴 감소",
+              "en": "Cooldown decreases by 1 turn(s)",
+              "ja": "クールタイム1ターン短縮"
+            }
+          },
+          {
+            "level": 7,
+            "skillDescription": {
+              "ko": "검을 휘둘러 행성을 갈라 적 전체를 공격합니다. 적 전체에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시킵니다. 자신의 행동 게이지를 50% 증가시키고 3턴 간 <b><color=#DD982C>옥좌의 주인(해제불가)</color></b>을 발생시킵니다. 치명타가 발생한 대상의 수만큼 자신에게 <b><color=#DD982C>업화(해제불가)</color></b>를 발생시키며 최대 3회까지 발생합니다.",
+              "en": "Swings her sword to cleave a planet, attacking all enemies. Inflicts all enemies with <b><color=#DD982C>DEF Down</color></b> for 2 turns with an <b><color=#2A80D8>85%</color></b> chance. Increases self Action Gauge by 50% and grants self <b><color=#DD982C>Owner of the Throne (Undispellable)</color></b> for 3 turns. Grants self a stack of <b><color=#DD982C>Inferno (Undispellable)</color></b> for each target hit by a Critical Hit. Stacks up to 3 times.",
+              "ja": "剣を振るい、惑星を裂いて敵全体を攻撃する。敵全体に<b><color=#2A80D8>85％</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させる。自身の行動ゲージを50％増やし、3ターン<b><color=#DD982C>玉座の主(解除不可)</color></b>を発生させる。会心が発生した対象の数に従って自身に<b><color=#DD982C>業火(解除不可)</color></b>を発生させ、最大3回まで発生する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 2% 증가",
+              "en": "DMG +2%",
+              "ja": "与ダメージ2%上昇"
+            }
+          },
+          {
+            "level": 8,
+            "skillDescription": {
+              "ko": "검을 휘둘러 행성을 갈라 적 전체를 공격합니다. 적 전체에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시킵니다. 자신의 행동 게이지를 50% 증가시키고 3턴 간 <b><color=#DD982C>옥좌의 주인(해제불가)</color></b>을 발생시킵니다. 치명타가 발생한 대상의 수만큼 자신에게 <b><color=#DD982C>업화(해제불가)</color></b>를 발생시키며 최대 3회까지 발생합니다.",
+              "en": "Swings her sword to cleave a planet, attacking all enemies. Inflicts all enemies with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>100%</color></b> chance. Increases self Action Gauge by 50% and grants self <b><color=#DD982C>Owner of the Throne (Undispellable)</color></b> for 3 turns. Grants self a stack of <b><color=#DD982C>Inferno (Undispellable)</color></b> for each target hit by a Critical Hit. Stacks up to 3 times.",
+              "ja": "剣を振るい、惑星を裂いて敵全体を攻撃する。敵全体に<b><color=#2A80D8>100％</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させる。自身の行動ゲージを50％増やし、3ターン<b><color=#DD982C>玉座の主(解除不可)</color></b>を発生させる。会心が発生した対象の数に従って自身に<b><color=#DD982C>業火(解除不可)</color></b>を発生させ、最大3回まで発生する。"
+            },
+            "levelDescription": {
+              "ko": "방어력 감소 발생 확률 15% 증가",
+              "en": "DEF Down chance +15%",
+              "ja": "防御力低下の発生率15%上昇"
+            }
+          },
+          {
+            "level": 9,
+            "skillDescription": {
+              "ko": "검을 휘둘러 행성을 갈라 적 전체를 공격합니다. 적 전체에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시킵니다. 자신의 행동 게이지를 50% 증가시키고 3턴 간 <b><color=#DD982C>옥좌의 주인(해제불가)</color></b>을 발생시킵니다. 치명타가 발생한 대상의 수만큼 자신에게 <b><color=#DD982C>업화(해제불가)</color></b>를 발생시키며 최대 3회까지 발생합니다.",
+              "en": "Swings her sword to cleave a planet, attacking all enemies. Inflicts all enemies with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>100%</color></b> chance. Increases self Action Gauge by 50% and grants self <b><color=#DD982C>Owner of the Throne (Undispellable)</color></b> for 3 turns. Grants self a stack of <b><color=#DD982C>Inferno (Undispellable)</color></b> for each target hit by a Critical Hit. Stacks up to 3 times.",
+              "ja": "剣を振るい、惑星を裂いて敵全体を攻撃する。敵全体に<b><color=#2A80D8>100％</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させる。自身の行動ゲージを50％増やし、3ターン<b><color=#DD982C>玉座の主(解除不可)</color></b>を発生させる。会心が発生した対象の数に従って自身に<b><color=#DD982C>業火(解除不可)</color></b>を発生させ、最大3回まで発生する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 3% 증가",
+              "en": "DMG +3%",
+              "ja": "与ダメージ3%上昇"
+            }
+          },
+          {
+            "level": 10,
+            "skillDescription": {
+              "ko": "검을 휘둘러 행성을 갈라 적 전체를 공격합니다. 적 전체에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시킵니다. 자신의 행동 게이지를 50% 증가시키고 3턴 간 <b><color=#DD982C>옥좌의 주인(해제불가)</color></b>을 발생시킵니다. 치명타가 발생한 대상의 수만큼 자신에게 <b><color=#DD982C>업화(해제불가)</color></b>를 발생시키며 최대 3회까지 발생합니다.",
+              "en": "Swings her sword to cleave a planet, attacking all enemies. Inflicts all enemies with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>100%</color></b> chance. Increases self Action Gauge by 50% and grants self <b><color=#DD982C>Owner of the Throne (Undispellable)</color></b> for 3 turns. Grants self a stack of <b><color=#DD982C>Inferno (Undispellable)</color></b> for each target hit by a Critical Hit. Stacks up to 3 times.",
+              "ja": "剣を振るい、惑星を裂いて敵全体を攻撃する。敵全体に<b><color=#2A80D8>100％</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させる。自身の行動ゲージを50％増やし、3ターン<b><color=#DD982C>玉座の主(解除不可)</color></b>を発生させる。会心が発生した対象の数に従って自身に<b><color=#DD982C>業火(解除不可)</color></b>を発生させ、最大3回まで発生する。"
+            },
+            "levelDescription": {
+              "ko": "피해량 5% 증가",
+              "en": "DMG +5%",
+              "ja": "与ダメージ5%上昇"
+            }
+          }
+        ]
+      }
+    ],
+    "blossomSkills": []
+  }
+}
