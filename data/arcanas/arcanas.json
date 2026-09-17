@@ -32336,7 +32336,7 @@
           "ja": ""
         }
       ],
-      "image": "./data/arcana-assets/cards/7103901.webp",
+      "image": "./data/arcana-assets/cards/탐닉자의 유흥거리.webp",
       "mainStatIcon": "./data/arcana-assets/status/endurance.webp",
       "uniqueEffect": {
         "name": {
@@ -32521,40 +32521,40 @@
         {
           "name": {
             "ko": "인기 강좌의 비결",
-            "en": "",
-            "ja": ""
+            "en": "인기 강좌의 비결",
+            "ja": "인기 강좌의 비결"
           },
           "choices": [
             {
               "name": {
                 "ko": "강의 주제의 문제가 아닐까?",
-                "en": "",
-                "ja": ""
+                "en": "강의 주제의 문제가 아닐까?",
+                "ja": "강의 주제의 문제가 아닐까?"
               },
               "successRewards": [
                 [
                   {
                     "type": "RT_STAT",
-                    "min": 10,
-                    "max": 10,
                     "statName": {
                       "ko": "인내",
-                      "en": "Endurance",
-                      "ja": "忍耐"
+                      "en": "인내",
+                      "ja": "인내"
                     },
+                    "min": 10,
+                    "max": 10,
                     "icon": "./data/arcana-assets/status/endurance.webp"
                   }
                 ],
                 [
                   {
                     "type": "RT_STAT",
-                    "min": 10,
-                    "max": 10,
                     "statName": {
                       "ko": "집중",
-                      "en": "Focus",
-                      "ja": "集中"
+                      "en": "집중",
+                      "ja": "집중"
                     },
+                    "min": 10,
+                    "max": 10,
                     "icon": "./data/arcana-assets/status/focus.webp"
                   }
                 ]
@@ -32564,42 +32564,34 @@
             {
               "name": {
                 "ko": "강의 방식의 문제가 아닐까?",
-                "en": "",
-                "ja": ""
+                "en": "강의 방식의 문제가 아닐까?",
+                "ja": "강의 방식의 문제가 아닐까?"
               },
               "successRewards": [
                 [
                   {
                     "type": "RT_STAT",
-                    "min": 12,
-                    "max": 12,
                     "statName": {
                       "ko": "인내",
-                      "en": "Endurance",
-                      "ja": "忍耐"
+                      "en": "인내",
+                      "ja": "인내"
                     },
+                    "min": 12,
+                    "max": 12,
                     "icon": "./data/arcana-assets/status/endurance.webp"
                   }
                 ],
                 [
                   {
                     "type": "RT_STAT",
-                    "min": 8,
-                    "max": 8,
                     "statName": {
                       "ko": "체력",
-                      "en": "Health",
-                      "ja": "体力"
+                      "en": "체력",
+                      "ja": "체력"
                     },
+                    "min": 8,
+                    "max": 8,
                     "icon": "./data/arcana-assets/status/health.webp"
-                  }
-                ],
-                [
-                  {
-                    "type": "RT_SE_POTEN",
-                    "rewardId": 21004,
-                    "min": 1,
-                    "max": 1
                   }
                 ]
               ],
@@ -32610,49 +32602,41 @@
         {
           "name": {
             "ko": "십자말풀이",
-            "en": "",
-            "ja": ""
+            "en": "십자말풀이",
+            "ja": "십자말풀이"
           },
           "choices": [
             {
               "name": {
                 "ko": "그웬에게 준다.",
-                "en": "",
-                "ja": ""
+                "en": "그웬에게 준다.",
+                "ja": "그웬에게 준다."
               },
               "successRewards": [
                 [
                   {
                     "type": "RT_STAT",
-                    "min": 12,
-                    "max": 12,
                     "statName": {
                       "ko": "인내",
-                      "en": "Endurance",
-                      "ja": "忍耐"
+                      "en": "인내",
+                      "ja": "인내"
                     },
+                    "min": 12,
+                    "max": 12,
                     "icon": "./data/arcana-assets/status/endurance.webp"
                   }
                 ],
                 [
                   {
                     "type": "RT_STAT",
-                    "min": 8,
-                    "max": 8,
                     "statName": {
                       "ko": "체력",
-                      "en": "Health",
-                      "ja": "体力"
+                      "en": "체력",
+                      "ja": "체력"
                     },
+                    "min": 8,
+                    "max": 8,
                     "icon": "./data/arcana-assets/status/health.webp"
-                  }
-                ],
-                [
-                  {
-                    "type": "RT_SE_POTEN",
-                    "rewardId": 21004,
-                    "min": 1,
-                    "max": 1
                   }
                 ]
               ],
@@ -32661,42 +32645,34 @@
             {
               "name": {
                 "ko": "교수에게 준다.",
-                "en": "",
-                "ja": ""
+                "en": "교수에게 준다.",
+                "ja": "교수에게 준다."
               },
               "successRewards": [
                 [
                   {
                     "type": "RT_STAT",
-                    "min": 12,
-                    "max": 12,
                     "statName": {
                       "ko": "인내",
-                      "en": "Endurance",
-                      "ja": "忍耐"
+                      "en": "인내",
+                      "ja": "인내"
                     },
+                    "min": 12,
+                    "max": 12,
                     "icon": "./data/arcana-assets/status/endurance.webp"
                   }
                 ],
                 [
                   {
                     "type": "RT_STAT",
-                    "min": 8,
-                    "max": 8,
                     "statName": {
                       "ko": "체력",
-                      "en": "Health",
-                      "ja": "体力"
+                      "en": "체력",
+                      "ja": "체력"
                     },
+                    "min": 8,
+                    "max": 8,
                     "icon": "./data/arcana-assets/status/health.webp"
-                  }
-                ],
-                [
-                  {
-                    "type": "RT_SE_POTEN",
-                    "rewardId": 21005,
-                    "min": 1,
-                    "max": 1
                   }
                 ]
               ],
@@ -32707,27 +32683,27 @@
         {
           "name": {
             "ko": "분홍색 연구",
-            "en": "",
-            "ja": ""
+            "en": "분홍색 연구",
+            "ja": "분홍색 연구"
           },
           "choices": [
             {
               "name": {
                 "ko": "미래를 아는 예언자",
-                "en": "",
-                "ja": ""
+                "en": "미래를 아는 예언자",
+                "ja": "미래를 아는 예언자"
               },
               "successRewards": [
                 [
                   {
                     "type": "RT_STAT",
-                    "min": 15,
-                    "max": 15,
                     "statName": {
                       "ko": "인내",
-                      "en": "Endurance",
-                      "ja": "忍耐"
+                      "en": "인내",
+                      "ja": "인내"
                     },
+                    "min": 15,
+                    "max": 15,
                     "icon": "./data/arcana-assets/status/endurance.webp"
                   }
                 ],
@@ -32744,29 +32720,21 @@
             {
               "name": {
                 "ko": "모노리스 교단의 성녀",
-                "en": "",
-                "ja": ""
+                "en": "모노리스 교단의 성녀",
+                "ja": "모노리스 교단의 성녀"
               },
               "successRewards": [
                 [
                   {
                     "type": "RT_STAT",
-                    "min": 18,
-                    "max": 18,
                     "statName": {
                       "ko": "집중",
-                      "en": "Focus",
-                      "ja": "集中"
+                      "en": "집중",
+                      "ja": "집중"
                     },
+                    "min": 18,
+                    "max": 18,
                     "icon": "./data/arcana-assets/status/focus.webp"
-                  }
-                ],
-                [
-                  {
-                    "type": "RT_SE_POTEN",
-                    "rewardId": 22007,
-                    "min": 1,
-                    "max": 1
                   }
                 ]
               ],
