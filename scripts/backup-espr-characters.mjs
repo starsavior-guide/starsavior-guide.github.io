@@ -10,7 +10,7 @@ import {
   findLineValue,
   firstImageMatching,
   getPagePayload,
-  loadStaticPage,
+  gotoStable,
   htmlEscape,
   localizedFromValues,
   mapLimit,
@@ -66,7 +66,7 @@ function matchLocalizedType(line, language) {
 }
 
 function findTitleBeforeName(lines, name) {
-  const index = lines.findLastIndex((line) => line === name);
+  const index = lines.findIndex((line) => line === name);
   if (index <= 0) return "";
   const banned = new Set(["홈", "데이터베이스", "캐릭터", "개요", "여정", "일러스트", "대사", "스탯 & 데미지", "ESPR.gg"]);
   for (let i = index - 1; i >= Math.max(0, index - 8); i -= 1) {
@@ -79,7 +79,7 @@ function findTitleBeforeName(lines, name) {
 }
 
 function findDescriptionAfterName(lines, name) {
-  const index = lines.findLastIndex((line) => line === name);
+  const index = lines.findIndex((line) => line === name);
   for (let i = index + 1; i < Math.min(lines.length, index + 8); i += 1) {
     const line = normalizeText(lines[i]);
     if (line.length >= 18 && !line.startsWith("선호 선물") && !ELEMENTS.includes(line) && !CLASSES.includes(line)) return line;
@@ -109,7 +109,7 @@ async function extractSkillCards(page, language) {
     const norm = (value) => String(value ?? "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim();
     const unwrap = (raw) => {
       try {
-        const url = new URL(raw, document.baseURI);
+        const url = new URL(raw, location.href);
         if (url.pathname === "/_next/image") {
           const inner = url.searchParams.get("url");
           if (inner) return decodeURIComponent(inner);
@@ -129,7 +129,7 @@ async function extractSkillCards(page, language) {
         const text = norm(element.innerText || "");
         const count = [...element.querySelectorAll("img")]
           .filter((node) => /\/images\/characters\/skills\/\d+_\d+\.webp/i.test(unwrap(node.currentSrc || node.src || ""))).length;
-        if (!best && count === 1 && labels.some((label) => text.includes(label)) && text.length > 80) best = element;
+        if (!best && count === 1 && labels.some((label) => text.includes(label)) && text.length > 20) best = element;
         if (best) break;
       }
       const card = best || img.parentElement || main;
@@ -138,7 +138,7 @@ async function extractSkillCards(page, language) {
       const paragraphs = [...card.querySelectorAll("p")].map((p) => norm(p.innerText || p.textContent)).filter(Boolean);
       const statusLinks = [...card.querySelectorAll('a[href*="/database/status-effects/"]')].map((anchor) => ({
         text: norm(anchor.innerText || anchor.textContent),
-        href: new URL(anchor.getAttribute("href"), document.baseURI).href
+        href: new URL(anchor.getAttribute("href"), location.href).href
       }));
       const novaHeading = [...card.querySelectorAll("h3,h4,strong,div,span")]
         .find((node) => /^(노바 버스트|Nova Burst|ノヴァバースト)$/.test(norm(node.textContent)));
@@ -151,21 +151,13 @@ async function extractSkillCards(page, language) {
           cursor = cursor.nextElementSibling;
         }
       }
-      if (!novaDescription) {
-        const novaIndex = lines.findIndex((line) => /^(노바 버스트|Nova Burst|ノヴァバースト)$/.test(line));
-        if (novaIndex >= 0) novaDescription = lines.slice(novaIndex + 1).find((line) => line.length >= 10) || "";
-      }
       const description = paragraphs.find((value) => value.length >= 18 && value !== novaDescription) || "";
-      const fallbackDescription = lines.find((value) => value.length >= 30
-        && !/^(Level|레벨|レベル)\s*\d+/i.test(value)
-        && !/^(Damage|DMG|데미지|ダメージ|Base Effect|기본 효과|基本効果)/i.test(value)
-        && !labels.some((label) => value.includes(label))) || "";
       results.push({
         name: norm(img.alt),
         icon: unwrap(img.currentSrc || img.src || ""),
         text,
         lines,
-        description: description || fallbackDescription,
+        description,
         novaDescription,
         statusLinks
       });
@@ -207,7 +199,7 @@ async function tryEnableBloom(page, language) {
 
 async function scrapeOverview(page, slug, language) {
   const url = `${ESPR_ORIGIN}/${language}/database/characters/${slug}`;
-  await loadStaticPage(page, url);
+  await gotoStable(page, url, { settleMs: 300 });
   const payload = await getPagePayload(page);
   const portrait = firstImageMatching(payload.images, /\/images\/characters\/portrait\/(\d+)\.webp/i);
   const id = portrait ? numericIdFromUrl(portrait.src, /\/portrait\/(\d+)\.webp/i) : null;
@@ -215,19 +207,7 @@ async function scrapeOverview(page, slug, language) {
   const name = payload.title;
   const title = findTitleBeforeName(payload.lines, name);
   const description = findDescriptionAfterName(payload.lines, name);
-  const scrapedSkills = await extractSkillCards(page, language);
-  const skills = scrapedSkills.map((skill, index) => {
-    const start = payload.lines.findIndex((line) => line.includes(skill.name) && line.length < 80);
-    const nextName = scrapedSkills[index + 1]?.name;
-    const end = nextName ? payload.lines.findIndex((line, lineIndex) => lineIndex > start && line.includes(nextName)) : payload.lines.length;
-    const segment = start >= 0 ? payload.lines.slice(start + 1, end > start ? end : payload.lines.length) : [];
-    const lineDescription = segment.find((line) => line.length >= 25
-      && !/^(Level|레벨|レベル)\s*\d+/i.test(line)
-      && !/^(Damage|DMG|데미지|ダメージ|Base Effect|기본 효과|基本効果)/i.test(line));
-    const novaIndex = segment.findIndex((line) => /^(노바 버스트|Nova Burst|ノヴァバースト)$/.test(line));
-    const lineNova = novaIndex >= 0 ? segment.slice(novaIndex + 1).find((line) => line.length >= 10) : "";
-    return { ...skill, description: skill.description || lineDescription || "", novaDescription: skill.novaDescription || lineNova || "" };
-  });
+  const skills = await extractSkillCards(page, language);
 
   let bloomSkills = [];
   try {
@@ -244,22 +224,19 @@ async function scrapeOverview(page, slug, language) {
 
 async function scrapeJourney(page, slug, language) {
   const url = `${ESPR_ORIGIN}/${language}/database/characters/${slug}/journey`;
-  await loadStaticPage(page, url);
+  await gotoStable(page, url, { settleMs: 250 });
   const payload = await getPagePayload(page);
-  const potentials = await page.evaluate(() => [...document.querySelectorAll('a[href*="/database/potentials/"]')].map((anchor) => {
-    const href = anchor.getAttribute('href') || '';
-    const slug = (href.match(/\/database\/potentials\/([^/?#]+)/i) || [])[1] || '';
-    const images = [...anchor.querySelectorAll('img')];
-    const namedImage = images.find((img) => String(img.alt || '').trim());
-    const name = String(namedImage?.alt || '').trim();
-    const description = String(anchor.querySelector('p')?.textContent || '').replace(/\s+/g, ' ').trim();
-    const all = String(anchor.textContent || '').replace(/\s+/g, ' ').trim();
-    const step = Number((all.match(/(?:공명|Resonance|共鳴)\s*(\d+)/i) || [])[1] || 0);
-    const sources = images.flatMap((img) => [img.currentSrc, img.src, img.srcset]);
-    const decoded = sources.map((value) => { try { return decodeURIComponent(value || ''); } catch { return value || ''; } }).join(' ');
-    const id = Number((decoded.match(/\/potentials\/icons\/(\d+)\.webp/) || [])[1] || 0);
-    return { id, slug, name, step, description };
-  }).filter((item) => item.slug && item.name));
+  const potentialLinks = payload.links.filter((link) => /\/database\/potentials\/[^/?#]+/i.test(link.href));
+  const resonanceWords = language === "ko" ? ["공명"] : language === "en" ? ["Resonance"] : ["共鳴"];
+  const potentials = potentialLinks.map((link) => {
+    const slugMatch = link.href.match(/\/database\/potentials\/([^/?#]+)/i);
+    const lines = splitLines(link.text);
+    const all = normalizeText(link.text);
+    const stepMatch = all.match(/(?:공명|Resonance|共鳴)\s*(\d+)/i) || all.match(/\b(\d+)\b/);
+    const name = lines[0] || "";
+    const description = [...lines].reverse().find((line) => line !== name && !resonanceWords.some((word) => line.includes(word)) && !/^\d+$/.test(line)) || "";
+    return { slug: slugMatch?.[1] || "", name, step: Number(stepMatch?.[1] || 0), description };
+  }).filter((item) => item.slug && item.name);
 
   const journeyStats = {};
   if (language === "ko") {
@@ -280,9 +257,9 @@ function profileFromKorean(overview, journey, oldProfile = {}) {
   const profile = {
     name: overview.name || oldProfile.name || "",
     grade: overview.rank || oldProfile.grade || "SSR",
-    element: ELEMENTS.find((value) => lines.slice(0, 12).some((line) => line.includes(value))) || oldProfile.element || "",
-    className: CLASSES.find((value) => lines.slice(0, 12).some((line) => line.includes(value))) || oldProfile.className || "",
-    attackType: ATTACK_TYPES.find((value) => lines.slice(0, 12).some((line) => line.includes(value))) || oldProfile.attackType || "",
+    element: ELEMENTS.find((value) => lines.includes(value)) || oldProfile.element || "",
+    className: CLASSES.find((value) => lines.includes(value)) || oldProfile.className || "",
+    attackType: ATTACK_TYPES.find((value) => lines.includes(value)) || oldProfile.attackType || "",
     description: overview.description || oldProfile.description || "",
     birthday: findLineValue(lines, PROFILE_LABELS_KO.birthday) || oldProfile.birthday || "",
     height: findLineValue(lines, PROFILE_LABELS_KO.height) || oldProfile.height || "",
@@ -310,7 +287,7 @@ function mergeResonance(oldSavior, journeys) {
     return {
       step: Number(item.step || old.step || 0),
       unlockLevel: Number(old.unlockLevel || (item.step ? item.step * 20 : 0)),
-      id: Number(old.id || item.id || stableNumericId(`potential:${item.slug}`, 9_000_000)),
+      id: Number(old.id || stableNumericId(`potential:${item.slug}`, 9_000_000)),
       strId: old.strId || `ESPR_${item.slug.toUpperCase().replace(/[^A-Z0-9]+/g, "_")}`,
       name: names,
       description: descriptions
@@ -466,27 +443,9 @@ async function main() {
     }
   });
   const discoveryPage = await context.newPage();
-  await loadStaticPage(discoveryPage, `${ESPR_ORIGIN}/en/database/characters`);
-  const candidates = await discoveryPage.evaluate(() => [...document.querySelectorAll('a[href*="/en/database/characters/"]')]
-    .map((anchor) => {
-      const href = anchor.getAttribute('href') || '';
-      const slug = (href.match(/\/en\/database\/characters\/([^/?#]+)/) || [])[1] || '';
-      const sources = [...anchor.querySelectorAll('img')].flatMap((img) => [img.currentSrc, img.src, img.srcset]);
-      const decoded = sources.map((value) => { try { return decodeURIComponent(value || ''); } catch { return value || ''; } }).join(' ');
-      const id = Number((decoded.match(/\/characters\/(?:portrait|mid-size)\/(\d+)\.webp/) || [])[1] || 0);
-      return { id, slug };
-    })
-    .filter((item) => item.id && item.slug));
+  const slugs = await discoverSlugs(discoveryPage, "characters");
   await discoveryPage.close();
-  const uniqueCandidates = [...new Map(candidates.map((item) => [item.id, item])).values()].sort((a, b) => a.id - b.id);
-  const selected = REFRESH_ALL ? uniqueCandidates : uniqueCandidates.filter((item) => !oldArchiveById.has(Number(item.id)));
-  const slugs = selected.map((item) => item.slug);
-  console.log(`ESPR characters discovered: ${uniqueCandidates.length}; selected new: ${slugs.length}`);
-  if (!slugs.length) {
-    await browser.close();
-    console.log('No new ESPR Savior IDs.');
-    return;
-  }
+  console.log(`ESPR characters discovered: ${slugs.length}`);
 
   const failures = [];
   const scraped = await mapLimit(slugs, 1, async (slug, index) => {
@@ -501,17 +460,16 @@ async function main() {
   });
 
   const valid = scraped.filter(Boolean).sort((a, b) => a.id - b.id);
-  const minimum = slugs.length;
+  const minimum = Math.max(50, Math.min(slugs.length, oldArchive?.saviors?.length || 0));
   if (valid.length < minimum) {
     await browser.close();
     throw new Error(`ESPR character scrape incomplete: ${valid.length}/${slugs.length}; minimum ${minimum}`);
   }
 
   const capturedAt = new Date().toISOString();
-  const newIndex = deepClone(oldIndex || {});
+  const newIndex = { _meta: { sourceOrigin: ESPR_ORIGIN, capturedAt, languages: LANGUAGES, localOnly: true } };
   const archived = [];
   const bloomIndex = {};
-  if (oldBloomIndex?._meta) bloomIndex._meta = deepClone(oldBloomIndex._meta);
   let assetCount = 0;
   let assetBytes = 0;
 
@@ -583,10 +541,18 @@ async function main() {
     archived.push(deepClone(oldSavior));
     const oldEntry = oldIndex?.[String(id)];
     if (oldEntry) {
-      newIndex[String(id)] = deepClone(oldEntry);
+      newIndex[String(id)] = {
+        ...deepClone(oldEntry),
+        source: `${ESPR_ORIGIN}/ko/database/characters`,
+        capturedAt
+      };
     }
     if (oldBloomIndex?.[String(id)]) {
-      bloomIndex[String(id)] = deepClone(oldBloomIndex[String(id)]);
+      bloomIndex[String(id)] = {
+        ...deepClone(oldBloomIndex[String(id)]),
+        source: `${ESPR_ORIGIN}/ko/database/characters`,
+        capturedAt
+      };
     }
   }
   archived.sort((a, b) => Number(a.id) - Number(b.id));

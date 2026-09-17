@@ -1,20 +1,18 @@
 {
-  "schemaVersion": 2,
-  "sourceOrigin": "https://ss.espr.gg",
-  "capturedAt": "2026-09-17T06:56:28.608Z",
+  "schemaVersion": 1,
+  "sourceOrigin": "https://star-savior-arcana-db.pages.dev",
+  "capturedAt": "2026-09-03T07:51:58.442Z",
   "languages": [
     "ko",
     "en",
     "ja"
   ],
-  "arcanaCount": 81,
-  "eventCount": 197,
-  "choiceCount": 246,
+  "arcanaCount": 80,
+  "eventCount": 194,
+  "choiceCount": 240,
   "potentialCount": 55,
-  "journeyBuffCount": 14,
-  "assetCount": 1,
-  "assetBytes": 127010,
-  "localOnly": true,
-  "fallbackPolicy": "ESPR is authoritative for visible Arcana fields/effects/images. Existing internal event reward IDs and journey-buff IDs are retained because ESPR does not expose those numeric IDs in rendered pages.",
-  "failures": []
+  "journeyBuffCount": 13,
+  "assetCount": 157,
+  "assetBytes": 8646100,
+  "localOnly": true
 }

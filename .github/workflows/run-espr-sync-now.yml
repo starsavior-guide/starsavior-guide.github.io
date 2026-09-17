@@ -1,0 +1,56 @@
+name: Run ESPR sync now
+on:
+  push:
+    paths:
+      - '.run-espr-sync-now'
+permissions:
+  contents: write
+concurrency:
+  group: starsavior-source-backup-write
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Validate scripts
+        run: |
+          node --check scripts/build-structured-sync-snapshot.mjs
+          node --check scripts/sync-new-espr.mjs
+      - name: Build temporary source snapshot
+        id: scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          SCAN_ROOT="$RUNNER_TEMP/espr-scan"
+          rm -rf "$SCAN_ROOT"
+          mkdir -p "$SCAN_ROOT"
+          cp -a "$GITHUB_WORKSPACE/scripts" "$GITHUB_WORKSPACE/data" "$SCAN_ROOT/"
+          (cd "$SCAN_ROOT" && node scripts/build-structured-sync-snapshot.mjs)
+          echo "root=$SCAN_ROOT" >> "$GITHUB_OUTPUT"
+      - name: Merge new IDs only
+        env:
+          SCAN_ROOT: ${{ steps.scan.outputs.root }}
+        run: node scripts/sync-new-espr.mjs "$SCAN_ROOT"
+      - name: Validate generated changes
+        run: |
+          node --check app.js
+          git diff --check
+      - name: Commit new content
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "$(git status --porcelain -- app.js data/saviors data/savior-detail-assets data/savior-skills data/savior-skill-assets data/savior-bloom data/arcanas data/arcana-assets)" ]; then
+            echo 'No new Savior or Arcana IDs were found.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app.js data/saviors data/savior-detail-assets data/savior-skills data/savior-skill-assets data/savior-bloom data/arcanas data/arcana-assets
+          git commit -m 'Auto-add new ESPR Savior and Arcana'
+          git pull --rebase origin main
+          git push origin HEAD:main

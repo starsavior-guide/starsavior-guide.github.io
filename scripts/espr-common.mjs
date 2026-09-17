@@ -171,59 +171,13 @@ export async function gotoStable(page, url, options = {}) {
   throw new Error(`${url}: ${lastError?.message || "navigation failed"}`);
 }
 
-export async function loadStaticPage(page, url) {
-  const response = await fetch(url, {
-    headers: {
-      accept: "text/html,application/xhtml+xml",
-      "accept-language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
-      "user-agent": "starsavior-guide-static-sync/2.0"
-    },
-    redirect: "follow",
-    signal: AbortSignal.timeout(45_000)
-  });
-  if (!response.ok) {
-    throw new Error(`${url}: HTTP ${response.status}; static ESPR fetch failed without retry`);
-  }
-  const html = await response.text();
-  if (html.length < 1000 || /Vercel Security Checkpoint/i.test(html)) {
-    throw new Error(`${url}: ESPR returned an incomplete/security-checkpoint document`);
-  }
-  const withBase = html.replace(/<head([^>]*)>/i, `<head$1><base href="${String(url).replaceAll('"', '&quot;')}">`);
-  await page.setContent(withBase, { waitUntil: "domcontentloaded", timeout: 60_000 });
-  await page.waitForFunction(
-    () => String(document.querySelector("main")?.innerText || "").replace(/\s+/g, " ").trim().length > 200,
-    null,
-    { timeout: 20_000 }
-  );
-  return html;
-}
-
-export async function discoverSlugsStatic(kind) {
-  const response = await fetch(`${ESPR_ORIGIN}/sitemap.xml`, {
-    headers: {
-      accept: "application/xml,text/xml;q=0.9,*/*;q=0.8",
-      "user-agent": "starsavior-guide-static-sync/2.0"
-    },
-    redirect: "follow",
-    signal: AbortSignal.timeout(45_000)
-  });
-  if (!response.ok) throw new Error(`ESPR sitemap: HTTP ${response.status}`);
-  const xml = await response.text();
-  const pattern = new RegExp(`<loc>https://ss\\.espr\\.gg/en/database/${kind}/([^<]+)</loc>`, "g");
-  return [...xml.matchAll(pattern)]
-    .map((match) => match[1])
-    .filter((slug) => slug && !slug.includes("/"))
-    .map((slug) => decodeURIComponent(slug))
-    .sort();
-}
-
 
 export async function getPagePayload(page) {
   return page.evaluate(() => {
     const norm = (value) => String(value ?? "").replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim();
     const unwrap = (raw) => {
       try {
-        const u = new URL(raw, document.baseURI);
+        const u = new URL(raw, location.href);
         if (u.pathname === "/_next/image") {
           const inner = u.searchParams.get("url");
           if (inner) return decodeURIComponent(inner);
@@ -242,7 +196,7 @@ export async function getPagePayload(page) {
     }));
     const links = [...main.querySelectorAll("a[href]")].map((anchor) => ({
       text: norm(anchor.innerText || anchor.textContent),
-      href: new URL(anchor.getAttribute("href"), document.baseURI).href
+      href: new URL(anchor.getAttribute("href"), location.href).href
     }));
     return {
       title: norm(main.querySelector("h1")?.textContent || ""),
@@ -303,17 +257,17 @@ export async function downloadAsset(context, sourceUrl, destination, options = {
   let lastError;
   for (let attempt = 1; attempt <= 3; attempt += 1) {
     try {
-      const response = await fetch(url, {
+      const response = await context.request.get(url, {
         headers: {
           referer: `${ESPR_ORIGIN}/`,
           "user-agent": "starsavior-guide-espr-backup/2.0"
         },
-        signal: AbortSignal.timeout(45_000)
+        timeout: 45_000
       });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const contentType = response.headers.get("content-type") || "";
+      if (!response.ok()) throw new Error(`HTTP ${response.status()}`);
+      const contentType = response.headers()["content-type"] || "";
       if (!contentType.startsWith("image/")) throw new Error(`not image: ${contentType}`);
-      const body = Buffer.from(await response.arrayBuffer());
+      const body = await response.body();
       if (body.length < 20) throw new Error("empty image");
       await fs.writeFile(destination, body);
       return { source: url, destination, kept: false, bytes: body.length };
