@@ -12,47 +12,87 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download Professor M and Arcana assets
+      - name: Fix Professor M skills and Hedonist events
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p data/savior-detail-assets data/arcana-assets/cards
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
 
-          fetch() {
-            url="$1"
-            out="$2"
-            echo "Downloading $url -> $out"
-            curl --fail --location --retry 5 --retry-delay 3 \
-              --connect-timeout 20 --max-time 120 \
-              -A 'Mozilla/5.0' \
-              -e 'https://ss.espr.gg/' \
-              "$url" -o "$out"
-            test -s "$out"
-          }
+          app_path = Path('app.js')
+          app = app_path.read_text(encoding='utf-8')
+          old = '''    const archivedSavior = archive.saviors.find((item) => Number(item.id) === detailId);
+    if (!archivedSavior) throw new Error("Savior skill archive mapping not found");
+    panel.innerHTML = createParsedSaviorSourceMarkup(sourceHtml, url, savior, {
+      archivedSavior,
+      language: currentLanguage
+    });'''
+          new = '''    const archivedSavior = archive.saviors.find((item) => Number(item.id) === detailId) || null;
+    // 신규 구원자가 아직 통합 스킬 아카이브에 없으면 로컬 HTML 백업을 직접 파싱한다.
+    panel.innerHTML = createParsedSaviorSourceMarkup(sourceHtml, url, savior, {
+      archivedSavior,
+      language: currentLanguage
+    });'''
+          if old not in app:
+              raise SystemExit('Professor M Savior loader target not found')
+          app_path.write_text(app.replace(old, new, 1), encoding='utf-8')
 
-          fetch 'https://ss.esprcdn.dev/images/characters/portrait/1039.webp' 'data/savior-detail-assets/프로페서M.webp'
-          fetch 'https://ss.esprcdn.dev/images/characters/illustration/1039.ui.webp' 'data/savior-detail-assets/프로페서M 일러스트.webp'
-          fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_0.webp' 'data/savior-detail-assets/프로페서M 패시브.webp'
-          fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_1.webp' 'data/savior-detail-assets/프로페서M 기본기.webp'
-          fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_2.webp' 'data/savior-detail-assets/프로페서M 특수기.webp'
-          fetch 'https://ss.esprcdn.dev/images/characters/skills/1039_3.webp' 'data/savior-detail-assets/프로페서M 궁극기.webp'
-          fetch 'https://ss.esprcdn.dev/images/general/status/buff_detective_professor_1.webp' 'data/savior-detail-assets/표본 행동 분석.webp'
-          fetch 'https://ss.esprcdn.dev/images/general/status/buff_adjusttype_resource_moon.webp' 'data/savior-detail-assets/냉각.webp'
-          fetch 'https://ss.esprcdn.dev/images/general/status/debuff_detective_professor_2.webp' 'data/savior-detail-assets/표적 각인.webp'
-          fetch 'https://ss.esprcdn.dev/images/arcanas/illustration/7103901.webp' 'data/arcana-assets/cards/탐닉자의 유흥거리.webp'
+          arc_path = Path('data/arcanas/arcanas.json')
+          archive = json.loads(arc_path.read_text(encoding='utf-8'))
+          arc = next((a for a in archive['arcanas'] if int(a.get('id',0)) == 7103901), None)
+          if not arc:
+              raise SystemExit('Arcana 7103901 not found')
 
-          file data/savior-detail-assets/*.webp data/arcana-assets/cards/'탐닉자의 유흥거리.webp'
+          potential_ids = {}
+          for p in archive.get('potentials', []):
+              name = (p.get('name') or {}).get('ko','')
+              if name:
+                  potential_ids[name] = p.get('id')
 
-      - name: Commit imported assets
+          stat_keys = {'힘':'JST_POWER','체력':'JST_HEALTH','인내':'JST_ENDURANCE','집중':'JST_FOCUS','보호':'JST_PROTECT'}
+          stat_en = {'힘':'Power','체력':'Health','인내':'Endurance','집중':'Focus','보호':'Protection'}
+          stat_ja = {'힘':'力','체력':'体力','인내':'忍耐','집중':'集中','보호':'保護'}
+          def stat(name, amount):
+              return {'type':'RT_STAT','min':amount,'max':amount,'statName':{'ko':name,'en':stat_en[name],'ja':stat_ja[name]},'icon':archive.get('statusIcons',{}).get(stat_keys[name],'')}
+          def pp(amount):
+              return {'type':'RT_POTEN_POINT','min':amount,'max':amount}
+          def pot(name):
+              pid = potential_ids.get(name)
+              return {'type':'RT_SE_POTEN','rewardId':pid,'min':1,'max':1} if pid is not None else None
+          def rewards(*items):
+              return [[x] for x in items if x]
+          def choice(name, *items):
+              return {'name':{'ko':name,'en':'','ja':''},'successRewards':rewards(*items),'failureRewards':[]}
+
+          arc['events'] = [
+              {'name':{'ko':'인기 강좌의 비결','en':'','ja':''},'choices':[
+                  choice('강의 주제의 문제가 아닐까?', stat('인내',10), stat('집중',10)),
+                  choice('강의 방식의 문제가 아닐까?', stat('인내',12), stat('체력',8), pot('속도의 솜씨'))]},
+              {'name':{'ko':'십자말풀이','en':'','ja':''},'choices':[
+                  choice('그웬에게 준다.', stat('인내',12), stat('체력',8), pot('속도의 솜씨')),
+                  choice('교수에게 준다.', stat('인내',12), stat('체력',8), pot('통찰의 솜씨'))]},
+              {'name':{'ko':'분홍색 연구','en':'','ja':''},'choices':[
+                  choice('미래를 아는 예언자', stat('인내',15), pp(20), pot('날렵한 자세')),
+                  choice('모노리스 교단의 성녀', stat('집중',18), pot('집중의 재능'), pot('날렵한 자세'))]}
+          ]
+          arc_path.write_text(json.dumps(archive, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          standalone = Path('data/arcanas/7103901.json')
+          if standalone.exists():
+              standalone.write_text(json.dumps(arc, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Validate and commit hotfix
         shell: bash
         run: |
           set -euo pipefail
+          python3 -m json.tool data/arcanas/arcanas.json >/dev/null
+          python3 -m json.tool data/arcanas/7103901.json >/dev/null
+          grep -q '강의 주제의 문제가 아닐까?' data/arcanas/arcanas.json
+          grep -q 'Savior skill archive mapping not found' app.js && { echo 'old hard failure still present'; exit 1; } || true
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/savior-detail-assets data/arcana-assets/cards
-          if git diff --cached --quiet; then
-            echo 'No asset changes.'
-            exit 0
-          fi
-          git commit -m 'Import Professor M and Hedonist Diversion assets'
+          git add app.js data/arcanas/arcanas.json data/arcanas/7103901.json
+          git commit -m 'Fix Professor M skills and Hedonist event choices'
           git push
