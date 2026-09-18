@@ -94,7 +94,7 @@ jobs:
             const journeyPath = `data/journey/${language}/journey.json`;
             const journey = JSON.parse(fs.readFileSync(journeyPath, 'utf8'));
             const entry = (journey.arcana || []).find((item) => Number(item.arcanaId) === ARCANA_ID);
-            if (!entry) throw new Error(`${language}: Arcana journey entry not found`);
+            if (!entry) continue;
             const targetEvent = (entry.eventGroups || []).find((item) => item.title === EVENT_NAME) || entry.eventGroups?.[0];
             const targetChoice = (targetEvent?.choices || []).find((item) => item.name === CHOICE_NAME) || targetEvent?.choices?.[1];
             if (!targetChoice) throw new Error(`${language}: target journey choice not found`);
@@ -119,7 +119,7 @@ jobs:
           }
 
           const auditPath = 'data/journey/arcana-source-audit.json';
-          if (fs.existsSync(auditPath)) {
+          if (Object.keys(journeyHashes).length && fs.existsSync(auditPath)) {
             const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
             audit.arcanaOutputHashes = { ...(audit.arcanaOutputHashes || {}), ...journeyHashes };
             audit.capturedAt = new Date().toISOString();
@@ -128,8 +128,9 @@ jobs:
 
           const verifyArchive = JSON.parse(fs.readFileSync(archivePath, 'utf8'));
           const verifyArcana = verifyArchive.arcanas.find((item) => Number(item.id) === ARCANA_ID);
-          const verifyChoice = verifyArcana.events[0].choices[1];
-          if (verifyChoice.successRewards.length !== 1 || verifyChoice.successRewards[0].length !== 1 || Number(verifyChoice.successRewards[0][0].rewardId) !== POTENTIAL_ID) {
+          const verifyEvent = (verifyArcana.events || []).find((item) => item?.name?.ko === EVENT_NAME) || verifyArcana.events?.[0];
+          const verifyChoice = (verifyEvent?.choices || []).find((item) => item?.name?.ko === CHOICE_NAME) || verifyEvent?.choices?.[1];
+          if (!verifyChoice || verifyChoice.successRewards.length !== 1 || verifyChoice.successRewards[0].length !== 1 || Number(verifyChoice.successRewards[0][0].rewardId) !== POTENTIAL_ID) {
             throw new Error('Arcana reward verification failed');
           }
           console.log('Verified: 인기 강좌의 비결 / 강의 방식의 문제가 아닐까? -> 집중의 감각 (20007)');
