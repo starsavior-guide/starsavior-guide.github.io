@@ -267,34 +267,8 @@
           "successRewards": [
             [
               {
-                "type": "RT_STAT",
-                "min": 12,
-                "max": 12,
-                "statName": {
-                  "ko": "인내",
-                  "en": "Endurance",
-                  "ja": "忍耐"
-                },
-                "icon": "./data/arcana-assets/status/endurance.webp"
-              }
-            ],
-            [
-              {
-                "type": "RT_STAT",
-                "min": 8,
-                "max": 8,
-                "statName": {
-                  "ko": "체력",
-                  "en": "Health",
-                  "ja": "体力"
-                },
-                "icon": "./data/arcana-assets/status/health.webp"
-              }
-            ],
-            [
-              {
                 "type": "RT_SE_POTEN",
-                "rewardId": 21004,
+                "rewardId": 20007,
                 "min": 1,
                 "max": 1
               }
