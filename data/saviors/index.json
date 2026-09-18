@@ -624,7 +624,7 @@
     "key": "professor-m",
     "id": 1039,
     "file": "./1039.html",
-    "source": "https://ss.espr.gg/ko/database/characters/professor-m",
+    "source": "https://star-savior-arcana-db.pages.dev/savior/1039",
     "capturedAt": "2026-09-17T10:43:51.813Z",
     "profile": {
       "name": "프로페서M",
@@ -1243,11 +1243,11 @@
   },
   "_meta": {
     "sourceRoot": "https://star-savior-arcana-db.pages.dev/savior",
-    "generatedAt": "2026-09-14T15:38:21.883Z",
-    "count": 53,
-    "profileCount": 53,
-    "portraitCount": 53,
-    "illustrationCount": 53,
+    "generatedAt": "2026-09-18T05:57:52.455Z",
+    "count": 54,
+    "profileCount": 54,
+    "portraitCount": 54,
+    "illustrationCount": 54,
     "profileFields": [
       "name",
       "grade",
