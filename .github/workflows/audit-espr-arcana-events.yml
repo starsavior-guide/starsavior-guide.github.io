@@ -28,6 +28,8 @@ jobs:
           const buffs = new Map((archive.journeyBuffs || []).map(x => [Number(x.id), x]));
           const signed = n => Number(n) > 0 ? `+${Number(n)}` : String(Number(n));
           const loc = (v, lang) => typeof v === 'string' ? v : String(v?.[lang] || v?.ko || '');
+          let eventCount = 0;
+          let choiceCount = 0;
           function reward(r) {
             let ko = '', en = '';
             if (r.type === 'RT_STAT') { ko = loc(r.statName,'ko') || r.rewardStat || ''; en = loc(r.statName,'en') || ko; }
@@ -39,25 +41,20 @@ jobs:
             else { ko=r.type || ''; en=ko; }
             return { type:r.type, sourceId:r.rewardId ?? null, ko, en, value:r.min == null ? '' : signed(r.min) };
           }
-          const out = {
-            generatedAt: new Date().toISOString(),
-            arcanaCount: archive.arcanas?.length || 0,
-            eventCount: 0,
-            choiceCount: 0,
-            arcanas: (archive.arcanas || []).map(a => {
-              const events = (a.events || []).map(e => {
-                const choices = (e.choices || []).map(c => {
-                  const success = (c.successRewards || []).flatMap(g => (g || []).map(reward));
-                  const failure = (c.failureRewards || []).flatMap(g => (g || []).map(reward));
-                  out.choiceCount++;
-                  return { name:{ko:loc(c.name,'ko'),en:loc(c.name,'en')}, success, failure };
-                });
-                out.eventCount++;
-                return { name:{ko:loc(e.name,'ko'),en:loc(e.name,'en')}, choices };
+          const arcanas = (archive.arcanas || []).map(a => {
+            const events = (a.events || []).map(e => {
+              eventCount++;
+              const choices = (e.choices || []).map(c => {
+                choiceCount++;
+                const success = (c.successRewards || []).flatMap(g => (g || []).map(reward));
+                const failure = (c.failureRewards || []).flatMap(g => (g || []).map(reward));
+                return { name:{ko:loc(c.name,'ko'),en:loc(c.name,'en')}, success, failure };
               });
-              return { id:a.id, name:{ko:loc(a.name,'ko'),en:loc(a.name,'en')}, events };
-            })
-          };
+              return { name:{ko:loc(e.name,'ko'),en:loc(e.name,'en')}, choices };
+            });
+            return { id:a.id, name:{ko:loc(a.name,'ko'),en:loc(a.name,'en')}, events };
+          });
+          const out = { generatedAt:new Date().toISOString(), arcanaCount:arcanas.length, eventCount, choiceCount, arcanas };
           fs.writeFileSync('audit/current-arcana-events.json', JSON.stringify(out, null, 2) + '\n');
           console.log(JSON.stringify({arcanaCount:out.arcanaCount,eventCount:out.eventCount,choiceCount:out.choiceCount}, null, 2));
           NODE
