@@ -41,7 +41,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -57,7 +59,9 @@
             "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self CRIT Rate by a certain percentage.",
             "ja": "会心率が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -73,7 +77,9 @@
             "ko": "치명타 피해가 4% 증가합니다.",
             "en": "Increases CRIT DMG by 4%.",
             "ja": "会心ダメージが4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-destruction.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -147,6 +153,40 @@
                 "ko": "아세라의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 아세라가 <b><color=#DD982C>장막 베기</color></b> 사용 후 자신의 치명타 피해가 <b><color=#2A80D8>6%</color></b>씩 증가합니다. 최대 5회 중첩됩니다.",
                 "en": "Increases Asherah's ATK by <b><color=#2A80D8>15%</color></b>. Increases self CRIT DMG by <b><color=#2A80D8>6%</color></b> after using <b><color=#DD982C>Veil Cleave</color></b>. Stacks up to 5 times.",
                 "ja": "アセラの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。アセラが<b><color=#DD982C>とばり斬り</color></b>使用後、自身の会心ダメージが<b><color=#2A80D8>6%</color></b>ずつ上がる。最大5回スタック可能。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "공격력 +5%",
+                "en": "ATK +5%",
+                "ja": "攻撃力 +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 치명타 피해 +4%/중첩 (최대 5)",
+                "en": "ATK +5% / CRIT DMG +4%/stack (max 5)",
+                "ja": "攻撃力 +5% / 会心ダメージ +4%/スタック（最大5）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 치명타 피해 +5%/중첩 (최대 5)",
+                "en": "ATK +10% / CRIT DMG +5%/stack (max 5)",
+                "ja": "攻撃力 +10% / 会心ダメージ +5%/スタック（最大5）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 치명타 피해 +6%/중첩 (최대 5)",
+                "en": "ATK +15% / CRIT DMG +6%/stack (max 5)",
+                "ja": "攻撃力 +15% / 会心ダメージ +6%/スタック（最大5）"
               }
             }
           ]
@@ -691,7 +731,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -707,7 +749,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -723,7 +767,9 @@
             "ko": "효과 적중이 4% 증가합니다.",
             "en": "Increases Effect Hit by 4%.",
             "ja": "効果命中が4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -813,6 +859,40 @@
                 "ko": "기본 효과",
                 "en": "Base Effect",
                 "ja": "基本効果"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "공격력 +5%",
+                "en": "ATK +5%",
+                "ja": "攻撃力 +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 행동 게이지 +9% / 적 생명력 50% 이하: 추가 +9% / 도약 최대 중첩 시 고양이 탭댄스 발동",
+                "en": "ATK +5% / Action Gauge +9% / enemy HP ≤50%: extra +9% / At max Leap: trigger Cat Tapdance",
+                "ja": "攻撃力 +5% / 行動ゲージ +9% / 敵HP50%以下：追加 +9% / 跳躍最大時：猫のタップダンス発動"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 행동 게이지 +12% / 적 생명력 50% 이하: 추가 +12%",
+                "en": "ATK +10% / Action Gauge +12% / enemy HP ≤50%: extra +12%",
+                "ja": "攻撃力 +10% / 行動ゲージ +12% / 敵HP50%以下：追加 +12%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 행동 게이지 +15% / 적 생명력 50% 이하: 추가 +15%",
+                "en": "ATK +15% / Action Gauge +15% / enemy HP ≤50%: extra +15%",
+                "ja": "攻撃力 +15% / 行動ゲージ +15% / 敵HP50%以下：追加 +15%"
               }
             }
           ]
@@ -1402,7 +1482,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -1418,7 +1500,9 @@
             "ko": "치명타 피해가 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self CRIT DMG by a certain percentage.",
             "ja": "会心ダメージが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-destruction.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -1434,7 +1518,9 @@
             "ko": "치명타 확률이 3% 증가합니다.",
             "en": "Increases CRIT Rate by 3%.",
             "ja": "会心率が3%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -1508,6 +1594,40 @@
                 "ko": "루나의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 루나가 <b><color=#DD982C>내 눈에 비친 세계</color></b> 사용 시 강화 효과 상태이면 치명타 피해가 <b><color=#2A80D8>20%</color></b> 증가합니다.",
                 "en": "Increases Luna's ATK by <b><color=#2A80D8>15%</color></b>. Increases Luna's CRIT DMG by <b><color=#2A80D8>20%</color></b> if she has a buff when using <b><color=#DD982C>The World I See</color></b>.",
                 "ja": "ルナの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。ルナが<b><color=#DD982C>アタシの目に映った世界</color></b>使用時、強化状態の場合、会心ダメージが<b><color=#2A80D8>20%</color></b>上がる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "공격력 +5%",
+                "en": "ATK +5%",
+                "ja": "攻撃力 +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 강화 효과 상태: 치명타 피해 +10%",
+                "en": "ATK +5% / While buffed: CRIT DMG +10%",
+                "ja": "攻撃力 +5% / バフ状態：会心ダメージ +10%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 강화 효과 상태: 치명타 피해 +15%",
+                "en": "ATK +10% / While buffed: CRIT DMG +15%",
+                "ja": "攻撃力 +10% / バフ状態：会心ダメージ +15%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 강화 효과 상태: 치명타 피해 +20%",
+                "en": "ATK +15% / While buffed: CRIT DMG +20%",
+                "ja": "攻撃力 +15% / バフ状態：会心ダメージ +20%"
               }
             }
           ]
@@ -2052,7 +2172,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -2068,7 +2190,9 @@
             "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self CRIT Rate by a certain percentage.",
             "ja": "会心率が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -2084,7 +2208,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -2204,6 +2330,40 @@
                 "ko": "기본 효과",
                 "en": "Base Effect",
                 "ja": "基本効果"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "격동당 공격력 +2% (최대 5)",
+                "en": "ATK +2% per Agitation (max 5)",
+                "ja": "激動ごとに攻撃力 +2%（最大5）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 격동당 공격력 +2% (최대 5)",
+                "en": "ATK +5% / ATK +2% per Agitation (max 5)",
+                "ja": "攻撃力 +5% / 激動ごとに攻撃力 +2%（最大5）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 격동당 공격력 +4% (최대 5)",
+                "en": "ATK +10% / ATK +4% per Agitation (max 5)",
+                "ja": "攻撃力 +10% / 激動ごとに攻撃力 +4%（最大5）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 격동당 공격력 +6% (최대 5)",
+                "en": "ATK +15% / ATK +6% per Agitation (max 5)",
+                "ja": "攻撃力 +15% / 激動ごとに攻撃力 +6%（最大5）"
               }
             }
           ]
@@ -2793,7 +2953,9 @@
             "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
             "en": "Slightly increases self SPD by a certain amount.",
             "ja": "速度が一定値だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-speed.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -2809,7 +2971,9 @@
             "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect Hit by a certain percentage.",
             "ja": "効果命中が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -2825,7 +2989,9 @@
             "ko": "속도가 2 증가합니다.",
             "en": "Increases SPD by 2.",
             "ja": "速度が2上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-speed.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -2899,6 +3065,40 @@
                 "ko": "벨 리스의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 벨 리스는 자신을 제외한 아군 혹은 적이 사망할 때 마다 자신의 행동 게이지를 <b><color=#2A80D8>50%</color></b> 증가시키고 공격력이 <b><color=#2A80D8>10%</color></b>씩 증가합니다. 공격력 증가 효과는 최대 3회 중첩됩니다.",
                 "en": "Increases Bell's ATK by <b><color=#2A80D8>15%</color></b>. Increases Bell's Action Gauge by <b><color=#2A80D8>50%</color></b> and self ATK by <b><color=#2A80D8>10%</color></b> each time an ally or enemy (excluding self) is defeated. ATK increase stacks up to 3 times.",
                 "ja": "ベル・リースの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。ベル・リースは自身を除く味方または敵が戦闘不能になる度に、自身の行動ゲージを<b><color=#2A80D8>50%</color></b>増やし、攻撃力が<b><color=#2A80D8>10%</color></b>ずつ上がる。攻撃力アップの効果は最大3回までスタック可能。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "사망 발생: 행동 게이지 +30% / 공격력 +6%/중첩",
+                "en": "On a death: Action Gauge +30% / ATK +6%/stack",
+                "ja": "死亡発生：行動ゲージ +30% / 攻撃力 +6%/スタック"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 사망 발생: 행동 게이지 +30% / 공격력 +6%/중첩",
+                "en": "ATK +5% / On a death: Action Gauge +30% / ATK +6%/stack",
+                "ja": "攻撃力 +5% / 死亡発生：行動ゲージ +30% / 攻撃力 +6%/スタック"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 사망 발생: 행동 게이지 +40% / 공격력 +8%/중첩",
+                "en": "ATK +10% / On a death: Action Gauge +40% / ATK +8%/stack",
+                "ja": "攻撃力 +10% / 死亡発生：行動ゲージ +40% / 攻撃力 +8%/スタック"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 사망 발생: 행동 게이지 +50% / 공격력 +10%/중첩",
+                "en": "ATK +15% / On a death: Action Gauge +50% / ATK +10%/stack",
+                "ja": "攻撃力 +15% / 死亡発生：行動ゲージ +50% / 攻撃力 +10%/スタック"
               }
             }
           ]
@@ -3488,7 +3688,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -3504,7 +3706,9 @@
             "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self CRIT Rate by a certain percentage.",
             "ja": "会心率が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -3520,7 +3724,9 @@
             "ko": "치명타 피해가 4% 증가합니다.",
             "en": "Increases CRIT DMG by 4%.",
             "ja": "会心ダメージが4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-destruction.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -3640,6 +3846,40 @@
                 "ko": "에밀리의 최대 생명력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 에밀리가 최초 전투 시작 시 자신에게 1턴 간 <b><color=#DD982C>보호막</color></b>을 발생시킵니다. 피격 후 <b><color=#DD982C>턴 다운 서비스</color></b>의 쿨타임이 1턴 감소합니다. 전체 공격에 피격 후 <b><color=#DD982C>턴 다운 서비스</color></b>의 쿨타임이 추가로 1턴 감소하고 자신에게 <b><color=#2A80D8>100%</color></b> 확률로 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다. 보호막은 자신의 최대 생명력에 비례해 증가합니다.",
                 "en": "Increases Emily's Max HP by <b><color=#2A80D8>15%</color></b>. Grants Emily <b><color=#DD982C>Barrier</color></b> for 1 turn at the start of the first battle. Reduces the cooldown of <b><color=#DD982C>Turn-Down Service</color></b> by 1 turn after being attacked. Reduces the cooldown of <b><color=#DD982C>Turn-Down Service</color></b> by 1 additional turn, then grants self 1 stack of <b><color=#DD982C>Chill</color></b> with a <b><color=#2A80D8>100%</color></b> chance after being attacked by an attack that targets all. Barrier is proportional to self Max HP.",
                 "ja": "エミリーの最大HPが<b><color=#2A80D8>15%</color></b>上がる。エミリーが最初の戦闘開始時、自身に1ターン<b><color=#DD982C>バリア</color></b>を発生させる。攻撃を受けた後、<b><color=#DD982C>ターンダウンサービス</color></b>のクールタイムが1ターン短縮される。全体攻撃を受けた後、<b><color=#DD982C>ターンダウンサービス</color></b>のクールタイムが追加で1ターン短縮され、自身に<b><color=#2A80D8>100%</color></b>で<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。バリアは自身の最大HPに比例して上がる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "냉각 부여 확률 50%",
+                "en": "Chill chance 50%",
+                "ja": "冷却付与確率 50%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 냉각 부여 확률 50%",
+                "en": "Max HP +5% / Chill chance 50%",
+                "ja": "最大HP +5% / 冷却付与確率 50%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 냉각 부여 확률 75%",
+                "en": "Max HP +10% / Chill chance 75%",
+                "ja": "最大HP +10% / 冷却付与確率 75%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 냉각 부여 확률 100%",
+                "en": "Max HP +15% / Chill chance 100%",
+                "ja": "最大HP +15% / 冷却付与確率 100%"
               }
             }
           ]
@@ -4259,7 +4499,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -4275,7 +4517,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -4291,7 +4535,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -4365,6 +4611,40 @@
                 "ko": "샤를의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 샤를이 <b><color=#DD982C>꺾이지 않는 일격</color></b> 사용 후 <b><color=#DD982C>정직한 찌르기</color></b>의 피해량이 <b><color=#2A80D8>10%</color></b>씩 증가합니다. 최대 3회 중첩됩니다.",
                 "en": "Increases Charlotte's ATK by <b><color=#2A80D8>15%</color></b>. Increases <b><color=#DD982C>Honest Thrust</color></b> damage by <b><color=#2A80D8>10%</color></b> after using <b><color=#DD982C>Unyielding Strike</color></b>. Stacks up to 3 times.",
                 "ja": "シャルルの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。シャルルが<b><color=#DD982C>不屈の一撃</color></b>使用後、<b><color=#DD982C>正直な突き</color></b>のダメージが<b><color=#2A80D8>10%</color></b>ずつ上がる。最大3回までスタック可能。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "공격력 +5%",
+                "en": "ATK +5%",
+                "ja": "攻撃力 +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 정직한 찌르기 피해량 +6%/중첩 (최대 3)",
+                "en": "ATK +5% / Honest Thrust damage +6%/stack (max 3)",
+                "ja": "攻撃力 +5% / 正直な突きダメージ +6%/スタック（最大3）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 정직한 찌르기 피해량 +8%/중첩 (최대 3)",
+                "en": "ATK +10% / Honest Thrust damage +8%/stack (max 3)",
+                "ja": "攻撃力 +10% / 正直な突きダメージ +8%/スタック（最大3）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 정직한 찌르기 피해량 +10%/중첩 (최대 3)",
+                "en": "ATK +15% / Honest Thrust damage +10%/stack (max 3)",
+                "ja": "攻撃力 +15% / 正直な突きダメージ +10%/スタック（最大3）"
               }
             }
           ]
@@ -4924,7 +5204,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -4940,7 +5222,9 @@
             "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self DEF by a certain percentage.",
             "ja": "防御力が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-defense.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -4956,7 +5240,9 @@
             "ko": "최대 생명력이 2% 증가합니다.",
             "en": "Increases Max HP by 2%.",
             "ja": "最大HPが2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -5046,6 +5332,40 @@
                 "ko": "카르멘의 최대 생명력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 카르멘이 피격 시 자신에게 부여된 <b><color=#DD982C>냉각</color></b> 스택에 비례하여 방어력이 <b><color=#2A80D8>4%</color></b>씩 증가하며 최대 5개까지 적용됩니다.",
                 "en": "Increases Carmen's Max HP by <b><color=#2A80D8>15%</color></b>. Increases Carmen's DEF by <b><color=#2A80D8>4%</color></b> for each stack of <b><color=#DD982C>Chill</color></b>, up to 5 stacks, when attacked.",
                 "ja": "カルメンの最大HPが<b><color=#2A80D8>15%</color></b>上がる。カルメンが攻撃を受けると、自身に付与された<b><color=#DD982C>冷却</color></b>スタックに比例して防御力が<b><color=#2A80D8>4%</color></b>ずつ増加し、最大5個まで適用される。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "최대 생명력 +5%",
+                "en": "Max HP +5%",
+                "ja": "最大HP +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 냉각당 방어력 +2% (최대 5)",
+                "en": "Max HP +5% / DEF +2% per Chill (max 5)",
+                "ja": "最大HP +5% / 冷却ごとに防御力 +2%（最大5）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 냉각당 방어력 +3% (최대 5)",
+                "en": "Max HP +10% / DEF +3% per Chill (max 5)",
+                "ja": "最大HP +10% / 冷却ごとに防御力 +3%（最大5）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 냉각당 방어력 +4% (최대 5)",
+                "en": "Max HP +15% / DEF +4% per Chill (max 5)",
+                "ja": "最大HP +15% / 冷却ごとに防御力 +4%（最大5）"
               }
             }
           ]
@@ -5620,7 +5940,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -5636,7 +5958,9 @@
             "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self DEF by a certain percentage.",
             "ja": "防御力が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-defense.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -5652,7 +5976,9 @@
             "ko": "최대 생명력이 2% 증가합니다.",
             "en": "Increases Max HP by 2%.",
             "ja": "最大HPが2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -5726,6 +6052,40 @@
                 "ko": "프레이의 최대 생명력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 프레이가 <b><color=#DD982C>모나스티르의 전력지원</color></b> 사용 후 자신의 생명력이 50% 이하이면 아군 전체의 행동 게이지를 <b><color=#2A80D8>15%</color></b> 증가시킵니다.",
                 "en": "Increases Frey's Max HP by <b><color=#2A80D8>15%</color></b>.Increases all allies' Action Gauge by <b><color=#2A80D8>15%</color></b> if self HP is 50% or below after using <b><color=#DD982C>Monastir's All-Out Support</color></b>.",
                 "ja": "フレイの最大HPが<b><color=#2A80D8>15%</color></b>上がる。フレイが<b><color=#DD982C>モナスティルの全力支援</color></b>使用後、自身のHPが50%以下であれば、味方全体の行動ゲージを<b><color=#2A80D8>15%</color></b>増やす。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "최대 생명력 +5%",
+                "en": "Max HP +5%",
+                "ja": "最大HP +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 생명력 50% 이하: 아군 전체 행동 게이지 +9%",
+                "en": "Max HP +5% / HP ≤50%: all allies’ Action Gauge +9%",
+                "ja": "最大HP +5% / HP50%以下：味方全体の行動ゲージ +9%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 생명력 50% 이하: 아군 전체 행동 게이지 +12%",
+                "en": "Max HP +10% / HP ≤50%: all allies’ Action Gauge +12%",
+                "ja": "最大HP +10% / HP50%以下：味方全体の行動ゲージ +12%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 생명력 50% 이하: 아군 전체 행동 게이지 +15%",
+                "en": "Max HP +15% / HP ≤50%: all allies’ Action Gauge +15%",
+                "ja": "最大HP +15% / HP50%以下：味方全体の行動ゲージ +15%"
               }
             }
           ]
@@ -6269,7 +6629,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -6285,7 +6647,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -6301,7 +6665,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -6375,6 +6741,40 @@
                 "ko": "세이라의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 세이라가 타격 시 적의 생명력이 75% 이상이면 피해량이 <b><color=#2A80D8>15%</color></b> 증가합니다.",
                 "en": "Increases self ATK by <b><color=#2A80D8>15%</color></b>. Increases damage dealt by <b><color=#2A80D8>15%</color></b> if the enemy's HP is 75% or above upon attacking.",
                 "ja": "セイラの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。セイラが攻撃した時、敵のHPが75%以上であれば、ダメージが<b><color=#2A80D8>15%</color></b>上がる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "공격력 +5%",
+                "en": "ATK +5%",
+                "ja": "攻撃力 +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 적 생명력 75% 이상: 피해량 +9%",
+                "en": "ATK +5% / Enemy HP ≥75%: damage +9%",
+                "ja": "攻撃力 +5% / 敵HP75%以上：ダメージ +9%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 적 생명력 75% 이상: 피해량 +12%",
+                "en": "ATK +10% / Enemy HP ≥75%: damage +12%",
+                "ja": "攻撃力 +10% / 敵HP75%以上：ダメージ +12%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 적 생명력 75% 이상: 피해량 +15%",
+                "en": "ATK +15% / Enemy HP ≥75%: damage +15%",
+                "ja": "攻撃力 +15% / 敵HP75%以上：ダメージ +15%"
               }
             }
           ]
@@ -6964,7 +7364,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -6980,7 +7382,9 @@
             "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect RES by a certain percentage.",
             "ja": "効果耐性が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-protection.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -6996,7 +7400,9 @@
             "ko": "치명타 확률이 3% 증가합니다.",
             "en": "Increases CRIT Rate by 3%.",
             "ja": "会心率が3%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -7086,6 +7492,40 @@
                 "ko": "트리쉬의 치명타 피해가 <b><color=#2A80D8>25%</color></b> 증가합니다. 트리쉬가 전투 시작 시 자신에게 <b><color=#DD982C>도약</color></b> 스택을 3개 부여합니다. 타격 시 명중률이 50% 증가합니다. 적 처치 시 자신의 행동 게이지를 <b><color=#2A80D8>30%</color></b> 증가시키고 <b><color=#DD982C>도약</color></b> 스택을 3개 부여합니다.",
                 "en": "Increases self CRIT DMG by <b><color=#2A80D8>25%</color></b>. Grants self 3 stacks of <b><color=#DD982C>Leap</color></b> at the start of battle. Increases ACC by 50% upon attacking. Fills self action gauge by <b><color=#2A80D8>30%</color></b> upon defeating an enemy. Grants self 3 stacks of <b><color=#DD982C>Leap</color></b> upon defeating an enemy.",
                 "ja": "トリッシュの会心ダメージが<b><color=#2A80D8>25%</color></b>上がる。戦闘開始時、自身に<b><color=#DD982C>跳躍</color></b>スタックを3個付与する。攻撃時、命中率が50％上がる。敵を倒した場合、自身の行動ゲージを<b><color=#2A80D8>30％</color></b>増やし、<b><color=#DD982C>跳躍</color></b>スタックを3個付与する。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "치명타 피해 +15%",
+                "en": "CRIT DMG +15%",
+                "ja": "会心ダメージ +15%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "치명타 피해 +15% / 처치 시 행동 게이지 +20% / 전투 시작·처치 시 도약 3개 / 명중률 +50%",
+                "en": "CRIT DMG +15% / On kill: Action Gauge +20% / Battle start/kill: Leap ×3 / Accuracy +50%",
+                "ja": "会心ダメージ +15% / 撃破時：行動ゲージ +20% / 戦闘開始・撃破時：跳躍3個 / 命中率 +50%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "치명타 피해 +20% / 처치 시 행동 게이지 +25%",
+                "en": "CRIT DMG +20% / On kill: Action Gauge +25%",
+                "ja": "会心ダメージ +20% / 撃破時：行動ゲージ +25%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "치명타 피해 +25% / 처치 시 행동 게이지 +30%",
+                "en": "CRIT DMG +25% / On kill: Action Gauge +30%",
+                "ja": "会心ダメージ +25% / 撃破時：行動ゲージ +30%"
               }
             }
           ]
@@ -7645,7 +8085,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -7661,7 +8103,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -7677,7 +8121,9 @@
             "ko": "속도가 2 증가합니다.",
             "en": "Increases SPD by 2.",
             "ja": "速度が2上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-speed.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -7797,6 +8243,40 @@
                 "ko": "린의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 린이 타격 시 자신에게 부여된 <b><color=#DD982C>도약</color></b> 스택에 비례하여 공격력이 <b><color=#2A80D8>4%</color></b>씩 증가하며 최대 5개까지 적용됩니다. 자신의 턴에 <b><color=#DD982C>환영검무</color></b> 사용 후 <b><color=#DD982C>청풍(해제불가)</color></b> 상태이면 <b><color=#DD982C>환영검무</color></b>의 쿨타임이 1턴 감소합니다. 자신의 턴에 <b><color=#DD982C>청풍명월</color></b> 사용 후 <b><color=#DD982C>명월(해제불가)</color></b> 상태이면 <b><color=#DD982C>청풍명월</color></b>의 쿨타임이 1턴 감소합니다.",
                 "en": "Increases Lyn's ATK by <b><color=#2A80D8>15%</color></b>. Increases Lyn's ATK by <b><color=#2A80D8>4%</color></b> for each stack of <b><color=#DD982C>Leap</color></b>, up to 5 stacks, on attack. Reduces the cooldown of <b><color=#DD982C>Phantom Blade Dance</color></b> by 1 turn if self has <b><color=#DD982C>Clear Wind (Undispellable)</color></b> after using <b><color=#DD982C>Phantom Blade Dance</color></b> on self turn. Reduces the cooldown of <b><color=#DD982C>Clear Wind Bright Moon</color></b> by 1 turn if self has <b><color=#DD982C>Bright Moon (Undispellable)</color></b> after using <b><color=#DD982C>Clear Wind Bright Moon</color></b> on self turn.",
                 "ja": "リンの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。リンが攻撃時、自身に付与された<b><color=#DD982C>跳躍</color></b>スタック数に比例して攻撃力が<b><color=#2A80D8>4%</color></b>ずつ上がり、最大5スタックまで適用される。自身のターンに<b><color=#DD982C>幻影剣舞</color></b>使用後、<b><color=#DD982C>清風(解除不可)</color></b>状態であれば、<b><color=#DD982C>幻影剣舞</color></b>のクールタイムが1ターン短縮する。自身のターンに<b><color=#DD982C>清風明月</color></b>使用後、<b><color=#DD982C>明月(解除不可)</color></b>状態であれば、<b><color=#DD982C>清風明月</color></b>のクールタイムが1ターン短縮する。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "도약당 공격력 +2% (최대 5)",
+                "en": "ATK +2% per Leap (max 5)",
+                "ja": "跳躍ごとに攻撃力 +2%（最大5）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 도약당 공격력 +2% (최대 5)",
+                "en": "ATK +5% / ATK +2% per Leap (max 5)",
+                "ja": "攻撃力 +5% / 跳躍ごとに攻撃力 +2%（最大5）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 도약당 공격력 +3% (최대 5)",
+                "en": "ATK +10% / ATK +3% per Leap (max 5)",
+                "ja": "攻撃力 +10% / 跳躍ごとに攻撃力 +3%（最大5）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 도약당 공격력 +4% (최대 5)",
+                "en": "ATK +15% / ATK +4% per Leap (max 5)",
+                "ja": "攻撃力 +15% / 跳躍ごとに攻撃力 +4%（最大5）"
               }
             }
           ]
@@ -8416,7 +8896,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -8432,7 +8914,9 @@
             "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect Hit by a certain percentage.",
             "ja": "効果命中が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -8448,7 +8932,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -8538,6 +9024,40 @@
                 "ko": "크리스텔의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 크리스텔이 최초 전투 시작 시 자신에게 <b><color=#DD982C>점화</color></b> 스택을 3개 부여합니다. 자신을 제외한 아군 누군가 특수기 혹은 궁극기로 타격 시 자신에게 <b><color=#DD982C>점화</color></b> 스택을 1개 부여하고 아군 대상이 태양 속성이면 <b><color=#DD982C>점화</color></b> 스택을 추가로 1개 부여합니다. <b><color=#DD982C>복수와 응징</color></b> 사용 시 자신의 행동 게이지를 <b><color=#2A80D8>30%</color></b> 증가시키고 적이 약화 효과 상태이면 100% 확률로 자신의 공격력에 비례한 연쇄 피해를 발생시킵니다.",
                 "en": "Increases self ATK by <b><color=#2A80D8>15%</color></b>. Grants self 3 stacks of <b><color=#DD982C>Ignition</color></b> at the start of the first battle. Grants self 1 stack of <b><color=#DD982C>Ignition</color></b> if an ally excluding self hits an enemy using a Special Skill or Ultimate Skill (grants 1 additional stack if the target ally is Sun Attribute). Upon using <b><color=#DD982C>Vengeance and Retribution</color></b>, fills self Action Gauge by <b><color=#2A80D8>30%</color></b>, and if the enemy has a debuff, has a 100% chance to deal Chain DMG proportional to self ATK.",
                 "ja": "クリステルの攻撃力が<b><color=#2A80D8>15％</color></b>上がる。戦闘開始時、自身に<b><color=#DD982C>点火</color></b>スタックを3つ付与する。自身を除く味方のいずれが特殊スキル、または究極スキルで攻撃時、自身に<b><color=#DD982C>点火</color></b>スタックを1つ付与し、攻撃した見方が太陽属性の場合、さらに<b><color=#DD982C>点火</color></b>スタックを1つ付与する。<b><color=#DD982C>復讐と膺懲</color></b>使用時、自身の行動ゲージを<b><color=#2A80D8>30％</color></b>増やし、敵が弱体化状態の場合、100％の確率で自身の攻撃力に比例した連鎖ダメージを与える。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "행동 게이지 +18%",
+                "en": "Action Gauge +18%",
+                "ja": "行動ゲージ +18%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 행동 게이지 +18%",
+                "en": "ATK +5% / Action Gauge +18%",
+                "ja": "攻撃力 +5% / 行動ゲージ +18%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 행동 게이지 +24%",
+                "en": "ATK +10% / Action Gauge +24%",
+                "ja": "攻撃力 +10% / 行動ゲージ +24%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 행동 게이지 +30%",
+                "en": "ATK +15% / Action Gauge +30%",
+                "ja": "攻撃力 +15% / 行動ゲージ +30%"
               }
             }
           ]
@@ -9112,7 +9632,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -9128,7 +9650,9 @@
             "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect RES by a certain percentage.",
             "ja": "効果耐性が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-protection.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -9144,7 +9668,9 @@
             "ko": "방어력이 2% 증가합니다.",
             "en": "Increases DEF by 2%.",
             "ja": "防御力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-defense.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -9294,6 +9820,40 @@
                 "ko": "에데의 방어력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 에데가 최초 전투 시작 시 자신에게 1턴 간 <b><color=#DD982C>수호</color></b>와 <b><color=#DD982C>보호막</color></b>을 발생시킵니다. 피격 후 자신에게 <b><color=#2A80D8>100%</color></b> 확률로 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다. 보호막은 자신의 방어력에 비례해 증가합니다.",
                 "en": "Increases Haydee's DEF by <b><color=#2A80D8>15%</color></b>. Grants self <b><color=#DD982C>Guard</color></b> and <b><color=#DD982C>Barrier</color></b> for 1 turn at the start of the first battle. Grants self 1 stack of <b><color=#DD982C>Leap</color></b> with a <b><color=#2A80D8>100%</color></b> chance after being attacked. Barrier is proportional to self DEF.",
                 "ja": "エデの防御力が<b><color=#2A80D8>15%</color></b>上がる。エデは最初の戦闘開始時、自身に1ターン<b><color=#DD982C>守護</color></b>と<b><color=#DD982C>バリア</color></b>を発生させる。攻撃を受けた後、自身に<b><color=#2A80D8>100%</color></b>で<b><color=#DD982C>跳躍</color></b>スタックを1つ付与する。バリアは自身の防御力に比例して上がる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "방어력 +5%",
+                "en": "DEF +5%",
+                "ja": "防御力 +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "방어력 +5% / 도약 부여 확률 50% / 전투 시작: 수호·보호막 1턴",
+                "en": "DEF +5% / Leap chance 50% / Battle start: Guard and Barrier for 1 turn",
+                "ja": "防御力 +5% / 跳躍付与確率 50% / 戦闘開始：守護・バリア1ターン"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "방어력 +10% / 도약 부여 확률 75%",
+                "en": "DEF +10% / Leap chance 75%",
+                "ja": "防御力 +10% / 跳躍付与確率 75%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "방어력 +15% / 도약 부여 확률 100%",
+                "en": "DEF +15% / Leap chance 100%",
+                "ja": "防御力 +15% / 跳躍付与確率 100%"
               }
             }
           ]
@@ -9943,7 +10503,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -9959,7 +10521,9 @@
             "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect RES by a certain percentage.",
             "ja": "効果耐性が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-protection.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -9975,7 +10539,9 @@
             "ko": "효과 적중이 4% 증가합니다.",
             "en": "Increases Effect Hit by 4%.",
             "ja": "効果命中が4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -10065,6 +10631,40 @@
                 "ko": "세르팡의 최대 생명력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 세르팡이 <b><color=#DD982C>너로 정했다!</color></b> 사용 후 적에게 <b><color=#2A80D8>100%</color></b> 확률로 1턴 간 <b><color=#DD982C>연소</color></b>를 발생시킵니다.",
                 "en": "Increases Serpang's Max HP by <b><color=#2A80D8>15%</color></b>. Inflicts the enemy with <b><color=#DD982C>Burn</color></b> for 1 turn with a <b><color=#2A80D8>100%</color></b> chance after using <b><color=#DD982C>I Choose You!</color></b>.",
                 "ja": "セルパンの最大HPが<b><color=#2A80D8>15%</color></b>上がる。セルパンが<b><color=#DD982C>キミに決めた！</color></b>使用後、敵に<b><color=#2A80D8>100%</color></b>で1ターン<b><color=#DD982C>燃焼</color></b>を発生させる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "최대 생명력 +5%",
+                "en": "Max HP +5%",
+                "ja": "最大HP +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 연소 확률 50% (1턴)",
+                "en": "Max HP +5% / Burn chance 50% (1 turn)",
+                "ja": "最大HP +5% / 燃焼確率 50%（1ターン）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 연소 확률 75% (1턴)",
+                "en": "Max HP +10% / Burn chance 75% (1 turn)",
+                "ja": "最大HP +10% / 燃焼確率 75%（1ターン）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 연소 확률 100% (1턴)",
+                "en": "Max HP +15% / Burn chance 100% (1 turn)",
+                "ja": "最大HP +15% / 燃焼確率 100%（1ターン）"
               }
             }
           ]
@@ -10609,7 +11209,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -10625,7 +11227,9 @@
             "ko": "치명타 피해가 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self CRIT DMG by a certain percentage.",
             "ja": "会心ダメージが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-destruction.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -10641,7 +11245,9 @@
             "ko": "치명타 확률이 3% 증가합니다.",
             "en": "Increases CRIT Rate by 3%.",
             "ja": "会心率が3%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -10731,6 +11337,40 @@
                 "ko": "다나의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 다나가 <b><color=#DD982C>급속 개화</color></b>로 치명타 발생 시 자신에게 <b><color=#2A80D8>100%</color></b> 확률로 1턴 간 <b><color=#DD982C>속도 증가</color></b>를 발생시킵니다.",
                 "en": "Increases Dana's ATK by <b><color=#2A80D8>15%</color></b>. Grants self <b><color=#DD982C>SPD Up</color></b> for 1 turn with a <b><color=#2A80D8>100%</color></b> chance when Dana triggers a Critical Hit with <b><color=#DD982C>Rapid Bloom</color></b>.",
                 "ja": "ダーナの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。ダーナの<b><color=#DD982C>急速開花</color></b>で会心が発生した場合、自身に<b><color=#2A80D8>100%</color></b>で1ターン<b><color=#DD982C>速度アップ</color></b>を発生させる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "공격력 +5%",
+                "en": "ATK +5%",
+                "ja": "攻撃力 +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 속도 증가 확률 70% (1턴)",
+                "en": "ATK +5% / SPD Up chance 70% (1 turn)",
+                "ja": "攻撃力 +5% / 速度アップ確率 70%（1ターン）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 속도 증가 확률 85% (1턴)",
+                "en": "ATK +10% / SPD Up chance 85% (1 turn)",
+                "ja": "攻撃力 +10% / 速度アップ確率 85%（1ターン）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 속도 증가 확률 100% (1턴)",
+                "en": "ATK +15% / SPD Up chance 100% (1 turn)",
+                "ja": "攻撃力 +15% / 速度アップ確率 100%（1ターン）"
               }
             }
           ]
@@ -11275,7 +11915,9 @@
             "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect Hit by a certain percentage.",
             "ja": "効果命中が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -11291,7 +11933,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -11307,7 +11951,9 @@
             "ko": "효과 적중이 4% 증가합니다.",
             "en": "Increases Effect Hit by 4%.",
             "ja": "効果命中が4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -11397,6 +12043,40 @@
                 "ko": "뮤리엘의 치명타 피해가 <b><color=#2A80D8>25%</color></b> 증가합니다. 뮤리엘은 자신을 제외한 태양 속성 아군이 타격 후 자신에게 <b><color=#2A80D8>100%</color></b> 확률로 <b><color=#DD982C>점화</color></b> 스택을 1개 부여합니다.",
                 "en": "Increases Muriel's CRIT DMG by <b><color=#2A80D8>25%</color></b>. Grants Muriel 1 stack of <b><color=#DD982C>Ignition</color></b> with a <b><color=#2A80D8>100%</color></b> chance after a Sun Attribute ally (excluding self) attacks.",
                 "ja": "ミュリエルの会心ダメージが<b><color=#2A80D8>25%</color></b>上がる。ミュリエルは自身以外の太陽属性味方が攻撃した後、自身に<b><color=#2A80D8>100%</color></b>で<b><color=#DD982C>点火</color></b>スタックを1つ付与する。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "치명타 피해 +15%",
+                "en": "CRIT DMG +15%",
+                "ja": "会心ダメージ +15%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "치명타 피해 +15% / 점화 부여 확률 50%",
+                "en": "CRIT DMG +15% / Ignition chance 50%",
+                "ja": "会心ダメージ +15% / 点火付与確率 50%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "치명타 피해 +20% / 점화 부여 확률 75%",
+                "en": "CRIT DMG +20% / Ignition chance 75%",
+                "ja": "会心ダメージ +20% / 点火付与確率 75%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "치명타 피해 +25% / 점화 부여 확률 100%",
+                "en": "CRIT DMG +25% / Ignition chance 100%",
+                "ja": "会心ダメージ +25% / 点火付与確率 100%"
               }
             }
           ]
@@ -11955,7 +12635,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -11971,7 +12653,9 @@
             "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self DEF by a certain percentage.",
             "ja": "防御力が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-defense.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -11987,7 +12671,9 @@
             "ko": "최대 생명력이 2% 증가합니다.",
             "en": "Increases Max HP by 2%.",
             "ja": "最大HPが2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -12061,6 +12747,40 @@
                 "ko": "엘리사의 최대 생명력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 엘리사가 <b><color=#DD982C>부질없지만 도움을</color></b> 사용 시 자신의 생명력이 50% 이상이면 회복량이 <b><color=#2A80D8>25%</color></b> 증가합니다. 자신의 턴에 <b><color=#DD982C>돌아가 주세요</color></b> 사용 시 자신의 격동이 최대 스택이면 모두 소거하고 자신에게 추가 턴이 발생합니다.",
                 "en": "Increases Elisa's Max HP by <b><color=#2A80D8>15%</color></b>. Increases Elisa's Recovery by <b><color=#2A80D8>25%</color></b> if self HP is 50% or above when using <b><color=#DD982C>A Futile Attempt to Help</color></b>. Removes all Agitation stacks and grants self an extra turn if Agitation is at max stacks when using <b><color=#DD982C>Please Go Back</color></b> on self turn.",
                 "ja": "エリサの最大HPが<b><color=#2A80D8>15%</color></b>上がる。エリサが<b><color=#DD982C>無駄かもですが、お助けを</color></b>使用時、自身のHPが50%以上であれば回復量が<b><color=#2A80D8>25%</color></b>上がる。自身のターンで<b><color=#DD982C>帰ってください</color></b>使用時、自身の激動が最大スタックであればすべて消費し、自身に追加ターンを発生させる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "최대 생명력 +5%",
+                "en": "Max HP +5%",
+                "ja": "最大HP +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 생명력 50% 이상: 회복량 +15% / 자신의 턴·격동 최대: 돌아가 주세요로 추가 턴",
+                "en": "Max HP +5% / HP ≥50%: healing +15% / Own turn, max Agitation: Please Go Back grants an extra turn",
+                "ja": "最大HP +5% / HP50%以上：回復量 +15% / 自分のターン・激動最大：帰ってくださいで追加ターン"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 생명력 50% 이상: 회복량 +20%",
+                "en": "Max HP +10% / HP ≥50%: healing +20%",
+                "ja": "最大HP +10% / HP50%以上：回復量 +20%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 생명력 50% 이상: 회복량 +25%",
+                "en": "Max HP +15% / HP ≥50%: healing +25%",
+                "ja": "最大HP +15% / HP50%以上：回復量 +25%"
               }
             }
           ]
@@ -12635,7 +13355,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -12651,7 +13373,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -12667,7 +13391,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -12817,6 +13543,40 @@
                 "ko": "티리아의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 티리아가 <b><color=#DD982C>종언의 서곡</color></b> 혹은 <b><color=#DD982C>참극의 레퀴엠</color></b>을 사용 시 적이 <b><color=#DD982C>참극의 가시(해제불가)</color></b> 상태이면 방어력을 <b><color=#2A80D8>25%</color></b> 관통합니다. <b><color=#DD982C>종언의 서곡</color></b>을 사용 후 적에게 100% 확률로 <b><color=#DD982C>참극의 가시(해제불가)</color></b>를 1회 발생시킵니다. <b><color=#DD982C>종언의 서곡</color></b>을 사용 후 적의 <b><color=#DD982C>참극의 가시(해제불가)</color></b>가 최대 중첩이면 <b><color=#DD982C>참극의 레퀴엠</color></b>을 발동합니다.",
                 "en": "Increases Tyria's ATK by <b><color=#2A80D8>15%</color></b>. Penetrates <b><color=#2A80D8>25%</color></b> of DEF if the enemy has <b><color=#DD982C>Thorns of Ruin (Undispellable)<b><color=#DD982C> when using </color></b>Prelude to the End<b><color=#DD982C> or </color></b>Requiem of Ruin</color></b>. Inflicts the enemy with <b><color=#DD982C>Thorns of Ruin (Undispellable)</color></b> with a 100% chance after using <b><color=#DD982C>Prelude to the End</color></b>. Triggers <b><color=#DD982C>Requiem of Ruin</color></b> if the enemy's <b><color=#DD982C>Thorns of Ruin (Undispellable)</color></b> is at max stacks after using <b><color=#DD982C>Prelude to the End</color></b>.",
                 "ja": "ティリアの攻撃力が<b><color=#2A80D8>15％</color></b>上がる。ティリアが<b><color=#DD982C>終焉のプレリュード</color></b>または<b><color=#DD982C>惨劇のレクイエム</color></b>を発動時、敵が<b><color=#DD982C>惨劇の棘(解除不可)</color></b>状態であれば、防御力を<b><color=#2A80D8>25％</color></b>貫通する。<b><color=#DD982C>終焉のプレリュード</color></b>発動後、敵に100％で<b><color=#DD982C>惨劇の棘(解除不可)</color></b>を1回発生させる。<b><color=#DD982C>終焉のプレリュード</color></b>発動後、敵の<b><color=#DD982C>惨劇の棘(解除不可)</color></b>が最大スタックであれば、<b><color=#DD982C>惨劇のレクイエム</color></b>を発動する。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "방어력 관통 15%",
+                "en": "DEF penetration 15%",
+                "ja": "防御力貫通 15%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 방어력 관통 15%",
+                "en": "ATK +5% / DEF penetration 15%",
+                "ja": "攻撃力 +5% / 防御力貫通 15%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 방어력 관통 20%",
+                "en": "ATK +10% / DEF penetration 20%",
+                "ja": "攻撃力 +10% / 防御力貫通 20%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 방어력 관통 25%",
+                "en": "ATK +15% / DEF penetration 25%",
+                "ja": "攻撃力 +15% / 防御力貫通 25%"
               }
             }
           ]
@@ -13556,7 +14316,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -13572,7 +14334,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -13588,7 +14352,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -13662,6 +14428,40 @@
                 "ko": "로베르타의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 로베르타가 타격 시 치명타 확률이 50% 증가합니다. 자신의 생명력이 50% 이상이면 피해량이 <b><color=#2A80D8>8%</color></b> 증가하고 자신의 생명력이 50% 미만이면 피해량이 <b><color=#2A80D8>16%</color></b> 증가합니다.",
                 "en": "Increases Roberta's ATK by <b><color=#2A80D8>15%</color></b>. Increases Roberta's CRIT Rate by 50% on attack. Deals <b><color=#2A80D8>8%</color></b> increased damage if self HP is 50% or above, and deals <b><color=#2A80D8>16%</color></b> increased damage if self HP is below 50%.",
                 "ja": "ロベルタの攻撃力が<b><color=#2A80D8>15％</color></b>上がる。ロベルタが攻撃時、会心率が50％上がる。自身のHPが50％以上であれば、ダメージが<b><color=#2A80D8>8％</color></b>上がり、自身のHPが50％未満であれば、ダメージが<b><color=#2A80D8>16％</color></b>上がる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "생명력 50% 이상: 피해량 +6% / 50% 미만: +12%",
+                "en": "HP ≥50%: damage +6% / HP <50%: +12%",
+                "ja": "HP50%以上：ダメージ +6% / 50%未満：+12%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 생명력 50% 이상: 피해량 +6% / 50% 미만: +12%",
+                "en": "ATK +5% / HP ≥50%: damage +6% / HP <50%: +12%",
+                "ja": "攻撃力 +5% / HP50%以上：ダメージ +6% / 50%未満：+12%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 생명력 50% 이상: 피해량 +7% / 50% 미만: +14%",
+                "en": "ATK +10% / HP ≥50%: damage +7% / HP <50%: +14%",
+                "ja": "攻撃力 +10% / HP50%以上：ダメージ +7% / 50%未満：+14%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 생명력 50% 이상: 피해량 +8% / 50% 미만: +16%",
+                "en": "ATK +15% / HP ≥50%: damage +8% / HP <50%: +16%",
+                "ja": "攻撃力 +15% / HP50%以上：ダメージ +8% / 50%未満：+16%"
               }
             }
           ]
@@ -14205,7 +15005,9 @@
             "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect Hit by a certain percentage.",
             "ja": "効果命中が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -14221,7 +15023,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -14237,7 +15041,9 @@
             "ko": "효과 적중이 4% 증가합니다.",
             "en": "Increases Effect Hit by 4%.",
             "ja": "効果命中が4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -14327,6 +15133,40 @@
                 "ko": "루그의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 루그가 <b><color=#DD982C>제압부</color></b> 사용 후 적에게 <b><color=#2A80D8>100%</color></b> 확률로 1턴 간 <b><color=#DD982C>빙결</color></b>을 발생시킵니다.",
                 "en": "Increases Lugh's ATK by <b><color=#2A80D8>15%</color></b>. Inflicts the enemy with <b><color=#2A80D8>Freeze</color></b> for 1 turn with a <b><color=#DD982C>100%</color></b> chance after Lugh uses <b><color=#DD982C>Subdual Charm</color></b>.",
                 "ja": "ルーの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。ルーが<b><color=#DD982C>制圧符</color></b>使用後、敵に<b><color=#2A80D8>100%</color></b>で1ターン<b><color=#DD982C>凍結</color></b>を発生させる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "빙결 확률 50% (1턴)",
+                "en": "Freeze chance 50% (1 turn)",
+                "ja": "凍結確率 50%（1ターン）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 빙결 확률 50% (1턴)",
+                "en": "ATK +5% / Freeze chance 50% (1 turn)",
+                "ja": "攻撃力 +5% / 凍結確率 50%（1ターン）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 빙결 확률 75% (1턴)",
+                "en": "ATK +10% / Freeze chance 75% (1 turn)",
+                "ja": "攻撃力 +10% / 凍結確率 75%（1ターン）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 빙결 확률 100% (1턴)",
+                "en": "ATK +15% / Freeze chance 100% (1 turn)",
+                "ja": "攻撃力 +15% / 凍結確率 100%（1ターン）"
               }
             }
           ]
@@ -14886,7 +15726,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -14902,7 +15744,9 @@
             "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect RES by a certain percentage.",
             "ja": "効果耐性が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-protection.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -14918,7 +15762,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -15008,6 +15854,40 @@
                 "ko": "페이의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 페이가 전투 시작 시와 턴 종료 시 자신에게 1턴 간 <b><color=#DD982C>회피율 증가</color></b>를 발생시킵니다. 피격 후 회피 발생 시 자신의 공격력이 <b><color=#2A80D8>4%</color></b>씩 증가합니다. 최대 5회 중첩됩니다.",
                 "en": "Increases Fei's ATK by <b><color=#2A80D8>15%</color></b>. Grants Fei <b><color=#DD982C>Evasion Up</color></b> for 1 turn at the start of battle and at the end of each turn. Increases self ATK by <b><color=#2A80D8>4%</color></b> on evasion after being attacked. Stacks up to 5 times.",
                 "ja": "フェイの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。フェイが戦闘開始時とターン終了時、自身に1ターン<b><color=#DD982C>回避率アップ</color></b>を発生させる。攻撃を受けた後、回避が発生した場合、自身の攻撃力が<b><color=#2A80D8>4%</color></b>ずつ上がる。最大5回までスタック可能。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "회피 시 공격력 +2%/중첩 (최대 5)",
+                "en": "On evasion: ATK +2%/stack (max 5)",
+                "ja": "回避時：攻撃力 +2%/スタック（最大5）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 회피 시 공격력 +2%/중첩 (최대 5)",
+                "en": "ATK +5% / On evasion: ATK +2%/stack (max 5)",
+                "ja": "攻撃力 +5% / 回避時：攻撃力 +2%/スタック（最大5）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 회피 시 공격력 +3%/중첩 (최대 5)",
+                "en": "ATK +10% / On evasion: ATK +3%/stack (max 5)",
+                "ja": "攻撃力 +10% / 回避時：攻撃力 +3%/スタック（最大5）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 회피 시 공격력 +4%/중첩 (최대 5)",
+                "en": "ATK +15% / On evasion: ATK +4%/stack (max 5)",
+                "ja": "攻撃力 +15% / 回避時：攻撃力 +4%/スタック（最大5）"
               }
             }
           ]
@@ -15597,7 +16477,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -15613,7 +16495,9 @@
             "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect RES by a certain percentage.",
             "ja": "効果耐性が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-protection.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -15629,7 +16513,9 @@
             "ko": "치명타 확률이 3% 증가합니다.",
             "en": "Increases CRIT Rate by 3%.",
             "ja": "会心率が3%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -15719,6 +16605,40 @@
                 "ko": "에핀델의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 에핀델은 달 속성 아군이 치명타 발생 시 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다. 에핀델이 오를랑식 검술 사용 시 자신의 <b><color=#DD982C>냉각</color></b>이 최대 스택이면 피해량이 <b><color=#2A80D8>20%</color></b> 증가하고 오를랑식 검술 사용 후 <b><color=#DD982C>냉각</color></b> 스택을 모두 소거합니다.",
                 "en": "Increases self ATK by <b><color=#2A80D8>15%</color></b>. Grants self 1 stack of <b><color=#DD982C>Chill</color></b> if a Moon-attribute ally triggers a Critical Hit. Increases damage dealt by <b><color=#2A80D8>20%</color></b> if <b><color=#DD982C>Chill</color></b> is at max stacks upon using Orlan Style Swordsmanship. Removes all stacks of <b><color=#DD982C>Chill</color></b> upon using Orlan Style Swordsmanship.",
                 "ja": "エピンデルの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。エピンデルは、月属性の味方が会心ヒット発生時に、自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。エピンデルがオルラン式剣術を使用時、自身の<b><color=#DD982C>冷却</color></b>が最大スタックの場合、ダメージが<b><color=#2A80D8>20%</color></b>増加し、オルラン式剣術使用後に<b><color=#DD982C>冷却</color></b>スタックを全て消費する。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "냉각 최대 중첩: 피해량 +10%",
+                "en": "Max Chill: damage +10%",
+                "ja": "冷却最大：ダメージ +10%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 냉각 최대 중첩: 피해량 +10%",
+                "en": "ATK +5% / Max Chill: damage +10%",
+                "ja": "攻撃力 +5% / 冷却最大：ダメージ +10%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 냉각 최대 중첩: 피해량 +15%",
+                "en": "ATK +10% / Max Chill: damage +15%",
+                "ja": "攻撃力 +10% / 冷却最大：ダメージ +15%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 냉각 최대 중첩: 피해량 +20%",
+                "en": "ATK +15% / Max Chill: damage +20%",
+                "ja": "攻撃力 +15% / 冷却最大：ダメージ +20%"
               }
             }
           ]
@@ -16293,7 +17213,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -16309,7 +17231,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -16325,7 +17249,9 @@
             "ko": "속도가 2 증가합니다.",
             "en": "Increases SPD by 2.",
             "ja": "速度が2上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-speed.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -16430,6 +17356,40 @@
                 "ko": "오메가의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 오메가는 자신을 제외한 별 속성 아군이 타격 후 자신에게 <b><color=#2A80D8>100%</color></b> 확률로 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다. 턴 시작 시 자신의 <b><color=#DD982C>도약</color></b>이 최대 스택이면 모두 소거하고 <b><color=#DD982C>파워업 스타</color></b>를 1회 발생시킵니다. 턴 시작 시 자신의 <b><color=#DD982C>파워업 스타</color></b>가 최대 중첩이면 <b><color=#DD982C>도약</color></b>을 소거하지 않습니다.",
                 "en": "Increases Omega's ATK by <b><color=#2A80D8>15%</color></b>. Omega grants herself 1 stack of <b><color=#DD982C>Leap</color></b> with a <b><color=#2A80D8>100%</color></b> chance after a Star Attribute ally (excluding self) attacks. Removes all <b><color=#DD982C>Leap</color></b> stacks and grants self 1 stack of <b><color=#DD982C>Power-Up Star</color></b> if Leap is at max stacks at the start of the turn. <b><color=#DD982C>Leap</color></b> stacks are not removed if <b><color=#DD982C>Power-Up Star</color></b> is at max stacks at the start of the turn.",
                 "ja": "オメガの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。オメガは自身を除く星属性の味方が攻撃後、自身に<b><color=#2A80D8>100%</color></b>で<b><color=#DD982C>跳躍</color></b>スタックを1つ付与する。ターン開始時、自身の<b><color=#DD982C>跳躍</color></b>が最大スタックであれば、全て消費し、<b><color=#DD982C>パワーアップスター</color></b>を1回発生させる。ターン開始時、自身の<b><color=#DD982C>パワーアップスター</color></b>が最大スタックの場合、<b><color=#DD982C>跳躍</color></b>を消費しない。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "도약 부여 확률 70%",
+                "en": "Leap chance 70%",
+                "ja": "跳躍付与確率 70%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 도약 부여 확률 70%",
+                "en": "ATK +5% / Leap chance 70%",
+                "ja": "攻撃力 +5% / 跳躍付与確率 70%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 도약 부여 확률 85%",
+                "en": "ATK +10% / Leap chance 85%",
+                "ja": "攻撃力 +10% / 跳躍付与確率 85%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 도약 부여 확률 100%",
+                "en": "ATK +15% / Leap chance 100%",
+                "ja": "攻撃力 +15% / 跳躍付与確率 100%"
               }
             }
           ]
@@ -17004,7 +17964,9 @@
             "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self CRIT Rate by a certain percentage.",
             "ja": "会心率が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -17020,7 +17982,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -17036,7 +18000,9 @@
             "ko": "치명타 확률이 3% 증가합니다.",
             "en": "Increases CRIT Rate by 3%.",
             "ja": "会心率が3%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -17141,6 +18107,40 @@
                 "ko": "샤를의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 샤를은 자신을 제외한 태양 속성 아군이 턴 시작 시 자신에게 <b><color=#DD982C>점화</color></b> 스택을 1개 부여합니다. <b><color=#DD982C>바니 스텝</color></b> 사용 후 자신의 행동 게이지를 <b><color=#2A80D8>10%</color></b> 증가시킵니다. 자신의 턴에 <b><color=#DD982C>바니 스텝</color></b> 사용 후 자신이 <b><color=#DD982C>럭키 토큰(해제불가)</color></b> 상태이면 <b><color=#DD982C>바니 스텝</color></b>을 한번 더 발동합니다. 추가 발동 효과는 1턴에 1번만 발생합니다.",
                 "en": "Increases Charlotte's ATK by <b><color=#2A80D8>15%</color></b>. Charlotte grants herself 1 stack of <b><color=#DD982C>Ignition</color></b> at the start of the turn of a Sun Attribute ally (excluding self). Increases self Action Gauge by <b><color=#2A80D8>10%</color></b> after using <b><color=#DD982C>Bunny Step</color></b>. Triggers <b><color=#DD982C>Bunny Step</color></b> an additional time after using <b><color=#DD982C>Bunny Step</color></b> on self turn if self has <b><color=#DD982C>Lucky Token (Undispellable)</color></b>. Additional trigger occurs once per turn.",
                 "ja": "シャルルの攻撃力が<b><color=#2A80D8>15%</color></b>アップする。シャルルは自身を除く太陽属性の味方がターン開始時、自身に<b><color=#DD982C>点火</color></b>スタックを1つ付与する。<b><color=#DD982C>バニーステップ</color></b>使用後、自身の行動ゲージを<b><color=#2A80D8>10%</color></b>増やす。自身のターンに<b><color=#DD982C>バニーステップ</color></b>使用後、自身が<b><color=#DD982C>ラッキートークン(解除不可)</color></b>状態であれば<b><color=#DD982C>バニーステップ</color></b>をもう一度発動させる。追加発動効果は1ターンに1回のみ発生する。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "행동 게이지 +6%",
+                "en": "Action Gauge +6%",
+                "ja": "行動ゲージ +6%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 행동 게이지 +6%",
+                "en": "ATK +5% / Action Gauge +6%",
+                "ja": "攻撃力 +5% / 行動ゲージ +6%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 행동 게이지 +8%",
+                "en": "ATK +10% / Action Gauge +8%",
+                "ja": "攻撃力 +10% / 行動ゲージ +8%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 행동 게이지 +10%",
+                "en": "ATK +15% / Action Gauge +10%",
+                "ja": "攻撃力 +15% / 行動ゲージ +10%"
               }
             }
           ]
@@ -17715,7 +18715,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -17731,7 +18733,9 @@
             "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
             "en": "Slightly increases self SPD by a certain amount.",
             "ja": "速度が一定値だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-speed.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -17747,7 +18751,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -17852,6 +18858,40 @@
                 "ko": "기본 효과",
                 "en": "Base Effect",
                 "ja": "基本効果"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "타격 대상당 행동 게이지 +25% (최대 125%)",
+                "en": "Action Gauge +25% per target (max 125%)",
+                "ja": "命中対象ごとに行動ゲージ +25%（最大125%）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 타격 대상당 행동 게이지 +25% (최대 125%)",
+                "en": "ATK +5% / Action Gauge +25% per target (max 125%)",
+                "ja": "攻撃力 +5% / 命中対象ごとに行動ゲージ +25%（最大125%）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 타격 대상당 행동 게이지 +30% (최대 150%)",
+                "en": "ATK +10% / Action Gauge +30% per target (max 150%)",
+                "ja": "攻撃力 +10% / 命中対象ごとに行動ゲージ +30%（最大150%）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 타격 대상당 행동 게이지 +35% (최대 175%)",
+                "en": "ATK +15% / Action Gauge +35% per target (max 175%)",
+                "ja": "攻撃力 +15% / 命中対象ごとに行動ゲージ +35%（最大175%）"
               }
             }
           ]
@@ -18456,7 +19496,9 @@
             "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect Hit by a certain percentage.",
             "ja": "効果命中が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -18472,7 +19514,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -18488,7 +19532,9 @@
             "ko": "효과 적중이 4% 증가합니다.",
             "en": "Increases Effect Hit by 4%.",
             "ja": "効果命中が4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -18578,6 +19624,40 @@
                 "ko": "리디아의 최대 생명력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 리디아가 <b><color=#DD982C>공허의 손길</color></b> 사용 후 적이 약화 효과 상태이면 자신의 공격력이 <b><color=#2A80D8>6%</color></b>씩 증가하고 적에게 100% 확률로 1턴 간 <b><color=#DD982C>미지의 주문</color></b>을 발생시킵니다. 공격력 증가 효과는 최대 5회 중첩됩니다.",
                 "en": "Increases Lydia's Max HP by <b><color=#2A80D8>15%</color></b>. Increases Lydia's ATK by <b><color=#2A80D8>6%</color></b> and inflicts the enemy with <b><color=#DD982C>Unknown Hex</color></b> for 1 turn with a 100% chance after using <b><color=#DD982C>Touch of the Void</color></b> if the enemy has a debuff. ATK increase stacks up to 5 times.",
                 "ja": "リディアの最大HPが<b><color=#2A80D8>15%</color></b>上がる。リディアが<b><color=#DD982C>空虚の手</color></b>使用後、敵が弱体化状態の場合、自身の攻撃力が<b><color=#2A80D8>6%</color></b>ずつ上がり、敵に100%で1ターン<b><color=#DD982C>未知の呪文</color></b>を発生させる。攻撃力アップは最大5回スタック可能。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "공격력 +4%/중첩 (최대 5)",
+                "en": "ATK +4%/stack (max 5)",
+                "ja": "攻撃力 +4%/スタック（最大5）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 공격력 +4%/중첩 (최대 5)",
+                "en": "Max HP +5% / ATK +4%/stack (max 5)",
+                "ja": "最大HP +5% / 攻撃力 +4%/スタック（最大5）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 공격력 +5%/중첩 (최대 5)",
+                "en": "Max HP +10% / ATK +5%/stack (max 5)",
+                "ja": "最大HP +10% / 攻撃力 +5%/スタック（最大5）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 공격력 +6%/중첩 (최대 5)",
+                "en": "Max HP +15% / ATK +6%/stack (max 5)",
+                "ja": "最大HP +15% / 攻撃力 +6%/スタック（最大5）"
               }
             }
           ]
@@ -19122,7 +20202,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -19138,7 +20220,9 @@
             "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect RES by a certain percentage.",
             "ja": "効果耐性が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-protection.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -19154,7 +20238,9 @@
             "ko": "최대 생명력이 2% 증가합니다.",
             "en": "Increases Max HP by 2%.",
             "ja": "最大HPが2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -19259,6 +20345,40 @@
                 "ko": "할리의 최대 생명력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 할리는 자신을 제외한 아군이 피격 후 <b><color=#2A80D8>100%</color></b> 확률로 자신의 속도가 3%씩 증가합니다. 최대 5회 중첩됩니다. 타격 시 자신의 <b><color=#DD982C>점화</color></b>가 최대 스택이면 <b><color=#DD982C>점화</color></b> 스택을 모두 소거하고 타격 후 자신에게 2턴 간 <b><color=#DD982C>효과 적중 증가</color></b>를 발생시킵니다.",
                 "en": "Increases self Max HP by <b><color=#2A80D8>15%</color></b>. <b><color=#2A80D8>100%</color></b> chance to increase self SPD by 3% each time an ally (excluding self) is attacked (stacks up to 5 times). Removes all stacks of <b><color=#DD982C>Ignition</color></b> from self and grants self <b><color=#DD982C>Effect Hit Up</color></b> for 2 turns after attacking if <b><color=#DD982C>Ignition</color></b> is at max stacks upon attacking.",
                 "ja": "ハーレーの最大HPが<b><color=#2A80D8>15％</color></b>上がる。ハーレーは自身を除く味方が攻撃を受けた後、<b><color=#2A80D8>100％</color></b>の確率で自身の速度が3％ずつあがる。この効果は最大5回までスタックできる。攻撃時、自身の<b><color=#DD982C>点火</color></b>が最大スタックの場合、全<b><color=#DD982C>点火</color></b>スタックを消費して自身に<b><color=#DD982C>効果命中アップ</color></b>を2ターン付与する。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "최대 생명력 +5%",
+                "en": "Max HP +5%",
+                "ja": "最大HP +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 속도 +3% 중첩 확률 70% (최대 5) / 점화 최대 중첩 소거: 효과 적중 증가 2턴",
+                "en": "Max HP +5% / 70% chance of SPD +3%/stack (max 5) / Consume max Ignition: Effect Hit Up for 2 turns",
+                "ja": "最大HP +5% / 速度+3%スタック確率 70%（最大5） / 点火最大を消去：効果命中アップ2ターン"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 속도 +3% 중첩 확률 85% (최대 5)",
+                "en": "Max HP +10% / 85% chance of SPD +3%/stack (max 5)",
+                "ja": "最大HP +10% / 速度+3%スタック確率 85%（最大5）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 속도 +3% 중첩 확률 100% (최대 5)",
+                "en": "Max HP +15% / 100% chance of SPD +3%/stack (max 5)",
+                "ja": "最大HP +15% / 速度+3%スタック確率 100%（最大5）"
               }
             }
           ]
@@ -19848,7 +20968,9 @@
             "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect Hit by a certain percentage.",
             "ja": "効果命中が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -19864,7 +20986,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -19880,7 +21004,9 @@
             "ko": "효과 적중이 4% 증가합니다.",
             "en": "Increases Effect Hit by 4%.",
             "ja": "効果命中が4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -19970,6 +21096,40 @@
                 "ko": "페트라의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 페트라는 자신을 제외한 아군이 적의 강인도 격파 후 자신에게 <b><color=#DD982C>점화</color></b> 스택을 1개 부여하고 자신의 행동 게이지를 <b><color=#2A80D8>20%</color></b> 증가시킵니다. 1턴에 1번만 발생합니다.",
                 "en": "Increases Petra's ATK by <b><color=#2A80D8>15%</color></b>. Grants self 1 stack of <b><color=#DD982C>Ignition</color></b> and increases self Action Gauge by <b><color=#2A80D8>20%</color></b> after an ally (excluding Petra) breaks an enemy's Toughness. Occurs once per turn.",
                 "ja": "ペトラの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。ペトラは、自身を除く味方が敵の強靭度をブレイクした後、自身に<b><color=#DD982C>点火</color></b>スタックを1つ付与し、自身の行動ゲージを<b><color=#2A80D8>20%</color></b>増やす。1ターンに1回のみ発生する。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "공격력 +5%",
+                "en": "ATK +5%",
+                "ja": "攻撃力 +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 아군 격파 후: 점화 1개 / 행동 게이지 +10% (턴당 1회)",
+                "en": "ATK +5% / After ally breaks: Ignition ×1 / Action Gauge +10% (once/turn)",
+                "ja": "攻撃力 +5% / 味方がブレイク後：点火1個 / 行動ゲージ +10%（1ターンに1回）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 아군 격파 후: 점화 1개 / 행동 게이지 +15% (턴당 1회)",
+                "en": "ATK +10% / After ally breaks: Ignition ×1 / Action Gauge +15% (once/turn)",
+                "ja": "攻撃力 +10% / 味方がブレイク後：点火1個 / 行動ゲージ +15%（1ターンに1回）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 아군 격파 후: 점화 1개 / 행동 게이지 +20% (턴당 1회)",
+                "en": "ATK +15% / After ally breaks: Ignition ×1 / Action Gauge +20% (once/turn)",
+                "ja": "攻撃力 +15% / 味方がブレイク後：点火1個 / 行動ゲージ +20%（1ターンに1回）"
               }
             }
           ]
@@ -20544,7 +21704,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -20560,7 +21722,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -20576,7 +21740,9 @@
             "ko": "효과 적중이 4% 증가합니다.",
             "en": "Increases Effect Hit by 4%.",
             "ja": "効果命中が4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -20681,6 +21847,40 @@
                 "ko": "스칼렛의 치명타 확률이 <b><color=#2A80D8>15%</color></b> 증가합니다. 스칼렛이 타격 시 자신에게 부여된 <b><color=#DD982C>점화</color></b> 스택에 비례하여 피해량이 7%씩 증가하며 최대 5개까지 적용됩니다. 턴 시작 시 자신에게 <b><color=#DD982C>핀볼 타임!</color></b>을 3회 발생시키고 타격 후 <b><color=#DD982C>핀볼 타임!</color></b> 상태를 모두 해제합니다. 턴 시작 시 자신이 보유한 <b><color=#DD982C>세븐볼(해제불가)</color></b> 개수 당 속도가 1씩 증가합니다. 최대 <b><color=#2A80D8>10회</color></b> 중첩됩니다. \n노멀볼(해제불가) : 주는 피해량이 1% 증가합니다.\n세븐볼(해제불가) : 주는 피해량이 7% 증가합니다.",
                 "en": "Increases self CRIT Rate by <b><color=#2A80D8>15%</color></b>. Increases damage dealt by 7% for each stack of <b><color=#DD982C>Ignition</color></b> on self (up to 5 stacks). Triggers 3 instances of <b><color=#DD982C>Pinball Time!</color></b> on self at the start of the turn. Removes all effects triggered by <b><color=#DD982C>Pinball Time!</color></b> from self after attacking. Increases SPD by 1 for each stack of <b><color=#DD982C>Seven Ball (Undispellable)</color></b> on self at the start of the turn (stacks up to <b><color=#2A80D8>10 times</color></b>).\nNormal Ball (Undispellable): Increases damage dealt by 1%.\nSeven Ball (Undispellable): Increases damage dealt by 7%.",
                 "ja": "スカーレットの会心率が<b><color=#2A80D8>15％</color></b>上がる。スカーレットが攻撃時、自身に付与されている<b><color=#DD982C>点火</color></b>スタックに比例して、ダメージが7％ずつ上がる。この効果は最大5スタックまで適用される。ターン開始時、自身に<b><color=#DD982C>ピンボールタイム！</color></b>を3個付与する。攻撃後、<b><color=#DD982C>ピンボールタイム！</color></b>をすべて消去する。ターン開始時、自身が持つ<b><color=#DD982C>セブンボール(解除不可)</color></b>の数に応じて、速度が1ずつ上がる。この効果は最大<b><color=#2A80D8>10回</color></b>までスタックできる。\nノーマルボール(解除不可)：与ダメージが1％上がる。\nセブンボール(解除不可)：与ダメージが7％上がる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "세븐볼당 속도 +1 (최대 6중첩)",
+                "en": "SPD +1 per Seven Ball (max 6 stacks)",
+                "ja": "セブンボールごとに速度 +1（最大6スタック）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "치명타 확률 +5% / 세븐볼당 속도 +1 (최대 6중첩)",
+                "en": "CRIT Rate +5% / SPD +1 per Seven Ball (max 6 stacks)",
+                "ja": "会心率 +5% / セブンボールごとに速度 +1（最大6スタック）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "치명타 확률 +10% / 세븐볼당 속도 +1 (최대 8중첩)",
+                "en": "CRIT Rate +10% / SPD +1 per Seven Ball (max 8 stacks)",
+                "ja": "会心率 +10% / セブンボールごとに速度 +1（最大8スタック）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "치명타 확률 +15% / 세븐볼당 속도 +1 (최대 10중첩)",
+                "en": "CRIT Rate +15% / SPD +1 per Seven Ball (max 10 stacks)",
+                "ja": "会心率 +15% / セブンボールごとに速度 +1（最大10スタック）"
               }
             }
           ]
@@ -21315,7 +22515,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -21331,7 +22533,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -21347,7 +22551,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -21437,6 +22643,40 @@
                 "ko": "클레어의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 클레어가 턴 시작 시 자신의 치명타 확률이 <b><color=#2A80D8>10%</color></b>씩 증가합니다. 최대 3회 중첩됩니다. <b><color=#DD982C>눈보다 빠른 움직임</color></b>을 사용 후 자신의 <b><color=#DD982C>냉각</color></b>이 최대 스택이면 모두 소거하고 <b><color=#DD982C>어딜 보시는 거죠?</color></b>를 발동합니다.",
                 "en": "Increases Claire's ATK by <b><color=#2A80D8>15%</color></b>. Increases Claire's CRIT Rate by <b><color=#2A80D8>10%</color></b> at the start of the turn. Stacks up to 3 times. Removes all <b><color=#DD982C>Chill</color></b> stacks and triggers <b><color=#DD982C>Where Are You Looking?</color></b> after using <b><color=#DD982C>Faster Than Sight</color></b> if Chill is at max stacks.",
                 "ja": "クレアの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。クレアがターン開始時、自身の会心率が<b><color=#2A80D8>10%</color></b>ずつ上がる。最大3回までスタック可能。<b><color=#DD982C>目にも止まらぬ動き</color></b>の使用後、自身の<b><color=#DD982C>冷却</color></b>が最大スタックである場合、全て消費し<b><color=#DD982C>どこを見ているのですか？</color></b>を発動する。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "턴 시작: 치명타 확률 +6%/중첩 (최대 3)",
+                "en": "Turn start: CRIT Rate +6%/stack (max 3)",
+                "ja": "ターン開始：会心率 +6%/スタック（最大3）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 턴 시작: 치명타 확률 +6%/중첩 (최대 3)",
+                "en": "ATK +5% / Turn start: CRIT Rate +6%/stack (max 3)",
+                "ja": "攻撃力 +5% / ターン開始：会心率 +6%/スタック（最大3）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 턴 시작: 치명타 확률 +8%/중첩 (최대 3)",
+                "en": "ATK +10% / Turn start: CRIT Rate +8%/stack (max 3)",
+                "ja": "攻撃力 +10% / ターン開始：会心率 +8%/スタック（最大3）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 턴 시작: 치명타 확률 +10%/중첩 (최대 3)",
+                "en": "ATK +15% / Turn start: CRIT Rate +10%/stack (max 3)",
+                "ja": "攻撃力 +15% / ターン開始：会心率 +10%/スタック（最大3）"
               }
             }
           ]
@@ -21996,7 +23236,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -22012,7 +23254,9 @@
             "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect Hit by a certain percentage.",
             "ja": "効果命中が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -22028,7 +23272,9 @@
             "ko": "최대 생명력이 2% 증가합니다.",
             "en": "Increases Max HP by 2%.",
             "ja": "最大HPが2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -22133,6 +23379,40 @@
                 "ko": "기본 효과",
                 "en": "Base Effect",
                 "ja": "基本効果"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "아군 피격·치명타 시 점화 확률 60%",
+                "en": "Ignition chance when ally takes a CRIT: 60%",
+                "ja": "味方が被会心時の点火確率 60%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 아군 피격·치명타 시 점화 확률 60%",
+                "en": "Max HP +5% / Ignition chance when ally takes a CRIT: 60%",
+                "ja": "最大HP +5% / 味方が被会心時の点火確率 60%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 아군 피격·치명타 시 점화 확률 80%",
+                "en": "Max HP +10% / Ignition chance when ally takes a CRIT: 80%",
+                "ja": "最大HP +10% / 味方が被会心時の点火確率 80%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 아군 피격·치명타 시 점화 확률 100%",
+                "en": "Max HP +15% / Ignition chance when ally takes a CRIT: 100%",
+                "ja": "最大HP +15% / 味方が被会心時の点火確率 100%"
               }
             }
           ]
@@ -22782,7 +24062,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -22798,7 +24080,9 @@
             "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
             "en": "Slightly increases self SPD by a certain amount.",
             "ja": "速度が一定値だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-speed.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -22814,7 +24098,9 @@
             "ko": "효과 적중이 4% 증가합니다.",
             "en": "Increases Effect Hit by 4%.",
             "ja": "効果命中が4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -22904,6 +24190,40 @@
                 "ko": "기본 효과",
                 "en": "Base Effect",
                 "ja": "基本効果"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "물폭탄 대상: 치명타 피해 +10%",
+                "en": "Aqua Bomb target: CRIT DMG +10%",
+                "ja": "水爆弾対象：会心ダメージ +10%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 물폭탄 대상: 치명타 피해 +10%",
+                "en": "ATK +5% / Aqua Bomb target: CRIT DMG +10%",
+                "ja": "攻撃力 +5% / 水爆弾対象：会心ダメージ +10%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 물폭탄 대상: 치명타 피해 +15%",
+                "en": "ATK +10% / Aqua Bomb target: CRIT DMG +15%",
+                "ja": "攻撃力 +10% / 水爆弾対象：会心ダメージ +15%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 물폭탄 대상: 치명타 피해 +20%",
+                "en": "ATK +15% / Aqua Bomb target: CRIT DMG +20%",
+                "ja": "攻撃力 +15% / 水爆弾対象：会心ダメージ +20%"
               }
             }
           ]
@@ -23508,7 +24828,9 @@
             "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
             "en": "Slightly increases self SPD by a certain amount.",
             "ja": "速度が一定値だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-speed.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -23524,7 +24846,9 @@
             "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect Hit by a certain percentage.",
             "ja": "効果命中が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -23540,7 +24864,9 @@
             "ko": "속도가 2 증가합니다.",
             "en": "Increases SPD by 2.",
             "ja": "速度が2上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-speed.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -23630,6 +24956,40 @@
                 "ko": "레이시의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 레이시가 <b><color=#DD982C>뒤엉킨 꿈결</color></b> 상태인 적에게 피격 후 행동 게이지를 <b><color=#2A80D8>10%</color></b> 증가시키고 자신의 생명력을 회복합니다. 회복량은 자신의 공격력에 비례해 증가합니다.",
                 "en": "Increases Lacy's ATK by <b><color=#2A80D8>15%</color></b>. Increases Lacy's Action Gauge by <b><color=#2A80D8>10%</color></b> and restores her HP after she is attacked by an enemy afflicted with <b><color=#DD982C>Entangled Dream</color></b>. Recovery is proportional to her ATK.",
                 "ja": "レイシーの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。レイシーが<b><color=#DD982C>絡み合う夢</color></b>状態の敵に攻撃を受けた後、行動ゲージを<b><color=#2A80D8>10%</color></b>増やし、自身のHPを回復する。回復量は自身の攻撃力に比例して上がる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "피격 후 행동 게이지 +6%",
+                "en": "After being hit: Action Gauge +6%",
+                "ja": "被攻撃後：行動ゲージ +6%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 피격 후 행동 게이지 +6%",
+                "en": "ATK +5% / After being hit: Action Gauge +6%",
+                "ja": "攻撃力 +5% / 被攻撃後：行動ゲージ +6%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 피격 후 행동 게이지 +8%",
+                "en": "ATK +10% / After being hit: Action Gauge +8%",
+                "ja": "攻撃力 +10% / 被攻撃後：行動ゲージ +8%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 피격 후 행동 게이지 +10%",
+                "en": "ATK +15% / After being hit: Action Gauge +10%",
+                "ja": "攻撃力 +15% / 被攻撃後：行動ゲージ +10%"
               }
             }
           ]
@@ -24204,7 +25564,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -24220,7 +25582,9 @@
             "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self DEF by a certain percentage.",
             "ja": "防御力が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-defense.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -24236,7 +25600,9 @@
             "ko": "최대 생명력이 2% 증가합니다.",
             "en": "Increases Max HP by 2%.",
             "ja": "最大HPが2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -24341,6 +25707,40 @@
                 "ko": "타냐의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 타냐가 적의 강인도 격파 후 자신에게 <b><color=#DD982C>도약</color></b> 스택을 3개 부여하고 자신을 제외한 아군 전체의 행동 게이지를 <b><color=#2A80D8>10%</color></b> 증가시킵니다. 턴 시작 시 자신의 <b><color=#DD982C>도약</color></b>이 최대 스택이면 모두 소거하고 자신에게 3턴 간 <b><color=#DD982C>철거 모드</color></b>를 발생시킵니다.",
                 "en": "Increases Tanya's ATK by <b><color=#2A80D8>15%</color></b>. Grants self 3 stacks of <b><color=#DD982C>Leap</color></b> and increases all allies' (excluding self) Action Gauge by <b><color=#2A80D8>10%</color></b> after breaking the enemy's Toughness. Removes all <b><color=#DD982C>Leap</color></b> stacks and grants self <b><color=#DD982C>Demolition Mode</color></b> for 3 turns if Leap is at max stacks at the start of the turn.",
                 "ja": "ターニャの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。ターニャが敵の強靭度をブレイクした後、自身に<b><color=#DD982C>跳躍</color></b>スタックを3つ付与し、自身を除く味方全体の行動ゲージを<b><color=#2A80D8>10%</color></b>増やす。ターン開始時、自身の<b><color=#DD982C>跳躍</color></b>が最大スタックの場合、全て消費して自身に3ターン<b><color=#DD982C>解体モード</color></b>を発生させる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "공격력 +5%",
+                "en": "ATK +5%",
+                "ja": "攻撃力 +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 아군(자신 제외) 행동 게이지 +6% / 적 격파 시 도약 3개 / 최대 중첩 시 철거 모드 3턴",
+                "en": "ATK +5% / Other allies’ Action Gauge +6% / On enemy break: Leap ×3 / at max stacks: Demolition Mode for 3 turns",
+                "ja": "攻撃力 +5% / 自分以外の味方の行動ゲージ +6% / 敵ブレイク時：跳躍3個 / 最大時：解体モード3ターン"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 아군(자신 제외) 행동 게이지 +8%",
+                "en": "ATK +10% / Other allies’ Action Gauge +8%",
+                "ja": "攻撃力 +10% / 自分以外の味方の行動ゲージ +8%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 아군(자신 제외) 행동 게이지 +10%",
+                "en": "ATK +15% / Other allies’ Action Gauge +10%",
+                "ja": "攻撃力 +15% / 自分以外の味方の行動ゲージ +10%"
               }
             }
           ]
@@ -24900,7 +26300,9 @@
             "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect Hit by a certain percentage.",
             "ja": "効果命中が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -24916,7 +26318,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -24932,7 +26336,9 @@
             "ko": "효과 적중이 4% 증가합니다.",
             "en": "Increases Effect Hit by 4%.",
             "ja": "効果命中が4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -25006,6 +26412,40 @@
                 "ko": "릴리의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 릴리가 <b><color=#DD982C>토끼씨의 즉결 심판</color></b> 사용 후 자신의 행동 게이지를 <b><color=#2A80D8>20%</color></b> 증가시킵니다.",
                 "en": "Increases Lily's ATK by <b><color=#2A80D8>15%</color></b>. Increases self Action Gauge by <b><color=#2A80D8>20%</color></b> after using <b><color=#DD982C>Mr. Rabbit's Instant Verdict</color></b>.",
                 "ja": "リリーの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。リリーが<b><color=#DD982C>ウサギさんの即決審判</color></b>使用後、自身の行動ゲージを<b><color=#2A80D8>20%</color></b>増やす。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "공격력 +5%",
+                "en": "ATK +5%",
+                "ja": "攻撃力 +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 행동 게이지 +10%",
+                "en": "ATK +5% / Action Gauge +10%",
+                "ja": "攻撃力 +5% / 行動ゲージ +10%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 행동 게이지 +15%",
+                "en": "ATK +10% / Action Gauge +15%",
+                "ja": "攻撃力 +10% / 行動ゲージ +15%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 행동 게이지 +20%",
+                "en": "ATK +15% / Action Gauge +20%",
+                "ja": "攻撃力 +15% / 行動ゲージ +20%"
               }
             }
           ]
@@ -25610,7 +27050,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -25626,7 +27068,9 @@
             "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self CRIT Rate by a certain percentage.",
             "ja": "会心率が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -25642,7 +27086,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -25747,6 +27193,40 @@
                 "ko": "키라의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 키라가 타격 시 자신이 <b><color=#DD982C>은신</color></b> 상태이면 피해량이 <b><color=#2A80D8>10%</color></b> 증가합니다. <b><color=#DD982C>비일상적 인사</color></b> 사용 시 자신의 <b><color=#DD982C>점화</color></b>가 최대 스택이면 <b><color=#DD982C>점화</color></b> 스택을 모두 소거하고 타격 후 자신에게 1턴 간 <b><color=#DD982C>은신</color></b>을 발생시킵니다.",
                 "en": "Increases self ATK by <b><color=#2A80D8>15%</color></b>. Increases damage dealt by <b><color=#2A80D8>10%</color></b> if self is under the effects of <b><color=#DD982C>Stealth</color></b> upon attacking. Removes all stacks of <b><color=#DD982C>Ignition</color></b> if Ignition is at max stacks after using <b><color=#DD982C>Unusual Greeting</color></b>. Grants self <b><color=#DD982C>Stealth</color></b> for 1 turn.",
                 "ja": "キラの攻撃力が<b><color=#2A80D8>15％</color></b>上がる。キラの攻撃時、自身が<b><color=#DD982C>潜伏</color></b>状態の場合、ダメージが<b><color=#2A80D8>10％</color></b>上がる。<b><color=#DD982C>非日常な挨拶</color></b>を使用時、自身の<b><color=#DD982C>点火</color></b>が最大スタックの場合、全<b><color=#DD982C>点火</color></b>スタックを消費して、自身に<b><color=#DD982C>潜伏</color></b>を1ターン付与する。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "은신 상태: 피해량 +6%",
+                "en": "While in Stealth: damage +6%",
+                "ja": "潜伏状態：ダメージ +6%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 은신 상태: 피해량 +6% / 기본기 사용 시 점화 소거, 타격 후 은신",
+                "en": "ATK +5% / While in Stealth: damage +6% / Basic: consume Ignition on use, gain Stealth after hit",
+                "ja": "攻撃力 +5% / 潜伏状態：ダメージ +6% / 通常攻撃使用時に点火消去、攻撃後に潜伏"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 은신 상태: 피해량 +8%",
+                "en": "ATK +10% / While in Stealth: damage +8%",
+                "ja": "攻撃力 +10% / 潜伏状態：ダメージ +8%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 은신 상태: 피해량 +10%",
+                "en": "ATK +15% / While in Stealth: damage +10%",
+                "ja": "攻撃力 +15% / 潜伏状態：ダメージ +10%"
               }
             }
           ]
@@ -26381,7 +27861,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -26397,7 +27879,9 @@
             "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self DEF by a certain percentage.",
             "ja": "防御力が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-defense.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -26413,7 +27897,9 @@
             "ko": "속도가 2 증가합니다.",
             "en": "Increases SPD by 2.",
             "ja": "速度が2上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-speed.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -26503,6 +27989,40 @@
                 "ko": "아세라의 최대 생명력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 아세라가 <b><color=#DD982C>벨 라므</color></b>를 사용 후 현재 생명력 비율이 가장 낮은 아군의 생명력을 회복시킵니다. 자신에게 부여된 <b><color=#DD982C>통찰</color></b> 스택에 비례하여 협공 확률이 <b><color=#2A80D8>20%</color></b>씩 증가하며 최대 5개까지 적용됩니다. 회복량은 자신의 최대 생명력에 비례해 증가합니다.",
                 "en": "Increases Asherah's Max HP by <b><color=#2A80D8>15%</color></b>. Asherah restores the HP of the ally with the current lowest HP ratio after using <b><color=#DD982C>Belle Lame</color></b>. Increases self Dual Attack Chance by <b><color=#2A80D8>20%</color></b> for each stack of <b><color=#DD982C>Insight</color></b> on self, up to 5 stacks. Recovery is proportional to self Max HP.",
                 "ja": "アセラの最大HPが<b><color=#2A80D8>15%</color></b>上がる。アセラが<b><color=#DD982C>ベル・ラーム</color></b>を使用後、現在のHP割合が最も低い味方のHPを回復させる。自身に付与された<b><color=#DD982C>洞察</color></b>スタックに比例して挟撃の発生率が<b><color=#2A80D8>20%</color></b>ずつ上がり、最大5個まで適用される。回復量は自身の最大HPに比例して上がる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "최대 생명력 +5%",
+                "en": "Max HP +5%",
+                "ja": "最大HP +5%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 통찰당 협공 확률 +10% (최대 5) / 기본기 후 생명력 비율이 가장 낮은 아군 회복",
+                "en": "Max HP +5% / Dual Attack chance +10% per Insight (max 5) / After Basic: heal ally with lowest HP ratio",
+                "ja": "最大HP +5% / 洞察ごとに連携攻撃確率 +10%（最大5） / 通常攻撃後：HP割合が最も低い味方を回復"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 통찰당 협공 확률 +15% (최대 5)",
+                "en": "Max HP +10% / Dual Attack chance +15% per Insight (max 5)",
+                "ja": "最大HP +10% / 洞察ごとに連携攻撃確率 +15%（最大5）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 통찰당 협공 확률 +20% (최대 5)",
+                "en": "Max HP +15% / Dual Attack chance +20% per Insight (max 5)",
+                "ja": "最大HP +15% / 洞察ごとに連携攻撃確率 +20%（最大5）"
               }
             }
           ]
@@ -27062,7 +28582,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -27078,7 +28600,9 @@
             "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self DEF by a certain percentage.",
             "ja": "防御力が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-defense.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -27094,7 +28618,9 @@
             "ko": "최대 생명력이 2% 증가합니다.",
             "en": "Increases Max HP by 2%.",
             "ja": "最大HPが2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -27184,6 +28710,40 @@
                 "ko": "기본 효과",
                 "en": "Base Effect",
                 "ja": "基本効果"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "피해 분배 시 행동 게이지 +18%",
+                "en": "On damage sharing: Action Gauge +18%",
+                "ja": "ダメージ分配時：行動ゲージ +18%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 피해 분배 시 행동 게이지 +18%",
+                "en": "Max HP +5% / On damage sharing: Action Gauge +18%",
+                "ja": "最大HP +5% / ダメージ分配時：行動ゲージ +18%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 피해 분배 시 행동 게이지 +24%",
+                "en": "Max HP +10% / On damage sharing: Action Gauge +24%",
+                "ja": "最大HP +10% / ダメージ分配時：行動ゲージ +24%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 피해 분배 시 행동 게이지 +30%",
+                "en": "Max HP +15% / On damage sharing: Action Gauge +30%",
+                "ja": "最大HP +15% / ダメージ分配時：行動ゲージ +30%"
               }
             }
           ]
@@ -27803,7 +29363,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -27819,7 +29381,9 @@
             "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self CRIT Rate by a certain percentage.",
             "ja": "会心率が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -27835,7 +29399,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -27925,6 +29491,40 @@
                 "ko": "기본 효과",
                 "en": "Base Effect",
                 "ja": "基本効果"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "태양 아군 턴 시작: 점화 확률 60%",
+                "en": "Sun ally turn start: Ignition chance 60%",
+                "ja": "太陽属性の味方ターン開始：点火確率 60%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 태양 아군 턴 시작: 점화 확률 60%",
+                "en": "ATK +5% / Sun ally turn start: Ignition chance 60%",
+                "ja": "攻撃力 +5% / 太陽属性の味方ターン開始：点火確率 60%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 태양 아군 턴 시작: 점화 확률 80%",
+                "en": "ATK +10% / Sun ally turn start: Ignition chance 80%",
+                "ja": "攻撃力 +10% / 太陽属性の味方ターン開始：点火確率 80%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 태양 아군 턴 시작: 점화 확률 100%",
+                "en": "ATK +15% / Sun ally turn start: Ignition chance 100%",
+                "ja": "攻撃力 +15% / 太陽属性の味方ターン開始：点火確率 100%"
               }
             }
           ]
@@ -28544,7 +30144,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -28560,7 +30162,9 @@
             "ko": "치명타 피해가 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self CRIT DMG by a certain percentage.",
             "ja": "会心ダメージが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-destruction.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -28576,7 +30180,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -28681,6 +30287,40 @@
                 "ko": "프레이의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 프레이는 턴 시작 시 자신의 <b><color=#DD982C>냉각</color></b>이 최대 스택이면 자신에게 <b><color=#DD982C>하이 롤러(해제불가)</color></b>를 1회 발생시키고 <b><color=#DD982C>냉각 스택</color></b>을 모두 소거합니다. 턴 시작 시 자신의 <b><color=#DD982C>하이 롤러(해제불가)</color></b>가 최대 중첩이면 <b><color=#DD982C>냉각</color></b>을 소거하지 않습니다. 자신을 제외한 달 속성 아군이 타격 후 자신의 행동 게이지를 8% 증가시키고 자신에게 <b><color=#2A80D8>100%</color></b> 확률로 <b><color=#DD982C>하이 롤러(해제불가)</color></b>를 1회 발생시킵니다.",
                 "en": "Increases Frey's ATK by <b><color=#2A80D8>15%</color></b>. Frey removes all <b><color=#DD982C>Chill</color></b> stacks and grants herself 1 stack of <b><color=#DD982C>High Roller (Undispellable)</color></b> if <b><color=#DD982C>Chill</color></b> is at max stacks at the start of the turn. <b><color=#DD982C>Chill</color></b> stacks are not removed if <b><color=#DD982C>High Roller (Undispellable)</color></b> is at max stacks at the start of the turn. Increases self Action Gauge by 8%, then grants self 1 stack of <b><color=#DD982C>High Roller (Undispellable)</color></b> with a <b><color=#2A80D8>100%</color></b> chance after a Moon Attribute ally (excluding self) attacks.",
                 "ja": "フレイの攻撃力が<b><color=#2A80D8>15%</color></b>アップする。フレイはターン開始時、自身の<b><color=#DD982C>冷却</color></b>が最大スタックであれば、自身に<b><color=#DD982C>ハイローラー(解除不可)</color></b>を1回発生させ、<b><color=#DD982C>冷却スタック</color></b>をすべて消費する。ターン開始時、自身の<b><color=#DD982C>ハイローラー(解除不可)</color></b>が最大スタックであれば<b><color=#DD982C>冷却</color></b>を消費しない。自身を除く月属性の味方が攻撃後、自身の行動ゲージを8%増やし、自身に<b><color=#2A80D8>100%</color></b>で<b><color=#DD982C>ハイローラー(解除不可)</color></b>を1回発生させる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "하이 롤러 확률 50%",
+                "en": "High Roller chance 50%",
+                "ja": "ハイローラー確率 50%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 하이 롤러 확률 50%",
+                "en": "ATK +5% / High Roller chance 50%",
+                "ja": "攻撃力 +5% / ハイローラー確率 50%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 하이 롤러 확률 75%",
+                "en": "ATK +10% / High Roller chance 75%",
+                "ja": "攻撃力 +10% / ハイローラー確率 75%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 하이 롤러 확률 100%",
+                "en": "ATK +15% / High Roller chance 100%",
+                "ja": "攻撃力 +15% / ハイローラー確率 100%"
               }
             }
           ]
@@ -29270,7 +30910,9 @@
             "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self CRIT Rate by a certain percentage.",
             "ja": "会心率が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -29286,7 +30928,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -29302,7 +30946,9 @@
             "ko": "치명타 확률이 3% 증가합니다.",
             "en": "Increases CRIT Rate by 3%.",
             "ja": "会心率が3%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -29422,6 +31068,40 @@
                 "ko": "기본 효과",
                 "en": "Base Effect",
                 "ja": "基本効果"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "약화 효과가 없을 때 피해량 +10%",
+                "en": "While not debuffed: damage +10%",
+                "ja": "デバフがない時：ダメージ +10%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 약화 효과가 없을 때 피해량 +10%",
+                "en": "ATK +5% / While not debuffed: damage +10%",
+                "ja": "攻撃力 +5% / デバフがない時：ダメージ +10%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 약화 효과가 없을 때 피해량 +20%",
+                "en": "ATK +10% / While not debuffed: damage +20%",
+                "ja": "攻撃力 +10% / デバフがない時：ダメージ +20%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 약화 효과가 없을 때 피해량 +30%",
+                "en": "ATK +15% / While not debuffed: damage +30%",
+                "ja": "攻撃力 +15% / デバフがない時：ダメージ +30%"
               }
             }
           ]
@@ -30011,7 +31691,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -30027,7 +31709,9 @@
             "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self DEF by a certain percentage.",
             "ja": "防御力が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-defense.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -30043,7 +31727,9 @@
             "ko": "최대 생명력이 2% 증가합니다.",
             "en": "Increases Max HP by 2%.",
             "ja": "最大HPが2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -30117,6 +31803,40 @@
                 "ko": "최대 생명력 3% 증가",
                 "en": "Max HP +3%",
                 "ja": "最大HP3%上昇"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "최대 생명력 +3%",
+                "en": "Max HP +3%",
+                "ja": "最大HP +3%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +6%",
+                "en": "Max HP +6%",
+                "ja": "最大HP +6%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +9%",
+                "en": "Max HP +9%",
+                "ja": "最大HP +9%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +12%",
+                "en": "Max HP +12%",
+                "ja": "最大HP +12%"
               }
             }
           ]
@@ -30745,6 +32465,40 @@
                 "ja": "基本効果"
               }
             }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "전체 공격 피격 후 격퇴 확률 20%",
+                "en": "Repel chance after AoE hit: 20%",
+                "ja": "全体攻撃を受けた後の撃退確率 20%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 전체 공격 피격 후 격퇴 확률 20%",
+                "en": "Max HP +5% / Repel chance after AoE hit: 20%",
+                "ja": "最大HP +5% / 全体攻撃を受けた後の撃退確率 20%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 전체 공격 피격 후 격퇴 확률 30%",
+                "en": "Max HP +10% / Repel chance after AoE hit: 30%",
+                "ja": "最大HP +10% / 全体攻撃を受けた後の撃退確率 30%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 전체 공격 피격 후 격퇴 확률 40%",
+                "en": "Max HP +15% / Repel chance after AoE hit: 40%",
+                "ja": "最大HP +15% / 全体攻撃を受けた後の撃退確率 40%"
+              }
+            }
           ]
         },
         {
@@ -31346,7 +33100,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -31362,7 +33118,9 @@
             "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self DEF by a certain percentage.",
             "ja": "防御力が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-defense.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -31378,7 +33136,9 @@
             "ko": "최대 생명력이 2% 증가합니다.",
             "en": "Increases Max HP by 2%.",
             "ja": "最大HPが2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -31452,6 +33212,40 @@
                 "ko": "최대 생명력 3% 증가",
                 "en": "Max HP +3%",
                 "ja": "最大HP3%上昇"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "최대 생명력 +3%",
+                "en": "Max HP +3%",
+                "ja": "最大HP +3%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +6%",
+                "en": "Max HP +6%",
+                "ja": "最大HP +6%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +9%",
+                "en": "Max HP +9%",
+                "ja": "最大HP +9%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +12%",
+                "en": "Max HP +12%",
+                "ja": "最大HP +12%"
               }
             }
           ]
@@ -32065,6 +33859,40 @@
                 "ja": "基本効果"
               }
             }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "무작위 아군(자신 제외) 행동 게이지 +9%",
+                "en": "Random other ally’s Action Gauge +9%",
+                "ja": "ランダムな味方（自分以外）の行動ゲージ +9%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 무작위 아군(자신 제외) 행동 게이지 +9%",
+                "en": "Max HP +5% / Random other ally’s Action Gauge +9%",
+                "ja": "最大HP +5% / ランダムな味方（自分以外）の行動ゲージ +9%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 무작위 아군(자신 제외) 행동 게이지 +12%",
+                "en": "Max HP +10% / Random other ally’s Action Gauge +12%",
+                "ja": "最大HP +10% / ランダムな味方（自分以外）の行動ゲージ +12%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 무작위 아군(자신 제외) 행동 게이지 +15%",
+                "en": "Max HP +15% / Random other ally’s Action Gauge +15%",
+                "ja": "最大HP +15% / ランダムな味方（自分以外）の行動ゲージ +15%"
+              }
+            }
           ]
         },
         {
@@ -32666,7 +34494,9 @@
             "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self CRIT Rate by a certain percentage.",
             "ja": "会心率が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -32682,7 +34512,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -32698,7 +34530,9 @@
             "ko": "치명타 확률이 3% 증가합니다.",
             "en": "Increases CRIT Rate by 3%.",
             "ja": "会心率が3%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -32772,6 +34606,40 @@
                 "ko": "치명타 피해 3% 증가",
                 "en": "CRIT DMG +3%",
                 "ja": "会心ダメージ3%上昇"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "치명타 확률 +3%",
+                "en": "CRIT Rate +3%",
+                "ja": "会心率 +3%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "치명타 확률 +6%",
+                "en": "CRIT Rate +6%",
+                "ja": "会心率 +6%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "치명타 확률 +9%",
+                "en": "CRIT Rate +9%",
+                "ja": "会心率 +9%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "치명타 확률 +12%",
+                "en": "CRIT Rate +12%",
+                "ja": "会心率 +12%"
               }
             }
           ]
@@ -33445,6 +35313,40 @@
                 "ja": "基本効果"
               }
             }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "점화당 치명타 피해 +1% (최대 5)",
+                "en": "CRIT DMG +1% per Ignition (max 5)",
+                "ja": "点火ごとに会心ダメージ +1%（最大5）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "치명타 확률 +5% / 점화당 치명타 피해 +1% (최대 5)",
+                "en": "CRIT Rate +5% / CRIT DMG +1% per Ignition (max 5)",
+                "ja": "会心率 +5% / 点火ごとに会心ダメージ +1%（最大5）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "치명타 확률 +10% / 점화당 치명타 피해 +2% (최대 5)",
+                "en": "CRIT Rate +10% / CRIT DMG +2% per Ignition (max 5)",
+                "ja": "会心率 +10% / 点火ごとに会心ダメージ +2%（最大5）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "치명타 확률 +15% / 점화당 치명타 피해 +3% (최대 5)",
+                "en": "CRIT Rate +15% / CRIT DMG +3% per Ignition (max 5)",
+                "ja": "会心率 +15% / 点火ごとに会心ダメージ +3%（最大5）"
+              }
+            }
           ]
         },
         {
@@ -34061,7 +35963,9 @@
             "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect RES by a certain percentage.",
             "ja": "効果耐性が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-protection.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -34077,7 +35981,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -34093,7 +35999,9 @@
             "ko": "효과 저항이 4% 증가합니다.",
             "en": "Increases Effect RES by 4%.",
             "ja": "効果耐性が4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-protection.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -34167,6 +36075,40 @@
                 "ko": "최대 생명력 3% 증가",
                 "en": "Max HP +3%",
                 "ja": "最大HP3%上昇"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "최대 생명력 +3%",
+                "en": "Max HP +3%",
+                "ja": "最大HP +3%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +6%",
+                "en": "Max HP +6%",
+                "ja": "最大HP +6%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +9%",
+                "en": "Max HP +9%",
+                "ja": "最大HP +9%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +12%",
+                "en": "Max HP +12%",
+                "ja": "最大HP +12%"
               }
             }
           ]
@@ -34749,6 +36691,40 @@
                 "ja": "基本効果"
               }
             }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "피격 후 냉각 최대 중첩: 행동 게이지 +9%",
+                "en": "After hit, max Chill: Action Gauge +9%",
+                "ja": "被攻撃後・冷却最大：行動ゲージ +9%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 피격 후 냉각 최대 중첩: 행동 게이지 +9%",
+                "en": "Max HP +5% / After hit, max Chill: Action Gauge +9%",
+                "ja": "最大HP +5% / 被攻撃後・冷却最大：行動ゲージ +9%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 피격 후 냉각 최대 중첩: 행동 게이지 +12%",
+                "en": "Max HP +10% / After hit, max Chill: Action Gauge +12%",
+                "ja": "最大HP +10% / 被攻撃後・冷却最大：行動ゲージ +12%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 피격 후 냉각 최대 중첩: 행동 게이지 +15%",
+                "en": "Max HP +15% / After hit, max Chill: Action Gauge +15%",
+                "ja": "最大HP +15% / 被攻撃後・冷却最大：行動ゲージ +15%"
+              }
+            }
           ]
         },
         {
@@ -35289,7 +37265,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -35305,7 +37283,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -35321,7 +37301,9 @@
             "ko": "효과 적중이 4% 증가합니다.",
             "en": "Increases Effect Hit by 4%.",
             "ja": "効果命中が4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -35395,6 +37377,40 @@
                 "ko": "공격력 3% 증가",
                 "en": "ATK +3%",
                 "ja": "攻撃力3%上昇"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "공격력 +3%",
+                "en": "ATK +3%",
+                "ja": "攻撃力 +3%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +6%",
+                "en": "ATK +6%",
+                "ja": "攻撃力 +6%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +9%",
+                "en": "ATK +9%",
+                "ja": "攻撃力 +9%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +12%",
+                "en": "ATK +12%",
+                "ja": "攻撃力 +12%"
               }
             }
           ]
@@ -35993,6 +38009,40 @@
                 "ja": "基本効果"
               }
             }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "적 약화 효과당 피해량 +1% (최대 5)",
+                "en": "Damage +1% per enemy debuff (max 5)",
+                "ja": "敵デバフごとにダメージ +1%（最大5）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 적 약화 효과당 피해량 +1% (최대 5)",
+                "en": "ATK +5% / Damage +1% per enemy debuff (max 5)",
+                "ja": "攻撃力 +5% / 敵デバフごとにダメージ +1%（最大5）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 적 약화 효과당 피해량 +2% (최대 5)",
+                "en": "ATK +10% / Damage +2% per enemy debuff (max 5)",
+                "ja": "攻撃力 +10% / 敵デバフごとにダメージ +2%（最大5）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 적 약화 효과당 피해량 +3% (최대 5)",
+                "en": "ATK +15% / Damage +3% per enemy debuff (max 5)",
+                "ja": "攻撃力 +15% / 敵デバフごとにダメージ +3%（最大5）"
+              }
+            }
           ]
         },
         {
@@ -36579,7 +38629,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -36595,7 +38647,9 @@
             "ko": "효과 저항이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect RES by a certain percentage.",
             "ja": "効果耐性が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-protection.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -36611,7 +38665,9 @@
             "ko": "치명타 피해가 4% 증가합니다.",
             "en": "Increases CRIT DMG by 4%.",
             "ja": "会心ダメージが4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-destruction.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -36685,6 +38741,40 @@
                 "ko": "공격력 3% 증가",
                 "en": "ATK +3%",
                 "ja": "攻撃力3%上昇"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "공격력 +3%",
+                "en": "ATK +3%",
+                "ja": "攻撃力 +3%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +6%",
+                "en": "ATK +6%",
+                "ja": "攻撃力 +6%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +9%",
+                "en": "ATK +9%",
+                "ja": "攻撃力 +9%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +12%",
+                "en": "ATK +12%",
+                "ja": "攻撃力 +12%"
               }
             }
           ]
@@ -37267,6 +39357,40 @@
                 "ja": "基本効果"
               }
             }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "적 생명력 50% 이상: 방어력 관통 9%",
+                "en": "Enemy HP ≥50%: DEF penetration 9%",
+                "ja": "敵HP50%以上：防御力貫通 9%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 적 생명력 50% 이상: 방어력 관통 9%",
+                "en": "ATK +5% / Enemy HP ≥50%: DEF penetration 9%",
+                "ja": "攻撃力 +5% / 敵HP50%以上：防御力貫通 9%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 적 생명력 50% 이상: 방어력 관통 12%",
+                "en": "ATK +10% / Enemy HP ≥50%: DEF penetration 12%",
+                "ja": "攻撃力 +10% / 敵HP50%以上：防御力貫通 12%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 적 생명력 50% 이상: 방어력 관통 15%",
+                "en": "ATK +15% / Enemy HP ≥50%: DEF penetration 15%",
+                "ja": "攻撃力 +15% / 敵HP50%以上：防御力貫通 15%"
+              }
+            }
           ]
         },
         {
@@ -37823,7 +39947,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -37839,7 +39965,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -37855,7 +39983,9 @@
             "ko": "효과 적중이 4% 증가합니다.",
             "en": "Increases Effect Hit by 4%.",
             "ja": "効果命中が4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -37929,6 +40059,40 @@
                 "ko": "최대 생명력 3% 증가",
                 "en": "Max HP +3%",
                 "ja": "最大HP3%上昇"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "최대 생명력 +3%",
+                "en": "Max HP +3%",
+                "ja": "最大HP +3%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +6%",
+                "en": "Max HP +6%",
+                "ja": "最大HP +6%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +9%",
+                "en": "Max HP +9%",
+                "ja": "最大HP +9%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +12%",
+                "en": "Max HP +12%",
+                "ja": "最大HP +12%"
               }
             }
           ]
@@ -38557,6 +40721,40 @@
                 "ja": "基本効果"
               }
             }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "연소 확률 50% (2턴)",
+                "en": "Burn chance 50% (2 turns)",
+                "ja": "燃焼確率 50%（2ターン）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 연소 확률 50% (2턴)",
+                "en": "Max HP +5% / Burn chance 50% (2 turns)",
+                "ja": "最大HP +5% / 燃焼確率 50%（2ターン）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 연소 확률 75% (2턴)",
+                "en": "Max HP +10% / Burn chance 75% (2 turns)",
+                "ja": "最大HP +10% / 燃焼確率 75%（2ターン）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 연소 확률 100% (2턴)",
+                "en": "Max HP +15% / Burn chance 100% (2 turns)",
+                "ja": "最大HP +15% / 燃焼確率 100%（2ターン）"
+              }
+            }
           ]
         },
         {
@@ -39143,7 +41341,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -39159,7 +41359,9 @@
             "ko": "치명타 확률이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self CRIT Rate by a certain percentage.",
             "ja": "会心率が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-insight.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -39175,7 +41377,9 @@
             "ko": "치명타 피해가 4% 증가합니다.",
             "en": "Increases CRIT DMG by 4%.",
             "ja": "会心ダメージが4%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-destruction.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -39249,6 +41453,40 @@
                 "ko": "치명타 확률 3% 증가",
                 "en": "CRIT Rate +3%",
                 "ja": "会心率3%上昇"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "치명타 확률 +3%",
+                "en": "CRIT Rate +3%",
+                "ja": "会心率 +3%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "치명타 확률 +6%",
+                "en": "CRIT Rate +6%",
+                "ja": "会心率 +6%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "치명타 확률 +9%",
+                "en": "CRIT Rate +9%",
+                "ja": "会心率 +9%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "치명타 확률 +12%",
+                "en": "CRIT Rate +12%",
+                "ja": "会心率 +12%"
               }
             }
           ]
@@ -39847,6 +42085,40 @@
                 "ja": "基本効果"
               }
             }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "턴 시작: 도약 부여 확률 60%",
+                "en": "Turn start: Leap chance 60%",
+                "ja": "ターン開始：跳躍付与確率 60%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "치명타 확률 +5% / 턴 시작: 도약 부여 확률 60%",
+                "en": "CRIT Rate +5% / Turn start: Leap chance 60%",
+                "ja": "会心率 +5% / ターン開始：跳躍付与確率 60%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "치명타 확률 +10% / 턴 시작: 도약 부여 확률 80%",
+                "en": "CRIT Rate +10% / Turn start: Leap chance 80%",
+                "ja": "会心率 +10% / ターン開始：跳躍付与確率 80%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "치명타 확률 +15% / 턴 시작: 도약 부여 확률 100%",
+                "en": "CRIT Rate +15% / Turn start: Leap chance 100%",
+                "ja": "会心率 +15% / ターン開始：跳躍付与確率 100%"
+              }
+            }
           ]
         },
         {
@@ -40403,7 +42675,9 @@
             "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Max HP by a certain percentage.",
             "ja": "最大HPが一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -40419,7 +42693,9 @@
             "ko": "방어력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self DEF by a certain percentage.",
             "ja": "防御力が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-defense.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -40435,7 +42711,9 @@
             "ko": "최대 생명력이 2% 증가합니다.",
             "en": "Increases Max HP by 2%.",
             "ja": "最大HPが2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -40540,6 +42818,40 @@
                 "ko": "힐데의 최대 생명력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 힐데의 선제 방어 발생 확률이 <b><color=#2A80D8>30%</color></b> 증가하고 최초 전투 시작 시 자신을 제외한 아군 전체에게 1턴 간 <b><color=#DD982C>보호막</color></b>을 발생시킵니다. 보호막은 자신의 최대 생명력에 비례해 증가합니다.",
                 "en": "Increases Hilde's Max HP by <b><color=#2A80D8>15%</color></b>. Increases Hilde's Preemptive Guard Chance by <b><color=#2A80D8>30%</color></b> and grants all allies (excluding self) <b><color=#DD982C>Barrier</color></b> for 1 turn at the start of the first battle. Barrier is proportional to self Max HP.",
                 "ja": "ヒルデの最大HPが<b><color=#2A80D8>15％</color></b>上がる。ヒルデの先制防御発生確率が<b><color=#2A80D8>30％</color></b>上がり、最初の戦闘開始時、自身を除く味方全体に1ターン<b><color=#DD982C>バリア</color></b>を発生させる。バリアは自身の最大HPに比例して上がる。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "선제 방어 확률 +10%",
+                "en": "Preemptive Defense chance +10%",
+                "ja": "先制防御確率 +10%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "최대 생명력 +5% / 선제 방어 확률 +10%",
+                "en": "Max HP +5% / Preemptive Defense chance +10%",
+                "ja": "最大HP +5% / 先制防御確率 +10%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "최대 생명력 +10% / 선제 방어 확률 +20%",
+                "en": "Max HP +10% / Preemptive Defense chance +20%",
+                "ja": "最大HP +10% / 先制防御確率 +20%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "최대 생명력 +15% / 선제 방어 확률 +30%",
+                "en": "Max HP +15% / Preemptive Defense chance +30%",
+                "ja": "最大HP +15% / 先制防御確率 +30%"
               }
             }
           ]
@@ -41144,7 +43456,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -41160,7 +43474,9 @@
             "ko": "효과 적중이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self Effect Hit by a certain percentage.",
             "ja": "効果命中が一定割合だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-focus.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -41176,7 +43492,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -41250,6 +43568,40 @@
                 "ko": "유미나의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 유미나가 타격 후 자신의 공격력이 <b><color=#2A80D8>4%</color></b>씩 증가합니다. 최대 5회 중첩됩니다. 치명타 발생 시 자신의 행동 게이지를 <b><color=#2A80D8>15%</color></b> 증가시킵니다.",
                 "en": "Increases Yoo Mina's ATK by <b><color=#2A80D8>15%</color></b>. Increases Yoo Mina's ATK by <b><color=#2A80D8>4%</color></b> after attacking. Stacks up to 5 times. Increases self Action Gauge by <b><color=#2A80D8>15%</color></b> on Critical Hit.",
                 "ja": "ヤナギ・ミナの攻撃力が<b><color=#2A80D8>15％</color></b>上がる。ヤナギ・ミナが攻撃後、自身の攻撃力が<b><color=#2A80D8>4％</color></b>ずつ上がる。最大15回までスタック可能。会心が発生した時、自身の行動ゲージを<b><color=#2A80D8>15％</color></b>増やす。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "타격 후 공격력 +2%/중첩 / 치명타 시 행동 게이지 +9%",
+                "en": "After hit: ATK +2%/stack / on CRIT: Action Gauge +9%",
+                "ja": "攻撃後：攻撃力 +2%/スタック / 会心時：行動ゲージ +9%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 타격 후 공격력 +2%/중첩 / 치명타 시 행동 게이지 +9%",
+                "en": "ATK +5% / After hit: ATK +2%/stack / on CRIT: Action Gauge +9%",
+                "ja": "攻撃力 +5% / 攻撃後：攻撃力 +2%/スタック / 会心時：行動ゲージ +9%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 타격 후 공격력 +3%/중첩 / 치명타 시 행동 게이지 +12%",
+                "en": "ATK +10% / After hit: ATK +3%/stack / on CRIT: Action Gauge +12%",
+                "ja": "攻撃力 +10% / 攻撃後：攻撃力 +3%/スタック / 会心時：行動ゲージ +12%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 타격 후 공격력 +4%/중첩 / 치명타 시 행동 게이지 +15%",
+                "en": "ATK +15% / After hit: ATK +4%/stack / on CRIT: Action Gauge +15%",
+                "ja": "攻撃力 +15% / 攻撃後：攻撃力 +4%/スタック / 会心時：行動ゲージ +15%"
               }
             }
           ]
@@ -41854,7 +44206,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "Slightly increases self ATK by a certain percentage.",
             "ja": "攻撃力が一定比率わずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -41870,7 +44224,9 @@
             "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
             "en": "Slightly increases self SPD by a certain amount.",
             "ja": "速度が一定値だけわずかに上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-speed.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -41886,7 +44242,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "Increases ATK by 2%.",
             "ja": "攻撃力が2%上がる。"
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -42006,6 +44364,40 @@
                 "ko": "로자리아의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 로자리아가 <b><color=#DD982C>재의 불꽃</color></b> 사용 후 자신에게 부여된 <b><color=#DD982C>격동</color></b> 스택에 비례하여 <b><color=#DD982C>업화(해제불가)</color></b>의 발생 확률이 20%씩 증가하며 최대 5개까지 적용됩니다. 피해를 받을 시 현재 생명력이 40% 이하로 떨어지지 않습니다. 피격 후 자신의 생명력이 40% 이하이면 자신에게 <b><color=#2A80D8>3턴</color></b> 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시킵니다. 피해를 받을 시 효과와 피격 후 효과는 전투 중 1회만 발생합니다.",
                 "en": "Increases self ATK by <b><color=#2A80D8>15%</color></b>. Increases the chance to grant self <b><color=#DD982C>Inferno (Undispellable)</color></b> by 20% for every stack of <b><color=#DD982C>Agitation</color></b> on self after using <b><color=#DD982C>Ashen Inferno</color></b> (up to 5 stacks). Current HP does not drop below 40% upon receiving damage. Grants self <b><color=#DD982C>ATK Up</color></b> for <b><color=#2A80D8>3 turns</color></b> if self HP is 40% or below after being attacked. Effects triggered upon receiving damage or after being attacked can only occur once per battle.",
                 "ja": "ロザリアの攻撃力が<b><color=#2A80D8>15％</color></b>上がる。ロザリアが<b><color=#DD982C>灰の炎</color></b>使用後、自身に付与されている<b><color=#DD982C>激動</color></b>スタック数に応じて<b><color=#DD982C>業火(解除不可)</color></b>の付与確率が20％ずつ上がる。この効果は最大5個まで適用される。ダメージを受ける時、現在のHPが40％以下にならない。攻撃を受けた後、自身のHPが40％以下の場合、自身の<b><color=#2A80D8>攻撃力アップ</color></b>を<b><color=#DD982C>3ターン</color></b>付与する。ダメージを受ける時の効果と、攻撃を受けた後の効果は戦闘中に1回のみ発生する。"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "생명력 40% 이하: 공격력 증가 1턴",
+                "en": "HP ≤40%: ATK Up for 1 turn(s)",
+                "ja": "HP40%以下：攻撃力アップ 1ターン"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 생명력 40% 이하: 공격력 증가 1턴",
+                "en": "ATK +5% / HP ≤40%: ATK Up for 1 turn(s)",
+                "ja": "攻撃力 +5% / HP40%以下：攻撃力アップ 1ターン"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 생명력 40% 이하: 공격력 증가 2턴",
+                "en": "ATK +10% / HP ≤40%: ATK Up for 2 turn(s)",
+                "ja": "攻撃力 +10% / HP40%以下：攻撃力アップ 2ターン"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 생명력 40% 이하: 공격력 증가 3턴",
+                "en": "ATK +15% / HP ≤40%: ATK Up for 3 turn(s)",
+                "ja": "攻撃力 +15% / HP40%以下：攻撃力アップ 3ターン"
               }
             }
           ]
@@ -42595,7 +44987,9 @@
             "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "en": "공격력이 일정 비율만큼 소폭 증가합니다.",
             "ja": "공격력이 일정 비율만큼 소폭 증가합니다."
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 6,
@@ -42611,7 +45005,9 @@
             "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
             "en": "속도가 일정 수치만큼 소폭 증가합니다.",
             "ja": "속도가 일정 수치만큼 소폭 증가합니다."
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-speed.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         },
         {
           "step": 10,
@@ -42627,7 +45023,9 @@
             "ko": "공격력이 2% 증가합니다.",
             "en": "공격력이 2% 증가합니다.",
             "ja": "공격력이 2% 증가합니다."
-          }
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
         }
       ],
       "skills": [
@@ -42693,6 +45091,40 @@
                 "ko": "기본 효과",
                 "en": "Base Effect",
                 "ja": "基本効果"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "냉각 부여 확률 50%",
+                "en": "Chill chance 50%",
+                "ja": "冷却付与確率 50%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% / 냉각 부여 확률 50%",
+                "en": "ATK +5% / Chill chance 50%",
+                "ja": "攻撃力 +5% / 冷却付与確率 50%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% / 냉각 부여 확률 75%",
+                "en": "ATK +10% / Chill chance 75%",
+                "ja": "攻撃力 +10% / 冷却付与確率 75%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% / 냉각 부여 확률 100%",
+                "en": "ATK +15% / Chill chance 100%",
+                "ja": "攻撃力 +15% / 冷却付与確率 100%"
               }
             }
           ]

@@ -6110,7 +6110,9 @@ function createArchivedSaviorResonanceRows(archivedSavior, language = currentLan
   return (archivedSavior?.resonancePotentials || []).map((potential) => ({
     level: potential.step,
     title: getArchivedLanguageText(potential.name, language),
-    description: getArchivedLanguageText(potential.description, language)
+    description: getArchivedLanguageText(potential.description, language),
+    icon: potential.icon || "",
+    background: potential.background || ""
   })).filter((row) => row.title || row.description);
 }
 
@@ -6146,6 +6148,9 @@ function createArchivedSaviorSkills(archivedSavior, options = {}) {
     if (Number(skill.nova) > 0) metas.push(`${labels.nova} ${skill.nova}`);
 
     const maxLevel = skill.levels?.at(-1);
+    const passiveSummaries = typeCode === 0 && Array.isArray(skill.levelSummaries)
+      ? skill.levelSummaries
+      : null;
     const novaKo = getArchivedLanguageText(skill.novaDescription, "ko");
     return {
       title: getArchivedLanguageText(skill.name, language),
@@ -6161,9 +6166,11 @@ function createArchivedSaviorSkills(archivedSavior, options = {}) {
         description: getArchivedLanguageText(buff.description, language)
       })),
       novaBurst: novaKo && novaKo !== "구원자" ? getArchivedLanguageText(skill.novaDescription, language) : "",
-      levels: (skill.levels || []).map((level) => ({
-        level: level.level,
-        description: getArchivedLanguageText(typeCode === 0 ? level.skillDescription : level.levelDescription, language),
+      levels: (passiveSummaries || skill.levels || []).map((level) => ({
+        level: passiveSummaries ? `★${Number(level.level) - 1}` : level.level,
+        description: getArchivedLanguageText(passiveSummaries
+          ? level.description
+          : typeCode === 0 ? level.skillDescription : level.levelDescription, language),
         richText: typeCode === 0
       }))
     };
@@ -6790,7 +6797,7 @@ function renderSourceResonanceTable(rows) {
           <tbody>${rows.map((row) => `
             <tr>
               <th>Lv.${escapeHtml(row.level)}</th>
-              <td>${row.title ? `<strong class="source-resonance-name">${escapeHtml(row.title)}${row.description ? " :" : ""}</strong>` : ""}${row.description ? `${row.title ? " " : ""}${escapeHtml(row.description)}` : ""}</td>
+              <td>${row.title ? `<strong class="source-resonance-name">${row.icon ? `<span class="source-resonance-icon" aria-hidden="true">${row.background ? `<img class="source-resonance-background" src="${escapeHtml(row.background)}" alt="" loading="lazy">` : ""}<img class="source-resonance-symbol" src="${escapeHtml(row.icon)}" alt="" loading="lazy"></span>` : ""}${escapeHtml(row.title)}${row.description ? " :" : ""}</strong>` : ""}${row.description ? `${row.title ? " " : ""}${escapeHtml(row.description)}` : ""}</td>
             </tr>
           `).join("")}</tbody>
         </table>
@@ -6856,12 +6863,12 @@ function renderSourceSkillCard(skill) {
 function applyProfessorMSkillProgression(skills, savior) {
   if (!Array.isArray(skills) || !savior || savior.id !== "professor-m" || currentLanguage !== "ko") return;
   const rows = [
-    [{level:"★0",description:"공격력 증가 없음 / 냉각 부여 확률 50%"},{level:"★1",description:"공격력 5% 증가 / 냉각 부여 확률 50%"},{level:"★2",description:"공격력 10% 증가 / 냉각 부여 확률 75%"},{level:"★3",description:"공격력 15% 증가 / 냉각 부여 확률 100%"}],
+    null,
     [{level:1,description:"기본 효과"},{level:2,description:"피해량 1% 증가"},{level:3,description:"피해량 1% 증가"},{level:4,description:"피해량 1% 증가"},{level:5,description:"피해량 1% 증가"},{level:6,description:"피해량 2% 증가"},{level:7,description:"피해량 2% 증가"},{level:8,description:"피해량 2% 증가"},{level:9,description:"피해량 2% 증가"},{level:10,description:"피해량 3% 증가"}],
     [{level:1,description:"기본 효과"},{level:2,description:"피해량 1% 증가"},{level:3,description:"피해량 1% 증가"},{level:4,description:"행동 게이지 증가량 5% 증가"},{level:5,description:"피해량 1% 증가"},{level:6,description:"피해량 2% 증가"},{level:7,description:"피해량 2% 증가"},{level:8,description:"행동 게이지 증가량 5% 증가"},{level:9,description:"피해량 3% 증가"},{level:10,description:"피해량 5% 증가"}],
     [{level:1,description:"기본 효과"},{level:2,description:"피해량 1% 증가"},{level:3,description:"피해량 2% 증가"},{level:4,description:"표적 각인 발생 확률 10% 증가"},{level:5,description:"피해량 2% 증가"},{level:6,description:"쿨타임 1턴 감소"},{level:7,description:"피해량 2% 증가"},{level:8,description:"표적 각인 발생 확률 15% 증가"},{level:9,description:"피해량 3% 증가"},{level:10,description:"피해량 5% 증가"}]
   ];
-  rows.forEach((levels,index) => { if (skills[index]) skills[index].levels = levels; });
+  rows.forEach((levels,index) => { if (levels && skills[index]) skills[index].levels = levels; });
 }
 
 function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options = {}) {
@@ -6939,8 +6946,6 @@ function createParsedSaviorSourceMarkup(sourceHtml, backupUrl, savior, options =
         </div>
       ` : ""}
       ${renderSaviorInfoTable(savior, profile)}
-      ${renderSourceStatTable("기본 스테이터스", "LV.200 기준", baseStats)}
-      ${renderSourceStatTable("여정 스테이터스", "", journeyStats)}
       ${renderSourceResonanceTable(resonanceRows)}
       ${skills.length ? `
         <section class="source-detail-block source-skills-block">
@@ -9144,6 +9149,22 @@ const ARCANA_LEVELS = [35, 40, 45, 50];
 const ARCANA_MAIN_STAT_ORDER = ["힘", "체력", "인내", "집중", "보호"];
 const ARCANA_DUMMY_MAIN_STATS = new Set(["구원자"]);
 const ARCANA_RARITY_ORDER = { SSR: 0, SR: 1, R: 2 };
+// ESPR 한국어 아르카나 목록의 실제 표시 순서 (2026-09-17 확인).
+// ID 크기나 이름으로 출시 순서를 추정하지 않는다.
+const ARCANA_RELEASE_ORDER = new Map([
+  7103901, 7105801, 7101701, 7104601, 7104501, 7100301, 7103302,
+  7100501, 7105601, 7105501, 7102501, 7102901, 7101602, 7300301,
+  7300201, 7300101, 7102601, 7105701, 7103201, 7100901, 7100801,
+  7105401, 7103101, 7104301, 7104401, 7101001, 7150101, 7102101,
+  7103301, 7105301, 7104101, 7102301, 7102401, 7150801, 7040101,
+  7104201, 7105101, 7150701, 7101101, 7104901, 7101301, 7105201,
+  7101601, 7150201, 6103401, 6100701, 6100301, 6101401, 6100201,
+  6101501, 6100601, 6102601, 6102701, 6103001, 6150601, 6102201,
+  6101801, 6101901, 6100101, 5999911, 5999920, 5999907, 5999916,
+  5999903, 5999912, 5999918, 5999910, 5999909, 5999917, 5999908,
+  5999915, 5999901, 5999902, 5999913, 5999904, 5999914, 5999919,
+  5999905, 5999906
+].map((id, index) => [id, index]));
 let arcanaArchivePromise = null;
 let arcanaSearchIndex = new Map();
 const arcanaDatabaseState = {
@@ -9493,9 +9514,8 @@ function getFilteredArcanas() {
       || normalizeGuideSearch(getArcanaSearchText(arcana, archive));
     return searchText.includes(query);
   }).sort((a, b) => {
-    const rarity = (ARCANA_RARITY_ORDER[a.rarity] ?? 9) - (ARCANA_RARITY_ORDER[b.rarity] ?? 9);
-    if (rarity) return rarity;
-    return getArcanaArchiveText(a.name).localeCompare(getArcanaArchiveText(b.name), LANGUAGE_HTML_CODES[currentLanguage] || "ko-KR");
+    return (ARCANA_RELEASE_ORDER.get(Number(a.id)) ?? Number.MAX_SAFE_INTEGER)
+      - (ARCANA_RELEASE_ORDER.get(Number(b.id)) ?? Number.MAX_SAFE_INTEGER);
   });
 }
 
@@ -9585,7 +9605,6 @@ function createArcanaPotentialIcon(potential) {
 
 function createArcanaPotentialMarkup(potential) {
   if (!potential) return "";
-  const levels = Array.isArray(potential.levels) ? potential.levels : [];
   return `
     <section class="arcana-detail-section arcana-potential-section">
       <div class="arcana-section-heading">
@@ -9596,21 +9615,6 @@ function createArcanaPotentialMarkup(potential) {
         </div>
       </div>
       <p class="arcana-rich-description">${renderArcanaRichText(getArcanaArchiveText(potential.description))}</p>
-      ${levels.length ? `
-        <div class="arcana-potential-levels">
-          <h3>${escapeHtml(arcanaUi("potentialLevels"))}</h3>
-          ${levels.map((level) => `
-            <div class="arcana-potential-level-row">
-              <strong>Lv.${escapeHtml(level.level)}</strong>
-              <p>${renderArcanaRichText(getArcanaArchiveText(level.description))}</p>
-              <div>
-                ${level.requiredPotentialPoints != null ? `<span>${escapeHtml(arcanaUi("requiredPoints"))} ${escapeHtml(level.requiredPotentialPoints)}</span>` : ""}
-                ${level.bondPointCheck ? `<span>${escapeHtml(arcanaUi("bondRequired"))}</span>` : ""}
-              </div>
-            </div>
-          `).join("")}
-        </div>
-      ` : ""}
     </section>
   `;
 }
