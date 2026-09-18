@@ -1311,7 +1311,7 @@ const MAIN_CONTENTS = {
   "white-pearl-luna": ["작전", "코스모 게이트", "회랑", "PVP"],
   "sunshine-cat-smile": ["작전", "회랑", "코스모 게이트", "플래시 포인트"],
   "amora": ["작전", "회랑", "코스모 게이트", "인자작"],
-  "professor-m": ["미정"]
+  "professor-m": ["작전", "회랑", "코스모 게이트", "플래시 포인트"]
 };
 
 const SAVIORS = [
@@ -5521,10 +5521,37 @@ const SAVIORS = [
     "guideUrl": "https://ss.espr.gg/ko/database/characters/professor-m",
     "detail": {
       "equipment": {
-        "pve": {"necklace":"미정","ring":"미정","sets":["미정"],"potential":"미정","note":"미정"},
+        "pve": {
+          "necklace": "속도",
+          "ring": "공격력%",
+          "sets": [
+            "통찰(4) + 적중(2)",
+            "파괴(4) + 적중(2)",
+            "정밀(4) + 적중(2)"
+          ],
+          "setNotes": [
+            "적중(2)는 투지(2)로 대체가능."
+          ],
+          "potential": "AX",
+          "note": ""
+        },
         "pvp": {"necklace":"미정","ring":"미정","sets":["미정"],"potential":"미정","note":"미정"}
       },
-      "arcana": {"pve": PENDING_ARCANA(), "pvp": PENDING_ARCANA(), "alternatives": PENDING_ARCANA()}
+      "arcana": {
+        "pve": [
+          { "name": "단점 보완 맞춤 훈련", "note": "" },
+          { "name": "불굴의 역작", "note": "" },
+          { "name": "허수의 개척자", "note": "" },
+          { "name": "탐닉자의 유흥거리", "note": "" },
+          { "name": "꽃들에게 죽음을", "note": "" }
+        ],
+        "pvp": PENDING_ARCANA(),
+        "alternatives": [
+          { "name": "노 페인, 노 게인", "note": "단점 맞춤 훈련 대체" },
+          { "name": "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸 or 영원 속박의 굴레", "note": "불굴의 역작 대체" },
+          { "name": "메이드 바이 페트라♡ or 별을 보며 꿈을 or 깊은 애도", "note": "꽃들에게 죽음을 대체" }
+        ]
+      }
     }
   },
   {
@@ -7527,6 +7554,11 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
   if (savior.id === "luna") {
     // 보이저 구원단 루나는 SAVIORS에 입력된 대체 아르카나 구성을 그대로 사용한다.
     // 별도의 하드코딩으로 덮어쓰지 않는다.
+    return result;
+  }
+
+  if (savior.id === "professor-m") {
+    // 프로페서M은 SAVIORS에 입력된 전용 대체 아르카나 구성만 사용한다.
     return result;
   }
 
