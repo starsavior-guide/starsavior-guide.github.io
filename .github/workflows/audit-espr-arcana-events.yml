@@ -1,4 +1,4 @@
-name: Audit all Arcana events against ESPR
+name: Export current Arcana event data for audit
 
 on:
   push:
@@ -11,232 +11,60 @@ permissions:
   contents: read
 
 jobs:
-  audit:
+  export:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: '22'
-
-      - name: Install Chromium scraper
-        run: |
-          npm install --no-save playwright@1.55.0
-          npx playwright install --with-deps chromium
-
-      - name: Audit ESPR Arcana event rewards
+      - name: Export compact Arcana events
         shell: bash
         run: |
           mkdir -p audit
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
-          import { chromium } from 'playwright';
-          import { discoverSlugs, getPagePayload, gotoStable, normalizeText } from './scripts/espr-common.mjs';
-
           const archive = JSON.parse(fs.readFileSync('data/arcanas/arcanas.json', 'utf8'));
-          const potentialById = new Map((archive.potentials || []).map((item) => [Number(item.id), item]));
-          const buffById = new Map((archive.journeyBuffs || []).map((item) => [Number(item.id), item]));
-          const arcanaByName = new Map((archive.arcanas || []).map((item) => [normalizeText(item?.name?.ko), item]));
-          const knownPotentialNames = [...new Set((archive.potentials || []).map((item) => normalizeText(item?.name?.ko)).filter(Boolean))].sort((a,b)=>b.length-a.length);
-          const knownBuffNames = [...new Set((archive.journeyBuffs || []).map((item) => normalizeText(item?.name?.ko)).filter(Boolean))].sort((a,b)=>b.length-a.length);
-          const statLabels = ['힘','체력','인내','집중','보호'];
-          const simpleLabels = ['스태미나','컨디션','잠재력 포인트'];
-
-          const signed = (value) => {
-            const n = Number(value);
-            if (!Number.isFinite(n)) return '';
-            return n > 0 ? `+${n}` : String(n);
+          const potentials = new Map((archive.potentials || []).map(x => [Number(x.id), x]));
+          const buffs = new Map((archive.journeyBuffs || []).map(x => [Number(x.id), x]));
+          const signed = n => Number(n) > 0 ? `+${Number(n)}` : String(Number(n));
+          const loc = (v, lang) => typeof v === 'string' ? v : String(v?.[lang] || v?.ko || '');
+          function reward(r) {
+            let ko = '', en = '';
+            if (r.type === 'RT_STAT') { ko = loc(r.statName,'ko') || r.rewardStat || ''; en = loc(r.statName,'en') || ko; }
+            else if (r.type === 'RT_SE_POTEN') { const p = potentials.get(Number(r.rewardId)); ko = loc(p?.name,'ko'); en = loc(p?.name,'en') || ko; }
+            else if (r.type === 'RT_JOURNEY_BUFF') { const b = buffs.get(Number(r.rewardId)); ko = loc(b?.name,'ko'); en = loc(b?.name,'en') || ko; }
+            else if (r.type === 'RT_STAMINA') { ko='스태미나'; en='Stamina'; }
+            else if (r.type === 'RT_CONDITION') { ko='컨디션'; en='Condition'; }
+            else if (r.type === 'RT_POTEN_POINT') { ko='잠재력 포인트'; en='Potential Points'; }
+            else { ko=r.type || ''; en=ko; }
+            return { type:r.type, sourceId:r.rewardId ?? null, ko, en, value:r.min == null ? '' : signed(r.min) };
+          }
+          const out = {
+            generatedAt: new Date().toISOString(),
+            arcanaCount: archive.arcanas?.length || 0,
+            eventCount: 0,
+            choiceCount: 0,
+            arcanas: (archive.arcanas || []).map(a => {
+              const events = (a.events || []).map(e => {
+                const choices = (e.choices || []).map(c => {
+                  const success = (c.successRewards || []).flatMap(g => (g || []).map(reward));
+                  const failure = (c.failureRewards || []).flatMap(g => (g || []).map(reward));
+                  out.choiceCount++;
+                  return { name:{ko:loc(c.name,'ko'),en:loc(c.name,'en')}, success, failure };
+                });
+                out.eventCount++;
+                return { name:{ko:loc(e.name,'ko'),en:loc(e.name,'en')}, choices };
+              });
+              return { id:a.id, name:{ko:loc(a.name,'ko'),en:loc(a.name,'en')}, events };
+            })
           };
-
-          function rewardLabel(reward) {
-            if (!reward) return '';
-            if (reward.type === 'RT_STAT') return normalizeText(reward?.statName?.ko || reward.rewardStat || '');
-            if (reward.type === 'RT_SE_POTEN') return normalizeText(potentialById.get(Number(reward.rewardId))?.name?.ko || '');
-            if (reward.type === 'RT_JOURNEY_BUFF') return normalizeText(buffById.get(Number(reward.rewardId))?.name?.ko || '');
-            if (reward.type === 'RT_STAMINA') return '스태미나';
-            if (reward.type === 'RT_CONDITION') return '컨디션';
-            if (reward.type === 'RT_POTEN_POINT') return '잠재력 포인트';
-            return normalizeText(reward.type || '');
-          }
-
-          function expectedRewards(choice) {
-            const out = [];
-            for (const [result, groups] of [['success', choice.successRewards || []], ['failure', choice.failureRewards || []]]) {
-              for (const group of groups || []) {
-                for (const reward of group || []) {
-                  out.push({ result, label: rewardLabel(reward), value: reward.min == null ? '' : signed(reward.min), type: reward.type, sourceId: reward.rewardId ?? null });
-                }
-              }
-            }
-            return out.filter((item) => item.label);
-          }
-
-          function labelAppears(lines, label) {
-            if (!label) return false;
-            for (const raw of lines) {
-              const line = normalizeText(raw);
-              if (!line) continue;
-              if (line === label) return true;
-              if (line.includes(label) && (knownPotentialNames.includes(label) || knownBuffNames.includes(label) || label === '잠재력 포인트')) return true;
-              if ((statLabels.includes(label) || simpleLabels.includes(label)) && (line.endsWith(` ${label}`) || line.startsWith(`${label} `))) return true;
-            }
-            return false;
-          }
-
-          function valueAppears(lines, value) {
-            if (!value) return true;
-            const raw = value.replace(/^\+/, '');
-            return lines.some((line) => {
-              const text = normalizeText(line);
-              return text.includes(value) || new RegExp(`(^|\\s|\\+)${raw.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&')}(?=\\s|$|%)`).test(text);
-            });
-          }
-
-          function actualKnownLabels(lines) {
-            const found = [];
-            for (const name of knownPotentialNames) if (labelAppears(lines, name)) found.push(name);
-            for (const name of knownBuffNames) if (labelAppears(lines, name)) found.push(name);
-            for (const label of [...statLabels, ...simpleLabels]) if (labelAppears(lines, label)) found.push(label);
-            return [...new Set(found)];
-          }
-
-          function nextBoundary(lines, start, boundaries) {
-            for (let i = start; i < lines.length; i++) {
-              if (boundaries.has(normalizeText(lines[i]))) return i;
-              const t = normalizeText(lines[i]);
-              if (['ESPR.gg','자료실','뉴스','데이터베이스','개인정보 처리방침','사이트 소개'].includes(t)) return i;
-            }
-            return lines.length;
-          }
-
-          const browser = await chromium.launch({ headless: true });
-          const context = await browser.newContext({ locale: 'ko-KR' });
-          const indexPage = await context.newPage();
-          const slugs = await discoverSlugs(indexPage, 'arcanas');
-          await indexPage.close();
-
-          const report = {
-            source: 'https://ss.espr.gg/ko/database/arcanas',
-            checkedAt: new Date().toISOString(),
-            sourceSlugs: slugs.length,
-            archiveArcanas: archive.arcanas?.length || 0,
-            checkedArcanas: 0,
-            checkedEvents: 0,
-            checkedChoices: 0,
-            mismatches: [],
-            sourceOnly: [],
-            archiveNotOnSource: [],
-            errors: []
-          };
-          const seenNames = new Set();
-
-          for (let index = 0; index < slugs.length; index++) {
-            const slug = slugs[index];
-            const page = await context.newPage();
-            try {
-              const url = `https://ss.espr.gg/ko/database/arcanas/${slug}`;
-              await gotoStable(page, url, { settleMs: 180 });
-              const payload = await getPagePayload(page);
-              const sourceName = normalizeText(payload.title);
-              const arcana = arcanaByName.get(sourceName);
-              if (!arcana) {
-                report.sourceOnly.push({ slug, name: sourceName, url });
-                continue;
-              }
-              seenNames.add(sourceName);
-              report.checkedArcanas++;
-              const lines = payload.lines.map(normalizeText).filter(Boolean);
-              const allBoundaries = new Set();
-              for (const event of arcana.events || []) {
-                if (event?.name?.ko) allBoundaries.add(normalizeText(event.name.ko));
-                for (const choice of event.choices || []) if (choice?.name?.ko) allBoundaries.add(normalizeText(choice.name.ko));
-              }
-
-              for (const event of arcana.events || []) {
-                report.checkedEvents++;
-                const eventName = normalizeText(event?.name?.ko);
-                let eventIndex = lines.findIndex((line) => line === eventName);
-                if (eventIndex < 0) {
-                  report.mismatches.push({ arcanaId: arcana.id, arcana: sourceName, slug, event: eventName, type: 'event_not_found', sourceUrl: url });
-                  continue;
-                }
-                let searchFrom = eventIndex + 1;
-                for (const choice of event.choices || []) {
-                  report.checkedChoices++;
-                  const choiceName = normalizeText(choice?.name?.ko);
-                  let choiceIndex = -1;
-                  for (let i = searchFrom; i < lines.length; i++) {
-                    if (lines[i] === choiceName) { choiceIndex = i; break; }
-                    if (i > eventIndex + 80 && allBoundaries.has(lines[i]) && lines[i] !== choiceName) break;
-                  }
-                  if (choiceIndex < 0) {
-                    report.mismatches.push({ arcanaId: arcana.id, arcana: sourceName, slug, event: eventName, choice: choiceName, type: 'choice_not_found', sourceUrl: url });
-                    continue;
-                  }
-                  const end = nextBoundary(lines, choiceIndex + 1, allBoundaries);
-                  const block = lines.slice(choiceIndex + 1, end).filter((line) => line !== '성공' && line !== '실패');
-                  const expected = expectedRewards(choice);
-                  const missing = expected.filter((item) => !labelAppears(block, item.label) || !valueAppears(block, item.value));
-                  const actualLabels = actualKnownLabels(block);
-                  const expectedLabels = [...new Set(expected.map((item) => item.label))];
-                  const unexpected = actualLabels.filter((label) => !expectedLabels.includes(label));
-                  if (missing.length || unexpected.length) {
-                    report.mismatches.push({
-                      arcanaId: arcana.id,
-                      arcana: sourceName,
-                      slug,
-                      event: eventName,
-                      choice: choiceName,
-                      type: 'reward_mismatch',
-                      expected,
-                      missing,
-                      actualKnownLabels: actualLabels,
-                      unexpected,
-                      sourceBlock: block,
-                      sourceUrl: url
-                    });
-                  }
-                  searchFrom = choiceIndex + 1;
-                }
-              }
-              if ((index + 1) % 10 === 0) console.log(`Checked ${index + 1}/${slugs.length} source pages; mismatches=${report.mismatches.length}`);
-            } catch (error) {
-              report.errors.push({ slug, error: error?.message || String(error) });
-            } finally {
-              await page.close();
-            }
-          }
-
-          for (const arcana of archive.arcanas || []) {
-            const name = normalizeText(arcana?.name?.ko);
-            if (name && !seenNames.has(name)) report.archiveNotOnSource.push({ id: arcana.id, name });
-          }
-
-          await browser.close();
-          fs.writeFileSync('audit/arcana-event-audit.json', JSON.stringify(report, null, 2) + '\n');
-          console.log(JSON.stringify({
-            sourceSlugs: report.sourceSlugs,
-            archiveArcanas: report.archiveArcanas,
-            checkedArcanas: report.checkedArcanas,
-            checkedEvents: report.checkedEvents,
-            checkedChoices: report.checkedChoices,
-            mismatches: report.mismatches.length,
-            sourceOnly: report.sourceOnly.length,
-            archiveNotOnSource: report.archiveNotOnSource.length,
-            errors: report.errors.length
-          }, null, 2));
-          for (const item of report.mismatches) {
-            console.log('MISMATCH', JSON.stringify({ arcana: item.arcana, event: item.event, choice: item.choice, type: item.type, missing: item.missing?.map(x=>`${x.label}${x.value ? ' '+x.value : ''}`), unexpected: item.unexpected, sourceBlock: item.sourceBlock }));
-          }
+          fs.writeFileSync('audit/current-arcana-events.json', JSON.stringify(out, null, 2) + '\n');
+          console.log(JSON.stringify({arcanaCount:out.arcanaCount,eventCount:out.eventCount,choiceCount:out.choiceCount}, null, 2));
           NODE
 
-      - name: Upload audit report
+      - name: Upload compact audit source
         uses: actions/upload-artifact@v4
         with:
-          name: arcana-event-audit
-          path: audit/arcana-event-audit.json
+          name: current-arcana-events
+          path: audit/current-arcana-events.json
           if-no-files-found: error
