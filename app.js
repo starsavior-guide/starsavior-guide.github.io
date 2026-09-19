@@ -436,6 +436,10 @@ Object.assign(I18N_DATA.subtitles.en, { "스트라니스 백작가": "House Stra
 Object.assign(I18N_DATA.subtitles.ja, { "스트라니스 백작가": "ストラニス伯爵家" });
 Object.assign(I18N_DATA.arcana.en, { "귀로 없는 여정": "Journey of No Return" });
 Object.assign(I18N_DATA.arcana.ja, { "귀로 없는 여정": "帰路なき旅程" });
+Object.assign(I18N_DATA.arcana.en, { "한여름밤의 하늘": "A Midsummer Night's Sky" });
+Object.assign(I18N_DATA.arcana.ja, { "한여름밤의 하늘": "夏の夜の空" });
+Object.assign(I18N_DATA.ui.en, { "특정 아르카나 부족 시 대체": "Substitute when certain Arcana are unavailable" });
+Object.assign(I18N_DATA.ui.ja, { "특정 아르카나 부족 시 대체": "特定のアルカナが不足している場合の代替" });
 
 const ORIGINAL_TEXT_NODES = new WeakMap();
 const ORIGINAL_ATTRIBUTES = new WeakMap();
@@ -997,13 +1001,13 @@ const DEFENDER_PURE_TANK_ARCANA = Object.freeze({
   recommended: [
     { name: "조용한 휴식 시간", note: "" },
     { name: "꽃들에게 죽음을", note: "" },
-    { name: "완벽한 바니걸", note: "" },
+    { name: "한여름밤의 하늘", note: "" },
     { name: "본 투 비 와일드 or 언더커버 캅 or 만족스러운 식사", note: "" },
     { name: "하얀 달의 온기는 햇빛처럼", note: "" }
   ],
   alternatives: [
     { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼 대체" },
-    { name: "스트라니스의 영애 or 하늘의 시련", note: "꽃들에게 죽음을 대체" }
+    { name: "스트라니스의 영애 or 하늘의 시련 or 완벽한 바니걸", note: "특정 아르카나 부족 시 대체" }
   ]
 });
 
