@@ -1341,7 +1341,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "자체 치명타 확률증 30%"
         },
         "pvp": {
@@ -1404,7 +1404,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
         },
         "pvp": {
@@ -1486,7 +1486,7 @@ const SAVIORS = [
             "파괴(4) + 투지(2)",
             "통찰(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "자체 치명타 확률증 30%"
         },
         "pvp": {
@@ -1567,7 +1567,7 @@ const SAVIORS = [
           "sets": [
             "통찰(4) + 적중(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "별도 비고 없음"
         },
         "pvp": {
@@ -1642,7 +1642,7 @@ const SAVIORS = [
             "통찰(4) + 적중(2)",
             "파괴(4) + 적중(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "별도 비고 없음"
         },
         "pvp": {
@@ -1718,7 +1718,7 @@ const SAVIORS = [
             "생명(4) + 장벽(2)",
             "통찰(4) + 장벽(2)"
           ],
-          "potential": "BX / AX / EX",
+          "potential": "BX / AX1 / EX\n※ AX1은 공격력% 효율이 높거나, 공격력을 가장 높게 맞춰야 하는 경우 사용합니다.",
           "note": "반지 주옵 생퍼",
           "necklaceOptions": [
             {
@@ -1827,7 +1827,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "자체 치명타 확률증 30% 적중 2셋 사용 가능"
         },
         "pvp": {
@@ -1891,7 +1891,7 @@ const SAVIORS = [
             "생명(4) + 장벽(2)",
             "통찰(4) + 장벽(2)"
           ],
-          "potential": "BX / AX / EX",
+          "potential": "BX / AX1 / EX\n※ AX1은 공격력% 효율이 높거나, 공격력을 가장 높게 맞춰야 하는 경우 사용합니다.",
           "note": "",
           "necklaceOptions": [
             {
@@ -2074,7 +2074,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": ""
         },
         "pvp": {
@@ -2137,7 +2137,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX1 - 공격력% 효율이 높은 구원자\nAX6 - 패시브 효과로 치명타 확률보다 치명타 피해 효율이 높은 구원자",
           "note": ""
         },
         "pvp": {
@@ -2223,7 +2223,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "별도 비고 없음"
         },
         "pvp": {
@@ -2292,7 +2292,7 @@ const SAVIORS = [
           "setNotes": [
             "적중(2)는 투지(2)로 대체가능."
           ],
-          "potential": "AX",
+          "potential": "AX1 - 공격력% 효율이 높은 구원자\nAX5 - 치명타 확률이 부족한 경우",
           "note": ""
         },
         "pvp": {
@@ -2377,7 +2377,7 @@ const SAVIORS = [
             "방어(6)",
             "통찰(4) + 적중(2)"
           ],
-          "potential": "CX / AX / EX",
+          "potential": "CX / AX1 / EX\n※ AX1은 공격력% 효율이 높거나, 공격력을 가장 높게 맞춰야 하는 경우 사용합니다.",
           "note": "반지 주옵 방퍼 생명(4) 사용 가능",
           "necklaceOptions": [
             {
@@ -2564,7 +2564,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "별도 비고 없음"
         },
         "pvp": {
@@ -2639,7 +2639,7 @@ const SAVIORS = [
             "파괴(4) + 적중(2)",
             "통찰(4) + 적중(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "자체 치명타 피해증 (15~25%) 적중(2) 사용 가능"
         },
         "pvp": {
@@ -2788,7 +2788,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "별도 비고 없음"
         },
         "pvp": {
@@ -2863,7 +2863,7 @@ const SAVIORS = [
             "파괴(4) + 투지(2)",
             "파괴(4) + 장벽(2)"
           ],
-          "potential": "AX",
+          "potential": "AX1 - 공격력% 효율이 높은 구원자\nAX6 - 패시브 효과로 치명타 확률보다 치명타 피해 효율이 높은 구원자",
           "note": "자체 치명타 확률증 50% 투지(2) 사용 가능"
         },
         "pvp": {
@@ -2941,7 +2941,7 @@ const SAVIORS = [
             "파괴(4) + 적중(2)",
             "통찰(4) + 적중(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
         },
         "pvp": {
@@ -3005,7 +3005,7 @@ const SAVIORS = [
             "파괴(4) + 장벽(2)",
             "파괴(4) + 적중(2)"
           ],
-          "potential": "AX / XX2 (피흡)",
+          "potential": "AX1 / XX2 (생명력 흡수)\n※ AX1은 공격력% 효율이 높거나, 공격력을 가장 높게 맞춰야 하는 경우 사용합니다.",
           "note": "*전용 알카 사용시 특수기 치명타 확률 100%"
         },
         "pvp": {
@@ -3087,7 +3087,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": ""
         },
         "pvp": {
@@ -3169,7 +3169,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "별도 비고 없음"
         },
         "pvp": {
@@ -3244,7 +3244,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX / EX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "*린(힘) 사용시 린(인내)를 샤를로 변경"
         },
         "pvp": {
@@ -3326,7 +3326,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": ""
         },
         "pvp": {
@@ -3401,7 +3401,7 @@ const SAVIORS = [
             "파괴(4) + 적중(2)",
             "통찰(4) + 적중(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
         },
         "pvp": {
@@ -3477,7 +3477,7 @@ const SAVIORS = [
             "생명(4) + 장벽(2)",
             "통찰(4) + 장벽(2)"
           ],
-          "potential": "BX / AX / EX",
+          "potential": "BX / AX1 / EX\n※ AX1은 공격력% 효율이 높거나, 공격력을 가장 높게 맞춰야 하는 경우 사용합니다.",
           "note": "",
           "necklaceOptions": [
             {
@@ -3586,7 +3586,7 @@ const SAVIORS = [
             "파괴(4) + 적중(2)",
             "통찰(4) + 적중(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
         },
         "pvp": {
@@ -3649,7 +3649,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": ""
         },
         "pvp": {
@@ -3725,7 +3725,7 @@ const SAVIORS = [
             "파괴(4) + 투지(2)"
           ],
           "setNote": "※ 파괴(4) 권장",
-          "potential": "AX",
+          "potential": "AX1 - 공격력% 효율이 높은 구원자\nAX6 - 패시브 효과로 치명타 확률보다 치명타 피해 효율이 높은 구원자",
           "note": ""
         },
         "pvp": {
@@ -3800,7 +3800,7 @@ const SAVIORS = [
             "통찰(4) + 적중(2)",
             "공격(4) + 적중(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "*웨르멘과 함께 운용시 힘(린), 잠재등을 사용하여 파티 최고 공격력 달성 필요"
         },
         "pvp": {
@@ -3878,7 +3878,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "파티 치명타 확률증 30%"
         },
         "pvp": {
@@ -3941,7 +3941,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": ""
         },
         "pvp": {
@@ -4016,7 +4016,7 @@ const SAVIORS = [
             "통찰(4) + 적중(2)",
             "파괴(4) + 적중(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "공명에서 치명타 확률 9% 치명타 피해 12%"
         },
         "pvp": {
@@ -4098,7 +4098,7 @@ const SAVIORS = [
             "통찰(4) + 장벽(2)",
             "파괴(4) + 장벽(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "",
           "setNotes": [
             "장벽(2)는 투지(2)로 대체가능."
@@ -4261,7 +4261,7 @@ const SAVIORS = [
             "통찰(4) + 적중(2)",
             "파괴(4) + 적중(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "투지(2) 사용 가능"
         },
         "pvp": {
@@ -4337,7 +4337,7 @@ const SAVIORS = [
             "파괴(4) + 투지(2)"
           ],
           "setNote": "※ 파괴(4) 권장",
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "파티 치명타 확률증 30%"
         },
         "pvp": {
@@ -4413,7 +4413,7 @@ const SAVIORS = [
             "생명(4) + 장벽(2)",
             "통찰(4) + 장벽(2)"
           ],
-          "potential": "BX / AX / EX",
+          "potential": "BX / AX1 / EX\n※ AX1은 공격력% 효율이 높거나, 공격력을 가장 높게 맞춰야 하는 경우 사용합니다.",
           "note": "",
           "necklaceOptions": [
             {
@@ -4523,7 +4523,7 @@ const SAVIORS = [
             "생명(4) + 장벽(2)",
             "통찰(4) + 장벽(2)"
           ],
-          "potential": "BX / AX / EX",
+          "potential": "BX / AX1 / EX\n※ AX1은 공격력% 효율이 높거나, 공격력을 가장 높게 맞춰야 하는 경우 사용합니다.",
           "note": "",
           "necklaceOptions": [
             {
@@ -4632,7 +4632,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": ""
         },
         "pvp": {
@@ -4792,7 +4792,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": ""
         },
         "pvp": {
@@ -4867,7 +4867,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "자체 치명타 확률증 (6~10%)x3턴 *바클 사용시 샤를을 린(인내)로 변경"
         },
         "pvp": {
@@ -4953,7 +4953,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": ""
         },
         "pvp": {
@@ -5029,7 +5029,7 @@ const SAVIORS = [
             "통찰(4) + 적중(2)"
           ],
           "setNote": "※ 파괴(4) 권장",
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": ""
         },
         "pvp": {
@@ -5105,7 +5105,7 @@ const SAVIORS = [
             "생명(4) + 장벽(2)",
             "통찰(4) + 장벽(2)"
           ],
-          "potential": "BX / AX / EX",
+          "potential": "BX / AX1 / EX\n※ AX1은 공격력% 효율이 높거나, 공격력을 가장 높게 맞춰야 하는 경우 사용합니다.",
           "note": "반지 주옵 생퍼",
           "necklaceOptions": [
             {
@@ -5214,7 +5214,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "별도 비고 없음"
         },
         "pvp": {
@@ -5290,7 +5290,7 @@ const SAVIORS = [
             "통찰(4) + 적중(2)"
           ],
           "setNote": "※ 파괴(4) 권장",
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": "투지(2) 사용 가능"
         },
         "pvp": {
@@ -5367,7 +5367,7 @@ const SAVIORS = [
             "정밀(4) + 적중(2)"
           ],
           "setNote": "* 적중(2)는 투지(2)로 대체가능.",
-          "potential": "AX / EX",
+          "potential": "AX1 / EX\n※ AX1은 공격력% 효율이 높거나, 공격력을 가장 높게 맞춰야 하는 경우 사용합니다.",
           "note": ""
         },
         "pvp": {
@@ -5454,7 +5454,7 @@ const SAVIORS = [
             "* 적중(2)는 투지(2)로 대체가능.",
             "* 효과적중 150% 이상 권장"
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": ""
         },
         "pvp": {
@@ -5536,7 +5536,7 @@ const SAVIORS = [
           "setNotes": [
             "적중(2)는 투지(2)로 대체가능."
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": ""
         },
         "pvp": {"necklace":"미정","ring":"미정","sets":["미정"],"potential":"미정","note":"미정"}
@@ -5633,7 +5633,7 @@ const SAVIORS = [
           "setNotes": [
             "적중(2)는 투지(2)로 대체가능."
           ],
-          "potential": "AX",
+          "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
           "note": ""
         },
         "pvp": {
@@ -7933,7 +7933,7 @@ function createEquipmentCard(mode, data, className, subtitle) {
         </div>
         <div class="build-row">
           <dt>잠재력</dt>
-          <dd>${escapeHtml(data.potential)}</dd>
+          <dd>${escapeHtml(data.potential).replace(/\n/g, "<br>")}</dd>
         </div>
       </dl>
     </article>
