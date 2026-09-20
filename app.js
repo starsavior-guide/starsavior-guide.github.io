@@ -441,6 +441,23 @@ Object.assign(I18N_DATA.arcana.ja, { "한여름밤의 하늘": "夏の夜の空"
 Object.assign(I18N_DATA.ui.en, { "특정 아르카나 부족 시 대체": "Substitute when certain Arcana are unavailable" });
 Object.assign(I18N_DATA.ui.ja, { "특정 아르카나 부족 시 대체": "特定のアルカナが不足している場合の代替" });
 
+Object.assign(I18N_DATA.ui.en, {
+  "AX5 - 치명타 확률이 부족한 경우": "AX5 - When CRIT Rate is insufficient",
+  "AX6 - 치명타 확률이 95% 이상인 경우": "AX6 - When CRIT Rate is 95% or higher",
+  "AX1 - 공격력% 효율이 높은 구원자": "AX1 - Saviors with high ATK% efficiency",
+  "AX6 - 패시브 효과로 치명타 확률보다 치명타 피해 효율이 높은 구원자": "AX6 - Saviors whose passive makes CRIT DMG more efficient than CRIT Rate",
+  "※ AX1은 공격력% 효율이 높거나, 공격력을 가장 높게 맞춰야 하는 경우 사용합니다.": "※ Use AX1 when ATK% is highly efficient or when ATK must be set as the highest stat.",
+  "AX1 / XX2 (생명력 흡수)": "AX1 / XX2 (Life Steal)"
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "AX5 - 치명타 확률이 부족한 경우": "AX5 - 会心率が不足している場合",
+  "AX6 - 치명타 확률이 95% 이상인 경우": "AX6 - 会心率が95%以上の場合",
+  "AX1 - 공격력% 효율이 높은 구원자": "AX1 - 攻撃力(%)効率が高い救援者",
+  "AX6 - 패시브 효과로 치명타 확률보다 치명타 피해 효율이 높은 구원자": "AX6 - パッシブ効果により会心率より会心ダメージ効率が高い救援者",
+  "※ AX1은 공격력% 효율이 높거나, 공격력을 가장 높게 맞춰야 하는 경우 사용합니다.": "※ AX1は攻撃力(%)効率が高い場合、または攻撃力を最も高くする必要がある場合に使用します。",
+  "AX1 / XX2 (생명력 흡수)": "AX1 / XX2 (生命力吸収)"
+});
+
 const ORIGINAL_TEXT_NODES = new WeakMap();
 const ORIGINAL_ATTRIBUTES = new WeakMap();
 
