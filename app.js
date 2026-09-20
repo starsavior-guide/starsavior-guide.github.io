@@ -613,6 +613,8 @@ function applyLanguageToDOM(root = document.body) {
     if (node.nodeType === Node.TEXT_NODE) translateTextNode(node);
     node = walker.nextNode();
   }
+
+  refreshEquipmentSetLabels(root);
 }
 
 function refreshLanguageChrome() {
@@ -2154,7 +2156,7 @@ const SAVIORS = [
             "통찰(4) + 투지(2)",
             "파괴(4) + 투지(2)"
           ],
-          "potential": "AX1 - 공격력% 효율이 높은 구원자\nAX6 - 패시브 효과로 치명타 확률보다 치명타 피해 효율이 높은 구원자",
+          "potential": "AX1 - 공격력% 효율이 높은 구원자",
           "note": ""
         },
         "pvp": {
@@ -2880,7 +2882,7 @@ const SAVIORS = [
             "파괴(4) + 투지(2)",
             "파괴(4) + 장벽(2)"
           ],
-          "potential": "AX1 - 공격력% 효율이 높은 구원자\nAX6 - 패시브 효과로 치명타 확률보다 치명타 피해 효율이 높은 구원자",
+          "potential": "AX1 - 공격력% 효율이 높은 구원자",
           "note": "자체 치명타 확률증 50% 투지(2) 사용 가능"
         },
         "pvp": {
@@ -3742,7 +3744,7 @@ const SAVIORS = [
             "파괴(4) + 투지(2)"
           ],
           "setNote": "※ 파괴(4) 권장",
-          "potential": "AX1 - 공격력% 효율이 높은 구원자\nAX6 - 패시브 효과로 치명타 확률보다 치명타 피해 효율이 높은 구원자",
+          "potential": "AX1 - 공격력% 효율이 높은 구원자",
           "note": ""
         },
         "pvp": {
@@ -7832,6 +7834,49 @@ function parseEquipmentSetPart(value) {
   };
 }
 
+const EQUIPMENT_SET_COMPACT_LABELS = Object.freeze({
+  en: Object.freeze({
+    "속도": "Speed",
+    "방어": "Defense",
+    "저항": "Resistance",
+    "공격": "Attack",
+    "통찰": "Insight",
+    "적중": "Hit",
+    "투지": "Valor",
+    "정밀": "Precision",
+    "생명": "Health",
+    "파괴": "Destruction",
+    "장벽": "Barrier",
+    "섬멸": "Annihilation"
+  }),
+  ja: Object.freeze({
+    "속도": "速度",
+    "방어": "防御",
+    "저항": "抵抗",
+    "공격": "攻撃",
+    "통찰": "洞察",
+    "적중": "的中",
+    "투지": "闘志",
+    "정밀": "精密",
+    "생명": "体力",
+    "파괴": "破壊",
+    "장벽": "防壁",
+    "섬멸": "殲滅"
+  })
+});
+
+function refreshEquipmentSetLabels(root = document) {
+  const container = root?.querySelectorAll ? root : document;
+  container.querySelectorAll(".equipment-set-label[data-set-name][data-set-count]").forEach((label) => {
+    const name = label.dataset.setName || "";
+    const count = label.dataset.setCount || "";
+    const localizedName = currentLanguage === "ko"
+      ? name
+      : (EQUIPMENT_SET_COMPACT_LABELS[currentLanguage]?.[name] || translateTerm(name));
+    label.textContent = `${localizedName}(${count})`;
+  });
+}
+
 function createEquipmentSetPart(part) {
   const parsed = parseEquipmentSetPart(part);
   if (!parsed) return "";
@@ -7849,7 +7894,7 @@ function createEquipmentSetPart(part) {
   return `
     <span class="equipment-set-part">
       ${image}
-      <strong class="equipment-set-label">${escapeHtml(label)}</strong>
+      <strong class="equipment-set-label" data-set-name="${escapeHtml(parsed.name)}" data-set-count="${escapeHtml(parsed.count)}">${escapeHtml(label)}</strong>
       ${parsed.suffix ? `<small class="equipment-set-suffix">${escapeHtml(parsed.suffix)}</small>` : ""}
     </span>
   `;
@@ -10235,6 +10280,36 @@ function applyRequestedLayoutFixes() {
 
     .build-grid {
       grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    html[lang="en"] .equipment-set-combination,
+    html[lang="ja"] .equipment-set-combination {
+      flex-wrap: nowrap !important;
+      gap: 4px !important;
+    }
+
+    html[lang="en"] .equipment-set-joined,
+    html[lang="ja"] .equipment-set-joined,
+    html[lang="en"] .equipment-set-part,
+    html[lang="ja"] .equipment-set-part {
+      max-width: none !important;
+      flex: 0 0 auto;
+      gap: 4px !important;
+    }
+
+    html[lang="en"] .equipment-set-label,
+    html[lang="ja"] .equipment-set-label {
+      font-size: 13px !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+      word-break: normal !important;
+      letter-spacing: -0.02em;
+    }
+
+    html[lang="en"] .equipment-set-plus,
+    html[lang="ja"] .equipment-set-plus {
+      flex: 0 0 auto;
+      margin-inline: 0 !important;
     }
   `;
   document.head.appendChild(style);
