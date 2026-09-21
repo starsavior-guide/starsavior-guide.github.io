@@ -25,6 +25,18 @@ Object.assign(I18N_DATA.ui.ja, {
 });
 
 Object.assign(I18N_DATA.ui.en, {
+  "주의사항": "Notice",
+  "본 사이트의 추천 아르카나 및 장비 세팅은 절대적인 정답이 아닙니다. 이용하는 콘텐츠와 현재 육성 상태에 따라 적합한 세팅이 달라질 수 있으므로, 참고용으로 활용해 주세요.":
+    "The recommended Arcana and equipment setups on this site are not definitive answers. The most suitable setup may vary depending on the content you are playing and your current progression, so please use these recommendations as a reference."
+});
+
+Object.assign(I18N_DATA.ui.ja, {
+  "주의사항": "注意事項",
+  "본 사이트의 추천 아르카나 및 장비 세팅은 절대적인 정답이 아닙니다. 이용하는 콘텐츠와 현재 육성 상태에 따라 적합한 세팅이 달라질 수 있으므로, 참고용으로 활용해 주세요.":
+    "本サイトのおすすめアルカナ・装備セッティングは、絶対的な正解ではありません。利用するコンテンツや現在の育成状況によって適したセッティングは異なるため、あくまで参考としてご利用ください。"
+});
+
+Object.assign(I18N_DATA.ui.en, {
   "초보 단장님은 딜러 세팅 시 통찰 세트를 우선 권장합니다. 일부 구원자를 제외하면 파괴 세트는 세팅 난이도가 높은 편입니다.":
     "For new players, Insight sets are generally recommended for damage dealers. With a few exceptions, Destruction sets are harder to build effectively."
 });
@@ -10262,6 +10274,125 @@ navItems.forEach((button) => {
   });
 });
 
+
+function installSaviorListGuidance() {
+  if (!document.querySelector("#savior-list-guidance-styles")) {
+    const style = document.createElement("style");
+    style.id = "savior-list-guidance-styles";
+    style.textContent = `
+      #list-view .page-heading > div:first-child {
+        width: 100%;
+        min-width: 0;
+      }
+
+      #list-view .newbie-equipment-notice,
+      #list-view .site-recommendation-warning {
+        width: 100% !important;
+        max-width: none !important;
+      }
+
+      #list-view .site-recommendation-warning {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-top: 20px;
+        padding: 22px 24px;
+        border: 1px solid color-mix(in srgb, var(--warning) 38%, var(--line));
+        border-radius: 16px;
+        background: var(--surface);
+        box-shadow: none;
+      }
+
+      #list-view .site-recommendation-warning-mascot {
+        display: block;
+        width: 112px;
+        height: 112px;
+        flex: 0 0 112px;
+        object-fit: contain;
+      }
+
+      #list-view .site-recommendation-warning-copy {
+        display: grid;
+        min-width: 0;
+        gap: 8px;
+      }
+
+      #list-view .site-recommendation-warning-copy strong {
+        color: var(--warning);
+        font-size: 18px;
+        font-weight: 950;
+        line-height: 1.35;
+      }
+
+      #list-view .site-recommendation-warning-copy > span {
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 750;
+        line-height: 1.7;
+      }
+
+      html[data-theme="light"] #list-view .site-recommendation-warning {
+        border-color: color-mix(in srgb, var(--warning) 42%, #d3dae5);
+        background: #fff;
+      }
+
+      @media (max-width: 640px) {
+        #list-view .site-recommendation-warning {
+          align-items: center;
+          gap: 13px;
+          padding: 18px 17px;
+        }
+
+        #list-view .site-recommendation-warning-mascot {
+          width: 76px;
+          height: 76px;
+          flex-basis: 76px;
+        }
+
+        #list-view .site-recommendation-warning-copy strong {
+          font-size: 17px;
+        }
+
+        #list-view .site-recommendation-warning-copy > span {
+          font-size: 13.5px;
+          line-height: 1.65;
+        }
+      }
+
+      @media (max-width: 430px) {
+        #list-view .site-recommendation-warning {
+          gap: 11px;
+        }
+
+        #list-view .site-recommendation-warning-mascot {
+          width: 64px;
+          height: 64px;
+          flex-basis: 64px;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  const newbieNotice = document.querySelector("#list-view .newbie-equipment-notice");
+  if (!newbieNotice || document.querySelector("#savior-recommendation-warning")) return;
+
+  const warning = document.createElement("div");
+  warning.id = "savior-recommendation-warning";
+  warning.className = "site-recommendation-warning";
+  warning.innerHTML = `
+    <img class="site-recommendation-warning-mascot"
+      src="./images/guide-warning-mascot.png?v=20260922t1"
+      alt="" aria-hidden="true">
+    <span class="site-recommendation-warning-copy">
+      <strong>주의사항</strong>
+      <span>본 사이트의 추천 아르카나 및 장비 세팅은 절대적인 정답이 아닙니다. 이용하는 콘텐츠와 현재 육성 상태에 따라 적합한 세팅이 달라질 수 있으므로, 참고용으로 활용해 주세요.</span>
+    </span>
+  `;
+
+  newbieNotice.parentElement?.insertBefore(warning, newbieNotice);
+}
+
 function applyRequestedLayoutFixes() {
   const style = document.createElement("style");
   style.id = "requested-layout-fixes";
@@ -10482,6 +10613,7 @@ simpleContent.addEventListener("click", handleArcanaDatabaseClick);
 window.addEventListener("popstate", syncFromHash);
 window.addEventListener("hashchange", syncFromHash);
 
+installSaviorListGuidance();
 applyRequestedLayoutFixes();
 installArcanaCardStyles();
 renderList();
