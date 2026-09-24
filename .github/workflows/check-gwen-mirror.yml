@@ -1,0 +1,34 @@
+name: Check Gwen in structured mirror
+
+on:
+  push:
+    branches:
+      - gwen-1040-espr-import
+    paths:
+      - '.github/workflows/check-gwen-mirror.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check saviors source
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --connect-timeout 10 --max-time 60 \
+            https://star-savior-arcana-db.pages.dev/data/saviors.json -o /tmp/saviors.json
+          node - <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('/tmp/saviors.json','utf8'));
+          const list = Array.isArray(data) ? data : Object.values(data);
+          const ids = list.map(x => Number(x?.id)).filter(Number.isFinite);
+          const gwen = list.find(x => Number(x?.id) === 1040);
+          console.log('SOURCE_RECORD_COUNT=' + list.length);
+          console.log('SOURCE_HAS_1040=' + Boolean(gwen));
+          if (gwen) console.log('SOURCE_GWEN=' + JSON.stringify(gwen));
+          console.log('MAX_SOURCE_ID=' + Math.max(...ids));
+          NODE
