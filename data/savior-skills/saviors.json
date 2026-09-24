@@ -45337,6 +45337,743 @@
           ]
         }
       ]
+    },
+    {
+      "id": 1040,
+      "rank": "SSR",
+      "name": {
+        "ko": "그웬",
+        "en": "Gwen",
+        "ja": "グウェン"
+      },
+      "title": {
+        "ko": "람파디스",
+        "en": "Lampadis",
+        "ja": "ランパディス"
+      },
+      "description": {
+        "ko": "NOA의 민간 조사 업체 람파디스 수사 컨설팅의 사장 겸 조사관. 한눈에 모든 것을 간파하는 천재적인 추리를 꿈꾸지만, 정작 진가를 발휘하는 것은 끝까지 물고 늘어지는 끈기와 근성이다.",
+        "en": "Boss and investigator at Lampadis Investigations, a private agency in NOA. Though Gwen dreams of making genius deductions at a glance, what truly sets her apart is her sheer determination to see every case through.",
+        "ja": "NOAの民間調査企業「ランパディス捜査コンサルティング」の社長兼調査員。ひと目で全てを見抜く天才的な推理を夢見ているが、その真価は、一度食らいつけば最後まで離さない粘り強さと根性にこそある。"
+      },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20002,
+          "strId": "POTEN_PASSIVE_0002",
+          "name": {
+            "ko": "생명의 감각",
+            "en": "Sense of Life",
+            "ja": "生命の感覚"
+          },
+          "description": {
+            "ko": "최대 생명력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self Max HP by a certain percentage.",
+            "ja": "最大HPが一定割合だけわずかに上がる。"
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-life.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
+        }
+      ],
+      "skills": [
+        {
+          "id": 10400,
+          "type": 0,
+          "target": "NSTT_INVALID",
+          "cooltime": 0,
+          "break": 0,
+          "nova": 0,
+          "name": {
+            "ko": "잠복 조사",
+            "en": "Stakeout",
+            "ja": "張り込み"
+          },
+          "novaDescription": {
+            "ko": "구원자",
+            "en": "Savior",
+            "ja": "救援者"
+          },
+          "icon": "./data/savior-skill-assets/skills/10400.webp",
+          "buffs": [
+            {
+              "id": 104001,
+              "strId": "BI_DETECTIVE_SHERIFF_1",
+              "name": {
+                "ko": "현장 대기",
+                "en": "On-Site Standby",
+                "ja": "現場待機"
+              },
+              "description": {
+                "ko": "다른 아군이 있을 경우 공격 대상으로 선택될 수 없습니다. 피격 시 해제되지 않으며 은신과 관련된 효과에 영향을 받습니다. 은신의 선제 방어 발생 무시 효과는 적용되지 않습니다.",
+                "en": "Cannot be selected as an attack target while another ally is present. Is not removed when attacked and is affected by effects related to Stealth. The Stealth effect that prevents Preemptive Guard from triggering does not apply.",
+                "ja": "他の味方がいる場合、攻撃対象として選択できない。攻撃を受けても解除されなく、潜伏に関連する効果に影響を受けます。潜伏の先制防御無視効果は適用されない。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_DETECTIVE_SHERIFF_1.webp"
+            },
+            {
+              "id": 104002,
+              "strId": "BI_DETECTIVE_SHERIFF_2",
+              "name": {
+                "ko": "전기 충격(해제불가)",
+                "en": "Electric Shock (Undispellable)",
+                "ja": "電気衝撃(解除不可)"
+              },
+              "description": {
+                "ko": "휴대용 진실 유도기의 전압을 높입니다. 최대 10회 중첩됩니다.",
+                "en": "Raises the voltage of the portable truth inducer. Stacks up to 10 times.",
+                "ja": "携帯型真実誘導器の電圧を上げる。この効果は最大10回までスタックできる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_DETECTIVE_SHERIFF_2.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "그웬이 최초 전투 시작 시 자신에게 1턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시킵니다. 자신을 제외한 아군이 타격 시 자신이 <b><color=#DD982C>현장 대기</color></b> 상태이면 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 1회 발생시키고 자신을 제외한 아군이 특수기 타격 시 자신이 <b><color=#DD982C>현장 대기</color></b> 상태이면 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 추가로 1회 발생시킵니다. 아군이 타격 후 자신의 <b><color=#DD982C>전기 충격(해제불가)</color></b> 중첩 횟수가 5회 이상이면 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동하고 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 5회 감소시킵니다. 추가 발동 효과는 자신이 가장 최근에 타격한 적을 우선 공격합니다. 자신을 제외한 아군 혹은 적이 턴 시작 시 자신이 <b><color=#DD982C>현장 대기</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>도약</color></b> 스택에 비례하여 행동 게이지를 <b><color=#2A80D8>2%</color></b>씩 증가시킵니다.",
+                "en": "At the start of the first battle, grants self <b><color=#DD982C>On-Site Standby</color></b> for 1 turn. When an ally excluding self attacks while self has <b><color=#DD982C>On-Site Standby</color></b>, grants self 1 stack of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>. When an ally excluding self attacks with a Special Skill while self has <b><color=#DD982C>On-Site Standby</color></b>, grant self 1 additional stack of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>. After an ally attacks, if self has 5 or more stacks of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>, triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy, and removes 5 stacks of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>. Additional triggers prioritize attacking the enemy most recently attacked by self. At the start of an ally's (excluding self) or enemy's turn, if self does not have <b><color=#DD982C>On-Site Standby</color></b>, fills self Action Gauge by <b><color=#2A80D8>2%</color></b> per stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "戦闘開始時、自身に<b><color=#DD982C>現場待機</color></b>を1ターン付与する。自身を除く味方の攻撃時、自身が<b><color=#DD982C>現場待機</color></b>状態の場合、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を1つ付与する。味方の攻撃が特殊スキルで、自身が<b><color=#DD982C>現場待機</color></b>状態の場合、<b><color=#DD982C>電気衝撃(解除不可)</color></b>をさらに1つ付与する。味方の攻撃後、自身の<b><color=#DD982C>電気衝撃(解除不可)</color></b>のスタックが5つ以上の場合、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動した後、<b><color=#DD982C>電気衝撃(解除不可)</color></b>のスタックを5つ消費する。追加発動効果は自身が最後に攻撃した敵を優先攻撃する。自身を除く味方または敵のターン開始時、自身が<b><color=#DD982C>現場待機</color></b>状態でない場合、自身の<b><color=#DD982C>跳躍</color></b>スタック数に比例して自身の行動ゲージを<b><color=#2A80D8>2％</color></b>ずつ増やす。"
+              },
+              "levelDescription": {
+                "ko": "도약 스택당 행동 게이지 +2%",
+                "en": "Action Gauge +2% per Leap stack",
+                "ja": "跳躍スタックごとに行動ゲージ+2%"
+              }
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "그웬의 공격력이 <b><color=#2A80D8>5%</color></b> 증가합니다. 그웬이 최초 전투 시작 시 자신에게 1턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시킵니다. 자신을 제외한 아군이 타격 시 자신이 <b><color=#DD982C>현장 대기</color></b> 상태이면 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 1회 발생시키고 자신을 제외한 아군이 특수기 타격 시 자신이 <b><color=#DD982C>현장 대기</color></b> 상태이면 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 추가로 1회 발생시킵니다. 아군이 타격 후 자신의 <b><color=#DD982C>전기 충격(해제불가)</color></b> 중첩 횟수가 5회 이상이면 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동하고 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 5회 감소시킵니다. 추가 발동 효과는 자신이 가장 최근에 타격한 적을 우선 공격합니다. 자신을 제외한 아군 혹은 적이 턴 시작 시 자신이 <b><color=#DD982C>현장 대기</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>도약</color></b> 스택에 비례하여 행동 게이지를 <b><color=#2A80D8>2%</color></b>씩 증가시킵니다.",
+                "en": "Increases self ATK by 5%. At the start of the first battle, grants self <b><color=#DD982C>On-Site Standby</color></b> for 1 turn. When an ally excluding self attacks while self has <b><color=#DD982C>On-Site Standby</color></b>, grants self 1 stack of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>. When an ally excluding self attacks with a Special Skill while self has <b><color=#DD982C>On-Site Standby</color></b>, grant self 1 additional stack of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>. After an ally attacks, if self has 5 or more stacks of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>, triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy, and removes 5 stacks of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>. Additional triggers prioritize attacking the enemy most recently attacked by self. At the start of an ally's (excluding self) or enemy's turn, if self does not have <b><color=#DD982C>On-Site Standby</color></b>, fills self Action Gauge by <b><color=#2A80D8>2%</color></b> per stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "グウェンの攻撃力が<b><color=#2A80D8>5％</color></b>上がる。戦闘開始時、自身に<b><color=#DD982C>現場待機</color></b>を1ターン付与する。自身を除く味方の攻撃時、自身が<b><color=#DD982C>現場待機</color></b>状態の場合、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を1つ付与する。味方の攻撃が特殊スキルで、自身が<b><color=#DD982C>現場待機</color></b>状態の場合、<b><color=#DD982C>電気衝撃(解除不可)</color></b>をさらに1つ付与する。味方の攻撃後、自身の<b><color=#DD982C>電気衝撃(解除不可)</color></b>のスタックが5つ以上の場合、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動した後、<b><color=#DD982C>電気衝撃(解除不可)</color></b>のスタックを5つ消費する。追加発動効果は自身が最後に攻撃した敵を優先攻撃する。自身を除く味方または敵のターン開始時、自身が<b><color=#DD982C>現場待機</color></b>状態でない場合、自身の<b><color=#DD982C>跳躍</color></b>スタック数に比例して自身の行動ゲージを<b><color=#2A80D8>2％</color></b>ずつ増やす。"
+              },
+              "levelDescription": {
+                "ko": "공격력 +5% · 도약 스택당 행동 게이지 +2%",
+                "en": "ATK +5% · Action Gauge +2% per Leap stack",
+                "ja": "攻撃力+5%・跳躍スタックごとに行動ゲージ+2%"
+              }
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "그웬의 공격력이 <b><color=#2A80D8>10%</color></b> 증가합니다. 그웬이 최초 전투 시작 시 자신에게 1턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시킵니다. 자신을 제외한 아군이 타격 시 자신이 <b><color=#DD982C>현장 대기</color></b> 상태이면 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 1회 발생시키고 자신을 제외한 아군이 특수기 타격 시 자신이 <b><color=#DD982C>현장 대기</color></b> 상태이면 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 추가로 1회 발생시킵니다. 아군이 타격 후 자신의 <b><color=#DD982C>전기 충격(해제불가)</color></b> 중첩 횟수가 5회 이상이면 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동하고 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 5회 감소시킵니다. 추가 발동 효과는 자신이 가장 최근에 타격한 적을 우선 공격합니다. 자신을 제외한 아군 혹은 적이 턴 시작 시 자신이 <b><color=#DD982C>현장 대기</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>도약</color></b> 스택에 비례하여 행동 게이지를 <b><color=#2A80D8>3%</color></b>씩 증가시킵니다.",
+                "en": "Increases self ATK by 10%. At the start of the first battle, grants self <b><color=#DD982C>On-Site Standby</color></b> for 1 turn. When an ally excluding self attacks while self has <b><color=#DD982C>On-Site Standby</color></b>, grants self 1 stack of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>. When an ally excluding self attacks with a Special Skill while self has <b><color=#DD982C>On-Site Standby</color></b>, grant self 1 additional stack of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>. After an ally attacks, if self has 5 or more stacks of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>, triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy, and removes 5 stacks of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>. Additional triggers prioritize attacking the enemy most recently attacked by self. At the start of an ally's (excluding self) or enemy's turn, if self does not have <b><color=#DD982C>On-Site Standby</color></b>, fills self Action Gauge by <b><color=#2A80D8>3%</color></b> per stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "グウェンの攻撃力が<b><color=#2A80D8>10％</color></b>上がる。戦闘開始時、自身に<b><color=#DD982C>現場待機</color></b>を1ターン付与する。自身を除く味方の攻撃時、自身が<b><color=#DD982C>現場待機</color></b>状態の場合、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を1つ付与する。味方の攻撃が特殊スキルで、自身が<b><color=#DD982C>現場待機</color></b>状態の場合、<b><color=#DD982C>電気衝撃(解除不可)</color></b>をさらに1つ付与する。味方の攻撃後、自身の<b><color=#DD982C>電気衝撃(解除不可)</color></b>のスタックが5つ以上の場合、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動した後、<b><color=#DD982C>電気衝撃(解除不可)</color></b>のスタックを5つ消費する。追加発動効果は自身が最後に攻撃した敵を優先攻撃する。自身を除く味方または敵のターン開始時、自身が<b><color=#DD982C>現場待機</color></b>状態でない場合、自身の<b><color=#DD982C>跳躍</color></b>スタック数に比例して自身の行動ゲージを<b><color=#2A80D8>3％</color></b>ずつ増やす。"
+              },
+              "levelDescription": {
+                "ko": "공격력 +10% · 도약 스택당 행동 게이지 +3%",
+                "en": "ATK +10% · Action Gauge +3% per Leap stack",
+                "ja": "攻撃力+10%・跳躍スタックごとに行動ゲージ+3%"
+              }
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "그웬의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 그웬이 최초 전투 시작 시 자신에게 1턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시킵니다. 자신을 제외한 아군이 타격 시 자신이 <b><color=#DD982C>현장 대기</color></b> 상태이면 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 1회 발생시키고 자신을 제외한 아군이 특수기 타격 시 자신이 <b><color=#DD982C>현장 대기</color></b> 상태이면 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 추가로 1회 발생시킵니다. 아군이 타격 후 자신의 <b><color=#DD982C>전기 충격(해제불가)</color></b> 중첩 횟수가 5회 이상이면 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동하고 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 5회 감소시킵니다. 추가 발동 효과는 자신이 가장 최근에 타격한 적을 우선 공격합니다. 자신을 제외한 아군 혹은 적이 턴 시작 시 자신이 <b><color=#DD982C>현장 대기</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>도약</color></b> 스택에 비례하여 행동 게이지를 <b><color=#2A80D8>4%</color></b>씩 증가시킵니다.",
+                "en": "Increases self ATK by 15%. At the start of the first battle, grants self <b><color=#DD982C>On-Site Standby</color></b> for 1 turn. When an ally excluding self attacks while self has <b><color=#DD982C>On-Site Standby</color></b>, grants self 1 stack of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>. When an ally excluding self attacks with a Special Skill while self has <b><color=#DD982C>On-Site Standby</color></b>, grant self 1 additional stack of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>. After an ally attacks, if self has 5 or more stacks of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>, triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy, and removes 5 stacks of <b><color=#DD982C>Electric Shock (Undispellable)</color></b>. Additional triggers prioritize attacking the enemy most recently attacked by self. At the start of an ally's (excluding self) or enemy's turn, if self does not have <b><color=#DD982C>On-Site Standby</color></b>, fills self Action Gauge by <b><color=#2A80D8>4%</color></b> per stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "グウェンの攻撃力が<b><color=#2A80D8>15％</color></b>上がる。戦闘開始時、自身に<b><color=#DD982C>現場待機</color></b>を1ターン付与する。自身を除く味方の攻撃時、自身が<b><color=#DD982C>現場待機</color></b>状態の場合、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を1つ付与する。味方の攻撃が特殊スキルで、自身が<b><color=#DD982C>現場待機</color></b>状態の場合、<b><color=#DD982C>電気衝撃(解除不可)</color></b>をさらに1つ付与する。味方の攻撃後、自身の<b><color=#DD982C>電気衝撃(解除不可)</color></b>のスタックが5つ以上の場合、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動した後、<b><color=#DD982C>電気衝撃(解除不可)</color></b>のスタックを5つ消費する。追加発動効果は自身が最後に攻撃した敵を優先攻撃する。自身を除く味方または敵のターン開始時、自身が<b><color=#DD982C>現場待機</color></b>状態でない場合、自身の<b><color=#DD982C>跳躍</color></b>スタック数に比例して自身の行動ゲージを<b><color=#2A80D8>4％</color></b>ずつ増やす。"
+              },
+              "levelDescription": {
+                "ko": "공격력 +15% · 도약 스택당 행동 게이지 +4%",
+                "en": "ATK +15% · Action Gauge +4% per Leap stack",
+                "ja": "攻撃力+15%・跳躍スタックごとに行動ゲージ+4%"
+              }
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "도약 스택당 행동 게이지 +2%",
+                "en": "Action Gauge +2% per Leap stack",
+                "ja": "跳躍スタックごとに行動ゲージ+2%"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% · 도약 스택당 행동 게이지 +2%",
+                "en": "ATK +5% · Action Gauge +2% per Leap stack",
+                "ja": "攻撃力+5%・跳躍スタックごとに行動ゲージ+2%"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% · 도약 스택당 행동 게이지 +3%",
+                "en": "ATK +10% · Action Gauge +3% per Leap stack",
+                "ja": "攻撃力+10%・跳躍スタックごとに行動ゲージ+3%"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% · 도약 스택당 행동 게이지 +4%",
+                "en": "ATK +15% · Action Gauge +4% per Leap stack",
+                "ja": "攻撃力+15%・跳躍スタックごとに行動ゲージ+4%"
+              }
+            }
+          ]
+        },
+        {
+          "id": 10401,
+          "type": 1,
+          "target": "NSTT_ENEMY_ONE",
+          "cooltime": 0,
+          "break": 0,
+          "nova": 0,
+          "name": {
+            "ko": "채찍 끝의 진실",
+            "en": "Truth Behind the Whip",
+            "ja": "鞭先の真実"
+          },
+          "novaDescription": {
+            "ko": "",
+            "en": "",
+            "ja": ""
+          },
+          "icon": "./data/savior-skill-assets/skills/10401.webp",
+          "buffs": [
+            {
+              "id": 10003,
+              "strId": "BI_ADJUSTTYPE_RESOURCE_STAR",
+              "name": {
+                "ko": "도약",
+                "en": "Leap",
+                "ja": "跳躍"
+              },
+              "description": {
+                "ko": "달 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.",
+                "en": "Damage dealt to Moon Attribute units increases by 1%. Applies up to 5 stacks. This boost applies independently of buffs and debuffs.",
+                "ja": "月属性ユニットへの与ダメージが1%アップ。最大5スタックまで適用される。ブースト効果は強化/弱体化に関係なく、独立して適用される。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_ADJUSTTYPE_RESOURCE_STAR.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "단단한 가죽 채찍으로 진실을 숨기고 있는 적을 공격합니다. 자신에게 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with her whip. Grants self 1 stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "固い鞭で真実を隠している敵を攻撃する。自身に<b><color=#DD982C>跳躍</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              }
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "단단한 가죽 채찍으로 진실을 숨기고 있는 적을 공격합니다. 자신에게 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with her whip. Grants self 1 stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "固い鞭で真実を隠している敵を攻撃する。自身に<b><color=#DD982C>跳躍</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "단단한 가죽 채찍으로 진실을 숨기고 있는 적을 공격합니다. 자신에게 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with her whip. Grants self 1 stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "固い鞭で真実を隠している敵を攻撃する。自身に<b><color=#DD982C>跳躍</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "단단한 가죽 채찍으로 진실을 숨기고 있는 적을 공격합니다. 자신에게 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with her whip. Grants self 1 stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "固い鞭で真実を隠している敵を攻撃する。自身に<b><color=#DD982C>跳躍</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 5,
+              "skillDescription": {
+                "ko": "단단한 가죽 채찍으로 진실을 숨기고 있는 적을 공격합니다. 자신에게 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with her whip. Grants self 1 stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "固い鞭で真実を隠している敵を攻撃する。自身に<b><color=#DD982C>跳躍</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 6,
+              "skillDescription": {
+                "ko": "단단한 가죽 채찍으로 진실을 숨기고 있는 적을 공격합니다. 자신에게 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with her whip. Grants self 1 stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "固い鞭で真実を隠している敵を攻撃する。自身に<b><color=#DD982C>跳躍</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 7,
+              "skillDescription": {
+                "ko": "단단한 가죽 채찍으로 진실을 숨기고 있는 적을 공격합니다. 자신에게 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with her whip. Grants self 1 stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "固い鞭で真実を隠している敵を攻撃する。自身に<b><color=#DD982C>跳躍</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 8,
+              "skillDescription": {
+                "ko": "단단한 가죽 채찍으로 진실을 숨기고 있는 적을 공격합니다. 자신에게 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with her whip. Grants self 1 stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "固い鞭で真実を隠している敵を攻撃する。自身に<b><color=#DD982C>跳躍</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 9,
+              "skillDescription": {
+                "ko": "단단한 가죽 채찍으로 진실을 숨기고 있는 적을 공격합니다. 자신에게 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with her whip. Grants self 1 stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "固い鞭で真実を隠している敵を攻撃する。自身に<b><color=#DD982C>跳躍</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 10,
+              "skillDescription": {
+                "ko": "단단한 가죽 채찍으로 진실을 숨기고 있는 적을 공격합니다. 자신에게 <b><color=#DD982C>도약</color></b> 스택을 1개 부여합니다.",
+                "en": "Attacks the enemy with her whip. Grants self 1 stack of <b><color=#DD982C>Leap</color></b>.",
+                "ja": "固い鞭で真実を隠している敵を攻撃する。自身に<b><color=#DD982C>跳躍</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              }
+            }
+          ]
+        },
+        {
+          "id": 10402,
+          "type": 2,
+          "target": "NSTT_ENEMY_ONE",
+          "cooltime": 4,
+          "break": 0,
+          "nova": 0,
+          "name": {
+            "ko": "진실을 밝히는 빛!",
+            "en": "Light of Truth!",
+            "ja": "真実を暴く光！"
+          },
+          "novaDescription": {
+            "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가하고 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 추가로 2회 발생시킵니다.",
+            "en": "Temporarily deals 1 more Toughness Fixed DMG and grants self 2 instances of <b><color=#DD982C>Electric Shock (Undispellable)</color></b> on attack.",
+            "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がる。自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を1ターン付与する。"
+          },
+          "icon": "./data/savior-skill-assets/skills/10402.webp",
+          "buffs": [
+            {
+              "id": 104002,
+              "strId": "BI_DETECTIVE_SHERIFF_2",
+              "name": {
+                "ko": "전기 충격(해제불가)",
+                "en": "Electric Shock (Undispellable)",
+                "ja": "電気衝撃(解除不可)"
+              },
+              "description": {
+                "ko": "휴대용 진실 유도기의 전압을 높입니다. 최대 10회 중첩됩니다.",
+                "en": "Raises the voltage of the portable truth inducer. Stacks up to 10 times.",
+                "ja": "携帯型真実誘導器の電圧を上げる。この効果は最大10回までスタックできる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_DETECTIVE_SHERIFF_2.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "휴대용 진실 유도기를 사용해 용의자로 특정된 적을 공격합니다. 자신의 행동 게이지를 10% 증가시킵니다. 해당 스킬이 추가로 발동되었다면 타격 시 자신의 피해량이 10% 증가합니다.",
+                "en": "Attacks the designated target with her portable truth inducer. Fills self Action Gauge by 10%. If this skill is triggered additionally, increases self damage dealt by 10% on attack.",
+                "ja": "携帯型真実誘導器で容疑者に特定された敵を攻撃する。自身の行動ゲージを10％増やす。このスキルが追加発動された場合、攻撃時、自身のダメージが10％上がる。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              }
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "휴대용 진실 유도기를 사용해 용의자로 특정된 적을 공격합니다. 자신의 행동 게이지를 10% 증가시킵니다. 해당 스킬이 추가로 발동되었다면 타격 시 자신의 피해량이 10% 증가합니다.",
+                "en": "Attacks the designated target with her portable truth inducer. Fills self Action Gauge by 10%. If this skill is triggered additionally, increases self damage dealt by 10% on attack.",
+                "ja": "携帯型真実誘導器で容疑者に特定された敵を攻撃する。自身の行動ゲージを10％増やす。このスキルが追加発動された場合、攻撃時、自身のダメージが10％上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "휴대용 진실 유도기를 사용해 용의자로 특정된 적을 공격합니다. 자신의 행동 게이지를 10% 증가시킵니다. 해당 스킬이 추가로 발동되었다면 타격 시 자신의 피해량이 10% 증가합니다.",
+                "en": "Attacks the designated target with her portable truth inducer. Fills self Action Gauge by 10%. If this skill is triggered additionally, increases self damage dealt by 10% on attack.",
+                "ja": "携帯型真実誘導器で容疑者に特定された敵を攻撃する。自身の行動ゲージを10％増やす。このスキルが追加発動された場合、攻撃時、自身のダメージが10％上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "휴대용 진실 유도기를 사용해 용의자로 특정된 적을 공격합니다. 자신의 행동 게이지를 10% 증가시킵니다. 해당 스킬이 추가로 발동되었다면 타격 시 자신의 피해량이 10% 증가합니다.",
+                "en": "Attacks the designated target with her portable truth inducer. Fills self Action Gauge by 10%. If this skill is triggered additionally, increases self damage dealt by 10% on attack.",
+                "ja": "携帯型真実誘導器で容疑者に特定された敵を攻撃する。自身の行動ゲージを10％増やす。このスキルが追加発動された場合、攻撃時、自身のダメージが10％上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 5,
+              "skillDescription": {
+                "ko": "휴대용 진실 유도기를 사용해 용의자로 특정된 적을 공격합니다. 자신의 행동 게이지를 10% 증가시킵니다. 해당 스킬이 추가로 발동되었다면 타격 시 자신의 피해량이 10% 증가합니다.",
+                "en": "Attacks the designated target with her portable truth inducer. Fills self Action Gauge by 10%. If this skill is triggered additionally, increases self damage dealt by 10% on attack.",
+                "ja": "携帯型真実誘導器で容疑者に特定された敵を攻撃する。自身の行動ゲージを10％増やす。このスキルが追加発動された場合、攻撃時、自身のダメージが10％上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 6,
+              "skillDescription": {
+                "ko": "휴대용 진실 유도기를 사용해 용의자로 특정된 적을 공격합니다. 자신의 행동 게이지를 10% 증가시킵니다. 해당 스킬이 추가로 발동되었다면 타격 시 자신의 피해량이 10% 증가합니다.",
+                "en": "Attacks the designated target with her portable truth inducer. Fills self Action Gauge by 10%. If this skill is triggered additionally, increases self damage dealt by 10% on attack.",
+                "ja": "携帯型真実誘導器で容疑者に特定された敵を攻撃する。自身の行動ゲージを10％増やす。このスキルが追加発動された場合、攻撃時、自身のダメージが10％上がる。"
+              },
+              "levelDescription": {
+                "ko": "쿨타임 1턴 감소",
+                "en": "Cooldown decreases by 1 turn(s)",
+                "ja": "クールタイム1ターン短縮"
+              }
+            },
+            {
+              "level": 7,
+              "skillDescription": {
+                "ko": "휴대용 진실 유도기를 사용해 용의자로 특정된 적을 공격합니다. 자신의 행동 게이지를 10% 증가시킵니다. 해당 스킬이 추가로 발동되었다면 타격 시 자신의 피해량이 10% 증가합니다.",
+                "en": "Attacks the designated target with her portable truth inducer. Fills self Action Gauge by 10%. If this skill is triggered additionally, increases self damage dealt by 10% on attack.",
+                "ja": "携帯型真実誘導器で容疑者に特定された敵を攻撃する。自身の行動ゲージを10％増やす。このスキルが追加発動された場合、攻撃時、自身のダメージが10％上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 8,
+              "skillDescription": {
+                "ko": "휴대용 진실 유도기를 사용해 용의자로 특정된 적을 공격합니다. 자신의 행동 게이지를 10% 증가시킵니다. 해당 스킬이 추가로 발동되었다면 타격 시 자신의 피해량이 10% 증가합니다.",
+                "en": "Attacks the designated target with her portable truth inducer. Fills self Action Gauge by 10%. If this skill is triggered additionally, increases self damage dealt by 10% on attack.",
+                "ja": "携帯型真実誘導器で容疑者に特定された敵を攻撃する。自身の行動ゲージを10％増やす。このスキルが追加発動された場合、攻撃時、自身のダメージが10％上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 9,
+              "skillDescription": {
+                "ko": "휴대용 진실 유도기를 사용해 용의자로 특정된 적을 공격합니다. 자신의 행동 게이지를 10% 증가시킵니다. 해당 스킬이 추가로 발동되었다면 타격 시 자신의 피해량이 10% 증가합니다.",
+                "en": "Attacks the designated target with her portable truth inducer. Fills self Action Gauge by 10%. If this skill is triggered additionally, increases self damage dealt by 10% on attack.",
+                "ja": "携帯型真実誘導器で容疑者に特定された敵を攻撃する。自身の行動ゲージを10％増やす。このスキルが追加発動された場合、攻撃時、自身のダメージが10％上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              }
+            },
+            {
+              "level": 10,
+              "skillDescription": {
+                "ko": "휴대용 진실 유도기를 사용해 용의자로 특정된 적을 공격합니다. 자신의 행동 게이지를 10% 증가시킵니다. 해당 스킬이 추가로 발동되었다면 타격 시 자신의 피해량이 10% 증가합니다.",
+                "en": "Attacks the designated target with her portable truth inducer. Fills self Action Gauge by 10%. If this skill is triggered additionally, increases self damage dealt by 10% on attack.",
+                "ja": "携帯型真実誘導器で容疑者に特定された敵を攻撃する。自身の行動ゲージを10％増やす。このスキルが追加発動された場合、攻撃時、自身のダメージが10％上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              }
+            }
+          ]
+        },
+        {
+          "id": 10403,
+          "type": 3,
+          "target": "NSTT_ENEMY_ONE",
+          "cooltime": 5,
+          "break": 2,
+          "nova": 1,
+          "name": {
+            "ko": "범인은 바로 너!",
+            "en": "The Culprit Is You!",
+            "ja": "犯人はあなただ！"
+          },
+          "novaDescription": {
+            "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다.",
+            "en": "Self Toughness Fixed DMG temporarily increases by 1 on attack.",
+            "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がる。"
+          },
+          "icon": "./data/savior-skill-assets/skills/10403.webp",
+          "buffs": [
+            {
+              "id": 104002,
+              "strId": "BI_DETECTIVE_SHERIFF_2",
+              "name": {
+                "ko": "전기 충격(해제불가)",
+                "en": "Electric Shock (Undispellable)",
+                "ja": "電気衝撃(解除不可)"
+              },
+              "description": {
+                "ko": "휴대용 진실 유도기의 전압을 높입니다. 최대 10회 중첩됩니다.",
+                "en": "Raises the voltage of the portable truth inducer. Stacks up to 10 times.",
+                "ja": "携帯型真実誘導器の電圧を上げる。この効果は最大10回までスタックできる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_DETECTIVE_SHERIFF_2.webp"
+            },
+            {
+              "id": 104001,
+              "strId": "BI_DETECTIVE_SHERIFF_1",
+              "name": {
+                "ko": "현장 대기",
+                "en": "On-Site Standby",
+                "ja": "現場待機"
+              },
+              "description": {
+                "ko": "다른 아군이 있을 경우 공격 대상으로 선택될 수 없습니다. 피격 시 해제되지 않으며 은신과 관련된 효과에 영향을 받습니다. 은신의 선제 방어 발생 무시 효과는 적용되지 않습니다.",
+                "en": "Cannot be selected as an attack target while another ally is present. Is not removed when attacked and is affected by effects related to Stealth. The Stealth effect that prevents Preemptive Guard from triggering does not apply.",
+                "ja": "他の味方がいる場合、攻撃対象として選択できない。攻撃を受けても解除されなく、潜伏に関連する効果に影響を受けます。潜伏の先制防御無視効果は適用されない。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_DETECTIVE_SHERIFF_1.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "추리를 성공한 그웬이 가장 유력한 용의자로 특정된 적을 채찍 끝으로 공격합니다. 타격 시 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 2회 발생시킵니다. 타격 후 자신에게 3턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시키고 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동합니다.",
+                "en": "After deducing the culprit, attacks the most likely suspect with the tip of her whip. Triggers 2 instances of <b><color=#DD982C>Electric Shock (Undispellable)</color></b> on self. After attacking, grants self <b><color=#DD982C>On-Site Standby</color></b> for 3 turns and triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy.",
+                "ja": "推理に成功したグウェンが一番有力な容疑者に特定された敵を鞭先で攻撃する。攻撃時、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を2個付与する。攻撃後、自身に<b><color=#DD982C>現場待機</color></b>を付与する。さらに、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              }
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "추리를 성공한 그웬이 가장 유력한 용의자로 특정된 적을 채찍 끝으로 공격합니다. 타격 시 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 2회 발생시킵니다. 타격 후 자신에게 3턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시키고 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동합니다.",
+                "en": "After deducing the culprit, attacks the most likely suspect with the tip of her whip. Triggers 2 instances of <b><color=#DD982C>Electric Shock (Undispellable)</color></b> on self. After attacking, grants self <b><color=#DD982C>On-Site Standby</color></b> for 3 turns and triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy.",
+                "ja": "推理に成功したグウェンが一番有力な容疑者に特定された敵を鞭先で攻撃する。攻撃時、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を2個付与する。攻撃後、自身に<b><color=#DD982C>現場待機</color></b>を付与する。さらに、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "추리를 성공한 그웬이 가장 유력한 용의자로 특정된 적을 채찍 끝으로 공격합니다. 타격 시 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 2회 발생시킵니다. 타격 후 자신에게 3턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시키고 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동합니다.",
+                "en": "After deducing the culprit, attacks the most likely suspect with the tip of her whip. Triggers 2 instances of <b><color=#DD982C>Electric Shock (Undispellable)</color></b> on self. After attacking, grants self <b><color=#DD982C>On-Site Standby</color></b> for 3 turns and triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy.",
+                "ja": "推理に成功したグウェンが一番有力な容疑者に特定された敵を鞭先で攻撃する。攻撃時、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を2個付与する。攻撃後、自身に<b><color=#DD982C>現場待機</color></b>を付与する。さらに、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "추리를 성공한 그웬이 가장 유력한 용의자로 특정된 적을 채찍 끝으로 공격합니다. 타격 시 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 2회 발생시킵니다. 타격 후 자신에게 3턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시키고 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동합니다.",
+                "en": "After deducing the culprit, attacks the most likely suspect with the tip of her whip. Triggers 2 instances of <b><color=#DD982C>Electric Shock (Undispellable)</color></b> on self. After attacking, grants self <b><color=#DD982C>On-Site Standby</color></b> for 3 turns and triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy.",
+                "ja": "推理に成功したグウェンが一番有力な容疑者に特定された敵を鞭先で攻撃する。攻撃時、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を2個付与する。攻撃後、自身に<b><color=#DD982C>現場待機</color></b>を付与する。さらに、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              }
+            },
+            {
+              "level": 5,
+              "skillDescription": {
+                "ko": "추리를 성공한 그웬이 가장 유력한 용의자로 특정된 적을 채찍 끝으로 공격합니다. 타격 시 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 2회 발생시킵니다. 타격 후 자신에게 3턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시키고 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동합니다.",
+                "en": "After deducing the culprit, attacks the most likely suspect with the tip of her whip. Triggers 2 instances of <b><color=#DD982C>Electric Shock (Undispellable)</color></b> on self. After attacking, grants self <b><color=#DD982C>On-Site Standby</color></b> for 3 turns and triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy.",
+                "ja": "推理に成功したグウェンが一番有力な容疑者に特定された敵を鞭先で攻撃する。攻撃時、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を2個付与する。攻撃後、自身に<b><color=#DD982C>現場待機</color></b>を付与する。さらに、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 6,
+              "skillDescription": {
+                "ko": "추리를 성공한 그웬이 가장 유력한 용의자로 특정된 적을 채찍 끝으로 공격합니다. 타격 시 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 2회 발생시킵니다. 타격 후 자신에게 3턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시키고 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동합니다.",
+                "en": "After deducing the culprit, attacks the most likely suspect with the tip of her whip. Triggers 2 instances of <b><color=#DD982C>Electric Shock (Undispellable)</color></b> on self. After attacking, grants self <b><color=#DD982C>On-Site Standby</color></b> for 3 turns and triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy.",
+                "ja": "推理に成功したグウェンが一番有力な容疑者に特定された敵を鞭先で攻撃する。攻撃時、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を2個付与する。攻撃後、自身に<b><color=#DD982C>現場待機</color></b>を付与する。さらに、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動する。"
+              },
+              "levelDescription": {
+                "ko": "쿨타임 1턴 감소",
+                "en": "Cooldown decreases by 1 turn(s)",
+                "ja": "クールタイム1ターン短縮"
+              }
+            },
+            {
+              "level": 7,
+              "skillDescription": {
+                "ko": "추리를 성공한 그웬이 가장 유력한 용의자로 특정된 적을 채찍 끝으로 공격합니다. 타격 시 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 2회 발생시킵니다. 타격 후 자신에게 3턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시키고 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동합니다.",
+                "en": "After deducing the culprit, attacks the most likely suspect with the tip of her whip. Triggers 2 instances of <b><color=#DD982C>Electric Shock (Undispellable)</color></b> on self. After attacking, grants self <b><color=#DD982C>On-Site Standby</color></b> for 3 turns and triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy.",
+                "ja": "推理に成功したグウェンが一番有力な容疑者に特定された敵を鞭先で攻撃する。攻撃時、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を2個付与する。攻撃後、自身に<b><color=#DD982C>現場待機</color></b>を付与する。さらに、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 8,
+              "skillDescription": {
+                "ko": "추리를 성공한 그웬이 가장 유력한 용의자로 특정된 적을 채찍 끝으로 공격합니다. 타격 시 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 2회 발생시킵니다. 타격 후 자신에게 3턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시키고 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동합니다.",
+                "en": "After deducing the culprit, attacks the most likely suspect with the tip of her whip. Triggers 2 instances of <b><color=#DD982C>Electric Shock (Undispellable)</color></b> on self. After attacking, grants self <b><color=#DD982C>On-Site Standby</color></b> for 3 turns and triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy.",
+                "ja": "推理に成功したグウェンが一番有力な容疑者に特定された敵を鞭先で攻撃する。攻撃時、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を2個付与する。攻撃後、自身に<b><color=#DD982C>現場待機</color></b>を付与する。さらに、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              }
+            },
+            {
+              "level": 9,
+              "skillDescription": {
+                "ko": "추리를 성공한 그웬이 가장 유력한 용의자로 특정된 적을 채찍 끝으로 공격합니다. 타격 시 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 2회 발생시킵니다. 타격 후 자신에게 3턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시키고 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동합니다.",
+                "en": "After deducing the culprit, attacks the most likely suspect with the tip of her whip. Triggers 2 instances of <b><color=#DD982C>Electric Shock (Undispellable)</color></b> on self. After attacking, grants self <b><color=#DD982C>On-Site Standby</color></b> for 3 turns and triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy.",
+                "ja": "推理に成功したグウェンが一番有力な容疑者に特定された敵を鞭先で攻撃する。攻撃時、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を2個付与する。攻撃後、自身に<b><color=#DD982C>現場待機</color></b>を付与する。さらに、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              }
+            },
+            {
+              "level": 10,
+              "skillDescription": {
+                "ko": "추리를 성공한 그웬이 가장 유력한 용의자로 특정된 적을 채찍 끝으로 공격합니다. 타격 시 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 2회 발생시킵니다. 타격 후 자신에게 3턴 간 <b><color=#DD982C>현장 대기</color></b>를 발생시키고 적에게 <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 발동합니다.",
+                "en": "After deducing the culprit, attacks the most likely suspect with the tip of her whip. Triggers 2 instances of <b><color=#DD982C>Electric Shock (Undispellable)</color></b> on self. After attacking, grants self <b><color=#DD982C>On-Site Standby</color></b> for 3 turns and triggers <b><color=#DD982C>Light of Truth!</color></b> on the enemy.",
+                "ja": "推理に成功したグウェンが一番有力な容疑者に特定された敵を鞭先で攻撃する。攻撃時、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を2個付与する。攻撃後、自身に<b><color=#DD982C>現場待機</color></b>を付与する。さらに、敵に<b><color=#DD982C>真実を暴く光！</color></b>を発動する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              }
+            }
+          ]
+        }
+      ],
+      "blossomSkills": []
     }
-  ]
+  ],
+  "lastNewSyncAt": "2026-09-24T17:48:33.613Z"
 }

@@ -7,11 +7,12 @@
     "en",
     "ja"
   ],
-  "saviorCount": 53,
-  "skillCount": 212,
+  "saviorCount": 55,
+  "skillCount": 220,
   "blossomSkillCount": 32,
-  "resonancePotentialCount": 159,
-  "buffCount": 79,
+  "resonancePotentialCount": 165,
+  "buffCount": 83,
   "assetCount": 323,
-  "localOnly": true
+  "localOnly": true,
+  "lastNewSyncAt": "2026-09-24T17:48:33.613Z"
 }

@@ -643,6 +643,242 @@
       "portrait": "./data/savior-detail-assets/프로페서M.webp"
     }
   },
+  "1040": {
+    "key": "gwen",
+    "id": 1040,
+    "slug": "gwen",
+    "file": "./1040.html",
+    "source": "https://ss.espr.gg/ko/database/characters/gwen",
+    "capturedAt": "2026-09-24T17:48:05.932Z",
+    "profile": {
+      "name": "그웬",
+      "grade": "SSR",
+      "element": "별",
+      "className": "스트라이커",
+      "attackType": "타격",
+      "description": "NOA의 민간 조사 업체 람파디스 수사 컨설팅의 사장 겸 조사관. 한눈에 모든 것을 간파하는 천재적인 추리를 꿈꾸지만, 정작 진가를 발휘하는 것은 끝까지 물고 늘어지는 끈기와 근성이다.",
+      "birthday": "",
+      "height": "",
+      "origin": "",
+      "affiliation": "람파디스",
+      "cvKr": "",
+      "cvJp": "",
+      "illustration": "./data/savior-detail-assets/1040-illustration.webp",
+      "portrait": "./data/savior-detail-assets/1040-portrait.webp"
+    },
+    "journey": {
+      "source": "https://ss.espr.gg/ko/database/characters/gwen/journey",
+      "baseStats": {
+        "str": 30,
+        "hp": 20,
+        "end": 20,
+        "focus": 10,
+        "prot": 10
+      },
+      "resonances": [
+        {
+          "step": 1,
+          "unlockLevel": 20,
+          "journeyStat": {
+            "type": "str",
+            "value": 30
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 100
+            },
+            {
+              "type": "hp",
+              "value": 720
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 2,
+          "unlockLevel": 40,
+          "journeyStat": {
+            "type": "hp",
+            "value": 30
+          },
+          "stats": [
+            {
+              "type": "atk_rate",
+              "value": 0.02
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "atk",
+              "value": 125
+            },
+            {
+              "type": "def",
+              "value": 50
+            }
+          ],
+          "potential": "POTEN_PASSIVE_0001"
+        },
+        {
+          "step": 4,
+          "unlockLevel": 80,
+          "journeyStat": {
+            "type": "str",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "hp_rate",
+              "value": 0.02
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 5,
+          "unlockLevel": 100,
+          "journeyStat": {
+            "type": "hp",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "hp",
+              "value": 900
+            },
+            {
+              "type": "def",
+              "value": 60
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "atk_rate",
+              "value": 0.04
+            }
+          ],
+          "potential": "POTEN_PASSIVE_0002"
+        },
+        {
+          "step": 7,
+          "unlockLevel": 140,
+          "journeyStat": {
+            "type": "str",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 175
+            },
+            {
+              "type": "hp",
+              "value": 1080
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 8,
+          "unlockLevel": 160,
+          "journeyStat": {
+            "type": "str",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "hp_rate",
+              "value": 0.04
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 9,
+          "unlockLevel": 180,
+          "journeyStat": {
+            "type": "hp",
+            "value": 50
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 200
+            },
+            {
+              "type": "def",
+              "value": 70
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "atk_rate",
+              "value": 0.06
+            }
+          ],
+          "potential": "POTEN_PASSIVE_1001"
+        }
+      ],
+      "classCorrection": {
+        "str": 110,
+        "hp": 100,
+        "end": 90,
+        "focus": 100,
+        "prot": 100
+      },
+      "potentialCodes": [
+        {
+          "step": 3,
+          "code": "POTEN_PASSIVE_0001"
+        },
+        {
+          "step": 6,
+          "code": "POTEN_PASSIVE_0002"
+        },
+        {
+          "step": 10,
+          "code": "POTEN_PASSIVE_1001"
+        }
+      ],
+      "charm": {
+        "name": {
+          "ko": "휴대용 진실 유도기",
+          "en": "Portable Truth Inducer",
+          "ja": "携帯型真実誘導器"
+        },
+        "flavor": {
+          "ko": "그웬이 휴대하고 다니는 전기 충격기. 기기 끝에서 번쩍이는 섬광이 터져 나오면, 누구라도 진실을 말하지 않고는 버티지 못할 것이다.",
+          "en": "A stun gun Gwen carries with her. Once sparks flash from its tip, no one can resist telling the truth.",
+          "ja": "グウェンが持ち歩いているスタンガン。その先端からまばゆい閃光がほとばしれば、誰であろうと真実を語らずにはいられないだろう。"
+        },
+        "effect": {
+          "ko": "타격 시 자신에게 <b><color=#DD982C>전기 충격(해제불가)</color></b>을 1회 발생시킵니다. <b><color=#DD982C>진실을 밝히는 빛!</color></b>을 추가로 발동 시 <b><color=#DD982C>범인은 바로 너!</color></b>의 쿨타임이 1턴 감소합니다. 쿨타임 감소 효과는 1턴에 1번만 발생합니다.",
+          "en": "Grants self 1 instance of <b><color=#DD982C>Electric Shock (Undispellable)</color></b> on attack. When <b><color=#DD982C>Light of Truth!</color></b> is triggered additionally, reduces <b><color=#DD982C>The Culprit Is You!</color></b>'s cooldown by 1 turn. The cooldown reduction effect can only occur once per turn.",
+          "ja": "攻撃時、自身に<b><color=#DD982C>電気衝撃(解除不可)</color></b>を1つ付与する。<b><color=#DD982C>真実を暴く光！</color></b>を追加に発動した場合、<b><color=#DD982C>犯人はあなただ！</color></b>のクールタイムを1ターン短縮する。クールタイム短縮効果は1ターンに1回のみ発生する。"
+        },
+        "image": "./data/savior-detail-assets/1040-charm.webp"
+      }
+    }
+  },
   "1041": {
     "key": "harley",
     "id": 1041,

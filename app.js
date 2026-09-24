@@ -711,6 +711,7 @@ const EQUIPMENT_SET_IMAGE_NAMES = new Set([
 ]);
 
 const SAVIOR_DETAIL_IDS = {
+  "gwen": 1040,
   "asherah-voyager": 1001,
   "smile": 1002,
   "luna": 1003,
@@ -1347,7 +1348,27 @@ const MAIN_CONTENTS = {
   "professor-m": ["작전", "회랑", "코스모 게이트", "플래시 포인트"]
 };
 
+// AUTO_ESPR_I18N_1040
+I18N_DATA.saviorNames.en["그웬"] = "Gwen";
+I18N_DATA.saviorNames.ja["그웬"] = "グウェン";
+I18N_DATA.subtitles.en["람파디스"] = "Lampadis";
+I18N_DATA.subtitles.ja["람파디스"] = "ランパディス";
+
 const SAVIORS = [
+  {
+    "id": "gwen",
+    "name": "그웬",
+    "subtitle": "람파디스",
+    "affiliation": "람파디스",
+    "grade": "SSR",
+    "element": "star",
+    "className": "스트라이커",
+    "role": "스트라이커",
+    "attackType": "충격",
+    "image": "./data/savior-detail-assets/1040-portrait.webp",
+    "summary": "ESPR 신규 등록 구원자입니다. PVE 세팅 정보는 미정입니다.",
+    "guideUrl": "https://ss.espr.gg/ko/database/characters/gwen"
+  },
   {
     "id": "asherah-voyager",
     "name": "아세라",
