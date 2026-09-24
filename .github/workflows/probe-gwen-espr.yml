@@ -1,0 +1,41 @@
+name: Probe Gwen ESPR static endpoints
+
+on:
+  push:
+    branches:
+      - gwen-1040-espr-import
+    paths:
+      - '.github/workflows/probe-gwen-espr.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - name: Probe exact ESPR pages
+        shell: bash
+        run: |
+          set -u
+          urls=(
+            'https://ss.espr.gg/en/database/characters'
+            'https://ss.espr.gg/ko/database/characters/gwen'
+            'https://ss.espr.gg/en/database/characters/gwen'
+            'https://ss.espr.gg/ja/database/characters/gwen'
+            'https://ss.espr.gg/ko/database/characters/gwen/journey'
+            'https://ss.esprcdn.dev/images/characters/portrait/1040.webp'
+          )
+          for url in "${urls[@]}"; do
+            echo "=== $url ==="
+            curl --http1.1 --connect-timeout 10 --max-time 30 -L -sS -o /tmp/body \
+              -A 'starsavior-guide-static-sync/2.0' \
+              -H 'Accept: text/html,application/xhtml+xml,image/*' \
+              -H 'Accept-Language: ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7' \
+              -w 'HTTP=%{http_code} BYTES=%{size_download} TYPE=%{content_type}\n' "$url" || echo "CURL_EXIT=$?"
+            if file /tmp/body | grep -qi text; then
+              head -c 160 /tmp/body | tr '\n' ' '; echo
+            fi
+          done
