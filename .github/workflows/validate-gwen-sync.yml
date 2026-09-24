@@ -1,0 +1,129 @@
+name: Validate Gwen structured sync
+
+on:
+  push:
+    branches: [validate-gwen-sync-20260924]
+    paths:
+      - '.github/workflows/validate-gwen-sync.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out validation branch
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Build structured snapshot and inspect new Savior IDs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check scripts/build-structured-sync-snapshot.mjs
+          node --check scripts/sync-new-espr.mjs
+
+          SCAN_ROOT="$RUNNER_TEMP/gwen-structured-scan"
+          rm -rf "$SCAN_ROOT"
+          mkdir -p "$SCAN_ROOT"
+          cp -a scripts data "$SCAN_ROOT/"
+
+          (
+            cd "$SCAN_ROOT"
+            node scripts/build-structured-sync-snapshot.mjs | tee "$RUNNER_TEMP/structured-report.json"
+          )
+
+          export SCAN_ROOT
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import crypto from 'node:crypto';
+
+          const scanRoot = process.env.SCAN_ROOT;
+          const read = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const baseIndex = read('data/saviors/index.json');
+          const scanIndex = read(path.join(scanRoot, 'data/saviors/index.json'));
+          const baseArchive = read('data/savior-skills/saviors.json');
+          const scanArchive = read(path.join(scanRoot, 'data/savior-skills/saviors.json'));
+          const baseArcana = read('data/arcanas/arcanas.json');
+          const scanArcana = read(path.join(scanRoot, 'data/arcanas/arcanas.json'));
+
+          const numericKeys = (obj) => Object.keys(obj).filter((k) => /^\d+$/.test(k)).map(Number);
+          const baseIds = new Set(numericKeys(baseIndex));
+          const scanIds = numericKeys(scanIndex);
+          const newIds = scanIds.filter((id) => !baseIds.has(id)).sort((a,b) => a-b);
+          console.log(`VALIDATION_NEW_SAVIOR_IDS=${newIds.join(',')}`);
+
+          const byId = new Map((scanArchive.saviors || []).map((s) => [Number(s.id), s]));
+          for (const id of newIds) {
+            const s = byId.get(id);
+            if (!s) throw new Error(`New Savior ${id} missing from savior skill archive`);
+            console.log(`VALIDATION_NEW_SAVIOR=${id}|KO=${s.name?.ko || ''}|EN=${s.name?.en || ''}|JA=${s.name?.ja || ''}|SKILLS=${s.skills?.length || 0}|BLOOM=${s.blossomSkills?.length || 0}|RESONANCE=${s.resonancePotentials?.length || 0}`);
+
+            for (const lang of ['ko','en','ja']) {
+              if (!s.name?.[lang] || !s.title?.[lang] || !s.description?.[lang]) throw new Error(`Savior ${id}: ${lang} localized profile missing`);
+            }
+            if ((s.resonancePotentials || []).length !== 3) throw new Error(`Savior ${id}: expected 3 resonance potentials`);
+            if (!(s.skills || []).length) throw new Error(`Savior ${id}: no skills`);
+            for (const skill of [...(s.skills || []), ...(s.blossomSkills || [])]) {
+              if (!(skill.levels || []).length) throw new Error(`Savior ${id} skill ${skill.id}: no level data`);
+              for (const level of skill.levels || []) {
+                for (const lang of ['ko','en','ja']) {
+                  if (typeof level.skillDescription?.[lang] !== 'string') throw new Error(`Savior ${id} skill ${skill.id}: ${lang} level text missing`);
+                }
+              }
+              const icon = path.join(scanRoot, String(skill.icon || '').replace(/^\.\//,''));
+              if (!fs.existsSync(icon) || fs.statSync(icon).size < 20) throw new Error(`Savior ${id} skill ${skill.id}: local icon missing`);
+              for (const buff of skill.buffs || []) {
+                const buffIcon = path.join(scanRoot, String(buff.icon || '').replace(/^\.\//,''));
+                if (!fs.existsSync(buffIcon) || fs.statSync(buffIcon).size < 20) throw new Error(`Savior ${id} buff ${buff.strId}: local icon missing`);
+              }
+            }
+            for (const suffix of ['portrait','illustration']) {
+              const p = path.join(scanRoot, `data/savior-detail-assets/${id}-${suffix}.webp`);
+              if (!fs.existsSync(p) || fs.statSync(p).size < 20) throw new Error(`Savior ${id}: ${suffix} missing`);
+            }
+            const detail = path.join(scanRoot, `data/saviors/${id}.html`);
+            if (!fs.existsSync(detail) || fs.statSync(detail).size < 100) throw new Error(`Savior ${id}: detail HTML missing`);
+          }
+
+          const oldById = new Map((baseArchive.saviors || []).map((s) => [Number(s.id), s]));
+          for (const [id, old] of oldById) {
+            const now = byId.get(id);
+            if (JSON.stringify(old) !== JSON.stringify(now)) throw new Error(`Existing Savior ${id} changed in structured scan`);
+          }
+          for (const id of baseIds) {
+            if (JSON.stringify(baseIndex[String(id)]) !== JSON.stringify(scanIndex[String(id)])) throw new Error(`Existing Savior index ${id} changed in structured scan`);
+          }
+
+          const oldArcanaById = new Map((baseArcana.arcanas || []).map((a) => [Number(a.id), a]));
+          const scanArcanaById = new Map((scanArcana.arcanas || []).map((a) => [Number(a.id), a]));
+          for (const [id, old] of oldArcanaById) {
+            if (JSON.stringify(old) !== JSON.stringify(scanArcanaById.get(id))) throw new Error(`Existing Arcana ${id} changed in structured scan`);
+          }
+          const newArcanaIds = [...scanArcanaById.keys()].filter((id) => !oldArcanaById.has(id)).sort((a,b)=>a-b);
+          console.log(`VALIDATION_NEW_ARCANA_IDS=${newArcanaIds.join(',')}`);
+
+          const appHash = crypto.createHash('sha256').update(fs.readFileSync('app.js')).digest('hex');
+          console.log(`VALIDATION_APP_SHA256_BEFORE=${appHash}`);
+          NODE
+
+          echo "SCAN_ROOT=$SCAN_ROOT" >> "$GITHUB_ENV"
+
+      - name: Attempt current merger without committing
+        shell: bash
+        run: |
+          set +e
+          node scripts/sync-new-espr.mjs "$SCAN_ROOT" >"$RUNNER_TEMP/current-merger.log" 2>&1
+          status=$?
+          set -e
+          echo "VALIDATION_CURRENT_MERGER_STATUS=$status"
+          cat "$RUNNER_TEMP/current-merger.log"
+          git status --short
+          exit 0
