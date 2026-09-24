@@ -1,0 +1,60 @@
+name: Probe Gwen browser checkpoint
+
+on:
+  push:
+    branches:
+      - gwen-1040-espr-import
+    paths:
+      - '.github/workflows/probe-gwen-checkpoint.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Let browser process ESPR checkpoint
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({headless:true});
+          const context = await browser.newContext({
+            locale:'ko-KR',
+            viewport:{width:1280,height:1600},
+            userAgent:'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36',
+            extraHTTPHeaders:{'accept-language':'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7'}
+          });
+          const page = await context.newPage();
+          const url='https://ss.espr.gg/ko/database/characters/gwen';
+          const response = await page.goto(url,{waitUntil:'domcontentloaded',timeout:75000});
+          console.log('INITIAL_STATUS='+(response?.status()||0));
+          for (const seconds of [2,5,10,20,35]) {
+            await page.waitForTimeout(seconds===2?2000:(seconds-[2,5,10,20,35][[2,5,10,20,35].indexOf(seconds)-1])*1000);
+            const state=await page.evaluate(()=>({
+              url:location.href,
+              title:document.title,
+              h1:document.querySelector('h1')?.textContent?.trim()||'',
+              body:(document.body?.innerText||'').replace(/\s+/g,' ').trim().slice(0,500),
+              mainLength:(document.querySelector('main')?.innerText||'').trim().length
+            }));
+            console.log('STATE_'+seconds+'S='+JSON.stringify(state));
+            if (state.h1==='그웬' && state.mainLength>500) {
+              console.log('CHECKPOINT_PASSED=true');
+              await browser.close();
+              process.exit(0);
+            }
+          }
+          console.log('CHECKPOINT_PASSED=false');
+          await browser.close();
+          process.exit(2);
+          NODE
