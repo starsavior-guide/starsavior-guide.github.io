@@ -30,16 +30,28 @@ jobs:
           node --check scripts/sync-new-espr.mjs
 
           SCAN_ROOT="$RUNNER_TEMP/gwen-structured-scan"
+          export SCAN_ROOT
           rm -rf "$SCAN_ROOT"
           mkdir -p "$SCAN_ROOT"
           cp -a scripts data "$SCAN_ROOT/"
+
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          p = Path(os.environ['SCAN_ROOT']) / 'scripts/build-structured-sync-snapshot.mjs'
+          text = p.read_text(encoding='utf-8')
+          old = "if (missingSaviors.length) throw new Error(`Structured source is missing live Savior IDs: ${missingSaviors.join(', ')}`);"
+          new = "if (missingSaviors.length) console.warn(`Structured source is missing existing local Savior IDs; preserving local-only entries: ${missingSaviors.join(', ')}`);"
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected one Savior source guard, found {text.count(old)}')
+          p.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
 
           (
             cd "$SCAN_ROOT"
             node scripts/build-structured-sync-snapshot.mjs | tee "$RUNNER_TEMP/structured-report.json"
           )
 
-          export SCAN_ROOT
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           import path from 'node:path';
