@@ -45,6 +45,7 @@ jobs:
           rm -rf "$SCAN_ROOT"
           mkdir -p "$SCAN_ROOT"
           cp -a "$GITHUB_WORKSPACE/scripts" "$GITHUB_WORKSPACE/data" "$SCAN_ROOT/"
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$SCAN_ROOT/node_modules"
           python3 - "$SCAN_ROOT/scripts/backup-espr-characters.mjs" <<'PY'
           from pathlib import Path
           import sys
