@@ -1,0 +1,143 @@
+name: Import Gwen 1040 with Professor M collector
+
+on:
+  push:
+    branches:
+      - gwen-1040-espr-import
+    paths:
+      - '.github/workflows/import-gwen-1040-static.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gwen-1040-static-import
+  cancel-in-progress: false
+
+jobs:
+  import-gwen-static:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out validation branch
+        uses: actions/checkout@v5
+        with:
+          ref: gwen-1040-espr-import
+          fetch-depth: 1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Install collector runtime
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Build scan with exact Professor M era collector
+        id: scan
+        shell: bash
+        env:
+          PROFESSOR_M_COMMIT: c8c028893446aa596063b3d43bb641ad2cf64d0c
+        run: |
+          set -euo pipefail
+          SCAN_ROOT="$RUNNER_TEMP/gwen-static-scan"
+          rm -rf "$SCAN_ROOT"
+          mkdir -p "$SCAN_ROOT"
+          cp -a "$GITHUB_WORKSPACE/scripts" "$GITHUB_WORKSPACE/data" "$SCAN_ROOT/"
+          ln -s "$GITHUB_WORKSPACE/node_modules" "$SCAN_ROOT/node_modules"
+          git fetch --no-tags --depth=1 origin "$PROFESSOR_M_COMMIT"
+          git show "$PROFESSOR_M_COMMIT:scripts/backup-espr-characters.mjs" > "$SCAN_ROOT/scripts/backup-espr-characters.mjs"
+          git show "$PROFESSOR_M_COMMIT:scripts/espr-common.mjs" > "$SCAN_ROOT/scripts/espr-common.mjs"
+          (cd "$SCAN_ROOT" && REFRESH_ALL=false node scripts/backup-espr-characters.mjs)
+          echo "root=$SCAN_ROOT" >> "$GITHUB_OUTPUT"
+
+      - name: Validate source scan
+        env:
+          SCAN_ROOT: ${{ steps.scan.outputs.root }}
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const root = process.env.SCAN_ROOT;
+          const index = JSON.parse(fs.readFileSync(path.join(root, 'data/saviors/index.json'), 'utf8'));
+          const archive = JSON.parse(fs.readFileSync(path.join(root, 'data/savior-skills/saviors.json'), 'utf8'));
+          const gwen = archive.saviors.find((x) => Number(x.id) === 1040);
+          const entry = index['1040'];
+          const ids = Object.keys(index).filter((x) => /^\d+$/.test(x));
+          if (!entry || entry.slug !== 'gwen' || !gwen) throw new Error('Professor M collector did not detect Gwen 1040.');
+          if (ids.length !== 55 || archive.saviors.length !== 55) throw new Error(`Expected 55 Savior records after source scan; index=${ids.length}, archive=${archive.saviors.length}.`);
+          if ((gwen.resonancePotentials || []).length !== 3) throw new Error(`Gwen resonance count=${gwen.resonancePotentials?.length || 0}.`);
+          if ((gwen.skills || []).length !== 4) throw new Error(`Gwen skill count=${gwen.skills?.length || 0}.`);
+          for (const field of ['name','title','description']) for (const lang of ['ko','en','ja']) {
+            if (!gwen[field]?.[lang]) throw new Error(`Missing Gwen ${field}.${lang}`);
+          }
+          for (const [i, skill] of gwen.skills.entries()) {
+            for (const lang of ['ko','en','ja']) if (!skill.name?.[lang]) throw new Error(`Missing Gwen skill ${i} name.${lang}`);
+            if (!Array.isArray(skill.levels) || !skill.levels.length) throw new Error(`Missing Gwen skill ${i} levels`);
+          }
+          const localAssets = [entry.profile?.portrait, entry.profile?.illustration, ...gwen.skills.map((x) => x.icon)];
+          for (const asset of localAssets) {
+            if (!asset || /^https?:/i.test(asset)) throw new Error(`Non-local asset path ${asset}`);
+            if (!fs.existsSync(path.join(root, asset.replace(/^\.\//, '')))) throw new Error(`Missing local asset ${asset}`);
+          }
+          console.log('GWEN_STATIC_SCAN=' + JSON.stringify({
+            id: 1040,
+            slug: entry.slug,
+            saviorCount: ids.length,
+            name: gwen.name,
+            title: gwen.title,
+            profile: entry.profile,
+            resonanceCount: gwen.resonancePotentials.length,
+            skillCount: gwen.skills.length,
+            skillLevels: gwen.skills.map((x) => x.levels?.length || 0),
+            blossomSkillCount: gwen.blossomSkills?.length || 0,
+            assets: localAssets
+          }, null, 2));
+          NODE
+
+      - name: Merge only new IDs into current guide
+        env:
+          SCAN_ROOT: ${{ steps.scan.outputs.root }}
+        run: node scripts/sync-new-espr.mjs "$SCAN_ROOT"
+
+      - name: Validate merged guide and diff
+        run: |
+          set -euo pipefail
+          node --check app.js
+          git diff --check
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const index = JSON.parse(fs.readFileSync('data/saviors/index.json', 'utf8'));
+          const archive = JSON.parse(fs.readFileSync('data/savior-skills/saviors.json', 'utf8'));
+          const gwen = archive.saviors.find((x) => Number(x.id) === 1040);
+          const ids = Object.keys(index).filter((x) => /^\d+$/.test(x));
+          const app = fs.readFileSync('app.js', 'utf8');
+          if (ids.length !== 55 || !index['1040'] || !gwen) throw new Error('Merged guide does not contain exactly 55 Saviors including Gwen.');
+          if (!app.includes('"gwen": 1040') || !app.includes('"id": "gwen"')) throw new Error('app.js Gwen registration missing.');
+          if (!app.includes('./data/savior-detail-assets/1040-illustration.webp')) throw new Error('Gwen illustration is not local in app.js.');
+          console.log(`GUIDE_SAVIOR_COUNT=${ids.length}`);
+          console.log(`GWEN_SKILL_LEVEL_COUNTS=${gwen.skills.map((x) => x.levels?.length || 0).join(',')}`);
+          console.log(`GWEN_BLOSSOM_SKILL_COUNT=${gwen.blossomSkills?.length || 0}`);
+          NODE
+          echo '--- CHANGED FILES ---'
+          git status --short
+          echo '--- DIFF STAT ---'
+          git diff --stat
+
+      - name: Commit generated Gwen data to validation branch only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app.js data/saviors data/savior-detail-assets data/savior-skills data/savior-skill-assets data/savior-bloom
+          if git diff --cached --quiet; then
+            echo 'No Gwen changes were generated.'
+            exit 1
+          fi
+          git commit -m 'Add Gwen 1040 from ESPR static collector'
+          git push origin HEAD:gwen-1040-espr-import
