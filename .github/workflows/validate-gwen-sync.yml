@@ -40,11 +40,21 @@ jobs:
           from pathlib import Path
           p = Path(os.environ['SCAN_ROOT']) / 'scripts/build-structured-sync-snapshot.mjs'
           text = p.read_text(encoding='utf-8')
-          old = "if (missingSaviors.length) throw new Error(`Structured source is missing live Savior IDs: ${missingSaviors.join(', ')}`);"
-          new = "if (missingSaviors.length) console.warn(`Structured source is missing existing local Savior IDs; preserving local-only entries: ${missingSaviors.join(', ')}`);"
-          if text.count(old) != 1:
-              raise SystemExit(f'Expected one Savior source guard, found {text.count(old)}')
-          p.write_text(text.replace(old, new, 1), encoding='utf-8')
+          replacements = [
+              (
+                  "if (missingSaviors.length) throw new Error(`Structured source is missing live Savior IDs: ${missingSaviors.join(', ')}`);",
+                  "if (missingSaviors.length) console.warn(`Structured source is missing existing local Savior IDs; preserving local-only entries: ${missingSaviors.join(', ')}`);"
+              ),
+              (
+                  "if (missingArcanas.length) throw new Error(`Structured source is missing live Arcana IDs: ${missingArcanas.join(', ')}`);",
+                  "if (missingArcanas.length) console.warn(`Structured source is missing existing local Arcana IDs; preserving local-only entries: ${missingArcanas.join(', ')}`);"
+              )
+          ]
+          for old, new in replacements:
+              if text.count(old) != 1:
+                  raise SystemExit(f'Expected one source completeness guard, found {text.count(old)} for {old[:48]}')
+              text = text.replace(old, new, 1)
+          p.write_text(text, encoding='utf-8')
           PY
 
           (
@@ -82,7 +92,8 @@ jobs:
               if (!s.name?.[lang] || !s.title?.[lang] || !s.description?.[lang]) throw new Error(`Savior ${id}: ${lang} localized profile missing`);
             }
             if ((s.resonancePotentials || []).length !== 3) throw new Error(`Savior ${id}: expected 3 resonance potentials`);
-            if (!(s.skills || []).length) throw new Error(`Savior ${id}: no skills`);
+            const skillTypes = [...new Set((s.skills || []).map((skill) => Number(skill.type)))].sort((a,b)=>a-b);
+            if (JSON.stringify(skillTypes) !== JSON.stringify([0,1,2,3])) throw new Error(`Savior ${id}: passive/basic/special/ultimate skill types missing: ${skillTypes.join(',')}`);
             for (const skill of [...(s.skills || []), ...(s.blossomSkills || [])]) {
               if (!(skill.levels || []).length) throw new Error(`Savior ${id} skill ${skill.id}: no level data`);
               for (const level of skill.levels || []) {
@@ -137,5 +148,9 @@ jobs:
           set -e
           echo "VALIDATION_CURRENT_MERGER_STATUS=$status"
           cat "$RUNNER_TEMP/current-merger.log"
+          node --check app.js || true
+          git diff --check || true
+          echo 'VALIDATION_CHANGED_FILES_BEGIN'
           git status --short
+          echo 'VALIDATION_CHANGED_FILES_END'
           exit 0
