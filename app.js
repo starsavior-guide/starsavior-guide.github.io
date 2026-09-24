@@ -1045,15 +1045,13 @@ const DEFENDER_PURE_TANK_ARCANA = Object.freeze({
 const DEFENDER_ATTACK_TANK_ARCANA = Object.freeze({
   recommended: [
     { name: "단점 보완 맞춤 훈련", note: "" },
-    { name: "누각 위, 유리달 맞이", note: "" },
+    { name: "누각 위, 유리달 맞이 or 하얀 달의 온기는 햇빛처럼", note: "" },
     { name: "조용한 휴식 시간", note: "" },
-    { name: "하얀 달의 온기는 햇빛처럼", note: "" },
+    { name: "대단하고 엄청난 바니걸", note: "" },
     { name: "꽃들에게 죽음을", note: "" }
   ],
   alternatives: [
-    { name: "완벽한 바니걸", note: "하얀 달의 온기는 햇빛처럼 대체" },
     { name: "영원 속박의 굴레", note: "누각 위, 유리달 맞이 대체" },
-    { name: "대단하고 엄청난 바니걸", note: "공격의 재능 용도로 사용하나 인자 만드는걸 추천" },
     { name: "", note: "단점 보완 맞춤 훈련은 절대 대체불가합니다" }
   ]
 });
