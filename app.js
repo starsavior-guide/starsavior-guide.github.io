@@ -9279,10 +9279,10 @@ const ARCANA_LEVELS = [35, 40, 45, 50];
 const ARCANA_MAIN_STAT_ORDER = ["힘", "체력", "인내", "집중", "보호"];
 const ARCANA_DUMMY_MAIN_STATS = new Set(["구원자"]);
 const ARCANA_RARITY_ORDER = { SSR: 0, SR: 1, R: 2 };
-// ESPR 한국어 아르카나 목록의 실제 표시 순서 (2026-09-17 확인).
+// ESPR 한국어 아르카나 목록의 실제 표시 순서 (2026-10-01 확인).
 // ID 크기나 이름으로 출시 순서를 추정하지 않는다.
 const ARCANA_RELEASE_ORDER = new Map([
-  7103901, 7105801, 7101701, 7104601, 7104501, 7100301, 7103302,
+  7104001, 7103901, 7105801, 7101701, 7104601, 7104501, 7100301, 7103302,
   7100501, 7105601, 7105501, 7102501, 7102901, 7101602, 7300301,
   7300201, 7300101, 7102601, 7105701, 7103201, 7100901, 7100801,
   7105401, 7103101, 7104301, 7104401, 7101001, 7150101, 7102101,
@@ -9832,16 +9832,18 @@ function createArcanaRewardMarkup(reward) {
   }
   if (reward.type === "RT_JOURNEY_BUFF") {
     const buff = getArcanaJourneyBuff(reward.rewardId);
-    if (!buff) return "";
+    const name = buff?.name || reward.journeyBuffName;
+    if (!name) return "";
+    const description = buff?.description || reward.journeyBuffDescription;
     return `
       <div class="arcana-reward-item is-rich">
-        <img src="${escapeHtml(buff.icon)}" alt="" loading="lazy">
+        ${buff?.icon ? `<img src="${escapeHtml(buff.icon)}" alt="" loading="lazy">` : ""}
         <div>
           <div class="arcana-reward-title">
-            <span>${escapeHtml(getArcanaArchiveText(buff.name))}</span>
+            <span>${escapeHtml(getArcanaArchiveText(name))}</span>
             ${amount ? `<strong>${escapeHtml(amount.replace(/^\+/, ""))}${escapeHtml(arcanaUi("turns"))}</strong>` : ""}
           </div>
-          <p>${renderArcanaRichText(getArcanaArchiveText(buff.description))}</p>
+          ${description ? `<p>${renderArcanaRichText(getArcanaArchiveText(description))}</p>` : ""}
         </div>
       </div>
     `;

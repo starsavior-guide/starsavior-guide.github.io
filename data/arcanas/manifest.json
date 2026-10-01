@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "sourceOrigin": "https://star-savior-arcana-db.pages.dev",
-  "capturedAt": "2026-09-03T07:51:58.442Z",
+  "capturedAt": "2026-10-01T06:12:04.008Z",
   "languages": [
     "ko",
     "en",
     "ja"
   ],
-  "arcanaCount": 81,
-  "eventCount": 197,
-  "choiceCount": 246,
-  "potentialCount": 55,
+  "arcanaCount": 82,
+  "eventCount": 200,
+  "choiceCount": 250,
+  "potentialCount": 57,
   "journeyBuffCount": 13,
-  "assetCount": 158,
-  "assetBytes": 8646100,
+  "assetCount": 162,
+  "assetBytes": 9059278,
   "localOnly": true
 }

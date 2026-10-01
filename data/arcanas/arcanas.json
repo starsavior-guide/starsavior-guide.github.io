@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "sourceOrigin": "https://star-savior-arcana-db.pages.dev",
   "sourcePage": "https://star-savior-arcana-db.pages.dev/arcana",
-  "capturedAt": "2026-09-03T07:51:58.442Z",
+  "capturedAt": "2026-10-01T06:12:04.008Z",
   "languages": [
     "ko",
     "en",
@@ -2510,6 +2510,38 @@
           },
           "requiredPotentialPoints": null,
           "bondPointCheck": false,
+          "stats": []
+        }
+      ]
+    },
+    {
+      "id": 31004,
+      "strId": "POTEN_PASSIVE_31004",
+      "type": "특수 잠재력",
+      "unitId": 0,
+      "class": "스트라이커",
+      "name": {
+        "ko": "전투의 열기",
+        "en": "Battle Fervor",
+        "ja": "戦闘の熱気"
+      },
+      "description": {
+        "ko": "타격 시 자신의 피해량이 10%씩 증가합니다. 최대 2회 중첩되며 턴 종료 시 중첩 횟수를 모두 초기화시킵니다.",
+        "en": "When attacking, increases self damage dealt by 10%. Stacks up to 2 times. Resets all stacks at the end of the turn.",
+        "ja": "攻撃時、自身のダメージが10％ずつ上がる。この効果は最大2回までスタックできる。ターン終了時、スタックをすべて初期化する。"
+      },
+      "icon": "./data/arcana-assets/potentials/31004.webp",
+      "background": "./data/arcana-assets/potential-backgrounds/blue.webp",
+      "levels": [
+        {
+          "level": 1,
+          "description": {
+            "ko": "타격 시 자신의 피해량이 10%씩 증가합니다. 최대 2회 중첩되며 턴 종료 시 중첩 횟수를 모두 초기화시킵니다.",
+            "en": "When attacking, increases self damage dealt by 10%. Stacks up to 2 times. Resets all stacks at the end of the turn.",
+            "ja": "攻撃時、自身のダメージが10％ずつ上がる。この効果は最大2回までスタックできる。ターン終了時、スタックをすべて初期化する。"
+          },
+          "requiredPotentialPoints": 200,
+          "bondPointCheck": true,
           "stats": []
         }
       ]
@@ -32832,6 +32864,475 @@
         }
       ],
       "specialPotentialId": 32003
+    },
+    {
+      "id": 7104001,
+      "name": {
+        "ko": "자칭 베테랑 탐정의 수사법",
+        "en": "[A Self-Proclaimed Veteran Detective] Memory",
+        "ja": "自称ベテラン探偵の捜査法"
+      },
+      "character": {
+        "ko": "그웬",
+        "en": "Gwen",
+        "ja": "グウェン"
+      },
+      "rarity": "SSR",
+      "mainStat": {
+        "ko": "힘",
+        "en": "Strength",
+        "ja": "力"
+      },
+      "assists": [
+        {
+          "ko": "특수 효과",
+          "en": "Special Effect",
+          "ja": "特殊効果"
+        },
+        {
+          "ko": "스트라이커",
+          "en": "Striker",
+          "ja": "ストライカー"
+        }
+      ],
+      "image": "./data/arcana-assets/cards/7104001.webp",
+      "mainStatIcon": "./data/arcana-assets/status/power.webp",
+      "specialPotentialId": 31004,
+      "uniqueEffect": {
+        "name": {
+          "ko": "어쩐지 순조로운 조사!",
+          "en": "A Surprisingly Smooth Investigation!",
+          "ja": "なんだか順調な調査！"
+        },
+        "description": {
+          "ko": "인연 포인트 40 이상일 때 훈련 효과 상승 +9.00%",
+          "en": "When Bond Points are at 40 or higher Training Effectiveness +9.00%",
+          "ja": "絆ポイントが40以上の場合 トレーニングの効果上昇 +9.00%"
+        },
+        "unlockLevel": 35,
+        "uniqueConditionValue": 40,
+        "activeType": "PT_TRAINNING",
+        "valueType": {
+          "ko": "훈련 효과 상승",
+          "en": "Training Effectiveness",
+          "ja": "トレーニングの効果上昇"
+        },
+        "valueInt": 0,
+        "valueRate": 900,
+        "valueIntPerPromote": 0,
+        "valueRatePerPromote": 0
+      },
+      "effects": {
+        "journeyStart": [
+          {
+            "unlockLevel": 20,
+            "promotePerLevel": 10,
+            "activeType": "PT_JOURNEY_START",
+            "valueType": {
+              "ko": "힘",
+              "en": "Strength",
+              "ja": "力"
+            },
+            "isRate": false,
+            "valueInt": 6,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 7,
+                "display": "7"
+              },
+              "40": {
+                "value": 8,
+                "display": "8"
+              },
+              "45": {
+                "value": 8,
+                "display": "8"
+              },
+              "50": {
+                "value": 9,
+                "display": "9"
+              }
+            }
+          },
+          {
+            "unlockLevel": 5,
+            "promotePerLevel": 10,
+            "activeType": "PT_JOURNEY_START",
+            "valueType": {
+              "ko": "인연 포인트 증가",
+              "en": "Bond Points Gain",
+              "ja": "絆ポイント増加"
+            },
+            "isRate": false,
+            "valueInt": 8,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 11,
+                "display": "11"
+              },
+              "40": {
+                "value": 11,
+                "display": "11"
+              },
+              "45": {
+                "value": 12,
+                "display": "12"
+              },
+              "50": {
+                "value": 12,
+                "display": "12"
+              }
+            }
+          }
+        ],
+        "training": [
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "activeType": "PT_TRAINNING",
+            "valueType": {
+              "ko": "훈련 효과 상승",
+              "en": "Training Effectiveness",
+              "ja": "トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 900,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 14,
+            "values": {
+              "35": {
+                "value": 1376,
+                "display": "13.76%"
+              },
+              "40": {
+                "value": 1446,
+                "display": "14.46%"
+              },
+              "45": {
+                "value": 1516,
+                "display": "15.16%"
+              },
+              "50": {
+                "value": 1586,
+                "display": "15.86%"
+              }
+            }
+          },
+          {
+            "unlockLevel": 35,
+            "promotePerLevel": 5,
+            "activeType": "PT_TRAINNING",
+            "valueType": {
+              "ko": "컨디션 효과 상승",
+              "en": "Condition Effect Increase",
+              "ja": "コンディション効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 350,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 350,
+            "values": {
+              "35": {
+                "value": 350,
+                "display": "3.50%"
+              },
+              "40": {
+                "value": 700,
+                "display": "7.00%"
+              },
+              "45": {
+                "value": 1050,
+                "display": "10.50%"
+              },
+              "50": {
+                "value": 1400,
+                "display": "14.00%"
+              }
+            }
+          }
+        ],
+        "telepathy": [
+          {
+            "unlockLevel": 20,
+            "promotePerLevel": 1,
+            "activeType": "PT_TRAINNING_TAG",
+            "valueType": {
+              "ko": "감응 훈련 발생 확률 상승",
+              "en": "Sensory Training Chance",
+              "ja": "感応トレーニングの発生率の上昇"
+            },
+            "isRate": false,
+            "valueInt": 250,
+            "valueRate": 0,
+            "valueIntPerPromote": 5,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 325,
+                "display": "325"
+              },
+              "40": {
+                "value": 350,
+                "display": "350"
+              },
+              "45": {
+                "value": 375,
+                "display": "375"
+              },
+              "50": {
+                "value": 400,
+                "display": "400"
+              }
+            }
+          },
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "activeType": "PT_TRAINNING_TAG",
+            "valueType": {
+              "ko": "초감응 훈련 효과 상승",
+              "en": "Super Sensory Training Effectiveness",
+              "ja": "超感応トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 1200,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 22,
+            "values": {
+              "35": {
+                "value": 1948,
+                "display": "19.48%"
+              },
+              "40": {
+                "value": 2058,
+                "display": "20.58%"
+              },
+              "45": {
+                "value": 2168,
+                "display": "21.68%"
+              },
+              "50": {
+                "value": 2278,
+                "display": "22.78%"
+              }
+            }
+          }
+        ],
+        "supportQuest": []
+      },
+      "events": [
+        {
+          "id": 710400101,
+          "name": {
+            "ko": "디저트 밀실 실종 사건",
+            "en": "The Case of the Locked Room Dessert Disappearance",
+            "ja": "デザート密室失踪事件"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "침묵한다.",
+                "en": "Stay silent.",
+                "ja": "沈黙する。"
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAMINA",
+                    "min": 5,
+                    "max": 5
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_POTEN_POINT",
+                    "min": 10,
+                    "max": 10
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "min": 1,
+                    "max": 1,
+                    "rewardId": 20001
+                  }
+                ]
+              ],
+              "failureRewards": []
+            },
+            {
+              "name": {
+                "ko": "그웬을 지목한다.",
+                "en": "Accuse Gwen.",
+                "ja": "グウェンを指差す。"
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_POTEN_POINT",
+                    "min": 10,
+                    "max": 10
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "min": 1,
+                    "max": 1,
+                    "rewardId": 21001
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710400102,
+          "name": {
+            "ko": "그웬의 천적",
+            "en": "Gwen's Archnemesis",
+            "ja": "グウェンの天敵"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "",
+                "en": "",
+                "ja": ""
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 12,
+                    "max": 12,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_POTEN_POINT",
+                    "min": 10,
+                    "max": 10
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_JOURNEY_BUFF",
+                    "journeyBuffName": {
+                      "ko": "특기는 탐문 조사!",
+                      "en": "My Forte? Asking Around!",
+                      "ja": "特技は聞き込み！"
+                    }
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710400103,
+          "name": {
+            "ko": "특기는 위장 조사",
+            "en": "I'm Something of an Undercover Investigator Myself",
+            "ja": "特技は潜入捜査"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "",
+                "en": "",
+                "ja": ""
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 15,
+                    "max": 15,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAMINA",
+                    "min": 15,
+                    "max": 15
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_POTEN_POINT",
+                    "min": 10,
+                    "max": 10
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "min": 1,
+                    "max": 1,
+                    "rewardId": 31004
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }
