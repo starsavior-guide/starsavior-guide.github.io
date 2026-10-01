@@ -648,7 +648,7 @@
     "id": 1040,
     "slug": "gwen",
     "file": "./1040.html",
-    "source": "https://ss.espr.gg/ko/database/characters/gwen",
+    "source": "https://star-savior-arcana-db.pages.dev/savior/1040",
     "capturedAt": "2026-09-24T17:48:05.932Z",
     "profile": {
       "name": "그웬",
@@ -1479,11 +1479,11 @@
   },
   "_meta": {
     "sourceRoot": "https://star-savior-arcana-db.pages.dev/savior",
-    "generatedAt": "2026-09-21T16:46:35.907Z",
-    "count": 54,
-    "profileCount": 54,
-    "portraitCount": 54,
-    "illustrationCount": 54,
+    "generatedAt": "2026-10-01T06:29:19.138Z",
+    "count": 55,
+    "profileCount": 55,
+    "portraitCount": 55,
+    "illustrationCount": 55,
     "profileFields": [
       "name",
       "grade",
