@@ -5753,6 +5753,7 @@ const EQUIPMENT_SUB_OPTIONS = [
 
 
 const SAVIOR_RELEASE_DATE = Object.freeze({
+  "gwen": 20261001,
   "professor-m": 20260917,
   "amora": 20260903,
   "cristelle": 20260820,
