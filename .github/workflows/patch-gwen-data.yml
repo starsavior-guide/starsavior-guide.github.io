@@ -1,0 +1,81 @@
+name: Patch Gwen data once
+
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-gwen-data.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Patch Gwen profile and basic skill Nova Burst
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          # 1) Gwen profile metadata only
+          path = Path('data/saviors/index.json')
+          text = path.read_text(encoding='utf-8')
+          match = re.search(r'("1040"\s*:\s*\{.*?"profile"\s*:\s*\{)(.*?)(\n\s*\},\n\s*"journey"\s*:)', text, re.S)
+          if not match:
+              raise SystemExit('Gwen profile block not found')
+          block = match.group(2)
+          replacements = {
+              '"birthday": ""': '"birthday": "5월 25일"',
+              '"height": ""': '"height": "158cm"',
+              '"origin": ""': '"origin": "NOA"',
+              '"cvKr": ""': '"cvKr": "김순미"',
+              '"cvJp": ""': '"cvJp": "와쿠노 아이카"',
+          }
+          for old, new in replacements.items():
+              if old not in block:
+                  raise SystemExit(f'Expected Gwen profile field not found: {old}')
+              block = block.replace(old, new, 1)
+          text = text[:match.start(2)] + block + text[match.end(2):]
+          path.write_text(text, encoding='utf-8')
+
+          # 2) Gwen basic skill Nova Burst Korean description only
+          path = Path('data/savior-skills/saviors.json')
+          text = path.read_text(encoding='utf-8')
+          gwen = re.search(r'(\n\s*\{\n\s*"id"\s*:\s*1040,.*?)(?=\n\s*\{\n\s*"id"\s*:\s*1041,)', text, re.S)
+          if not gwen:
+              raise SystemExit('Gwen skill archive block not found')
+          segment = gwen.group(1)
+          skill = re.search(r'("ko"\s*:\s*"채찍 끝의 진실".*?"novaDescription"\s*:\s*\{)(.*?)(\n\s*\})', segment, re.S)
+          if not skill:
+              raise SystemExit('Gwen basic skill novaDescription block not found')
+          nova_block = skill.group(2)
+          old = '"ko": ""'
+          new = '"ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다."'
+          if old not in nova_block:
+              raise SystemExit('Expected empty Korean Nova Burst description not found')
+          nova_block = nova_block.replace(old, new, 1)
+          segment = segment[:skill.start(2)] + nova_block + segment[skill.end(2):]
+          text = text[:gwen.start(1)] + segment + text[gwen.end(1):]
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Verify only intended Gwen data changed
+        shell: bash
+        run: |
+          git diff -- data/saviors/index.json data/savior-skills/saviors.json
+          test "$(git diff --name-only | sort | tr '\n' ' ')" = "data/savior-skills/saviors.json data/saviors/index.json "
+
+      - name: Commit Gwen data patch
+        shell: bash
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/saviors/index.json data/savior-skills/saviors.json
+          git commit -m "Fix Gwen profile and skill metadata"
+          git push
