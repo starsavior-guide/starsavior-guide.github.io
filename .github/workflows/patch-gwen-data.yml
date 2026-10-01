@@ -47,21 +47,17 @@ jobs:
           # 2) Gwen basic skill Nova Burst Korean description only
           path = Path('data/savior-skills/saviors.json')
           text = path.read_text(encoding='utf-8')
-          gwen = re.search(r'(\n\s*\{\n\s*"id"\s*:\s*1040,.*?)(?=\n\s*\{\n\s*"id"\s*:\s*1041,)', text, re.S)
-          if not gwen:
-              raise SystemExit('Gwen skill archive block not found')
-          segment = gwen.group(1)
-          skill = re.search(r'("ko"\s*:\s*"채찍 끝의 진실".*?"novaDescription"\s*:\s*\{)(.*?)(\n\s*\})', segment, re.S)
-          if not skill:
-              raise SystemExit('Gwen basic skill novaDescription block not found')
-          nova_block = skill.group(2)
-          old = '"ko": ""'
-          new = '"ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다."'
-          if old not in nova_block:
+          name_pos = text.find('"ko": "채찍 끝의 진실"')
+          if name_pos < 0:
+              raise SystemExit('Gwen basic skill name not found')
+          nova_pos = text.find('"novaDescription": {', name_pos)
+          if nova_pos < 0 or nova_pos - name_pos > 1200:
+              raise SystemExit('Gwen basic skill novaDescription not found')
+          ko_pos = text.find('"ko": ""', nova_pos)
+          if ko_pos < 0 or ko_pos - nova_pos > 500:
               raise SystemExit('Expected empty Korean Nova Burst description not found')
-          nova_block = nova_block.replace(old, new, 1)
-          segment = segment[:skill.start(2)] + nova_block + segment[skill.end(2):]
-          text = text[:gwen.start(1)] + segment + text[gwen.end(1):]
+          replacement = '"ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다."'
+          text = text[:ko_pos] + replacement + text[ko_pos + len('"ko": ""'):]
           path.write_text(text, encoding='utf-8')
           PY
 
