@@ -10624,7 +10624,7 @@ function installSaviorListGuidance() {
     update.className = "site-update-notice";
     update.innerHTML = `
       <img class="site-guidance-mascot"
-        src="./images/guide-update-mascot.webp?v=20261002"
+        src="./images/guide-update-mascot-v2.webp?v=20261002-2"
         alt="" aria-hidden="true">
       <span class="site-guidance-copy">
         <strong>업데이트 안내</strong>
