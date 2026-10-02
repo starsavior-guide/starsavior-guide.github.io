@@ -5806,12 +5806,17 @@ const STRIKER_ARCANA_TARGET_IDS = new Set([
   "bunny-scarlet"
 ]);
 
-const createStrikerRecommendedArcana = () => [
+const createStrikerRecommendedArcana = (saviorId = "") => [
   { name: "단점 보완 맞춤 훈련", note: "" },
   { name: "불굴의 역작", note: "" },
   { name: "꽃들에게 죽음을", note: "" },
   { name: "음독의 각오", note: "" },
-  { name: "자칭 베테랑 탐정의 수사법 or 허수의 개척자", note: "" }
+  {
+    name: saviorId === "gwen"
+      ? "자칭 베테랑 탐정의 수사법 or 허수의 개척자"
+      : "자칭 베테랑 탐정의 수사법",
+    note: ""
+  }
 ];
 
 const createStrikerAlternativeArcana = () => [
@@ -5846,7 +5851,7 @@ if (gwenBuild) {
       }
     },
     arcana: {
-      pve: createStrikerRecommendedArcana(),
+      pve: createStrikerRecommendedArcana("gwen"),
       pvp: PENDING_ARCANA(),
       alternatives: createStrikerAlternativeArcana()
     }
@@ -5862,7 +5867,7 @@ SAVIORS.forEach((savior) => {
       alternatives: []
     };
   }
-  savior.detail.arcana.pve = createStrikerRecommendedArcana();
+  savior.detail.arcana.pve = createStrikerRecommendedArcana(savior.id);
   savior.detail.arcana.alternatives = createStrikerAlternativeArcana();
 });
 
@@ -7679,6 +7684,13 @@ function getResolvedArcanaNames(slots) {
 }
 
 function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
+  if (STRIKER_ARCANA_TARGET_IDS.has(savior.id)) {
+    return Array.from(
+      { length: 5 },
+      (_, index) => existingAlternatives?.[index] || null
+    );
+  }
+
   const result = [];
   const seen = new Set();
 
