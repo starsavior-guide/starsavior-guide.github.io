@@ -46,6 +46,32 @@ Object.assign(I18N_DATA.ui.ja, {
 });
 
 
+
+// 2026-10-02 추천 세팅 / 업데이트 안내 다국어
+Object.assign(I18N_DATA.arcana.en, {
+  "자칭 베테랑 탐정의 수사법": "A Self-Proclaimed Veteran Detective"
+});
+Object.assign(I18N_DATA.arcana.ja, {
+  "자칭 베테랑 탐정의 수사법": "自称ベテラン探偵の捜査法",
+  "탐닉자의 유흥거리": "享楽者の慰み"
+});
+Object.assign(I18N_DATA.ui.en, {
+  "부족한 자리 대체": "Fill an open slot",
+  "탐닉자의 유흥거리 대체": "Substitute for A Hedonist's Diversion",
+  "업데이트 안내": "Update Notes",
+  "클라리사 추천 아르카나 변경 (10.02)": "Clarissa recommended Arcana updated (10.02)",
+  "그웬 추가 및 추천 세팅 반영 (10.02)": "Gwen added & recommended setup updated (10.02)",
+  "스트라이커 추천 아르카나 일괄 변경 (10.02)": "Striker recommended Arcana updated (10.02)"
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "부족한 자리 대체": "不足枠の代替",
+  "탐닉자의 유흥거리 대체": "「享楽者の慰み」の代替",
+  "업데이트 안내": "アップデート案内",
+  "클라리사 추천 아르카나 변경 (10.02)": "クラリッサのおすすめアルカナ変更 (10.02)",
+  "그웬 추가 및 추천 세팅 반영 (10.02)": "グウェン追加・おすすめセッティング反映 (10.02)",
+  "스트라이커 추천 아르카나 일괄 변경 (10.02)": "ストライカーのおすすめアルカナ一括変更 (10.02)"
+});
+
 // 장비 페이지 풀네임 표기 다국어 보정
 Object.assign(I18N_DATA.ui.en, {
   "통찰 4세트 착용 시 권장 치명타 확률 90% 이상, 치명타 피해 90% 이상":
@@ -818,7 +844,8 @@ const ARCANA_DETAIL_IDS = {
   "빛을 쫓아라": 7100301,
   "휴가 준비는 쇼핑에서부터!": 7104601,
   "영원 속박의 굴레": 7101701,
-  "탐닉자의 유흥거리": 7103901
+  "탐닉자의 유흥거리": 7103901,
+  "자칭 베테랑 탐정의 수사법": 7104001
 };
 
 
@@ -971,6 +998,16 @@ Object.values(ARCANA_LIBRARY).flat().forEach((card) => {
 // 표기 차이로 카드가 누락되지 않도록 상세 페이지와 동일한 별칭을 유지합니다.
 ARCANA_LIBRARY["금단의 기록물"] = ARCANA_LIBRARY["금단의 기록물 Vol. 1"];
 ARCANA_LIBRARY["빛을 쫓아라"] = ARCANA_LIBRARY["빛을 쫓아라!"];
+ARCANA_LIBRARY["탐닉자의 유흥거리"] = [{
+  name: "탐닉자의 유흥거리",
+  detailId: 7103901,
+  image: `${LOCAL_ARCANA_CARD_ROOT}/7103901.webp`
+}];
+ARCANA_LIBRARY["자칭 베테랑 탐정의 수사법"] = [{
+  name: "자칭 베테랑 탐정의 수사법",
+  detailId: 7104001,
+  image: `${LOCAL_ARCANA_CARD_ROOT}/7104001.webp`
+}];
 
 // 신규 아르카나는 상세 ID가 아직 app.js에 하드코딩되지 않았더라도 이름부터 정상 표시합니다.
 // 로컬 아르카나 백업이 갱신되면 아래 hydrate 함수가 실제 ID/카드 이미지로 자동 연결합니다.
@@ -1161,7 +1198,8 @@ const GROWTH_PRIORITY = {
   "rosaria": { tier: "1티어", level: "tier-1" },
   "white-pearl-luna": { tier: "1티어", level: "tier-1" },
   "sunshine-cat-smile": { tier: "0.5티어", level: "tier-05" },
-  "amora": { tier: "0티어", level: "tier-0" }
+  "amora": { tier: "0티어", level: "tier-0" },
+  "professor-m": { tier: "0.5티어", level: "tier-05" }
 };
 
 
@@ -1345,7 +1383,8 @@ const MAIN_CONTENTS = {
   "white-pearl-luna": ["작전", "코스모 게이트", "회랑", "PVP"],
   "sunshine-cat-smile": ["작전", "회랑", "코스모 게이트", "플래시 포인트"],
   "amora": ["작전", "회랑", "코스모 게이트", "인자작"],
-  "professor-m": ["작전", "회랑", "코스모 게이트", "플래시 포인트"]
+  "professor-m": ["작전", "회랑", "코스모 게이트", "플래시 포인트"],
+  "gwen": ["작전", "코스모 게이트", "회랑", "플래시 포인트"]
 };
 
 // AUTO_ESPR_I18N_1040
@@ -5750,6 +5789,103 @@ const EQUIPMENT_SUB_OPTIONS = [
     ]
   }
 ];
+
+
+
+const STRIKER_ARCANA_TARGET_IDS = new Set([
+  "asherah-voyager",
+  "charlotte",
+  "seira",
+  "lyn",
+  "tyria",
+  "roberta",
+  "ceres",
+  "gwen",
+  "claire",
+  "tanya",
+  "bunny-scarlet"
+]);
+
+const createStrikerRecommendedArcana = () => [
+  { name: "단점 보완 맞춤 훈련", note: "" },
+  { name: "불굴의 역작", note: "" },
+  { name: "꽃들에게 죽음을", note: "" },
+  { name: "음독의 각오", note: "" },
+  { name: "자칭 베테랑 탐정의 수사법 or 허수의 개척자", note: "" }
+];
+
+const createStrikerAlternativeArcana = () => [
+  { name: "노 페인, 노 게인", note: "" },
+  { name: "메이드 바이 페트라♡ or 별을 보며 꿈을", note: "" },
+  { name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세", note: "부족한 자리 대체" },
+  { name: "완벽한 바니걸", note: "" },
+  null
+];
+
+const gwenBuild = SAVIORS.find((savior) => savior.id === "gwen");
+if (gwenBuild) {
+  gwenBuild.summary = "PVE 장비·아르카나 세팅을 반영했습니다.";
+  gwenBuild.detail = {
+    equipment: {
+      pve: {
+        necklace: "속도",
+        ring: "공격력%",
+        sets: [
+          "통찰(4) + 투지(2)",
+          "파괴(4) + 투지(2)"
+        ],
+        potential: "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
+        note: ""
+      },
+      pvp: {
+        necklace: "미정",
+        ring: "미정",
+        sets: ["미정"],
+        potential: "미정",
+        note: "미정"
+      }
+    },
+    arcana: {
+      pve: createStrikerRecommendedArcana(),
+      pvp: PENDING_ARCANA(),
+      alternatives: createStrikerAlternativeArcana()
+    }
+  };
+}
+
+SAVIORS.forEach((savior) => {
+  if (!STRIKER_ARCANA_TARGET_IDS.has(savior.id) || !savior.detail) return;
+  if (!savior.detail.arcana) {
+    savior.detail.arcana = {
+      pve: [],
+      pvp: PENDING_ARCANA(),
+      alternatives: []
+    };
+  }
+  savior.detail.arcana.pve = createStrikerRecommendedArcana();
+  savior.detail.arcana.alternatives = createStrikerAlternativeArcana();
+});
+
+const clarissaBuild = SAVIORS.find((savior) => savior.id === "clarissa");
+if (clarissaBuild?.detail?.arcana) {
+  const pve = Array.from(
+    { length: 5 },
+    (_, index) => clarissaBuild.detail.arcana.pve?.[index] || null
+  );
+  const alternatives = Array.from(
+    { length: 5 },
+    (_, index) => clarissaBuild.detail.arcana.alternatives?.[index] || null
+  );
+
+  pve[4] = { name: "탐닉자의 유흥거리", note: "" };
+  alternatives[2] = {
+    name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세",
+    note: "탐닉자의 유흥거리 대체"
+  };
+
+  clarissaBuild.detail.arcana.pve = pve;
+  clarissaBuild.detail.arcana.alternatives = alternatives;
+}
 
 
 const SAVIOR_RELEASE_DATE = Object.freeze({
@@ -10308,24 +10444,34 @@ function installSaviorListGuidance() {
       }
 
       #list-view .newbie-equipment-notice,
+      #list-view .site-update-notice,
       #list-view .site-recommendation-warning {
         width: 100% !important;
         max-width: none !important;
       }
 
+      #list-view .site-update-notice,
       #list-view .site-recommendation-warning {
         display: flex;
         align-items: center;
         gap: 18px;
         margin-top: 20px;
         padding: 22px 24px;
-        border: 1px solid color-mix(in srgb, var(--warning) 38%, var(--line));
+        border: 1px solid var(--line);
         border-radius: 16px;
         background: var(--surface);
         box-shadow: none;
       }
 
-      #list-view .site-recommendation-warning-mascot {
+      #list-view .site-update-notice {
+        border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
+      }
+
+      #list-view .site-recommendation-warning {
+        border-color: color-mix(in srgb, var(--warning) 38%, var(--line));
+      }
+
+      #list-view .site-guidance-mascot {
         display: block;
         width: 112px;
         height: 112px;
@@ -10333,63 +10479,106 @@ function installSaviorListGuidance() {
         object-fit: contain;
       }
 
-      #list-view .site-recommendation-warning-copy {
+      #list-view .site-guidance-copy {
         display: grid;
         min-width: 0;
         gap: 8px;
       }
 
-      #list-view .site-recommendation-warning-copy strong {
-        color: var(--warning);
+      #list-view .site-guidance-copy > strong {
         font-size: 18px;
         font-weight: 950;
         line-height: 1.35;
       }
 
-      #list-view .site-recommendation-warning-copy > span {
+      #list-view .site-update-notice .site-guidance-copy > strong {
+        color: var(--accent);
+      }
+
+      #list-view .site-recommendation-warning .site-guidance-copy > strong {
+        color: var(--warning);
+      }
+
+      #list-view .site-recommendation-warning .site-guidance-copy > span,
+      #list-view .site-update-list {
         color: var(--text);
         font-size: 14px;
         font-weight: 750;
         line-height: 1.7;
       }
 
+      #list-view .site-update-list {
+        display: grid;
+        gap: 3px;
+        margin: 0;
+        padding-left: 1.15em;
+      }
+
+      #list-view .site-update-list li {
+        padding-left: 2px;
+        overflow-wrap: anywhere;
+        word-break: keep-all;
+      }
+
+      html[data-theme="light"] #list-view .site-update-notice,
       html[data-theme="light"] #list-view .site-recommendation-warning {
-        border-color: color-mix(in srgb, var(--warning) 42%, #d3dae5);
         background: #fff;
       }
 
+      html[data-theme="light"] #list-view .site-update-notice {
+        border-color: color-mix(in srgb, var(--accent) 42%, #d3dae5);
+      }
+
+      html[data-theme="light"] #list-view .site-recommendation-warning {
+        border-color: color-mix(in srgb, var(--warning) 42%, #d3dae5);
+      }
+
       @media (max-width: 640px) {
+        #list-view .site-update-notice,
         #list-view .site-recommendation-warning {
           align-items: center;
           gap: 13px;
           padding: 18px 17px;
         }
 
-        #list-view .site-recommendation-warning-mascot {
+        #list-view .site-guidance-mascot {
           width: 76px;
           height: 76px;
           flex-basis: 76px;
         }
 
-        #list-view .site-recommendation-warning-copy strong {
+        #list-view .site-guidance-copy > strong {
           font-size: 17px;
         }
 
-        #list-view .site-recommendation-warning-copy > span {
+        #list-view .site-recommendation-warning .site-guidance-copy > span,
+        #list-view .site-update-list {
           font-size: 13.5px;
           line-height: 1.65;
+        }
+
+        #list-view .site-update-list {
+          gap: 2px;
         }
       }
 
       @media (max-width: 430px) {
+        #list-view .site-update-notice,
         #list-view .site-recommendation-warning {
           gap: 11px;
+          padding-right: 14px;
+          padding-left: 14px;
         }
 
-        #list-view .site-recommendation-warning-mascot {
+        #list-view .site-guidance-mascot {
           width: 64px;
           height: 64px;
           flex-basis: 64px;
+        }
+
+        #list-view .site-update-list {
+          font-size: 12.5px;
+          line-height: 1.6;
         }
       }
     `;
@@ -10397,22 +10586,45 @@ function installSaviorListGuidance() {
   }
 
   const newbieNotice = document.querySelector("#list-view .newbie-equipment-notice");
-  if (!newbieNotice || document.querySelector("#savior-recommendation-warning")) return;
+  const parent = newbieNotice?.parentElement;
+  if (!newbieNotice || !parent) return;
 
-  const warning = document.createElement("div");
-  warning.id = "savior-recommendation-warning";
-  warning.className = "site-recommendation-warning";
-  warning.innerHTML = `
-    <img class="site-recommendation-warning-mascot"
-      src="./images/guide-warning-mascot.png?v=20260922t1"
-      alt="" aria-hidden="true">
-    <span class="site-recommendation-warning-copy">
-      <strong>주의사항</strong>
-      <span>본 사이트의 추천 아르카나 및 장비 세팅은 절대적인 정답이 아닙니다. 이용하는 콘텐츠와 현재 육성 상태에 따라 적합한 세팅이 달라질 수 있으므로, 참고용으로 활용해 주세요.</span>
-    </span>
-  `;
+  let warning = document.querySelector("#savior-recommendation-warning");
+  if (!warning) {
+    warning = document.createElement("div");
+    warning.id = "savior-recommendation-warning";
+    warning.className = "site-recommendation-warning";
+    warning.innerHTML = `
+      <img class="site-guidance-mascot"
+        src="./images/guide-warning-mascot-clean.webp?v=20261002"
+        alt="" aria-hidden="true">
+      <span class="site-guidance-copy">
+        <strong>주의사항</strong>
+        <span>본 사이트의 추천 아르카나 및 장비 세팅은 절대적인 정답이 아닙니다. 이용하는 콘텐츠와 현재 육성 상태에 따라 적합한 세팅이 달라질 수 있으므로, 참고용으로 활용해 주세요.</span>
+      </span>
+    `;
+    parent.insertBefore(warning, newbieNotice);
+  }
 
-  newbieNotice.parentElement?.insertBefore(warning, newbieNotice);
+  if (!document.querySelector("#savior-update-notice")) {
+    const update = document.createElement("div");
+    update.id = "savior-update-notice";
+    update.className = "site-update-notice";
+    update.innerHTML = `
+      <img class="site-guidance-mascot"
+        src="./images/guide-update-mascot.webp?v=20261002"
+        alt="" aria-hidden="true">
+      <span class="site-guidance-copy">
+        <strong>업데이트 안내</strong>
+        <ul class="site-update-list">
+          <li>클라리사 추천 아르카나 변경 (10.02)</li>
+          <li>그웬 추가 및 추천 세팅 반영 (10.02)</li>
+          <li>스트라이커 추천 아르카나 일괄 변경 (10.02)</li>
+        </ul>
+      </span>
+    `;
+    parent.insertBefore(update, warning);
+  }
 }
 
 function applyRequestedLayoutFixes() {
