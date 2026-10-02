@@ -49,7 +49,7 @@ Object.assign(I18N_DATA.ui.ja, {
 
 // 2026-10-02 추천 세팅 / 업데이트 안내 다국어
 Object.assign(I18N_DATA.arcana.en, {
-  "자칭 베테랑 탐정의 수사법": "A Self-Proclaimed Veteran Detective"
+  "자칭 베테랑 탐정의 수사법": "[A Self-Proclaimed Veteran Detective] Memory"
 });
 Object.assign(I18N_DATA.arcana.ja, {
   "자칭 베테랑 탐정의 수사법": "自称ベテラン探偵の捜査法",
@@ -5873,23 +5873,23 @@ SAVIORS.forEach((savior) => {
 
 const clarissaBuild = SAVIORS.find((savior) => savior.id === "clarissa");
 if (clarissaBuild?.detail?.arcana) {
-  const pve = Array.from(
-    { length: 5 },
-    (_, index) => clarissaBuild.detail.arcana.pve?.[index] || null
-  );
-  const alternatives = Array.from(
-    { length: 5 },
-    (_, index) => clarissaBuild.detail.arcana.alternatives?.[index] || null
-  );
-
-  pve[4] = { name: "탐닉자의 유흥거리", note: "" };
-  alternatives[2] = {
-    name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세",
-    note: "탐닉자의 유흥거리 대체"
-  };
-
-  clarissaBuild.detail.arcana.pve = pve;
-  clarissaBuild.detail.arcana.alternatives = alternatives;
+  clarissaBuild.detail.arcana.pve = [
+    { name: "단점 보완 맞춤 훈련", note: "" },
+    { name: "불굴의 역작", note: "" },
+    { name: "꽃들에게 죽음을", note: "" },
+    { name: "완벽한 바니걸", note: "" },
+    { name: "탐닉자의 유흥거리", note: "" }
+  ];
+  clarissaBuild.detail.arcana.alternatives = [
+    { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" },
+    { name: "메이드 바이 페트라♡ or 별을 보며 꿈을", note: "꽃들에게 죽음을 대체" },
+    {
+      name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세",
+      note: "탐닉자의 유흥거리 대체"
+    },
+    { name: "영원 속박의 굴레", note: "하얀 달의 온기는 햇빛처럼 대체" },
+    null
+  ];
 }
 
 
@@ -7691,6 +7691,13 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
     );
   }
 
+  if (savior.id === "clarissa") {
+    return Array.from(
+      { length: 5 },
+      (_, index) => existingAlternatives?.[index] || null
+    );
+  }
+
   const result = [];
   const seen = new Set();
 
@@ -7807,8 +7814,8 @@ function addEternalBondAlternativeForWhiteMoon(savior, pveArcana, alternatives) 
   const excludedClasses = new Set(["서포터", "디펜더"]);
   const result = [...(alternatives || [])];
 
-  // 크리스텔은 별도 대체 아르카나 구성을 사용하므로 공통 자동 추가 대상에서 제외합니다.
-  if (savior.id === "cristelle") return result;
+  // 전용 대체 아르카나 구성을 사용하는 구원자는 공통 자동 추가 대상에서 제외합니다.
+  if (savior.id === "cristelle" || savior.id === "clarissa") return result;
   if (excludedClasses.has(savior.className)) return result;
 
   const recommendedNames = new Set(getResolvedArcanaNames(pveArcana));
