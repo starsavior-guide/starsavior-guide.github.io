@@ -737,6 +737,7 @@ const EQUIPMENT_SET_IMAGE_NAMES = new Set([
 ]);
 
 const SAVIOR_DETAIL_IDS = {
+  "lydia-moon-caster": 1060,
   "gwen": 1040,
   "asherah-voyager": 1001,
   "smile": 1002,
@@ -845,7 +846,8 @@ const ARCANA_DETAIL_IDS = {
   "휴가 준비는 쇼핑에서부터!": 7104601,
   "영원 속박의 굴레": 7101701,
   "탐닉자의 유흥거리": 7103901,
-  "자칭 베테랑 탐정의 수사법": 7104001
+  "자칭 베테랑 탐정의 수사법": 7104001,
+  "이게 옷이라고요?": 7106001
 };
 
 
@@ -1007,6 +1009,11 @@ ARCANA_LIBRARY["자칭 베테랑 탐정의 수사법"] = [{
   name: "자칭 베테랑 탐정의 수사법",
   detailId: 7104001,
   image: `${LOCAL_ARCANA_CARD_ROOT}/7104001.webp`
+}];
+ARCANA_LIBRARY["이게 옷이라고요?"] = [{
+  name: "이게 옷이라고요?",
+  detailId: 7106001,
+  image: `${LOCAL_ARCANA_CARD_ROOT}/7106001.webp`
 }];
 
 // 신규 아르카나는 상세 ID가 아직 app.js에 하드코딩되지 않았더라도 이름부터 정상 표시합니다.
@@ -1393,7 +1400,27 @@ I18N_DATA.saviorNames.ja["그웬"] = "グウェン";
 I18N_DATA.subtitles.en["람파디스"] = "Lampadis";
 I18N_DATA.subtitles.ja["람파디스"] = "ランパディス";
 
+// AUTO_ESPR_I18N_1060
+I18N_DATA.saviorNames.en["리디아"] = "Lydia";
+I18N_DATA.saviorNames.ja["리디아"] = "リディア";
+I18N_DATA.subtitles.en["레디 메이드 퍼피"] = "Ready-Made Puppy";
+I18N_DATA.subtitles.ja["레디 메이드 퍼피"] = "レディーメイド・パピー";
+
 const SAVIORS = [
+  {
+    "id": "lydia-moon-caster",
+    "name": "리디아",
+    "subtitle": "레디 메이드 퍼피",
+    "affiliation": "서부 탈환대",
+    "grade": "SSR",
+    "element": "moon",
+    "className": "캐스터",
+    "role": "캐스터",
+    "attackType": "원소",
+    "image": "./data/savior-detail-assets/1060-portrait.webp",
+    "summary": "ESPR 신규 등록 구원자입니다. PVE 세팅 정보는 미정입니다.",
+    "guideUrl": "https://ss.espr.gg/ko/database/characters/lydia-moon-caster"
+  },
   {
     "id": "gwen",
     "name": "그웬",
@@ -5894,6 +5921,7 @@ if (clarissaBuild?.detail?.arcana) {
 
 
 const SAVIOR_RELEASE_DATE = Object.freeze({
+  "lydia-moon-caster": 20261015,
   "gwen": 20261001,
   "professor-m": 20260917,
   "amora": 20260903,
@@ -9434,10 +9462,10 @@ const ARCANA_LEVELS = [35, 40, 45, 50];
 const ARCANA_MAIN_STAT_ORDER = ["힘", "체력", "인내", "집중", "보호"];
 const ARCANA_DUMMY_MAIN_STATS = new Set(["구원자"]);
 const ARCANA_RARITY_ORDER = { SSR: 0, SR: 1, R: 2 };
-// ESPR 한국어 아르카나 목록의 실제 표시 순서 (2026-10-01 확인).
+// ESPR 한국어 아르카나 목록의 실제 표시 순서 (2026-10-15 확인).
 // ID 크기나 이름으로 출시 순서를 추정하지 않는다.
 const ARCANA_RELEASE_ORDER = new Map([
-  7104001, 7103901, 7105801, 7101701, 7104601, 7104501, 7100301, 7103302,
+  7106001, 7104001, 7103901, 7105801, 7101701, 7104601, 7104501, 7100301, 7103302,
   7100501, 7105601, 7105501, 7102501, 7102901, 7101602, 7300301,
   7300201, 7300101, 7102601, 7105701, 7103201, 7100901, 7100801,
   7105401, 7103101, 7104301, 7104401, 7101001, 7150101, 7102101,

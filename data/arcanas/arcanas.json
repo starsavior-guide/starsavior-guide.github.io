@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "sourceOrigin": "https://star-savior-arcana-db.pages.dev",
   "sourcePage": "https://star-savior-arcana-db.pages.dev/arcana",
-  "capturedAt": "2026-10-01T06:12:04.008Z",
+  "capturedAt": "2026-10-15T03:45:28.701Z",
   "languages": [
     "ko",
     "en",
@@ -2539,6 +2539,38 @@
             "ko": "타격 시 자신의 피해량이 10%씩 증가합니다. 최대 2회 중첩되며 턴 종료 시 중첩 횟수를 모두 초기화시킵니다.",
             "en": "When attacking, increases self damage dealt by 10%. Stacks up to 2 times. Resets all stacks at the end of the turn.",
             "ja": "攻撃時、自身のダメージが10％ずつ上がる。この効果は最大2回までスタックできる。ターン終了時、スタックをすべて初期化する。"
+          },
+          "requiredPotentialPoints": 200,
+          "bondPointCheck": true,
+          "stats": []
+        }
+      ]
+    },
+    {
+      "id": 11060,
+      "strId": "POTEN_PASSIVE_11060",
+      "type": "특수 잠재력",
+      "unitId": 1034,
+      "class": "",
+      "name": {
+        "ko": "공허의 손짓",
+        "en": "Touch of the Void",
+        "ja": "空虚の手振り"
+      },
+      "description": {
+        "ko": "치명타 확률이 20% 증가합니다. 타격 후 치명타가 발생한 대상의 수만큼 자신의 공격력이 2%씩 증가합니다. 최대 10회 중첩됩니다.",
+        "en": "Increases CRIT Rate by 20%. After attacking, increases self ATK by 2% for each target critically hit. Stacks up to 10 times.",
+        "ja": "会心率が20％上がる。攻撃後、会心が発生した対象の数につき、自身の攻撃力が2％ずつ上がる。この効果は最大10回まで発生する。"
+      },
+      "icon": "./data/arcana-assets/potentials/11060.webp",
+      "background": "./data/arcana-assets/potential-backgrounds/red.webp",
+      "levels": [
+        {
+          "level": 1,
+          "description": {
+            "ko": "치명타 확률이 20% 증가합니다. 타격 후 치명타가 발생한 대상의 수만큼 자신의 공격력이 2%씩 증가합니다. 최대 10회 중첩됩니다.",
+            "en": "Increases CRIT Rate by 20%. After attacking, increases self ATK by 2% for each target critically hit. Stacks up to 10 times.",
+            "ja": "会心率が20％上がる。攻撃後、会心が発生した対象の数につき、自身の攻撃力が2％ずつ上がる。この効果は最大10回まで発生する。"
           },
           "requiredPotentialPoints": 200,
           "bondPointCheck": true,
@@ -33325,6 +33357,529 @@
                     "min": 1,
                     "max": 1,
                     "rewardId": 31004
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7106001,
+      "name": {
+        "ko": "이게 옷이라고요?",
+        "en": "You Call This an Outfit?!",
+        "ja": "これが…服？"
+      },
+      "character": {
+        "ko": "리디아",
+        "en": "Lydia",
+        "ja": "リディア"
+      },
+      "rarity": "SSR",
+      "mainStat": {
+        "ko": "힘",
+        "en": "Strength",
+        "ja": "力"
+      },
+      "assists": [
+        {
+          "ko": "치명타 확률",
+          "en": "CRIT Rate",
+          "ja": "会心率"
+        },
+        {
+          "ko": "구원자",
+          "en": "Savior",
+          "ja": "救援者"
+        }
+      ],
+      "image": "./data/arcana-assets/cards/7106001.webp",
+      "mainStatIcon": "./data/arcana-assets/status/power.webp",
+      "specialPotentialId": 11060,
+      "uniqueEffect": {
+        "name": {
+          "ko": "특별한 코디",
+          "en": "Dressed to Please",
+          "ja": "特別なコディネート"
+        },
+        "description": {
+          "ko": "인연 포인트 50 이상일 때 감응 훈련 발생 확률 상승 +140",
+          "en": "When Bond Points are at 50 or higher Sensory Training Chance +140",
+          "ja": "絆ポイントが50以上の場合 感応トレーニングの発生率の上昇 +140"
+        },
+        "unlockLevel": 35,
+        "uniqueConditionValue": 50,
+        "activeType": "PT_TRAINNING_TAG",
+        "valueType": {
+          "ko": "감응 훈련 발생 확률 상승",
+          "en": "Sensory Training Chance",
+          "ja": "感応トレーニングの発生率の上昇"
+        },
+        "valueInt": 140,
+        "valueRate": 0,
+        "valueIntPerPromote": 0,
+        "valueRatePerPromote": 0
+      },
+      "effects": {
+        "journeyStart": [
+          {
+            "unlockLevel": 5,
+            "promotePerLevel": 10,
+            "activeType": "PT_JOURNEY_START",
+            "valueType": {
+              "ko": "인연 포인트 증가",
+              "en": "Bond Points Gain",
+              "ja": "絆ポイント増加"
+            },
+            "isRate": false,
+            "valueInt": 8,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 11,
+                "display": "11"
+              },
+              "40": {
+                "value": 11,
+                "display": "11"
+              },
+              "45": {
+                "value": 12,
+                "display": "12"
+              },
+              "50": {
+                "value": 12,
+                "display": "12"
+              }
+            }
+          },
+          {
+            "unlockLevel": 25,
+            "promotePerLevel": 5,
+            "activeType": "PT_JOURNEY_START",
+            "valueType": {
+              "ko": "잠재력 포인트 증가",
+              "en": "Potential Points Gain",
+              "ja": "潜在力ポイント増加"
+            },
+            "isRate": false,
+            "valueInt": 7,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 9,
+                "display": "9"
+              },
+              "40": {
+                "value": 10,
+                "display": "10"
+              },
+              "45": {
+                "value": 11,
+                "display": "11"
+              },
+              "50": {
+                "value": 12,
+                "display": "12"
+              }
+            }
+          },
+          {
+            "unlockLevel": 10,
+            "promotePerLevel": 20,
+            "activeType": "PT_JOURNEY_START",
+            "valueType": {
+              "ko": "힘",
+              "en": "Strength",
+              "ja": "力"
+            },
+            "isRate": false,
+            "valueInt": 4,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 5,
+                "display": "5"
+              },
+              "40": {
+                "value": 5,
+                "display": "5"
+              },
+              "45": {
+                "value": 5,
+                "display": "5"
+              },
+              "50": {
+                "value": 6,
+                "display": "6"
+              }
+            }
+          }
+        ],
+        "training": [
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "activeType": "PT_TRAINNING",
+            "valueType": {
+              "ko": "훈련 효과 상승",
+              "en": "Training Effectiveness",
+              "ja": "トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 1000,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 16,
+            "values": {
+              "35": {
+                "value": 1544,
+                "display": "15.44%"
+              },
+              "40": {
+                "value": 1624,
+                "display": "16.24%"
+              },
+              "45": {
+                "value": 1704,
+                "display": "17.04%"
+              },
+              "50": {
+                "value": 1784,
+                "display": "17.84%"
+              }
+            }
+          },
+          {
+            "unlockLevel": 20,
+            "promotePerLevel": 10,
+            "activeType": "PT_TRAINNING",
+            "valueType": {
+              "ko": "추가 잠재력 포인트 획득",
+              "en": "Additional Potential Points",
+              "ja": "追加潜在力ポイントの獲得"
+            },
+            "isRate": false,
+            "valueInt": 1,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 2,
+                "display": "2"
+              },
+              "40": {
+                "value": 3,
+                "display": "3"
+              },
+              "45": {
+                "value": 3,
+                "display": "3"
+              },
+              "50": {
+                "value": 4,
+                "display": "4"
+              }
+            }
+          }
+        ],
+        "telepathy": [
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "activeType": "PT_TRAINNING_TAG",
+            "valueType": {
+              "ko": "초감응 훈련 효과 상승",
+              "en": "Super Sensory Training Effectiveness",
+              "ja": "超感応トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 1200,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 22,
+            "values": {
+              "35": {
+                "value": 1948,
+                "display": "19.48%"
+              },
+              "40": {
+                "value": 2058,
+                "display": "20.58%"
+              },
+              "45": {
+                "value": 2168,
+                "display": "21.68%"
+              },
+              "50": {
+                "value": 2278,
+                "display": "22.78%"
+              }
+            }
+          },
+          {
+            "unlockLevel": 35,
+            "promotePerLevel": 5,
+            "activeType": "PT_TRAINNING_TAG",
+            "valueType": {
+              "ko": "감응 훈련 발생 확률 상승",
+              "en": "Sensory Training Chance",
+              "ja": "感応トレーニングの発生率の上昇"
+            },
+            "isRate": false,
+            "valueInt": 80,
+            "valueRate": 0,
+            "valueIntPerPromote": 80,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 80,
+                "display": "80"
+              },
+              "40": {
+                "value": 160,
+                "display": "160"
+              },
+              "45": {
+                "value": 240,
+                "display": "240"
+              },
+              "50": {
+                "value": 320,
+                "display": "320"
+              }
+            }
+          }
+        ],
+        "supportQuest": []
+      },
+      "events": [
+        {
+          "id": 710600101,
+          "name": {
+            "ko": "동족의 냄새",
+            "en": "The Scent of One's Own Kind",
+            "ja": "同族の匂い"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "",
+                "en": "",
+                "ja": ""
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_JOURNEY_BUFF",
+                    "journeyBuffName": {
+                      "ko": "평정심 단련",
+                      "en": "Cultivating Composure",
+                      "ja": "平常心の鍛錬"
+                    }
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710600102,
+          "name": {
+            "ko": "망상의 자격 조건",
+            "en": "Qualifications for Delusion",
+            "ja": "妄想の資格条件"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "",
+                "en": "",
+                "ja": ""
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 15,
+                    "max": 15,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_POTEN_POINT",
+                    "min": 10,
+                    "max": 10
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "min": 1,
+                    "max": 1,
+                    "rewardId": 21001
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710600103,
+          "name": {
+            "ko": "평정심은 메이드복을 타고",
+            "en": "Composure in a Maid Outfit",
+            "ja": "平常心はメイド服とともに"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "이 정도면 됐어. 그만하자.",
+                "en": "That's enough. Let's stop.",
+                "ja": "もう十分だよ。そこまでにしよう。"
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 12,
+                    "max": 12,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_POTEN_POINT",
+                    "min": 20,
+                    "max": 20
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "min": 1,
+                    "max": 1,
+                    "rewardId": 11060
+                  }
+                ]
+              ],
+              "failureRewards": []
+            },
+            {
+              "name": {
+                "ko": "약속은 약속이니까... 조금만 더 해보자.",
+                "en": "A promise is a promise... Let's keep going a little longer.",
+                "ja": "約束は約束だから…もう少しだけやってみよう。"
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 12,
+                    "max": 12,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAMINA",
+                    "min": 15,
+                    "max": 15
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "min": 1,
+                    "max": 1,
+                    "rewardId": 11060
                   }
                 ]
               ],

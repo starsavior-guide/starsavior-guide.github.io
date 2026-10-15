@@ -1224,6 +1224,235 @@
       "portrait": "./data/savior-detail-assets/992e1469ab25043bbf447a8a.webp"
     }
   },
+  "1060": {
+    "key": "lydia-moon-caster",
+    "id": 1060,
+    "slug": "lydia-moon-caster",
+    "file": "./1060.html",
+    "source": "https://ss.espr.gg/ko/database/characters/lydia-moon-caster",
+    "capturedAt": "2026-10-15T03:45:28.701Z",
+    "profile": {
+      "name": "리디아",
+      "grade": "SSR",
+      "element": "달",
+      "className": "캐스터",
+      "attackType": "원소",
+      "description": "서부 탈환대의 부대장. 언제나 세레스를 옆에서 보좌하고 있다. 언제나 생글생글 웃고 있지만 그 미소의 안쪽에는 어둠이 도사리고 있다.",
+      "birthday": "6월 18일",
+      "height": "156cm",
+      "origin": "서부 재난 지대",
+      "affiliation": "서부 탈환대",
+      "cvKr": "장미",
+      "cvJp": "아이자와 사야",
+      "illustration": "./data/savior-detail-assets/1060-illustration.webp",
+      "portrait": "./data/savior-detail-assets/1060-portrait.webp"
+    },
+    "journey": {
+      "source": "https://ss.espr.gg/ko/database/characters/lydia-moon-caster/journey",
+      "baseStats": {
+        "str": 30,
+        "hp": 20,
+        "end": 20,
+        "focus": 10,
+        "prot": 10
+      },
+      "resonances": [
+        {
+          "step": 1,
+          "unlockLevel": 20,
+          "journeyStat": {
+            "type": "str",
+            "value": 30
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 100
+            },
+            {
+              "type": "hp",
+              "value": 720
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 2,
+          "unlockLevel": 40,
+          "journeyStat": {
+            "type": "hp",
+            "value": 30
+          },
+          "stats": [
+            {
+              "type": "atk_rate",
+              "value": 0.02
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "atk",
+              "value": 125
+            },
+            {
+              "type": "def",
+              "value": 50
+            }
+          ],
+          "potential": "POTEN_PASSIVE_0001"
+        },
+        {
+          "step": 4,
+          "unlockLevel": 80,
+          "journeyStat": {
+            "type": "str",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "crit_rate",
+              "value": 0.03
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 5,
+          "unlockLevel": 100,
+          "journeyStat": {
+            "type": "hp",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "hp",
+              "value": 900
+            },
+            {
+              "type": "def",
+              "value": 60
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "hp_rate",
+              "value": 0.04
+            }
+          ],
+          "potential": "POTEN_PASSIVE_0005"
+        },
+        {
+          "step": 7,
+          "unlockLevel": 140,
+          "journeyStat": {
+            "type": "str",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 175
+            },
+            {
+              "type": "hp",
+              "value": 1080
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 8,
+          "unlockLevel": 160,
+          "journeyStat": {
+            "type": "str",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "crit_rate",
+              "value": 0.06
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 9,
+          "unlockLevel": 180,
+          "journeyStat": {
+            "type": "hp",
+            "value": 50
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 200
+            },
+            {
+              "type": "def",
+              "value": 70
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "atk_rate",
+              "value": 0.06
+            }
+          ],
+          "potential": "POTEN_PASSIVE_1001"
+        }
+      ],
+      "potentialCodes": [
+        {
+          "step": 3,
+          "code": "POTEN_PASSIVE_0001"
+        },
+        {
+          "step": 6,
+          "code": "POTEN_PASSIVE_0005"
+        },
+        {
+          "step": 10,
+          "code": "POTEN_PASSIVE_1001"
+        }
+      ],
+      "charm": {
+        "name": {
+          "ko": "복종의 초커",
+          "en": "Choker of Obedience",
+          "ja": "服従のチョーカー"
+        },
+        "flavor": {
+          "ko": "수상쩍은 경매에서 비싸게 거래되는 초커. 목줄과 강아지 장난감 모양 장식은 구매자의 취향이라고 한다.",
+          "en": "A choker that fetches a hefty price at a shady auction. Rumor has it that the leash and dog-toy-shaped charm reflect the buyer's tastes.",
+          "ja": "怪しげなオークションで高値で取引されるチョーカー。首輪と骨の形をした犬用のおもちゃをかたどった飾りは、購入者の好みだという。"
+        },
+        "effect": {
+          "ko": "턴 시작 시 자신에게 <b><color=#DD982C>퇴근 재촉(해제불가)</color></b>을 3회 발생시킵니다. 타격 시 자신의 <b><color=#DD982C>퇴근 재촉(해제불가)</color></b> 중첩 횟수가 5회 이상이면 타격 후 최대 생명력이 가장 높은 적에게 <b><color=#DD982C>저리 가라고요!</color></b>를 발동하고 자신의 모든 스킬 쿨타임을 1턴 감소시킵니다.",
+          "en": "At the start of the turn, grants self 3 stacks of <b><color=#DD982C>Clocking Out (Undispellable)</color></b>. On attack, if self has 5 or more stacks of <b><color=#DD982C>Clocking Out (Undispellable)</color></b>, uses <b><color=#DD982C>Shoo!</color></b> on the enemy with the highest Max HP after attacking and reduces all self skill cooldowns by 1 turn.",
+          "ja": "ターン開始時、<b><color=#DD982C>退勤催促(解除不可)</color></b>を3つ付与する。攻撃時、自身の<b><color=#DD982C>退勤催促(解除不可)</color></b>スタック数が5つ以上の場合、攻撃後最大HPが最も高い敵に<b><color=#DD982C>来ないでってば！</color></b>を発動し、自身の全スキルのクールタイムを1ターン短縮する。"
+        },
+        "image": "./data/savior-detail-assets/1060-charm.webp"
+      }
+    }
+  },
   "1501": {
     "key": "besta",
     "id": 1501,
@@ -1504,6 +1733,7 @@
     "excludedSnapshotSections": [
       "일러스트",
       "아크 포인트"
-    ]
+    ],
+    "capturedAt": "2026-10-15T03:45:28.701Z"
   }
 }
