@@ -90,6 +90,10 @@
         { length: 5 },
         (_, index) => westernLydia.detail.arcana.alternatives?.[index] || null
       );
+      westernLydia.detail.arcana.alternatives[0] = {
+        name: "노 페인, 노 게인",
+        note: "단점 보완 맞춤 훈련 대체"
+      };
       westernLydia.detail.arcana.alternatives[1] = {
         name: "메이드 바이 페트라♡ or 별을 보며 꿈을 or 깊은 애도",
         note: "꽃들에게 죽음을 대체"
