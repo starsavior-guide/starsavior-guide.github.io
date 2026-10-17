@@ -8313,8 +8313,11 @@ function createArcanaPreviewEffects(arcana, archive) {
     const potential = potentials.get(id);
     const special = potential.type === "특수 잠재력";
     const name = getArcanaPreviewName(potential.name, id);
-    return `<span class="arcana-preview-effect${special ? " is-special" : ""}">${special
-      ? `<small>${escapeHtml(arcanaPreviewText("special"))} · </small>` : ""}${escapeHtml(name)}</span>`;
+    return `<span class="arcana-preview-effect${special ? " is-special" : ""}">
+      ${createArcanaPotentialIcon(potential)}
+      <span class="arcana-preview-effect-label">${special
+        ? `<small>${escapeHtml(arcanaPreviewText("special"))} · </small>` : ""}${escapeHtml(name)}</span>
+    </span>`;
   };
   const or = '<span class="arcana-preview-connector"> or </span>';
   return getArcanaPreviewGroups(arcana, archive).map((branches) =>
@@ -8323,7 +8326,7 @@ function createArcanaPreviewEffects(arcana, archive) {
         .join('<span class="arcana-preview-connector"> + </span>');
       return branches.length > 1 && groups.length > 1 ? `(${content})` : content;
     }).join(or)}</span>`
-  ).join("");
+  ).join(" ");
 }
 
 function getArcanaPreviewSelectionKey(mode) {

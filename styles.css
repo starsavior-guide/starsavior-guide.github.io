@@ -1133,12 +1133,12 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 .arcana-preview-header {
   justify-content: space-between;
   margin-bottom: 7px;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.45;
 }
 
 .arcana-preview-header strong {
-  font-size: 13px;
+  font-size: 14px;
   overflow-wrap: anywhere;
 }
 
@@ -1184,16 +1184,22 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 .arcana-preview-group {
   display: inline-flex;
   max-width: 100%;
-  gap: 4px;
-  font-size: 12px;
+  gap: 6px;
+  font-size: 15px;
 }
 
 .arcana-preview-effect {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   min-width: 0;
-  padding: 3px 7px;
+  max-width: 100%;
+  min-height: 36px;
+  padding: 5px 9px;
   border: 1px solid var(--line);
   border-radius: 6px;
   background: var(--surface);
+  font-weight: 750;
   line-height: 1.45;
   overflow-wrap: anywhere;
 }
@@ -1204,8 +1210,29 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 }
 
 .arcana-preview-effect small {
-  color: var(--muted);
-  font-size: 10px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.arcana-preview-effect-label {
+  min-width: 0;
+}
+
+.arcana-preview-effect .arcana-potential-icon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border-radius: 4px;
+}
+
+.arcana-preview-effect .arcana-potential-symbol {
+  padding: 2px;
+}
+
+.arcana-preview-connector {
+  font-size: 14px;
+  font-weight: 750;
 }
 
 .arcana-slot[data-arcana-default-id] {
