@@ -653,6 +653,7 @@ function applyLanguageToDOM(root = document.body) {
   }
 
   refreshEquipmentSetLabels(root);
+  refreshArcanaPreviews(root);
 }
 
 function refreshLanguageChrome() {
@@ -7680,6 +7681,8 @@ async function applySaviorBloomMode(button, panel) {
 }
 
 detailContent.addEventListener("click", async (event) => {
+  if (await handleArcanaPreviewClick(event)) return;
+
   const bloomButton = event.target.closest("[data-savior-bloom-toggle]");
   if (bloomButton && detailContent.contains(bloomButton)) {
     const panel = bloomButton.closest("[data-savior-source-panel]");
@@ -7702,6 +7705,14 @@ detailContent.addEventListener("click", async (event) => {
 
   if (nextOpen) {
     await loadSaviorSourcePanel(button, panel);
+  }
+});
+
+detailContent.addEventListener("keydown", (event) => {
+  const trigger = event.target.closest("[data-arcana-preview-id]");
+  if (event.key === " " && trigger && detailContent.contains(trigger)) {
+    event.preventDefault();
+    trigger.click();
   }
 });
 
@@ -8021,7 +8032,7 @@ function createDetailMarkup(savior) {
       </div>
     </section>
 
-    <section class="content-section" id="arcana">
+    <section class="content-section" id="arcana" data-arcana-savior="${escapeHtml(savior.id)}">
       <div class="section-titlebar">
         <div>
           <p>ARCANA SETTING</p>
@@ -8218,6 +8229,175 @@ function createEquipmentCard(mode, data, className, subtitle) {
 }
 
 
+// Selection survives the existing archive/profile refreshes and language changes.
+// Recommendation/build data is never changed by the preview.
+const arcanaPreviewSelections = new Map();
+const arcanaPreviewLoadErrors = new Set();
+const ARCANA_PREVIEW_TEXT = {
+  ko: {
+    hint: "아르카나를 선택하면 획득 가능한 효과를 확인할 수 있습니다.",
+    heading: "획득 가능 효과", special: "특수 잠재력", select: "획득 효과 미리보기",
+    detail: "아르카나 상세 보기 →", loading: "획득 효과를 불러오는 중입니다.",
+    error: "획득 효과를 불러오지 못했습니다. 다시 선택하거나 상세 정보를 확인해 주세요.",
+    empty: "표시할 획득 잠재력이 등록되어 있지 않습니다.", missing: "번역 미등록"
+  },
+  en: {
+    hint: "Select an Arcana to preview its obtainable effects.",
+    heading: "Obtainable Effects", special: "Special Potential", select: "Preview obtainable effects",
+    detail: "View Arcana details →", loading: "Loading obtainable effects…",
+    error: "Could not load effects. Select again to retry or view the Arcana details.",
+    empty: "No obtainable Potentials are recorded.", missing: "Translation unavailable"
+  },
+  ja: {
+    hint: "アルカナを選択すると、獲得可能な効果を確認できます。",
+    heading: "獲得可能な効果", special: "特殊潜在力", select: "獲得効果をプレビュー",
+    detail: "アルカナ詳細を見る →", loading: "獲得効果を読み込み中です。",
+    error: "効果を読み込めませんでした。再度選択するか、アルカナ詳細をご確認ください。",
+    empty: "獲得可能な潜在力は登録されていません。", missing: "翻訳未登録"
+  }
+};
+
+function arcanaPreviewText(key) {
+  return ARCANA_PREVIEW_TEXT[currentLanguage][key];
+}
+
+function getArcanaPreviewName(value, id) {
+  // Do not fall back to Korean on an English/Japanese preview.
+  const name = typeof value === "object" ? value?.[currentLanguage] : "";
+  return name?.trim() || `${arcanaPreviewText("missing")} (${id})`;
+}
+
+function getArcanaPreviewGroups(arcana, archive) {
+  const potentials = new Map((archive?.potentials || []).map((potential) => [Number(potential.id), potential]));
+  const allowedTypes = new Set(["일반 잠재력", "특수 잠재력"]);
+  const groupKey = (ids) => [...ids].sort((a, b) => a - b).join(",");
+  const output = [];
+  const seen = new Set();
+  const add = (branches) => {
+    const key = JSON.stringify(branches);
+    if (branches.length && !seen.has(key)) {
+      seen.add(key);
+      output.push(branches);
+    }
+  };
+
+  for (const event of arcana?.events || []) {
+    const choices = (event.choices || []).map((choice) => (choice.successRewards || []).map((rewards) =>
+      [...new Set((rewards || []).filter((reward) => {
+        const potential = potentials.get(Number(reward.rewardId));
+        return reward.type === "RT_SE_POTEN" && allowedTypes.has(potential?.type)
+          && Number(reward.max ?? reward.min ?? 1) > 0;
+      }).map((reward) => Number(reward.rewardId)))]
+    ).filter((ids) => ids.length));
+    if (!choices.length) continue;
+
+    // Reward groups coexist; entries inside a group and event choices are alternatives.
+    // Factor shared groups out before joining choice-specific rewards with " or ".
+    const common = choices[0].filter((ids) => choices.every((groups) =>
+      groups.some((group) => groupKey(group) === groupKey(ids))
+    ));
+    common.forEach((ids) => add([[ids]]));
+    const commonKeys = new Set(common.map(groupKey));
+    const branches = choices.map((groups) => groups.filter((ids) => !commonKeys.has(groupKey(ids))))
+      .filter((groups) => groups.length);
+    const distinct = [...new Map(branches.map((groups) => [JSON.stringify(groups), groups])).values()];
+    if (distinct.length === 1) distinct[0].forEach((ids) => add([[ids]]));
+    else add(distinct);
+  }
+  return output;
+}
+
+function createArcanaPreviewEffects(arcana, archive) {
+  const potentials = new Map((archive?.potentials || []).map((potential) => [Number(potential.id), potential]));
+  const renderPotential = (id) => {
+    const potential = potentials.get(id);
+    const special = potential.type === "특수 잠재력";
+    const name = getArcanaPreviewName(potential.name, id);
+    return `<span class="arcana-preview-effect${special ? " is-special" : ""}">${special
+      ? `<small>${escapeHtml(arcanaPreviewText("special"))} · </small>` : ""}${escapeHtml(name)}</span>`;
+  };
+  const or = '<span class="arcana-preview-connector"> or </span>';
+  return getArcanaPreviewGroups(arcana, archive).map((branches) =>
+    `<span class="arcana-preview-group">${branches.map((groups) => {
+      const content = groups.map((ids) => ids.map(renderPotential).join(or))
+        .join('<span class="arcana-preview-connector"> + </span>');
+      return branches.length > 1 && groups.length > 1 ? `(${content})` : content;
+    }).join(or)}</span>`
+  ).join("");
+}
+
+function getArcanaPreviewSelectionKey(mode) {
+  return JSON.stringify([
+    mode.closest("[data-arcana-savior]")?.dataset.arcanaSavior,
+    mode.closest("[data-arcana-preset]")?.dataset.arcanaPreset || "",
+    mode.dataset.arcanaPreviewKey
+  ]);
+}
+
+function refreshArcanaPreviews(root = detailContent) {
+  const modes = [...(root.querySelectorAll?.("[data-arcana-preview-key]") || [])];
+  if (root.matches?.("[data-arcana-preview-key]")) modes.unshift(root);
+  modes.forEach((mode) => {
+    const preview = mode.querySelector("[data-arcana-preview]");
+    if (!preview) return;
+    const selectedId = arcanaPreviewSelections.get(getArcanaPreviewSelectionKey(mode));
+    const archive = arcanaDatabaseState.data;
+    const arcana = archive?.arcanas?.find((item) => Number(item.id) === selectedId);
+    mode.querySelectorAll("[data-arcana-preview-id]").forEach((trigger) => {
+      const id = Number(trigger.dataset.arcanaPreviewId);
+      const selected = id === selectedId;
+      trigger.setAttribute("aria-pressed", String(selected));
+      trigger.classList.toggle("is-preview-selected", selected);
+      const name = archive?.arcanas?.find((item) => Number(item.id) === id)?.name;
+      const label = name ? getArcanaPreviewName(name, id) : getLocalizedArcanaName(trigger.dataset.arcanaPreviewName);
+      trigger.setAttribute("aria-label", `${label} · ${arcanaPreviewText("select")}`);
+    });
+    mode.querySelectorAll("[data-arcana-default-id]").forEach((card) => {
+      card.classList.toggle("is-preview-selected", Number(card.dataset.arcanaDefaultId) === selectedId);
+    });
+    preview.classList.toggle("is-empty", selectedId == null);
+    if (selectedId == null) {
+      preview.innerHTML = `<p class="arcana-preview-message">${escapeHtml(arcanaPreviewText("hint"))}</p>`;
+      return;
+    }
+    const effects = arcana ? createArcanaPreviewEffects(arcana, archive) : "";
+    const message = arcana ? arcanaPreviewText("empty")
+      : arcanaPreviewText(arcanaPreviewLoadErrors.has(selectedId) || archive ? "error" : "loading");
+    preview.innerHTML = `
+      <div class="arcana-preview-header">
+        <div>${arcana ? `<strong>${escapeHtml(getArcanaPreviewName(arcana.name, arcana.id))}</strong>` : ""}
+          <span>${escapeHtml(arcanaPreviewText("heading"))}</span></div>
+        <a class="arcana-preview-detail" href="#arcana/${selectedId}">${escapeHtml(arcanaPreviewText("detail"))}</a>
+      </div>
+      ${effects ? `<div class="arcana-preview-effects">${effects}</div>`
+        : `<p class="arcana-preview-message">${escapeHtml(message)}</p>`}
+    `;
+  });
+}
+
+async function handleArcanaPreviewClick(event) {
+  const trigger = event.target.closest("[data-arcana-preview-id]");
+  const card = event.target.closest("[data-arcana-default-id]");
+  const mode = (trigger || card)?.closest("[data-arcana-preview-key]");
+  if (!mode || !detailContent.contains(mode)) return false;
+  const id = Number(trigger?.dataset.arcanaPreviewId || card?.dataset.arcanaDefaultId);
+  if (!Number.isFinite(id)) return false;
+  event.preventDefault();
+  arcanaPreviewSelections.set(getArcanaPreviewSelectionKey(mode), id);
+  arcanaPreviewLoadErrors.delete(id);
+  refreshArcanaPreviews(mode);
+  if (!arcanaDatabaseState.data) {
+    try {
+      arcanaDatabaseState.data = await loadArcanaArchive();
+    } catch (error) {
+      arcanaPreviewLoadErrors.add(id);
+      console.warn("Arcana effect preview load failed:", error);
+    }
+    refreshArcanaPreviews(detailContent);
+  }
+  return true;
+}
+
 function normalizeArcanaAlias(value) {
   return String(value || "")
     .replace(/^\*+/, "")
@@ -8267,6 +8447,8 @@ function createArcanaImages(choices) {
         return detailUrl
           ? `
             <a class="arcana-card-link" href="${escapeHtml(detailUrl)}"
+              role="button" aria-pressed="false" data-arcana-preview-id="${choice.detailId || ARCANA_DETAIL_IDS[choice.name]}"
+              data-arcana-preview-name="${escapeHtml(choice.name)}"
               aria-label="${escapeHtml(`${localizedName} ${detailLabel}`)}">
               <img src="${escapeHtml(choice.image)}" alt="${escapeHtml(localizedName)}"
                 loading="lazy"
@@ -8296,6 +8478,8 @@ function createArcanaNameLinks(choices) {
     const sourceAttr = escapeHtml(choice.name);
     const nameMarkup = detailUrl
       ? `<a class="arcana-card-name-link" href="${escapeHtml(detailUrl)}"
+          role="button" aria-pressed="false" data-arcana-preview-id="${choice.detailId || ARCANA_DETAIL_IDS[choice.name]}"
+          data-arcana-preview-name="${sourceAttr}"
           data-i18n-kind="arcana" data-i18n-source="${sourceAttr}">${escapeHtml(localizedName)}</a>`
       : `<span data-i18n-kind="arcana" data-i18n-source="${sourceAttr}">${escapeHtml(localizedName)}</span>`;
 
@@ -8310,11 +8494,12 @@ function createArcanaMode(title, description, slots, color, minSlots = 5) {
   );
 
   return `
-    <div class="arcana-mode">
+    <div class="arcana-mode" data-arcana-preview-key="${escapeHtml(title)}">
       <div class="arcana-mode-title">
         <strong>${escapeHtml(title)}</strong>
         <span>${escapeHtml(description)}</span>
       </div>
+      <div class="arcana-preview is-empty" data-arcana-preview aria-live="polite" aria-atomic="true"></div>
       <div class="arcana-slots">
         ${normalized.map((arcana, index) => {
           if (!arcana) {
@@ -8343,7 +8528,9 @@ function createArcanaMode(title, description, slots, color, minSlots = 5) {
           const noteText = /엑셀.*추천/.test(rawNoteText) ? "" : rawNoteText;
 
           return `
-            <div class="arcana-slot has-arcana-card" style="--slot-color:${color}">
+            <div class="arcana-slot has-arcana-card" style="--slot-color:${color}"
+              ${choices.length === 1 && getArcanaDetailUrl(choices[0].name)
+                ? `data-arcana-default-id="${choices[0].detailId || ARCANA_DETAIL_IDS[choices[0].name]}"` : ""}>
               ${createArcanaImages(choices)}
               <div class="arcana-card-copy">
                 <small>SLOT ${index + 1}${choices.length > 1 ? " · 선택" : ""}</small>
@@ -8382,6 +8569,7 @@ function createDefenderArcanaCollapse(title, preset) {
 
   return `
     <details class="savior-illustration-details defender-arcana-details"
+      data-arcana-preset="${escapeHtml(title)}"
       style="overflow:hidden;border:1px solid var(--line);border-radius:14px;">
       <summary aria-label="${escapeHtml(translateString(title))}">
         <span>${escapeHtml(translateString(title))}</span>
