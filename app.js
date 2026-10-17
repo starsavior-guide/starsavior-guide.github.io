@@ -24,6 +24,8 @@
       "이게 옷이라고요?": "これが…服？"
     });
 
+    GROWTH_PRIORITY.gwen = { tier: "1티어", level: "tier-1" };
+
     const robertaBuild = SAVIORS.find((savior) => savior.id === "roberta");
     if (robertaBuild?.detail?.arcana) {
       robertaBuild.detail.arcana.pve = [
@@ -148,7 +150,7 @@
 
     const hash = decodeURIComponent(location.hash.replace(/^#/, ""));
     const activeSaviorId = hash.startsWith("savior/") ? hash.slice("savior/".length) : "";
-    if (["roberta", "lydia", "lydia-moon-caster", "waltz-asherah"].includes(activeSaviorId) && typeof openSavior === "function") {
+    if (["roberta", "lydia", "lydia-moon-caster", "waltz-asherah", "gwen"].includes(activeSaviorId) && typeof openSavior === "function") {
       openSavior(activeSaviorId, { skipHash: true, keepScroll: true });
     }
   }, { once: true });
