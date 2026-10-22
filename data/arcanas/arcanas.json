@@ -2577,6 +2577,38 @@
           "stats": []
         }
       ]
+    },
+    {
+      "id": 11014,
+      "strId": "POTEN_PASSIVE_11014",
+      "type": "특수 잠재력",
+      "unitId": 1014,
+      "class": "",
+      "name": {
+        "ko": "나비의 자장가",
+        "en": "Butterfly's Lullaby",
+        "ja": "蝶のララバイ"
+      },
+      "description": {
+        "ko": "공격이 아닌 스킬 사용 후 자신에게 3턴 간 달콤한 꿈(해제불가)을 발생시키고 노바 포스를 2 획득합니다.",
+        "en": "After using a non-attack skill, grants self Sweet Dream (Undispellable) for 3 turns, then gains 2 Nova Force.",
+        "ja": "攻撃ではないスキルの使用後、自身に甘い夢(解除不可)を3ターン付与し、ノヴァフォースを2獲得する。"
+      },
+      "icon": "./data/arcana-assets/potentials/11014.webp",
+      "background": "./data/arcana-assets/potential-backgrounds/blue.webp",
+      "levels": [
+        {
+          "level": 1,
+          "description": {
+            "ko": "공격이 아닌 스킬 사용 후 자신에게 3턴 간 달콤한 꿈(해제불가)을 발생시키고 노바 포스를 2 획득합니다.",
+            "en": "After using a non-attack skill, grants self Sweet Dream (Undispellable) for 3 turns, then gains 2 Nova Force.",
+            "ja": "攻撃ではないスキルの使用後、自身に甘い夢(解除不可)を3ターン付与し、ノヴァフォースを2獲得する。"
+          },
+          "requiredPotentialPoints": 200,
+          "bondPointCheck": true,
+          "stats": []
+        }
+      ]
     }
   ],
   "journeyBuffs": [
@@ -6080,6 +6112,330 @@
                     "icon": "./data/arcana-assets/status/endurance.webp"
                   }
                 ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7101401,
+      "name": {
+        "ko": "수마의 나들이",
+        "en": "When Slumber Comes Calling",
+        "ja": "睡魔のお出かけ"
+      },
+      "character": {
+        "ko": "세이라",
+        "en": "Seira",
+        "ja": "セイラ"
+      },
+      "rarity": "SSR",
+      "mainStat": {
+        "ko": "체력",
+        "en": "Vitality",
+        "ja": "体力"
+      },
+      "assists": [
+        {
+          "ko": "특수 효과",
+          "en": "Special Effect",
+          "ja": "特殊効果"
+        },
+        {
+          "ko": "구원자",
+          "en": "Savior",
+          "ja": "救援者"
+        }
+      ],
+      "image": "./data/arcana-assets/cards/7101401.webp",
+      "mainStatIcon": "./data/arcana-assets/status/health.webp",
+      "specialPotentialId": 11014,
+      "uniqueEffect": {
+        "name": {
+          "ko": "푸른 나비의 꿈",
+          "en": "Blue Butterfly's Dream",
+          "ja": "青い蝶の夢"
+        },
+        "description": {
+          "ko": "인연 포인트 40 이상일 때 추가 체력 능력치 획득 +1",
+          "en": "When Bond Points are at 40 or higher Additional Vitality Stat Gain +1",
+          "ja": "絆ポイントが40以上の場合 追加体力ステータス獲得 +1"
+        },
+        "unlockLevel": 35,
+        "promotePerLevel": 1,
+        "uniqueType": "UPAT_ARCANA_POINT",
+        "uniqueConditionValue": 40,
+        "activeType": "PT_TRAINNING",
+        "valueType": {
+          "ko": "추가 체력 능력치 획득",
+          "en": "Additional Vitality Stat Gain",
+          "ja": "追加体力ステータス獲得"
+        },
+        "valueInt": 1,
+        "valueRate": 0,
+        "valueIntPerPromote": 0,
+        "valueRatePerPromote": 0
+      },
+      "effects": {
+        "journeyStart": [
+          {
+            "unlockLevel": 20,
+            "promotePerLevel": 10,
+            "activeType": "PT_JOURNEY_START",
+            "valueType": {
+              "ko": "힘",
+              "en": "Strength",
+              "ja": "力"
+            },
+            "isRate": false,
+            "valueInt": 6,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": { "value": 7, "display": "7" },
+              "40": { "value": 8, "display": "8" },
+              "45": { "value": 8, "display": "8" },
+              "50": { "value": 9, "display": "9" }
+            }
+          },
+          {
+            "unlockLevel": 20,
+            "promotePerLevel": 5,
+            "activeType": "PT_JOURNEY_START",
+            "valueType": {
+              "ko": "잠재력 포인트 증가",
+              "en": "Potential Points Gain",
+              "ja": "潜在力ポイント増加"
+            },
+            "isRate": false,
+            "valueInt": 8,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": { "value": 11, "display": "11" },
+              "40": { "value": 12, "display": "12" },
+              "45": { "value": 13, "display": "13" },
+              "50": { "value": 14, "display": "14" }
+            }
+          },
+          {
+            "unlockLevel": 35,
+            "promotePerLevel": 5,
+            "activeType": "PT_JOURNEY_START",
+            "valueType": {
+              "ko": "인연 포인트 증가",
+              "en": "Bond Points Gain",
+              "ja": "絆ポイント増加"
+            },
+            "isRate": false,
+            "valueInt": 3,
+            "valueRate": 0,
+            "valueIntPerPromote": 3,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": { "value": 3, "display": "3" },
+              "40": { "value": 6, "display": "6" },
+              "45": { "value": 9, "display": "9" },
+              "50": { "value": 12, "display": "12" }
+            }
+          }
+        ],
+        "training": [
+          {
+            "unlockLevel": 25,
+            "promotePerLevel": 20,
+            "activeType": "PT_TRAINNING",
+            "valueType": {
+              "ko": "추가 인내 능력치 획득",
+              "en": "Additional Endurance Stat Gain",
+              "ja": "追加忍耐ステータス獲得"
+            },
+            "isRate": false,
+            "valueInt": 1,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": { "value": 1, "display": "1" },
+              "40": { "value": 1, "display": "1" },
+              "45": { "value": 2, "display": "2" },
+              "50": { "value": 2, "display": "2" }
+            }
+          },
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "activeType": "PT_TRAINNING",
+            "valueType": {
+              "ko": "훈련 효과 상승",
+              "en": "Training Effectiveness",
+              "ja": "トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 800,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 12,
+            "values": {
+              "35": { "value": 1208, "display": "12.08%" },
+              "40": { "value": 1268, "display": "12.68%" },
+              "45": { "value": 1328, "display": "13.28%" },
+              "50": { "value": 1388, "display": "13.88%" }
+            }
+          }
+        ],
+        "telepathy": [
+          {
+            "unlockLevel": 10,
+            "promotePerLevel": 2,
+            "activeType": "PT_TRAINNING_TAG",
+            "valueType": {
+              "ko": "감응 훈련 발생 확률 상승",
+              "en": "Sensory Training Chance",
+              "ja": "感応トレーニングの発生率の上昇"
+            },
+            "isRate": false,
+            "valueInt": 200,
+            "valueRate": 0,
+            "valueIntPerPromote": 5,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": { "value": 260, "display": "260" },
+              "40": { "value": 275, "display": "275" },
+              "45": { "value": 285, "display": "285" },
+              "50": { "value": 300, "display": "300" }
+            }
+          },
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "activeType": "PT_TRAINNING_TAG",
+            "valueType": {
+              "ko": "초감응 훈련 효과 상승",
+              "en": "Super Sensory Training Effectiveness",
+              "ja": "超感応トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 1200,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 22,
+            "values": {
+              "35": { "value": 1948, "display": "19.48%" },
+              "40": { "value": 2058, "display": "20.58%" },
+              "45": { "value": 2168, "display": "21.68%" },
+              "50": { "value": 2278, "display": "22.78%" }
+            }
+          }
+        ],
+        "supportQuest": []
+      },
+      "events": [
+        {
+          "id": 710140101,
+          "name": {
+            "ko": "가위",
+            "en": "Sleep Paralysis",
+            "ja": "金縛り"
+          },
+          "choices": [
+            {
+              "name": { "ko": "", "en": "", "ja": "" },
+              "successRewards": [
+                [{ "type": "RT_STAMINA", "min": 10, "max": 10 }],
+                [{ "type": "RT_POTEN_POINT", "min": 10, "max": 10 }],
+                [{ "type": "RT_SE_POTEN", "min": 1, "max": 1, "rewardId": 21005 }]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "id": 710140102,
+          "name": {
+            "ko": "꿈보다 해몽",
+            "en": "A Dream Is What You Make of It",
+            "ja": "夢は感じるもの"
+          },
+          "choices": [
+            {
+              "name": { "ko": "", "en": "", "ja": "" },
+              "successRewards": [
+                [{
+                  "type": "RT_STAT",
+                  "min": 15,
+                  "max": 15,
+                  "rewardStat": "JST_HEALTH",
+                  "statName": { "ko": "체력", "en": "Vitality", "ja": "体力" },
+                  "icon": "./data/arcana-assets/status/health.webp"
+                }],
+                [{
+                  "type": "RT_STAT",
+                  "min": 8,
+                  "max": 8,
+                  "rewardStat": "JST_ENDURANCE",
+                  "statName": { "ko": "인내", "en": "Endurance", "ja": "忍耐" },
+                  "icon": "./data/arcana-assets/status/endurance.webp"
+                }],
+                [{ "type": "RT_SE_POTEN", "min": 1, "max": 1, "rewardId": 20006 }],
+                [{ "type": "RT_POTEN_POINT", "min": 10, "max": 10 }]
+              ],
+              "failureRewards": [
+                [{
+                  "type": "RT_STAT",
+                  "min": 15,
+                  "max": 15,
+                  "rewardStat": "JST_HEALTH",
+                  "statName": { "ko": "체력", "en": "Vitality", "ja": "体力" },
+                  "icon": "./data/arcana-assets/status/health.webp"
+                }],
+                [{
+                  "type": "RT_STAT",
+                  "min": 8,
+                  "max": 8,
+                  "rewardStat": "JST_ENDURANCE",
+                  "statName": { "ko": "인내", "en": "Endurance", "ja": "忍耐" },
+                  "icon": "./data/arcana-assets/status/endurance.webp"
+                }],
+                [{ "type": "RT_SE_POTEN", "min": 1, "max": 1, "rewardId": 20006 }]
+              ]
+            }
+          ]
+        },
+        {
+          "id": 710140103,
+          "name": {
+            "ko": "고양이의 꿈",
+            "en": "A Cat's Dream",
+            "ja": "猫の夢"
+          },
+          "choices": [
+            {
+              "name": { "ko": "", "en": "", "ja": "" },
+              "successRewards": [
+                [{
+                  "type": "RT_STAT",
+                  "min": 10,
+                  "max": 10,
+                  "rewardStat": "JST_HEALTH",
+                  "statName": { "ko": "체력", "en": "Vitality", "ja": "体力" },
+                  "icon": "./data/arcana-assets/status/health.webp"
+                }],
+                [{
+                  "type": "RT_STAT",
+                  "min": 5,
+                  "max": 5,
+                  "rewardStat": "JST_POWER",
+                  "statName": { "ko": "힘", "en": "Strength", "ja": "力" },
+                  "icon": "./data/arcana-assets/status/power.webp"
+                }],
+                [{ "type": "RT_STAMINA", "min": 10, "max": 10 }],
+                [{ "type": "RT_SE_POTEN", "min": 1, "max": 1, "rewardId": 21004 }],
+                [{ "type": "RT_SE_POTEN", "min": 1, "max": 1, "rewardId": 11014 }]
               ],
               "failureRewards": []
             }
