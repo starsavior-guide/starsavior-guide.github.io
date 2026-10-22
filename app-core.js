@@ -10107,6 +10107,18 @@ function createArcanaPotentialIcon(potential) {
   `;
 }
 
+function createArcanaPotentialBuffsMarkup(potential) {
+  return (potential?.buffs || []).map((buff) => `
+    <div class="arcana-reward-item is-rich">
+      ${buff.icon ? `<img src="${escapeHtml(buff.icon)}" alt="" loading="lazy">` : ""}
+      <div>
+        <div class="arcana-reward-title"><span>${escapeHtml(getArcanaArchiveText(buff.name))}</span></div>
+        <p>${renderArcanaRichText(getArcanaArchiveText(buff.description))}</p>
+      </div>
+    </div>
+  `).join("");
+}
+
 function createArcanaPotentialMarkup(potential) {
   if (!potential) return "";
   return `
@@ -10119,6 +10131,7 @@ function createArcanaPotentialMarkup(potential) {
         </div>
       </div>
       <p class="arcana-rich-description">${renderArcanaRichText(getArcanaArchiveText(potential.description))}</p>
+      ${createArcanaPotentialBuffsMarkup(potential)}
     </section>
   `;
 }
@@ -10200,6 +10213,7 @@ function createArcanaRewardMarkup(reward) {
         <div>
           <div class="arcana-reward-title"><span>${escapeHtml(getArcanaArchiveText(potential.name))}</span></div>
           <p>${renderArcanaRichText(getArcanaArchiveText(potential.description))}</p>
+          ${createArcanaPotentialBuffsMarkup(potential)}
         </div>
       </div>
     `;

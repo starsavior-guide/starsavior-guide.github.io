@@ -2608,6 +2608,23 @@
           "bondPointCheck": true,
           "stats": []
         }
+      ],
+      "buffs": [
+        {
+          "strId": "POTEN_PASSIVE_110141",
+          "type": "buff",
+          "name": {
+            "ko": "달콤한 꿈(해제불가)",
+            "en": "Sweet Dream (Undispellable)",
+            "ja": "甘い夢(解除不可)"
+          },
+          "description": {
+            "ko": "강인도 피해가 1 증가합니다.",
+            "en": "Increases Toughness DMG by 1.",
+            "ja": "強靭度ダメージが1上がる。"
+          },
+          "icon": "./data/arcana-assets/status/buff_poten_passive_110141.webp"
+        }
       ]
     }
   ],
