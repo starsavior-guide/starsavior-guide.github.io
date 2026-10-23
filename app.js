@@ -7,21 +7,25 @@
   core.addEventListener("load", () => {
     Object.assign(I18N_DATA.ui.en, {
       "음독의 각오/자칭 베테랑 탐정의 수사법 대체": "Alternative to Even If It's Poison / [A Self-Proclaimed Veteran Detective] Memory",
+      "수마의 나들이 추가 및 세이라 추천 세팅 변경 (10.24)": "When Slumber Comes Calling added and Seira recommended setup updated (10.24)",
       "레디 메이드 퍼피 리디아 추가 및 추천 세팅 반영 (10.16)": "Ready-Made Puppy Lydia added and recommended setup updated (10.16)",
       "서부 탈환대 리디아 추천 아르카나 변경 (10.16)": "Western Liberators Lydia recommended Arcana updated (10.16)",
       "※ 왈츠 오브 스타라이트 아세라는 힘 1,000 / 체력 1,000을 목표로 세팅 권장": "※ Waltz of Starlight Asherah: Recommended target — Strength 1,000 / HP 1,000"
     });
     Object.assign(I18N_DATA.ui.ja, {
       "음독의 각오/자칭 베테랑 탐정의 수사법 대체": "「毒でも覚悟のうえ／自称ベテラン探偵の捜査法」の代替",
+      "수마의 나들이 추가 및 세이라 추천 세팅 변경 (10.24)": "「睡魔のお出かけ」追加・セイラおすすめセッティング変更 (10.24)",
       "레디 메이드 퍼피 리디아 추가 및 추천 세팅 반영 (10.16)": "レディーメイド・パピー リディア追加・おすすめセッティング反映 (10.16)",
       "서부 탈환대 리디아 추천 아르카나 변경 (10.16)": "西部奪還隊 リディア おすすめアルカナ変更 (10.16)",
       "※ 왈츠 오브 스타라이트 아세라는 힘 1,000 / 체력 1,000을 목표로 세팅 권장": "※ ワルツ・オブ・スターライト アセラは力1,000 / 体力1,000を目標にセッティング推奨"
     });
     Object.assign(I18N_DATA.arcana.en, {
-      "이게 옷이라고요?": "You Call This an Outfit?!"
+      "이게 옷이라고요?": "You Call This an Outfit?!",
+      "수마의 나들이": "When Slumber Comes Calling"
     });
     Object.assign(I18N_DATA.arcana.ja, {
-      "이게 옷이라고요?": "これが…服？"
+      "이게 옷이라고요?": "これが…服？",
+      "수마의 나들이": "睡魔のお出かけ"
     });
 
     GROWTH_PRIORITY.gwen = { tier: "1티어", level: "tier-1" };
@@ -139,9 +143,9 @@
     const updateList = updateNotice?.querySelector(".site-update-list");
     if (updateList) {
       updateList.innerHTML = `
+        <li>수마의 나들이 추가 및 세이라 추천 세팅 변경 (10.24)</li>
         <li>레디 메이드 퍼피 리디아 추가 및 추천 세팅 반영 (10.16)</li>
         <li>서부 탈환대 리디아 추천 아르카나 변경 (10.16)</li>
-        <li>클라리사 추천 아르카나 변경 (10.02)</li>
       `;
       if (typeof applyLanguageToDOM === "function") applyLanguageToDOM(updateNotice);
     }
@@ -150,7 +154,7 @@
 
     const hash = decodeURIComponent(location.hash.replace(/^#/, ""));
     const activeSaviorId = hash.startsWith("savior/") ? hash.slice("savior/".length) : "";
-    if (["roberta", "lydia", "lydia-moon-caster", "waltz-asherah", "gwen"].includes(activeSaviorId) && typeof openSavior === "function") {
+    if (["roberta", "lydia", "lydia-moon-caster", "waltz-asherah", "gwen", "seira"].includes(activeSaviorId) && typeof openSavior === "function") {
       openSavior(activeSaviorId, { skipHash: true, keepScroll: true });
     }
   }, { once: true });
