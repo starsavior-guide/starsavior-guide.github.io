@@ -5899,6 +5899,19 @@ SAVIORS.forEach((savior) => {
   savior.detail.arcana.alternatives = createStrikerAlternativeArcana();
 });
 
+const seiraBuild = SAVIORS.find((savior) => savior.id === "seira");
+if (seiraBuild?.detail?.arcana) {
+  seiraBuild.detail.arcana.pve[4] = {
+    name: "수마의 나들이",
+    note: ""
+  };
+  seiraBuild.detail.arcana.alternatives[2] = {
+    name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸 or 자칭 베테랑 탐정의 수사법",
+    note: "부족한 자리 대체"
+  };
+  seiraBuild.detail.arcana.alternatives[3] = null;
+}
+
 const clarissaBuild = SAVIORS.find((savior) => savior.id === "clarissa");
 if (clarissaBuild?.detail?.arcana) {
   clarissaBuild.detail.arcana.pve = [
