@@ -1735,5 +1735,230 @@
       "아크 포인트"
     ],
     "capturedAt": "2026-10-15T03:45:28.701Z"
+  },
+  "1059": {
+    "key": "ceres-sun-supporter",
+    "id": 1059,
+    "slug": "ceres-sun-supporter",
+    "file": "./1059.html",
+    "source": "https://ss.espr.gg/ko/database/characters/ceres-sun-supporter",
+    "capturedAt": "2026-10-28T15:16:16.748Z",
+    "upcoming": true,
+    "profile": {
+      "name": "세레스",
+      "grade": "SSR",
+      "element": "태양",
+      "className": "서포터",
+      "attackType": "참격",
+      "description": "서부 탈환대의 대장이자 서부 탈환을 꿈꾸는 서부인들의 희망. 강한 무력을 추구하며 나약한 모습을 보이는 것을 용납하지 않는다.",
+      "affiliation": "서부 탈환대",
+      "portrait": "./data/savior-detail-assets/1059-portrait.webp",
+      "illustration": "./data/savior-detail-assets/1059-illustration.webp"
+    },
+    "journey": {
+      "source": "https://ss.espr.gg/ko/database/characters/ceres-sun-supporter/journey",
+      "baseStats": {
+        "str": 10,
+        "hp": 30,
+        "end": 30,
+        "focus": 10,
+        "prot": 10
+      },
+      "resonances": [
+        {
+          "step": 1,
+          "unlockLevel": 20,
+          "journeyStat": {
+            "type": "hp",
+            "value": 30
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 75
+            },
+            {
+              "type": "hp",
+              "value": 720
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 2,
+          "unlockLevel": 40,
+          "journeyStat": {
+            "type": "end",
+            "value": 30
+          },
+          "stats": [
+            {
+              "type": "hp_rate",
+              "value": 0.02
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "atk",
+              "value": 100
+            },
+            {
+              "type": "def",
+              "value": 60
+            }
+          ],
+          "potential": "POTEN_PASSIVE_0002"
+        },
+        {
+          "step": 4,
+          "unlockLevel": 80,
+          "journeyStat": {
+            "type": "hp",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "def_rate",
+              "value": 0.02
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 5,
+          "unlockLevel": 100,
+          "journeyStat": {
+            "type": "end",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "hp",
+              "value": 900
+            },
+            {
+              "type": "def",
+              "value": 75
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "hp_rate",
+              "value": 0.04
+            }
+          ],
+          "potential": "POTEN_PASSIVE_0003"
+        },
+        {
+          "step": 7,
+          "unlockLevel": 140,
+          "journeyStat": {
+            "type": "hp",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 125
+            },
+            {
+              "type": "hp",
+              "value": 1080
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 8,
+          "unlockLevel": 160,
+          "journeyStat": {
+            "type": "hp",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "def_rate",
+              "value": 0.04
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 9,
+          "unlockLevel": 180,
+          "journeyStat": {
+            "type": "end",
+            "value": 50
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 150
+            },
+            {
+              "type": "def",
+              "value": 90
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "spd",
+              "value": 6
+            }
+          ],
+          "potential": "POTEN_PASSIVE_1004"
+        }
+      ],
+      "potentialCodes": [
+        {
+          "step": 3,
+          "code": "POTEN_PASSIVE_0002"
+        },
+        {
+          "step": 6,
+          "code": "POTEN_PASSIVE_0003"
+        },
+        {
+          "step": 10,
+          "code": "POTEN_PASSIVE_1004"
+        }
+      ],
+      "charm": {
+        "name": {
+          "ko": "봉사의 머리띠",
+          "en": "Headband of Service",
+          "ja": "ご奉仕のホワイトブリム"
+        },
+        "flavor": {
+          "ko": "세레스가 봉사의 마음가짐을 표현하기 위해 착용한 머리띠. 본인은 내심 디자인이 마음에 든 듯 하다.",
+          "en": "A headband Ceres wears to show her dedication to serving others. Though she won't admit it, she seems rather fond of the design itself.",
+          "ja": "セレスが奉仕の心を示すために身に着けたヘッドドレス。本人も内心、そのデザインを気に入っているようだ。"
+        },
+        "effect": {
+          "ko": "턴 시작 시 자신에게 <b><color=#DD982C>먼지 포착(해제불가)</color></b>을 1회 발생시킵니다. <b><color=#DD982C>손님 맞이 청소</color></b> 사용 후 적 전체에게 100% 확률로 2턴 간 <b><color=#DD982C>중독</color></b>을 1개 발생시킵니다. 중독은 자신의 <b><color=#DD982C>최대 생명력</color></b>에 비례해 피해량이 증가합니다.",
+          "en": "At the start of the turn, grants self 1 stack of <b><color=#DD982C>Dust Detection (Undispellable)</color></b>. After using <b><color=#DD982C>Pre-Arrival Cleanup</color></b>, has a 100% chance to inflict <b><color=#DD982C>Poison</color></b> on all enemies for 2 turns. Poison damage is proportional to self <b><color=#DD982C>Max HP</color></b>.",
+          "ja": "ターン開始時、自身に<b><color=#DD982C>ホコリ捕捉(解除不可)</color></b>を1つ付与する。<b><color=#DD982C>おもてなしのお掃除</color></b>使用後、敵全体に100％の確率で1つの<b><color=#DD982C>中毒</color></b>を2ターン付与する。中毒は自身の<b><color=#DD982C>最大HP</color></b>に比例してダメージが上がる。"
+        },
+        "image": "./data/savior-detail-assets/1059-charm.webp"
+      }
+    }
   }
 }

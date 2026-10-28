@@ -738,6 +738,7 @@ const EQUIPMENT_SET_IMAGE_NAMES = new Set([
 ]);
 
 const SAVIOR_DETAIL_IDS = {
+  "ceres-sun-supporter": 1059,
   "lydia-moon-caster": 1060,
   "gwen": 1040,
   "asherah-voyager": 1001,
@@ -1406,6 +1407,11 @@ I18N_DATA.saviorNames.en["리디아"] = "Lydia";
 I18N_DATA.saviorNames.ja["리디아"] = "リディア";
 I18N_DATA.subtitles.en["레디 메이드 퍼피"] = "Ready-Made Puppy";
 I18N_DATA.subtitles.ja["레디 메이드 퍼피"] = "レディーメイド・パピー";
+
+I18N_DATA.subtitles.en["샤프 앤 스위트"] = "Sharp & Sweet";
+I18N_DATA.subtitles.ja["샤프 앤 스위트"] = "シャープ＆スイーツ";
+I18N_DATA.ui.en["출시 예정"] = "Upcoming";
+I18N_DATA.ui.ja["출시 예정"] = "近日登場";
 
 const SAVIORS = [
   {
@@ -5764,6 +5770,21 @@ const SAVIORS = [
         }
       }
     }
+  },
+  {
+    "id": "ceres-sun-supporter",
+    "name": "세레스",
+    "subtitle": "샤프 앤 스위트",
+    "affiliation": "서부 탈환대",
+    "grade": "SSR",
+    "element": "sun",
+    "className": "서포터",
+    "role": "서포터",
+    "attackType": "참격",
+    "image": "./data/savior-detail-assets/1059-portrait.webp",
+    "summary": "출시 예정 구원자입니다. PVE 세팅 정보는 미정입니다.",
+    "guideUrl": "https://ss.espr.gg/ko/database/characters/ceres-sun-supporter",
+    "upcoming": true
   }
 ];
 
@@ -5971,6 +5992,7 @@ const SAVIOR_LAUNCH_DATE = 20251120;
 const SAVIOR_SOURCE_INDEX = new Map(SAVIORS.map((savior, index) => [savior.id, index]));
 
 function getSaviorReleaseSortValue(savior) {
+  if (savior.upcoming) return Number.MAX_SAFE_INTEGER;
   if (Object.prototype.hasOwnProperty.call(SAVIOR_RELEASE_DATE, savior.id)) {
     return SAVIOR_RELEASE_DATE[savior.id];
   }
@@ -6128,6 +6150,7 @@ function createSaviorCard(savior) {
       <span class="card-subtitle" data-i18n-kind="subtitle" data-i18n-source="${escapeHtml(savior.subtitle)}">${escapeHtml(localizedSubtitle)}</span>
       <div class="card-tags">
         <span class="mini-tag">${escapeHtml(localizedClass)}</span>
+        ${savior.upcoming ? `<span class="mini-tag">${escapeHtml(translateString("출시 예정"))}</span>` : ""}
       </div>
     </div>
   `;
@@ -7987,6 +8010,7 @@ function createDetailMarkup(savior) {
           <span class="detail-badge">${escapeHtml(savior.className)}</span>
           ${roleBadge}
           ${attackTypeBadge}
+          ${savior.upcoming ? `<span class="detail-badge">${escapeHtml(translateString("출시 예정"))}</span>` : ""}
         </div>
 
         <h1 class="detail-title" data-i18n-kind="savior" data-i18n-source="${escapeHtml(savior.name)}">${escapeHtml(getLocalizedSaviorName(savior.name))}</h1>

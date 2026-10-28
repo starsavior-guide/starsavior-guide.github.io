@@ -6,6 +6,7 @@
 
   core.addEventListener("load", () => {
     Object.assign(I18N_DATA.ui.en, {
+      "샤프 앤 스위트 세레스 사전 정보 추가 (10.29)": "Sharp & Sweet Ceres preview added (10.29)",
       "음독의 각오/자칭 베테랑 탐정의 수사법 대체": "Alternative to Even If It's Poison / [A Self-Proclaimed Veteran Detective] Memory",
       "수마의 나들이 추가 및 세이라 추천 세팅 변경 (10.24)": "When Slumber Comes Calling added and Seira recommended setup updated (10.24)",
       "레디 메이드 퍼피 리디아 추가 및 추천 세팅 반영 (10.16)": "Ready-Made Puppy Lydia added and recommended setup updated (10.16)",
@@ -13,6 +14,7 @@
       "※ 왈츠 오브 스타라이트 아세라는 힘 1,000 / 체력 1,000을 목표로 세팅 권장": "※ Waltz of Starlight Asherah: Recommended target — Strength 1,000 / HP 1,000"
     });
     Object.assign(I18N_DATA.ui.ja, {
+      "샤프 앤 스위트 세레스 사전 정보 추가 (10.29)": "シャープ＆スイーツ セレス事前情報追加 (10.29)",
       "음독의 각오/자칭 베테랑 탐정의 수사법 대체": "「毒でも覚悟のうえ／自称ベテラン探偵の捜査法」の代替",
       "수마의 나들이 추가 및 세이라 추천 세팅 변경 (10.24)": "「睡魔のお出かけ」追加・セイラおすすめセッティング変更 (10.24)",
       "레디 메이드 퍼피 리디아 추가 및 추천 세팅 반영 (10.16)": "レディーメイド・パピー リディア追加・おすすめセッティング反映 (10.16)",
@@ -143,6 +145,7 @@
     const updateList = updateNotice?.querySelector(".site-update-list");
     if (updateList) {
       updateList.innerHTML = `
+        <li>샤프 앤 스위트 세레스 사전 정보 추가 (10.29)</li>
         <li>수마의 나들이 추가 및 세이라 추천 세팅 변경 (10.24)</li>
         <li>레디 메이드 퍼피 리디아 추가 및 추천 세팅 반영 (10.16)</li>
         <li>서부 탈환대 리디아 추천 아르카나 변경 (10.16)</li>
