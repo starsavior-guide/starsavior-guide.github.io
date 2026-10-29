@@ -3061,11 +3061,11 @@ const SAVIORS = [
           "necklace": "속도",
           "ring": "공격력%",
           "sets": [
-            "파괴(4) + 적중(2)",
-            "통찰(4) + 적중(2)"
+            "파괴(4) + 투지(2)",
+            "통찰(4) + 투지(2)"
           ],
           "potential": "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
-          "note": "정밀(4) 사용시 적중(2) 대신 투지(2) 사용 가능"
+          "note": ""
         },
         "pvp": {
           "necklace": "해당 엑셀에 없음",
@@ -3079,14 +3079,11 @@ const SAVIORS = [
       },
       "arcana": {
         "pve": [
-          {
-            "name": "공용 아르카나",
-            "note": ""
-          },
-          null,
-          null,
-          null,
-          null
+          { "name": "단점 보완 맞춤 훈련", "note": "" },
+          { "name": "불굴의 역작", "note": "" },
+          { "name": "탐닉자의 유흥거리", "note": "" },
+          { "name": "꽃들에게 죽음을", "note": "" },
+          { "name": "영원 속박의 굴레", "note": "" }
         ],
         "pvp": [
           null,
@@ -3096,9 +3093,9 @@ const SAVIORS = [
           null
         ],
         "alternatives": [
-          null,
-          null,
-          null,
+          { "name": "노 페인, 노 게인", "note": "단점 보완 맞춤 훈련 대체" },
+          { "name": "메이드 바이 페트라♡ or 별을 보며 꿈을 or 깊은 애도", "note": "꽃들에게 죽음을 대체" },
+          { "name": "하얀 달의 온기는 햇빛처럼 or 완벽한 바니걸 or 어느 한 기사의 맹세", "note": "부족한 자리 대체" },
           null,
           null
         ]
@@ -7767,7 +7764,7 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
     );
   }
 
-  if (savior.id === "clarissa") {
+  if (savior.id === "clarissa" || savior.id === "lugh") {
     return Array.from(
       { length: 5 },
       (_, index) => existingAlternatives?.[index] || null
