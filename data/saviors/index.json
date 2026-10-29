@@ -1742,8 +1742,7 @@
     "slug": "ceres-sun-supporter",
     "file": "./1059.html",
     "source": "https://ss.espr.gg/ko/database/characters/ceres-sun-supporter",
-    "capturedAt": "2026-10-28T15:16:16.748Z",
-    "upcoming": true,
+    "capturedAt": "2026-10-29T03:41:36.663Z",
     "profile": {
       "name": "세레스",
       "grade": "SSR",
@@ -1753,7 +1752,38 @@
       "description": "서부 탈환대의 대장이자 서부 탈환을 꿈꾸는 서부인들의 희망. 강한 무력을 추구하며 나약한 모습을 보이는 것을 용납하지 않는다.",
       "affiliation": "서부 탈환대",
       "portrait": "./data/savior-detail-assets/1059-portrait.webp",
-      "illustration": "./data/savior-detail-assets/1059-illustration.webp"
+      "illustration": "./data/savior-detail-assets/1059-illustration.webp",
+      "birthday": "1월 1일",
+      "height": "158cm",
+      "origin": "서부 재난 지대",
+      "cvKr": "이은조",
+      "cvJp": "나츠요시 유우코",
+      "localized": {
+        "ko": {
+          "birthday": "1월 1일",
+          "height": "158cm",
+          "origin": "서부 재난 지대",
+          "affiliation": "서부 탈환대",
+          "cvKr": "이은조",
+          "cvJp": "나츠요시 유우코"
+        },
+        "en": {
+          "birthday": "January 1",
+          "height": "158 cm",
+          "origin": "Western Disaster Zone",
+          "affiliation": "Western Liberators",
+          "cvKr": "Lee Eun-jo",
+          "cvJp": "Yuko Natsuyoshi"
+        },
+        "ja": {
+          "birthday": "1月1日",
+          "height": "158cm",
+          "origin": "西部被災地",
+          "affiliation": "西部奪還隊",
+          "cvKr": "イ・ウンジョ",
+          "cvJp": "夏吉ゆうこ"
+        }
+      }
     },
     "journey": {
       "source": "https://ss.espr.gg/ko/database/characters/ceres-sun-supporter/journey",

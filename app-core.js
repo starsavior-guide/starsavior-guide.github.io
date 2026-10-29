@@ -5782,9 +5782,8 @@ const SAVIORS = [
     "role": "서포터",
     "attackType": "참격",
     "image": "./data/savior-detail-assets/1059-portrait.webp",
-    "summary": "출시 예정 구원자입니다. PVE 세팅 정보는 미정입니다.",
-    "guideUrl": "https://ss.espr.gg/ko/database/characters/ceres-sun-supporter",
-    "upcoming": true
+    "summary": "ESPR 구원자 정보를 반영했습니다. PVE 세팅 정보는 미정입니다.",
+    "guideUrl": "https://ss.espr.gg/ko/database/characters/ceres-sun-supporter"
   }
 ];
 
@@ -6283,8 +6282,10 @@ function resolveSaviorDetailId(savior) {
 
 function getLocalSaviorProfile(savior) {
   const detailId = resolveSaviorDetailId(savior);
-  const profile = saviorProfileIndex?.[String(detailId)]?.profile;
-  if (!profile) return null;
+  const storedProfile = saviorProfileIndex?.[String(detailId)]?.profile;
+  if (!storedProfile) return null;
+  const localizedProfile = storedProfile.localized?.[currentLanguage];
+  const profile = localizedProfile ? { ...storedProfile, ...localizedProfile } : storedProfile;
 
   const normalizeLocalAsset = (value) => String(value || "")
     .replace(/^\.\.\/savior-detail-assets\//, "./data/savior-detail-assets/")
