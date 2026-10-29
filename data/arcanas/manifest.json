@@ -7,12 +7,13 @@
     "en",
     "ja"
   ],
-  "arcanaCount": 84,
-  "eventCount": 206,
-  "choiceCount": 257,
-  "potentialCount": 59,
+  "arcanaCount": 85,
+  "eventCount": 209,
+  "choiceCount": 261,
+  "potentialCount": 60,
   "journeyBuffCount": 13,
-  "assetCount": 166,
-  "assetBytes": 9408242,
-  "localOnly": true
+  "assetCount": 168,
+  "assetBytes": 9595380,
+  "localOnly": true,
+  "lastNewSyncAt": "2026-10-29T03:33:49.518Z"
 }

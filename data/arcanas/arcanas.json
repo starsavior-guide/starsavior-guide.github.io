@@ -2626,6 +2626,35 @@
           "icon": "./data/arcana-assets/status/buff_poten_passive_110141.webp"
         }
       ]
+    },
+    {
+      "id": 35004,
+      "strId": "ESPR_SKILLED_ACCELERATION",
+      "type": "특수 잠재력",
+      "class": "서포터",
+      "name": {
+        "ko": "숙련 가속",
+        "en": "Skilled Acceleration",
+        "ja": "熟練加速"
+      },
+      "description": {
+        "ko": "공격이 아닌 특수기 사용 후 자신의 속도가 4씩 증가합니다. 최대 5회 중첩됩니다.",
+        "en": "After using a non-attack Special Skill, increases self SPD by 4. Stacks up to 5 times.",
+        "ja": "攻撃ではない特殊スキル使用後、自身の速度が4上がる。この効果は最大5回までスタックできる。"
+      },
+      "icon": "./data/arcana-assets/potentials/35004.webp",
+      "background": "./data/arcana-assets/potential-backgrounds/blue.webp",
+      "levels": [
+        {
+          "level": 1,
+          "description": {
+            "ko": "공격이 아닌 특수기 사용 후 자신의 속도가 4씩 증가합니다. 최대 5회 중첩됩니다.",
+            "en": "After using a non-attack Special Skill, increases self SPD by 4. Stacks up to 5 times.",
+            "ja": "攻撃ではない特殊スキル使用後、自身の速度が4上がる。この効果は最大5回までスタックできる。"
+          }
+        }
+      ],
+      "source": "https://ss.espr.gg/ko/database/potentials/skilled-acceleration"
     }
   ],
   "journeyBuffs": [
@@ -34261,6 +34290,491 @@
           ]
         }
       ]
+    },
+    {
+      "id": 7105901,
+      "name": {
+        "ko": "가혹한 시련",
+        "en": "Maid for Hardship",
+        "ja": "過酷な試練"
+      },
+      "character": {
+        "ko": "세레스",
+        "en": "Ceres",
+        "ja": "セレス"
+      },
+      "rarity": "SSR",
+      "mainStat": {
+        "ko": "체력",
+        "en": "Vitality",
+        "ja": "体力"
+      },
+      "assists": [
+        {
+          "ko": "속도",
+          "en": "SPD",
+          "ja": "速度"
+        },
+        {
+          "ko": "서포터",
+          "en": "Supporter",
+          "ja": "サポーター"
+        }
+      ],
+      "image": "./data/arcana-assets/cards/7105901.webp",
+      "mainStatIcon": "./data/arcana-assets/status/health.webp",
+      "specialPotentialId": 35004,
+      "uniqueEffect": {
+        "name": {
+          "ko": "메이드의 의욕",
+          "en": "A Maid's Motivation",
+          "ja": "メイドの意欲"
+        },
+        "description": {
+          "ko": "인연 포인트 30 이상일 때 컨디션 효과 상승 +5.00%",
+          "en": "When Bond Points are at 30 or higher Condition Effect Increase +5.00%",
+          "ja": "絆ポイントが30以上の場合 コンディション効果上昇 +5.00%"
+        },
+        "unlockLevel": 35
+      },
+      "effects": {
+        "journeyStart": [
+          {
+            "unlockLevel": 35,
+            "promotePerLevel": 5,
+            "valueType": {
+              "ko": "체력",
+              "en": "Vitality",
+              "ja": "体力"
+            },
+            "isRate": false,
+            "valueInt": 3,
+            "valueRate": 0,
+            "valueIntPerPromote": 3,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 3,
+                "display": "3"
+              },
+              "40": {
+                "value": 6,
+                "display": "6"
+              },
+              "45": {
+                "value": 9,
+                "display": "9"
+              },
+              "50": {
+                "value": 12,
+                "display": "12"
+              }
+            }
+          },
+          {
+            "unlockLevel": 10,
+            "promotePerLevel": 10,
+            "valueType": {
+              "ko": "인연 포인트 증가",
+              "en": "Bond Points Gain",
+              "ja": "絆ポイント増加"
+            },
+            "isRate": false,
+            "valueInt": 7,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 9,
+                "display": "9"
+              },
+              "40": {
+                "value": 10,
+                "display": "10"
+              },
+              "45": {
+                "value": 10,
+                "display": "10"
+              },
+              "50": {
+                "value": 11,
+                "display": "11"
+              }
+            }
+          }
+        ],
+        "training": [
+          {
+            "unlockLevel": 10,
+            "promotePerLevel": 20,
+            "valueType": {
+              "ko": "추가 체력 능력치 획득",
+              "en": "Additional Vitality Stat Gain",
+              "ja": "追加体力ステータス獲得"
+            },
+            "isRate": false,
+            "valueInt": 1,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 2,
+                "display": "2"
+              },
+              "40": {
+                "value": 2,
+                "display": "2"
+              },
+              "45": {
+                "value": 2,
+                "display": "2"
+              },
+              "50": {
+                "value": 3,
+                "display": "3"
+              }
+            }
+          },
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "valueType": {
+              "ko": "훈련 효과 상승",
+              "en": "Training Effectiveness",
+              "ja": "トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 1000,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 16,
+            "values": {
+              "35": {
+                "value": 1544,
+                "display": "15.44%"
+              },
+              "40": {
+                "value": 1624,
+                "display": "16.24%"
+              },
+              "45": {
+                "value": 1704,
+                "display": "17.04%"
+              },
+              "50": {
+                "value": 1784,
+                "display": "17.84%"
+              }
+            }
+          }
+        ],
+        "telepathy": [
+          {
+            "unlockLevel": 20,
+            "promotePerLevel": 1,
+            "valueType": {
+              "ko": "감응 훈련 발생 확률 상승",
+              "en": "Sensory Training Chance",
+              "ja": "感応トレーニングの発生率の上昇"
+            },
+            "isRate": false,
+            "valueInt": 250,
+            "valueRate": 0,
+            "valueIntPerPromote": 5,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 325,
+                "display": "325"
+              },
+              "40": {
+                "value": 350,
+                "display": "350"
+              },
+              "45": {
+                "value": 375,
+                "display": "375"
+              },
+              "50": {
+                "value": 400,
+                "display": "400"
+              }
+            }
+          },
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "valueType": {
+              "ko": "초감응 훈련 효과 상승",
+              "en": "Super Sensory Training Effectiveness",
+              "ja": "超感応トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 1400,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 24,
+            "values": {
+              "35": {
+                "value": 2216,
+                "display": "22.16%"
+              },
+              "40": {
+                "value": 2336,
+                "display": "23.36%"
+              },
+              "45": {
+                "value": 2456,
+                "display": "24.56%"
+              },
+              "50": {
+                "value": 2576,
+                "display": "25.76%"
+              }
+            }
+          }
+        ],
+        "supportQuest": []
+      },
+      "events": [
+        {
+          "name": {
+            "ko": "힘을 원하는가",
+            "en": "Do You Seek Power?",
+            "ja": "力を得たいか"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "",
+                "en": "",
+                "ja": ""
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 5,
+                    "max": 5,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 5,
+                    "max": 5,
+                    "rewardStat": "JST_ENDURANCE",
+                    "statName": {
+                      "ko": "인내",
+                      "en": "Endurance",
+                      "ja": "忍耐"
+                    },
+                    "icon": "./data/arcana-assets/status/endurance.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_CONDITION",
+                    "min": 1,
+                    "max": 1
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 21004,
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "name": {
+            "ko": "기준의 차이",
+            "en": "Different Standards",
+            "ja": "基準の違い"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "",
+                "en": "",
+                "ja": ""
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 12,
+                    "max": 12,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "rewardStat": "JST_ENDURANCE",
+                    "statName": {
+                      "ko": "인내",
+                      "en": "Endurance",
+                      "ja": "忍耐"
+                    },
+                    "icon": "./data/arcana-assets/status/endurance.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAMINA",
+                    "min": 10,
+                    "max": 10
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "name": {
+            "ko": "메이드의 온기",
+            "en": "A Maid's Warmth",
+            "ja": "メイドの温もり"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "괜찮아. 이젠 나 혼자 있어도 돼.",
+                "en": "Look, it's okay. I'll be fine on my own now.",
+                "ja": "大丈夫。もう一人でも平気だよ。"
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 12,
+                    "max": 12,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "rewardStat": "JST_ENDURANCE",
+                    "statName": {
+                      "ko": "인내",
+                      "en": "Endurance",
+                      "ja": "忍耐"
+                    },
+                    "icon": "./data/arcana-assets/status/endurance.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 35004,
+                    "min": 1,
+                    "max": 1
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 21002,
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              ],
+              "failureRewards": []
+            },
+            {
+              "name": {
+                "ko": "응. 고마워.",
+                "en": "Yeah. Thanks.",
+                "ja": "うん、ありがとう。"
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 12,
+                    "max": 12,
+                    "rewardStat": "JST_ENDURANCE",
+                    "statName": {
+                      "ko": "인내",
+                      "en": "Endurance",
+                      "ja": "忍耐"
+                    },
+                    "icon": "./data/arcana-assets/status/endurance.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 35004,
+                    "min": 1,
+                    "max": 1
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 21003,
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        }
+      ],
+      "source": "https://ss.espr.gg/ko/database/arcanas/maid-for-hardship",
+      "capturedAt": "2026-10-29T03:33:03.796Z"
     }
   ]
 }
