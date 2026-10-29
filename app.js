@@ -6,6 +6,7 @@
 
   core.addEventListener("load", () => {
     Object.assign(I18N_DATA.ui.en, {
+      "궤도 수색대 루그 리워크 반영 및 세팅변경 (10.29)": "Orbit Recon Lugh rework applied and setup updated (10.29)",
       "샤프 앤 스위트 세레스 상세정보 보완 (10.29)": "Sharp & Sweet Ceres profile updated (10.29)",
       "음독의 각오/자칭 베테랑 탐정의 수사법 대체": "Alternative to Even If It's Poison / [A Self-Proclaimed Veteran Detective] Memory",
       "수마의 나들이 추가 및 세이라 추천 세팅 변경 (10.24)": "When Slumber Comes Calling added and Seira recommended setup updated (10.24)",
@@ -14,6 +15,7 @@
       "※ 왈츠 오브 스타라이트 아세라는 힘 1,000 / 체력 1,000을 목표로 세팅 권장": "※ Waltz of Starlight Asherah: Recommended target — Strength 1,000 / HP 1,000"
     });
     Object.assign(I18N_DATA.ui.ja, {
+      "궤도 수색대 루그 리워크 반영 및 세팅변경 (10.29)": "軌道偵察隊ルーグ リワーク反映・セッティング変更 (10.29)",
       "샤프 앤 스위트 세레스 상세정보 보완 (10.29)": "シャープ＆スイーツ セレス詳細情報更新 (10.29)",
       "음독의 각오/자칭 베테랑 탐정의 수사법 대체": "「毒でも覚悟のうえ／自称ベテラン探偵の捜査法」の代替",
       "수마의 나들이 추가 및 세이라 추천 세팅 변경 (10.24)": "「睡魔のお出かけ」追加・セイラおすすめセッティング変更 (10.24)",
@@ -145,6 +147,7 @@
     const updateList = updateNotice?.querySelector(".site-update-list");
     if (updateList) {
       updateList.innerHTML = `
+        <li>궤도 수색대 루그 리워크 반영 및 세팅변경 (10.29)</li>
         <li>샤프 앤 스위트 세레스 상세정보 보완 (10.29)</li>
         <li>수마의 나들이 추가 및 세이라 추천 세팅 변경 (10.24)</li>
         <li>레디 메이드 퍼피 리디아 추가 및 추천 세팅 반영 (10.16)</li>
