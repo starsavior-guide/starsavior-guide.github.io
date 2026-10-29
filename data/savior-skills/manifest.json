@@ -11,8 +11,9 @@
   "skillCount": 228,
   "blossomSkillCount": 32,
   "resonancePotentialCount": 171,
-  "buffCount": 88,
-  "assetCount": 332,
+  "buffCount": 91,
+  "assetCount": 339,
   "localOnly": true,
-  "lastNewSyncAt": "2026-10-28T15:16:16.748Z"
+  "lastNewSyncAt": "2026-10-28T15:16:16.748Z",
+  "lastSkillSyncAt": "2026-10-29T09:21:44.870Z"
 }

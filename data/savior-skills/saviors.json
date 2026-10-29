@@ -15060,138 +15060,41 @@
             "ja": "退魔師の道"
           },
           "novaDescription": {
-            "ko": "구원자",
-            "en": "Savior",
-            "ja": "救援者"
+            "ko": "",
+            "en": "",
+            "ja": ""
           },
-          "icon": "./data/savior-skill-assets/skills/10274.webp",
+          "icon": "./data/savior-skill-assets/skills/1027_0-espr.webp",
           "buffs": [
             {
-              "id": 1525,
-              "strId": "BI_FREEZING",
+              "strId": "BI_RECON_AMULET_4",
               "name": {
-                "ko": "빙결",
-                "en": "Freeze",
-                "ja": "凍結"
+                "ko": "설중화(해제불가)",
+                "en": "Snow Blossom (Undispellable)",
+                "ja": "雪中花(解除不可)"
               },
               "description": {
-                "ko": "속도가 3% 감소합니다. 턴 시작 시 시전자의 공격력에 비례해 소량의 빙결 피해를 받습니다.",
-                "en": "SPD decreases by 3%. Takes minor Freeze damage proportional to the caster's ATK at the start of the turn.",
-                "ja": "速度が3%低下する。ターン開始時、発動者の攻撃力に比例した少量の凍結ダメージを受ける。"
+                "ko": "루그가 악을 멸하는 꽃을 피워냅니다. 최대 3회 중첩됩니다.",
+                "en": "Summons a flower that purges evil. Stacks up to 3 times.",
+                "ja": "ルーが悪を滅する花を咲かせる。この効果は最大3回までスタックできる。"
               },
-              "icon": "./data/savior-skill-assets/buffs/BI_FREEZING.webp"
-            }
-          ],
-          "levels": [
-            {
-              "level": 1,
-              "skillDescription": {
-                "ko": "루그가 <b><color=#DD982C>제압부</color></b> 사용 후 적에게 <b><color=#2A80D8>50%</color></b> 확률로 1턴 간 <b><color=#DD982C>빙결</color></b>을 발생시킵니다.",
-                "en": "Inflicts the enemy with <b><color=#DD982C>Freeze</color></b> for 1 turn with a <b><color=#2A80D8>50%</color></b> chance after Lugh uses <b><color=#DD982C>Subdual Charm</color></b>.",
-                "ja": "ルーが<b><color=#DD982C>制圧符</color></b>使用後、敵に<b><color=#2A80D8>50%</color></b>で1ターン<b><color=#DD982C>凍結</color></b>を発生させる。"
-              },
-              "levelDescription": {
-                "ko": "기본 효과",
-                "en": "Base Effect",
-                "ja": "基本効果"
-              }
+              "icon": "./data/savior-skill-assets/buffs/BI_RECON_AMULET_4.webp"
             },
             {
-              "level": 2,
-              "skillDescription": {
-                "ko": "루그의 공격력이 <b><color=#2A80D8>5%</color></b> 증가합니다. 루그가 <b><color=#DD982C>제압부</color></b> 사용 후 적에게 <b><color=#2A80D8>50%</color></b> 확률로 1턴 간 <b><color=#DD982C>빙결</color></b>을 발생시킵니다.",
-                "en": "Increases Lugh's ATK by <b><color=#2A80D8>5%</color></b>. Inflicts the enemy with <b><color=#2A80D8>Freeze</color></b> for 1 turn with a <b><color=#DD982C>50%</color></b> chance after Lugh uses <b><color=#DD982C>Subdual Charm</color></b>.",
-                "ja": "ルーの攻撃力が<b><color=#2A80D8>5%</color></b>上がる。ルーが<b><color=#DD982C>制圧符</color></b>使用後、敵に<b><color=#2A80D8>50%</color></b>で1ターン<b><color=#DD982C>凍結</color></b>を発生させる。"
+              "strId": "BI_RECON_AMULET_3",
+              "name": {
+                "ko": "급급여율령(해제불가)",
+                "en": "Swift Decree (Undispellable)",
+                "ja": "急々如律令(解除不可)"
               },
-              "levelDescription": {
-                "ko": "루그의 공격력이 <b><color=#2A80D8>5%</color></b> 증가합니다. 루그가 <b><color=#DD982C>제압부</color></b> 사용 후 적에게 <b><color=#2A80D8>50%</color></b> 확률로 1턴 간 <b><color=#DD982C>빙결</color></b>을 발생시킵니다.",
-                "en": "Increases Lugh's ATK by <b><color=#2A80D8>5%</color></b>. Inflicts the enemy with <b><color=#2A80D8>Freeze</color></b> for 1 turn with a <b><color=#DD982C>50%</color></b> chance after Lugh uses <b><color=#DD982C>Subdual Charm</color></b>.",
-                "ja": "ルーの攻撃力が<b><color=#2A80D8>5%</color></b>上がる。ルーが<b><color=#DD982C>制圧符</color></b>使用後、敵に<b><color=#2A80D8>50%</color></b>で1ターン<b><color=#DD982C>凍結</color></b>を発生させる。"
-              }
-            },
-            {
-              "level": 3,
-              "skillDescription": {
-                "ko": "루그의 공격력이 <b><color=#2A80D8>10%</color></b> 증가합니다. 루그가 <b><color=#DD982C>제압부</color></b> 사용 후 적에게 <b><color=#2A80D8>75%</color></b> 확률로 1턴 간 <b><color=#DD982C>빙결</color></b>을 발생시킵니다.",
-                "en": "Increases Lugh's ATK by <b><color=#2A80D8>10%</color></b>. Inflicts the enemy with <b><color=#2A80D8>Freeze</color></b> for 1 turn with a <b><color=#DD982C>75%</color></b> chance after Lugh uses <b><color=#DD982C>Subdual Charm</color></b>.",
-                "ja": "ルーの攻撃力が<b><color=#2A80D8>10%</color></b>上がる。ルーが<b><color=#DD982C>制圧符</color></b>使用後、敵に<b><color=#2A80D8>75%</color></b>で1ターン<b><color=#DD982C>凍結</color></b>を発生させる。"
-              },
-              "levelDescription": {
-                "ko": "루그의 공격력이 <b><color=#2A80D8>10%</color></b> 증가합니다. 루그가 <b><color=#DD982C>제압부</color></b> 사용 후 적에게 <b><color=#2A80D8>75%</color></b> 확률로 1턴 간 <b><color=#DD982C>빙결</color></b>을 발생시킵니다.",
-                "en": "Increases Lugh's ATK by <b><color=#2A80D8>10%</color></b>. Inflicts the enemy with <b><color=#2A80D8>Freeze</color></b> for 1 turn with a <b><color=#DD982C>75%</color></b> chance after Lugh uses <b><color=#DD982C>Subdual Charm</color></b>.",
-                "ja": "ルーの攻撃力が<b><color=#2A80D8>10%</color></b>上がる。ルーが<b><color=#DD982C>制圧符</color></b>使用後、敵に<b><color=#2A80D8>75%</color></b>で1ターン<b><color=#DD982C>凍結</color></b>を発生させる。"
-              }
-            },
-            {
-              "level": 4,
-              "skillDescription": {
-                "ko": "루그의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 루그가 <b><color=#DD982C>제압부</color></b> 사용 후 적에게 <b><color=#2A80D8>100%</color></b> 확률로 1턴 간 <b><color=#DD982C>빙결</color></b>을 발생시킵니다.",
-                "en": "Increases Lugh's ATK by <b><color=#2A80D8>15%</color></b>. Inflicts the enemy with <b><color=#2A80D8>Freeze</color></b> for 1 turn with a <b><color=#DD982C>100%</color></b> chance after Lugh uses <b><color=#DD982C>Subdual Charm</color></b>.",
-                "ja": "ルーの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。ルーが<b><color=#DD982C>制圧符</color></b>使用後、敵に<b><color=#2A80D8>100%</color></b>で1ターン<b><color=#DD982C>凍結</color></b>を発生させる。"
-              },
-              "levelDescription": {
-                "ko": "루그의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 루그가 <b><color=#DD982C>제압부</color></b> 사용 후 적에게 <b><color=#2A80D8>100%</color></b> 확률로 1턴 간 <b><color=#DD982C>빙결</color></b>을 발생시킵니다.",
-                "en": "Increases Lugh's ATK by <b><color=#2A80D8>15%</color></b>. Inflicts the enemy with <b><color=#2A80D8>Freeze</color></b> for 1 turn with a <b><color=#DD982C>100%</color></b> chance after Lugh uses <b><color=#DD982C>Subdual Charm</color></b>.",
-                "ja": "ルーの攻撃力が<b><color=#2A80D8>15%</color></b>上がる。ルーが<b><color=#DD982C>制圧符</color></b>使用後、敵に<b><color=#2A80D8>100%</color></b>で1ターン<b><color=#DD982C>凍結</color></b>を発生させる。"
-              }
-            }
-          ],
-          "levelSummaries": [
-            {
-              "level": 1,
               "description": {
-                "ko": "빙결 확률 50% (1턴)",
-                "en": "Freeze chance 50% (1 turn)",
-                "ja": "凍結確率 50%（1ターン）"
-              }
+                "ko": "공격력이 15% 증가합니다.",
+                "en": "Increases ATK by 15%.",
+                "ja": "攻撃力が15%上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_RECON_AMULET_3.webp"
             },
             {
-              "level": 2,
-              "description": {
-                "ko": "공격력 +5% / 빙결 확률 50% (1턴)",
-                "en": "ATK +5% / Freeze chance 50% (1 turn)",
-                "ja": "攻撃力 +5% / 凍結確率 50%（1ターン）"
-              }
-            },
-            {
-              "level": 3,
-              "description": {
-                "ko": "공격력 +10% / 빙결 확률 75% (1턴)",
-                "en": "ATK +10% / Freeze chance 75% (1 turn)",
-                "ja": "攻撃力 +10% / 凍結確率 75%（1ターン）"
-              }
-            },
-            {
-              "level": 4,
-              "description": {
-                "ko": "공격력 +15% / 빙결 확률 100% (1턴)",
-                "en": "ATK +15% / Freeze chance 100% (1 turn)",
-                "ja": "攻撃力 +15% / 凍結確率 100%（1ターン）"
-              }
-            }
-          ]
-        },
-        {
-          "id": 10271,
-          "type": 1,
-          "target": "NSTT_ENEMY_ONE",
-          "cooltime": 0,
-          "break": 0,
-          "nova": 0,
-          "name": {
-            "ko": "제압부",
-            "en": "Subdual Charm",
-            "ja": "制圧符"
-          },
-          "novaDescription": {
-            "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다.",
-            "en": "Self Toughness Fixed DMG temporarily increases by 1 on attack.",
-            "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がる。"
-          },
-          "icon": "./data/savior-skill-assets/skills/10271.webp",
-          "buffs": [
-            {
-              "id": 10002,
               "strId": "BI_ADJUSTTYPE_RESOURCE_MOON",
               "name": {
                 "ko": "냉각",
@@ -15210,134 +15113,399 @@
             {
               "level": 1,
               "skillDescription": {
-                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다.",
-                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>.",
-                "ja": "敵にお札を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。"
+                "ko": "루그가 최초 전투 시작 시 노바 포스를 2 획득합니다. 타격 시 자신의 <b><color=#DD982C>냉각</color></b> 스택에 비례하여 피해량이 4%씩 증가합니다. 자신을 제외한 아군 누군가 공격이 아닌 스킬 사용 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 <b><color=#DD982C>설중사우</color></b> 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니면서 <b><color=#DD982C>설중화(해제불가)</color></b> 상태이면 타격 후 자신에게 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 발생시키고 <b><color=#DD982C>설중화(해제불가)</color></b>의 중첩 횟수 당 자신의 행동 게이지를 <b><color=#2A80D8>20%</color></b> 증가시키며 최대 <b><color=#2A80D8>60%</color></b>까지 증가합니다. 해당 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "At the start of the first battle, gains 2 Nova Force. On attack, increases self damage dealt by 4% per stack of <b><color=#DD982C>Chill</color></b> on self. After an ally excluding self uses a non-attack skill, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. When using <b><color=#DD982C>Winterborne Quartet</color></b> on self turn while having <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> but not <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self <b><color=#DD982C>Swift Decree (Undispellable)</color></b> after attacking and fills self Action Gauge by <b><color=#2A80D8>20%</color></b> per stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, up to a maximum of <b><color=#2A80D8>60%</color></b>. This effect does not trigger on additionally triggered skills.",
+                "ja": "ルーが戦闘開始時、ノヴァフォースを2獲得する。攻撃時、自身の<b><color=#DD982C>冷却</color></b>1スタックにつき、ダメージが4％ずつ上がる。自身を除く味方のいずれかが攻撃ではないスキル使用後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに<b><color=#DD982C>雪中四友</color></b>使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態ではなく、<b><color=#DD982C>雪中花(解除不可)</color></b>状態の場合、攻撃後、自身に<b><color=#DD982C>急々如律令(解除不可)</color></b>を付与し、<b><color=#DD982C>雪中花(解除不可)</color></b>1スタックにつき、自身の行動ゲージを<b><color=#2A80D8>20％</color></b>増やす。この効果による行動ゲージの増加量は最大<b><color=#2A80D8>60％</color></b>となる。この効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
                 "ko": "기본 효과",
                 "en": "Base Effect",
                 "ja": "基本効果"
-              }
+              },
+              "stats": [],
+              "barriers": []
             },
             {
               "level": 2,
               "skillDescription": {
-                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다.",
-                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>.",
-                "ja": "敵にお札を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。"
+                "ko": "루그의 공격력이 <b><color=#2A80D8>5%</color></b> 증가합니다. 루그가 최초 전투 시작 시 노바 포스를 2 획득합니다. 타격 시 자신의 <b><color=#DD982C>냉각</color></b> 스택에 비례하여 피해량이 4%씩 증가합니다. 자신을 제외한 아군 누군가 공격이 아닌 스킬 사용 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 <b><color=#DD982C>설중사우</color></b> 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니면서 <b><color=#DD982C>설중화(해제불가)</color></b> 상태이면 타격 후 자신에게 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 발생시키고 <b><color=#DD982C>설중화(해제불가)</color></b>의 중첩 횟수 당 자신의 행동 게이지를 <b><color=#2A80D8>20%</color></b> 증가시키며 최대 <b><color=#2A80D8>60%</color></b>까지 증가합니다. 해당 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Increases self ATK by <b><color=#2A80D8>5%</color></b>. At the start of the first battle, gains 2 Nova Force. On attack, increases self damage dealt by 4% per stack of <b><color=#DD982C>Chill</color></b> on self. After an ally excluding self uses a non-attack skill, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. When using <b><color=#DD982C>Winterborne Quartet</color></b> on self turn while having <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> but not <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self <b><color=#DD982C>Swift Decree (Undispellable)</color></b> after attacking and fills self Action Gauge by <b><color=#2A80D8>20%</color></b> per stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, up to a maximum of <b><color=#2A80D8>60%</color></b>. This effect does not trigger on additionally triggered skills.",
+                "ja": "ルーの攻撃力が<b><color=#2A80D8>5％</color></b>上がる。ルーが戦闘開始時、ノヴァフォースを2獲得する。攻撃時、自身の<b><color=#DD982C>冷却</color></b>1スタックにつき、ダメージが4％ずつ上がる。自身を除く味方のいずれかが攻撃ではないスキル使用後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに<b><color=#DD982C>雪中四友</color></b>使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態ではなく、<b><color=#DD982C>雪中花(解除不可)</color></b>状態の場合、攻撃後、自身に<b><color=#DD982C>急々如律令(解除不可)</color></b>を付与し、<b><color=#DD982C>雪中花(解除不可)</color></b>1スタックにつき、自身の行動ゲージを<b><color=#2A80D8>20％</color></b>増やす。この効果による行動ゲージの増加量は最大<b><color=#2A80D8>60％</color></b>となる。この効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
-                "ko": "피해량 1% 증가",
-                "en": "DMG +1%",
-                "ja": "与ダメージ1%上昇"
-              }
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              },
+              "stats": [
+                {
+                  "type": "atk_rate",
+                  "value": 500
+                }
+              ],
+              "barriers": []
             },
             {
               "level": 3,
               "skillDescription": {
-                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다.",
-                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>.",
-                "ja": "敵にお札を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。"
+                "ko": "루그의 공격력이 <b><color=#2A80D8>10%</color></b> 증가합니다. 루그가 최초 전투 시작 시 노바 포스를 2 획득합니다. 타격 시 자신의 <b><color=#DD982C>냉각</color></b> 스택에 비례하여 피해량이 4%씩 증가합니다. 자신을 제외한 아군 누군가 공격이 아닌 스킬 사용 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 <b><color=#DD982C>설중사우</color></b> 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니면서 <b><color=#DD982C>설중화(해제불가)</color></b> 상태이면 타격 후 자신에게 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 발생시키고 <b><color=#DD982C>설중화(해제불가)</color></b>의 중첩 횟수 당 자신의 행동 게이지를 <b><color=#2A80D8>30%</color></b> 증가시키며 최대 <b><color=#2A80D8>90%</color></b>까지 증가합니다. 해당 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Increases self ATK by <b><color=#2A80D8>10%</color></b>. At the start of the first battle, gains 2 Nova Force. On attack, increases self damage dealt by 4% per stack of <b><color=#DD982C>Chill</color></b> on self. After an ally excluding self uses a non-attack skill, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. When using <b><color=#DD982C>Winterborne Quartet</color></b> on self turn while having <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> but not <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self <b><color=#DD982C>Swift Decree (Undispellable)</color></b> after attacking and fills self Action Gauge by <b><color=#2A80D8>30%</color></b> per stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, up to a maximum of <b><color=#2A80D8>90%</color></b>. This effect does not trigger on additionally triggered skills.",
+                "ja": "ルーの攻撃力が<b><color=#2A80D8>10％</color></b>上がる。ルーが戦闘開始時、ノヴァフォースを2獲得する。攻撃時、自身の<b><color=#DD982C>冷却</color></b>1スタックにつき、ダメージが4％ずつ上がる。自身を除く味方のいずれかが攻撃ではないスキル使用後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに<b><color=#DD982C>雪中四友</color></b>使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態ではなく、<b><color=#DD982C>雪中花(解除不可)</color></b>状態の場合、攻撃後、自身に<b><color=#DD982C>急々如律令(解除不可)</color></b>を付与し、<b><color=#DD982C>雪中花(解除不可)</color></b>1スタックにつき、自身の行動ゲージを<b><color=#2A80D8>30％</color></b>増やす。この効果による行動ゲージの増加量は最大<b><color=#2A80D8>90％</color></b>となる。この効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
-                "ko": "피해량 1% 증가",
-                "en": "DMG +1%",
-                "ja": "与ダメージ1%上昇"
-              }
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              },
+              "stats": [
+                {
+                  "type": "atk_rate",
+                  "value": 1000
+                }
+              ],
+              "barriers": []
             },
             {
               "level": 4,
               "skillDescription": {
-                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다.",
-                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>.",
-                "ja": "敵にお札を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。"
+                "ko": "루그의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 루그가 최초 전투 시작 시 노바 포스를 2 획득합니다. 타격 시 자신의 <b><color=#DD982C>냉각</color></b> 스택에 비례하여 피해량이 4%씩 증가합니다. 자신을 제외한 아군 누군가 공격이 아닌 스킬 사용 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 <b><color=#DD982C>설중사우</color></b> 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니면서 <b><color=#DD982C>설중화(해제불가)</color></b> 상태이면 타격 후 자신에게 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 발생시키고 <b><color=#DD982C>설중화(해제불가)</color></b>의 중첩 횟수 당 자신의 행동 게이지를 <b><color=#2A80D8>40%</color></b> 증가시키며 최대 <b><color=#2A80D8>120%</color></b>까지 증가합니다. 해당 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Increases self ATK by <b><color=#2A80D8>15%</color></b>. At the start of the first battle, gains 2 Nova Force. On attack, increases self damage dealt by 4% per stack of <b><color=#DD982C>Chill</color></b> on self. After an ally excluding self uses a non-attack skill, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. When using <b><color=#DD982C>Winterborne Quartet</color></b> on self turn while having <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> but not <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self <b><color=#DD982C>Swift Decree (Undispellable)</color></b> after attacking and fills self Action Gauge by <b><color=#2A80D8>40%</color></b> per stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, up to a maximum of <b><color=#2A80D8>120%</color></b>. This effect does not trigger on additionally triggered skills.",
+                "ja": "ルーの攻撃力が<b><color=#2A80D8>15％</color></b>上がる。ルーが戦闘開始時、ノヴァフォースを2獲得する。攻撃時、自身の<b><color=#DD982C>冷却</color></b>1スタックにつき、ダメージが4％ずつ上がる。自身を除く味方のいずれかが攻撃ではないスキル使用後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに<b><color=#DD982C>雪中四友</color></b>使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態ではなく、<b><color=#DD982C>雪中花(解除不可)</color></b>状態の場合、攻撃後、自身に<b><color=#DD982C>急々如律令(解除不可)</color></b>を付与し、<b><color=#DD982C>雪中花(解除不可)</color></b>1スタックにつき、自身の行動ゲージを<b><color=#2A80D8>40％</color></b>増やす。この効果による行動ゲージの増加量は最大<b><color=#2A80D8>120％</color></b>となる。この効果は追加発動スキルには発生しない。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              },
+              "stats": [
+                {
+                  "type": "atk_rate",
+                  "value": 1500
+                }
+              ],
+              "barriers": []
+            }
+          ],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "중첩당 행동 게이지 +20% (최대 60%)",
+                "en": "Action Gauge +20% per stack (max 60%)",
+                "ja": "1スタックあたり行動ゲージ +20%（最大60%）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% · 중첩당 행동 게이지 +20% (최대 60%)",
+                "en": "ATK +5% · Action Gauge +20% per stack (max 60%)",
+                "ja": "攻撃力 +5% · 1スタックあたり行動ゲージ +20%（最大60%）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% · 중첩당 행동 게이지 +30% (최대 90%)",
+                "en": "ATK +10% · Action Gauge +30% per stack (max 90%)",
+                "ja": "攻撃力 +10% · 1スタックあたり行動ゲージ +30%（最大90%）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% · 중첩당 행동 게이지 +40% (최대 120%)",
+                "en": "ATK +15% · Action Gauge +40% per stack (max 120%)",
+                "ja": "攻撃力 +15% · 1スタックあたり行動ゲージ +40%（最大120%）"
+              }
+            }
+          ],
+          "baseCooltime": 0,
+          "factors": {
+            "damage": {
+              "atk": 0,
+              "hp": 0,
+              "def": 0,
+              "spd": 0
+            },
+            "heal": {
+              "atk": 0,
+              "hp": 0,
+              "def": 0,
+              "spd": 0
+            }
+          }
+        },
+        {
+          "id": 10271,
+          "type": 1,
+          "target": "NSTT_ENEMY_ONE",
+          "cooltime": 0,
+          "break": 0,
+          "nova": 0,
+          "name": {
+            "ko": "제압부",
+            "en": "Subdual Charm",
+            "ja": "制圧符"
+          },
+          "novaDescription": {
+            "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가하고 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면서 <b><color=#DD982C>설중화(해제불가)</color></b> 상태이면 추가 턴이 발생합니다.",
+            "en": "Temporarily deals 1 more Toughness Fixed DMG on attack. After attacking, if self has both <b><color=#DD982C>Swift Decree (Undispellable)</color></b> and <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, grants self an extra turn.",
+            "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がり、攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態、かつ<b><color=#DD982C>雪中花(解除不可)</color></b>状態の場合、追加ターンが発生する。"
+          },
+          "icon": "./data/savior-skill-assets/skills/1027_1-espr.webp",
+          "buffs": [
+            {
+              "strId": "BI_ADJUSTTYPE_RESOURCE_MOON",
+              "name": {
+                "ko": "냉각",
+                "en": "Chill",
+                "ja": "冷却"
+              },
+              "description": {
+                "ko": "태양 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.",
+                "en": "Damage dealt to Sun Attribute units increases by 1%. Applies up to 5 stacks. This boost applies independently of buffs and debuffs.",
+                "ja": "太陽属性ユニットへの与ダメージが1%アップ。最大5スタックまで適用される。ブースト効果は強化/弱体化に関係なく、独立して適用される。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_ADJUSTTYPE_RESOURCE_MOON.webp"
+            },
+            {
+              "strId": "BI_RECON_AMULET_4",
+              "name": {
+                "ko": "설중화(해제불가)",
+                "en": "Snow Blossom (Undispellable)",
+                "ja": "雪中花(解除不可)"
+              },
+              "description": {
+                "ko": "루그가 악을 멸하는 꽃을 피워냅니다. 최대 3회 중첩됩니다.",
+                "en": "Summons a flower that purges evil. Stacks up to 3 times.",
+                "ja": "ルーが悪を滅する花を咲かせる。この効果は最大3回までスタックできる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_RECON_AMULET_4.webp"
+            },
+            {
+              "strId": "BI_RECON_AMULET_3",
+              "name": {
+                "ko": "급급여율령(해제불가)",
+                "en": "Swift Decree (Undispellable)",
+                "ja": "急々如律令(解除不可)"
+              },
+              "description": {
+                "ko": "공격력이 15% 증가합니다.",
+                "en": "Increases ATK by 15%.",
+                "ja": "攻撃力が15%上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_RECON_AMULET_3.webp"
+            },
+            {
+              "strId": "BI_RECON_AMULET_5",
+              "name": {
+                "ko": "파사인",
+                "en": "Banishing Mark",
+                "ja": "破邪印"
+              },
+              "description": {
+                "ko": "기본기로 받는 피해량이 5% 증가합니다. 해당 효과는 추가 적용이 가능하며 최대 3개까지 발생합니다.",
+                "en": "Takes 5% increased Basic Skill DMG. This debuff can be applied repeatedly, up to 3 times.",
+                "ja": "基本スキルの攻撃で受けるダメージが5％上がる。この効果は追加適用ができ、最大3つまで発生する。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_RECON_AMULET_5.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다. 자신의 턴에 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 <b><color=#DD982C>제압부</color></b> 대신 <b><color=#DD982C>제압부·참</color></b>을 사용합니다.\n제압부·참 : 적에게 부적을 날려 공격합니다. 타격 시 노바 버스트 발동 횟수에 비례하여 <b><color=#DD982C>제압부·참</color></b>의 피해량이 각각 10%, 30%, 60% 증가합니다. 노바 버스트를 발동하지 않고 타격 시 혹은 타격 후 <b><color=#DD982C>급급여율령(해제불가)</color></b> 해제 시 노바 버스트 발동 횟수에 비례한 피해량 증가 효과를 모두 초기화시킵니다. 타격 시 자신의 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 감소시키고 타격 후 자신이 <b><color=#DD982C>설중화(해제불가)</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 해제합니다. 자신의 턴에 타격 후 적에게 100% 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다. <b><color=#DD982C>파사인</color></b> 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>. When used on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, uses <b><color=#DD982C>Subdual Slash</color></b> instead of <b><color=#DD982C>Subdual Charm</color></b>.\nSubdual Slash: Throws a charm to attack the enemy. On attack, damage dealt by <b><color=#DD982C>Subdual Slash</color></b> increases by 10%, 30%, or 60%, based on the number of Nova Burst activations. All damage increases based on Nova Burst activations are reset when the attack hits without activating Nova Burst or when <b><color=#DD982C>Swift Decree (Undispellable)</color></b> is removed after attacking. On attack, removes 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> from self. After attacking, if self does not have <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, removes <b><color=#DD982C>Swift Decree (Undispellable)</color></b> from self. After attacking on self turn, has a 100% chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn. Effects that come with <b><color=#DD982C>Banishing Mark</color></b> do not trigger on additionally triggered skills.",
+                "ja": "敵に守呪物を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。自身のターンにこのスキルを使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、<b><color=#DD982C>制圧符</color></b>の代わりに<b><color=#DD982C>制圧符・斬</color></b>を発動する。\n制圧符・斬：敵に守呪物を飛ばして攻撃する。ノヴァバーストを発動して攻撃した時、ノヴァバーストの発動回数に比例して<b><color=#DD982C>制圧符・斬</color></b>のダメージがそれぞれ10％、30％、60％上がる。ノヴァバーストを発動せずに攻撃した時、または攻撃後、<b><color=#DD982C>急々如律令(解除不可)</color></b>が解除された時、ノヴァバースト発動回数に比例したダメージ増加効果をすべて初期化する。攻撃時、自身の<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ減少させて、攻撃後、自身が<b><color=#DD982C>雪中花(解除不可)</color></b>状態でない場合、自身の<b><color=#DD982C>急々如律令(解除不可)</color></b>を解除する。自身のターンに攻撃後、敵に100％の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。<b><color=#DD982C>破邪印</color></b>の効果は追加発動スキルには発生しない。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              },
+              "stats": [],
+              "barriers": []
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다. 자신의 턴에 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 <b><color=#DD982C>제압부</color></b> 대신 <b><color=#DD982C>제압부·참</color></b>을 사용합니다.\n제압부·참 : 적에게 부적을 날려 공격합니다. 타격 시 노바 버스트 발동 횟수에 비례하여 <b><color=#DD982C>제압부·참</color></b>의 피해량이 각각 10%, 30%, 60% 증가합니다. 노바 버스트를 발동하지 않고 타격 시 혹은 타격 후 <b><color=#DD982C>급급여율령(해제불가)</color></b> 해제 시 노바 버스트 발동 횟수에 비례한 피해량 증가 효과를 모두 초기화시킵니다. 타격 시 자신의 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 감소시키고 타격 후 자신이 <b><color=#DD982C>설중화(해제불가)</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 해제합니다. 자신의 턴에 타격 후 적에게 100% 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다. <b><color=#DD982C>파사인</color></b> 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>. When used on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, uses <b><color=#DD982C>Subdual Slash</color></b> instead of <b><color=#DD982C>Subdual Charm</color></b>.\nSubdual Slash: Throws a charm to attack the enemy. On attack, damage dealt by <b><color=#DD982C>Subdual Slash</color></b> increases by 10%, 30%, or 60%, based on the number of Nova Burst activations. All damage increases based on Nova Burst activations are reset when the attack hits without activating Nova Burst or when <b><color=#DD982C>Swift Decree (Undispellable)</color></b> is removed after attacking. On attack, removes 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> from self. After attacking, if self does not have <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, removes <b><color=#DD982C>Swift Decree (Undispellable)</color></b> from self. After attacking on self turn, has a 100% chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn. Effects that come with <b><color=#DD982C>Banishing Mark</color></b> do not trigger on additionally triggered skills.",
+                "ja": "敵に守呪物を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。自身のターンにこのスキルを使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、<b><color=#DD982C>制圧符</color></b>の代わりに<b><color=#DD982C>制圧符・斬</color></b>を発動する。\n制圧符・斬：敵に守呪物を飛ばして攻撃する。ノヴァバーストを発動して攻撃した時、ノヴァバーストの発動回数に比例して<b><color=#DD982C>制圧符・斬</color></b>のダメージがそれぞれ10％、30％、60％上がる。ノヴァバーストを発動せずに攻撃した時、または攻撃後、<b><color=#DD982C>急々如律令(解除不可)</color></b>が解除された時、ノヴァバースト発動回数に比例したダメージ増加効果をすべて初期化する。攻撃時、自身の<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ減少させて、攻撃後、自身が<b><color=#DD982C>雪中花(解除不可)</color></b>状態でない場合、自身の<b><color=#DD982C>急々如律令(解除不可)</color></b>を解除する。自身のターンに攻撃後、敵に100％の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。<b><color=#DD982C>破邪印</color></b>の効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
                 "ko": "피해량 1% 증가",
                 "en": "DMG +1%",
                 "ja": "与ダメージ1%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 1
+              },
+              "barriers": []
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다. 자신의 턴에 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 <b><color=#DD982C>제압부</color></b> 대신 <b><color=#DD982C>제압부·참</color></b>을 사용합니다.\n제압부·참 : 적에게 부적을 날려 공격합니다. 타격 시 노바 버스트 발동 횟수에 비례하여 <b><color=#DD982C>제압부·참</color></b>의 피해량이 각각 10%, 30%, 60% 증가합니다. 노바 버스트를 발동하지 않고 타격 시 혹은 타격 후 <b><color=#DD982C>급급여율령(해제불가)</color></b> 해제 시 노바 버스트 발동 횟수에 비례한 피해량 증가 효과를 모두 초기화시킵니다. 타격 시 자신의 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 감소시키고 타격 후 자신이 <b><color=#DD982C>설중화(해제불가)</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 해제합니다. 자신의 턴에 타격 후 적에게 100% 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다. <b><color=#DD982C>파사인</color></b> 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>. When used on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, uses <b><color=#DD982C>Subdual Slash</color></b> instead of <b><color=#DD982C>Subdual Charm</color></b>.\nSubdual Slash: Throws a charm to attack the enemy. On attack, damage dealt by <b><color=#DD982C>Subdual Slash</color></b> increases by 10%, 30%, or 60%, based on the number of Nova Burst activations. All damage increases based on Nova Burst activations are reset when the attack hits without activating Nova Burst or when <b><color=#DD982C>Swift Decree (Undispellable)</color></b> is removed after attacking. On attack, removes 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> from self. After attacking, if self does not have <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, removes <b><color=#DD982C>Swift Decree (Undispellable)</color></b> from self. After attacking on self turn, has a 100% chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn. Effects that come with <b><color=#DD982C>Banishing Mark</color></b> do not trigger on additionally triggered skills.",
+                "ja": "敵に守呪物を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。自身のターンにこのスキルを使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、<b><color=#DD982C>制圧符</color></b>の代わりに<b><color=#DD982C>制圧符・斬</color></b>を発動する。\n制圧符・斬：敵に守呪物を飛ばして攻撃する。ノヴァバーストを発動して攻撃した時、ノヴァバーストの発動回数に比例して<b><color=#DD982C>制圧符・斬</color></b>のダメージがそれぞれ10％、30％、60％上がる。ノヴァバーストを発動せずに攻撃した時、または攻撃後、<b><color=#DD982C>急々如律令(解除不可)</color></b>が解除された時、ノヴァバースト発動回数に比例したダメージ増加効果をすべて初期化する。攻撃時、自身の<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ減少させて、攻撃後、自身が<b><color=#DD982C>雪中花(解除不可)</color></b>状態でない場合、自身の<b><color=#DD982C>急々如律令(解除不可)</color></b>を解除する。自身のターンに攻撃後、敵に100％の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。<b><color=#DD982C>破邪印</color></b>の効果は追加発動スキルには発生しない。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 2
+              },
+              "barriers": []
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다. 자신의 턴에 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 <b><color=#DD982C>제압부</color></b> 대신 <b><color=#DD982C>제압부·참</color></b>을 사용합니다.\n제압부·참 : 적에게 부적을 날려 공격합니다. 타격 시 노바 버스트 발동 횟수에 비례하여 <b><color=#DD982C>제압부·참</color></b>의 피해량이 각각 10%, 30%, 60% 증가합니다. 노바 버스트를 발동하지 않고 타격 시 혹은 타격 후 <b><color=#DD982C>급급여율령(해제불가)</color></b> 해제 시 노바 버스트 발동 횟수에 비례한 피해량 증가 효과를 모두 초기화시킵니다. 타격 시 자신의 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 감소시키고 타격 후 자신이 <b><color=#DD982C>설중화(해제불가)</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 해제합니다. 자신의 턴에 타격 후 적에게 100% 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다. <b><color=#DD982C>파사인</color></b> 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>. When used on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, uses <b><color=#DD982C>Subdual Slash</color></b> instead of <b><color=#DD982C>Subdual Charm</color></b>.\nSubdual Slash: Throws a charm to attack the enemy. On attack, damage dealt by <b><color=#DD982C>Subdual Slash</color></b> increases by 10%, 30%, or 60%, based on the number of Nova Burst activations. All damage increases based on Nova Burst activations are reset when the attack hits without activating Nova Burst or when <b><color=#DD982C>Swift Decree (Undispellable)</color></b> is removed after attacking. On attack, removes 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> from self. After attacking, if self does not have <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, removes <b><color=#DD982C>Swift Decree (Undispellable)</color></b> from self. After attacking on self turn, has a 100% chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn. Effects that come with <b><color=#DD982C>Banishing Mark</color></b> do not trigger on additionally triggered skills.",
+                "ja": "敵に守呪物を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。自身のターンにこのスキルを使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、<b><color=#DD982C>制圧符</color></b>の代わりに<b><color=#DD982C>制圧符・斬</color></b>を発動する。\n制圧符・斬：敵に守呪物を飛ばして攻撃する。ノヴァバーストを発動して攻撃した時、ノヴァバーストの発動回数に比例して<b><color=#DD982C>制圧符・斬</color></b>のダメージがそれぞれ10％、30％、60％上がる。ノヴァバーストを発動せずに攻撃した時、または攻撃後、<b><color=#DD982C>急々如律令(解除不可)</color></b>が解除された時、ノヴァバースト発動回数に比例したダメージ増加効果をすべて初期化する。攻撃時、自身の<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ減少させて、攻撃後、自身が<b><color=#DD982C>雪中花(解除不可)</color></b>状態でない場合、自身の<b><color=#DD982C>急々如律令(解除不可)</color></b>を解除する。自身のターンに攻撃後、敵に100％の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。<b><color=#DD982C>破邪印</color></b>の効果は追加発動スキルには発生しない。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 3
+              },
+              "barriers": []
             },
             {
               "level": 5,
               "skillDescription": {
-                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다.",
-                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>.",
-                "ja": "敵にお札を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。"
+                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다. 자신의 턴에 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 <b><color=#DD982C>제압부</color></b> 대신 <b><color=#DD982C>제압부·참</color></b>을 사용합니다.\n제압부·참 : 적에게 부적을 날려 공격합니다. 타격 시 노바 버스트 발동 횟수에 비례하여 <b><color=#DD982C>제압부·참</color></b>의 피해량이 각각 10%, 30%, 60% 증가합니다. 노바 버스트를 발동하지 않고 타격 시 혹은 타격 후 <b><color=#DD982C>급급여율령(해제불가)</color></b> 해제 시 노바 버스트 발동 횟수에 비례한 피해량 증가 효과를 모두 초기화시킵니다. 타격 시 자신의 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 감소시키고 타격 후 자신이 <b><color=#DD982C>설중화(해제불가)</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 해제합니다. 자신의 턴에 타격 후 적에게 100% 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다. <b><color=#DD982C>파사인</color></b> 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>. When used on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, uses <b><color=#DD982C>Subdual Slash</color></b> instead of <b><color=#DD982C>Subdual Charm</color></b>.\nSubdual Slash: Throws a charm to attack the enemy. On attack, damage dealt by <b><color=#DD982C>Subdual Slash</color></b> increases by 10%, 30%, or 60%, based on the number of Nova Burst activations. All damage increases based on Nova Burst activations are reset when the attack hits without activating Nova Burst or when <b><color=#DD982C>Swift Decree (Undispellable)</color></b> is removed after attacking. On attack, removes 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> from self. After attacking, if self does not have <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, removes <b><color=#DD982C>Swift Decree (Undispellable)</color></b> from self. After attacking on self turn, has a 100% chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn. Effects that come with <b><color=#DD982C>Banishing Mark</color></b> do not trigger on additionally triggered skills.",
+                "ja": "敵に守呪物を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。自身のターンにこのスキルを使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、<b><color=#DD982C>制圧符</color></b>の代わりに<b><color=#DD982C>制圧符・斬</color></b>を発動する。\n制圧符・斬：敵に守呪物を飛ばして攻撃する。ノヴァバーストを発動して攻撃した時、ノヴァバーストの発動回数に比例して<b><color=#DD982C>制圧符・斬</color></b>のダメージがそれぞれ10％、30％、60％上がる。ノヴァバーストを発動せずに攻撃した時、または攻撃後、<b><color=#DD982C>急々如律令(解除不可)</color></b>が解除された時、ノヴァバースト発動回数に比例したダメージ増加効果をすべて初期化する。攻撃時、自身の<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ減少させて、攻撃後、自身が<b><color=#DD982C>雪中花(解除不可)</color></b>状態でない場合、自身の<b><color=#DD982C>急々如律令(解除不可)</color></b>を解除する。自身のターンに攻撃後、敵に100％の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。<b><color=#DD982C>破邪印</color></b>の効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
-                "ko": "피해량 1% 증가",
-                "en": "DMG +1%",
-                "ja": "与ダメージ1%上昇"
-              }
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 4
+              },
+              "barriers": []
             },
             {
               "level": 6,
               "skillDescription": {
-                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다.",
-                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>.",
-                "ja": "敵にお札を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。"
+                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다. 자신의 턴에 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 <b><color=#DD982C>제압부</color></b> 대신 <b><color=#DD982C>제압부·참</color></b>을 사용합니다.\n제압부·참 : 적에게 부적을 날려 공격합니다. 타격 시 노바 버스트 발동 횟수에 비례하여 <b><color=#DD982C>제압부·참</color></b>의 피해량이 각각 10%, 30%, 60% 증가합니다. 노바 버스트를 발동하지 않고 타격 시 혹은 타격 후 <b><color=#DD982C>급급여율령(해제불가)</color></b> 해제 시 노바 버스트 발동 횟수에 비례한 피해량 증가 효과를 모두 초기화시킵니다. 타격 시 자신의 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 감소시키고 타격 후 자신이 <b><color=#DD982C>설중화(해제불가)</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 해제합니다. 자신의 턴에 타격 후 적에게 100% 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다. <b><color=#DD982C>파사인</color></b> 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>. When used on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, uses <b><color=#DD982C>Subdual Slash</color></b> instead of <b><color=#DD982C>Subdual Charm</color></b>.\nSubdual Slash: Throws a charm to attack the enemy. On attack, damage dealt by <b><color=#DD982C>Subdual Slash</color></b> increases by 10%, 30%, or 60%, based on the number of Nova Burst activations. All damage increases based on Nova Burst activations are reset when the attack hits without activating Nova Burst or when <b><color=#DD982C>Swift Decree (Undispellable)</color></b> is removed after attacking. On attack, removes 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> from self. After attacking, if self does not have <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, removes <b><color=#DD982C>Swift Decree (Undispellable)</color></b> from self. After attacking on self turn, has a 100% chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn. Effects that come with <b><color=#DD982C>Banishing Mark</color></b> do not trigger on additionally triggered skills.",
+                "ja": "敵に守呪物を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。自身のターンにこのスキルを使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、<b><color=#DD982C>制圧符</color></b>の代わりに<b><color=#DD982C>制圧符・斬</color></b>を発動する。\n制圧符・斬：敵に守呪物を飛ばして攻撃する。ノヴァバーストを発動して攻撃した時、ノヴァバーストの発動回数に比例して<b><color=#DD982C>制圧符・斬</color></b>のダメージがそれぞれ10％、30％、60％上がる。ノヴァバーストを発動せずに攻撃した時、または攻撃後、<b><color=#DD982C>急々如律令(解除不可)</color></b>が解除された時、ノヴァバースト発動回数に比例したダメージ増加効果をすべて初期化する。攻撃時、自身の<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ減少させて、攻撃後、自身が<b><color=#DD982C>雪中花(解除不可)</color></b>状態でない場合、自身の<b><color=#DD982C>急々如律令(解除不可)</color></b>を解除する。自身のターンに攻撃後、敵に100％の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。<b><color=#DD982C>破邪印</color></b>の効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
                 "ko": "피해량 2% 증가",
                 "en": "DMG +2%",
                 "ja": "与ダメージ2%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 6
+              },
+              "barriers": []
             },
             {
               "level": 7,
               "skillDescription": {
-                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다.",
-                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>.",
-                "ja": "敵にお札を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。"
+                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다. 자신의 턴에 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 <b><color=#DD982C>제압부</color></b> 대신 <b><color=#DD982C>제압부·참</color></b>을 사용합니다.\n제압부·참 : 적에게 부적을 날려 공격합니다. 타격 시 노바 버스트 발동 횟수에 비례하여 <b><color=#DD982C>제압부·참</color></b>의 피해량이 각각 10%, 30%, 60% 증가합니다. 노바 버스트를 발동하지 않고 타격 시 혹은 타격 후 <b><color=#DD982C>급급여율령(해제불가)</color></b> 해제 시 노바 버스트 발동 횟수에 비례한 피해량 증가 효과를 모두 초기화시킵니다. 타격 시 자신의 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 감소시키고 타격 후 자신이 <b><color=#DD982C>설중화(해제불가)</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 해제합니다. 자신의 턴에 타격 후 적에게 100% 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다. <b><color=#DD982C>파사인</color></b> 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>. When used on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, uses <b><color=#DD982C>Subdual Slash</color></b> instead of <b><color=#DD982C>Subdual Charm</color></b>.\nSubdual Slash: Throws a charm to attack the enemy. On attack, damage dealt by <b><color=#DD982C>Subdual Slash</color></b> increases by 10%, 30%, or 60%, based on the number of Nova Burst activations. All damage increases based on Nova Burst activations are reset when the attack hits without activating Nova Burst or when <b><color=#DD982C>Swift Decree (Undispellable)</color></b> is removed after attacking. On attack, removes 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> from self. After attacking, if self does not have <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, removes <b><color=#DD982C>Swift Decree (Undispellable)</color></b> from self. After attacking on self turn, has a 100% chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn. Effects that come with <b><color=#DD982C>Banishing Mark</color></b> do not trigger on additionally triggered skills.",
+                "ja": "敵に守呪物を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。自身のターンにこのスキルを使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、<b><color=#DD982C>制圧符</color></b>の代わりに<b><color=#DD982C>制圧符・斬</color></b>を発動する。\n制圧符・斬：敵に守呪物を飛ばして攻撃する。ノヴァバーストを発動して攻撃した時、ノヴァバーストの発動回数に比例して<b><color=#DD982C>制圧符・斬</color></b>のダメージがそれぞれ10％、30％、60％上がる。ノヴァバーストを発動せずに攻撃した時、または攻撃後、<b><color=#DD982C>急々如律令(解除不可)</color></b>が解除された時、ノヴァバースト発動回数に比例したダメージ増加効果をすべて初期化する。攻撃時、自身の<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ減少させて、攻撃後、自身が<b><color=#DD982C>雪中花(解除不可)</color></b>状態でない場合、自身の<b><color=#DD982C>急々如律令(解除不可)</color></b>を解除する。自身のターンに攻撃後、敵に100％の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。<b><color=#DD982C>破邪印</color></b>の効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
                 "ko": "피해량 2% 증가",
                 "en": "DMG +2%",
                 "ja": "与ダメージ2%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 8
+              },
+              "barriers": []
             },
             {
               "level": 8,
               "skillDescription": {
-                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다.",
-                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>.",
-                "ja": "敵にお札を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。"
-              },
-              "levelDescription": {
-                "ko": "피해량 2% 증가",
-                "en": "DMG +2%",
-                "ja": "与ダメージ2%上昇"
-              }
-            },
-            {
-              "level": 9,
-              "skillDescription": {
-                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다.",
-                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>.",
-                "ja": "敵にお札を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。"
-              },
-              "levelDescription": {
-                "ko": "피해량 2% 증가",
-                "en": "DMG +2%",
-                "ja": "与ダメージ2%上昇"
-              }
-            },
-            {
-              "level": 10,
-              "skillDescription": {
-                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다.",
-                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>.",
-                "ja": "敵にお札を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。"
+                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다. 자신의 턴에 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 <b><color=#DD982C>제압부</color></b> 대신 <b><color=#DD982C>제압부·참</color></b>을 사용합니다.\n제압부·참 : 적에게 부적을 날려 공격합니다. 타격 시 노바 버스트 발동 횟수에 비례하여 <b><color=#DD982C>제압부·참</color></b>의 피해량이 각각 10%, 30%, 60% 증가합니다. 노바 버스트를 발동하지 않고 타격 시 혹은 타격 후 <b><color=#DD982C>급급여율령(해제불가)</color></b> 해제 시 노바 버스트 발동 횟수에 비례한 피해량 증가 효과를 모두 초기화시킵니다. 타격 시 자신의 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 감소시키고 타격 후 자신이 <b><color=#DD982C>설중화(해제불가)</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 해제합니다. 자신의 턴에 타격 후 적에게 100% 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다. <b><color=#DD982C>파사인</color></b> 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>. When used on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, uses <b><color=#DD982C>Subdual Slash</color></b> instead of <b><color=#DD982C>Subdual Charm</color></b>.\nSubdual Slash: Throws a charm to attack the enemy. On attack, damage dealt by <b><color=#DD982C>Subdual Slash</color></b> increases by 10%, 30%, or 60%, based on the number of Nova Burst activations. All damage increases based on Nova Burst activations are reset when the attack hits without activating Nova Burst or when <b><color=#DD982C>Swift Decree (Undispellable)</color></b> is removed after attacking. On attack, removes 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> from self. After attacking, if self does not have <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, removes <b><color=#DD982C>Swift Decree (Undispellable)</color></b> from self. After attacking on self turn, has a 100% chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn. Effects that come with <b><color=#DD982C>Banishing Mark</color></b> do not trigger on additionally triggered skills.",
+                "ja": "敵に守呪物を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。自身のターンにこのスキルを使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、<b><color=#DD982C>制圧符</color></b>の代わりに<b><color=#DD982C>制圧符・斬</color></b>を発動する。\n制圧符・斬：敵に守呪物を飛ばして攻撃する。ノヴァバーストを発動して攻撃した時、ノヴァバーストの発動回数に比例して<b><color=#DD982C>制圧符・斬</color></b>のダメージがそれぞれ10％、30％、60％上がる。ノヴァバーストを発動せずに攻撃した時、または攻撃後、<b><color=#DD982C>急々如律令(解除不可)</color></b>が解除された時、ノヴァバースト発動回数に比例したダメージ増加効果をすべて初期化する。攻撃時、自身の<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ減少させて、攻撃後、自身が<b><color=#DD982C>雪中花(解除不可)</color></b>状態でない場合、自身の<b><color=#DD982C>急々如律令(解除不可)</color></b>を解除する。自身のターンに攻撃後、敵に100％の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。<b><color=#DD982C>破邪印</color></b>の効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
                 "ko": "피해량 3% 증가",
                 "en": "DMG +3%",
                 "ja": "与ダメージ3%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 10
+              },
+              "barriers": []
+            },
+            {
+              "level": 9,
+              "skillDescription": {
+                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다. 자신의 턴에 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 <b><color=#DD982C>제압부</color></b> 대신 <b><color=#DD982C>제압부·참</color></b>을 사용합니다.\n제압부·참 : 적에게 부적을 날려 공격합니다. 타격 시 노바 버스트 발동 횟수에 비례하여 <b><color=#DD982C>제압부·참</color></b>의 피해량이 각각 10%, 30%, 60% 증가합니다. 노바 버스트를 발동하지 않고 타격 시 혹은 타격 후 <b><color=#DD982C>급급여율령(해제불가)</color></b> 해제 시 노바 버스트 발동 횟수에 비례한 피해량 증가 효과를 모두 초기화시킵니다. 타격 시 자신의 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 감소시키고 타격 후 자신이 <b><color=#DD982C>설중화(해제불가)</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 해제합니다. 자신의 턴에 타격 후 적에게 100% 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다. <b><color=#DD982C>파사인</color></b> 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>. When used on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, uses <b><color=#DD982C>Subdual Slash</color></b> instead of <b><color=#DD982C>Subdual Charm</color></b>.\nSubdual Slash: Throws a charm to attack the enemy. On attack, damage dealt by <b><color=#DD982C>Subdual Slash</color></b> increases by 10%, 30%, or 60%, based on the number of Nova Burst activations. All damage increases based on Nova Burst activations are reset when the attack hits without activating Nova Burst or when <b><color=#DD982C>Swift Decree (Undispellable)</color></b> is removed after attacking. On attack, removes 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> from self. After attacking, if self does not have <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, removes <b><color=#DD982C>Swift Decree (Undispellable)</color></b> from self. After attacking on self turn, has a 100% chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn. Effects that come with <b><color=#DD982C>Banishing Mark</color></b> do not trigger on additionally triggered skills.",
+                "ja": "敵に守呪物を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。自身のターンにこのスキルを使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、<b><color=#DD982C>制圧符</color></b>の代わりに<b><color=#DD982C>制圧符・斬</color></b>を発動する。\n制圧符・斬：敵に守呪物を飛ばして攻撃する。ノヴァバーストを発動して攻撃した時、ノヴァバーストの発動回数に比例して<b><color=#DD982C>制圧符・斬</color></b>のダメージがそれぞれ10％、30％、60％上がる。ノヴァバーストを発動せずに攻撃した時、または攻撃後、<b><color=#DD982C>急々如律令(解除不可)</color></b>が解除された時、ノヴァバースト発動回数に比例したダメージ増加効果をすべて初期化する。攻撃時、自身の<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ減少させて、攻撃後、自身が<b><color=#DD982C>雪中花(解除不可)</color></b>状態でない場合、自身の<b><color=#DD982C>急々如律令(解除不可)</color></b>を解除する。自身のターンに攻撃後、敵に100％の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。<b><color=#DD982C>破邪印</color></b>の効果は追加発動スキルには発生しない。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 12
+              },
+              "barriers": []
+            },
+            {
+              "level": 10,
+              "skillDescription": {
+                "ko": "적에게 부적을 날려 공격합니다. 자신에게 <b><color=#DD982C>냉각</color></b> 스택을 1개 부여합니다. 자신의 턴에 사용 시 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 <b><color=#DD982C>제압부</color></b> 대신 <b><color=#DD982C>제압부·참</color></b>을 사용합니다.\n제압부·참 : 적에게 부적을 날려 공격합니다. 타격 시 노바 버스트 발동 횟수에 비례하여 <b><color=#DD982C>제압부·참</color></b>의 피해량이 각각 10%, 30%, 60% 증가합니다. 노바 버스트를 발동하지 않고 타격 시 혹은 타격 후 <b><color=#DD982C>급급여율령(해제불가)</color></b> 해제 시 노바 버스트 발동 횟수에 비례한 피해량 증가 효과를 모두 초기화시킵니다. 타격 시 자신의 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 감소시키고 타격 후 자신이 <b><color=#DD982C>설중화(해제불가)</color></b> 상태가 아니라면 자신의 <b><color=#DD982C>급급여율령(해제불가)</color></b>을 해제합니다. 자신의 턴에 타격 후 적에게 100% 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다. <b><color=#DD982C>파사인</color></b> 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Throws a charm to attack the enemy. Grants self 1 stack of <b><color=#DD982C>Chill</color></b>. When used on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, uses <b><color=#DD982C>Subdual Slash</color></b> instead of <b><color=#DD982C>Subdual Charm</color></b>.\nSubdual Slash: Throws a charm to attack the enemy. On attack, damage dealt by <b><color=#DD982C>Subdual Slash</color></b> increases by 10%, 30%, or 60%, based on the number of Nova Burst activations. All damage increases based on Nova Burst activations are reset when the attack hits without activating Nova Burst or when <b><color=#DD982C>Swift Decree (Undispellable)</color></b> is removed after attacking. On attack, removes 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b> from self. After attacking, if self does not have <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>, removes <b><color=#DD982C>Swift Decree (Undispellable)</color></b> from self. After attacking on self turn, has a 100% chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn. Effects that come with <b><color=#DD982C>Banishing Mark</color></b> do not trigger on additionally triggered skills.",
+                "ja": "敵に守呪物を飛ばして攻撃する。自身に<b><color=#DD982C>冷却</color></b>スタックを1つ付与する。自身のターンにこのスキルを使用時、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、<b><color=#DD982C>制圧符</color></b>の代わりに<b><color=#DD982C>制圧符・斬</color></b>を発動する。\n制圧符・斬：敵に守呪物を飛ばして攻撃する。ノヴァバーストを発動して攻撃した時、ノヴァバーストの発動回数に比例して<b><color=#DD982C>制圧符・斬</color></b>のダメージがそれぞれ10％、30％、60％上がる。ノヴァバーストを発動せずに攻撃した時、または攻撃後、<b><color=#DD982C>急々如律令(解除不可)</color></b>が解除された時、ノヴァバースト発動回数に比例したダメージ増加効果をすべて初期化する。攻撃時、自身の<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ減少させて、攻撃後、自身が<b><color=#DD982C>雪中花(解除不可)</color></b>状態でない場合、自身の<b><color=#DD982C>急々如律令(解除不可)</color></b>を解除する。自身のターンに攻撃後、敵に100％の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。<b><color=#DD982C>破邪印</color></b>の効果は追加発動スキルには発生しない。"
+              },
+              "levelDescription": {
+                "ko": "피해량 5% 증가",
+                "en": "DMG +5%",
+                "ja": "与ダメージ5%上昇"
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 15
+              },
+              "barriers": []
             }
-          ]
+          ],
+          "baseCooltime": 0,
+          "factors": {
+            "damage": {
+              "atk": 6500,
+              "hp": 0,
+              "def": 0,
+              "spd": 0
+            },
+            "heal": {
+              "atk": 0,
+              "hp": 0,
+              "def": 0,
+              "spd": 0
+            }
+          }
         },
         {
           "id": 10272,
@@ -15345,188 +15513,235 @@
           "target": "NSTT_ENEMY_ONE",
           "cooltime": 4,
           "break": 1,
-          "nova": 1,
+          "nova": 0,
           "name": {
             "ko": "설중사우",
             "en": "Winterborne Quartet",
             "ja": "雪中四友"
           },
           "novaDescription": {
-            "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가하고 <b><color=#DD982C>속도 증가</color></b>의 턴 수가 1턴 증가합니다.",
-            "en": "Temporarily deals 1 more Toughness Fixed DMG and extends <b><color=#DD982C>SPD Up</color></b> by 1 turn on attack.",
-            "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がり、<b><color=#DD982C>速度アップ</color></b>のターン数が1ターン上がる。"
+            "ko": "",
+            "en": "",
+            "ja": ""
           },
-          "icon": "./data/savior-skill-assets/skills/10272.webp",
+          "icon": "./data/savior-skill-assets/skills/1027_2-espr.webp",
           "buffs": [
             {
-              "id": 1005,
-              "strId": "BI_SPEED_INCREASE",
+              "strId": "BI_RECON_AMULET_5",
               "name": {
-                "ko": "속도 증가",
-                "en": "SPD Up",
-                "ja": "速度アップ"
+                "ko": "파사인",
+                "en": "Banishing Mark",
+                "ja": "破邪印"
               },
               "description": {
-                "ko": "속도가 20% 증가합니다.",
-                "en": "SPD increases by 20%.",
-                "ja": "速度が20%上がる。"
+                "ko": "기본기로 받는 피해량이 5% 증가합니다. 해당 효과는 추가 적용이 가능하며 최대 3개까지 발생합니다.",
+                "en": "Takes 5% increased Basic Skill DMG. This debuff can be applied repeatedly, up to 3 times.",
+                "ja": "基本スキルの攻撃で受けるダメージが5％上がる。この効果は追加適用ができ、最大3つまで発生する。"
               },
-              "icon": "./data/savior-skill-assets/buffs/BI_SPEED_INCREASE.webp"
-            },
-            {
-              "id": 1525,
-              "strId": "BI_FREEZING",
-              "name": {
-                "ko": "빙결",
-                "en": "Freeze",
-                "ja": "凍結"
-              },
-              "description": {
-                "ko": "속도가 3% 감소합니다. 턴 시작 시 시전자의 공격력에 비례해 소량의 빙결 피해를 받습니다.",
-                "en": "SPD decreases by 3%. Takes minor Freeze damage proportional to the caster's ATK at the start of the turn.",
-                "ja": "速度が3%低下する。ターン開始時、発動者の攻撃力に比例した少量の凍結ダメージを受ける。"
-              },
-              "icon": "./data/savior-skill-assets/buffs/BI_FREEZING.webp"
+              "icon": "./data/savior-skill-assets/buffs/BI_RECON_AMULET_5.webp"
             }
           ],
           "levels": [
             {
               "level": 1,
               "skillDescription": {
-                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>빙결</color></b>을 발생시키고 자신에게 1턴 간 <b><color=#DD982C>속도 증가</color></b>를 발생시킵니다.",
-                "en": "Conjures cold air with a charm to attack the enemy. Inflicts the enemy with <b><color=#DD982C>Freeze</color></b> for 2 turns with a <b><color=#2A80D8>75%</color></b> chance, and grants self <b><color=#DD982C>SPD Up</color></b> for 1 turn.",
-                "ja": "お札で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>75%</color></b>で2ターン<b><color=#DD982C>凍結</color></b>を発生させ、自身に1ターン<b><color=#DD982C>速度アップ</color></b>を発生させる。"
+                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>75%</color></b> 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다.",
+                "en": "Conjures frost with a charm to attack the enemy. <b><color=#2A80D8>75%</color></b> chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn.",
+                "ja": "呪物で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>75％</color></b>の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。"
               },
               "levelDescription": {
                 "ko": "기본 효과",
                 "en": "Base Effect",
                 "ja": "基本効果"
-              }
+              },
+              "stats": [],
+              "barriers": []
             },
             {
               "level": 2,
               "skillDescription": {
-                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>빙결</color></b>을 발생시키고 자신에게 1턴 간 <b><color=#DD982C>속도 증가</color></b>를 발생시킵니다.",
-                "en": "Conjures cold air with a charm to attack the enemy. Inflicts the enemy with <b><color=#DD982C>Freeze</color></b> for 2 turns with a <b><color=#2A80D8>75%</color></b> chance, and grants self <b><color=#DD982C>SPD Up</color></b> for 1 turn.",
-                "ja": "お札で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>75%</color></b>で2ターン<b><color=#DD982C>凍結</color></b>を発生させ、自身に1ターン<b><color=#DD982C>速度アップ</color></b>を発生させる。"
+                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>75%</color></b> 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다.",
+                "en": "Conjures frost with a charm to attack the enemy. <b><color=#2A80D8>75%</color></b> chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn.",
+                "ja": "呪物で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>75％</color></b>の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。"
               },
               "levelDescription": {
                 "ko": "피해량 1% 증가",
                 "en": "DMG +1%",
                 "ja": "与ダメージ1%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 1
+              },
+              "barriers": []
             },
             {
               "level": 3,
               "skillDescription": {
-                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>빙결</color></b>을 발생시키고 자신에게 1턴 간 <b><color=#DD982C>속도 증가</color></b>를 발생시킵니다.",
-                "en": "Conjures cold air with a charm to attack the enemy. Inflicts the enemy with <b><color=#DD982C>Freeze</color></b> for 2 turns with a <b><color=#2A80D8>75%</color></b> chance, and grants self <b><color=#DD982C>SPD Up</color></b> for 1 turn.",
-                "ja": "お札で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>75%</color></b>で2ターン<b><color=#DD982C>凍結</color></b>を発生させ、自身に1ターン<b><color=#DD982C>速度アップ</color></b>を発生させる。"
+                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>75%</color></b> 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다.",
+                "en": "Conjures frost with a charm to attack the enemy. <b><color=#2A80D8>75%</color></b> chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn.",
+                "ja": "呪物で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>75％</color></b>の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。"
               },
               "levelDescription": {
-                "ko": "피해량 2% 증가",
-                "en": "DMG +2%",
-                "ja": "与ダメージ2%上昇"
-              }
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 3
+              },
+              "barriers": []
             },
             {
               "level": 4,
               "skillDescription": {
-                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>빙결</color></b>을 발생시키고 자신에게 1턴 간 <b><color=#DD982C>속도 증가</color></b>를 발생시킵니다.",
-                "en": "Conjures cold air with a charm to attack the enemy. Inflicts the enemy with <b><color=#DD982C>Freeze</color></b> for 2 turns with an <b><color=#2A80D8>85%</color></b> chance, and grants self <b><color=#DD982C>SPD Up</color></b> for 1 turn.",
-                "ja": "お札で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>85%</color></b>で2ターン<b><color=#DD982C>凍結</color></b>を発生させ、自身に1ターン<b><color=#DD982C>速度アップ</color></b>を発生させる。"
+                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>85%</color></b> 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다.",
+                "en": "Conjures frost with a charm to attack the enemy. <b><color=#2A80D8>85%</color></b> chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn.",
+                "ja": "呪物で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>85％</color></b>の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。"
               },
               "levelDescription": {
-                "ko": "빙결 발생 확률 10% 증가",
-                "en": "Freeze chance +10%",
-                "ja": "凍結の発生率10%上昇"
-              }
+                "ko": "파사인 발생 확률 10% 증가",
+                "en": "Banishing Mark chance +10%",
+                "ja": "破邪印の発生率 10％増加"
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 3
+              },
+              "barriers": []
             },
             {
               "level": 5,
               "skillDescription": {
-                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>빙결</color></b>을 발생시키고 자신에게 1턴 간 <b><color=#DD982C>속도 증가</color></b>를 발생시킵니다.",
-                "en": "Conjures cold air with a charm to attack the enemy. Inflicts the enemy with <b><color=#DD982C>Freeze</color></b> for 2 turns with an <b><color=#2A80D8>85%</color></b> chance, and grants self <b><color=#DD982C>SPD Up</color></b> for 1 turn.",
-                "ja": "お札で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>85%</color></b>で2ターン<b><color=#DD982C>凍結</color></b>を発生させ、自身に1ターン<b><color=#DD982C>速度アップ</color></b>を発生させる。"
+                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>85%</color></b> 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다.",
+                "en": "Conjures frost with a charm to attack the enemy. <b><color=#2A80D8>85%</color></b> chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn.",
+                "ja": "呪物で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>85％</color></b>の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。"
               },
               "levelDescription": {
-                "ko": "피해량 2% 증가",
-                "en": "DMG +2%",
-                "ja": "与ダメージ2%上昇"
-              }
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 5
+              },
+              "barriers": []
             },
             {
               "level": 6,
               "skillDescription": {
-                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>빙결</color></b>을 발생시키고 자신에게 1턴 간 <b><color=#DD982C>속도 증가</color></b>를 발생시킵니다.",
-                "en": "Conjures cold air with a charm to attack the enemy. Inflicts the enemy with <b><color=#DD982C>Freeze</color></b> for 2 turns with an <b><color=#2A80D8>85%</color></b> chance, and grants self <b><color=#DD982C>SPD Up</color></b> for 1 turn.",
-                "ja": "お札で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>85%</color></b>で2ターン<b><color=#DD982C>凍結</color></b>を発生させ、自身に1ターン<b><color=#DD982C>速度アップ</color></b>を発生させる。"
+                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>85%</color></b> 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다.",
+                "en": "Conjures frost with a charm to attack the enemy. <b><color=#2A80D8>85%</color></b> chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn.",
+                "ja": "呪物で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>85％</color></b>の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。"
               },
               "levelDescription": {
-                "ko": "쿨타임 1턴 감소",
-                "en": "Cooldown decreases by 1 turn(s)",
-                "ja": "クールタイム1ターン短縮"
-              }
+                "ko": "피해량 2% 증가 · 쿨타임 1턴 감소",
+                "en": "DMG +2% · Cooldown decreases by 1 turn(s)",
+                "ja": "与ダメージ2%上昇 · クールタイム1ターン短縮"
+              },
+              "cooltimeReduce": 1,
+              "stats": [],
+              "bonuses": {
+                "dmg": 5
+              },
+              "barriers": []
             },
             {
               "level": 7,
               "skillDescription": {
-                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>빙결</color></b>을 발생시키고 자신에게 1턴 간 <b><color=#DD982C>속도 증가</color></b>를 발생시킵니다.",
-                "en": "Conjures cold air with a charm to attack the enemy. Inflicts the enemy with <b><color=#DD982C>Freeze</color></b> for 2 turns with an <b><color=#2A80D8>85%</color></b> chance, and grants self <b><color=#DD982C>SPD Up</color></b> for 1 turn.",
-                "ja": "お札で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>85%</color></b>で2ターン<b><color=#DD982C>凍結</color></b>を発生させ、自身に1ターン<b><color=#DD982C>速度アップ</color></b>を発生させる。"
+                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>85%</color></b> 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다.",
+                "en": "Conjures frost with a charm to attack the enemy. <b><color=#2A80D8>85%</color></b> chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn.",
+                "ja": "呪物で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>85％</color></b>の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。"
               },
               "levelDescription": {
                 "ko": "피해량 2% 증가",
                 "en": "DMG +2%",
                 "ja": "与ダメージ2%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 7
+              },
+              "barriers": []
             },
             {
               "level": 8,
               "skillDescription": {
-                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>빙결</color></b>을 발생시키고 자신에게 1턴 간 <b><color=#DD982C>속도 증가</color></b>를 발생시킵니다.",
-                "en": "Conjures cold air with a charm to attack the enemy. Inflicts the enemy with <b><color=#DD982C>Freeze</color></b> for 2 turns with an <b><color=#2A80D8>100%</color></b> chance, and grants self <b><color=#DD982C>SPD Up</color></b> for 1 turn.",
-                "ja": "お札で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>100%</color></b>で2ターン<b><color=#DD982C>凍結</color></b>を発生させ、自身に1ターン<b><color=#DD982C>速度アップ</color></b>を発生させる。"
+                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>100%</color></b> 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다.",
+                "en": "Conjures frost with a charm to attack the enemy. <b><color=#2A80D8>100%</color></b> chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn.",
+                "ja": "呪物で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>100％</color></b>の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。"
               },
               "levelDescription": {
-                "ko": "빙결 발생 확률 15% 증가",
-                "en": "Freeze chance +15%",
-                "ja": "凍結の発生率15%上昇"
-              }
+                "ko": "파사인 발생 확률 15% 증가",
+                "en": "Banishing Mark chance +15%",
+                "ja": "破邪印の発生率 15％増加"
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 7
+              },
+              "barriers": []
             },
             {
               "level": 9,
               "skillDescription": {
-                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>빙결</color></b>을 발생시키고 자신에게 1턴 간 <b><color=#DD982C>속도 증가</color></b>를 발생시킵니다.",
-                "en": "Conjures cold air with a charm to attack the enemy. Inflicts the enemy with <b><color=#DD982C>Freeze</color></b> for 2 turns with an <b><color=#2A80D8>100%</color></b> chance, and grants self <b><color=#DD982C>SPD Up</color></b> for 1 turn.",
-                "ja": "お札で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>100%</color></b>で2ターン<b><color=#DD982C>凍結</color></b>を発生させ、自身に1ターン<b><color=#DD982C>速度アップ</color></b>を発生させる。"
+                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>100%</color></b> 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다.",
+                "en": "Conjures frost with a charm to attack the enemy. <b><color=#2A80D8>100%</color></b> chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn.",
+                "ja": "呪物で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>100％</color></b>の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。"
               },
               "levelDescription": {
                 "ko": "피해량 3% 증가",
                 "en": "DMG +3%",
                 "ja": "与ダメージ3%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 10
+              },
+              "barriers": []
             },
             {
               "level": 10,
               "skillDescription": {
-                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>빙결</color></b>을 발생시키고 자신에게 1턴 간 <b><color=#DD982C>속도 증가</color></b>를 발생시킵니다.",
-                "en": "Conjures cold air with a charm to attack the enemy. Inflicts the enemy with <b><color=#DD982C>Freeze</color></b> for 2 turns with an <b><color=#2A80D8>100%</color></b> chance, and grants self <b><color=#DD982C>SPD Up</color></b> for 1 turn.",
-                "ja": "お札で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>100%</color></b>で2ターン<b><color=#DD982C>凍結</color></b>を発生させ、自身に1ターン<b><color=#DD982C>速度アップ</color></b>を発生させる。"
+                "ko": "부적으로 냉기를 일으켜 적을 공격합니다. 적에게 <b><color=#2A80D8>100%</color></b> 확률로 1턴 간 <b><color=#DD982C>파사인</color></b>을 발생시킵니다.",
+                "en": "Conjures frost with a charm to attack the enemy. <b><color=#2A80D8>100%</color></b> chance to inflict <b><color=#DD982C>Banishing Mark</color></b> on the enemy for 1 turn.",
+                "ja": "呪物で冷気を起こして敵を攻撃する。敵に<b><color=#2A80D8>100％</color></b>の確率で<b><color=#DD982C>破邪印</color></b>を1ターン付与する。"
               },
               "levelDescription": {
                 "ko": "피해량 5% 증가",
                 "en": "DMG +5%",
                 "ja": "与ダメージ5%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 15
+              },
+              "barriers": []
             }
-          ]
+          ],
+          "baseCooltime": 5,
+          "factors": {
+            "damage": {
+              "atk": 5500,
+              "hp": 0,
+              "def": 0,
+              "spd": 0
+            },
+            "heal": {
+              "atk": 0,
+              "hp": 0,
+              "def": 0,
+              "spd": 0
+            }
+          }
         },
         {
           "id": 10273,
           "type": 3,
           "target": "NSTT_ENEMY_ONE",
-          "cooltime": 6,
+          "cooltime": 9,
           "break": 2,
           "nova": 1,
           "name": {
@@ -15539,10 +15754,23 @@
             "en": "Self Toughness Fixed DMG temporarily increases by 1 on attack.",
             "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がる。"
           },
-          "icon": "./data/savior-skill-assets/skills/10273.webp",
+          "icon": "./data/savior-skill-assets/skills/1027_3-espr.webp",
           "buffs": [
             {
-              "id": 1503,
+              "strId": "BI_RECON_AMULET_4",
+              "name": {
+                "ko": "설중화(해제불가)",
+                "en": "Snow Blossom (Undispellable)",
+                "ja": "雪中花(解除不可)"
+              },
+              "description": {
+                "ko": "루그가 악을 멸하는 꽃을 피워냅니다. 최대 3회 중첩됩니다.",
+                "en": "Summons a flower that purges evil. Stacks up to 3 times.",
+                "ja": "ルーが悪を滅する花を咲かせる。この効果は最大3回までスタックできる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_RECON_AMULET_4.webp"
+            },
+            {
               "strId": "BI_DEFENSE_DECREASE",
               "name": {
                 "ko": "방어력 감소",
@@ -15555,143 +15783,222 @@
                 "ja": "防御力が30%減少します。"
               },
               "icon": "./data/savior-skill-assets/buffs/BI_DEFENSE_DECREASE.webp"
+            },
+            {
+              "strId": "BI_RECON_AMULET_3",
+              "name": {
+                "ko": "급급여율령(해제불가)",
+                "en": "Swift Decree (Undispellable)",
+                "ja": "急々如律令(解除不可)"
+              },
+              "description": {
+                "ko": "공격력이 15% 증가합니다.",
+                "en": "Increases ATK by 15%.",
+                "ja": "攻撃力が15%上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_RECON_AMULET_3.webp"
             }
           ],
           "levels": [
             {
               "level": 1,
               "skillDescription": {
-                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 적에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다.",
-                "en": "Strikes down evil with a charm-forged blade. Inflicts the enemy with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>75%</color></b> chance, and increases the enemy's Ultimate Skill cooldown by 1 turn with a 100% chance.",
-                "ja": "お札で作り出した剣で邪悪なものを斬り払う。敵に<b><color=#2A80D8>75%</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させ、100%で究極スキルクールタイムを1ターン増やす。"
+                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 자신의 턴에 타격 후 적에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 노바 포스를 추가로 3 획득하고 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 추가 턴이 발생합니다. 이 공격의 모든 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Strikes down evil with a charm-forged blade. After attacking on self turn, has a <b><color=#2A80D8>75%</color></b> chance to inflict <b><color=#DD982C>DEF Down</color></b> on the enemy for 2 turns and a 100% chance to increase the enemy's Ultimate Skill cooldown by 1 turn. After attacking on self turn, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, gains 3 additional Nova Force and grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. After attacking on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self an extra turn. None of this attack's effects trigger on additionally triggered skills.",
+                "ja": "守呪物で作られた剣で、邪悪なものを切り裂く。自身のターンに攻撃後、敵に<b><color=#2A80D8>75％</color></b>の確率で<b><color=#DD982C>防御力ダウン</color></b>を2ターン付与し、100％の確率で究極スキルのクールタイムを1ターン延長させる。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、ノヴァフォースをさらに3獲得し、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、追加ターンが発生する。この攻撃のすべての効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
                 "ko": "기본 효과",
                 "en": "Base Effect",
                 "ja": "基本効果"
-              }
+              },
+              "stats": [],
+              "barriers": []
             },
             {
               "level": 2,
               "skillDescription": {
-                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 적에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다.",
-                "en": "Strikes down evil with a charm-forged blade. Inflicts the enemy with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>75%</color></b> chance, and increases the enemy's Ultimate Skill cooldown by 1 turn with a 100% chance.",
-                "ja": "お札で作り出した剣で邪悪なものを斬り払う。敵に<b><color=#2A80D8>75%</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させ、100%で究極スキルクールタイムを1ターン増やす。"
+                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 자신의 턴에 타격 후 적에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 노바 포스를 추가로 3 획득하고 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 추가 턴이 발생합니다. 이 공격의 모든 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Strikes down evil with a charm-forged blade. After attacking on self turn, has a <b><color=#2A80D8>75%</color></b> chance to inflict <b><color=#DD982C>DEF Down</color></b> on the enemy for 2 turns and a 100% chance to increase the enemy's Ultimate Skill cooldown by 1 turn. After attacking on self turn, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, gains 3 additional Nova Force and grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. After attacking on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self an extra turn. None of this attack's effects trigger on additionally triggered skills.",
+                "ja": "守呪物で作られた剣で、邪悪なものを切り裂く。自身のターンに攻撃後、敵に<b><color=#2A80D8>75％</color></b>の確率で<b><color=#DD982C>防御力ダウン</color></b>を2ターン付与し、100％の確率で究極スキルのクールタイムを1ターン延長させる。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、ノヴァフォースをさらに3獲得し、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、追加ターンが発生する。この攻撃のすべての効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
                 "ko": "피해량 1% 증가",
                 "en": "DMG +1%",
                 "ja": "与ダメージ1%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 1
+              },
+              "barriers": []
             },
             {
               "level": 3,
               "skillDescription": {
-                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 적에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다.",
-                "en": "Strikes down evil with a charm-forged blade. Inflicts the enemy with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>75%</color></b> chance, and increases the enemy's Ultimate Skill cooldown by 1 turn with a 100% chance.",
-                "ja": "お札で作り出した剣で邪悪なものを斬り払う。敵に<b><color=#2A80D8>75%</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させ、100%で究極スキルクールタイムを1ターン増やす。"
+                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 자신의 턴에 타격 후 적에게 <b><color=#2A80D8>75%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 노바 포스를 추가로 3 획득하고 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 추가 턴이 발생합니다. 이 공격의 모든 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Strikes down evil with a charm-forged blade. After attacking on self turn, has a <b><color=#2A80D8>75%</color></b> chance to inflict <b><color=#DD982C>DEF Down</color></b> on the enemy for 2 turns and a 100% chance to increase the enemy's Ultimate Skill cooldown by 1 turn. After attacking on self turn, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, gains 3 additional Nova Force and grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. After attacking on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self an extra turn. None of this attack's effects trigger on additionally triggered skills.",
+                "ja": "守呪物で作られた剣で、邪悪なものを切り裂く。自身のターンに攻撃後、敵に<b><color=#2A80D8>75％</color></b>の確率で<b><color=#DD982C>防御力ダウン</color></b>を2ターン付与し、100％の確率で究極スキルのクールタイムを1ターン延長させる。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、ノヴァフォースをさらに3獲得し、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、追加ターンが発生する。この攻撃のすべての効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
-                "ko": "피해량 2% 증가",
-                "en": "DMG +2%",
-                "ja": "与ダメージ2%上昇"
-              }
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 3
+              },
+              "barriers": []
             },
             {
               "level": 4,
               "skillDescription": {
-                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 적에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다.",
-                "en": "Strikes down evil with a charm-forged blade. Inflicts the enemy with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>85%</color></b> chance, and increases the enemy's Ultimate Skill cooldown by 1 turn with a 100% chance.",
-                "ja": "お札で作り出した剣で邪悪なものを斬り払う。敵に<b><color=#2A80D8>85%</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させ、100%で究極スキルクールタイムを1ターン増やす。"
+                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 자신의 턴에 타격 후 적에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 노바 포스를 추가로 3 획득하고 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 추가 턴이 발생합니다. 이 공격의 모든 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Strikes down evil with a charm-forged blade. After attacking on self turn, has a <b><color=#2A80D8>85%</color></b> chance to inflict <b><color=#DD982C>DEF Down</color></b> on the enemy for 2 turns and a 100% chance to increase the enemy's Ultimate Skill cooldown by 1 turn. After attacking on self turn, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, gains 3 additional Nova Force and grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. After attacking on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self an extra turn. None of this attack's effects trigger on additionally triggered skills.",
+                "ja": "守呪物で作られた剣で、邪悪なものを切り裂く。自身のターンに攻撃後、敵に<b><color=#2A80D8>85％</color></b>の確率で<b><color=#DD982C>防御力ダウン</color></b>を2ターン付与し、100％の確率で究極スキルのクールタイムを1ターン延長させる。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、ノヴァフォースをさらに3獲得し、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、追加ターンが発生する。この攻撃のすべての効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
                 "ko": "방어력 감소 발생 확률 10% 증가",
                 "en": "DEF Down chance +10%",
                 "ja": "防御力低下の発生率10%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 3
+              },
+              "barriers": []
             },
             {
               "level": 5,
               "skillDescription": {
-                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 적에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다.",
-                "en": "Strikes down evil with a charm-forged blade. Inflicts the enemy with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>85%</color></b> chance, and increases the enemy's Ultimate Skill cooldown by 1 turn with a 100% chance.",
-                "ja": "お札で作り出した剣で邪悪なものを斬り払う。敵に<b><color=#2A80D8>85%</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させ、100%で究極スキルクールタイムを1ターン増やす。"
+                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 자신의 턴에 타격 후 적에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 노바 포스를 추가로 3 획득하고 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 추가 턴이 발생합니다. 이 공격의 모든 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Strikes down evil with a charm-forged blade. After attacking on self turn, has a <b><color=#2A80D8>85%</color></b> chance to inflict <b><color=#DD982C>DEF Down</color></b> on the enemy for 2 turns and a 100% chance to increase the enemy's Ultimate Skill cooldown by 1 turn. After attacking on self turn, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, gains 3 additional Nova Force and grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. After attacking on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self an extra turn. None of this attack's effects trigger on additionally triggered skills.",
+                "ja": "守呪物で作られた剣で、邪悪なものを切り裂く。自身のターンに攻撃後、敵に<b><color=#2A80D8>85％</color></b>の確率で<b><color=#DD982C>防御力ダウン</color></b>を2ターン付与し、100％の確率で究極スキルのクールタイムを1ターン延長させる。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、ノヴァフォースをさらに3獲得し、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、追加ターンが発生する。この攻撃のすべての効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
-                "ko": "피해량 2% 증가",
-                "en": "DMG +2%",
-                "ja": "与ダメージ2%上昇"
-              }
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 5
+              },
+              "barriers": []
             },
             {
               "level": 6,
               "skillDescription": {
-                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 적에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다.",
-                "en": "Strikes down evil with a charm-forged blade. Inflicts the enemy with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>85%</color></b> chance, and increases the enemy's Ultimate Skill cooldown by 1 turn with a 100% chance.",
-                "ja": "お札で作り出した剣で邪悪なものを斬り払う。敵に<b><color=#2A80D8>85%</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させ、100%で究極スキルクールタイムを1ターン増やす。"
+                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 자신의 턴에 타격 후 적에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 노바 포스를 추가로 3 획득하고 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 추가 턴이 발생합니다. 이 공격의 모든 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Strikes down evil with a charm-forged blade. After attacking on self turn, has a <b><color=#2A80D8>85%</color></b> chance to inflict <b><color=#DD982C>DEF Down</color></b> on the enemy for 2 turns and a 100% chance to increase the enemy's Ultimate Skill cooldown by 1 turn. After attacking on self turn, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, gains 3 additional Nova Force and grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. After attacking on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self an extra turn. None of this attack's effects trigger on additionally triggered skills.",
+                "ja": "守呪物で作られた剣で、邪悪なものを切り裂く。自身のターンに攻撃後、敵に<b><color=#2A80D8>85％</color></b>の確率で<b><color=#DD982C>防御力ダウン</color></b>を2ターン付与し、100％の確率で究極スキルのクールタイムを1ターン延長させる。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、ノヴァフォースをさらに3獲得し、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、追加ターンが発生する。この攻撃のすべての効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
-                "ko": "쿨타임 1턴 감소",
-                "en": "Cooldown decreases by 1 turn(s)",
-                "ja": "クールタイム1ターン短縮"
-              }
+                "ko": "피해량 2% 증가 · 쿨타임 1턴 감소",
+                "en": "DMG +2% · Cooldown decreases by 1 turn(s)",
+                "ja": "与ダメージ2%上昇 · クールタイム1ターン短縮"
+              },
+              "cooltimeReduce": 1,
+              "stats": [],
+              "bonuses": {
+                "dmg": 5
+              },
+              "barriers": []
             },
             {
               "level": 7,
               "skillDescription": {
-                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 적에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다.",
-                "en": "Strikes down evil with a charm-forged blade. Inflicts the enemy with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>85%</color></b> chance, and increases the enemy's Ultimate Skill cooldown by 1 turn with a 100% chance.",
-                "ja": "お札で作り出した剣で邪悪なものを斬り払う。敵に<b><color=#2A80D8>85%</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させ、100%で究極スキルクールタイムを1ターン増やす。"
+                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 자신의 턴에 타격 후 적에게 <b><color=#2A80D8>85%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 노바 포스를 추가로 3 획득하고 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 추가 턴이 발생합니다. 이 공격의 모든 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Strikes down evil with a charm-forged blade. After attacking on self turn, has a <b><color=#2A80D8>85%</color></b> chance to inflict <b><color=#DD982C>DEF Down</color></b> on the enemy for 2 turns and a 100% chance to increase the enemy's Ultimate Skill cooldown by 1 turn. After attacking on self turn, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, gains 3 additional Nova Force and grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. After attacking on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self an extra turn. None of this attack's effects trigger on additionally triggered skills.",
+                "ja": "守呪物で作られた剣で、邪悪なものを切り裂く。自身のターンに攻撃後、敵に<b><color=#2A80D8>85％</color></b>の確率で<b><color=#DD982C>防御力ダウン</color></b>を2ターン付与し、100％の確率で究極スキルのクールタイムを1ターン延長させる。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、ノヴァフォースをさらに3獲得し、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、追加ターンが発生する。この攻撃のすべての効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
                 "ko": "피해량 2% 증가",
                 "en": "DMG +2%",
                 "ja": "与ダメージ2%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 7
+              },
+              "barriers": []
             },
             {
               "level": 8,
               "skillDescription": {
-                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 적에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다.",
-                "en": "Strikes down evil with a charm-forged blade. Inflicts the enemy with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>100%</color></b> chance, and increases the enemy's Ultimate Skill cooldown by 1 turn with a 100% chance.",
-                "ja": "お札で作り出した剣で邪悪なものを斬り払う。敵に<b><color=#2A80D8>100%</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させ、100%で究極スキルクールタイムを1ターン増やす。"
+                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 자신의 턴에 타격 후 적에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 노바 포스를 추가로 3 획득하고 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 추가 턴이 발생합니다. 이 공격의 모든 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Strikes down evil with a charm-forged blade. After attacking on self turn, has a <b><color=#2A80D8>100%</color></b> chance to inflict <b><color=#DD982C>DEF Down</color></b> on the enemy for 2 turns and a 100% chance to increase the enemy's Ultimate Skill cooldown by 1 turn. After attacking on self turn, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, gains 3 additional Nova Force and grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. After attacking on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self an extra turn. None of this attack's effects trigger on additionally triggered skills.",
+                "ja": "守呪物で作られた剣で、邪悪なものを切り裂く。自身のターンに攻撃後、敵に<b><color=#2A80D8>100％</color></b>の確率で<b><color=#DD982C>防御力ダウン</color></b>を2ターン付与し、100％の確率で究極スキルのクールタイムを1ターン延長させる。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、ノヴァフォースをさらに3獲得し、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、追加ターンが発生する。この攻撃のすべての効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
                 "ko": "방어력 감소 발생 확률 15% 증가",
                 "en": "DEF Down chance +15%",
                 "ja": "防御力低下の発生率15%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 7
+              },
+              "barriers": []
             },
             {
               "level": 9,
               "skillDescription": {
-                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 적에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다.",
-                "en": "Strikes down evil with a charm-forged blade. Inflicts the enemy with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>100%</color></b> chance, and increases the enemy's Ultimate Skill cooldown by 1 turn with a 100% chance.",
-                "ja": "お札で作り出した剣で邪悪なものを斬り払う。敵に<b><color=#2A80D8>100%</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させ、100%で究極スキルクールタイムを1ターン増やす。"
+                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 자신의 턴에 타격 후 적에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 노바 포스를 추가로 3 획득하고 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 추가 턴이 발생합니다. 이 공격의 모든 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Strikes down evil with a charm-forged blade. After attacking on self turn, has a <b><color=#2A80D8>100%</color></b> chance to inflict <b><color=#DD982C>DEF Down</color></b> on the enemy for 2 turns and a 100% chance to increase the enemy's Ultimate Skill cooldown by 1 turn. After attacking on self turn, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, gains 3 additional Nova Force and grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. After attacking on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self an extra turn. None of this attack's effects trigger on additionally triggered skills.",
+                "ja": "守呪物で作られた剣で、邪悪なものを切り裂く。自身のターンに攻撃後、敵に<b><color=#2A80D8>100％</color></b>の確率で<b><color=#DD982C>防御力ダウン</color></b>を2ターン付与し、100％の確率で究極スキルのクールタイムを1ターン延長させる。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、ノヴァフォースをさらに3獲得し、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、追加ターンが発生する。この攻撃のすべての効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
                 "ko": "피해량 3% 증가",
                 "en": "DMG +3%",
                 "ja": "与ダメージ3%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 10
+              },
+              "barriers": []
             },
             {
               "level": 10,
               "skillDescription": {
-                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 적에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다.",
-                "en": "Strikes down evil with a charm-forged blade. Inflicts the enemy with <b><color=#DD982C>DEF Down</color></b> for 2 turns with a <b><color=#2A80D8>100%</color></b> chance, and increases the enemy's Ultimate Skill cooldown by 1 turn with a 100% chance.",
-                "ja": "お札で作り出した剣で邪悪なものを斬り払う。敵に<b><color=#2A80D8>100%</color></b>で2ターン<b><color=#DD982C>防御力ダウン</color></b>を発生させ、100%で究極スキルクールタイムを1ターン増やす。"
+                "ko": "부적으로 만들어낸 검으로 삿된 것을 베어냅니다. 자신의 턴에 타격 후 적에게 <b><color=#2A80D8>100%</color></b> 확률로 2턴 간 <b><color=#DD982C>방어력 감소</color></b>를 발생시키고 100% 확률로 궁극기 쿨타임을 1턴 증가시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태가 아니라면 노바 포스를 추가로 3 획득하고 자신에게 <b><color=#DD982C>설중화(해제불가)</color></b>를 1회 발생시킵니다. 자신의 턴에 타격 후 자신이 <b><color=#DD982C>급급여율령(해제불가)</color></b> 상태이면 추가 턴이 발생합니다. 이 공격의 모든 효과는 추가 발동 스킬에는 발생하지 않습니다.",
+                "en": "Strikes down evil with a charm-forged blade. After attacking on self turn, has a <b><color=#2A80D8>100%</color></b> chance to inflict <b><color=#DD982C>DEF Down</color></b> on the enemy for 2 turns and a 100% chance to increase the enemy's Ultimate Skill cooldown by 1 turn. After attacking on self turn, if self does not have <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, gains 3 additional Nova Force and grants self 1 stack of <b><color=#DD982C>Snow Blossom (Undispellable)</color></b>. After attacking on self turn, if self has <b><color=#DD982C>Swift Decree (Undispellable)</color></b>, grants self an extra turn. None of this attack's effects trigger on additionally triggered skills.",
+                "ja": "守呪物で作られた剣で、邪悪なものを切り裂く。自身のターンに攻撃後、敵に<b><color=#2A80D8>100％</color></b>の確率で<b><color=#DD982C>防御力ダウン</color></b>を2ターン付与し、100％の確率で究極スキルのクールタイムを1ターン延長させる。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態でない場合、ノヴァフォースをさらに3獲得し、自身に<b><color=#DD982C>雪中花(解除不可)</color></b>を1つ付与する。自身のターンに攻撃後、自身が<b><color=#DD982C>急々如律令(解除不可)</color></b>状態の場合、追加ターンが発生する。この攻撃のすべての効果は追加発動スキルには発生しない。"
               },
               "levelDescription": {
                 "ko": "피해량 5% 증가",
                 "en": "DMG +5%",
                 "ja": "与ダメージ5%上昇"
-              }
+              },
+              "stats": [],
+              "bonuses": {
+                "dmg": 15
+              },
+              "barriers": []
             }
-          ]
+          ],
+          "baseCooltime": 10,
+          "factors": {
+            "damage": {
+              "atk": 7000,
+              "hp": 0,
+              "def": 0,
+              "spd": 0
+            },
+            "heal": {
+              "atk": 0,
+              "hp": 0,
+              "def": 0,
+              "spd": 0
+            }
+          }
         }
       ],
-      "blossomSkills": []
+      "blossomSkills": [],
+      "source": "https://ss.espr.gg/ko/database/characters/lugh",
+      "capturedAt": "2026-10-29T09:21:44.870Z"
     },
     {
       "id": 1029,
