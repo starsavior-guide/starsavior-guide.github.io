@@ -4321,26 +4321,11 @@ const SAVIORS = [
       },
       "arcana": {
         "pve": [
-          {
-            "name": "왈세라",
-            "note": ""
-          },
-          {
-            "name": "웨딩 카르멘",
-            "note": ""
-          },
-          {
-            "name": "린(인내)",
-            "note": ""
-          },
-          {
-            "name": "바니걸 클레어",
-            "note": ""
-          },
-          {
-            "name": "프레이 or 할리",
-            "note": "엑셀 선택 추천"
-          }
+          { "name": "스트라니스의 영애", "note": "" },
+          { "name": "가혹한 시련", "note": "" },
+          { "name": "나른한 오후의 틈새", "note": "" },
+          { "name": "하얀 달의 온기는 햇빛처럼", "note": "" },
+          { "name": "꽃들에게 죽음을", "note": "" }
         ],
         "pvp": [
           null,
@@ -4350,9 +4335,9 @@ const SAVIORS = [
           null
         ],
         "alternatives": [
-          null,
-          null,
-          null,
+          { "name": "어느 한 기사의 맹세", "note": "하얀 달의 온기는 햇빛처럼 대체" },
+          { "name": "공녀, 왕좌에 오르다 or 본 투 비 와일드 or 완벽한 바니걸 or 누구보다 프로페셔널 or 언더커버 캅", "note": "부족한 자리 대체" },
+          { "name": "하늘의 시련 or 금단의 기록물 Vol. 1", "note": "부족한 자리 대체" },
           null,
           null
         ]
@@ -7809,6 +7794,7 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
   if (
     savior.id === "clarissa" ||
     savior.id === "lugh" ||
+    savior.id === "wedding-carmen" ||
     STANDARD_SUPPORTER_BUILD_IDS.has(savior.id)
   ) {
     return Array.from(
