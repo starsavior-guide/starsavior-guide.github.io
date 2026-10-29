@@ -5784,6 +5784,48 @@ const SAVIORS = [
   }
 ];
 
+const STANDARD_SUPPORTER_BUILD_IDS = new Set([
+  "vera",
+  "elisa",
+  "frey",
+  "ceres-sun-supporter"
+]);
+
+SAVIORS.forEach((savior) => {
+  if (!STANDARD_SUPPORTER_BUILD_IDS.has(savior.id)) return;
+
+  savior.detail = {
+    ...(savior.detail || {}),
+    equipment: {
+      ...(savior.detail?.equipment || {}),
+      pve: {
+        necklace: "속도",
+        ring: "생명력%",
+        sets: ["생명(4) + 장벽(2)"],
+        potential: "BX",
+        note: ""
+      }
+    },
+    arcana: {
+      ...(savior.detail?.arcana || {}),
+      pve: [
+        { name: "스트라니스의 영애", note: "" },
+        { name: "가혹한 시련", note: "" },
+        { name: "공녀, 왕좌에 오르다 or 본 투 비 와일드 or 완벽한 바니걸", note: "" },
+        { name: "하얀 달의 온기는 햇빛처럼", note: "" },
+        { name: "꽃들에게 죽음을", note: "" }
+      ],
+      alternatives: [
+        { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼 대체" },
+        { name: "누구보다 프로페셔널", note: "공녀, 왕좌에 오르다 대체" },
+        { name: "언더커버 캅", note: "본 투 비 와일드 대체" },
+        { name: "하늘의 시련 or 금단의 기록물 Vol. 1", note: "부족한 자리 대체" },
+        null
+      ]
+    }
+  };
+});
+
 const ARCANA_CATEGORIES = ["공격", "생명", "방어", "집중", "보호", "속도", "파괴", "통찰"];
 
 const COSMO_GUIDES = [
@@ -7764,7 +7806,11 @@ function buildAlternativeArcana(savior, pveArcana, existingAlternatives) {
     );
   }
 
-  if (savior.id === "clarissa" || savior.id === "lugh") {
+  if (
+    savior.id === "clarissa" ||
+    savior.id === "lugh" ||
+    STANDARD_SUPPORTER_BUILD_IDS.has(savior.id)
+  ) {
     return Array.from(
       { length: 5 },
       (_, index) => existingAlternatives?.[index] || null
