@@ -8508,8 +8508,8 @@ function createArcanaImages(choices) {
   if (!imageChoices.length) return "";
 
   return `
-    <div class="arcana-card-images" style="--arcana-count:${Math.min(imageChoices.length, 4)}">
-      ${imageChoices.slice(0, 4).map((choice) => {
+    <div class="arcana-card-images" style="--arcana-count:${imageChoices.length}">
+      ${imageChoices.map((choice) => {
         const detailUrl = getArcanaDetailUrl(choice.name);
         const localizedName = getLocalizedArcanaName(choice.name);
         const detailLabel = translateString("아르카나 상세정보");
