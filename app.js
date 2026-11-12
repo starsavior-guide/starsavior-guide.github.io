@@ -182,7 +182,9 @@
       "wedding-epindel": { 2: "불굴의 역작", 4: "하얀 달의 온기는 햇빛처럼" },
       carnelia: { 2: "불굴의 역작", 4: "하얀 달의 온기는 햇빛처럼" },
       "white-pearl-luna": { 2: "조용한 휴식 시간", 3: "영원 속박의 굴레" },
-      cristelle: { 4: "끝나지 않는 춤" }
+      cristelle: { 4: "끝나지 않는 춤" },
+      "yoo-mina": { 4: "하얀 달의 온기는 햇빛처럼" },
+      rosaria: { 4: "하얀 달의 온기는 햇빛처럼" }
     };
     Object.entries(recommendedSlotOverrides).forEach(([id, slots]) => {
       const recommended = SAVIORS.find((savior) => savior.id === id)?.detail?.arcana?.pve;
@@ -436,6 +438,20 @@
           note: "부족한 자리 대체"
         },
         3: null,
+        4: null
+      },
+      "yoo-mina": {
+        3: {
+          name: "끝나지 않는 춤 or 완벽한 바니걸 or 영원 속박의 굴레",
+          note: "부족한 자리 대체"
+        },
+        4: null
+      },
+      rosaria: {
+        3: {
+          name: "끝나지 않는 춤 or 완벽한 바니걸 or 영원 속박의 굴레",
+          note: "부족한 자리 대체"
+        },
         4: null
       }
     };
