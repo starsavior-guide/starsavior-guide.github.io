@@ -501,6 +501,78 @@
       return result;
     };
 
+    // 2026-11-12: 사용자 지정 스트라이커/레인저 아르카나 일괄 변경
+    // 기존 추천·대체 슬롯 중 지정되지 않은 항목은 그대로 둡니다.
+    const strikerDanceIds = new Set([
+      "bunny-scarlet", "tanya", "charlotte", "asherah-voyager", "lyn", "ceres"
+    ]);
+    const rangerDanceSlot4Ids = new Set(["scarlet", "naru", "petra", "bell"]);
+    for (const savior of SAVIORS) {
+      const recommended = savior?.detail?.arcana?.pve;
+      if (!Array.isArray(recommended)) continue;
+      if (strikerDanceIds.has(savior.id)) {
+        recommended[4] = { ...(recommended[4] || {}), name: "끝나지 않는 춤" };
+      }
+      if (rangerDanceSlot4Ids.has(savior.id)) {
+        recommended[3] = { ...(recommended[3] || {}), name: "끝나지 않는 춤" };
+      }
+      if (savior.id === "cristelle") {
+        recommended[1] = { ...(recommended[1] || {}), name: "끝나지 않는 춤" };
+      }
+    }
+
+    const previousArcanaResolver = addEternalBondAlternativeForWhiteMoon;
+    addEternalBondAlternativeForWhiteMoon = function (savior, pveArcana, alternatives) {
+      const original = previousArcanaResolver(savior, pveArcana, alternatives);
+      if (!Array.isArray(original)) return original;
+      const id = savior?.id;
+      const isRanger = savior?.className === "레인저";
+      const result = original.map((slot) => slot ? { ...slot } : null);
+      if (isRanger) {
+        result.forEach((slot, index) => {
+          if (slot?.note === "꽃들에게 죽음을 대체" &&
+              slot.name === "메이드 바이 페트라♡ or 별을 보며 꿈을") {
+            result[index] = { ...slot, name: "메이드 바이 페트라♡ or 별을 보며 꿈을 or 깊은 애도" };
+          }
+        });
+      }
+      if (strikerDanceIds.has(id)) {
+        result[2] = {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸 or 자칭 베테랑 탐정의 수사법",
+          note: "부족한 자리 대체"
+        };
+        result[3] = null;
+        result[4] = null;
+      }
+      if (id === "claire" || id === "tyria") {
+        result[3] = null;
+        result[4] = null;
+      }
+      if (id === "scarlet" || id === "naru" || id === "petra") {
+        result[2] = { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼 대체" };
+        result[3] = { name: "영원 속박의 굴레 or 완벽한 바니걸", note: "부족한 자리 대체" };
+      }
+      if (id === "smile") {
+        result[3] = null;
+        result[4] = null;
+      }
+      if (id === "bell") {
+        result[2] = {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸 or 영원 속박의 굴레",
+          note: "부족한 자리 대체"
+        };
+      }
+      if (id === "cristelle") {
+        result[0] = { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" };
+        result[1] = { name: "누각 위, 유리달 맞이", note: "영원 속박의 굴레 대체" };
+        result[2] = {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 불굴의 역작",
+          note: "부족한 자리 대체"
+        };
+      }
+      return result;
+    };
+
     const baseCreateJourneyStatPriorityMarkup = createJourneyStatPriorityMarkup;
     createJourneyStatPriorityMarkup = function (savior) {
       const markup = baseCreateJourneyStatPriorityMarkup(savior);
