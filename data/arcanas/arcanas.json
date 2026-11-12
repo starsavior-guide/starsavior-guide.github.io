@@ -2684,6 +2684,35 @@
         }
       ],
       "source": "https://ss.espr.gg/ko/database/potentials/overwhelming-assault"
+    },
+    {
+      "id": 25004,
+      "strId": "ESPR_ENDLESS_TERMINUS",
+      "type": "특수 잠재력",
+      "class": "",
+      "name": {
+        "ko": "끝없는 종착점",
+        "en": "Endless Terminus",
+        "ja": "果てしない終着点"
+      },
+      "description": {
+        "ko": "강인도가 격파된 대상을 타격 후 자신의 공격력이 5%씩 증가합니다. 최대 5회 중첩됩니다.",
+        "en": "After attacking a target in Toughness Break, increases self ATK by 5%. Stacks up to 5 times.",
+        "ja": "強靭度が撃破された対象を攻撃した後、自身の攻撃力が5％ずつ上がる。この効果は最大5回までスタックできる。"
+      },
+      "icon": "./data/arcana-assets/potentials/25004.webp",
+      "background": "./data/arcana-assets/potential-backgrounds/blue.webp",
+      "levels": [
+        {
+          "level": 1,
+          "description": {
+            "ko": "강인도가 격파된 대상을 타격 후 자신의 공격력이 5%씩 증가합니다. 최대 5회 중첩됩니다.",
+            "en": "After attacking a target in Toughness Break, increases self ATK by 5%. Stacks up to 5 times.",
+            "ja": "強靭度が撃破された対象を攻撃した後、自身の攻撃力が5％ずつ上がる。この効果は最大5回までスタックできる。"
+          }
+        }
+      ],
+      "source": "https://ss.espr.gg/ko/database/potentials/endless-terminus"
     }
   ],
   "journeyBuffs": [
@@ -35240,6 +35269,508 @@
       ],
       "source": "https://ss.espr.gg/ko/database/arcanas/never-ending-dance",
       "capturedAt": "2026-11-12T03:31:31.588Z"
+    },
+    {
+      "id": 7106101,
+      "name": {
+        "ko": "빛바랜 꿈",
+        "en": "Faded Dream",
+        "ja": "色褪せた夢"
+      },
+      "character": {
+        "ko": "아세라",
+        "en": "Asherah",
+        "ja": "アセラ"
+      },
+      "rarity": "SSR",
+      "mainStat": {
+        "ko": "힘",
+        "en": "Strength",
+        "ja": "力"
+      },
+      "assists": [
+        {
+          "ko": "공용",
+          "en": "Universal",
+          "ja": "共用"
+        }
+      ],
+      "image": "./data/arcana-assets/cards/7106101.webp",
+      "mainStatIcon": "./data/arcana-assets/status/power.webp",
+      "specialPotentialId": 25004,
+      "uniqueEffect": {
+        "name": {
+          "ko": "소중한 일상",
+          "en": "Cherished Days",
+          "ja": "大切な日常"
+        },
+        "description": {
+          "ko": "인연 포인트 40 이상일 때 훈련 효과 상승 +8.00%",
+          "en": "When Bond Points are at 40 or higher Training Effectiveness +8.00%",
+          "ja": "絆ポイントが40以上の場合 トレーニングの効果上昇 +8.00%"
+        },
+        "unlockLevel": 35
+      },
+      "effects": {
+        "journeyStart": [
+          {
+            "unlockLevel": 25,
+            "promotePerLevel": 10,
+            "valueType": {
+              "ko": "힘",
+              "en": "Strength",
+              "ja": "力"
+            },
+            "isRate": false,
+            "valueInt": 5,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 6,
+                "display": "6"
+              },
+              "40": {
+                "value": 6,
+                "display": "6"
+              },
+              "45": {
+                "value": 7,
+                "display": "7"
+              },
+              "50": {
+                "value": 7,
+                "display": "7"
+              }
+            }
+          },
+          {
+            "unlockLevel": 20,
+            "promotePerLevel": 5,
+            "valueType": {
+              "ko": "인연 포인트 증가",
+              "en": "Bond Points Gain",
+              "ja": "絆ポイント増加"
+            },
+            "isRate": false,
+            "valueInt": 9,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 12,
+                "display": "12"
+              },
+              "40": {
+                "value": 13,
+                "display": "13"
+              },
+              "45": {
+                "value": 14,
+                "display": "14"
+              },
+              "50": {
+                "value": 15,
+                "display": "15"
+              }
+            }
+          }
+        ],
+        "training": [
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "valueType": {
+              "ko": "훈련 효과 상승",
+              "en": "Training Effectiveness",
+              "ja": "トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 900,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 14,
+            "values": {
+              "35": {
+                "value": 1376,
+                "display": "13.76%"
+              },
+              "40": {
+                "value": 1446,
+                "display": "14.46%"
+              },
+              "45": {
+                "value": 1516,
+                "display": "15.16%"
+              },
+              "50": {
+                "value": 1586,
+                "display": "15.86%"
+              }
+            }
+          },
+          {
+            "unlockLevel": 10,
+            "promotePerLevel": 20,
+            "valueType": {
+              "ko": "추가 힘 능력치 획득",
+              "en": "Additional Strength Stat Gain",
+              "ja": "追加力ステータス獲得"
+            },
+            "isRate": false,
+            "valueInt": 1,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 2,
+                "display": "2"
+              },
+              "40": {
+                "value": 2,
+                "display": "2"
+              },
+              "45": {
+                "value": 2,
+                "display": "2"
+              },
+              "50": {
+                "value": 3,
+                "display": "3"
+              }
+            }
+          }
+        ],
+        "telepathy": [
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "valueType": {
+              "ko": "초감응 훈련 효과 상승",
+              "en": "Super Sensory Training Effectiveness",
+              "ja": "超感応トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 1400,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 24,
+            "values": {
+              "35": {
+                "value": 2216,
+                "display": "22.16%"
+              },
+              "40": {
+                "value": 2336,
+                "display": "23.36%"
+              },
+              "45": {
+                "value": 2456,
+                "display": "24.56%"
+              },
+              "50": {
+                "value": 2576,
+                "display": "25.76%"
+              }
+            }
+          },
+          {
+            "unlockLevel": 35,
+            "promotePerLevel": 5,
+            "valueType": {
+              "ko": "감응 훈련 발생 확률 상승",
+              "en": "Sensory Training Chance",
+              "ja": "感応トレーニングの発生率の上昇"
+            },
+            "isRate": false,
+            "valueInt": 95,
+            "valueRate": 0,
+            "valueIntPerPromote": 95,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 95,
+                "display": "95"
+              },
+              "40": {
+                "value": 190,
+                "display": "190"
+              },
+              "45": {
+                "value": 285,
+                "display": "285"
+              },
+              "50": {
+                "value": 380,
+                "display": "380"
+              }
+            }
+          }
+        ],
+        "supportQuest": []
+      },
+      "events": [
+        {
+          "name": {
+            "ko": "연극관람 2",
+            "en": "Watching the Play 2",
+            "ja": "演劇鑑賞 2"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "저 정도는 되어야 강해 보이지 않아?",
+                "en": "Doesn't that make him look strong?",
+                "ja": "あれくらい鍛えてないと、強そうに見えないんじゃないか？"
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 12,
+                    "max": 12,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_CONDITION",
+                    "min": 1,
+                    "max": 1
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_JOURNEY_BUFF",
+                    "journeyBuffName": {
+                      "ko": "찰나의 행복",
+                      "en": "Fleeting Happiness",
+                      "ja": "刹那の幸福"
+                    }
+                  }
+                ]
+              ],
+              "failureRewards": []
+            },
+            {
+              "name": {
+                "ko": "조금 과장되어 보이긴 해.",
+                "en": "It did look a little exaggerated.",
+                "ja": "少し大げさには見えるな。"
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAMINA",
+                    "min": 10,
+                    "max": 10
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_JOURNEY_BUFF",
+                    "journeyBuffName": {
+                      "ko": "찰나의 행복",
+                      "en": "Fleeting Happiness",
+                      "ja": "刹那の幸福"
+                    }
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "name": {
+            "ko": "다음",
+            "en": "Next",
+            "ja": "今度"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "다음에는 다른 메뉴도 먹어보자.",
+                "en": "Then we should try something else here next time.",
+                "ja": "今度は別のメニューも食べてみよう。"
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 21001,
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              ],
+              "failureRewards": []
+            },
+            {
+              "name": {
+                "ko": "다 먹고 디저트 먹으러 갈래?",
+                "en": "Wanna get dessert after?",
+                "ja": "食べ終わったら、デザートでもどうだ？"
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 21005,
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "name": {
+            "ko": "편애",
+            "en": "Favoritism",
+            "ja": "偏愛"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "",
+                "en": "",
+                "ja": ""
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 15,
+                    "max": 15,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 22001,
+                    "min": 1,
+                    "max": 1
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 25004,
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        }
+      ],
+      "source": "https://ss.espr.gg/ko/database/arcanas/faded-dream",
+      "capturedAt": "2026-11-12T03:38:44.166Z"
     }
   ]
 }
