@@ -738,6 +738,7 @@ const EQUIPMENT_SET_IMAGE_NAMES = new Set([
 ]);
 
 const SAVIOR_DETAIL_IDS = {
+  "gille": 1020,
   "ceres-sun-supporter": 1059,
   "lydia-moon-caster": 1060,
   "gwen": 1040,
@@ -1412,6 +1413,9 @@ I18N_DATA.subtitles.en["샤프 앤 스위트"] = "Sharp & Sweet";
 I18N_DATA.subtitles.ja["샤프 앤 스위트"] = "シャープ＆スイーツ";
 I18N_DATA.ui.en["출시 예정"] = "Upcoming";
 I18N_DATA.ui.ja["출시 예정"] = "近日登場";
+
+I18N_DATA.saviorNames.en["길레"] = "Gille";
+I18N_DATA.saviorNames.ja["길레"] = "ギーレ";
 
 const SAVIORS = [
   {
@@ -5766,6 +5770,20 @@ const SAVIORS = [
     "image": "./data/savior-detail-assets/1059-portrait.webp",
     "summary": "ESPR 구원자 정보를 반영했습니다. PVE 세팅 정보는 미정입니다.",
     "guideUrl": "https://ss.espr.gg/ko/database/characters/ceres-sun-supporter"
+  },
+  {
+    "id": "gille",
+    "name": "길레",
+    "subtitle": "집행자",
+    "affiliation": "집행자",
+    "grade": "SSR",
+    "element": "chaos",
+    "className": "캐스터",
+    "role": "캐스터",
+    "attackType": "원소",
+    "image": "./data/savior-detail-assets/1020-portrait.webp",
+    "summary": "ESPR 구원자 정보를 반영했습니다. PVE 세팅 정보는 미정입니다.",
+    "guideUrl": "https://ss.espr.gg/ko/database/characters/gille"
   }
 ];
 

@@ -1709,10 +1709,10 @@
   "_meta": {
     "sourceRoot": "https://star-savior-arcana-db.pages.dev/savior",
     "generatedAt": "2026-10-02T07:00:45.905Z",
-    "count": 55,
-    "profileCount": 55,
-    "portraitCount": 55,
-    "illustrationCount": 55,
+    "count": 58,
+    "profileCount": 58,
+    "portraitCount": 58,
+    "illustrationCount": 58,
     "profileFields": [
       "name",
       "grade",
@@ -1734,7 +1734,8 @@
       "일러스트",
       "아크 포인트"
     ],
-    "capturedAt": "2026-10-15T03:45:28.701Z"
+    "capturedAt": "2026-10-15T03:45:28.701Z",
+    "lastNewSyncAt": "2026-11-12T03:01:30.181Z"
   },
   "1059": {
     "key": "ceres-sun-supporter",
@@ -1989,6 +1990,229 @@
         },
         "image": "./data/savior-detail-assets/1059-charm.webp"
       }
+    }
+  },
+  "1020": {
+    "key": "gille",
+    "id": 1020,
+    "slug": "gille",
+    "file": "./1020.html",
+    "source": "https://ss.espr.gg/ko/database/characters/gille",
+    "capturedAt": "2026-11-12T03:01:30.181Z",
+    "profile": {
+      "name": "길레",
+      "grade": "SSR",
+      "element": "혼돈",
+      "className": "캐스터",
+      "attackType": "원소",
+      "description": "서쪽 하늘의 주성, 알데바란의 집행자. 디랙의 우물에 있는 플라네타리움에 가두어져 수없이 많은 시간선에 투영되었던 존재이다.",
+      "affiliation": "집행자",
+      "portrait": "./data/savior-detail-assets/1020-portrait.webp",
+      "illustration": "./data/savior-detail-assets/1020-illustration.webp",
+      "localized": {
+        "ko": {
+          "name": "길레",
+          "description": "서쪽 하늘의 주성, 알데바란의 집행자. 디랙의 우물에 있는 플라네타리움에 가두어져 수없이 많은 시간선에 투영되었던 존재이다.",
+          "affiliation": "집행자"
+        },
+        "en": {
+          "name": "Gille",
+          "description": "The Executor of Aldebaran, the Primary Star of the western sky. Imprisoned in the Planetarium within Dirac's Well, this being was projected across countless timelines.",
+          "affiliation": "Executor"
+        },
+        "ja": {
+          "name": "ギーレ",
+          "description": "西空の主星、アルデバランの執行者。ディラックの井戸にあるプラネタリウムに閉じ込められ、数多くの時間線に投影された存在だ。",
+          "affiliation": "執行者"
+        }
+      }
+    },
+    "journey": {
+      "source": "https://ss.espr.gg/ko/database/characters/gille/journey",
+      "baseStats": {
+        "str": 30,
+        "hp": 20,
+        "end": 20,
+        "focus": 10,
+        "prot": 10
+      },
+      "resonances": [
+        {
+          "step": 1,
+          "unlockLevel": 20,
+          "journeyStat": {
+            "type": "str",
+            "value": 30
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 100
+            },
+            {
+              "type": "hp",
+              "value": 720
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 2,
+          "unlockLevel": 40,
+          "journeyStat": {
+            "type": "hp",
+            "value": 30
+          },
+          "stats": [
+            {
+              "type": "atk_rate",
+              "value": 0.02
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "atk",
+              "value": 125
+            },
+            {
+              "type": "def",
+              "value": 50
+            }
+          ],
+          "potential": "POTEN_PASSIVE_0001"
+        },
+        {
+          "step": 4,
+          "unlockLevel": 80,
+          "journeyStat": {
+            "type": "str",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "crit_dmg",
+              "value": 0.06
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 5,
+          "unlockLevel": 100,
+          "journeyStat": {
+            "type": "hp",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "hp",
+              "value": 900
+            },
+            {
+              "type": "def",
+              "value": 60
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "atk_rate",
+              "value": 0.04
+            }
+          ],
+          "potential": "POTEN_PASSIVE_0006"
+        },
+        {
+          "step": 7,
+          "unlockLevel": 140,
+          "journeyStat": {
+            "type": "str",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 175
+            },
+            {
+              "type": "hp",
+              "value": 1080
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 8,
+          "unlockLevel": 160,
+          "journeyStat": {
+            "type": "str",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "crit_dmg",
+              "value": 0.12
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 9,
+          "unlockLevel": 180,
+          "journeyStat": {
+            "type": "hp",
+            "value": 50
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 200
+            },
+            {
+              "type": "def",
+              "value": 70
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "atk_rate",
+              "value": 0.06
+            }
+          ],
+          "potential": "POTEN_PASSIVE_1001"
+        }
+      ],
+      "potentialCodes": [
+        {
+          "step": 3,
+          "code": "POTEN_PASSIVE_0001"
+        },
+        {
+          "step": 6,
+          "code": "POTEN_PASSIVE_0006"
+        },
+        {
+          "step": 10,
+          "code": "POTEN_PASSIVE_1001"
+        }
+      ]
     }
   }
 }
