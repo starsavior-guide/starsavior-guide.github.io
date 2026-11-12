@@ -738,6 +738,7 @@ const EQUIPMENT_SET_IMAGE_NAMES = new Set([
 ]);
 
 const SAVIOR_DETAIL_IDS = {
+  "gille": 1061,
   "gille": 1020,
   "ceres-sun-supporter": 1059,
   "lydia-moon-caster": 1060,
@@ -1416,6 +1417,9 @@ I18N_DATA.ui.ja["출시 예정"] = "近日登場";
 
 I18N_DATA.saviorNames.en["길레"] = "Gille";
 I18N_DATA.saviorNames.ja["길레"] = "ギーレ";
+
+I18N_DATA.subtitles.en["편애의 마녀"] = "Witch of Favoritism";
+I18N_DATA.subtitles.ja["편애의 마녀"] = "偏愛の魔女";
 
 const SAVIORS = [
   {
@@ -5784,6 +5788,20 @@ const SAVIORS = [
     "image": "./data/savior-detail-assets/1020-portrait.webp",
     "summary": "ESPR 구원자 정보를 반영했습니다. PVE 세팅 정보는 미정입니다.",
     "guideUrl": "https://ss.espr.gg/ko/database/characters/gille"
+  },
+  {
+    "id": "asherah-order-striker",
+    "name": "아세라",
+    "subtitle": "편애의 마녀",
+    "affiliation": "불명",
+    "grade": "SSR",
+    "element": "order",
+    "className": "스트라이커",
+    "role": "스트라이커",
+    "attackType": "참격",
+    "image": "./data/savior-detail-assets/1061-portrait.webp",
+    "summary": "ESPR 구원자 정보를 반영했습니다. PVE 세팅 정보는 미정입니다.",
+    "guideUrl": "https://ss.espr.gg/ko/database/characters/asherah-order-striker"
   }
 ];
 

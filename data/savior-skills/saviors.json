@@ -49607,7 +49607,1245 @@
       "blossomSkills": [],
       "source": "https://ss.espr.gg/ko/database/characters/gille",
       "capturedAt": "2026-11-12T03:01:30.181Z"
+    },
+    {
+      "id": 1061,
+      "rank": "SSR",
+      "name": {
+        "ko": "아세라",
+        "en": "Asherah",
+        "ja": "アセラ"
+      },
+      "title": {
+        "ko": "편애의 마녀",
+        "en": "Witch of Favoritism",
+        "ja": "偏愛の魔女"
+      },
+      "description": {
+        "ko": "누군가를 구원하겠다는 일념으로 수많은 시간선을 넘나드는 존재. 어쩐지 익숙한 느낌이 드는 인물이지만, 그 정체는 미지에 가려져 있다.",
+        "en": "A being who crosses countless timelines with a single purpose: to save someone. Though strangely familiar, their identity remains shrouded in mystery.",
+        "ja": "誰かを救うという一念で、あらゆる時間線を渡り歩く存在。どこか見覚えのある人物だが、その正体は謎に包まれている。"
+      },
+      "resonancePotentials": [
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "id": 20001,
+          "strId": "POTEN_PASSIVE_0001",
+          "name": {
+            "ko": "공격의 감각",
+            "en": "Sense of Attack",
+            "ja": "攻撃の感覚"
+          },
+          "description": {
+            "ko": "공격력이 일정 비율만큼 소폭 증가합니다.",
+            "en": "Slightly increases self ATK by a certain percentage.",
+            "ja": "攻撃力が一定比率わずかに上がる。"
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "id": 20004,
+          "strId": "POTEN_PASSIVE_0004",
+          "name": {
+            "ko": "속도의 감각",
+            "en": "Sense of Speed",
+            "ja": "速度の感覚"
+          },
+          "description": {
+            "ko": "속도가 일정 수치만큼 소폭 증가합니다.",
+            "en": "Slightly increases self SPD by a certain amount.",
+            "ja": "速度が一定値だけわずかに上がる。"
+          },
+          "icon": "./data/savior-skill-assets/potentials/sense-of-speed.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "id": 21001,
+          "strId": "POTEN_PASSIVE_1001",
+          "name": {
+            "ko": "공격의 솜씨",
+            "en": "Skill of Attack",
+            "ja": "攻撃の腕前"
+          },
+          "description": {
+            "ko": "공격력이 2% 증가합니다.",
+            "en": "Increases ATK by 2%.",
+            "ja": "攻撃力が2%上がる。"
+          },
+          "icon": "./data/savior-skill-assets/potentials/skill-of-attack.webp",
+          "background": "./data/savior-skill-assets/potentials/normal.webp"
+        }
+      ],
+      "skills": [
+        {
+          "id": 10614,
+          "type": 0,
+          "target": "NSTT_INVALID",
+          "cooltime": 0,
+          "baseCooltime": 0,
+          "break": 0,
+          "nova": 0,
+          "name": {
+            "ko": "잔혹한 편애",
+            "en": "Ruthless Favoritism",
+            "ja": "残酷な偏愛"
+          },
+          "novaDescription": {
+            "ko": "",
+            "en": "",
+            "ja": ""
+          },
+          "icon": "./data/savior-skill-assets/skills/1061_0-espr.webp",
+          "buffs": [
+            {
+              "strId": "BI_DARK_UNKNOWN_3",
+              "name": {
+                "ko": "마녀의 성흔(해제불가)",
+                "en": "Witch's Stigma (Undispellable)",
+                "ja": "魔女の聖痕(解除不可)"
+              },
+              "description": {
+                "ko": "공격력이 4%씩 증가하고 속도가 2%씩 증가합니다. 최대 5회 중첩됩니다.",
+                "en": "Increases ATK by 4% and SPD by 2%. Stacks up to 5 times.",
+                "ja": "攻撃力が4％ずつ上がり、速度が2％ずつ上がる。この効果は最大5回までスタックできる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_DARK_UNKNOWN_3.webp"
+            },
+            {
+              "strId": "BI_ADJUSTTYPE_RESOURCE_ORDER",
+              "name": {
+                "ko": "통찰",
+                "en": "Insight",
+                "ja": "洞察"
+              },
+              "description": {
+                "ko": "혼돈 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.",
+                "en": "Damage dealt to Chaos Attribute units increases by 1%. Applies up to 5 stacks. This boost applies independently of buffs and debuffs.",
+                "ja": "混沌属性ユニットへの与ダメージが1%アップ。最大5スタックまで適用される。ブースト効果は強化/弱体化に関係なく、独立して適用される。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_ADJUSTTYPE_RESOURCE_ORDER.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "아세라는 자신의 턴에 타격 후 대상이 강인도 격파 상태라면 자신에게 <b><color=#DD982C>마녀의 성흔(해제불가)</color></b>을 1회 발생시키고 <b><color=#DD982C>잔영 가르기</color></b>의 쿨타임을 초기화한 후 강인도가 격파된 대상에게 자신의 공격력의 <b><color=#2A80D8>20%</color></b> 만큼 연쇄 고정 피해를 발생시킵니다. 대상이 보스라면 자신의 공격력의 <b><color=#2A80D8>120%</color></b> 만큼 연쇄 고정 피해를 발생시킵니다. 피격 시 자신이 <b><color=#DD982C>통찰</color></b> 보유 상태이면 받는 피해량이 30% 감소하고 <b><color=#DD982C>통찰</color></b> 스택을 1개 소거합니다. 자신의 턴에 적의 강인도를 격파 시 자신에게 추가 턴이 발생합니다. 추가 턴 효과는 2턴에 1번만 발생합니다.",
+                "en": "After attacking on self turn, if the target is in Toughness Break, grants self 1 stack of <b><color=#DD982C>Witch's Stigma (Undispellable)</color></b> and resets the cooldown of <b><color=#DD982C>Phantom Sever</color></b>, then deals Chain Fixed DMG equal to <b><color=#2A80D8>20%</color></b> of self ATK to the target in Toughness Break. If the target is a boss, this DMG equals <b><color=#2A80D8>120%</color></b> of self ATK. When self is attacked while self has <b><color=#DD982C>Insight</color></b>, reduces DMG taken by 30% and removes 1 stack of <b><color=#DD982C>Insight</color></b>. When self breaks an enemy's Toughness on self turn, grants self an extra turn. The extra turn effect is limited to once every 2 turns.",
+                "ja": "アセラが自身のターンに攻撃後、対象が強靭度ブレイク状態の場合、自身に<b><color=#DD982C>魔女の聖痕(解除不可)</color></b>を1つ付与し、<b><color=#DD982C>残影割り</color></b>のクールタイムをリセットした後、強靭度が撃破された対象に自身の攻撃力の<b><color=#2A80D8>20％</color></b>の連鎖固定ダメージを与える。対象がボスの場合、自身の攻撃力の<b><color=#2A80D8>120％</color></b>の連鎖固定ダメージを与える。攻撃を受けた時、自身が<b><color=#DD982C>洞察</color></b>スタックを持っている場合、被ダメージが30％下がり、<b><color=#DD982C>洞察</color></b>スタックを1つ消去する。自身のターンに敵の強靭度を撃破した場合、自身に追加ターンが発生する。追加ターン効果は、2ターンに1回のみ発生する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              },
+              "barriers": []
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "아세라의 공격력이 <b><color=#2A80D8>5%</color></b> 증가합니다. 아세라는 자신의 턴에 타격 후 대상이 강인도 격파 상태라면 자신에게 <b><color=#DD982C>마녀의 성흔(해제불가)</color></b>을 1회 발생시키고 <b><color=#DD982C>잔영 가르기</color></b>의 쿨타임을 초기화한 후 강인도가 격파된 대상에게 자신의 공격력의 <b><color=#2A80D8>20%</color></b> 만큼 연쇄 고정 피해를 발생시킵니다. 대상이 보스라면 자신의 공격력의 <b><color=#2A80D8>120%</color></b> 만큼 연쇄 고정 피해를 발생시킵니다. 피격 시 자신이 <b><color=#DD982C>통찰</color></b> 보유 상태이면 받는 피해량이 30% 감소하고 <b><color=#DD982C>통찰</color></b> 스택을 1개 소거합니다. 자신의 턴에 적의 강인도를 격파 시 자신에게 추가 턴이 발생합니다. 추가 턴 효과는 2턴에 1번만 발생합니다.",
+                "en": "Increases self ATK by <b><color=#2A80D8>5%</color></b>. After attacking on self turn, if the target is in Toughness Break, grants self 1 stack of <b><color=#DD982C>Witch's Stigma (Undispellable)</color></b> and resets the cooldown of <b><color=#DD982C>Phantom Sever</color></b>, then deals Chain Fixed DMG equal to <b><color=#2A80D8>20%</color></b> of self ATK to the target in Toughness Break. If the target is a boss, this DMG equals <b><color=#2A80D8>120%</color></b> of self ATK. When self is attacked while self has <b><color=#DD982C>Insight</color></b>, reduces DMG taken by 30% and removes 1 stack of <b><color=#DD982C>Insight</color></b>. When self breaks an enemy's Toughness on self turn, grants self an extra turn. The extra turn effect is limited to once every 2 turns.",
+                "ja": "アセラの攻撃力が<b><color=#2A80D8>5％</color></b>上がる。アセラが自身のターンに攻撃後、対象が強靭度ブレイク状態の場合、自身に<b><color=#DD982C>魔女の聖痕(解除不可)</color></b>を1つ付与し、<b><color=#DD982C>残影割り</color></b>のクールタイムをリセットした後、強靭度が撃破された対象に自身の攻撃力の<b><color=#2A80D8>20％</color></b>の連鎖固定ダメージを与える。対象がボスの場合、自身の攻撃力の<b><color=#2A80D8>120％</color></b>の連鎖固定ダメージを与える。攻撃を受けた時、自身が<b><color=#DD982C>洞察</color></b>スタックを持っている場合、被ダメージが30％下がり、<b><color=#DD982C>洞察</color></b>スタックを1つ消去する。自身のターンに敵の強靭度を撃破した場合、自身に追加ターンが発生する。追加ターン効果は、2ターンに1回のみ発生する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              },
+              "stats": [
+                {
+                  "type": "atk_rate",
+                  "value": 500
+                }
+              ],
+              "barriers": []
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "아세라의 공격력이 <b><color=#2A80D8>10%</color></b> 증가합니다. 아세라는 자신의 턴에 타격 후 대상이 강인도 격파 상태라면 자신에게 <b><color=#DD982C>마녀의 성흔(해제불가)</color></b>을 1회 발생시키고 <b><color=#DD982C>잔영 가르기</color></b>의 쿨타임을 초기화한 후 강인도가 격파된 대상에게 자신의 공격력의 <b><color=#2A80D8>25%</color></b> 만큼 연쇄 고정 피해를 발생시킵니다. 대상이 보스라면 자신의 공격력의 <b><color=#2A80D8>150%</color></b> 만큼 연쇄 고정 피해를 발생시킵니다. 피격 시 자신이 <b><color=#DD982C>통찰</color></b> 보유 상태이면 받는 피해량이 30% 감소하고 <b><color=#DD982C>통찰</color></b> 스택을 1개 소거합니다. 자신의 턴에 적의 강인도를 격파 시 자신에게 추가 턴이 발생합니다. 추가 턴 효과는 2턴에 1번만 발생합니다.",
+                "en": "Increases self ATK by <b><color=#2A80D8>10%</color></b>. After attacking on self turn, if the target is in Toughness Break, grants self 1 stack of <b><color=#DD982C>Witch's Stigma (Undispellable)</color></b> and resets the cooldown of <b><color=#DD982C>Phantom Sever</color></b>, then deals Chain Fixed DMG equal to <b><color=#2A80D8>25%</color></b> of self ATK to the target in Toughness Break. If the target is a boss, this DMG equals <b><color=#2A80D8>150%</color></b> of self ATK. When self is attacked while self has <b><color=#DD982C>Insight</color></b>, reduces DMG taken by 30% and removes 1 stack of <b><color=#DD982C>Insight</color></b>. When self breaks an enemy's Toughness on self turn, grants self an extra turn. The extra turn effect is limited to once every 2 turns.",
+                "ja": "アセラの攻撃力が<b><color=#2A80D8>10％</color></b>上がる。アセラが自身のターンに攻撃後、対象が強靭度ブレイク状態の場合、自身に<b><color=#DD982C>魔女の聖痕(解除不可)</color></b>を1つ付与し、<b><color=#DD982C>残影割り</color></b>のクールタイムをリセットした後、強靭度が撃破された対象に自身の攻撃力の<b><color=#2A80D8>25％</color></b>の連鎖固定ダメージを与える。対象がボスの場合、自身の攻撃力の<b><color=#2A80D8>150％</color></b>の連鎖固定ダメージを与える。攻撃を受けた時、自身が<b><color=#DD982C>洞察</color></b>スタックを持っている場合、被ダメージが30％下がり、<b><color=#DD982C>洞察</color></b>スタックを1つ消去する。自身のターンに敵の強靭度を撃破した場合、自身に追加ターンが発生する。追加ターン効果は、2ターンに1回のみ発生する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              },
+              "stats": [
+                {
+                  "type": "atk_rate",
+                  "value": 1000
+                }
+              ],
+              "barriers": []
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "아세라의 공격력이 <b><color=#2A80D8>15%</color></b> 증가합니다. 아세라는 자신의 턴에 타격 후 대상이 강인도 격파 상태라면 자신에게 <b><color=#DD982C>마녀의 성흔(해제불가)</color></b>을 1회 발생시키고 <b><color=#DD982C>잔영 가르기</color></b>의 쿨타임을 초기화한 후 강인도가 격파된 대상에게 자신의 공격력의 <b><color=#2A80D8>30%</color></b> 만큼 연쇄 고정 피해를 발생시킵니다. 대상이 보스라면 자신의 공격력의 <b><color=#2A80D8>180%</color></b> 만큼 연쇄 고정 피해를 발생시킵니다. 피격 시 자신이 <b><color=#DD982C>통찰</color></b> 보유 상태이면 받는 피해량이 30% 감소하고 <b><color=#DD982C>통찰</color></b> 스택을 1개 소거합니다. 자신의 턴에 적의 강인도를 격파 시 자신에게 추가 턴이 발생합니다. 추가 턴 효과는 2턴에 1번만 발생합니다.",
+                "en": "Increases self ATK by <b><color=#2A80D8>15%</color></b>. After attacking on self turn, if the target is in Toughness Break, grants self 1 stack of <b><color=#DD982C>Witch's Stigma (Undispellable)</color></b> and resets the cooldown of <b><color=#DD982C>Phantom Sever</color></b>, then deals Chain Fixed DMG equal to <b><color=#2A80D8>30%</color></b> of self ATK to the target in Toughness Break. If the target is a boss, this DMG equals <b><color=#2A80D8>180%</color></b> of self ATK. When self is attacked while self has <b><color=#DD982C>Insight</color></b>, reduces DMG taken by 30% and removes 1 stack of <b><color=#DD982C>Insight</color></b>. When self breaks an enemy's Toughness on self turn, grants self an extra turn. The extra turn effect is limited to once every 2 turns.",
+                "ja": "アセラの攻撃力が<b><color=#2A80D8>15％</color></b>上がる。アセラが自身のターンに攻撃後、対象が強靭度ブレイク状態の場合、自身に<b><color=#DD982C>魔女の聖痕(解除不可)</color></b>を1つ付与し、<b><color=#DD982C>残影割り</color></b>のクールタイムをリセットした後、強靭度が撃破された対象に自身の攻撃力の<b><color=#2A80D8>30％</color></b>の連鎖固定ダメージを与える。対象がボスの場合、自身の攻撃力の<b><color=#2A80D8>180％</color></b>の連鎖固定ダメージを与える。攻撃を受けた時、自身が<b><color=#DD982C>洞察</color></b>スタックを持っている場合、被ダメージが30％下がり、<b><color=#DD982C>洞察</color></b>スタックを1つ消去する。自身のターンに敵の強靭度を撃破した場合、自身に追加ターンが発生する。追加ターン効果は、2ターンに1回のみ発生する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              },
+              "stats": [
+                {
+                  "type": "atk_rate",
+                  "value": 1500
+                }
+              ],
+              "barriers": []
+            }
+          ],
+          "conditionalEffects": [
+            {
+              "conditionId": 2172,
+              "condition": {
+                "trigger": "AfterMyAttack",
+                "checks": {
+                  "MyTurn": true,
+                  "IsNotTargetSuperArmor": true,
+                  "SkillTargetType": "NSTT_ENEMY_ALL"
+                }
+              },
+              "activeType": "NSEAT_SKILL_END",
+              "activeRate": 10000,
+              "fromLevel": 1,
+              "seGroupId": 106143,
+              "seOrder": 1,
+              "effect": {
+                "kind": "addDamage",
+                "statType": "NST_ATK",
+                "rate": 2000,
+                "target": "NSETT_SELF",
+                "landTarget": "NSETT_AUTO_ENEMY",
+                "trueDamage": null
+              }
+            },
+            {
+              "conditionId": 2171,
+              "condition": {
+                "trigger": "AfterMyAttack",
+                "checks": {
+                  "MyTurn": true,
+                  "IsNotTargetSuperArmor": true,
+                  "IsSingleEnemyTargetType": true
+                }
+              },
+              "activeType": "NSEAT_SKILL_END",
+              "activeRate": 10000,
+              "fromLevel": 1,
+              "seGroupId": 106144,
+              "seOrder": 1,
+              "effect": {
+                "kind": "addDamage",
+                "statType": "NST_ATK",
+                "rate": 2000,
+                "target": "NSETT_SELF",
+                "landTarget": "NSETT_TARGET",
+                "trueDamage": null
+              }
+            },
+            {
+              "conditionId": 2172,
+              "condition": {
+                "trigger": "AfterMyAttack",
+                "checks": {
+                  "MyTurn": true,
+                  "IsNotTargetSuperArmor": true,
+                  "SkillTargetType": "NSTT_ENEMY_ALL"
+                }
+              },
+              "activeType": "NSEAT_SKILL_END",
+              "activeRate": 10000,
+              "fromLevel": 1,
+              "seGroupId": 106147,
+              "seOrder": 1,
+              "effect": {
+                "kind": "addDamage",
+                "statType": "NST_ATK",
+                "rate": 10000,
+                "target": "NSETT_SELF",
+                "landTarget": "NSETT_AUTO_ENEMY",
+                "trueDamage": null
+              }
+            },
+            {
+              "conditionId": 52200,
+              "condition": {
+                "trigger": "AfterMyAttack",
+                "checks": {
+                  "MyTurn": true,
+                  "IsNotTargetSuperArmor": true,
+                  "IsSingleEnemyTargetType": true,
+                  "TargetBuffStrId": [
+                    "BI_DARK_UNKNOWN_2"
+                  ]
+                }
+              },
+              "activeType": "NSEAT_SKILL_END",
+              "activeRate": 10000,
+              "fromLevel": 1,
+              "seGroupId": 106148,
+              "seOrder": 1,
+              "effect": {
+                "kind": "addDamage",
+                "statType": "NST_ATK",
+                "rate": 10000,
+                "target": "NSETT_SELF",
+                "landTarget": "NSETT_TARGET",
+                "trueDamage": null
+              }
+            },
+            {
+              "conditionId": 2172,
+              "condition": {
+                "trigger": "AfterMyAttack",
+                "checks": {
+                  "MyTurn": true,
+                  "IsNotTargetSuperArmor": true,
+                  "SkillTargetType": "NSTT_ENEMY_ALL"
+                }
+              },
+              "activeType": "NSEAT_SKILL_END",
+              "activeRate": 10000,
+              "fromLevel": 3,
+              "seGroupId": 106143,
+              "seOrder": 3,
+              "effect": {
+                "kind": "addDamage",
+                "statType": "NST_ATK",
+                "rate": 2500,
+                "target": "NSETT_SELF",
+                "landTarget": "NSETT_AUTO_ENEMY",
+                "trueDamage": null
+              }
+            },
+            {
+              "conditionId": 2171,
+              "condition": {
+                "trigger": "AfterMyAttack",
+                "checks": {
+                  "MyTurn": true,
+                  "IsNotTargetSuperArmor": true,
+                  "IsSingleEnemyTargetType": true
+                }
+              },
+              "activeType": "NSEAT_SKILL_END",
+              "activeRate": 10000,
+              "fromLevel": 3,
+              "seGroupId": 106144,
+              "seOrder": 3,
+              "effect": {
+                "kind": "addDamage",
+                "statType": "NST_ATK",
+                "rate": 2500,
+                "target": "NSETT_SELF",
+                "landTarget": "NSETT_TARGET",
+                "trueDamage": null
+              }
+            },
+            {
+              "conditionId": 2172,
+              "condition": {
+                "trigger": "AfterMyAttack",
+                "checks": {
+                  "MyTurn": true,
+                  "IsNotTargetSuperArmor": true,
+                  "SkillTargetType": "NSTT_ENEMY_ALL"
+                }
+              },
+              "activeType": "NSEAT_SKILL_END",
+              "activeRate": 10000,
+              "fromLevel": 3,
+              "seGroupId": 106147,
+              "seOrder": 3,
+              "effect": {
+                "kind": "addDamage",
+                "statType": "NST_ATK",
+                "rate": 12500,
+                "target": "NSETT_SELF",
+                "landTarget": "NSETT_AUTO_ENEMY",
+                "trueDamage": null
+              }
+            },
+            {
+              "conditionId": 52200,
+              "condition": {
+                "trigger": "AfterMyAttack",
+                "checks": {
+                  "MyTurn": true,
+                  "IsNotTargetSuperArmor": true,
+                  "IsSingleEnemyTargetType": true,
+                  "TargetBuffStrId": [
+                    "BI_DARK_UNKNOWN_2"
+                  ]
+                }
+              },
+              "activeType": "NSEAT_SKILL_END",
+              "activeRate": 10000,
+              "fromLevel": 3,
+              "seGroupId": 106148,
+              "seOrder": 3,
+              "effect": {
+                "kind": "addDamage",
+                "statType": "NST_ATK",
+                "rate": 12500,
+                "target": "NSETT_SELF",
+                "landTarget": "NSETT_TARGET",
+                "trueDamage": null
+              }
+            },
+            {
+              "conditionId": 2172,
+              "condition": {
+                "trigger": "AfterMyAttack",
+                "checks": {
+                  "MyTurn": true,
+                  "IsNotTargetSuperArmor": true,
+                  "SkillTargetType": "NSTT_ENEMY_ALL"
+                }
+              },
+              "activeType": "NSEAT_SKILL_END",
+              "activeRate": 10000,
+              "fromLevel": 4,
+              "seGroupId": 106143,
+              "seOrder": 4,
+              "effect": {
+                "kind": "addDamage",
+                "statType": "NST_ATK",
+                "rate": 3000,
+                "target": "NSETT_SELF",
+                "landTarget": "NSETT_AUTO_ENEMY",
+                "trueDamage": null
+              }
+            },
+            {
+              "conditionId": 2171,
+              "condition": {
+                "trigger": "AfterMyAttack",
+                "checks": {
+                  "MyTurn": true,
+                  "IsNotTargetSuperArmor": true,
+                  "IsSingleEnemyTargetType": true
+                }
+              },
+              "activeType": "NSEAT_SKILL_END",
+              "activeRate": 10000,
+              "fromLevel": 4,
+              "seGroupId": 106144,
+              "seOrder": 4,
+              "effect": {
+                "kind": "addDamage",
+                "statType": "NST_ATK",
+                "rate": 3000,
+                "target": "NSETT_SELF",
+                "landTarget": "NSETT_TARGET",
+                "trueDamage": null
+              }
+            },
+            {
+              "conditionId": 2172,
+              "condition": {
+                "trigger": "AfterMyAttack",
+                "checks": {
+                  "MyTurn": true,
+                  "IsNotTargetSuperArmor": true,
+                  "SkillTargetType": "NSTT_ENEMY_ALL"
+                }
+              },
+              "activeType": "NSEAT_SKILL_END",
+              "activeRate": 10000,
+              "fromLevel": 4,
+              "seGroupId": 106147,
+              "seOrder": 4,
+              "effect": {
+                "kind": "addDamage",
+                "statType": "NST_ATK",
+                "rate": 15000,
+                "target": "NSETT_SELF",
+                "landTarget": "NSETT_AUTO_ENEMY",
+                "trueDamage": null
+              }
+            },
+            {
+              "conditionId": 52200,
+              "condition": {
+                "trigger": "AfterMyAttack",
+                "checks": {
+                  "MyTurn": true,
+                  "IsNotTargetSuperArmor": true,
+                  "IsSingleEnemyTargetType": true,
+                  "TargetBuffStrId": [
+                    "BI_DARK_UNKNOWN_2"
+                  ]
+                }
+              },
+              "activeType": "NSEAT_SKILL_END",
+              "activeRate": 10000,
+              "fromLevel": 4,
+              "seGroupId": 106148,
+              "seOrder": 4,
+              "effect": {
+                "kind": "addDamage",
+                "statType": "NST_ATK",
+                "rate": 15000,
+                "target": "NSETT_SELF",
+                "landTarget": "NSETT_TARGET",
+                "trueDamage": null
+              }
+            }
+          ],
+          "novaEffects": [],
+          "levelSummaries": [
+            {
+              "level": 1,
+              "description": {
+                "ko": "연쇄 고정 피해: 공격력의 20% (보스 120%)",
+                "en": "Chain fixed DMG: 20% of ATK (120% against bosses)",
+                "ja": "連鎖固定ダメージ：攻撃力の20％（ボス120％）"
+              }
+            },
+            {
+              "level": 2,
+              "description": {
+                "ko": "공격력 +5% · 연쇄 고정 피해: 공격력의 20% (보스 120%)",
+                "en": "ATK +5% · Chain fixed DMG: 20% of ATK (120% against bosses)",
+                "ja": "攻撃力 +5% · 連鎖固定ダメージ：攻撃力の20％（ボス120％）"
+              }
+            },
+            {
+              "level": 3,
+              "description": {
+                "ko": "공격력 +10% · 연쇄 고정 피해: 공격력의 25% (보스 150%)",
+                "en": "ATK +10% · Chain fixed DMG: 25% of ATK (150% against bosses)",
+                "ja": "攻撃力 +10% · 連鎖固定ダメージ：攻撃力の25％（ボス150％）"
+              }
+            },
+            {
+              "level": 4,
+              "description": {
+                "ko": "공격력 +15% · 연쇄 고정 피해: 공격력의 30% (보스 180%)",
+                "en": "ATK +15% · Chain fixed DMG: 30% of ATK (180% against bosses)",
+                "ja": "攻撃力 +15% · 連鎖固定ダメージ：攻撃力の30％（ボス180％）"
+              }
+            }
+          ]
+        },
+        {
+          "id": 10611,
+          "type": 1,
+          "target": "NSTT_ENEMY_ONE",
+          "cooltime": 0,
+          "baseCooltime": 0,
+          "break": 0,
+          "nova": 0,
+          "name": {
+            "ko": "절명",
+            "en": "Fatal Blow",
+            "ja": "絶命"
+          },
+          "novaDescription": {
+            "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 2 증가합니다.",
+            "en": "Temporarily deals 2 more Toughness Fixed DMG on attack.",
+            "ja": "攻撃時、一時的に自身の強靭度固定ダメージが2上がる。"
+          },
+          "icon": "./data/savior-skill-assets/skills/1061_1-espr.webp",
+          "buffs": [
+            {
+              "strId": "BI_ADJUSTTYPE_RESOURCE_ORDER",
+              "name": {
+                "ko": "통찰",
+                "en": "Insight",
+                "ja": "洞察"
+              },
+              "description": {
+                "ko": "혼돈 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.",
+                "en": "Damage dealt to Chaos Attribute units increases by 1%. Applies up to 5 stacks. This boost applies independently of buffs and debuffs.",
+                "ja": "混沌属性ユニットへの与ダメージが1%アップ。最大5スタックまで適用される。ブースト効果は強化/弱体化に関係なく、独立して適用される。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_ADJUSTTYPE_RESOURCE_ORDER.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "적을 향해 검을 두 번 휘둘러 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Strikes the enemy with two swings of her sword. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "敵に剣を2回振って敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              },
+              "barriers": []
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "적을 향해 검을 두 번 휘둘러 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Strikes the enemy with two swings of her sword. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "敵に剣を2回振って敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              },
+              "bonuses": {
+                "dmg": 1
+              },
+              "barriers": []
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "적을 향해 검을 두 번 휘둘러 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Strikes the enemy with two swings of her sword. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "敵に剣を2回振って敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              },
+              "bonuses": {
+                "dmg": 2
+              },
+              "barriers": []
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "적을 향해 검을 두 번 휘둘러 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Strikes the enemy with two swings of her sword. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "敵に剣を2回振って敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              },
+              "bonuses": {
+                "dmg": 3
+              },
+              "barriers": []
+            },
+            {
+              "level": 5,
+              "skillDescription": {
+                "ko": "적을 향해 검을 두 번 휘둘러 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Strikes the enemy with two swings of her sword. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "敵に剣を2回振って敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              },
+              "bonuses": {
+                "dmg": 4
+              },
+              "barriers": []
+            },
+            {
+              "level": 6,
+              "skillDescription": {
+                "ko": "적을 향해 검을 두 번 휘둘러 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Strikes the enemy with two swings of her sword. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "敵に剣を2回振って敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              },
+              "bonuses": {
+                "dmg": 6
+              },
+              "barriers": []
+            },
+            {
+              "level": 7,
+              "skillDescription": {
+                "ko": "적을 향해 검을 두 번 휘둘러 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Strikes the enemy with two swings of her sword. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "敵に剣を2回振って敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              },
+              "bonuses": {
+                "dmg": 8
+              },
+              "barriers": []
+            },
+            {
+              "level": 8,
+              "skillDescription": {
+                "ko": "적을 향해 검을 두 번 휘둘러 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Strikes the enemy with two swings of her sword. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "敵に剣を2回振って敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              },
+              "bonuses": {
+                "dmg": 10
+              },
+              "barriers": []
+            },
+            {
+              "level": 9,
+              "skillDescription": {
+                "ko": "적을 향해 검을 두 번 휘둘러 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Strikes the enemy with two swings of her sword. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "敵に剣を2回振って敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              },
+              "bonuses": {
+                "dmg": 12
+              },
+              "barriers": []
+            },
+            {
+              "level": 10,
+              "skillDescription": {
+                "ko": "적을 향해 검을 두 번 휘둘러 적을 공격합니다. 자신에게 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다.",
+                "en": "Strikes the enemy with two swings of her sword. Grants self 1 stack of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "敵に剣を2回振って敵を攻撃する。自身に<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              },
+              "bonuses": {
+                "dmg": 15
+              },
+              "barriers": []
+            }
+          ],
+          "factors": {
+            "damage": {
+              "atk": 5000,
+              "hp": 0,
+              "def": 0,
+              "spd": 0
+            }
+          },
+          "conditionalEffects": [],
+          "novaEffects": [
+            {
+              "buffId": "BI_STAT_NST_SUPER_ARMOR_TRUE_DAMAGE",
+              "value": 0,
+              "target": "NSETT_SELF",
+              "lifeTurn": 0,
+              "activeType": "NSEAT_SKILL_START",
+              "activeRate": 10000
+            }
+          ]
+        },
+        {
+          "id": 10612,
+          "type": 2,
+          "target": "NSTT_ENEMY_ALL",
+          "cooltime": 3,
+          "baseCooltime": 4,
+          "break": 1,
+          "nova": 1,
+          "name": {
+            "ko": "잔영 가르기",
+            "en": "Phantom Sever",
+            "ja": "残影割り"
+          },
+          "novaDescription": {
+            "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다.",
+            "en": "Self Toughness Fixed DMG temporarily increases by 1 on attack.",
+            "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がる。"
+          },
+          "icon": "./data/savior-skill-assets/skills/1061_2-espr.webp",
+          "buffs": [
+            {
+              "strId": "BI_ATTACK_INCREASE",
+              "name": {
+                "ko": "공격력 증가",
+                "en": "ATK Up",
+                "ja": "攻撃力アップ"
+              },
+              "description": {
+                "ko": "공격력이 30% 증가합니다.",
+                "en": "Increases ATK by 30%.",
+                "ja": "攻撃力が30%上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_ATTACK_INCREASE.webp"
+            },
+            {
+              "strId": "BI_ADJUSTTYPE_RESOURCE_ORDER",
+              "name": {
+                "ko": "통찰",
+                "en": "Insight",
+                "ja": "洞察"
+              },
+              "description": {
+                "ko": "혼돈 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.",
+                "en": "Damage dealt to Chaos Attribute units increases by 1%. Applies up to 5 stacks. This boost applies independently of buffs and debuffs.",
+                "ja": "混沌属性ユニットへの与ダメージが1%アップ。最大5スタックまで適用される。ブースト効果は強化/弱体化に関係なく、独立して適用される。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_ADJUSTTYPE_RESOURCE_ORDER.webp"
+            },
+            {
+              "strId": "BI_CRUSH",
+              "name": {
+                "ko": "파쇄",
+                "en": "Shatter",
+                "ja": "破砕"
+              },
+              "description": {
+                "ko": "공격력이 10% 증가하고 주는 강인도 고정 피해가 1 증가합니다.",
+                "en": "Increases ATK by 10% and deals 1 more Toughness Fixed DMG on attack.",
+                "ja": "攻撃力が10％上がり、強靭度固定ダメージが1上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_CRUSH.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "공허의 힘을 개방해 공간을 갈라 적 전체를 공격합니다. 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>5%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 자신이 <b><color=#DD982C>파쇄</color></b> 상태이면 자신의 강인도 피해가 2 증가하고 대상이 보스라면 강인도 피해가 추가로 3 증가합니다.",
+                "en": "Attacks all enemies by drawing upon Void Force to rend space. Grants self <b><color=#DD982C>ATK Up</color></b> for 2 turns and fills self Action Gauge by <b><color=#2A80D8>5%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. If self has <b><color=#DD982C>Shatter</color></b>, deals 2 more Toughness DMG, plus an additional 3 Toughness DMG if the target is a boss.",
+                "ja": "空虚の力を開放し、空間を裂いて敵全体を攻撃する。自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、自身の行動ゲージを<b><color=#2A80D8>5％</color></b>増やした後、<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。自身が<b><color=#DD982C>破砕</color></b>状態の場合、自身の強靭度ダメージが2上がり、対象がボスの場合、強靭度ダメージがさらに3上がる。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              },
+              "barriers": []
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "공허의 힘을 개방해 공간을 갈라 적 전체를 공격합니다. 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>5%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 자신이 <b><color=#DD982C>파쇄</color></b> 상태이면 자신의 강인도 피해가 2 증가하고 대상이 보스라면 강인도 피해가 추가로 3 증가합니다.",
+                "en": "Attacks all enemies by drawing upon Void Force to rend space. Grants self <b><color=#DD982C>ATK Up</color></b> for 2 turns and fills self Action Gauge by <b><color=#2A80D8>5%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. If self has <b><color=#DD982C>Shatter</color></b>, deals 2 more Toughness DMG, plus an additional 3 Toughness DMG if the target is a boss.",
+                "ja": "空虚の力を開放し、空間を裂いて敵全体を攻撃する。自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、自身の行動ゲージを<b><color=#2A80D8>5％</color></b>増やした後、<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。自身が<b><color=#DD982C>破砕</color></b>状態の場合、自身の強靭度ダメージが2上がり、対象がボスの場合、強靭度ダメージがさらに3上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              },
+              "bonuses": {
+                "dmg": 1
+              },
+              "barriers": []
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "공허의 힘을 개방해 공간을 갈라 적 전체를 공격합니다. 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>5%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 자신이 <b><color=#DD982C>파쇄</color></b> 상태이면 자신의 강인도 피해가 2 증가하고 대상이 보스라면 강인도 피해가 추가로 3 증가합니다.",
+                "en": "Attacks all enemies by drawing upon Void Force to rend space. Grants self <b><color=#DD982C>ATK Up</color></b> for 2 turns and fills self Action Gauge by <b><color=#2A80D8>5%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. If self has <b><color=#DD982C>Shatter</color></b>, deals 2 more Toughness DMG, plus an additional 3 Toughness DMG if the target is a boss.",
+                "ja": "空虚の力を開放し、空間を裂いて敵全体を攻撃する。自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、自身の行動ゲージを<b><color=#2A80D8>5％</color></b>増やした後、<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。自身が<b><color=#DD982C>破砕</color></b>状態の場合、自身の強靭度ダメージが2上がり、対象がボスの場合、強靭度ダメージがさらに3上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              },
+              "bonuses": {
+                "dmg": 3
+              },
+              "barriers": []
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "공허의 힘을 개방해 공간을 갈라 적 전체를 공격합니다. 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>10%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 자신이 <b><color=#DD982C>파쇄</color></b> 상태이면 자신의 강인도 피해가 2 증가하고 대상이 보스라면 강인도 피해가 추가로 3 증가합니다.",
+                "en": "Attacks all enemies by drawing upon Void Force to rend space. Grants self <b><color=#DD982C>ATK Up</color></b> for 2 turns and fills self Action Gauge by <b><color=#2A80D8>10%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. If self has <b><color=#DD982C>Shatter</color></b>, deals 2 more Toughness DMG, plus an additional 3 Toughness DMG if the target is a boss.",
+                "ja": "空虚の力を開放し、空間を裂いて敵全体を攻撃する。自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、自身の行動ゲージを<b><color=#2A80D8>10％</color></b>増やした後、<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。自身が<b><color=#DD982C>破砕</color></b>状態の場合、自身の強靭度ダメージが2上がり、対象がボスの場合、強靭度ダメージがさらに3上がる。"
+              },
+              "levelDescription": {
+                "ko": "행동 게이지 증가량 5% 증가",
+                "en": "Action Gauge Gain +5%",
+                "ja": "行動ゲージ増加量5%増加"
+              },
+              "bonuses": {
+                "dmg": 3
+              },
+              "barriers": []
+            },
+            {
+              "level": 5,
+              "skillDescription": {
+                "ko": "공허의 힘을 개방해 공간을 갈라 적 전체를 공격합니다. 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>10%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 자신이 <b><color=#DD982C>파쇄</color></b> 상태이면 자신의 강인도 피해가 2 증가하고 대상이 보스라면 강인도 피해가 추가로 3 증가합니다.",
+                "en": "Attacks all enemies by drawing upon Void Force to rend space. Grants self <b><color=#DD982C>ATK Up</color></b> for 2 turns and fills self Action Gauge by <b><color=#2A80D8>10%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. If self has <b><color=#DD982C>Shatter</color></b>, deals 2 more Toughness DMG, plus an additional 3 Toughness DMG if the target is a boss.",
+                "ja": "空虚の力を開放し、空間を裂いて敵全体を攻撃する。自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、自身の行動ゲージを<b><color=#2A80D8>10％</color></b>増やした後、<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。自身が<b><color=#DD982C>破砕</color></b>状態の場合、自身の強靭度ダメージが2上がり、対象がボスの場合、強靭度ダメージがさらに3上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              },
+              "bonuses": {
+                "dmg": 5
+              },
+              "barriers": []
+            },
+            {
+              "level": 6,
+              "skillDescription": {
+                "ko": "공허의 힘을 개방해 공간을 갈라 적 전체를 공격합니다. 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>10%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 자신이 <b><color=#DD982C>파쇄</color></b> 상태이면 자신의 강인도 피해가 2 증가하고 대상이 보스라면 강인도 피해가 추가로 3 증가합니다.",
+                "en": "Attacks all enemies by drawing upon Void Force to rend space. Grants self <b><color=#DD982C>ATK Up</color></b> for 2 turns and fills self Action Gauge by <b><color=#2A80D8>10%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. If self has <b><color=#DD982C>Shatter</color></b>, deals 2 more Toughness DMG, plus an additional 3 Toughness DMG if the target is a boss.",
+                "ja": "空虚の力を開放し、空間を裂いて敵全体を攻撃する。自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、自身の行動ゲージを<b><color=#2A80D8>10％</color></b>増やした後、<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。自身が<b><color=#DD982C>破砕</color></b>状態の場合、自身の強靭度ダメージが2上がり、対象がボスの場合、強靭度ダメージがさらに3上がる。"
+              },
+              "levelDescription": {
+                "ko": "쿨타임 1턴 감소",
+                "en": "Cooldown decreases by 1 turn(s)",
+                "ja": "クールタイム1ターン短縮"
+              },
+              "bonuses": {
+                "dmg": 5
+              },
+              "barriers": [],
+              "cooltimeReduce": 1
+            },
+            {
+              "level": 7,
+              "skillDescription": {
+                "ko": "공허의 힘을 개방해 공간을 갈라 적 전체를 공격합니다. 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>10%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 자신이 <b><color=#DD982C>파쇄</color></b> 상태이면 자신의 강인도 피해가 2 증가하고 대상이 보스라면 강인도 피해가 추가로 3 증가합니다.",
+                "en": "Attacks all enemies by drawing upon Void Force to rend space. Grants self <b><color=#DD982C>ATK Up</color></b> for 2 turns and fills self Action Gauge by <b><color=#2A80D8>10%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. If self has <b><color=#DD982C>Shatter</color></b>, deals 2 more Toughness DMG, plus an additional 3 Toughness DMG if the target is a boss.",
+                "ja": "空虚の力を開放し、空間を裂いて敵全体を攻撃する。自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、自身の行動ゲージを<b><color=#2A80D8>10％</color></b>増やした後、<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。自身が<b><color=#DD982C>破砕</color></b>状態の場合、自身の強靭度ダメージが2上がり、対象がボスの場合、強靭度ダメージがさらに3上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              },
+              "bonuses": {
+                "dmg": 7
+              },
+              "barriers": []
+            },
+            {
+              "level": 8,
+              "skillDescription": {
+                "ko": "공허의 힘을 개방해 공간을 갈라 적 전체를 공격합니다. 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>15%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 자신이 <b><color=#DD982C>파쇄</color></b> 상태이면 자신의 강인도 피해가 2 증가하고 대상이 보스라면 강인도 피해가 추가로 3 증가합니다.",
+                "en": "Attacks all enemies by drawing upon Void Force to rend space. Grants self <b><color=#DD982C>ATK Up</color></b> for 2 turns and fills self Action Gauge by <b><color=#2A80D8>15%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. If self has <b><color=#DD982C>Shatter</color></b>, deals 2 more Toughness DMG, plus an additional 3 Toughness DMG if the target is a boss.",
+                "ja": "空虚の力を開放し、空間を裂いて敵全体を攻撃する。自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、自身の行動ゲージを<b><color=#2A80D8>15％</color></b>増やした後、<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。自身が<b><color=#DD982C>破砕</color></b>状態の場合、自身の強靭度ダメージが2上がり、対象がボスの場合、強靭度ダメージがさらに3上がる。"
+              },
+              "levelDescription": {
+                "ko": "행동 게이지 증가량 5% 증가",
+                "en": "Action Gauge Gain +5%",
+                "ja": "行動ゲージ増加量5%増加"
+              },
+              "bonuses": {
+                "dmg": 7
+              },
+              "barriers": []
+            },
+            {
+              "level": 9,
+              "skillDescription": {
+                "ko": "공허의 힘을 개방해 공간을 갈라 적 전체를 공격합니다. 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>15%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 자신이 <b><color=#DD982C>파쇄</color></b> 상태이면 자신의 강인도 피해가 2 증가하고 대상이 보스라면 강인도 피해가 추가로 3 증가합니다.",
+                "en": "Attacks all enemies by drawing upon Void Force to rend space. Grants self <b><color=#DD982C>ATK Up</color></b> for 2 turns and fills self Action Gauge by <b><color=#2A80D8>15%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. If self has <b><color=#DD982C>Shatter</color></b>, deals 2 more Toughness DMG, plus an additional 3 Toughness DMG if the target is a boss.",
+                "ja": "空虚の力を開放し、空間を裂いて敵全体を攻撃する。自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、自身の行動ゲージを<b><color=#2A80D8>15％</color></b>増やした後、<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。自身が<b><color=#DD982C>破砕</color></b>状態の場合、自身の強靭度ダメージが2上がり、対象がボスの場合、強靭度ダメージがさらに3上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              },
+              "bonuses": {
+                "dmg": 10
+              },
+              "barriers": []
+            },
+            {
+              "level": 10,
+              "skillDescription": {
+                "ko": "공허의 힘을 개방해 공간을 갈라 적 전체를 공격합니다. 자신에게 2턴 간 <b><color=#DD982C>공격력 증가</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>15%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 1개 부여합니다. 자신이 <b><color=#DD982C>파쇄</color></b> 상태이면 자신의 강인도 피해가 2 증가하고 대상이 보스라면 강인도 피해가 추가로 3 증가합니다.",
+                "en": "Attacks all enemies by drawing upon Void Force to rend space. Grants self <b><color=#DD982C>ATK Up</color></b> for 2 turns and fills self Action Gauge by <b><color=#2A80D8>15%</color></b>, then grants self 1 stack of <b><color=#DD982C>Insight</color></b>. If self has <b><color=#DD982C>Shatter</color></b>, deals 2 more Toughness DMG, plus an additional 3 Toughness DMG if the target is a boss.",
+                "ja": "空虚の力を開放し、空間を裂いて敵全体を攻撃する。自身に<b><color=#DD982C>攻撃力アップ</color></b>を2ターン付与し、自身の行動ゲージを<b><color=#2A80D8>15％</color></b>増やした後、<b><color=#DD982C>洞察</color></b>スタックを1つ付与する。自身が<b><color=#DD982C>破砕</color></b>状態の場合、自身の強靭度ダメージが2上がり、対象がボスの場合、強靭度ダメージがさらに3上がる。"
+              },
+              "levelDescription": {
+                "ko": "피해량 5% 증가",
+                "en": "DMG +5%",
+                "ja": "与ダメージ5%上昇"
+              },
+              "bonuses": {
+                "dmg": 15
+              },
+              "barriers": []
+            }
+          ],
+          "factors": {
+            "damage": {
+              "atk": 16000,
+              "hp": 0,
+              "def": 0,
+              "spd": 0
+            }
+          },
+          "conditionalEffects": [],
+          "novaEffects": []
+        },
+        {
+          "id": 10613,
+          "type": 3,
+          "target": "NSTT_ENEMY_ALL",
+          "cooltime": 4,
+          "baseCooltime": 5,
+          "break": 2,
+          "nova": 1,
+          "name": {
+            "ko": "루쿨라 녹티스",
+            "en": "Lucula Noctis",
+            "ja": "ルクーラ・ノクティス"
+          },
+          "novaDescription": {
+            "ko": "타격 시 일시적으로 자신의 강인도 고정 피해가 1 증가합니다.",
+            "en": "Self Toughness Fixed DMG temporarily increases by 1 on attack.",
+            "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がる。"
+          },
+          "icon": "./data/savior-skill-assets/skills/1061_3-espr.webp",
+          "buffs": [
+            {
+              "strId": "BI_CRUSH",
+              "name": {
+                "ko": "파쇄",
+                "en": "Shatter",
+                "ja": "破砕"
+              },
+              "description": {
+                "ko": "공격력이 10% 증가하고 주는 강인도 고정 피해가 1 증가합니다.",
+                "en": "Increases ATK by 10% and deals 1 more Toughness Fixed DMG on attack.",
+                "ja": "攻撃力が10％上がり、強靭度固定ダメージが1上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_CRUSH.webp"
+            },
+            {
+              "strId": "BI_ADJUSTTYPE_RESOURCE_ORDER",
+              "name": {
+                "ko": "통찰",
+                "en": "Insight",
+                "ja": "洞察"
+              },
+              "description": {
+                "ko": "혼돈 속성 유닛에게 주는 피해량이 1% 증가합니다. 최대 5스택까지 적용됩니다. 부스트 효과는 강화/약화 효과와 무관하게 독립적으로 적용됩니다.",
+                "en": "Damage dealt to Chaos Attribute units increases by 1%. Applies up to 5 stacks. This boost applies independently of buffs and debuffs.",
+                "ja": "混沌属性ユニットへの与ダメージが1%アップ。最大5スタックまで適用される。ブースト効果は強化/弱体化に関係なく、独立して適用される。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_ADJUSTTYPE_RESOURCE_ORDER.webp"
+            }
+          ],
+          "levels": [
+            {
+              "level": 1,
+              "skillDescription": {
+                "ko": "봉인이 해방된 검으로 전방의 모든 것을 파괴해 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>파쇄</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>5%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 2개 부여합니다.",
+                "en": "Attacks all enemies by laying waste to everything ahead with her unsealed sword. Grants self <b><color=#DD982C>Shatter</color></b> for 3 turns, fills self Action Gauge by <b><color=#2A80D8>5%</color></b>, then grants self 2 stacks of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "封印が解放された剣で、前方にあるすべてを破壊して、敵全体を攻撃する。自身に<b><color=#DD982C>破砕</color></b>を3ターン付与し、自身の行動ゲージを<b><color=#2A80D8>5％</color></b>増やす。その後、<b><color=#DD982C>洞察</color></b>スタックを2つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "기본 효과",
+                "en": "Base Effect",
+                "ja": "基本効果"
+              },
+              "barriers": []
+            },
+            {
+              "level": 2,
+              "skillDescription": {
+                "ko": "봉인이 해방된 검으로 전방의 모든 것을 파괴해 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>파쇄</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>5%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 2개 부여합니다.",
+                "en": "Attacks all enemies by laying waste to everything ahead with her unsealed sword. Grants self <b><color=#DD982C>Shatter</color></b> for 3 turns, fills self Action Gauge by <b><color=#2A80D8>5%</color></b>, then grants self 2 stacks of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "封印が解放された剣で、前方にあるすべてを破壊して、敵全体を攻撃する。自身に<b><color=#DD982C>破砕</color></b>を3ターン付与し、自身の行動ゲージを<b><color=#2A80D8>5％</color></b>増やす。その後、<b><color=#DD982C>洞察</color></b>スタックを2つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 1% 증가",
+                "en": "DMG +1%",
+                "ja": "与ダメージ1%上昇"
+              },
+              "bonuses": {
+                "dmg": 1
+              },
+              "barriers": []
+            },
+            {
+              "level": 3,
+              "skillDescription": {
+                "ko": "봉인이 해방된 검으로 전방의 모든 것을 파괴해 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>파쇄</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>5%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 2개 부여합니다.",
+                "en": "Attacks all enemies by laying waste to everything ahead with her unsealed sword. Grants self <b><color=#DD982C>Shatter</color></b> for 3 turns, fills self Action Gauge by <b><color=#2A80D8>5%</color></b>, then grants self 2 stacks of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "封印が解放された剣で、前方にあるすべてを破壊して、敵全体を攻撃する。自身に<b><color=#DD982C>破砕</color></b>を3ターン付与し、自身の行動ゲージを<b><color=#2A80D8>5％</color></b>増やす。その後、<b><color=#DD982C>洞察</color></b>スタックを2つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              },
+              "bonuses": {
+                "dmg": 3
+              },
+              "barriers": []
+            },
+            {
+              "level": 4,
+              "skillDescription": {
+                "ko": "봉인이 해방된 검으로 전방의 모든 것을 파괴해 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>파쇄</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>10%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 2개 부여합니다.",
+                "en": "Attacks all enemies by laying waste to everything ahead with her unsealed sword. Grants self <b><color=#DD982C>Shatter</color></b> for 3 turns, fills self Action Gauge by <b><color=#2A80D8>10%</color></b>, then grants self 2 stacks of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "封印が解放された剣で、前方にあるすべてを破壊して、敵全体を攻撃する。自身に<b><color=#DD982C>破砕</color></b>を3ターン付与し、自身の行動ゲージを<b><color=#2A80D8>10％</color></b>増やす。その後、<b><color=#DD982C>洞察</color></b>スタックを2つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "행동 게이지 증가량 5% 증가",
+                "en": "Action Gauge Gain +5%",
+                "ja": "行動ゲージ増加量5%増加"
+              },
+              "bonuses": {
+                "dmg": 3
+              },
+              "barriers": []
+            },
+            {
+              "level": 5,
+              "skillDescription": {
+                "ko": "봉인이 해방된 검으로 전방의 모든 것을 파괴해 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>파쇄</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>10%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 2개 부여합니다.",
+                "en": "Attacks all enemies by laying waste to everything ahead with her unsealed sword. Grants self <b><color=#DD982C>Shatter</color></b> for 3 turns, fills self Action Gauge by <b><color=#2A80D8>10%</color></b>, then grants self 2 stacks of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "封印が解放された剣で、前方にあるすべてを破壊して、敵全体を攻撃する。自身に<b><color=#DD982C>破砕</color></b>を3ターン付与し、自身の行動ゲージを<b><color=#2A80D8>10％</color></b>増やす。その後、<b><color=#DD982C>洞察</color></b>スタックを2つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              },
+              "bonuses": {
+                "dmg": 5
+              },
+              "barriers": []
+            },
+            {
+              "level": 6,
+              "skillDescription": {
+                "ko": "봉인이 해방된 검으로 전방의 모든 것을 파괴해 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>파쇄</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>10%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 2개 부여합니다.",
+                "en": "Attacks all enemies by laying waste to everything ahead with her unsealed sword. Grants self <b><color=#DD982C>Shatter</color></b> for 3 turns, fills self Action Gauge by <b><color=#2A80D8>10%</color></b>, then grants self 2 stacks of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "封印が解放された剣で、前方にあるすべてを破壊して、敵全体を攻撃する。自身に<b><color=#DD982C>破砕</color></b>を3ターン付与し、自身の行動ゲージを<b><color=#2A80D8>10％</color></b>増やす。その後、<b><color=#DD982C>洞察</color></b>スタックを2つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "쿨타임 1턴 감소",
+                "en": "Cooldown decreases by 1 turn(s)",
+                "ja": "クールタイム1ターン短縮"
+              },
+              "bonuses": {
+                "dmg": 5
+              },
+              "barriers": [],
+              "cooltimeReduce": 1
+            },
+            {
+              "level": 7,
+              "skillDescription": {
+                "ko": "봉인이 해방된 검으로 전방의 모든 것을 파괴해 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>파쇄</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>10%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 2개 부여합니다.",
+                "en": "Attacks all enemies by laying waste to everything ahead with her unsealed sword. Grants self <b><color=#DD982C>Shatter</color></b> for 3 turns, fills self Action Gauge by <b><color=#2A80D8>10%</color></b>, then grants self 2 stacks of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "封印が解放された剣で、前方にあるすべてを破壊して、敵全体を攻撃する。自身に<b><color=#DD982C>破砕</color></b>を3ターン付与し、自身の行動ゲージを<b><color=#2A80D8>10％</color></b>増やす。その後、<b><color=#DD982C>洞察</color></b>スタックを2つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 2% 증가",
+                "en": "DMG +2%",
+                "ja": "与ダメージ2%上昇"
+              },
+              "bonuses": {
+                "dmg": 7
+              },
+              "barriers": []
+            },
+            {
+              "level": 8,
+              "skillDescription": {
+                "ko": "봉인이 해방된 검으로 전방의 모든 것을 파괴해 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>파쇄</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>15%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 2개 부여합니다.",
+                "en": "Attacks all enemies by laying waste to everything ahead with her unsealed sword. Grants self <b><color=#DD982C>Shatter</color></b> for 3 turns, fills self Action Gauge by <b><color=#2A80D8>15%</color></b>, then grants self 2 stacks of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "封印が解放された剣で、前方にあるすべてを破壊して、敵全体を攻撃する。自身に<b><color=#DD982C>破砕</color></b>を3ターン付与し、自身の行動ゲージを<b><color=#2A80D8>15％</color></b>増やす。その後、<b><color=#DD982C>洞察</color></b>スタックを2つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "행동 게이지 증가량 5% 증가",
+                "en": "Action Gauge Gain +5%",
+                "ja": "行動ゲージ増加量5%増加"
+              },
+              "bonuses": {
+                "dmg": 7
+              },
+              "barriers": []
+            },
+            {
+              "level": 9,
+              "skillDescription": {
+                "ko": "봉인이 해방된 검으로 전방의 모든 것을 파괴해 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>파쇄</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>15%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 2개 부여합니다.",
+                "en": "Attacks all enemies by laying waste to everything ahead with her unsealed sword. Grants self <b><color=#DD982C>Shatter</color></b> for 3 turns, fills self Action Gauge by <b><color=#2A80D8>15%</color></b>, then grants self 2 stacks of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "封印が解放された剣で、前方にあるすべてを破壊して、敵全体を攻撃する。自身に<b><color=#DD982C>破砕</color></b>を3ターン付与し、自身の行動ゲージを<b><color=#2A80D8>15％</color></b>増やす。その後、<b><color=#DD982C>洞察</color></b>スタックを2つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 3% 증가",
+                "en": "DMG +3%",
+                "ja": "与ダメージ3%上昇"
+              },
+              "bonuses": {
+                "dmg": 10
+              },
+              "barriers": []
+            },
+            {
+              "level": 10,
+              "skillDescription": {
+                "ko": "봉인이 해방된 검으로 전방의 모든 것을 파괴해 적 전체를 공격합니다. 자신에게 3턴 간 <b><color=#DD982C>파쇄</color></b>를 발생시키고 자신의 행동 게이지를 <b><color=#2A80D8>15%</color></b> 증가시킨 후 <b><color=#DD982C>통찰</color></b> 스택을 2개 부여합니다.",
+                "en": "Attacks all enemies by laying waste to everything ahead with her unsealed sword. Grants self <b><color=#DD982C>Shatter</color></b> for 3 turns, fills self Action Gauge by <b><color=#2A80D8>15%</color></b>, then grants self 2 stacks of <b><color=#DD982C>Insight</color></b>.",
+                "ja": "封印が解放された剣で、前方にあるすべてを破壊して、敵全体を攻撃する。自身に<b><color=#DD982C>破砕</color></b>を3ターン付与し、自身の行動ゲージを<b><color=#2A80D8>15％</color></b>増やす。その後、<b><color=#DD982C>洞察</color></b>スタックを2つ付与する。"
+              },
+              "levelDescription": {
+                "ko": "피해량 5% 증가",
+                "en": "DMG +5%",
+                "ja": "与ダメージ5%上昇"
+              },
+              "bonuses": {
+                "dmg": 15
+              },
+              "barriers": []
+            }
+          ],
+          "factors": {
+            "damage": {
+              "atk": 26500,
+              "hp": 0,
+              "def": 0,
+              "spd": 0
+            }
+          },
+          "conditionalEffects": [],
+          "novaEffects": []
+        }
+      ],
+      "blossomSkills": [],
+      "source": "https://ss.espr.gg/ko/database/characters/asherah-order-striker",
+      "capturedAt": "2026-11-12T03:20:04.910Z"
     }
   ],
-  "lastNewSyncAt": "2026-11-12T03:01:30.181Z"
+  "lastNewSyncAt": "2026-11-12T03:20:04.910Z"
 }

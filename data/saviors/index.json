@@ -1709,10 +1709,10 @@
   "_meta": {
     "sourceRoot": "https://star-savior-arcana-db.pages.dev/savior",
     "generatedAt": "2026-10-02T07:00:45.905Z",
-    "count": 58,
-    "profileCount": 58,
-    "portraitCount": 58,
-    "illustrationCount": 58,
+    "count": 59,
+    "profileCount": 59,
+    "portraitCount": 59,
+    "illustrationCount": 59,
     "profileFields": [
       "name",
       "grade",
@@ -1735,7 +1735,7 @@
       "아크 포인트"
     ],
     "capturedAt": "2026-10-15T03:45:28.701Z",
-    "lastNewSyncAt": "2026-11-12T03:01:30.181Z"
+    "lastNewSyncAt": "2026-11-12T03:20:04.910Z"
   },
   "1059": {
     "key": "ceres-sun-supporter",
@@ -2213,6 +2213,267 @@
           "code": "POTEN_PASSIVE_1001"
         }
       ]
+    }
+  },
+  "1061": {
+    "key": "asherah-order-striker",
+    "id": 1061,
+    "slug": "asherah-order-striker",
+    "file": "./1061.html",
+    "source": "https://ss.espr.gg/ko/database/characters/asherah-order-striker",
+    "capturedAt": "2026-11-12T03:20:04.910Z",
+    "profile": {
+      "name": "아세라",
+      "grade": "SSR",
+      "element": "질서",
+      "className": "스트라이커",
+      "attackType": "참격",
+      "description": "누군가를 구원하겠다는 일념으로 수많은 시간선을 넘나드는 존재. 어쩐지 익숙한 느낌이 드는 인물이지만, 그 정체는 미지에 가려져 있다.",
+      "affiliation": "불명",
+      "portrait": "./data/savior-detail-assets/1061-portrait.webp",
+      "illustration": "./data/savior-detail-assets/1061-illustration.webp",
+      "localized": {
+        "ko": {
+          "name": "아세라",
+          "description": "누군가를 구원하겠다는 일념으로 수많은 시간선을 넘나드는 존재. 어쩐지 익숙한 느낌이 드는 인물이지만, 그 정체는 미지에 가려져 있다.",
+          "affiliation": "불명",
+          "birthday": "4월 22일",
+          "height": "166cm",
+          "origin": "불명",
+          "cvKr": "김채린",
+          "cvJp": "타카모리 나츠미"
+        },
+        "en": {
+          "name": "Asherah",
+          "description": "A being who crosses countless timelines with a single purpose: to save someone. Though strangely familiar, their identity remains shrouded in mystery.",
+          "affiliation": "Unknown",
+          "birthday": "April 22",
+          "height": "166 cm",
+          "origin": "Unknown",
+          "cvKr": "Kim Chae-rin",
+          "cvJp": "Natsumi Takamori"
+        },
+        "ja": {
+          "name": "アセラ",
+          "description": "誰かを救うという一念で、あらゆる時間線を渡り歩く存在。どこか見覚えのある人物だが、その正体は謎に包まれている。",
+          "affiliation": "不明",
+          "birthday": "4月22日",
+          "height": "166cm",
+          "origin": "不明",
+          "cvKr": "キム・チェリン",
+          "cvJp": "高森奈津美"
+        }
+      },
+      "birthday": "4월 22일",
+      "height": "166cm",
+      "origin": "불명",
+      "cvKr": "김채린",
+      "cvJp": "타카모리 나츠미"
+    },
+    "journey": {
+      "source": "https://ss.espr.gg/ko/database/characters/asherah-order-striker/journey",
+      "baseStats": {
+        "str": 30,
+        "hp": 20,
+        "end": 20,
+        "focus": 10,
+        "prot": 10
+      },
+      "resonances": [
+        {
+          "step": 1,
+          "unlockLevel": 20,
+          "journeyStat": {
+            "type": "str",
+            "value": 30
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 100
+            },
+            {
+              "type": "hp",
+              "value": 720
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 2,
+          "unlockLevel": 40,
+          "journeyStat": {
+            "type": "hp",
+            "value": 30
+          },
+          "stats": [
+            {
+              "type": "atk_rate",
+              "value": 0.02
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 3,
+          "unlockLevel": 60,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "atk",
+              "value": 125
+            },
+            {
+              "type": "def",
+              "value": 50
+            }
+          ],
+          "potential": "POTEN_PASSIVE_0001"
+        },
+        {
+          "step": 4,
+          "unlockLevel": 80,
+          "journeyStat": {
+            "type": "str",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "spd",
+              "value": 2
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 5,
+          "unlockLevel": 100,
+          "journeyStat": {
+            "type": "hp",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "hp",
+              "value": 900
+            },
+            {
+              "type": "def",
+              "value": 60
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 6,
+          "unlockLevel": 120,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "atk_rate",
+              "value": 0.04
+            }
+          ],
+          "potential": "POTEN_PASSIVE_0004"
+        },
+        {
+          "step": 7,
+          "unlockLevel": 140,
+          "journeyStat": {
+            "type": "str",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 175
+            },
+            {
+              "type": "hp",
+              "value": 1080
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 8,
+          "unlockLevel": 160,
+          "journeyStat": {
+            "type": "str",
+            "value": 40
+          },
+          "stats": [
+            {
+              "type": "spd",
+              "value": 4
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 9,
+          "unlockLevel": 180,
+          "journeyStat": {
+            "type": "hp",
+            "value": 50
+          },
+          "stats": [
+            {
+              "type": "atk",
+              "value": 200
+            },
+            {
+              "type": "def",
+              "value": 70
+            }
+          ],
+          "potential": null
+        },
+        {
+          "step": 10,
+          "unlockLevel": 200,
+          "journeyStat": null,
+          "stats": [
+            {
+              "type": "atk_rate",
+              "value": 0.06
+            }
+          ],
+          "potential": "POTEN_PASSIVE_1001"
+        }
+      ],
+      "potentialCodes": [
+        {
+          "step": 3,
+          "code": "POTEN_PASSIVE_0001"
+        },
+        {
+          "step": 6,
+          "code": "POTEN_PASSIVE_0004"
+        },
+        {
+          "step": 10,
+          "code": "POTEN_PASSIVE_1001"
+        }
+      ],
+      "charm": {
+        "name": {
+          "ko": "부정의 서클렛",
+          "en": "Circlet of Defiance",
+          "ja": "不浄のサークレット"
+        },
+        "flavor": {
+          "ko": "편애의 마녀가 착용하는 헤어 악세서리. 시간을 부정하고 뛰어넘는 자의 뒤틀린 의지가 느껴진다.",
+          "en": "A hair accessory worn by the Witch of Favoritism. Within it, one can sense the twisted will of someone who denies and transcends time.",
+          "ja": "偏愛の魔女が身に着けるヘアアクセサリー。時間を否定し、飛び越える者の歪んだ意志が感じられる。"
+        },
+        "effect": {
+          "ko": "강인도 최대치가 1 증가합니다. 전투 시작 시 자신에게 1턴 간 <b><color=#DD982C>파쇄</color></b>를 발생시킵니다. <b><color=#DD982C>잔영 가르기</color></b> 사용 시 자신이 <b><color=#DD982C>파쇄</color></b> 상태이면 자신의 강인도 피해가 1 증가합니다.",
+          "en": "Increases Max Toughness by 1. At the start of battle, grants self <b><color=#DD982C>Shatter</color></b> for 1 turn. When self uses <b><color=#DD982C>Phantom Sever</color></b>, if self has <b><color=#DD982C>Shatter</color></b>, increases self Toughness DMG by 1.",
+          "ja": "強靭度の最大値が1上がる。戦闘開始時、自身に<b><color=#DD982C>破砕</color></b>を1ターン付与する。<b><color=#DD982C>残影割り</color></b>使用時、自身が<b><color=#DD982C>破砕</color></b>状態の場合、自身の強靭度ダメージが1上がる。"
+        },
+        "image": "./data/savior-detail-assets/1061-charm.webp"
+      }
     }
   }
 }
