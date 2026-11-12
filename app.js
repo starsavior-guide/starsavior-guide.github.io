@@ -173,6 +173,20 @@
       clarissaArcana.pve[3] = { ...clarissaArcana.pve[3], name: "끝나지 않는 춤" };
     }
 
+    const recommendedSlotOverrides = {
+      lily: { 4: "불굴의 역작" },
+      lacy: { 3: "끝나지 않는 춤" },
+      muriel: { 4: "불굴의 역작" },
+      dana: { 4: "불굴의 역작" },
+      smile: { 1: "불굴의 역작" }
+    };
+    Object.entries(recommendedSlotOverrides).forEach(([id, slots]) => {
+      const recommended = SAVIORS.find((savior) => savior.id === id)?.detail?.arcana?.pve;
+      Object.entries(slots).forEach(([index, name]) => {
+        if (recommended?.[index]) recommended[index] = { ...recommended[index], name };
+      });
+    });
+
     // 사용자가 지정한 개별 구성은 최종 슬롯에서 적용하여 자동 추가로 빈칸이 채워지지 않게 합니다.
     const alternativeSlotOverrides = {
       clarissa: {
@@ -201,6 +215,127 @@
         },
         3: null,
         4: null
+      },
+      marcille: {
+        1: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸 or 끝나지 않는 춤",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      kyra: {
+        1: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸 or 끝나지 않는 춤",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      lily: {
+        2: {
+          name: "어느 한 기사의 맹세 or 하얀 달의 온기는 햇빛처럼 or 끝나지 않는 춤",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      tanya: {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      lacy: { 3: null, 4: null },
+      epindel: {
+        1: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      muriel: {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸 or 영원 속박의 굴레",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      dana: {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      trish: {
+        1: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      charlotte: {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        }
+      },
+      luna: {
+        1: {
+          name: "하늘의 심판 or 불굴의 역작 or 끝나지 않는 춤 or 어느 한 기사의 맹세",
+          note: "하얀 달의 온기는 햇빛처럼 대체"
+        },
+        3: null,
+        4: null
+      },
+      smile: {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸 or 허수의 개척자",
+          note: "부족한 자리 대체"
+        }
+      },
+      "asherah-voyager": {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        }
+      },
+      claire: {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        }
+      },
+      scarlet: {
+        3: { name: "끝나지 않는 춤", note: "부족한 자리 대체" },
+        4: null
+      },
+      omega: {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        }
+      },
+      "waltz-asherah": {
+        1: {
+          name: "스트라니스의 영애 or 본 투 비 와일드 or 언더커버 캅 or 끝나지 않는 춤",
+          note: "완벽한 바니걸 대체"
+        }
+      },
+      petra: {
+        2: {
+          name: "어느 한 기사의 맹세 or 끝나지 않는 춤 or 영원 속박의 굴레",
+          note: "하얀 달의 온기는 햇빛처럼 대체"
+        },
+        3: null,
+        4: null
       }
     };
 
@@ -209,7 +344,8 @@
     addEternalBondAlternativeForWhiteMoon = function (savior, pveArcana, alternatives) {
       const resolved = baseResolvedAlternativeArcana(savior, pveArcana, alternatives);
       const target = neverEndingDanceAlternativeSlots.get(savior?.id);
-      if (!target) return resolved;
+      const overrides = alternativeSlotOverrides[savior?.id];
+      if (!target && !overrides) return resolved;
 
       const result = resolved.map((slot) => slot ? { ...slot } : null);
       if (missingStrikerAlternativeNoteIds.has(savior.id)) {
@@ -220,23 +356,23 @@
         });
       }
 
-      const overrides = alternativeSlotOverrides[savior.id];
+      if (target) {
+        const name = "끝나지 않는 춤";
+        const slot = result[target.index];
+        if (target.append) {
+          if (slot?.note === "부족한 자리 대체" &&
+              !String(slot.name).split(/\s*or\s*/i).includes(name)) {
+            result[target.index] = { ...slot, name: `${slot.name} or ${name}` };
+          }
+        } else if (!slot?.name) {
+          result[target.index] = { name, note: "부족한 자리 대체" };
+        }
+      }
+
       if (overrides) {
         Object.entries(overrides).forEach(([index, slot]) => {
           result[Number(index)] = slot ? { ...slot } : null;
         });
-        return result;
-      }
-
-      const name = "끝나지 않는 춤";
-      const slot = result[target.index];
-      if (target.append) {
-        if (slot?.note === "부족한 자리 대체" &&
-            !String(slot.name).split(/\s*or\s*/i).includes(name)) {
-          result[target.index] = { ...slot, name: `${slot.name} or ${name}` };
-        }
-      } else if (!slot?.name) {
-        result[target.index] = { name, note: "부족한 자리 대체" };
       }
       return result;
     };
