@@ -48419,6 +48419,48 @@
                 "ja": "攻撃力が10％上がり、強靭度固定ダメージが1上がる。"
               },
               "icon": "./data/savior-skill-assets/buffs/BI_CRUSH.webp"
+            },
+            {
+              "strId": "BI_APOSTLE_GILLE_1",
+              "name": {
+                "ko": "서곡(해제불가)",
+                "en": "Overture (Undispellable)",
+                "ja": "序曲(解除不可)"
+              },
+              "description": {
+                "ko": "강인도 피해가 1 증가합니다.",
+                "en": "Increases Toughness DMG by 1.",
+                "ja": "強靭度ダメージが1上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_APOSTLE_GILLE_1.webp"
+            },
+            {
+              "strId": "BI_APOSTLE_GILLE_3",
+              "name": {
+                "ko": "광시곡(해제불가)",
+                "en": "Rhapsody (Undispellable)",
+                "ja": "狂詩曲(解除不可)"
+              },
+              "description": {
+                "ko": "강인도 피해가 1 증가하고 강인도가 격파된 대상에게 주는 피해량이 10% 증가합니다.",
+                "en": "Increases Toughness DMG by 1. Increases DMG dealt to targets in Toughness Break by 10%.",
+                "ja": "強靭度ダメージが1上がり、強靭度が撃破された対象に与えるダメージが10％上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_APOSTLE_GILLE_3.webp"
+            },
+            {
+              "strId": "BI_APOSTLE_GILLE_4",
+              "name": {
+                "ko": "피날레(해제불가)",
+                "en": "Finale (Undispellable)",
+                "ja": "フィナーレ(解除不可)"
+              },
+              "description": {
+                "ko": "강인도 피해가 1 증가하고 강인도가 격파된 대상에게 주는 피해량이 20% 증가합니다.",
+                "en": "Increases Toughness DMG by 1. Increases DMG dealt to targets in Toughness Break by 20%.",
+                "ja": "強靭度ダメージが1上がり、強靭度が撃破された対象に与えるダメージが20％上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_APOSTLE_GILLE_4.webp"
             }
           ],
           "levels": [
@@ -49167,7 +49209,50 @@
             "ja": "攻撃時、一時的に自身の強靭度固定ダメージが1上がる。"
           },
           "icon": "./data/savior-skill-assets/skills/1020_2-espr.webp",
-          "buffs": [],
+          "buffs": [
+            {
+              "strId": "BI_APOSTLE_GILLE_1",
+              "name": {
+                "ko": "서곡(해제불가)",
+                "en": "Overture (Undispellable)",
+                "ja": "序曲(解除不可)"
+              },
+              "description": {
+                "ko": "강인도 피해가 1 증가합니다.",
+                "en": "Increases Toughness DMG by 1.",
+                "ja": "強靭度ダメージが1上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_APOSTLE_GILLE_1.webp"
+            },
+            {
+              "strId": "BI_APOSTLE_GILLE_3",
+              "name": {
+                "ko": "광시곡(해제불가)",
+                "en": "Rhapsody (Undispellable)",
+                "ja": "狂詩曲(解除不可)"
+              },
+              "description": {
+                "ko": "강인도 피해가 1 증가하고 강인도가 격파된 대상에게 주는 피해량이 10% 증가합니다.",
+                "en": "Increases Toughness DMG by 1. Increases DMG dealt to targets in Toughness Break by 10%.",
+                "ja": "強靭度ダメージが1上がり、強靭度が撃破された対象に与えるダメージが10％上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_APOSTLE_GILLE_3.webp"
+            },
+            {
+              "strId": "BI_APOSTLE_GILLE_4",
+              "name": {
+                "ko": "피날레(해제불가)",
+                "en": "Finale (Undispellable)",
+                "ja": "フィナーレ(解除不可)"
+              },
+              "description": {
+                "ko": "강인도 피해가 1 증가하고 강인도가 격파된 대상에게 주는 피해량이 20% 증가합니다.",
+                "en": "Increases Toughness DMG by 1. Increases DMG dealt to targets in Toughness Break by 20%.",
+                "ja": "強靭度ダメージが1上がり、強靭度が撃破された対象に与えるダメージが20％上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_APOSTLE_GILLE_4.webp"
+            }
+          ],
           "levels": [
             {
               "level": 1,
@@ -49419,6 +49504,34 @@
                 "ja": "速度が20%低下する。"
               },
               "icon": "./data/savior-skill-assets/buffs/BI_SPEED_DECREASE.webp"
+            },
+            {
+              "strId": "BI_APOSTLE_GILLE_1",
+              "name": {
+                "ko": "서곡(해제불가)",
+                "en": "Overture (Undispellable)",
+                "ja": "序曲(解除不可)"
+              },
+              "description": {
+                "ko": "강인도 피해가 1 증가합니다.",
+                "en": "Increases Toughness DMG by 1.",
+                "ja": "強靭度ダメージが1上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_APOSTLE_GILLE_1.webp"
+            },
+            {
+              "strId": "BI_APOSTLE_GILLE_4",
+              "name": {
+                "ko": "피날레(해제불가)",
+                "en": "Finale (Undispellable)",
+                "ja": "フィナーレ(解除不可)"
+              },
+              "description": {
+                "ko": "강인도 피해가 1 증가하고 강인도가 격파된 대상에게 주는 피해량이 20% 증가합니다.",
+                "en": "Increases Toughness DMG by 1. Increases DMG dealt to targets in Toughness Break by 20%.",
+                "ja": "強靭度ダメージが1上がり、強靭度が撃破された対象に与えるダメージが20％上がる。"
+              },
+              "icon": "./data/savior-skill-assets/buffs/BI_APOSTLE_GILLE_4.webp"
             }
           ],
           "levels": [
