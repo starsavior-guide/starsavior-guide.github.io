@@ -851,7 +851,9 @@ const ARCANA_DETAIL_IDS = {
   "영원 속박의 굴레": 7101701,
   "탐닉자의 유흥거리": 7103901,
   "자칭 베테랑 탐정의 수사법": 7104001,
-  "이게 옷이라고요?": 7106001
+  "이게 옷이라고요?": 7106001,
+  "끝나지 않는 춤": 7102001,
+  "빛바랜 꿈": 7106101
 };
 
 
@@ -991,6 +993,15 @@ Object.values(ARCANA_LIBRARY).flat().forEach((card) => {
   card.detailId = detailId || null;
   card.image = detailId ? `${LOCAL_ARCANA_CARD_ROOT}/${detailId}.webp` : "";
 });
+
+// 신규 아르카나를 추천 슬롯에서도 실제 카드/이미지로 표시합니다.
+for (const [name, id] of [["끝나지 않는 춤", 7102001], ["빛바랜 꿈", 7106101]]) {
+  ARCANA_LIBRARY[name] = [{
+    name,
+    detailId: id,
+    image: `${LOCAL_ARCANA_CARD_ROOT}/${id}.webp`
+  }];
+}
 
 ARCANA_LIBRARY["웨핀델"] = ARCANA_LIBRARY["웨딩 에핀델"];
 
