@@ -738,7 +738,7 @@ const EQUIPMENT_SET_IMAGE_NAMES = new Set([
 ]);
 
 const SAVIOR_DETAIL_IDS = {
-  "gille": 1061,
+  "asherah-order-striker": 1061,
   "gille": 1020,
   "ceres-sun-supporter": 1059,
   "lydia-moon-caster": 1060,
