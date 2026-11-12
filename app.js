@@ -178,7 +178,11 @@
       lacy: { 3: "끝나지 않는 춤" },
       muriel: { 4: "불굴의 역작" },
       dana: { 4: "불굴의 역작" },
-      smile: { 1: "불굴의 역작" }
+      smile: { 1: "불굴의 역작" },
+      "wedding-epindel": { 2: "불굴의 역작", 4: "하얀 달의 온기는 햇빛처럼" },
+      carnelia: { 2: "불굴의 역작", 4: "하얀 달의 온기는 햇빛처럼" },
+      "white-pearl-luna": { 2: "조용한 휴식 시간", 3: "영원 속박의 굴레" },
+      cristelle: { 4: "끝나지 않는 춤" }
     };
     Object.entries(recommendedSlotOverrides).forEach(([id, slots]) => {
       const recommended = SAVIORS.find((savior) => savior.id === id)?.detail?.arcana?.pve;
@@ -336,6 +340,103 @@
         },
         3: null,
         4: null
+      },
+      "bunny-charlotte": {
+        1: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      "bunny-frey": {
+        3: { name: "끝나지 않는 춤", note: "하얀 달의 온기는 햇빛처럼 대체" },
+        4: null
+      },
+      lyn: {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      fei: {
+        0: { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" },
+        1: {
+          name: "끝나지 않는 춤 or 불굴의 역작 or 허수의 개척자 or 메이드 바이 페트라♡ or 별을 보며 꿈을",
+          note: "꽃들에게 죽음을 대체"
+        },
+        3: null,
+        4: null
+      },
+      tyria: {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        }
+      },
+      "wedding-epindel": {
+        3: { name: "하늘의 심판", note: "불굴의 역작 대체" },
+        4: { name: "영원 속박의 굴레 or 끝나지 않는 춤", note: "부족한 자리 대체" }
+      },
+      carnelia: {
+        3: { name: "하늘의 심판", note: "불굴의 역작 대체" },
+        4: { name: "영원 속박의 굴레 or 끝나지 않는 춤", note: "부족한 자리 대체" }
+      },
+      ceres: {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        }
+      },
+      "white-pearl-luna": {
+        1: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 누각 위, 유리달 맞이 or 불굴의 역작 or 끝나지 않는 춤",
+          note: "부족한 자리 대체"
+        }
+      },
+      "sunshine-cat-smile": {
+        0: { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" },
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      cristelle: {
+        0: {
+          name: "어느 한 기사의 맹세 or 하얀 달의 온기는 햇빛처럼 or 누각 위, 유리달 맞이",
+          note: "부족한 자리 대체"
+        },
+        2: null,
+        3: null,
+        4: null
+      },
+      amora: {
+        1: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      "professor-m": {
+        1: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      gwen: {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
       }
     };
 
@@ -410,7 +511,7 @@
 
     const hash = decodeURIComponent(location.hash.replace(/^#/, ""));
     const activeSaviorId = hash.startsWith("savior/") ? hash.slice("savior/".length) : "";
-    if ((neverEndingDanceAlternativeSlots.has(activeSaviorId) || activeSaviorId === "waltz-asherah") && typeof openSavior === "function") {
+    if ((neverEndingDanceAlternativeSlots.has(activeSaviorId) || Object.prototype.hasOwnProperty.call(alternativeSlotOverrides, activeSaviorId)) && typeof openSavior === "function") {
       openSavior(activeSaviorId, { skipHash: true, keepScroll: true });
     }
   }, { once: true });
