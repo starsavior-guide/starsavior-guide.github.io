@@ -5805,6 +5805,16 @@ const SAVIORS = [
   }
 ];
 
+// 레인저 3명의 추천 슬롯 4를 기본 데이터에 직접 고정합니다.
+// app.js 후처리 실행 여부와 무관하게 상세 화면에서 동일한 결과를 표시합니다.
+for (const savior of SAVIORS) {
+  if (!["scarlet", "naru", "petra"].includes(savior.id)) continue;
+  const detail = savior.detail || (savior.detail = {});
+  const arcana = detail.arcana || (detail.arcana = {});
+  arcana.pve = Array.from({ length: 5 }, (_, index) => arcana.pve?.[index] || null);
+  arcana.pve[3] = { name: "끝나지 않는 춤", note: "" };
+}
+
 const STANDARD_SUPPORTER_BUILD_IDS = new Set([
   "vera",
   "elisa",
