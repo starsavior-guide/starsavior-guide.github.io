@@ -573,6 +573,55 @@
       return result;
     };
 
+    // 편애의 마녀 아세라: 사용자 지정 PVE 평가 및 세팅 (다른 아세라 변형 제외)
+    const witchAsherah = SAVIORS.find((savior) => savior.id === "asherah-order-striker");
+    if (witchAsherah) {
+      GROWTH_PRIORITY[witchAsherah.id] = { tier: "0티어", level: "tier-0" };
+      MAIN_CONTENTS[witchAsherah.id] = ["작전", "코스모 게이트", "회랑", "플래시 포인트"];
+      witchAsherah.summary = "PVE 추천 장비 및 아르카나 세팅 반영";
+      witchAsherah.detail = {
+        ...(witchAsherah.detail || {}),
+        equipment: {
+          ...(witchAsherah.detail?.equipment || {}),
+          pve: {
+            ...(witchAsherah.detail?.equipment?.pve || {}),
+            necklace: "속도 or 공격력%",
+            necklaceNote: "※ 속도 권장",
+            ring: "공격력%",
+            sets: ["공격(4) + 투지(2)", "통찰(4) + 투지(2)", "파괴(4) + 투지(2)"],
+            potential: "AX1 - 공격력% 효율이 높은 구원자",
+            note: ""
+          }
+        },
+        arcana: {
+          ...(witchAsherah.detail?.arcana || {}),
+          pve: [
+            { name: "단점 보완 맞춤 훈련", note: "" },
+            { name: "빛바랜 꿈", note: "" },
+            { name: "음독의 각오", note: "" },
+            { name: "불굴의 역작 or 끝나지 않는 춤 or 자칭 베테랑 탐정의 수사법", note: "" },
+            { name: "꽃들에게 죽음을", note: "" }
+          ],
+          alternatives: [
+            { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" },
+            { name: "메이드 바이 페트라♡ or 별을 보며 꿈을", note: "꽃들에게 죽음을 대체" },
+            { name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸", note: "부족한 자리 대체" },
+            null,
+            null
+          ]
+        }
+      };
+    }
+
+    // 기존 자동 대체 아르카나 생성은 편애의 마녀의 명시적 5슬롯 구성을 변경하지 않습니다.
+    const beforeWitchAsherahAlternativeBuild = buildAlternativeArcana;
+    buildAlternativeArcana = function (savior, pveArcana, existingAlternatives) {
+      if (savior?.id === "asherah-order-striker") {
+        return Array.from({ length: 5 }, (_, index) => existingAlternatives?.[index] || null);
+      }
+      return beforeWitchAsherahAlternativeBuild(savior, pveArcana, existingAlternatives);
+    };
+
     const baseCreateJourneyStatPriorityMarkup = createJourneyStatPriorityMarkup;
     createJourneyStatPriorityMarkup = function (savior) {
       const markup = baseCreateJourneyStatPriorityMarkup(savior);
