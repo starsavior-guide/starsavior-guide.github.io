@@ -6,6 +6,7 @@
 
   core.addEventListener("load", () => {
     Object.assign(I18N_DATA.ui.en, {
+      "음독의 각오 대체": "Substitute for Even If It's Poison",
       "궤도 수색대 루그 리워크 반영 및 세팅변경 (10.29)": "Orbit Recon Lugh rework applied and setup updated (10.29)",
       "샤프 앤 스위트 세레스 추가 및 추천 세팅 반영 (10.29)": "Sharp & Sweet Ceres added and recommended setup applied (10.29)",
       "일부 서포터 구원자 추천 세팅 변경 (10.29)": "Recommended setups updated for selected Supporters (10.29)",
@@ -16,6 +17,7 @@
       "※ 왈츠 오브 스타라이트 아세라는 힘 1,000 / 체력 1,000을 목표로 세팅 권장": "※ Waltz of Starlight Asherah: Recommended target — Strength 1,000 / HP 1,000"
     });
     Object.assign(I18N_DATA.ui.ja, {
+      "음독의 각오 대체": "「毒でも覚悟のうえ」の代替",
       "궤도 수색대 루그 리워크 반영 및 세팅변경 (10.29)": "軌道偵察隊ルーグ リワーク反映・セッティング変更 (10.29)",
       "샤프 앤 스위트 세레스 추가 및 추천 세팅 반영 (10.29)": "シャープ＆スイーツ セレス追加・おすすめセッティング反映 (10.29)",
       "일부 서포터 구원자 추천 세팅 변경 (10.29)": "一部サポーター救援者 おすすめセッティング変更 (10.29)",
@@ -130,6 +132,71 @@
       return baseBuildAlternativeArcana(savior, pveArcana, existingAlternatives);
     };
 
+    // 2026-11-12: 구원자별로 확인한 대체 슬롯에만 끝나지 않는 춤을 추가합니다.
+    // append=true는 기존 '부족한 자리 대체' 선택지, false는 확인된 빈 슬롯입니다.
+    const neverEndingDanceAlternativeSlots = new Map([
+      ...[
+        "gwen", "ceres", "tyria", "lyn", "claire", "asherah-voyager",
+        "charlotte", "seira", "tanya", "bunny-scarlet", "lugh", "lydia"
+      ].map((id) => [id, { index: 2, append: true }]),
+      ...["roberta", "lydia-moon-caster"]
+        .map((id) => [id, { index: 3, append: true }]),
+      ...["bell", "omega"]
+        .map((id) => [id, { index: 2, append: false }]),
+      ...[
+        "sunshine-cat-smile", "bunny-charlotte", "epindel", "kyra",
+        "professor-m", "cristelle", "lacy", "luna"
+      ].map((id) => [id, { index: 3, append: false }]),
+      ...[
+        "amora", "fei", "trish", "marcille", "bunny-claire",
+        "rosaria", "yoo-mina", "petra", "scarlet", "smile", "naru",
+        "clarissa", "carnelia", "wedding-epindel", "bunny-frey",
+        "dana", "muriel", "lily"
+      ].map((id) => [id, { index: 4, append: false }])
+    ]);
+    const missingStrikerAlternativeNoteIds = new Set([
+      "gwen", "ceres", "tyria", "lyn", "claire", "asherah-voyager",
+      "charlotte", "seira", "tanya", "bunny-scarlet"
+    ]);
+    const strikerAlternativeNoteRepairs = [
+      { index: 0, name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" },
+      {
+        index: 1,
+        name: "메이드 바이 페트라♡ or 별을 보며 꿈을",
+        note: "꽃들에게 죽음을 대체"
+      },
+      { index: 3, name: "완벽한 바니걸", note: "음독의 각오 대체" }
+    ];
+
+    // 기존 자동 추가와 app.js의 개별 예외 처리가 끝난 최종 슬롯에 적용합니다.
+    const baseResolvedAlternativeArcana = addEternalBondAlternativeForWhiteMoon;
+    addEternalBondAlternativeForWhiteMoon = function (savior, pveArcana, alternatives) {
+      const resolved = baseResolvedAlternativeArcana(savior, pveArcana, alternatives);
+      const target = neverEndingDanceAlternativeSlots.get(savior?.id);
+      if (!target) return resolved;
+
+      const result = resolved.map((slot) => slot ? { ...slot } : null);
+      if (missingStrikerAlternativeNoteIds.has(savior.id)) {
+        strikerAlternativeNoteRepairs.forEach(({ index, name, note }) => {
+          if (result[index]?.name === name && !String(result[index].note || "").trim()) {
+            result[index].note = note;
+          }
+        });
+      }
+
+      const name = "끝나지 않는 춤";
+      const slot = result[target.index];
+      if (target.append) {
+        if (slot?.note === "부족한 자리 대체" &&
+            !String(slot.name).split(/\s*or\s*/i).includes(name)) {
+          result[target.index] = { ...slot, name: `${slot.name} or ${name}` };
+        }
+      } else if (!slot?.name) {
+        result[target.index] = { name, note: "부족한 자리 대체" };
+      }
+      return result;
+    };
+
     const baseCreateJourneyStatPriorityMarkup = createJourneyStatPriorityMarkup;
     createJourneyStatPriorityMarkup = function (savior) {
       const markup = baseCreateJourneyStatPriorityMarkup(savior);
@@ -163,7 +230,7 @@
 
     const hash = decodeURIComponent(location.hash.replace(/^#/, ""));
     const activeSaviorId = hash.startsWith("savior/") ? hash.slice("savior/".length) : "";
-    if (["roberta", "lydia", "lydia-moon-caster", "waltz-asherah", "gwen", "seira"].includes(activeSaviorId) && typeof openSavior === "function") {
+    if ((neverEndingDanceAlternativeSlots.has(activeSaviorId) || activeSaviorId === "waltz-asherah") && typeof openSavior === "function") {
       openSavior(activeSaviorId, { skipHash: true, keepScroll: true });
     }
   }, { once: true });
