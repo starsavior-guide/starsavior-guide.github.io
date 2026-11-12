@@ -168,6 +168,42 @@
       { index: 3, name: "완벽한 바니걸", note: "음독의 각오 대체" }
     ];
 
+    const clarissaArcana = SAVIORS.find((savior) => savior.id === "clarissa")?.detail?.arcana;
+    if (clarissaArcana?.pve?.[3]) {
+      clarissaArcana.pve[3] = { ...clarissaArcana.pve[3], name: "끝나지 않는 춤" };
+    }
+
+    // 사용자가 지정한 개별 구성은 최종 슬롯에서 적용하여 자동 추가로 빈칸이 채워지지 않게 합니다.
+    const alternativeSlotOverrides = {
+      clarissa: {
+        3: { name: "영원 속박의 굴레 or 완벽한 바니걸", note: "부족한 자리 대체" },
+        4: null
+      },
+      "bunny-scarlet": {
+        2: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
+          note: "부족한 자리 대체"
+        },
+        3: null
+      },
+      "bunny-claire": {
+        1: {
+          name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸 or 끝나지 않는 춤",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      },
+      naru: {
+        2: {
+          name: "어느 한 기사의 맹세 or 영원 속박의 굴레 or 끝나지 않는 춤",
+          note: "부족한 자리 대체"
+        },
+        3: null,
+        4: null
+      }
+    };
+
     // 기존 자동 추가와 app.js의 개별 예외 처리가 끝난 최종 슬롯에 적용합니다.
     const baseResolvedAlternativeArcana = addEternalBondAlternativeForWhiteMoon;
     addEternalBondAlternativeForWhiteMoon = function (savior, pveArcana, alternatives) {
@@ -182,6 +218,14 @@
             result[index].note = note;
           }
         });
+      }
+
+      const overrides = alternativeSlotOverrides[savior.id];
+      if (overrides) {
+        Object.entries(overrides).forEach(([index, slot]) => {
+          result[Number(index)] = slot ? { ...slot } : null;
+        });
+        return result;
       }
 
       const name = "끝나지 않는 춤";
