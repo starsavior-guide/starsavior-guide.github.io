@@ -8011,7 +8011,11 @@ function createDetailMarkup(savior) {
   const hasCommonArcana = (build.arcana.pve || []).some((arcana) =>
     String(arcana?.name || "").includes("공용 아르카나")
   );
-  const basePveArcana = hasCommonArcana ? COMMON_ARCANA_SLOTS : build.arcana.pve;
+  const basePveArcana = ["scarlet", "naru", "petra"].includes(savior.id)
+    ? COMMON_ARCANA_SLOTS.map((slot, index) =>
+        index === 3 ? { name: "끝나지 않는 춤", note: "" } : { ...slot }
+      )
+    : (hasCommonArcana ? COMMON_ARCANA_SLOTS : build.arcana.pve);
   const pveArcana = STRIKER_ARCANA_SWAP_IDS.has(savior.id)
     ? (basePveArcana || []).map((slot) =>
         slot
