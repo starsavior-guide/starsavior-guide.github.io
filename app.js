@@ -6,7 +6,7 @@
 
   core.addEventListener("load", () => {
     Object.assign(I18N_DATA.ui.en, {
-      "편애의 마녀, 길레 추가(11.12)": "Witch of Favoritism, Gille added (11.12)",
+      "편애의 마녀, 길레 추가 및 추천 세팅 반영(11.12)": "Witch of Favoritism and Gille added with recommended builds (11.12)",
       "딜러 및 디버퍼 추천/대체 아르카나 대폭 변경(11.12)": "Major recommended/alternative Arcana changes for damage dealers and debuffers (11.12)",
       "자칭 베테랑 탐정의 수사법 대체": "Alternative to [A Self-Proclaimed Veteran Detective] Memory",
       "음독의 각오 대체": "Substitute for Even If It's Poison",
@@ -20,7 +20,7 @@
       "※ 왈츠 오브 스타라이트 아세라는 힘 1,000 / 체력 1,000을 목표로 세팅 권장": "※ Waltz of Starlight Asherah: Recommended target — Strength 1,000 / HP 1,000"
     });
     Object.assign(I18N_DATA.ui.ja, {
-      "편애의 마녀, 길레 추가(11.12)": "偏愛の魔女・ギレ追加 (11.12)",
+      "편애의 마녀, 길레 추가 및 추천 세팅 반영(11.12)": "偏愛の魔女・ギレ追加・おすすめセッティング反映 (11.12)",
       "딜러 및 디버퍼 추천/대체 아르카나 대폭 변경(11.12)": "アタッカー・デバッファーのおすすめ／代替アルカナを大幅変更 (11.12)",
       "자칭 베테랑 탐정의 수사법 대체": "「自称ベテラン探偵の捜査法」の代替",
       "음독의 각오 대체": "「毒でも覚悟のうえ」の代替",
@@ -718,7 +718,7 @@
     const updateList = updateNotice?.querySelector(".site-update-list");
     if (updateList) {
       updateList.innerHTML = `
-        <li>편애의 마녀, 길레 추가(11.12)</li>
+        <li>편애의 마녀, 길레 추가 및 추천 세팅 반영(11.12)</li>
         <li>딜러 및 디버퍼 추천/대체 아르카나 대폭 변경(11.12)</li>
         <li>궤도 수색대 루그 리워크 반영 및 세팅변경 (10.29)</li>
         <li>샤프 앤 스위트 세레스 추가 및 추천 세팅 반영 (10.29)</li>
