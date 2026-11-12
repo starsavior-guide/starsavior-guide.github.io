@@ -829,7 +829,7 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 
 .content-section {
   margin-top: 18px;
-  scroll-margin-top: 86px;
+  scroll-margin-top: max(86px, calc(var(--site-header-height, 68px) + 18px));
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--surface);
@@ -3097,6 +3097,108 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 .savior-quick-summary {
   margin-top: 18px;
   margin-bottom: 20px;
+}
+
+/* Mobile detail reflow: preserve content when a single row no longer fits. */
+@media (max-width: 620px) {
+  .main-nav {
+    --nav-inline-padding: 11px;
+  }
+
+  #detail-content .section-titlebar > div {
+    max-width: 100%;
+  }
+
+  #detail-content .section-titlebar h2,
+  #detail-content .arcana-mode-title > * {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  #detail-content .arcana-mode-title {
+    flex-wrap: wrap;
+  }
+
+  .footer-inner > div {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  #equipment .build-heading > div,
+  #equipment .build-row dt,
+  #equipment .build-row dd,
+  #equipment .equipment-set-label {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  #equipment .equipment-set-part,
+  #equipment .equipment-set-joined {
+    flex: 0 1 auto;
+  }
+
+  .topbar-inner.has-wrapped-nav {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0 10px;
+    padding-top: 8px;
+  }
+
+  .topbar-inner.has-wrapped-nav .main-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: visible;
+  }
+
+  .topbar-inner.has-wrapped-nav .brand {
+    justify-self: start;
+  }
+
+  .topbar-inner.has-wrapped-nav .nav-item {
+    min-width: 0;
+    min-height: 44px;
+    padding-block: 8px;
+    padding-inline: 4px;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 390px) {
+  .main-nav {
+    --nav-inline-padding: 9px;
+  }
+}
+
+@media (max-width: 430px) {
+  #equipment .build-row-equipment-sets {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+  }
+}
+
+@media (max-width: 460px) {
+  html[lang="en"] #equipment .build-row-equipment-sets {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+  }
+}
+
+@media (max-width: 360px) {
+  #equipment .equipment-set-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  html[lang="en"] #equipment .equipment-set-icon {
+    width: 34px;
+    height: 34px;
+  }
 }
 
 @media (max-width: 620px) {
