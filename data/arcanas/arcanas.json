@@ -2655,6 +2655,35 @@
         }
       ],
       "source": "https://ss.espr.gg/ko/database/potentials/skilled-acceleration"
+    },
+    {
+      "id": 23038,
+      "strId": "ESPR_OVERWHELMING_ASSAULT",
+      "type": "특수 잠재력",
+      "class": "",
+      "name": {
+        "ko": "압도적인 공세",
+        "en": "Overwhelming Assault",
+        "ja": "圧倒的な攻勢"
+      },
+      "description": {
+        "ko": "공격력이 6% 증가하고 치명타 피해가 6% 증가합니다.",
+        "en": "Increases ATK by 6% and self CRIT DMG by 6%.",
+        "ja": "攻撃力が6%上がり、会心ダメージが6%上がる。"
+      },
+      "icon": "./data/arcana-assets/potentials/23038.webp",
+      "background": "./data/arcana-assets/potential-backgrounds/special.webp",
+      "levels": [
+        {
+          "level": 1,
+          "description": {
+            "ko": "공격력이 6% 증가하고 치명타 피해가 6% 증가합니다.",
+            "en": "Increases ATK by 6% and self CRIT DMG by 6%.",
+            "ja": "攻撃力が6%上がり、会心ダメージが6%上がる。"
+          }
+        }
+      ],
+      "source": "https://ss.espr.gg/ko/database/potentials/overwhelming-assault"
     }
   ],
   "journeyBuffs": [
@@ -34775,6 +34804,442 @@
       ],
       "source": "https://ss.espr.gg/ko/database/arcanas/maid-for-hardship",
       "capturedAt": "2026-10-29T03:33:03.796Z"
+    },
+    {
+      "id": 7102001,
+      "name": {
+        "ko": "끝나지 않는 춤",
+        "en": "Never Ending Dance",
+        "ja": "果てしない舞"
+      },
+      "character": {
+        "ko": "길레",
+        "en": "Gille",
+        "ja": "ギーレ"
+      },
+      "rarity": "SSR",
+      "mainStat": {
+        "ko": "힘",
+        "en": "Strength",
+        "ja": "力"
+      },
+      "assists": [
+        {
+          "ko": "공용",
+          "en": "Universal",
+          "ja": "共用"
+        }
+      ],
+      "image": "./data/arcana-assets/cards/7102001.webp",
+      "mainStatIcon": "./data/arcana-assets/status/power.webp",
+      "specialPotentialId": 23038,
+      "uniqueEffect": {
+        "name": {
+          "ko": "우아한 춤사위",
+          "en": "Graceful Steps",
+          "ja": "優雅な舞い踊り"
+        },
+        "description": {
+          "ko": "인연 포인트 40 이상일 때 추가 잠재력 포인트 획득 +2",
+          "en": "When Bond Points are at 40 or higher Additional Potential Points +2",
+          "ja": "絆ポイントが40以上の場合 追加潜在力ポイントの獲得 +2"
+        },
+        "unlockLevel": 35
+      },
+      "effects": {
+        "journeyStart": [
+          {
+            "unlockLevel": 20,
+            "promotePerLevel": 5,
+            "valueType": {
+              "ko": "인연 포인트 증가",
+              "en": "Bond Points Gain",
+              "ja": "絆ポイント増加"
+            },
+            "isRate": false,
+            "valueInt": 9,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 12,
+                "display": "12"
+              },
+              "40": {
+                "value": 13,
+                "display": "13"
+              },
+              "45": {
+                "value": 14,
+                "display": "14"
+              },
+              "50": {
+                "value": 15,
+                "display": "15"
+              }
+            }
+          }
+        ],
+        "training": [
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "valueType": {
+              "ko": "훈련 효과 상승",
+              "en": "Training Effectiveness",
+              "ja": "トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 1000,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 16,
+            "values": {
+              "35": {
+                "value": 1544,
+                "display": "15.44%"
+              },
+              "40": {
+                "value": 1624,
+                "display": "16.24%"
+              },
+              "45": {
+                "value": 1704,
+                "display": "17.04%"
+              },
+              "50": {
+                "value": 1784,
+                "display": "17.84%"
+              }
+            }
+          },
+          {
+            "unlockLevel": 15,
+            "promotePerLevel": 1,
+            "valueType": {
+              "ko": "컨디션 효과 상승",
+              "en": "Condition Effect Increase",
+              "ja": "コンディション効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 400,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 18,
+            "values": {
+              "35": {
+                "value": 760,
+                "display": "7.60%"
+              },
+              "40": {
+                "value": 850,
+                "display": "8.50%"
+              },
+              "45": {
+                "value": 940,
+                "display": "9.40%"
+              },
+              "50": {
+                "value": 1030,
+                "display": "10.30%"
+              }
+            }
+          },
+          {
+            "unlockLevel": 35,
+            "promotePerLevel": 5,
+            "valueType": {
+              "ko": "추가 힘 능력치 획득",
+              "en": "Additional Strength Stat Gain",
+              "ja": "追加力ステータス獲得"
+            },
+            "isRate": false,
+            "valueInt": 1,
+            "valueRate": 0,
+            "valueIntPerPromote": 1,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 1,
+                "display": "1"
+              },
+              "40": {
+                "value": 2,
+                "display": "2"
+              },
+              "45": {
+                "value": 3,
+                "display": "3"
+              },
+              "50": {
+                "value": 4,
+                "display": "4"
+              }
+            }
+          }
+        ],
+        "telepathy": [
+          {
+            "unlockLevel": 1,
+            "promotePerLevel": 1,
+            "valueType": {
+              "ko": "초감응 훈련 효과 상승",
+              "en": "Super Sensory Training Effectiveness",
+              "ja": "超感応トレーニングの効果上昇"
+            },
+            "isRate": true,
+            "valueInt": 0,
+            "valueRate": 1400,
+            "valueIntPerPromote": 0,
+            "valueRatePerPromote": 24,
+            "values": {
+              "35": {
+                "value": 2216,
+                "display": "22.16%"
+              },
+              "40": {
+                "value": 2336,
+                "display": "23.36%"
+              },
+              "45": {
+                "value": 2456,
+                "display": "24.56%"
+              },
+              "50": {
+                "value": 2576,
+                "display": "25.76%"
+              }
+            }
+          },
+          {
+            "unlockLevel": 20,
+            "promotePerLevel": 1,
+            "valueType": {
+              "ko": "감응 훈련 발생 확률 상승",
+              "en": "Sensory Training Chance",
+              "ja": "感応トレーニングの発生率の上昇"
+            },
+            "isRate": false,
+            "valueInt": 250,
+            "valueRate": 0,
+            "valueIntPerPromote": 5,
+            "valueRatePerPromote": 0,
+            "values": {
+              "35": {
+                "value": 325,
+                "display": "325"
+              },
+              "40": {
+                "value": 350,
+                "display": "350"
+              },
+              "45": {
+                "value": 375,
+                "display": "375"
+              },
+              "50": {
+                "value": 400,
+                "display": "400"
+              }
+            }
+          }
+        ],
+        "supportQuest": []
+      },
+      "events": [
+        {
+          "name": {
+            "ko": "전설의 새를 찾아서 2",
+            "en": "In Search of the Legendary Bird 2",
+            "ja": "伝説の鳥を探して 2"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "",
+                "en": "",
+                "ja": ""
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_CONDITION",
+                    "min": 1,
+                    "max": 1
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_JOURNEY_BUFF",
+                    "journeyBuffName": {
+                      "ko": "경쾌한 발걸음",
+                      "en": "Lively Footsteps",
+                      "ja": "軽快な足取り"
+                    }
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "name": {
+            "ko": "스텝 바이 스텝",
+            "en": "Step by Step",
+            "ja": "ステップ・バイ・ステップ"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "",
+                "en": "",
+                "ja": ""
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 15,
+                    "max": 15,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 10,
+                    "max": 10,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAMINA",
+                    "min": 10,
+                    "max": 10
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 20001,
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        },
+        {
+          "name": {
+            "ko": "사라져도 남는 것",
+            "en": "What Remains When It's Gone",
+            "ja": "消えても残るもの"
+          },
+          "choices": [
+            {
+              "name": {
+                "ko": "",
+                "en": "",
+                "ja": ""
+              },
+              "successRewards": [
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 8,
+                    "max": 8,
+                    "rewardStat": "JST_POWER",
+                    "statName": {
+                      "ko": "힘",
+                      "en": "Strength",
+                      "ja": "力"
+                    },
+                    "icon": "./data/arcana-assets/status/power.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 12,
+                    "max": 12,
+                    "rewardStat": "JST_HEALTH",
+                    "statName": {
+                      "ko": "체력",
+                      "en": "Vitality",
+                      "ja": "体力"
+                    },
+                    "icon": "./data/arcana-assets/status/health.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_STAT",
+                    "min": 12,
+                    "max": 12,
+                    "rewardStat": "JST_ENDURANCE",
+                    "statName": {
+                      "ko": "인내",
+                      "en": "Endurance",
+                      "ja": "忍耐"
+                    },
+                    "icon": "./data/arcana-assets/status/endurance.webp"
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 21005,
+                    "min": 1,
+                    "max": 1
+                  }
+                ],
+                [
+                  {
+                    "type": "RT_SE_POTEN",
+                    "rewardId": 23038,
+                    "min": 1,
+                    "max": 1
+                  }
+                ]
+              ],
+              "failureRewards": []
+            }
+          ]
+        }
+      ],
+      "source": "https://ss.espr.gg/ko/database/arcanas/never-ending-dance",
+      "capturedAt": "2026-11-12T03:31:31.588Z"
     }
   ]
 }
