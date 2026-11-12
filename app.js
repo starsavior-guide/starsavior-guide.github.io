@@ -633,7 +633,7 @@
           ...(readyMadePuppy.detail?.equipment || {}),
           pve: {
             ...(readyMadePuppy.detail?.equipment?.pve || {}),
-            potential: "AX1 - 치명타 확률을 올리기 쉬워서 공격력%\\nAX6 - 치명타 확률이 95% 이상인 경우"
+            potential: "AX1 - 치명타 확률을 올리기 쉬워서 공격력%\nAX6 - 치명타 확률이 95% 이상인 경우"
           }
         }
       };
@@ -667,7 +667,7 @@
             necklace: "속도",
             ring: "공격력%",
             sets: ["통찰(4) + 투지(2)", "파괴(4) + 투지(2)"],
-            potential: "AX5 - 치명타 확률이 부족한 경우\\nAX6 - 치명타 확률이 95% 이상인 경우",
+            potential: "AX5 - 치명타 확률이 부족한 경우\nAX6 - 치명타 확률이 95% 이상인 경우",
             note: ""
           }
         },
