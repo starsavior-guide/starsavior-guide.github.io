@@ -6,6 +6,7 @@
 
   core.addEventListener("load", () => {
     Object.assign(I18N_DATA.ui.en, {
+      "자칭 베테랑 탐정의 수사법 대체": "Alternative to [A Self-Proclaimed Veteran Detective] Memory",
       "음독의 각오 대체": "Substitute for Even If It's Poison",
       "궤도 수색대 루그 리워크 반영 및 세팅변경 (10.29)": "Orbit Recon Lugh rework applied and setup updated (10.29)",
       "샤프 앤 스위트 세레스 추가 및 추천 세팅 반영 (10.29)": "Sharp & Sweet Ceres added and recommended setup applied (10.29)",
@@ -17,6 +18,7 @@
       "※ 왈츠 오브 스타라이트 아세라는 힘 1,000 / 체력 1,000을 목표로 세팅 권장": "※ Waltz of Starlight Asherah: Recommended target — Strength 1,000 / HP 1,000"
     });
     Object.assign(I18N_DATA.ui.ja, {
+      "자칭 베테랑 탐정의 수사법 대체": "「自称ベテラン探偵の捜査法」の代替",
       "음독의 각오 대체": "「毒でも覚悟のうえ」の代替",
       "궤도 수색대 루그 리워크 반영 및 세팅변경 (10.29)": "軌道偵察隊ルーグ リワーク反映・セッティング変更 (10.29)",
       "샤프 앤 스위트 세레스 추가 및 추천 세팅 반영 (10.29)": "シャープ＆スイーツ セレス追加・おすすめセッティング反映 (10.29)",
@@ -184,7 +186,8 @@
       "white-pearl-luna": { 2: "조용한 휴식 시간", 3: "영원 속박의 굴레" },
       cristelle: { 4: "끝나지 않는 춤" },
       "yoo-mina": { 4: "하얀 달의 온기는 햇빛처럼" },
-      rosaria: { 4: "하얀 달의 온기는 햇빛처럼" }
+      rosaria: { 4: "하얀 달의 온기는 햇빛처럼" },
+      gwen: { 4: "자칭 베테랑 탐정의 수사법" }
     };
     Object.entries(recommendedSlotOverrides).forEach(([id, slots]) => {
       const recommended = SAVIORS.find((savior) => savior.id === id)?.detail?.arcana?.pve;
@@ -437,7 +440,7 @@
           name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 끝나지 않는 춤 or 완벽한 바니걸",
           note: "부족한 자리 대체"
         },
-        3: null,
+        3: { name: "허수의 개척자", note: "자칭 베테랑 탐정의 수사법 대체" },
         4: null
       },
       "yoo-mina": {
