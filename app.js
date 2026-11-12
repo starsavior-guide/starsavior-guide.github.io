@@ -699,6 +699,27 @@
       return previousGilleAlternatives(savior, pveArcana, existingAlternatives);
     };
 
+    // 세 레인저의 지정 슬롯을 최종 데이터와 표시 단계에서 동일하게 보장합니다.
+    const correctedRangerIds = new Set(["scarlet", "naru", "petra"]);
+    for (const savior of SAVIORS) {
+      if (!correctedRangerIds.has(savior.id)) continue;
+      const detail = savior.detail || (savior.detail = {});
+      const arcana = detail.arcana || (detail.arcana = {});
+      arcana.pve = Array.from({ length: 5 }, (_, index) => arcana.pve?.[index] || null);
+      arcana.pve[3] = { name: "끝나지 않는 춤", note: "" };
+    }
+    const previousCorrectedRangerBuild = buildAlternativeArcana;
+    buildAlternativeArcana = function (savior, pveArcana, existingAlternatives) {
+      if (!correctedRangerIds.has(savior?.id)) {
+        return previousCorrectedRangerBuild(savior, pveArcana, existingAlternatives);
+      }
+      const result = previousCorrectedRangerBuild(savior, pveArcana, existingAlternatives);
+      const slots = Array.from({ length: 5 }, (_, index) => result?.[index] || null);
+      slots[2] = { name: "어느 한 기사의 맹세", note: "하얀 달의 온기는 햇빛처럼 대체" };
+      slots[3] = { name: "영원 속박의 굴레 or 완벽한 바니걸", note: "부족한 자리 대체" };
+      return slots;
+    };
+
     const baseCreateJourneyStatPriorityMarkup = createJourneyStatPriorityMarkup;
     createJourneyStatPriorityMarkup = function (savior) {
       const markup = baseCreateJourneyStatPriorityMarkup(savior);
@@ -731,7 +752,7 @@
 
     const hash = decodeURIComponent(location.hash.replace(/^#/, ""));
     const activeSaviorId = hash.startsWith("savior/") ? hash.slice("savior/".length) : "";
-    if ((["lydia-moon-caster", "ceres-sun-supporter", "gille"].includes(activeSaviorId) || neverEndingDanceAlternativeSlots.has(activeSaviorId) || Object.prototype.hasOwnProperty.call(alternativeSlotOverrides, activeSaviorId)) && typeof openSavior === "function") {
+    if ((["lydia-moon-caster", "ceres-sun-supporter", "gille", "scarlet", "naru", "petra"].includes(activeSaviorId) || neverEndingDanceAlternativeSlots.has(activeSaviorId) || Object.prototype.hasOwnProperty.call(alternativeSlotOverrides, activeSaviorId)) && typeof openSavior === "function") {
       openSavior(activeSaviorId, { skipHash: true, keepScroll: true });
     }
   }, { once: true });
