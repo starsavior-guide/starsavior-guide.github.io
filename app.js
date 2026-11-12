@@ -622,6 +622,83 @@
       return beforeWitchAsherahAlternativeBuild(savior, pveArcana, existingAlternatives);
     };
 
+    // 2026-11-12: 레디 메이드 퍼피 리디아, 샤프 앤 스위트 세레스, 길레 세팅
+    const readyMadePuppy = SAVIORS.find((savior) => savior.id === "lydia-moon-caster");
+    if (readyMadePuppy) {
+      GROWTH_PRIORITY[readyMadePuppy.id] = { tier: "1.5티어", level: "tier-15" };
+      MAIN_CONTENTS[readyMadePuppy.id] = ["작전", "코스모 게이트", "회랑", "플래시 포인트", "건틀렛"];
+      readyMadePuppy.detail = {
+        ...(readyMadePuppy.detail || {}),
+        equipment: {
+          ...(readyMadePuppy.detail?.equipment || {}),
+          pve: {
+            ...(readyMadePuppy.detail?.equipment?.pve || {}),
+            potential: "AX1 - 치명타 확률을 올리기 쉬워서 공격력%\\nAX6 - 치명타 확률이 95% 이상인 경우"
+          }
+        }
+      };
+    }
+
+    const sweetCeres = SAVIORS.find((savior) => savior.id === "ceres-sun-supporter");
+    if (sweetCeres) {
+      GROWTH_PRIORITY[sweetCeres.id] = { tier: "1티어", level: "tier-1" };
+      MAIN_CONTENTS[sweetCeres.id] = ["작전", "코스모 게이트", "회랑", "플래시 포인트"];
+      sweetCeres.detail = {
+        ...(sweetCeres.detail || {}),
+        equipment: {
+          ...(sweetCeres.detail?.equipment || {}),
+          pve: {
+            ...(sweetCeres.detail?.equipment?.pve || {}),
+            potential: "BX2 - 생명력% 효율이 높음"
+          }
+        }
+      };
+    }
+
+    const gilleBuild = SAVIORS.find((savior) => savior.id === "gille");
+    if (gilleBuild) {
+      gilleBuild.summary = "PVE 장비 및 아르카나 추천 세팅을 반영했습니다.";
+      gilleBuild.detail = {
+        ...(gilleBuild.detail || {}),
+        equipment: {
+          ...(gilleBuild.detail?.equipment || {}),
+          pve: {
+            ...(gilleBuild.detail?.equipment?.pve || {}),
+            necklace: "속도",
+            ring: "공격력%",
+            sets: ["통찰(4) + 투지(2)", "파괴(4) + 투지(2)"],
+            potential: "AX5 - 치명타 확률이 부족한 경우\\nAX6 - 치명타 확률이 95% 이상인 경우",
+            note: ""
+          }
+        },
+        arcana: {
+          ...(gilleBuild.detail?.arcana || {}),
+          pve: [
+            { name: "단점 보완 맞춤 훈련", note: "" },
+            { name: "끝나지 않는 춤", note: "" },
+            { name: "죽음이 둘을 갈라놓을 때까지", note: "" },
+            { name: "불굴의 역작", note: "" },
+            { name: "꽃들에게 죽음을", note: "" }
+          ],
+          alternatives: [
+            { name: "노 페인, 노 게인", note: "단점 보완 맞춤 훈련 대체" },
+            { name: "메이드 바이 페트라♡ or 별을 보며 꿈을", note: "꽃들에게 죽음을 대체" },
+            { name: "하늘의 심판", note: "불굴의 역작 대체" },
+            { name: "하얀 달의 온기는 햇빛처럼 or 어느 한 기사의 맹세 or 완벽한 바니걸", note: "부족한 자리 대체" },
+            null
+          ]
+        }
+      };
+    }
+
+    const previousGilleAlternatives = buildAlternativeArcana;
+    buildAlternativeArcana = function (savior, pveArcana, existingAlternatives) {
+      if (savior?.id === "gille") {
+        return Array.from({ length: 5 }, (_, index) => existingAlternatives?.[index] || null);
+      }
+      return previousGilleAlternatives(savior, pveArcana, existingAlternatives);
+    };
+
     const baseCreateJourneyStatPriorityMarkup = createJourneyStatPriorityMarkup;
     createJourneyStatPriorityMarkup = function (savior) {
       const markup = baseCreateJourneyStatPriorityMarkup(savior);
@@ -654,7 +731,7 @@
 
     const hash = decodeURIComponent(location.hash.replace(/^#/, ""));
     const activeSaviorId = hash.startsWith("savior/") ? hash.slice("savior/".length) : "";
-    if ((neverEndingDanceAlternativeSlots.has(activeSaviorId) || Object.prototype.hasOwnProperty.call(alternativeSlotOverrides, activeSaviorId)) && typeof openSavior === "function") {
+    if ((["lydia-moon-caster", "ceres-sun-supporter", "gille"].includes(activeSaviorId) || neverEndingDanceAlternativeSlots.has(activeSaviorId) || Object.prototype.hasOwnProperty.call(alternativeSlotOverrides, activeSaviorId)) && typeof openSavior === "function") {
       openSavior(activeSaviorId, { skipHash: true, keepScroll: true });
     }
   }, { once: true });
