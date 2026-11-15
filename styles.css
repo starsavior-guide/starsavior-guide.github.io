@@ -3150,7 +3150,7 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
     grid-column: 1 / -1;
     grid-row: 2;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     overflow: visible;
   }
 
@@ -3207,3 +3207,161 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
     margin-bottom: 18px;
   }
 }
+
+
+/* Reroll guide and owner-supplied tier charts. */
+
+.reroll-page{min-height:0;display:grid;gap:22px;max-width:1120px;margin:auto;padding:30px 24px 70px}
+.reroll-page .reroll-heading{margin-bottom:0}
+.reroll-page .reroll-heading h1{font-size:38px;margin:0;font-weight:950;letter-spacing:-.045em}
+.reroll-page .reroll-heading .eyebrow{margin-bottom:6px}
+.reroll-page .reroll-notice{display:flex;align-items:center;gap:22px;padding:24px 28px;border:1px solid color-mix(in srgb,var(--warning) 38%,var(--line));border-radius:16px;background:var(--surface)}
+.reroll-page .reroll-notice>img{width:112px;height:112px;object-fit:contain;flex:0 0 112px}
+.reroll-page .reroll-notice-copy{display:grid;gap:8px;min-width:0}
+.reroll-page .reroll-notice h2{margin:0;color:var(--warning);font-size:22px;font-weight:950}
+.reroll-page .reroll-notice p{margin:0;font-size:15px;font-weight:750;line-height:1.8}
+.reroll-page .reroll-panel{padding:25px 28px 28px;border:1px solid var(--line);border-radius:16px;background:var(--surface);min-width:0}
+.reroll-page .reroll-panel>h2{margin:0 0 23px;font-size:25px;letter-spacing:-.035em;font-weight:950}
+.reroll-page .tier-label{display:inline-block;margin:0 0 14px;padding:4px 13px;border:1px solid color-mix(in srgb,#e35a71 36%,var(--line));border-radius:8px;background:color-mix(in srgb,#e35a71 10%,var(--surface));color:#d9425e;font-size:17px;font-weight:950}
+.reroll-page .tier-label.half{border-color:color-mix(in srgb,#c99436 42%,var(--line));background:color-mix(in srgb,#e3ac50 10%,var(--surface));color:#ac781c}
+html[data-theme="dark"] .reroll-page .tier-label{color:#ff899b}
+html[data-theme="dark"] .reroll-page .tier-label.half{color:#ecc47b}
+.reroll-page .savior-grid-reroll{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.reroll-page .reroll-card{display:flex;flex-direction:column;min-width:0;text-decoration:none;color:var(--text);background:var(--surface-2);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:border-color .15s,transform .15s}
+.reroll-page .reroll-card:hover,.reroll-page .variant-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.reroll-page .reroll-card:focus-visible,.reroll-page .variant-card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.reroll-page .savior-choice>img{width:100%;height:136px;object-fit:contain;padding:8px;background:radial-gradient(ellipse at center,color-mix(in srgb,var(--accent) 12%,transparent),transparent 75%)}
+.reroll-page .choice-copy{display:grid;justify-items:center;gap:8px;padding:12px 8px 15px;text-align:center;flex:1;align-content:start}
+.reroll-page .choice-copy strong{font-size:14px;font-weight:900;line-height:1.5;overflow-wrap:anywhere}
+.reroll-page .availability{display:block;font-size:10px;font-weight:850;line-height:1.6;color:#b13d4e;border-radius:6px;padding:3px 6px;background:color-mix(in srgb,#e35a71 9%,var(--surface));border:1px solid color-mix(in srgb,#e35a71 28%,var(--line));word-break:keep-all}
+.reroll-page .availability.pickup{color:#426fc0;background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 30%,var(--line))}
+html[data-theme="dark"] .reroll-page .availability{color:#ffa6b4}
+html[data-theme="dark"] .reroll-page .availability.pickup{color:#a6c3ff}
+.reroll-page .reroll-start{padding:17px 20px;margin:22px 0 17px;border:1px solid color-mix(in srgb,var(--accent) 38%,var(--line));border-radius:11px;background:var(--accent-soft);line-height:1.75;font-size:15px;font-weight:800}
+.reroll-page .reroll-start strong{font-weight:950;color:var(--accent)}
+html[data-theme="light"] .reroll-page .reroll-start strong{color:#2856a3}
+.reroll-page .reroll-note{font-size:14px;font-weight:650;line-height:1.8;margin:9px 0 0;overflow-wrap:anywhere}
+.reroll-page .variant-grid{display:flex;gap:10px;flex-wrap:wrap;margin:13px 0 0}
+.reroll-page .variant-card{display:flex;align-items:center;gap:10px;max-width:100%;padding:8px 13px 8px 8px;text-decoration:none;color:var(--text);border:1px solid var(--line);border-radius:10px;background:var(--surface-2);font-size:13px;font-weight:800;transition:transform .15s}
+.reroll-page .variant-card>img{width:52px;height:52px;object-fit:contain}
+.reroll-page .variant-card>span{line-height:1.6}
+.reroll-page .arcana-grid-reroll{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:690px}
+.reroll-page .arcana-grid-reroll.tier-zero{grid-template-columns:repeat(2,minmax(0,1fr));max-width:455px}
+.reroll-page .arcana-choice>img{width:100%;height:136px;aspect-ratio:auto;object-fit:contain;object-position:center;padding:8px;border-bottom:1px solid var(--line)}
+.reroll-page .arcana-choice .choice-copy{padding:12px 10px 15px}
+.reroll-page .arcana-choice .availability{font-size:11px}
+.reroll-page .tier-group+.tier-group{margin-top:27px;padding-top:25px;border-top:1px solid var(--line)}
+.reroll-page .arcana-guidance{margin-top:15px}
+@media(max-width:720px){
+.reroll-page .arcana-choice>img{height:120px}
+.reroll-page{padding:24px 16px 48px;gap:17px}
+.reroll-page .reroll-panel{padding:20px 16px}
+.reroll-page .reroll-panel>h2{font-size:22px;margin-bottom:18px}
+.reroll-page .reroll-notice{gap:14px;padding:20px 17px}
+.reroll-page .reroll-notice>img{width:76px;height:76px;flex-basis:76px}
+.reroll-page .reroll-notice h2{font-size:19px}
+.reroll-page .reroll-notice p{font-size:14px;line-height:1.75}
+.reroll-page .savior-grid-reroll{grid-template-columns:repeat(3,minmax(0,1fr))}
+.reroll-page .savior-choice>img{height:120px}
+.reroll-page .reroll-heading h1{font-size:32px}}
+@media(max-width:480px){
+.reroll-page{padding:22px 12px 42px;gap:15px}
+.reroll-page .reroll-heading h1{font-size:30px}
+.reroll-page .reroll-notice{padding:17px 14px;gap:12px;align-items:center}
+.reroll-page .reroll-notice>img{width:64px;height:64px;flex-basis:64px}
+.reroll-page .reroll-notice h2{font-size:18px}
+.reroll-page .reroll-notice p{font-size:13.5px;line-height:1.7}
+.reroll-page .reroll-panel{padding:20px 14px}
+.reroll-page .reroll-panel>h2{font-size:22px}
+.reroll-page .savior-grid-reroll{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.reroll-page .savior-choice>img{height:120px}
+.reroll-page .choice-copy strong{font-size:13px}
+.reroll-page .choice-copy{padding:10px 6px 12px;gap:7px}
+.reroll-page .reroll-start{font-size:14px;padding:14px;margin-top:18px}
+.reroll-page .reroll-note{font-size:13px;line-height:1.8}
+.reroll-page .variant-card{font-size:12px;gap:8px;padding-right:10px}
+.reroll-page .variant-card>img{width:42px;height:42px}
+.reroll-page .arcana-grid-reroll,.reroll-page .arcana-grid-reroll.tier-zero{grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;gap:10px}
+.reroll-page .arcana-choice .choice-copy{padding:10px 7px 12px}
+.reroll-page .arcana-choice .availability{font-size:10px}
+.reroll-page .tier-label{font-size:16px}
+.reroll-page .tier-group+.tier-group{margin-top:22px;padding-top:22px}}/* Full Savior tier chart: ranks and order supplied by the owner. */
+.reroll-page .full-savior-tier{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.reroll-page .full-savior-tier>summary{display:flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:13px 18px;border:1px solid color-mix(in srgb,var(--accent) 48%,var(--line));border-radius:11px;background:var(--accent-soft);color:var(--text);font-size:15px;font-weight:900;line-height:1.5;list-style:none;cursor:pointer;text-align:center}
+.reroll-page .full-savior-tier>summary::-webkit-details-marker{display:none}
+.reroll-page .full-savior-tier>summary::marker{content:""}
+.reroll-page .full-savior-tier>summary:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 18%,var(--surface))}
+.reroll-page .full-savior-tier>summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.reroll-page .full-tier-chevron{font-size:21px;line-height:1;transition:transform .15s}
+.reroll-page .full-savior-tier[open] .full-tier-chevron{transform:rotate(180deg)}
+.reroll-page .full-tier-content{margin-top:16px;min-width:0}
+.reroll-page .full-tier-chart{overflow:hidden;border:1px solid var(--line-strong);border-radius:12px;background:var(--surface-2)}
+.reroll-page .full-tier-row{display:grid;grid-template-columns:60px minmax(0,1fr);min-width:0;border-bottom:1px solid var(--line-strong)}
+.reroll-page .full-tier-row:last-child{border-bottom:0}
+.reroll-page .full-tier-rank{display:flex;align-items:center;justify-content:center;align-self:stretch;margin:0;background:var(--tier-color);color:#20212b;font-size:21px;font-weight:950;letter-spacing:-.03em;border-right:1px solid var(--line-strong)}
+.reroll-page .full-tier-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));align-content:start;gap:8px;padding:10px;min-width:0}
+.reroll-page .full-tier-card{display:flex;min-width:0;flex-direction:column;align-items:center;gap:4px;padding:7px 4px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--text);text-decoration:none;text-align:center;transition:border-color .15s}
+.reroll-page .full-tier-card:hover{border-color:var(--accent)}
+.reroll-page .full-tier-card:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.reroll-page .full-tier-card img{display:block;width:100%;max-width:88px;aspect-ratio:1;object-fit:contain;border-radius:5px}
+.reroll-page .full-tier-card strong{font-size:12px;font-weight:900;line-height:1.4;overflow-wrap:anywhere}
+.reroll-page .full-tier-card>span{color:var(--muted);font-size:10px;font-weight:650;line-height:1.4;overflow-wrap:anywhere}
+.reroll-page .full-tier-disclaimer{margin:13px 1px 0}
+@media(max-width:900px){
+.reroll-page .full-tier-grid{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(max-width:620px){
+.reroll-page .full-tier-row{grid-template-columns:40px minmax(0,1fr)}
+.reroll-page .full-tier-rank{font-size:18px}
+.reroll-page .full-tier-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:8px}
+.reroll-page .full-tier-card{padding:5px 3px 7px}
+.reroll-page .full-tier-card strong{font-size:11px}
+.reroll-page .full-tier-card>span{font-size:9px}
+.reroll-page .full-tier-card img{max-width:76px}
+.reroll-page .full-savior-tier>summary{font-size:14px;min-height:48px;padding:12px 10px}
+.reroll-page .full-tier-content{margin-top:12px}}
+@media(prefers-reduced-motion:reduce){
+.reroll-page .full-tier-chevron,.reroll-page .full-tier-card{transition:none}}/* Tier chart availability badges. */
+.reroll-page .full-tier-card>.tier-availability{max-width:100%;margin-top:3px;color:#b13d4e;font-size:10px;font-weight:850;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
+html[data-theme="dark"] .reroll-page .full-tier-card>.tier-availability{color:#ffa6b4}
+@media(max-width:620px){
+.reroll-page .full-tier-card>.tier-availability{font-size:9px}}/* Blossom labels for the eight specified Saviors. */
+.reroll-page .full-tier-card>.tier-blossom{margin-top:3px;color:#31704c;background:color-mix(in srgb,#5cba83 10%,var(--surface));border-color:color-mix(in srgb,#5cba83 35%,var(--line));font-size:10px;font-weight:850;line-height:1.55}
+html[data-theme="dark"] .reroll-page .full-tier-card>.tier-blossom{color:#a0dfb6}/* Arcana tier chart, following the supplied reference categories and order. */
+.reroll-page .full-arcana-tier .full-tier-row{grid-template-columns:160px minmax(0,1fr)}
+.reroll-page .full-arcana-tier .full-tier-rank{flex-direction:column;gap:8px;padding:13px 12px;font-size:16px;line-height:1.55;text-align:center;word-break:keep-all;overflow-wrap:anywhere}
+.reroll-page .full-arcana-tier .full-tier-rank>strong{font-weight:950}
+.reroll-page .full-arcana-tier .full-tier-rank>span{font-size:12px;font-weight:650;line-height:1.65}
+.reroll-page .full-arcana-tier .full-tier-grid{grid-template-columns:repeat(7,minmax(0,1fr))}
+.reroll-page .full-arcana-tier .full-tier-card{gap:7px;justify-content:flex-start;padding:8px 5px 10px}
+.reroll-page .full-arcana-tier .full-tier-card img{height:100px;aspect-ratio:auto;max-width:100%;object-fit:contain;border-radius:3px}
+.reroll-page .full-arcana-tier .full-tier-card strong{font-size:11px;line-height:1.5}
+@media(max-width:900px){
+.reroll-page .full-arcana-tier .full-tier-row{grid-template-columns:130px minmax(0,1fr)}
+.reroll-page .full-arcana-tier .full-tier-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:620px){
+.reroll-page .full-arcana-tier .full-tier-row{grid-template-columns:minmax(0,1fr)}
+.reroll-page .full-arcana-tier .full-tier-rank{display:block;border-right:0;border-bottom:1px solid var(--line-strong);padding:10px 12px;text-align:left;font-size:14px}
+.reroll-page .full-arcana-tier .full-tier-rank>strong{display:block}
+.reroll-page .full-arcana-tier .full-tier-rank>span{display:block;margin-top:3px;font-size:11px}
+.reroll-page .full-arcana-tier .full-tier-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.reroll-page .full-arcana-tier .full-tier-card img{height:94px}
+.reroll-page .full-arcana-tier .full-tier-card strong{font-size:10px}}/* Arcana rank headings and class/Savior usage labels. */
+.reroll-page .full-arcana-tier [data-arcana-rank] .full-tier-rank>strong{font-size:22px;line-height:1.25}
+.reroll-page .full-arcana-tier .arcana-usage{display:block;max-width:100%;margin-top:2px;padding:3px 5px;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:6px;background:var(--accent-soft);color:#315d9c;font-size:10px;font-weight:800;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
+.reroll-page .full-arcana-tier .arcana-usage.is-unavailable{color:#b13d4e;border-color:color-mix(in srgb,#e35a71 30%,var(--line));background:color-mix(in srgb,#e35a71 9%,var(--surface))}
+html[data-theme="dark"] .reroll-page .full-arcana-tier .arcana-usage{color:#a6c3ff}
+html[data-theme="dark"] .reroll-page .full-arcana-tier .arcana-usage.is-unavailable{color:#ffa6b4}
+@media(max-width:620px){
+.reroll-page .full-arcana-tier [data-arcana-rank] .full-tier-rank>strong{font-size:20px}
+.reroll-page .full-arcana-tier .arcana-usage{font-size:9px}}/* Separate Arcana availability, recommendation and content notes. */
+.reroll-page .full-arcana-tier .arcana-status{display:block;max-width:100%;padding:3px 5px;border:1px solid var(--line);border-radius:6px;background:var(--surface-2);color:var(--muted);font-size:10px;font-weight:800;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
+.reroll-page .full-arcana-tier .arcana-status.is-unavailable{color:#b13d4e;border-color:color-mix(in srgb,#e35a71 30%,var(--line));background:color-mix(in srgb,#e35a71 9%,var(--surface))}
+.reroll-page .full-arcana-tier .arcana-status.is-discouraged{color:#86600e;border-color:color-mix(in srgb,#d9aa49 40%,var(--line));background:color-mix(in srgb,#e3ac50 11%,var(--surface))}
+html[data-theme="dark"] .reroll-page .full-arcana-tier .arcana-status.is-unavailable{color:#ffa6b4}
+html[data-theme="dark"] .reroll-page .full-arcana-tier .arcana-status.is-discouraged{color:#e7c477}
+@media(max-width:620px){
+.reroll-page .full-arcana-tier .arcana-status{font-size:9px}}
+/* The site shell supplies the outer spacing on every viewport. */
+.reroll-page{max-width:1072px;padding:0;margin:0 auto}
+/* Keep the guide readable even when a narrow viewport reserves scrollbar space. */
+html:has(.simple-view:not([hidden]) #reroll-guide),body:has(.simple-view:not([hidden]) #reroll-guide){min-width:0}

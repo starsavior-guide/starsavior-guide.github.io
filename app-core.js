@@ -10686,6 +10686,201 @@ ensureJourneyStatPriorityStyle();
 
 const JOURNEY_EXTERNAL_URL = "https://starsavior-journey-choice.pages.dev/journey-choice";
 
+// Loaded only when the reroll tab is opened. Card images and detail routes reuse
+// the site's existing local archives; the guide does not alter Savior builds.
+// Reroll guide copy; existing translations retain priority.
+Object.entries({
+  "리세마라": "Reroll",
+  "리세마라 가이드를 불러오는 중입니다.": "Loading the reroll guide…",
+  "리세마라 가이드를 불러오지 못했습니다.": "Unable to load the reroll guide.",
+  "다시 시도": "Try again",
+  "리세마라는 약 10분 정도의 시간이 소요됩니다.": "Rerolling takes approximately 10 minutes.",
+  "원활한 진행을 위하여 리세마라를 권장하나 본인의 애정이 최고의 성능이니 참고용으로 활용해 주세요.": "Rerolling is recommended for a smoother start, but your favorite characters matter most. Please use this as a reference.",
+  "구원자 추천": "Recommended Saviors",
+  "아르카나 추천": "Recommended Arcana",
+  "현재 픽업 중인": "Currently featured:",
+  "편애의 마녀 + 하나 이상의 구원자": "Witch of Favoritism + at least one of the Saviors above",
+  "= 시작하시면 됩니다.": "= ready to start.",
+  "+ 하나 이상의 구원자 = 시작하시면 됩니다.": "+ at least one of these Saviors = ready to start.",
+  "※ 이터널 프로미스 카르멘은 한정 구원자입니다. 현재는 리세계나 돌계가 아니면 획득이 불가능합니다.": "※ Eternal Promise Carmen is a limited Savior. She is currently unavailable unless already obtained on a rerolled or stocked account.",
+  "※ 스타세이비어는 이격 구원자가 존재합니다. 보이저 구원단 스마일과 모나스티르 기사단 카르멘은 다른 구원자입니다.": "※ Star Savior has alternate versions of Saviors. Voyager Savior Party Smile and Monastir Knights Carmen are different Saviors from the recommended versions above.",
+  "전체 구원자 티어표 열람": "View the full Savior tier list",
+  "전체 아르카나 티어표 열람": "View the full Arcana tier list",
+  "※ 티어표는 의견이 다를 수 있습니다. 참고용으로 활용해 주세요.": "※ Opinions on tiers may differ. Please use this list as a reference.",
+  "※ SR등급 구원자는 '개화'를 기준으로 합니다.": "※ SR Savior ratings assume Blossom.",
+  "한정 / 현재 획득 불가": "Limited / Currently unavailable",
+  "한정 / 현재 획득불가": "Limited / Currently unavailable",
+  "현재 획득불가": "Currently unavailable",
+  "1돌파 이상부터 사용가능": "Usable from Limit Break 1",
+  "3돌파 이상 사용권장": "Limit Break 3 or higher recommended",
+  "현재 픽업 중 / 3주차 0돌파 지급": "Currently featured / Base copy given in week 3",
+  "※ 커스텀 픽업으로 최우선적으로 얻어야 합니다.": "※ Make these your top priority in the custom pickup.",
+  "※ 커스텀 픽업은 권하지 않으나 나온다면 매우 유용한 아르카나입니다.": "※ These are very useful if obtained, though selecting them for the custom pickup is not recommended.",
+  "※ 이 외에도 권장하는 아르카나는 많으나 역할에 따라 달라질 수 있기에 본인이 이용하는 커뮤니티에 도움을 요청하는걸 권합니다.": "※ Many other Arcana are recommended depending on the role. Consider asking your community for advice.",
+  "필수적으로 사용되는 아르카나": "Essential Arcana",
+  "필수 아르카나가 부족할 때 사용되는 아르카나": "Alternatives when essential Arcana are missing",
+  "필수 아르카나에 준하나 특정 클래스/구원자 전용": "Comparable to essential Arcana, for specific classes or Saviors",
+  "한정적으로 쓰이는 아르카나": "Situational Arcana",
+  "사용할 일이 없는 아르카나": "Arcana with no recommended use",
+  "스트라이커 전용": "Striker only",
+  "어쌔신 전용": "Assassin only",
+  "레인저 전용": "Ranger only",
+  "캐스터 전용": "Caster only",
+  "서포터 전용": "Supporter only",
+  "일부 서포터 전용": "For certain Supporters",
+  "디펜더 전용": "Defender only",
+  "루나 전용": "Luna only",
+  "페이 전용": "Fei only",
+  "스마일 전용": "Smile only",
+  "로베르타 전용": "Roberta only",
+  "카르멘 전용": "Carmen only",
+  "리디아 전용": "Lydia only",
+  "세이라 전용": "Seira only",
+  "타냐 전용": "Tanya only",
+  "유미나 전용": "Yoo Mina only",
+  "특정 구원자들 사용": "For certain Saviors",
+  "스칼렛 전용/특정 구원자들 사용": "Scarlet / Certain Saviors",
+  "공용": "General use",
+  "사용은 권하지 않음": "Use not recommended",
+  "코스모게이트 사용": "Used in Cosmo Gate",
+  "유리창 너머의 밤 풍경": "Night View Beyond the Window",
+  "수마의 나들이": "When Slumber Comes Calling",
+  "영원 속박의 굴레": "Bound for Eternity",
+  "친구들과의 산책": "A Stroll with Friends",
+  "보이지 않는 곳": "An Unseen Place",
+  "대단하고 엄청난 바니걸": "The Great and Amazing Bunny Girl",
+  "한여름밤의 하늘": "A Midsummer Night's Sky",
+  "튀김 명인": "Master of Fried Food",
+  "진실은 언제나 하나겠지요?": "There's Only One Truth",
+  "귀로 없는 여정": "Journey of No Return",
+  "경력직 용병": "Experienced Mercenary",
+  "자칭 베테랑 탐정의 수사법": "[A Self-Proclaimed Veteran Detective] Memory",
+  "이게 옷이라고요?": "You Call This an Outfit?!",
+  "가혹한 시련": "Maid for Hardship",
+  "끝나지 않는 춤": "Never Ending Dance",
+  "빛바랜 꿈": "Faded Dream"
+}).forEach(([source, translation]) => {
+  if (!Object.prototype.hasOwnProperty.call(I18N_DATA.ui.en, source)) I18N_DATA.ui.en[source] = translation;
+});
+Object.entries({
+  "리세마라": "リセマラ",
+  "리세마라 가이드를 불러오는 중입니다.": "リセマラガイドを読み込み中です。",
+  "리세마라 가이드를 불러오지 못했습니다.": "リセマラガイドを読み込めませんでした。",
+  "다시 시도": "再試行",
+  "리세마라는 약 10분 정도의 시간이 소요됩니다.": "リセマラには約10分かかります。",
+  "원활한 진행을 위하여 리세마라를 권장하나 본인의 애정이 최고의 성능이니 참고용으로 활용해 주세요.": "スムーズに進めるためにリセマラをおすすめしますが、好きなキャラクターへの愛が一番です。参考としてご活用ください。",
+  "구원자 추천": "おすすめ救援者",
+  "아르카나 추천": "おすすめアルカナ",
+  "현재 픽업 중인": "現在ピックアップ中の",
+  "편애의 마녀 + 하나 이상의 구원자": "偏愛の魔女＋上記の救援者を1人以上",
+  "= 시작하시면 됩니다.": "でスタートできます。",
+  "+ 하나 이상의 구원자 = 시작하시면 됩니다.": "＋上記の救援者を1人以上でスタートできます。",
+  "※ 이터널 프로미스 카르멘은 한정 구원자입니다. 현재는 리세계나 돌계가 아니면 획득이 불가능합니다.": "※ エターナル・プロミス カルメンは限定救援者です。現在、入手済みのリセマラアカウントや石貯蓄アカウント以外では入手できません。",
+  "※ 스타세이비어는 이격 구원자가 존재합니다. 보이저 구원단 스마일과 모나스티르 기사단 카르멘은 다른 구원자입니다.": "※ スターセイヴァーには別バージョンの救援者が存在します。ボイジャー救援団 スマイルとモナスティル騎士団 カルメンは、上記のおすすめとは別の救援者です。",
+  "전체 구원자 티어표 열람": "救援者の全ティア表を見る",
+  "전체 아르카나 티어표 열람": "アルカナの全ティア表を見る",
+  "※ 티어표는 의견이 다를 수 있습니다. 참고용으로 활용해 주세요.": "※ ティア評価には個人差があります。参考としてご活用ください。",
+  "※ SR등급 구원자는 '개화'를 기준으로 합니다.": "※ SR救援者は「開花」を基準にしています。",
+  "한정 / 현재 획득 불가": "限定／現在入手不可",
+  "한정 / 현재 획득불가": "限定／現在入手不可",
+  "현재 획득불가": "現在入手不可",
+  "1돌파 이상부터 사용가능": "1突破以上で使用可能",
+  "3돌파 이상 사용권장": "3突破以上推奨",
+  "현재 픽업 중 / 3주차 0돌파 지급": "現在ピックアップ中／3週目に無突破で配布",
+  "※ 커스텀 픽업으로 최우선적으로 얻어야 합니다.": "※ カスタムピックアップで最優先に入手しましょう。",
+  "※ 커스텀 픽업은 권하지 않으나 나온다면 매우 유용한 아르카나입니다.": "※ カスタムピックアップでの選択はおすすめしませんが、入手できれば非常に役立つアルカナです。",
+  "※ 이 외에도 권장하는 아르카나는 많으나 역할에 따라 달라질 수 있기에 본인이 이용하는 커뮤니티에 도움을 요청하는걸 권합니다.": "※ このほかにも役割に応じておすすめのアルカナがあります。利用しているコミュニティで相談することをおすすめします。",
+  "필수적으로 사용되는 아르카나": "必須のアルカナ",
+  "필수 아르카나가 부족할 때 사용되는 아르카나": "必須アルカナが足りないときに使うアルカナ",
+  "필수 아르카나에 준하나 특정 클래스/구원자 전용": "必須級だが特定のクラス・救援者専用",
+  "한정적으로 쓰이는 아르카나": "用途が限られるアルカナ",
+  "사용할 일이 없는 아르카나": "使う機会がないアルカナ",
+  "스트라이커 전용": "ストライカー専用",
+  "어쌔신 전용": "アサシン専用",
+  "레인저 전용": "レンジャー専用",
+  "캐스터 전용": "キャスター専用",
+  "서포터 전용": "サポーター専用",
+  "일부 서포터 전용": "一部のサポーター専用",
+  "디펜더 전용": "ディフェンダー専用",
+  "루나 전용": "ルナ専用",
+  "페이 전용": "フェイ専用",
+  "스마일 전용": "スマイル専用",
+  "로베르타 전용": "ロベルタ専用",
+  "카르멘 전용": "カルメン専用",
+  "리디아 전용": "リディア専用",
+  "세이라 전용": "セイラ専用",
+  "타냐 전용": "ターニャ専用",
+  "유미나 전용": "ヤナギ・ミナ専用",
+  "특정 구원자들 사용": "特定の救援者向け",
+  "스칼렛 전용/특정 구원자들 사용": "スカーレット専用／特定の救援者向け",
+  "공용": "汎用",
+  "사용은 권하지 않음": "使用非推奨",
+  "코스모게이트 사용": "コスモゲートで使用",
+  "유리창 너머의 밤 풍경": "ガラス越しの夜景",
+  "수마의 나들이": "睡魔のお出かけ",
+  "영원 속박의 굴레": "永遠なる束縛の連鎖",
+  "친구들과의 산책": "友達との散歩",
+  "보이지 않는 곳": "見えない場所",
+  "대단하고 엄청난 바니걸": "大胆かつ凄いバニーガール",
+  "한여름밤의 하늘": "夏の夜の空",
+  "튀김 명인": "天ぷら名人",
+  "진실은 언제나 하나겠지요?": "真実はいつも一つでしょう？",
+  "귀로 없는 여정": "帰路なき旅程",
+  "경력직 용병": "歴戦の傭兵",
+  "탐닉자의 유흥거리": "享楽者の慰み",
+  "자칭 베테랑 탐정의 수사법": "自称ベテラン探偵の捜査法",
+  "이게 옷이라고요?": "これが…服？",
+  "가혹한 시련": "過酷な試練",
+  "끝나지 않는 춤": "果てしない舞",
+  "빛바랜 꿈": "色褪せた夢"
+}).forEach(([source, translation]) => {
+  if (!Object.prototype.hasOwnProperty.call(I18N_DATA.ui.ja, source)) I18N_DATA.ui.ja[source] = translation;
+});
+
+let rerollGuidePromise = null;
+
+function loadRerollGuide() {
+  if (!rerollGuidePromise) {
+    rerollGuidePromise = fetch(`./data/reroll/guide.html?v=${encodeURIComponent(SITE_BUILD_VERSION)}`, { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error(`Reroll guide: ${response.status}`);
+        return response.text();
+      })
+      .catch((error) => {
+        rerollGuidePromise = null;
+        throw error;
+      });
+  }
+  return rerollGuidePromise;
+}
+
+function initializeRerollGuide() {
+  const loading = simpleContent.querySelector("[data-reroll-loading]");
+  if (!loading) return;
+  loadRerollGuide().then((markup) => {
+    // Navigation may have changed while the fragment was being fetched.
+    if (loading.parentNode !== simpleContent) return;
+    simpleContent.innerHTML = markup;
+    applyLanguageToDOM(simpleView);
+  }).catch(() => {
+    if (loading.parentNode !== simpleContent) return;
+    loading.innerHTML = `<p role="alert">리세마라 가이드를 불러오지 못했습니다.</p><button type="button" class="nav-item" data-reroll-retry>다시 시도</button>`;
+    applyLanguageToDOM(loading);
+  });
+}
+
+function handleRerollGuideClick(event) {
+  if (event.target.closest("[data-reroll-retry]")) {
+    openSimple("reroll", { skipHash: true, keepScroll: true });
+    return;
+  }
+  const link = event.target.closest("a[data-reroll-savior], a[data-reroll-arcana]");
+  if (!link || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  if (link.dataset.rerollSavior) openSavior(link.dataset.rerollSavior);
+  else openArcanaDetail(link.dataset.rerollArcana);
+}
+
 function openSimple(section, options = {}) {
   // 여정 데이터/백업 로직은 유지하되, 사이트 내부 여정 화면은 공개하지 않는다.
   // 여정 탭 또는 #journey 접근 시 외부 여정 선택 사이트로 이동한다.
@@ -10697,6 +10892,8 @@ function openSimple(section, options = {}) {
     simpleContent.innerHTML = createArcanaDatabaseMarkup();
   } else if (section === "equipment") {
     simpleContent.innerHTML = createEquipmentDatabaseMarkup();
+  } else if (section === "reroll") {
+    simpleContent.innerHTML = `<div class="reroll-page" data-reroll-loading><header class="reroll-heading"><p class="eyebrow">REROLL GUIDE</p><h1>리세마라</h1></header><p role="status">리세마라 가이드를 불러오는 중입니다.</p></div>`;
   } else {
     const data = getSimpleSection(section);
     if (!data) {
@@ -10727,6 +10924,7 @@ function openSimple(section, options = {}) {
 
   applyLanguageToDOM(simpleView);
   if (section === "arcana") initializeArcanaDatabase();
+  if (section === "reroll") initializeRerollGuide();
   showOnly("simple");
   setActiveNav(section);
 
@@ -10789,7 +10987,7 @@ function syncFromHash() {
     return;
   }
 
-  if (["arcana", "journey", "equipment", "cosmo"].includes(hash)) {
+  if (["arcana", "reroll", "journey", "equipment", "cosmo"].includes(hash)) {
     openSimple(hash, { skipHash: true, keepScroll: true });
     return;
   }
@@ -11331,6 +11529,7 @@ if (languageSelect) {
 
 simpleContent.addEventListener("input", handleArcanaDatabaseInput);
 simpleContent.addEventListener("click", handleArcanaDatabaseClick);
+simpleContent.addEventListener("click", handleRerollGuideClick);
 
 window.addEventListener("popstate", syncFromHash);
 window.addEventListener("hashchange", syncFromHash);
@@ -11378,3 +11577,4 @@ applyTheme(readSavedTheme() || "dark", { skipSave: true });
 syncFromHash();
 applyLanguageToDOM(document.body);
 if (languageSelect) languageSelect.value = currentLanguage;
+
