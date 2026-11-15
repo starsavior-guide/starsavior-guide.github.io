@@ -6,6 +6,8 @@
 
   core.addEventListener("load", () => {
     Object.assign(I18N_DATA.ui.en, {
+      "상시 편입예정": "Planned for the permanent pool",
+      "한정": "Limited",
       "리세마라 티어표 추가(11.15)": "Reroll tier lists added (11.15)",
       "리세마라 티어표 바로가기 →": "Open Reroll Tier Lists →",
       "편애의 마녀, 길레 추가 및 추천 세팅 반영(11.12)": "Witch of Favoritism and Gille added with recommended builds (11.12)",
@@ -22,6 +24,8 @@
       "※ 왈츠 오브 스타라이트 아세라는 힘 1,000 / 체력 1,000을 목표로 세팅 권장": "※ Waltz of Starlight Asherah: Recommended target — Strength 1,000 / HP 1,000"
     });
     Object.assign(I18N_DATA.ui.ja, {
+      "상시 편입예정": "恒常ラインナップに追加予定",
+      "한정": "限定",
       "리세마라 티어표 추가(11.15)": "リセマラのティア表を追加 (11.15)",
       "리세마라 티어표 바로가기 →": "リセマラのティア表へ →",
       "편애의 마녀, 길레 추가 및 추천 세팅 반영(11.12)": "偏愛の魔女・ギレ追加・おすすめセッティング反映 (11.12)",
