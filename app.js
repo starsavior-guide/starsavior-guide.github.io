@@ -8,6 +8,7 @@
     Object.assign(I18N_DATA.ui.en, {
       "상시 편입예정": "Planned for the permanent pool",
       "한정": "Limited",
+      "파티조합 가이드 추가(11.16)": "Party composition guide added (11.16)",
       "리세마라 티어표 추가(11.15)": "Reroll tier lists added (11.15)",
       "리세마라 티어표 바로가기 →": "Open Reroll Tier Lists →",
       "편애의 마녀, 길레 추가 및 추천 세팅 반영(11.12)": "Witch of Favoritism and Gille added with recommended builds (11.12)",
@@ -26,6 +27,7 @@
     Object.assign(I18N_DATA.ui.ja, {
       "상시 편입예정": "恒常ラインナップに追加予定",
       "한정": "限定",
+      "파티조합 가이드 추가(11.16)": "パーティ編成ガイドを追加 (11.16)",
       "리세마라 티어표 추가(11.15)": "リセマラのティア表を追加 (11.15)",
       "리세마라 티어표 바로가기 →": "リセマラのティア表へ →",
       "편애의 마녀, 길레 추가 및 추천 세팅 반영(11.12)": "偏愛の魔女・ギレ追加・おすすめセッティング反映 (11.12)",
@@ -753,6 +755,7 @@
     const updateList = updateNotice?.querySelector(".site-update-list");
     if (updateList) {
       updateList.innerHTML = `
+        <li>파티조합 가이드 추가(11.16)</li>
         <li>리세마라 티어표 추가(11.15)</li>
         <li>편애의 마녀, 길레 추가 및 추천 세팅 반영(11.12)</li>
         <li>딜러 및 디버퍼 추천/대체 아르카나 대폭 변경(11.12)</li>
