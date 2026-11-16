@@ -3367,11 +3367,10 @@ html:has(.simple-view:not([hidden]) #reroll-guide),body:has(.simple-view:not([hi
 #list-view .useful-sites-mascot{display:block;width:112px;height:112px;object-fit:contain}
 #list-view .useful-sites-copy{min-width:0}
 #list-view .useful-sites-copy h2{margin:0 0 8px;color:var(--text);font-size:18px;font-weight:850;line-height:1.4}
-#list-view .useful-sites-links{display:grid;gap:3px;list-style:none;margin:0;padding:0}
-#list-view .useful-sites-links li{min-width:0}
-#list-view .useful-sites-links a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;padding:7px 0;color:var(--accent);font-size:14px;font-weight:750;line-height:1.65;text-decoration:none;word-break:keep-all;overflow-wrap:anywhere}
-#list-view .useful-sites-links a::after{content:"↗";flex:none}
-#list-view .useful-sites-links a:hover{text-decoration:underline;text-underline-offset:3px}
+#list-view .useful-sites-links{list-style:none;padding:0}
+#list-view .useful-sites-links li{min-width:0;max-width:100%}
+#list-view .useful-sites-links a{line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+#list-view .useful-sites-links a::after{content:" →";white-space:nowrap}
 #list-view .useful-sites-links a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
 @media(max-width:640px){
  #list-view .site-useful-sites{grid-template-columns:64px minmax(0,1fr);gap:12px;padding:18px 17px}
@@ -3379,6 +3378,4 @@ html:has(.simple-view:not([hidden]) #reroll-guide),body:has(.simple-view:not([hi
  #list-view .useful-sites-copy{display:contents}
  #list-view .useful-sites-copy h2{grid-row:1;grid-column:2;margin:0;font-size:17px}
  #list-view .useful-sites-links{grid-column:1 / -1}
- #list-view .useful-sites-links li+li{border-top:1px solid var(--line)}
- #list-view .useful-sites-links a{font-size:13.5px;padding:10px 0}
 }
