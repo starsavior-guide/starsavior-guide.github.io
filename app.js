@@ -8,6 +8,7 @@
     Object.assign(I18N_DATA.ui.en, {
       "상시 편입예정": "Planned for the permanent pool",
       "한정": "Limited",
+      "파티편성 네비게이터(베타) 바로가기": "Open Party Formation Navigator (Beta)",
       "파티조합 가이드 추가(11.16)": "Party composition guide added (11.16)",
       "리세마라 티어표 추가(11.15)": "Reroll tier lists added (11.15)",
       "리세마라 티어표 바로가기 →": "Open Reroll Tier Lists →",
@@ -27,6 +28,7 @@
     Object.assign(I18N_DATA.ui.ja, {
       "상시 편입예정": "恒常ラインナップに追加予定",
       "한정": "限定",
+      "파티편성 네비게이터(베타) 바로가기": "パーティ編成ナビゲーター（ベータ）へ",
       "파티조합 가이드 추가(11.16)": "パーティ編成ガイドを追加 (11.16)",
       "리세마라 티어표 추가(11.15)": "リセマラのティア表を追加 (11.15)",
       "리세마라 티어표 바로가기 →": "リセマラのティア表へ →",
