@@ -6,6 +6,12 @@
 
   core.addEventListener("load", () => {
     Object.assign(I18N_DATA.ui.en, {
+      "유용한 사이트 안내": "Useful Sites",
+      "ESPR.GG 바로가기(종합 DB사이트)": "Open ESPR.GG (Comprehensive Database)",
+      "스타세이비어 데이터북 바로가기(종합 DB사이트)": "Open Star Savior Databook (Comprehensive Database)",
+      "여정 도우미 바로가기(안드로이드 전용)": "Open Journey Helper (Android Only)",
+      "여정 내비게이터 바로가기(PC 전용)": "Open Journey Navigator (PC Only)",
+      "파티편성 내비게이터 바로가기(PC 필요)": "Open Party Formation Navigator (PC Required)",
       "상시 편입예정": "Planned for the permanent pool",
       "한정": "Limited",
       "파티편성 네비게이터(베타) 바로가기": "Open Party Formation Navigator (Beta)",
@@ -26,6 +32,12 @@
       "※ 왈츠 오브 스타라이트 아세라는 힘 1,000 / 체력 1,000을 목표로 세팅 권장": "※ Waltz of Starlight Asherah: Recommended target — Strength 1,000 / HP 1,000"
     });
     Object.assign(I18N_DATA.ui.ja, {
+      "유용한 사이트 안내": "便利なサイトのご案内",
+      "ESPR.GG 바로가기(종합 DB사이트)": "ESPR.GGへ（総合データベース）",
+      "스타세이비어 데이터북 바로가기(종합 DB사이트)": "スターセイヴァー・データブックへ（総合データベース）",
+      "여정 도우미 바로가기(안드로이드 전용)": "旅程ヘルパーへ（Android専用）",
+      "여정 내비게이터 바로가기(PC 전용)": "旅程ナビゲーターへ（PC専用）",
+      "파티편성 내비게이터 바로가기(PC 필요)": "パーティ編成ナビゲーターへ（PCが必要）",
       "상시 편입예정": "恒常ラインナップに追加予定",
       "한정": "限定",
       "파티편성 네비게이터(베타) 바로가기": "パーティ編成ナビゲーター（ベータ）へ",

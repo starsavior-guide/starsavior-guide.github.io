@@ -3361,3 +3361,24 @@ html[data-theme="dark"] .reroll-page .full-arcana-tier .arcana-status.is-discour
 .reroll-page{max-width:1072px;padding:0;margin:0 auto}
 /* Keep the guide readable even when a narrow viewport reserves scrollbar space. */
 html:has(.simple-view:not([hidden]) #reroll-guide),body:has(.simple-view:not([hidden]) #reroll-guide){min-width:0}
+
+/* Helpful external resources below the new commander guide. */
+#list-view .site-useful-sites{display:grid;grid-template-columns:112px minmax(0,1fr);align-items:center;gap:18px;width:100%;margin-top:20px;padding:22px 24px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+#list-view .useful-sites-mascot{display:block;width:112px;height:112px;object-fit:contain}
+#list-view .useful-sites-copy{min-width:0}
+#list-view .useful-sites-copy h2{margin:0 0 8px;color:var(--text);font-size:18px;font-weight:850;line-height:1.4}
+#list-view .useful-sites-links{display:grid;gap:3px;list-style:none;margin:0;padding:0}
+#list-view .useful-sites-links li{min-width:0}
+#list-view .useful-sites-links a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;padding:7px 0;color:var(--accent);font-size:14px;font-weight:750;line-height:1.65;text-decoration:none;word-break:keep-all;overflow-wrap:anywhere}
+#list-view .useful-sites-links a::after{content:"↗";flex:none}
+#list-view .useful-sites-links a:hover{text-decoration:underline;text-underline-offset:3px}
+#list-view .useful-sites-links a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+@media(max-width:640px){
+ #list-view .site-useful-sites{grid-template-columns:64px minmax(0,1fr);gap:12px;padding:18px 17px}
+ #list-view .useful-sites-mascot{width:64px;height:64px;grid-row:1;grid-column:1}
+ #list-view .useful-sites-copy{display:contents}
+ #list-view .useful-sites-copy h2{grid-row:1;grid-column:2;margin:0;font-size:17px}
+ #list-view .useful-sites-links{grid-column:1 / -1}
+ #list-view .useful-sites-links li+li{border-top:1px solid var(--line)}
+ #list-view .useful-sites-links a{font-size:13.5px;padding:10px 0}
+}
