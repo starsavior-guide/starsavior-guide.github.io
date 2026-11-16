@@ -6,6 +6,11 @@
 
   core.addEventListener("load", () => {
     Object.assign(I18N_DATA.ui.en, {
+      "디펜더를 전열에 배치하면 피격 확률이 높아지기에 매우 안정적인 운영이 가능한 가장 정석적인 조합입니다.": "Placing a Defender in the front row makes them more likely to be targeted, making this the standard composition for very stable play.",
+      "생존력이 매우 강력한 조합이지만 여정 난이도가 높고 한정 구원자가 필수적이기에 초보 단장님들께는 권하지 않는 조합입니다.": "This composition offers excellent survivability, but its Journey requirements are demanding and a limited Savior is essential, so we do not recommend it for new Commanders.",
+      "※ 이 조합에서는 프로페서M을 활용하기 어렵습니다. 해당 구원자의 협공은 공격력이 가장 높은 아군을 기준으로 하기에 효율이 낮아집니다.": "※ Professor M is difficult to use in this composition. Her cooperative attacks depend on the ally with the highest ATK, which reduces their effectiveness here.",
+      "생존률이 매우 높고 안정적인 조합이지만 초보 단장님들께는 권하지 않는 조합입니다.": "This is a very stable composition with excellent survivability, but we do not recommend it for new Commanders.",
+      "지속적으로 적의 행동 게이지를 뒤로 미루면서 최대한 많이 공격을 하는 조합이기에 추천드리는 조합 중 하나입니다.": "This is one of our recommended compositions: it repeatedly pushes back the enemies’ action gauges to let your team attack as often as possible.",
       "유용한 사이트 안내": "Useful Sites",
       "ESPR.GG 바로가기(종합 DB사이트)": "Open ESPR.GG (Comprehensive Database)",
       "스타세이비어 데이터북 바로가기(종합 DB사이트)": "Open Star Savior Databook (Comprehensive Database)",
@@ -32,6 +37,11 @@
       "※ 왈츠 오브 스타라이트 아세라는 힘 1,000 / 체력 1,000을 목표로 세팅 권장": "※ Waltz of Starlight Asherah: Recommended target — Strength 1,000 / HP 1,000"
     });
     Object.assign(I18N_DATA.ui.ja, {
+      "디펜더를 전열에 배치하면 피격 확률이 높아지기에 매우 안정적인 운영이 가능한 가장 정석적인 조합입니다.": "ディフェンダーを前衛に配置すると攻撃を受ける確率が高くなるため、非常に安定した運用が可能な基本編成です。",
+      "생존력이 매우 강력한 조합이지만 여정 난이도가 높고 한정 구원자가 필수적이기에 초보 단장님들께는 권하지 않는 조합입니다.": "生存力が非常に高い編成ですが、旅程の難易度が高く、限定救援者が必須となるため、初心者団長にはおすすめしません。",
+      "※ 이 조합에서는 프로페서M을 활용하기 어렵습니다. 해당 구원자의 협공은 공격력이 가장 높은 아군을 기준으로 하기에 효율이 낮아집니다.": "※ この編成ではプロフェッサーMの運用は難しくなります。協攻は攻撃力が最も高い味方を基準とするため、効率が低下します。",
+      "생존률이 매우 높고 안정적인 조합이지만 초보 단장님들께는 권하지 않는 조합입니다.": "生存率が非常に高く安定した編成ですが、初心者団長にはおすすめしません。",
+      "지속적으로 적의 행동 게이지를 뒤로 미루면서 최대한 많이 공격을 하는 조합이기에 추천드리는 조합 중 하나입니다.": "敵の行動ゲージを継続的に後退させ、できるだけ多く攻撃する編成のため、おすすめの編成の一つです。",
       "유용한 사이트 안내": "便利なサイトのご案内",
       "ESPR.GG 바로가기(종합 DB사이트)": "ESPR.GGへ（総合データベース）",
       "스타세이비어 데이터북 바로가기(종합 DB사이트)": "スターセイヴァー・データブックへ（総合データベース）",
