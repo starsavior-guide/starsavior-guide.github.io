@@ -30,6 +30,7 @@
   <link rel="icon" href="./images/home-button.png?v=20260915t1" type="image/png">
   <link rel="apple-touch-icon" href="./images/home-button.png?v=20260915t1">
   <link id="site-styles" rel="stylesheet">
+  <link id="party-styles" rel="stylesheet">
   <noscript><link rel="stylesheet" href="./styles.css"></noscript>
   <script>
     (() => {
@@ -44,6 +45,7 @@
 
       window.__SITE_CACHE_KEY__ = cacheKey;
       document.querySelector("#site-styles").href = `./styles.css?v=${encodeURIComponent(cacheKey)}`;
+      document.querySelector("#party-styles").href = `./party-guide.css?v=${encodeURIComponent(cacheKey)}`;
       window.addEventListener("DOMContentLoaded", () => {
         const script = document.createElement("script");
         script.src = `./app.js?v=${encodeURIComponent(cacheKey)}`;
@@ -1597,6 +1599,7 @@
         <button class="nav-item is-active" type="button" data-section="savior">구원자</button>
         <button class="nav-item" type="button" data-section="arcana">아르카나</button>
         <button class="nav-item" type="button" data-section="reroll">리세마라</button>
+        <button class="nav-item" type="button" data-section="party">파티조합</button>
         <button class="nav-item" type="button" data-section="journey">여정</button>
         <button class="nav-item" type="button" data-section="equipment">장비</button>
       </nav>

@@ -2400,10 +2400,6 @@ html[data-theme="light"] .filter-chip.chaos.is-active {
 }
 
 @media (max-width: 800px) {
-  .brand-copy {
-    display: none;
-  }
-
   .topbar-inner {
     gap: 10px;
   }

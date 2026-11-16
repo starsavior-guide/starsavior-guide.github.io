@@ -1,0 +1,244 @@
+/* Mobile brand remains visible beside language and theme controls. */
+@media(max-width:800px){
+ .topbar-inner.has-wrapped-nav{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 10px;padding-top:8px}
+ .topbar-inner.has-wrapped-nav .main-nav{grid-column:1 / -1;grid-row:2;display:grid;overflow:visible}
+ .topbar-inner.has-wrapped-nav .nav-item{min-width:0;min-height:44px;padding-block:8px;overflow-wrap:anywhere}
+}
+@media(max-width:620px){
+ .brand{min-width:0;gap:7px}
+ .brand-home-image{width:32px;height:32px;flex-basis:32px}
+ .brand-copy{display:flex;min-width:0;flex:none}
+ .brand-copy strong{font-size:12px;letter-spacing:.02em;white-space:nowrap}
+ .brand-copy small{margin-top:4px;font-size:8px;letter-spacing:.12em;white-space:nowrap}
+}
+@media(max-width:360px){
+ .brand-copy strong{font-size:11.5px}
+ .brand-copy small{font-size:7.5px;letter-spacing:.1em}
+}
+
+/* Guide shell and notice, independent of the reroll tab's lazy styles. */
+.party-notice{display:flex;align-items:center;gap:22px;padding:24px 28px;border:1px solid color-mix(in srgb,var(--warning) 38%,var(--line));border-radius:16px;background:var(--surface)}
+.party-notice>img{width:112px;height:112px;object-fit:contain;flex:0 0 112px}
+.party-notice .reroll-notice-copy{display:grid;gap:8px;min-width:0}
+.party-notice h2{margin:0;font-size:22px;font-weight:850}
+.party-notice p{margin:0;font-size:15px}
+@media(max-width:720px){.party-notice{gap:14px;padding:20px 17px}.party-notice>img{width:76px;height:76px;flex-basis:76px}.party-notice h2{font-size:19px}}
+@media(max-width:480px){.party-notice{padding:17px 14px}.party-notice h2{font-size:18px}}
+.reroll-page[hidden],.party-page[hidden]{display:none!important}
+html:has(.simple-view:not([hidden]) #party-guide),body:has(.simple-view:not([hidden]) #party-guide){min-width:0}
+.topbar-inner.has-wrapped-nav .main-nav{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+.party-page{max-width:1120px;min-height:calc(100vh - 220px);margin:auto;padding:30px 24px 70px;display:grid;align-content:start;gap:22px}
+.party-page :is(h1,h2,h3,p,strong,span,a){overflow-wrap:anywhere}
+html[lang="ja"] .party-page :is(h1,h2,h3,p,strong,span,a){word-break:normal}
+.party-heading .eyebrow{margin-bottom:6px}
+.party-heading h1{margin:0;font-size:38px;font-weight:900;letter-spacing:-.045em}
+.party-heading-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.party-preview-badge{padding:5px 10px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--party-secondary,var(--muted));font-size:12px;font-weight:700}
+
+/* One composition per section */
+.party-guide-card{padding:26px 28px;border:1px solid var(--line);border-radius:16px;background:var(--surface);min-width:0}
+.party-guide-card-heading{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.party-guide-card-heading h2{margin:0;font-size:25px;font-weight:850;line-height:1.4;letter-spacing:-.035em}
+.party-guide-category{padding:4px 8px;border-radius:6px;color:var(--party-label-accent);background:var(--accent-soft);font-size:11px;font-weight:750}
+
+/* Live HTML formation cards; position, media and name have their own rows. */
+.party-formation{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface-2);min-width:0}
+.party-slot{display:flex;flex-direction:column;align-items:stretch;min-width:0;min-height:216px;padding:14px 12px 18px;border:1px solid var(--line);border-radius:11px;background:var(--surface);color:var(--text);text-decoration:none}
+.party-position-label{display:flex;align-items:center;justify-content:center;align-self:center;padding:4px 10px;border-radius:5px;background:var(--surface-2);color:var(--party-secondary,var(--muted));margin:0 0 16px;line-height:1}
+.party-position-label b{font-size:11px;font-weight:800;letter-spacing:.09em;line-height:1.3}
+.party-slot[data-position="FRONT"] .party-position-label{background:var(--accent-soft);color:var(--party-label-accent)}
+.party-slot-content{display:grid;grid-template-rows:100px minmax(20px,auto);justify-items:center;align-content:start;gap:12px;min-width:0;width:100%;margin:0}
+.party-position-role{display:block;max-width:100%;margin:0;font-size:14px;font-weight:750;line-height:1.5;text-align:center;word-break:normal;overflow-wrap:anywhere}
+.party-job-icons{display:grid;place-content:center;place-items:center;gap:4px;height:100px;width:100%;max-width:108px}
+.party-job-icons.is-multiple{grid-template-columns:repeat(2,42px)}
+.party-job-icon{display:block;width:42px;height:42px;background-image:url('./images/party-formation-icons.webp');background-repeat:no-repeat;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.party-job-icons.is-single .party-job-icon{width:70px;height:70px}
+.party-front-savior{display:contents}
+.party-front-savior img{display:block;width:100px;height:100px;max-width:100%;object-fit:contain;border-radius:8px}
+.party-front-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-row:1 / span 2;width:100%;max-width:176px;gap:8px;min-width:0}
+.party-front-choices>a{display:grid;grid-template-rows:100px minmax(20px,auto);justify-items:center;align-content:start;gap:12px;min-width:0;text-decoration:none;color:inherit;border-radius:7px}
+.party-front-choices img{display:block;width:100%;height:100px;object-fit:contain;border-radius:7px}
+.party-front-choices .party-position-role{font-size:13px}
+a.party-slot{cursor:pointer;transition:border-color .15s,box-shadow .15s}
+a.party-slot:hover{border-color:var(--accent);box-shadow:0 3px 12px color-mix(in srgb,var(--accent) 10%,transparent)}
+.party-front-choices>a:hover .party-position-role{color:var(--accent)}
+a.party-slot:focus-visible,.party-front-choices>a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.party-summary{margin:20px 0 0;font-size:15px;font-weight:550;line-height:1.9;word-break:keep-all}
+.party-summary strong{font-weight:750}
+.party-guide-description{margin:12px 0 0;font-size:15px;font-weight:550;line-height:1.95;color:var(--party-secondary,var(--muted));word-break:keep-all}
+
+/* Existing recommendations and explanatory notes */
+.party-recommendations{display:grid;grid-template-columns:3fr 5fr;gap:24px;margin-top:23px;padding-top:22px;border-top:1px solid var(--line)}
+.party-recommend-group{min-width:0}
+.party-recommend-group h3{margin:0 0 7px;font-size:18px;font-weight:800}
+.party-recommend-group>p{margin:0 0 13px;font-size:14px;font-weight:550;line-height:1.8;min-height:46px;color:var(--party-secondary,var(--muted))}
+.party-recommend-group>p strong{font-weight:700;color:var(--text)}
+.party-savior-grid{display:grid;gap:8px}
+.party-savior-grid.is-defenders{grid-template-columns:repeat(3,minmax(0,1fr))}
+.party-savior-grid.is-healers{grid-template-columns:repeat(5,minmax(0,1fr))}
+.party-savior-card{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:8px 5px 11px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);color:var(--text);text-decoration:none;min-width:0;transition:border-color .15s}
+.party-savior-card:hover{border-color:var(--accent)}
+.party-savior-card:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.party-savior-card img{width:100%;height:86px;object-fit:contain;margin-bottom:3px}
+.party-savior-card strong{font-size:13px;font-weight:800;line-height:1.5}
+.party-savior-card span{font-size:11px;color:var(--party-secondary,var(--muted));font-weight:550;line-height:1.5}
+.party-combination-note{margin:20px 0 0;padding:13px 15px;border:1px solid color-mix(in srgb,var(--warning) 30%,var(--line));border-radius:9px;background:color-mix(in srgb,var(--warning) 5%,var(--surface));font-size:13px;font-weight:600;line-height:1.8;word-break:keep-all}
+.fei-recommendations{grid-template-columns:1.5fr 5fr}
+.party-savior-grid.is-fei-dealer{grid-template-columns:minmax(0,136px)}
+#fei-party-guide .party-savior-grid.is-healers{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+@media(max-width:800px){
+  .party-recommendations{grid-template-columns:1fr}
+  .party-recommend-group>p{min-height:0}
+  .party-savior-grid.is-defenders{max-width:420px}
+  .party-savior-card img{height:100px}
+}
+@media(max-width:720px){
+  .party-page{padding:24px 16px 48px;gap:17px}
+  .party-heading h1{font-size:32px}
+}
+@media(max-width:620px){
+  .party-guide-card{padding:20px 14px}
+  .party-guide-card-heading{gap:8px;margin-bottom:16px}
+  .party-guide-card-heading h2{font-size:22px}
+  .party-guide-category{font-size:10px}
+  .party-formation{padding:8px;gap:6px;border-radius:11px}
+  .party-slot{min-height:172px;padding:10px 4px 13px;border-radius:8px}
+  .party-position-label{margin-bottom:12px;padding:3px 5px;border-radius:4px}
+  .party-position-label b{font-size:10px;letter-spacing:.03em}
+  .party-slot-content{grid-template-rows:60px minmax(17px,auto);gap:8px}
+  .party-position-role{font-size:11px;line-height:1.5}
+  .party-job-icons{height:60px;max-width:60px;gap:3px}
+  .party-job-icons.is-multiple{grid-template-columns:repeat(2,24px)}
+  .party-job-icon{width:24px;height:24px}
+  .party-job-icons.is-single .party-job-icon{width:46px;height:46px}
+  .party-front-savior img{width:60px;height:60px;border-radius:6px}
+  .party-front-choices{gap:4px}
+  .party-front-choices>a{grid-template-rows:60px minmax(17px,auto);gap:8px}
+  .party-front-choices img{height:60px;border-radius:4px}
+  .party-front-choices .party-position-role{font-size:10.5px}
+  .party-summary{margin-top:16px;font-size:14px}
+  .party-guide-description{font-size:14px;line-height:1.9}
+  .party-recommendations{margin-top:20px;padding-top:18px;gap:21px}
+  .party-recommend-group h3{font-size:17px}
+  .party-recommend-group>p{font-size:14px}
+  .party-savior-grid.is-healers,#fei-party-guide .party-savior-grid.is-healers{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .party-savior-card img{height:83px}
+  .party-savior-card strong{font-size:13px}
+  .party-savior-card span{font-size:11px}
+  .party-combination-note{font-size:12px;padding:12px;margin-top:19px}
+  .party-savior-grid.is-fei-dealer{grid-template-columns:minmax(0,106px)}
+  html[lang="en"] .topbar-inner.has-wrapped-nav .main-nav{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  html[lang="en"] .topbar-inner.has-wrapped-nav .nav-item{font-size:12px!important}
+}
+@media(max-width:480px){
+  .party-page{padding:22px 12px 42px}
+  .party-heading h1{font-size:30px}
+  .topbar-inner.has-wrapped-nav .nav-item{font-size:11px!important;padding-inline:2px!important}
+}
+@media(max-width:360px){
+  .party-page{padding-left:9px;padding-right:9px}
+  .party-guide-card{padding-left:10px;padding-right:10px}
+  .party-formation{padding:6px;gap:4px}
+  .party-slot{padding-left:3px;padding-right:3px}
+  .party-job-icons.is-multiple{grid-template-columns:repeat(2,20px);gap:2px}
+  .party-job-icon{width:20px;height:20px}
+  .party-job-icons.is-single .party-job-icon{width:40px;height:40px}
+  .party-front-savior img{width:54px;height:60px}
+}
+@media(prefers-reduced-motion:reduce){a.party-slot,.party-savior-card{transition:none}}
+
+/* Existing, unmodified class-icon artwork. */
+.party-job-icon.job-striker{background-size:1409.174312% auto;background-position:8.339173% 42.095053%;}
+.party-job-icon.job-ranger{background-size:1409.174312% auto;background-position:15.767344% 42.095053%;}
+.party-job-icon.job-assassin{background-size:1409.174312% auto;background-position:8.339173% 52.376334%;}
+.party-job-icon.job-caster{background-size:1409.174312% auto;background-position:15.767344% 52.376334%;}
+.party-job-icon.job-defender{background-size:724.528302% auto;background-position:36.178248% 47.198276%;}
+.party-job-icon.job-supporter{background-size:930.909091% auto;background-position:63.457330% 48.102564%;}
+
+/* Local portraits for the recommended attack-tank Defenders. */
+.party-attack-defenders{margin-top:20px;padding-top:19px;border-top:1px solid var(--line)}
+.party-attack-defenders h3{margin:0;font-size:18px;font-weight:800}
+.party-attack-defenders .party-guide-description{margin-top:7px}
+.party-savior-grid.is-attack-defenders{grid-template-columns:repeat(2,minmax(0,136px));margin-top:13px}
+@media(max-width:620px){.party-attack-defenders{margin-top:18px;padding-top:16px}.party-attack-defenders h3{font-size:17px}.party-savior-grid.is-attack-defenders{grid-template-columns:repeat(2,minmax(0,106px))}}
+
+/* Consistent portrait/name/affiliation layout inside each formation. */
+.party-slot{min-height:250px}
+.party-slot-content{grid-template-rows:100px minmax(20px,auto) auto;gap:6px}
+.party-front-affiliation{display:block;max-width:100%;font-size:11px;font-weight:550;color:var(--party-secondary,var(--muted));line-height:1.55;text-align:center;word-break:normal;overflow-wrap:anywhere}
+.party-front-choices{grid-row:1 / span 3}
+.party-front-choices>a{grid-template-rows:100px minmax(20px,auto) auto;gap:6px}
+.party-front-choices .party-front-affiliation{font-size:10px}
+.party-recommend-group>p.party-recommend-reason{min-height:0;margin:-4px 0 13px;font-size:12px;line-height:1.8;color:var(--party-secondary,var(--muted))}
+
+
+/* Full-width notice rows: Savior identity on the left, explanation on the right. */
+.party-tank-notes{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.party-tank-note,.party-illustrated-note{display:flex;align-items:center;gap:24px;min-width:0;min-height:160px;padding:20px 24px;border:1px solid var(--line);border-radius:14px;background:var(--surface-2);text-decoration:none;color:var(--text)}
+.party-tank-note>p,.party-illustrated-note>p{flex:1;min-width:0;margin:0;font-size:15px;font-weight:700;line-height:1.85;word-break:keep-all;overflow-wrap:anywhere}
+.party-note-profiles{display:flex;align-items:center;flex-wrap:wrap;gap:14px;flex:none;margin:0}
+.party-note-savior,.party-note-identity{display:flex;flex-direction:column;align-items:center;gap:5px;flex:none;width:110px;min-width:0;text-align:center;color:var(--text)}
+.party-note-savior{text-decoration:none;padding:0;border:0;background:transparent;border-radius:7px}
+.party-note-savior img,.party-note-identity img{display:block;flex:none;width:80px;height:80px;object-fit:contain;border-radius:8px}
+.party-note-savior strong,.party-note-identity strong{font-size:14px;line-height:1.5;font-weight:800}
+.party-note-savior span,.party-note-identity span{font-size:11px;line-height:1.55;font-weight:550;color:var(--party-secondary,var(--muted))}
+.party-tank-note:hover{border-color:var(--accent)}
+.party-note-savior:hover strong{color:var(--accent)}
+.party-tank-note:focus-visible,.party-note-savior:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media(max-width:620px){
+ .party-slot{min-height:206px}
+ .party-slot-content{grid-template-rows:60px minmax(17px,auto) auto;gap:5px}
+ .party-front-affiliation{font-size:10px;line-height:1.55}
+ .party-front-choices>a{grid-template-rows:60px minmax(17px,auto) auto;gap:5px}
+ .party-front-choices .party-front-affiliation{font-size:9.5px}
+ .party-recommend-group>p.party-recommend-reason{font-size:13px}
+ .party-tank-notes{margin-top:18px;padding-top:16px;gap:12px}
+ .party-tank-note,.party-illustrated-note{gap:14px;min-height:136px;padding:16px 12px;border-radius:11px}
+ .party-tank-note>p,.party-illustrated-note>p{font-size:14px;font-weight:650;line-height:1.85}
+ .party-note-profiles{flex-direction:column;gap:12px}
+ .party-note-savior,.party-note-identity{width:74px;gap:4px}
+ .party-note-savior img,.party-note-identity img{width:60px;height:60px;border-radius:7px}
+ .party-note-savior strong,.party-note-identity strong{font-size:13px}
+ .party-note-savior span,.party-note-identity span{font-size:10.5px}
+}
+
+/* Multiple-Savior notices: profile cards above, shared explanation below. */
+.party-illustrated-note:has(>.party-note-profiles>a:nth-child(2)){display:grid;grid-template-columns:minmax(0,1fr);gap:18px;min-height:0}
+.party-illustrated-note:has(>.party-note-profiles>a:nth-child(2))>.party-note-profiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:12px;width:100%;max-width:360px;margin-inline:auto}
+.party-illustrated-note:has(>.party-note-profiles>a:nth-child(2)) .party-note-savior{width:auto;padding:12px 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.party-illustrated-note:has(>.party-note-profiles>a:nth-child(2)) .party-note-savior:hover{border-color:var(--accent)}
+.party-illustrated-note:has(>.party-note-profiles>a:nth-child(2))>p{padding-top:16px;border-top:1px solid var(--line)}
+.party-illustrated-note>.party-note-profiles:has(>a:nth-child(3)){grid-template-columns:repeat(3,minmax(0,1fr));max-width:540px}
+@media(max-width:620px){
+ .party-illustrated-note:has(>.party-note-profiles>a:nth-child(2)){gap:14px}
+ .party-illustrated-note:has(>.party-note-profiles>a:nth-child(2))>.party-note-profiles{grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;gap:10px}
+ .party-illustrated-note:has(>.party-note-profiles>a:nth-child(2)) .party-note-savior{padding:12px 6px}
+ .party-illustrated-note:has(>.party-note-profiles>a:nth-child(2)) .party-note-savior img{width:72px;height:72px}
+ .party-illustrated-note:has(>.party-note-profiles>a:nth-child(2))>p{padding-top:13px}
+}
+
+.reroll-notice-copy>p.party-early-notice{margin-top:12px}
+
+/* Readable, theme-aware guide text and clear heading contrast. */
+.party-page{--party-secondary:#b8c3d5;--party-label-accent:#a9c5ff;--party-warning-title:#f1be68}
+html[data-theme="light"] .party-page{--party-secondary:#435168;--party-label-accent:#315fa7;--party-warning-title:#94620b}
+.party-notice h2{color:var(--party-warning-title)}
+.party-notice p{font-weight:600;line-height:1.85}
+.party-notice .party-early-notice{font-size:14px;color:var(--party-secondary);line-height:1.9}
+.party-summary,.party-guide-description{line-height:1.9}
+@media(max-width:620px){.party-notice p{font-size:14px}.party-guide-card-heading h2{font-size:22px}}
+
+/* Keep words intact and give the longer mobile notice its full reading width. */
+.party-position-role,.party-front-affiliation{word-break:keep-all;overflow-wrap:anywhere}
+@media(max-width:480px){
+ .party-notice{display:grid;grid-template-columns:48px minmax(0,1fr);gap:12px;align-items:center}
+ .party-notice>img{grid-column:1;grid-row:1;width:48px;height:48px}
+ .party-notice .reroll-notice-copy{display:contents}
+ .party-notice h2{grid-column:2;grid-row:1}
+ .party-notice p{grid-column:1 / -1}
+ .party-notice .party-early-notice{margin-top:0}
+}
+
+/* The public site shell supplies guide spacing and content width. */
+#party-guide{max-width:1072px;min-height:0;padding:0;margin:0 auto}

@@ -10837,6 +10837,55 @@ Object.entries({
   if (!Object.prototype.hasOwnProperty.call(I18N_DATA.ui.ja, source)) I18N_DATA.ui.ja[source] = translation;
 });
 
+// Party compositions use the reviewed local fragment and existing Savior routes.
+const PARTY_GUIDE_TRANSLATIONS = {"en":{"스트라이커":"Striker","어쌔신":"Assassin","레인저":"Ranger","캐스터":"Caster","디펜더":"Defender","서포터":"Supporter","딜러":"Damage Dealer","아세라":"Asherah","루나":"Luna","에밀리":"Emily","카르멘":"Carmen","프레이":"Frey","에데":"Haydee","세르팡":"Serpang","페이":"Fei","세레스":"Ceres","레이시":"Lacy","키라":"Kyra","안나":"Annah","클라리사":"Clarissa","힐데":"Hilde","프로페서M":"Professor M","아모라":"Amora","그웬":"Gwen","방랑자":"Wanderer","캔들 스퀘어":"Candle Square","모나스티르 기사단":"Monastir Knights","풍월당":"Wind Moon Sect","모렐 해운상회":"Morrel Ocean Traders","카노푸스 경비대":"Canopus Rangers","서부 탈환대":"Western Liberators","화이트 펄 트랩":"White Pearl Trap","람파디스":"Lampadis","키라는 친구같은 거 없어":"Kyra Doesn't Have Friends","왈츠 오브 스타라이트":"Waltz of Starlight","이터널 프로미스":"Eternal Promise","NOA 타운가드":"NOA Town Guard","펜릴 소대":"Fenrir Squad","스트라니스 백작가":"House Stranis","샤프 앤 스위트":"Sharp & Sweet","주의사항":"Notice","파티조합":"Party Compositions","기본 편성":"Basic Setup","정석적인 조합":"Standard Composition","힐러":"Healer","를 편성하는 가장 정석적인 조합입니다.":" is the most conventional party setup.","디펜더는":"For Defenders,","힐러는":"For Healers,","초보 단장":"New Commanders","레이시 전열 조합":"Lacy Frontline Composition","회피":"Evasion","추천 딜러":"Recommended Damage Dealer","FRONT 그웬 또는 키라":"FRONT Gwen or Kyra","정석적인 조합 배치: BACK FRONT FRONT BACK":"Standard composition: BACK FRONT FRONT BACK","레이시 전열 조합 배치: BACK FRONT FRONT BACK":"Lacy frontline composition: BACK FRONT FRONT BACK","공격력 탱커":"Attack Tank","공격력 탱커 조합":"Attack Tank Composition","공격력 탱커 조합 배치: BACK FRONT FRONT BACK":"Attack tank formation: BACK FRONT FRONT BACK","디펜더로는":"For the Defender slot,","를 권합니다.":" are recommended.","※ 이터널 프로미스 카르멘이 필수인 조합입니다.":"※ Eternal Promise Carmen is required for this composition.","FRONT 안나 또는 디펜더 루나":"FRONT Annah or Defender Luna","추천 디펜더":"Recommended Defenders","2힐러":"Two Healers","2힐러 조합":"Two-Healer Composition","2힐러 조합 배치: BACK FRONT FRONT BACK":"Two-healer formation: BACK FRONT FRONT BACK","BACK 카르멘 또는 아세라":"BACK Carmen or Asherah","FRONT 세레스":"FRONT Ceres","힐러를 2명 편성하는 조합입니다.":"A composition with two healers.","행동게이지":"Action Gauge","행동게이지 조합":"Action Gauge Composition","행동게이지 조합 배치: BACK FRONT FRONT BACK":"Action gauge formation: BACK FRONT FRONT BACK","클라리사(개화)":"Clarissa (Blossomed)","BACK 클라리사(개화)":"BACK Clarissa (Blossomed)","파티조합에는 정해진 정답이 없습니다.":"There is no single correct party composition.","대략적인 조합을 소개하는 안내이니 참고용으로 활용해 주세요.":"This guide introduces general team compositions. Please use it as a reference.","※ 초반에는 조합을 맞추지 않아도 무리 없이 진행할 수 있습니다. 여정 ‘어려움’ 난이도가 해금된 뒤부터 조합을 신경 쓰시는 것을 권장합니다.":"※ You can progress through the early game without a specific team composition. We recommend focusing on team composition after unlocking Hard Journey.","딜러 또는 디버퍼":"Damage Dealer or Debuffer","딜러 / 디펜더 / 힐러 / 딜러 또는 디버퍼":"Damage Dealer / Defender / Healer / Damage Dealer or Debuffer","를 추천합니다.":" are recommended.","※ 프로페서M을 딜러로 편성할 때는 아세라와 함께 사용하지 않는 것을 권장합니다.":"※ When using Professor M as a damage dealer, pairing him with Asherah is not recommended.","레이시를 보유한 초보 단장님께 권장하는 조합입니다.":"Recommended for new captains who own Lacy.","레이시의 HP 회복 스킬을 활용해 탱커로 사용하는 조합입니다. 성장 후에는 운용이 어려워지므로, 레이시를 보유한 경우에만 사용을 권장합니다.":"This composition uses Lacy as a tank through her HP recovery skill. It becomes harder to use as you progress, so it is recommended only if you already own her.","페이 전열 조합":"Fei Frontline Composition","페이와 은신 스킬을 가진 구원자를 전열에 배치하는 조합입니다.":"This composition places Fei and a Savior with stealth in the frontline.","회피가 계속 성공하면 가장 높은 파괴력을 발휘하는 조합 중 하나입니다.":"If evasion keeps succeeding, this can be one of the most destructive compositions.","이터널 프로미스 카르멘이 없어도 초반에는 사용할 수 있지만, 후반에는 운용이 어려울 수 있습니다.":"This composition can work early on without Eternal Promise Carmen, but may become difficult to use later.","딜러 자리에는":"For the damage dealer slot,","를 가장 추천합니다.":" is the top recommendation.","※ 적의 명중률을 낮춰 페이의 회피 확률을 높여 줍니다.":"※ Her hit-rate reduction increases Fei's chance to evade.","카르멘이 없을 때":"Without Carmen","로 대체할 수 있습니다.":" can be used as alternatives.","탱커의 공격력을 파티 내에서 가장 높게 맞추고, 이터널 프로미스 카르멘과 함께 사용하는 조합입니다.":"This composition gives the tank the highest ATK in the party and pairs them with Eternal Promise Carmen.","※ 이 조합에서는 프로페서M을 활용하기 어렵습니다.":"※ Professor M is difficult to use in this composition.","샤프 앤 스위트 세레스는 필수이며, 이터널 프로미스 카르멘을 적극 권장합니다.":"Sharp & Sweet Ceres is required, and Eternal Promise Carmen is highly recommended.","카르멘은 아세라로 대체할 수 있지만, 가능하면 카르멘 사용을 권장합니다.":"Asherah can replace Carmen, but Carmen is recommended whenever possible.","클라리사와 세레스의 행동게이지 감소로 적의 턴을 막는 조합입니다.":"This composition uses Clarissa and Ceres to reduce enemy Action Gauges and prevent enemies from taking turns.","※ 클라리사(개화)가 필수입니다.":"※ Blossomed Clarissa is required.","※ 서부 탈환대 세레스가 필수입니다.":"※ Western Liberators Ceres is required.","페이 전열 조합 배치: BACK FRONT FRONT BACK":"Fei frontline composition: BACK FRONT FRONT BACK","파티조합 가이드를 불러오는 중입니다.":"Loading party compositions…","파티조합 가이드를 불러오지 못했습니다.":"Unable to load party compositions."},"ja":{"스트라이커":"ストライカー","어쌔신":"アサシン","레인저":"レンジャー","캐스터":"キャスター","디펜더":"ディフェンダー","서포터":"サポーター","딜러":"アタッカー","아세라":"アセラ","루나":"ルナ","에밀리":"エミリー","카르멘":"カルメン","프레이":"フレイ","에데":"エデ","세르팡":"セルパン","페이":"フェイ","세레스":"セレス","레이시":"レイシー","키라":"キラ","안나":"アンナ","클라리사":"クラリッサ","힐데":"ヒルデ","프로페서M":"プロフェッサーM","아모라":"アモラ","그웬":"グウェン","방랑자":"放浪者","캔들 스퀘어":"キャンドル・スクエア","모나스티르 기사단":"モナスティル騎士団","풍월당":"風月堂","모렐 해운상회":"モレル海運商会","카노푸스 경비대":"カノプス警備隊","서부 탈환대":"西部奪還隊","화이트 펄 트랩":"ホワイトパール・トラップ","람파디스":"ランパディス","키라는 친구같은 거 없어":"キラには友達なんていないの","왈츠 오브 스타라이트":"ワルツ・オブ・スターライト","이터널 프로미스":"エターナル・プロミス","NOA 타운가드":"NOAのタウンガード","펜릴 소대":"フェンリル小隊","스트라니스 백작가":"ストラニス伯爵家","샤프 앤 스위트":"シャープ＆スイーツ","주의사항":"注意事項","파티조합":"パーティ編成","기본 편성":"基本編成","정석적인 조합":"基本的な編成","힐러":"ヒーラー","를 편성하는 가장 정석적인 조합입니다.":"を編成する、最も基本的な組み合わせです。","디펜더는":"ディフェンダーには","힐러는":"ヒーラーには","초보 단장":"初心者団長向け","레이시 전열 조합":"レイシー前衛編成","회피":"回避","추천 딜러":"おすすめアタッカー","FRONT 그웬 또는 키라":"FRONT グウェンまたはキラ","정석적인 조합 배치: BACK FRONT FRONT BACK":"基本編成：BACK FRONT FRONT BACK","레이시 전열 조합 배치: BACK FRONT FRONT BACK":"レイシー前衛編成：BACK FRONT FRONT BACK","공격력 탱커":"攻撃力タンク","공격력 탱커 조합":"攻撃力タンク編成","공격력 탱커 조합 배치: BACK FRONT FRONT BACK":"攻撃力タンク編成: BACK FRONT FRONT BACK","디펜더로는":"ディフェンダーには","를 권합니다.":"をおすすめします。","※ 이터널 프로미스 카르멘이 필수인 조합입니다.":"※ この編成にはエターナル・プロミス カルメンが必須です。","FRONT 안나 또는 디펜더 루나":"FRONT アンナまたはディフェンダー ルナ","추천 디펜더":"おすすめディフェンダー","2힐러":"2ヒーラー","2힐러 조합":"2ヒーラー編成","2힐러 조합 배치: BACK FRONT FRONT BACK":"2ヒーラー編成: BACK FRONT FRONT BACK","BACK 카르멘 또는 아세라":"BACK カルメンまたはアセラ","FRONT 세레스":"FRONT セレス","힐러를 2명 편성하는 조합입니다.":"ヒーラーを2人編成する構成です。","행동게이지":"行動ゲージ","행동게이지 조합":"行動ゲージ編成","행동게이지 조합 배치: BACK FRONT FRONT BACK":"行動ゲージ編成: BACK FRONT FRONT BACK","클라리사(개화)":"クラリッサ（開花）","BACK 클라리사(개화)":"BACK クラリッサ（開花）","파티조합에는 정해진 정답이 없습니다.":"パーティ編成に決まった正解はありません。","대략적인 조합을 소개하는 안내이니 참고용으로 활용해 주세요.":"おおまかな編成例を紹介するガイドです。参考としてご活用ください。","※ 초반에는 조합을 맞추지 않아도 무리 없이 진행할 수 있습니다. 여정 ‘어려움’ 난이도가 해금된 뒤부터 조합을 신경 쓰시는 것을 권장합니다.":"※ 序盤は編成を整えなくても問題なく進められます。旅程の難易度「ハード」が解放されてから編成を意識することをおすすめします。","딜러 또는 디버퍼":"アタッカーまたはデバッファー","딜러 / 디펜더 / 힐러 / 딜러 또는 디버퍼":"アタッカー／ディフェンダー／ヒーラー／アタッカーまたはデバッファー","를 추천합니다.":"をおすすめします。","※ 프로페서M을 딜러로 편성할 때는 아세라와 함께 사용하지 않는 것을 권장합니다.":"※ アタッカーにプロフェッサーMを編成する場合、アセラとの併用はおすすめしません。","레이시를 보유한 초보 단장님께 권장하는 조합입니다.":"レイシーを所持している初心者団長におすすめの編成です。","레이시의 HP 회복 스킬을 활용해 탱커로 사용하는 조합입니다. 성장 후에는 운용이 어려워지므로, 레이시를 보유한 경우에만 사용을 권장합니다.":"レイシーのHP回復スキルを利用し、タンク役を任せる編成です。育成が進むと運用が難しくなるため、レイシーを所持している場合にのみおすすめします。","페이 전열 조합":"フェイ前衛編成","페이와 은신 스킬을 가진 구원자를 전열에 배치하는 조합입니다.":"フェイと潜伏スキルを持つ救援者を前衛に配置する編成です。","회피가 계속 성공하면 가장 높은 파괴력을 발휘하는 조합 중 하나입니다.":"回避し続けられれば、最も高い破壊力を発揮する編成の一つです。","이터널 프로미스 카르멘이 없어도 초반에는 사용할 수 있지만, 후반에는 운용이 어려울 수 있습니다.":"エターナル・プロミス カルメンがいなくても序盤は運用できますが、後半は難しくなる場合があります。","딜러 자리에는":"アタッカー枠には","를 가장 추천합니다.":"を最もおすすめします。","※ 적의 명중률을 낮춰 페이의 회피 확률을 높여 줍니다.":"※ 敵の命中率を低下させ、フェイの回避確率を高めます。","카르멘이 없을 때":"カルメン未所持の場合","로 대체할 수 있습니다.":"で代用できます。","탱커의 공격력을 파티 내에서 가장 높게 맞추고, 이터널 프로미스 카르멘과 함께 사용하는 조합입니다.":"タンクの攻撃力をパーティ内で最も高くし、エターナル・プロミス カルメンと組み合わせる編成です。","※ 이 조합에서는 프로페서M을 활용하기 어렵습니다.":"※ この編成ではプロフェッサーMの運用は難しくなります。","샤프 앤 스위트 세레스는 필수이며, 이터널 프로미스 카르멘을 적극 권장합니다.":"シャープ＆スイーツ セレスが必須で、エターナル・プロミス カルメンを強くおすすめします。","카르멘은 아세라로 대체할 수 있지만, 가능하면 카르멘 사용을 권장합니다.":"カルメンはアセラで代用できますが、可能であればカルメンをおすすめします。","클라리사와 세레스의 행동게이지 감소로 적의 턴을 막는 조합입니다.":"クラリッサとセレスの行動ゲージ減少を利用して、敵にターンを回さないようにする編成です。","※ 클라리사(개화)가 필수입니다.":"※ 開花済みのクラリッサが必須です。","※ 서부 탈환대 세레스가 필수입니다.":"※ 西部奪還隊 セレスが必須です。","페이 전열 조합 배치: BACK FRONT FRONT BACK":"フェイ前衛編成：BACK FRONT FRONT BACK","파티조합 가이드를 불러오는 중입니다.":"パーティ編成を読み込み中です。","파티조합 가이드를 불러오지 못했습니다.":"パーティ編成を読み込めませんでした。"}};
+for (const language of ["en", "ja"]) {
+  const existing = [I18N_DATA.ui[language], I18N_DATA.saviorNames[language], I18N_DATA.subtitles[language], I18N_DATA.arcana[language], I18N_DATA.terms[language]];
+  for (const [source, localized] of Object.entries(PARTY_GUIDE_TRANSLATIONS[language])) {
+    if (!existing.some((map) => Object.prototype.hasOwnProperty.call(map || {}, source))) {
+      I18N_DATA.ui[language][source] = localized;
+    }
+  }
+}
+let partyGuidePromise = null;
+function loadPartyGuide() {
+  if (!partyGuidePromise) {
+    partyGuidePromise = fetch(`./data/party/guide.html?v=${encodeURIComponent(SITE_BUILD_VERSION)}`, { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error(`Party guide: ${response.status}`);
+        return response.text();
+      }).catch((error) => { partyGuidePromise = null; throw error; });
+  }
+  return partyGuidePromise;
+}
+function initializePartyGuide() {
+  const loading = simpleContent.querySelector("[data-party-loading]");
+  if (!loading) return;
+  loadPartyGuide().then((markup) => {
+    if (loading.parentNode !== simpleContent) return;
+    simpleContent.innerHTML = markup;
+    applyLanguageToDOM(simpleView);
+    // A dedicated guide-open event complements the existing GA4 page-view setup.
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "view_party_guide", { guide_name: "party_compositions", content_language: currentLanguage });
+    }
+  }).catch(() => {
+    if (loading.parentNode !== simpleContent) return;
+    loading.innerHTML = `<p role="alert">파티조합 가이드를 불러오지 못했습니다.</p><button type="button" class="nav-item" data-party-retry>다시 시도</button>`;
+    applyLanguageToDOM(loading);
+  });
+}
+function handlePartyGuideClick(event) {
+  if (event.target.closest("[data-party-retry]")) {
+    openSimple("party", { skipHash: true, keepScroll: true });
+    return;
+  }
+  const link = event.target.closest("a[data-party-savior]");
+  if (!link || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  openSavior(link.dataset.partySavior);
+}
+
 let rerollGuidePromise = null;
 
 function loadRerollGuide() {
@@ -10892,6 +10941,8 @@ function openSimple(section, options = {}) {
     simpleContent.innerHTML = createArcanaDatabaseMarkup();
   } else if (section === "equipment") {
     simpleContent.innerHTML = createEquipmentDatabaseMarkup();
+  } else if (section === "party") {
+    simpleContent.innerHTML = `<div class="party-page" data-party-loading><header class="party-heading"><p class="eyebrow">PARTY GUIDE</p><h1>파티조합</h1></header><p role="status">파티조합 가이드를 불러오는 중입니다.</p></div>`;
   } else if (section === "reroll") {
     simpleContent.innerHTML = `<div class="reroll-page" data-reroll-loading><header class="reroll-heading"><p class="eyebrow">REROLL GUIDE</p><h1>리세마라</h1></header><p role="status">리세마라 가이드를 불러오는 중입니다.</p></div>`;
   } else {
@@ -10925,6 +10976,7 @@ function openSimple(section, options = {}) {
   applyLanguageToDOM(simpleView);
   if (section === "arcana") initializeArcanaDatabase();
   if (section === "reroll") initializeRerollGuide();
+  if (section === "party") initializePartyGuide();
   showOnly("simple");
   setActiveNav(section);
 
@@ -10987,7 +11039,7 @@ function syncFromHash() {
     return;
   }
 
-  if (["arcana", "reroll", "journey", "equipment", "cosmo"].includes(hash)) {
+  if (["arcana", "reroll", "party", "journey", "equipment", "cosmo"].includes(hash)) {
     openSimple(hash, { skipHash: true, keepScroll: true });
     return;
   }
@@ -11349,7 +11401,7 @@ function installResponsiveNavigation() {
       - (parseFloat(style.columnGap) || 0) * 2;
 
     header.classList.toggle("has-wrapped-nav",
-      matchMedia("(max-width: 620px)").matches && required > available - 1);
+      matchMedia("(max-width: 800px)").matches);
     document.documentElement.style.setProperty("--site-header-height",
       `${Math.ceil(header.getBoundingClientRect().height + 1)}px`);
   };
@@ -11530,6 +11582,7 @@ if (languageSelect) {
 simpleContent.addEventListener("input", handleArcanaDatabaseInput);
 simpleContent.addEventListener("click", handleArcanaDatabaseClick);
 simpleContent.addEventListener("click", handleRerollGuideClick);
+simpleContent.addEventListener("click", handlePartyGuideClick);
 
 window.addEventListener("popstate", syncFromHash);
 window.addEventListener("hashchange", syncFromHash);
