@@ -535,6 +535,50 @@ function getLocalizedArcanaName(name, language = currentLanguage) {
   return I18N_DATA.arcana[language]?.[name] || name;
 }
 
+/* Equipment evaluation guide translations */
+Object.assign(I18N_DATA.ui.en, {
+  "유효 장비 판단 기준": "How to Evaluate Equipment",
+  "하트 오브 모나스티르 : 샤를": "Heart of Monastir: Charlotte",
+  "집행자 : 길레": "Executor: Gille",
+  "해당 구원자를 예로 들어보겠습니다.": "Let's use this Savior as an example.",
+  "기본 치명타 확률 17% + 통찰의 감각 Lv.5 7.5% + 통찰의 솜씨 3% + 통찰의 재능 4.5% + 통찰의 성흔 18% + 날카로운 공세 6%로 총": "Base Crit Rate 17% + Insight Sense Lv.5 7.5% + Insight Skill 3% + Insight Talent 4.5% + Insight Stigma 18% + Sharp Offense 6% gives a total of",
+  "기본 치명타 확률 5% + 통찰의 감각 Lv.5 7.5% + 통찰의 솜씨 3% + 통찰의 재능 4.5% + 통찰의 성흔 18% + 날카로운 공세 6%로 총": "Base Crit Rate 5% + Insight Sense Lv.5 7.5% + Insight Skill 3% + Insight Talent 4.5% + Insight Stigma 18% + Sharp Offense 6% gives a total of",
+  "의 치명타 확률을 확보할 수 있습니다.": " Crit Rate.",
+  "통찰 4세트 착용 시 치명타 확률이 30%p 증가하여": "Equipping a 4-piece Insight set adds 30 percentage points to Crit Rate, bringing it to",
+  "가 됩니다. 치명타 확률 100%를 목표로 세팅하는 경우, 부족한": ". If targeting 100% Crit Rate, the remaining",
+  "를 장비 부옵션에서 확보해야 합니다.": " must come from equipment substats.",
+  "이러한 경우에는 부옵션에서 확보해야 하는 치명타 확률이 낮기 때문에": "Since less Crit Rate is needed from substats,",
+  "이러한 경우에는 부옵션에서 확보해야 하는 치명타 확률이 높기 때문에": "Since more Crit Rate is needed from substats,",
+  "치명타 피해와 공격력%, 속도 부옵션의 가치가 더 높아집니다.": "Crit DMG, ATK%, and Speed substats become more valuable.",
+  "치명타 확률 부옵션의 가치가 더 높아집니다.": "Crit Rate substats become more valuable.",
+  "※ 장비 평가 시 주의사항": "※ Equipment Evaluation Notes",
+  "장비 부옵션의 가치는 구원자의 기본 능력치, 잠재력, 장비 세트 등에 따라 달라집니다.": "The value of equipment substats depends on the Savior's base stats, potentials, equipment sets, and other factors.",
+  "따라서 장비의 좋고 나쁨을 판단하기 전에 세팅하려는 구원자의 기본 치명타 확률과 필요한 능력치를 반드시 확인해 주세요.": "Before evaluating equipment, always check the Savior's base Crit Rate and required stats.",
+  "치명타 확률과 치명타 피해의 합이 10% 이상이라는 기준만으로 좋은 장비를 판단할 수는 없습니다.": "A combined Crit Rate and Crit DMG of 10% or more is not sufficient on its own to judge equipment quality.",
+  "치명타 확률을 충분히 확보한 구원자에게는 공격력%, 치명타 피해, 속도 등의 부옵션이 더 높은 가치를 지닐 수 있습니다.": "For Saviors with sufficient Crit Rate, substats such as ATK%, Crit DMG, and Speed may be more valuable."
+});
+Object.assign(I18N_DATA.ui.ja, {
+  "유효 장비 판단 기준": "有効な装備の判断基準",
+  "하트 오브 모나스티르 : 샤를": "ハート・オブ・モナスティル：シャル",
+  "집행자 : 길레": "執行者：ギレ",
+  "해당 구원자를 예로 들어보겠습니다.": "この救援者を例に見てみましょう。",
+  "기본 치명타 확률 17% + 통찰의 감각 Lv.5 7.5% + 통찰의 솜씨 3% + 통찰의 재능 4.5% + 통찰의 성흔 18% + 날카로운 공세 6%로 총": "基本クリティカル率17%＋洞察の感覚 Lv.5 7.5%＋洞察の腕前 3%＋洞察の才能 4.5%＋洞察の聖痕 18%＋鋭い攻勢 6%で、合計",
+  "기본 치명타 확률 5% + 통찰의 감각 Lv.5 7.5% + 통찰의 솜씨 3% + 통찰의 재능 4.5% + 통찰의 성흔 18% + 날카로운 공세 6%로 총": "基本クリティカル率5%＋洞察の感覚 Lv.5 7.5%＋洞察の腕前 3%＋洞察の才能 4.5%＋洞察の聖痕 18%＋鋭い攻勢 6%で、合計",
+  "의 치명타 확률을 확보할 수 있습니다.": "のクリティカル率を確保できます。",
+  "통찰 4세트 착용 시 치명타 확률이 30%p 증가하여": "洞察4セットを装備するとクリティカル率が30ポイント上昇し、",
+  "가 됩니다. 치명타 확률 100%를 목표로 세팅하는 경우, 부족한": "になります。クリティカル率100%を目指す場合、不足する",
+  "를 장비 부옵션에서 확보해야 합니다.": "を装備のサブオプションで確保する必要があります。",
+  "이러한 경우에는 부옵션에서 확보해야 하는 치명타 확률이 낮기 때문에": "この場合、サブオプションで必要なクリティカル率が低いため、",
+  "이러한 경우에는 부옵션에서 확보해야 하는 치명타 확률이 높기 때문에": "この場合、サブオプションで必要なクリティカル率が高いため、",
+  "치명타 피해와 공격력%, 속도 부옵션의 가치가 더 높아집니다.": "クリティカルダメージ、攻撃力%、速度のサブオプションの価値が高くなります。",
+  "치명타 확률 부옵션의 가치가 더 높아집니다.": "クリティカル率のサブオプションの価値が高くなります。",
+  "※ 장비 평가 시 주의사항": "※ 装備評価時の注意点",
+  "장비 부옵션의 가치는 구원자의 기본 능력치, 잠재력, 장비 세트 등에 따라 달라집니다.": "装備のサブオプションの価値は、救援者の基本能力値、潜在力、装備セットなどによって異なります。",
+  "따라서 장비의 좋고 나쁨을 판단하기 전에 세팅하려는 구원자의 기본 치명타 확률과 필요한 능력치를 반드시 확인해 주세요.": "装備の良し悪しを判断する前に、育成する救援者の基本クリティカル率と必要な能力値を必ず確認してください。",
+  "치명타 확률과 치명타 피해의 합이 10% 이상이라는 기준만으로 좋은 장비를 판단할 수는 없습니다.": "クリティカル率とクリティカルダメージの合計が10%以上という基準だけで、良い装備かどうかを判断することはできません。",
+  "치명타 확률을 충분히 확보한 구원자에게는 공격력%, 치명타 피해, 속도 등의 부옵션이 더 높은 가치를 지닐 수 있습니다.": "クリティカル率を十分に確保した救援者には、攻撃力%、クリティカルダメージ、速度などのサブオプションの価値がより高くなる場合があります。"
+});
+
 function translateString(value, language = currentLanguage) {
   const source = String(value ?? "");
   if (language === "ko" || !source) return source;
