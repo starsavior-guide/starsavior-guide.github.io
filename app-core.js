@@ -8796,6 +8796,39 @@ function createEquipmentDatabaseMarkup() {
 
       <section class="equipment-panel">
         <div class="equipment-panel-inner">
+          <h2 class="equipment-section-title">유효 장비 판단 기준</h2>
+          <article style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+            <img src="./images/savior/UFS_NKM_UNIT_S_BUNNY_KNIGHT.webp" alt="샤를" loading="lazy" style="width:clamp(76px,15vw,120px);height:auto;object-fit:contain;flex-shrink:0;">
+            <div style="flex:1 1 220px;min-width:0;">
+              <h3 style="color:var(--accent);font-size:18px;margin:0 0 12px;">하트 오브 모나스티르 : 샤를</h3>
+              <p style="margin:8px 0 14px;line-height:1.8;font-size:14px;font-weight:700;word-break:keep-all;">해당 구원자를 예로 들어보겠습니다.</p>
+              <p style="margin:8px 0 14px;line-height:1.8;font-size:14px;font-weight:700;word-break:keep-all;">기본 치명타 확률 17% + 통찰의 감각 Lv.5 7.5% + 통찰의 솜씨 3% + 통찰의 재능 4.5% + 통찰의 성흔 18% + 날카로운 공세 6%로 총 <strong style="color:var(--accent);font-weight:900;">56%</strong>의 치명타 확률을 확보할 수 있습니다.</p>
+              <p style="margin:8px 0 14px;line-height:1.8;font-size:14px;font-weight:700;word-break:keep-all;">통찰 4세트 착용 시 치명타 확률이 30%p 증가하여 <strong style="color:var(--accent);font-weight:900;">86%</strong>가 됩니다. 치명타 확률 100%를 목표로 세팅하는 경우, 부족한 <strong style="color:var(--accent);font-weight:900;">14%</strong>를 장비 부옵션에서 확보해야 합니다.</p>
+              <p style="margin:8px 0 14px;line-height:1.8;font-size:14px;font-weight:700;word-break:keep-all;">이러한 경우에는 부옵션에서 확보해야 하는 치명타 확률이 낮기 때문에 <strong style="color:var(--accent);font-weight:900;">치명타 피해와 공격력%, 속도 부옵션의 가치가 더 높아집니다.</strong></p>
+            </div>
+          </article>
+          <article style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;border-top:1px solid var(--line);padding-top:24px;margin-top:24px;">
+            <img src="./data/savior-detail-assets/1020-portrait.webp" alt="길레" loading="lazy" style="width:clamp(76px,15vw,120px);height:auto;object-fit:contain;flex-shrink:0;">
+            <div style="flex:1 1 220px;min-width:0;">
+              <h3 style="color:var(--accent);font-size:18px;margin:0 0 12px;">집행자 : 길레</h3>
+              <p style="margin:8px 0 14px;line-height:1.8;font-size:14px;font-weight:700;word-break:keep-all;">해당 구원자를 예로 들어보겠습니다.</p>
+              <p style="margin:8px 0 14px;line-height:1.8;font-size:14px;font-weight:700;word-break:keep-all;">기본 치명타 확률 5% + 통찰의 감각 Lv.5 7.5% + 통찰의 솜씨 3% + 통찰의 재능 4.5% + 통찰의 성흔 18% + 날카로운 공세 6%로 총 <strong style="color:var(--accent);font-weight:900;">44%</strong>의 치명타 확률을 확보할 수 있습니다.</p>
+              <p style="margin:8px 0 14px;line-height:1.8;font-size:14px;font-weight:700;word-break:keep-all;">통찰 4세트 착용 시 치명타 확률이 30%p 증가하여 <strong style="color:var(--accent);font-weight:900;">74%</strong>가 됩니다. 치명타 확률 100%를 목표로 세팅하는 경우, 부족한 <strong style="color:var(--accent);font-weight:900;">26%</strong>를 장비 부옵션에서 확보해야 합니다.</p>
+              <p style="margin:8px 0 14px;line-height:1.8;font-size:14px;font-weight:700;word-break:keep-all;">이러한 경우에는 부옵션에서 확보해야 하는 치명타 확률이 높기 때문에 <strong style="color:var(--accent);font-weight:900;">치명타 확률 부옵션의 가치가 더 높아집니다.</strong></p>
+            </div>
+          </article>
+          <div style="border-top:1px solid var(--line);padding-top:20px;margin-top:24px;">
+            <h3 style="color:var(--accent);font-size:18px;margin:0 0 12px;">※ 장비 평가 시 주의사항</h3>
+            <p style="margin:8px 0 14px;line-height:1.8;font-size:14px;font-weight:700;word-break:keep-all;">장비 부옵션의 가치는 구원자의 기본 능력치, 잠재력, 장비 세트 등에 따라 달라집니다.</p>
+            <p style="margin:8px 0 14px;line-height:1.8;font-size:14px;font-weight:700;word-break:keep-all;">따라서 장비의 좋고 나쁨을 판단하기 전에 세팅하려는 구원자의 기본 치명타 확률과 필요한 능력치를 반드시 확인해 주세요.</p>
+            <p style="margin:8px 0 14px;line-height:1.8;font-size:14px;font-weight:700;word-break:keep-all;"><strong style="color:var(--accent);font-weight:900;">치명타 확률과 치명타 피해의 합이 10% 이상이라는 기준만으로 좋은 장비를 판단할 수는 없습니다.</strong></p>
+            <p style="margin:8px 0 14px;line-height:1.8;font-size:14px;font-weight:700;word-break:keep-all;">치명타 확률을 충분히 확보한 구원자에게는 공격력%, 치명타 피해, 속도 등의 부옵션이 더 높은 가치를 지닐 수 있습니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="equipment-panel">
+        <div class="equipment-panel-inner">
           <h2 class="equipment-section-title">주옵션 (Tier 2)</h2>
           <div class="equipment-table-wrap">
             <table class="equipment-table main-options">
